@@ -63,13 +63,15 @@ int main()
 		return -1;
 	}
 
+	glEnable(GL_BLEND);
+
 	
 	// build and compile our shader zprogram
 	// ------------------------------------
-	Shader ourShader("sample_texture.vs", "sample_texture.fs");
+	Shader shader("sample_texture.vs", "sample_texture.fs");
 
 
-	Sprite *s = new Sprite("wall.jpg", 0, 0, 10, 10);
+	Sprite *s = new Sprite("face.png", 0, 0, 10, 10);
 
 	// render loop
 	// -----------
@@ -85,20 +87,20 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//// render container
-		ourShader.use();
+		shader.use();
 
 		
 
 		// pass projection matrix to shader (note that in this case it could change every frame)
 		glm::mat4 projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		ourShader.setMat4("projection", projection);
+		shader.setMat4("projection", projection);
 		
 
 		// camera/view transformation
 		glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-		ourShader.setMat4("view", view);
+		shader.setMat4("view", view);
 
-		s->draw(1, 0, 0, ourShader);
+		s->draw(0, 0, 0, shader);
 
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -106,12 +108,6 @@ int main()
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	// optional: de-allocate all resources once they've outlived their purpose:
-	// ------------------------------------------------------------------------
-	//glDeleteVertexArrays(1, &VAO);
-	//glDeleteBuffers(1, &VBO);
-	//glDeleteBuffers(1, &EBO);
 
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------

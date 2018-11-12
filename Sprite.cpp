@@ -15,14 +15,13 @@ Sprite::Sprite(string src, int x, int y, int w, int h)
 	this->w = w;
 	this->h = h;
 
-	Shader ourShader("sample_texture.vs", "sample_texture.fs");
-	//this->shader = &ourShader;
 
 	float vertices[] = {
 		// positions          // texture coords
 		-0.5f, -0.5f, 0.0f,  0.0f, 0.0f, //bottom left
 		 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, //bottom right
-		 0.5f,  0.5f, 0.0f,  1.0f, 1.0f, // top right
+		 0.5f,  0.5f, 0.0f,  1.0f, 1.0f, //top right
+
 		 0.5f,  0.5f, 0.0f,  1.0f, 1.0f, //top right
 		-0.5f,  0.5f, 0.0f,  0.0f, 1.0f, //top left
 		-0.5f, -0.5f, 0.0f,  0.0f, 0.0f, //botom right
@@ -46,8 +45,6 @@ Sprite::Sprite(string src, int x, int y, int w, int h)
 
 	// load and create a texture 
 	// -------------------------
-	//unsigned int texture1;
-	// texture 1
 	// ---------
 	glGenTextures(1, &this->texture);
 	glBindTexture(GL_TEXTURE_2D, this->texture);
@@ -59,11 +56,12 @@ Sprite::Sprite(string src, int x, int y, int w, int h)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	// load image, create texture and generate mipmaps
 	int width, height, nrChannels;
+	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
 
 	unsigned char *data = stbi_load(src.c_str(), &width, &height, &nrChannels, 0);
 	if (data)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
@@ -94,19 +92,16 @@ unsigned int Sprite::getVAO()
 	return this->VAO;
 }
 
-void Sprite::draw(float x, float y, float z, Shader &ourShader)
+void Sprite::draw(float x, float y, float z, Shader &shader)
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, this->texture);
-
-	// render container
-	//ourShader.use();
 	glBindVertexArray(this->VAO);
 
 	glm::mat4 model = glm::mat4(1.0);
 	model = glm::translate(model, glm::vec3(x, y, z));
 
-	ourShader.setMat4("model", model);
+	shader.setMat4("model", model);
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
