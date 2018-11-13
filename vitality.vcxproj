@@ -130,6 +130,8 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoveScript.cpp" />
+    <ClCompile Include="Script.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Oakitus.cpp" />
     <ClCompile Include="GLWindow.cpp" />
@@ -145,6 +147,8 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="KeyCode.h" />
+    <ClInclude Include="MoveScript.h" />
+    <ClInclude Include="Script.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stb_image.h" />

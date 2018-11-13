@@ -5,6 +5,7 @@
 
 #include "Component.h"
 #include "Texture.h"
+#include "Shader.h"
 
 class Sprite : public Component
 {

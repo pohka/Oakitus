@@ -16,5 +16,7 @@ unsigned int Component::getNextID()
 	return componentCount;
 }
 
+void Component::update() {}
+
 void Component::draw(){}
 

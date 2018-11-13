@@ -84,14 +84,14 @@ int main()
 		shader->setMat4("view", view);
 
 
-		if (Input::isKeyDown(input::KeyCode::A))
+		/*if (Input::isKeyDown(input::KeyCode::A))
 		{
 			std::cout << "A is down" << std::endl;
 		}
 		if (Input::isKeyUp(input::KeyCode::SPACE))
 		{
 			std::cout << "space is up" << std::endl;
-		}
+		}*/
 		Oakitus::update();
 		Oakitus::draw();
 

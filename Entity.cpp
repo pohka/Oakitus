@@ -22,7 +22,15 @@ Entity::~Entity()
 
 void Entity::update()
 {
+	for (unsigned int i = 0; i < components.size(); i++)
+	{
+		components[i]->update();
+	}
 
+	for (unsigned int i = 0; i < scripts.size(); i++)
+	{
+		scripts[i]->update(this);
+	}
 }
 
 void Entity::draw()
@@ -37,6 +45,12 @@ void Entity::addComponent(Component& component)
 {
 	component.entity = this;
 	this->components.push_back(&component);
+}
+
+void Entity::addScript(Script& script)
+{
+	script.entity = this;
+	this->scripts.push_back(&script);
 }
 
 unsigned int Entity::getID()
