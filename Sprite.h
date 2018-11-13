@@ -3,7 +3,6 @@
 
 using namespace std;
 #include <string>
-#include "shader_s.h"
 
 #include "Component.h"
 
@@ -11,14 +10,15 @@ using namespace std;
 class Sprite : public Component
 {
 	public:
-		Sprite(string src, int x, int y, int w, int h);
+		Sprite(string src, int x, int y, int w, int h, unsigned int shaderID);
 		~Sprite();
 		string getSrc();
-		void draw(float x, float y, float z, Shader &ourShader) override;
+		void draw(float x, float y, float z) override;
 		unsigned int getTexture();
 		unsigned int getVAO();
 
 		int x, y, w, h;
+		unsigned int shaderID;
 	private:
 		string src;
 		unsigned int texture, VBO, VAO;

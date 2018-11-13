@@ -7,9 +7,10 @@
 #include "GLWindow.h"
 
 #include <vector>
-#include "shader_s.h"
+#include "Shader.h"
 #include "Entity.h"
 #include "IDGenerator.h"
+#include <string>
 
 class Oakitus
 {
@@ -20,10 +21,13 @@ class Oakitus
 		static void addShader(Shader& shader);
 		static Entity* findEntityByID(unsigned int id);
 		static void addEntity(Entity& entity);
+		static Shader* findShaderByName(std::string name);
+		static unsigned int defaultShaderID;
 	private :
 		static std::vector<Shader*> shaders;
 		static std::vector<Entity*> entities;
 		static IDGenerator* shaderIDGen;
+		
 
 };
 

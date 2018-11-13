@@ -15,4 +15,4 @@ unsigned int Component::getNextID()
 	return componentCount;
 }
 
-void Component::draw(float x, float y, float z, Shader& shader){}
+void Component::draw(float x, float y, float z){}

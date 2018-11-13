@@ -1,7 +1,7 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "shader_s.h"
+#include "Shader.h"
 
 class Component
 {
@@ -9,7 +9,7 @@ class Component
 		Component();
 		virtual ~Component();
 		static unsigned int getNextID();
-		virtual void draw(float x, float y, float z, Shader& shader);
+		virtual void draw(float x, float y, float z);
 	private:
 		unsigned int componentID;
 };

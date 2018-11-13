@@ -8,7 +8,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "shader_s.h"
+#include "Shader.h"
 #include "Camera.h"
 
 
@@ -45,8 +45,10 @@ int main()
 	
 	// build and compile our shader zprogram
 	// ------------------------------------
-	Shader *shader = new Shader("sample_texture.vs", "sample_texture.fs");
+	Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");
 	Oakitus::addShader(*shader);
+	Oakitus::defaultShaderID = shader->getID();
+
 
 
 	Game::load();

@@ -8,13 +8,23 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Oakitus.h"
 
-Sprite::Sprite(string src, int x, int y, int w, int h)
+
+Sprite::Sprite(string src, int x, int y, int w, int h, unsigned int shaderID)
 {
 	this->x = x;
 	this->y = y;
 	this->w = w;
 	this->h = h;
+	if (shaderID != NULL)
+	{
+		this->shaderID = shaderID;
+	}
+	else 
+	{
+		shaderID = Oakitus::defaultShaderID;
+	}
 
 
 	float vertices[] = {
@@ -93,7 +103,7 @@ unsigned int Sprite::getVAO()
 	return this->VAO;
 }
 
-void Sprite::draw(float x, float y, float z, Shader &shader)
+void Sprite::draw(float x, float y, float z)
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, this->texture);
@@ -102,7 +112,10 @@ void Sprite::draw(float x, float y, float z, Shader &shader)
 	glm::mat4 model = glm::mat4(1.0);
 	model = glm::translate(model, glm::vec3(x, y, z));
 
-	shader.setMat4("model", model);
+
+	Shader* shader = Oakitus::getShaderByID(this->shaderID);
+
+	shader->setMat4("model", model);
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }

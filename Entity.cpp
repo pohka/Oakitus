@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include "shader_s.h"
 #include "Oakitus.h"
 
 
@@ -17,11 +16,11 @@ Entity::~Entity()
 
 }
 
-void Entity::draw(Shader& shader)
+void Entity::draw()
 {
 	for (unsigned int i = 0; i < components.size(); i++) 
 	{
-		components[i]->draw(this->position->x, this->position->y, this->position->z, shader);
+		components[i]->draw(this->position->x, this->position->y, this->position->z);
 	}
 }
 
