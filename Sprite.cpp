@@ -27,16 +27,22 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
 		shaderID = Oakitus::defaultShaderID;
 	}
 
+	this->texture = new Texture(src.c_str());
+
+ 	float xMin = ((float)x / texture->getWidth());
+	float yMin = ((float)y / texture->getHeight());
+	float xMax = ((float)(x+w) / texture->getWidth());
+	float yMax = ((float)(y+h) / texture->getHeight());
 
 	float vertices[] = {
 		// positions          // texture coords
-		-0.5f, -0.5f, 0.0f,  0.0f, 0.0f, //bottom left
-		 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, //bottom right
-		 0.5f,  0.5f, 0.0f,  1.0f, 1.0f, //top right
+		-0.5,  -0.5f, 0.0f,  xMin, yMax, //bottom left
+		 0.5f, -0.5f, 0.0f,  xMax, yMax, //bottom right
+		 0.5f,  0.5f, 0.0f,  xMax, yMin, //top right
 
-		 0.5f,  0.5f, 0.0f,  1.0f, 1.0f, //top right
-		-0.5f,  0.5f, 0.0f,  0.0f, 1.0f, //top left
-		-0.5f, -0.5f, 0.0f,  0.0f, 0.0f, //botom right
+		 0.5f,  0.5f, 0.0f,  xMax, yMin, //top right
+		-0.5f,  0.5f, 0.0f,  xMin, yMin, //top left
+		-0.5f, -0.5f, 0.0f,  xMin, yMax, //botom left
 	};
 
 	glGenVertexArrays(1, &this->VAO);
@@ -55,7 +61,7 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	this->texture = new Texture(src.c_str());
+	
 }
 
 Sprite::~Sprite()

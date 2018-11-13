@@ -17,8 +17,7 @@ Texture::Texture(const char* src)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	// load image, create texture and generate mipmaps
-	int width, height, nrChannels;
-	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
+	int nrChannels;
 
 	unsigned char *data = stbi_load(src, &width, &height, &nrChannels, 0);
 	if (data)
@@ -40,4 +39,14 @@ Texture::~Texture()
 unsigned int Texture::getID()
 {
 	return id;
+}
+
+int Texture::getWidth()
+{
+	return width;
+}
+
+int Texture::getHeight()
+{
+	return height;
 }

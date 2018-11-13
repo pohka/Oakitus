@@ -14,7 +14,7 @@ void Game::load()
 void Game::init()
 {
 	Entity* ent = new Entity();
-	Sprite* s = new Sprite("face.png", 0, 0, 10, 10, NULL);
+	Sprite* s = new Sprite("face.png", 0, 500, 700, 500, NULL);
 	ent->addComponent(*s);
 	Script* move = new MoveScript();
 	ent->addScript(*move);
