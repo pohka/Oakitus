@@ -21,6 +21,7 @@
 #include "Oakitus.h"
 #include "Game.h"
 #include "Input.h"
+#include "Time.h"
 
 
 void processInput(GLFWwindow *window);
@@ -40,6 +41,7 @@ float fov = 90.0f;
 
 int main()
 {
+	Time::init();
 	Input::init();
 	Oakitus::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
 	GLFWwindow* window = Oakitus::glWindow->getGLFWWindow();
@@ -61,6 +63,8 @@ int main()
 	// -----------
 	while (!glfwWindowShouldClose(window))
 	{
+		Time::calcDeltaTime();
+
 		// input
 		// -----
 		processInput(window);

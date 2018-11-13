@@ -3,13 +3,14 @@
 #include "Input.h"
 #include <iostream>
 #include "Entity.h"
+#include "Time.h"
 
 MoveScript::MoveScript() {}
 MoveScript::~MoveScript() {}
 
 void MoveScript::update(Entity* ent)
 {
-	float speed = 0.0001f;
+	float speed = 1.0f * Time::deltaTime;
 	if (Input::isKeyPressed(input::KeyCode::A))
 	{
 		this->entity->position->x -= speed;
