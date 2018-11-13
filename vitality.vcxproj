@@ -126,6 +126,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="IDGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Oakitus.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="IDGenerator.h" />
     <ClInclude Include="shader_s.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stb_image.h" />

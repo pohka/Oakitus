@@ -9,18 +9,21 @@
 #include <vector>
 #include "shader_s.h"
 #include "Entity.h"
+#include "IDGenerator.h"
 
 class Oakitus
 {
 	
 	public :
-		Oakitus();
-		~Oakitus();
-		std::vector<Shader*> shaders;
-		std::vector<Entity*> entities;
-	private :
 		static GLWindow* glWindow;
-		
+		static Shader* getShaderByID(unsigned int id);
+		static void addShader(Shader& shader);
+		static Entity* findEntityByID(unsigned int id);
+		static void addEntity(Entity& entity);
+	private :
+		static std::vector<Shader*> shaders;
+		static std::vector<Entity*> entities;
+		static IDGenerator* shaderIDGen;
 
 };
 

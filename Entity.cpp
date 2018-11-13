@@ -1,23 +1,20 @@
 #include "Entity.h"
 #include "shader_s.h"
+#include "Oakitus.h"
 
-unsigned int entityCount = 0;
+
 
 Entity::Entity() 
 {
-	this->entityID = Entity::getNextID();
+	idGen = new IDGenerator();
+	this->entityID = idGen->nextID();
 	this->position = new Vector3(0, 0, 0);
+	Oakitus::addEntity(*this);
 }
 
 Entity::~Entity() 
 {
 
-}
-
-unsigned int Entity::getNextID()
-{
-	entityCount++;
-	return entityCount;
 }
 
 void Entity::draw(Shader& shader)
@@ -32,3 +29,9 @@ void Entity::addComponent(Component& component)
 {
 	this->components.push_back(&component);
 }
+
+unsigned int Entity::getID()
+{
+	return this->entityID;
+}
+

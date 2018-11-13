@@ -22,8 +22,6 @@
 #include "Game.h"
 
 
-
-
 void processInput(GLFWwindow *window);
 
 // settings
@@ -41,18 +39,17 @@ float fov = 90.0f;
 
 int main()
 {
-	GLWindow* glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
-	GLFWwindow* window = glWindow->getGLFWWindow();
+	Oakitus::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
+	GLFWwindow* window = Oakitus::glWindow->getGLFWWindow();
 
-	Oakitus* engine = new Oakitus();
 	
 	// build and compile our shader zprogram
 	// ------------------------------------
 	Shader *shader = new Shader("sample_texture.vs", "sample_texture.fs");
-	engine->shaders.push_back(shader);
+	Oakitus::addShader(*shader);
 
 
-	Game::load(engine);
+	Game::load();
 	Game::init();
 
 	// render loop

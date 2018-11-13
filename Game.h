@@ -5,7 +5,7 @@
 
 class Game {
 	public:
-		static void load(Oakitus* engine);
+		static void load();
 		static void init();
 		static void update();
 		static void draw();
