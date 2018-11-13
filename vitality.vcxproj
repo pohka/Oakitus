@@ -131,6 +131,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Oakitus.cpp" />
     <ClCompile Include="GLWindow.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Oakitus.h" />
     <ClInclude Include="GLWindow.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
