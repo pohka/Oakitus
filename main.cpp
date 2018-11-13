@@ -20,6 +20,7 @@
 
 #include "Oakitus.h"
 #include "Game.h"
+#include "Input.h"
 
 
 void processInput(GLFWwindow *window);
@@ -39,8 +40,10 @@ float fov = 90.0f;
 
 int main()
 {
+	Input::init();
 	Oakitus::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
 	GLFWwindow* window = Oakitus::glWindow->getGLFWWindow();
+
 
 	
 	// build and compile our shader zprogram
@@ -80,6 +83,15 @@ int main()
 		glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 		shader->setMat4("view", view);
 
+
+		if (Input::isKeyDown(input::KeyCode::A))
+		{
+			std::cout << "A is down" << std::endl;
+		}
+		if (Input::isKeyUp(input::KeyCode::SPACE))
+		{
+			std::cout << "space is up" << std::endl;
+		}
 		Oakitus::update();
 		Oakitus::draw();
 
@@ -107,5 +119,10 @@ void processInput(GLFWwindow *window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
+	/*else if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+	{
+		std::cout << "w:" << GLFW_KEY_W;
+	}*/
+	Input::setKeys(window);
 }
 
