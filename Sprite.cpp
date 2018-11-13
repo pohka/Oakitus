@@ -103,14 +103,15 @@ unsigned int Sprite::getVAO()
 	return this->VAO;
 }
 
-void Sprite::draw(float x, float y, float z)
+void Sprite::draw()
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, this->texture);
 	glBindVertexArray(this->VAO);
 
 	glm::mat4 model = glm::mat4(1.0);
-	model = glm::translate(model, glm::vec3(x, y, z));
+	glm::vec3 pos(entity->position->x, entity->position->y, entity->position->z);
+	model = glm::translate(model, pos);
 
 
 	Shader* shader = Oakitus::getShaderByID(this->shaderID);

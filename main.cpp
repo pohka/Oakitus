@@ -80,8 +80,8 @@ int main()
 		glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 		shader->setMat4("view", view);
 
-		Game::update();
-		Game::draw();
+		Oakitus::update();
+		Oakitus::draw();
 
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

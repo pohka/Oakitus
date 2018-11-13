@@ -2,6 +2,7 @@
 
 unsigned int componentCount = 0;
 
+
 Component::Component()
 {
 	this->componentID = Component::getNextID();
@@ -15,4 +16,5 @@ unsigned int Component::getNextID()
 	return componentCount;
 }
 
-void Component::draw(float x, float y, float z){}
+void Component::draw(){}
+

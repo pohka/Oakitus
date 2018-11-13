@@ -3,15 +3,19 @@
 
 #include "Shader.h"
 
+class Entity;
+
 class Component
 {
 	public:
 		Component();
 		virtual ~Component();
 		static unsigned int getNextID();
-		virtual void draw(float x, float y, float z);
+		virtual void draw();
+		Entity* entity;
 	private:
 		unsigned int componentID;
+		
 };
 
 #endif

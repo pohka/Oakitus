@@ -11,6 +11,7 @@ class Entity
 	public :
 		Entity();
 		~Entity();
+		void update();
 		void draw();
 		Vector3* position;
 		void addComponent(Component& component);

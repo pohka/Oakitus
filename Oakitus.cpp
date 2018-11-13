@@ -47,3 +47,32 @@ Shader* Oakitus::findShaderByName(std::string name)
 	}
 	return nullptr;
 }
+
+void Oakitus::update()
+{
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		entities[i]->update();
+	}
+}
+
+void Oakitus::draw()
+{
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		entities[i]->draw();
+	}
+}
+
+void Oakitus::destroy(unsigned int entityID)
+{
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		if (entities[i]->getID() == entityID)
+		{
+			Entity* ent = entities[i];
+			entities.erase(entities.begin() + i);
+			delete ent;
+		}
+	}
+}

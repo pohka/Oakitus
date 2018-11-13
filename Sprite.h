@@ -13,7 +13,7 @@ class Sprite : public Component
 		Sprite(string src, int x, int y, int w, int h, unsigned int shaderID);
 		~Sprite();
 		string getSrc();
-		void draw(float x, float y, float z) override;
+		void draw() override;
 		unsigned int getTexture();
 		unsigned int getVAO();
 

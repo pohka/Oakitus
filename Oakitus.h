@@ -23,6 +23,9 @@ class Oakitus
 		static void addEntity(Entity& entity);
 		static Shader* findShaderByName(std::string name);
 		static unsigned int defaultShaderID;
+		static void update();
+		static void draw();
+		static void destroy(unsigned int entityID);
 	private :
 		static std::vector<Shader*> shaders;
 		static std::vector<Entity*> entities;
