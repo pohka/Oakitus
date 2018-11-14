@@ -20,8 +20,8 @@ class Entity
 		void addComponent(Component& component);
 		void addScript(Script& script);
 		unsigned int getID();
-		virtual void onDestory();
-	//	void destory();
+		virtual void onDestroy();
+		void destroy();
 	private : 
 		unsigned int entityID;
 		std::vector<Component*> components;

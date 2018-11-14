@@ -153,7 +153,7 @@ void Oakitus::onDestroy()
 		//call onDestroy and delete the object
 		if (found)
 		{
-			ent->onDestory();
+			ent->onDestroy();
 			delete ent;
 		}
 

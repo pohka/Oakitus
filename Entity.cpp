@@ -62,7 +62,12 @@ unsigned int Entity::getID()
 	return this->entityID;
 }
 
-void Entity::onDestory()
+void Entity::onDestroy()
 {
 
+}
+
+void Entity::destroy()
+{
+	Oakitus::destroyEntityByID(this->getID());
 }

@@ -31,6 +31,6 @@ void MoveScript::onUpdate()
 
 	if (Input::isKeyDown(input::KeyCode::BACKSPACE))
 	{
-		Oakitus::destroyEntityByID(entity->getID());
+		entity->destroy();
 	}
 }
