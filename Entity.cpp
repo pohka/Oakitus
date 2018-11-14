@@ -28,12 +28,12 @@ void Entity::onUpdate()
 {
 	for (unsigned int i = 0; i < components.size(); i++)
 	{
-		components[i]->update();
+		components[i]->onUpdate();
 	}
 
 	for (unsigned int i = 0; i < scripts.size(); i++)
 	{
-		scripts[i]->update(this);
+		scripts[i]->onUpdate();
 	}
 }
 
@@ -41,7 +41,7 @@ void Entity::onDraw()
 {
 	for (unsigned int i = 0; i < components.size(); i++) 
 	{
-		components[i]->draw();
+		components[i]->onDraw();
 	}
 }
 

@@ -82,7 +82,7 @@ unsigned int Sprite::getVAO()
 	return this->VAO;
 }
 
-void Sprite::draw()
+void Sprite::onDraw()
 {
 	
 	glActiveTexture(GL_TEXTURE0);

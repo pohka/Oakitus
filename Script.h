@@ -10,7 +10,7 @@ class Script
 		Script();
 		virtual ~Script();
 		virtual void init();
-		virtual void update(Entity* ent);
+		virtual void onUpdate();
 		
 	protected:
 		Entity* entity;

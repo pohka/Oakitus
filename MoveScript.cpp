@@ -9,7 +9,7 @@
 MoveScript::MoveScript() {}
 MoveScript::~MoveScript() {}
 
-void MoveScript::update(Entity* ent)
+void MoveScript::onUpdate()
 {
 	float speed = 1.0f * Time::deltaTime;
 	if (Input::isKeyPressed(input::KeyCode::A))

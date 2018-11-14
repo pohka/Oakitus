@@ -8,7 +8,7 @@ class MoveScript : public Script
 	public :
 		MoveScript();
 		~MoveScript();
-		void update(Entity* ent) override;
+		void onUpdate() override;
 };
 
 #endif

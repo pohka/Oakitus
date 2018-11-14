@@ -10,8 +10,8 @@ class Component
 		Component();
 		virtual ~Component();
 		static unsigned int getNextID();
-		virtual void update();
-		virtual void draw();
+		virtual void onUpdate();
+		virtual void onDraw();
 
 	protected:
 		Entity* entity;

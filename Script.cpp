@@ -13,7 +13,7 @@ void Script::init()
 
 }
 
-void Script::update(Entity* ent)
+void Script::onUpdate()
 {
 
 }
