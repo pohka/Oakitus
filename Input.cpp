@@ -1,6 +1,7 @@
 #include "Input.h"
 
 Key* Input::keys[KEY_COUNT];
+Vector2* Input::mousePos = new Vector2(0, 0);
 
 void Input::init()
 {
@@ -50,4 +51,10 @@ bool Input::isKeyPressed(KeyCode code)
 {
 	Key* key = Input::getKeyByCode(code);
 	return key->isDown;
+}
+
+void Input::setMouse(float x, float y)
+{
+	mousePos->x = x;
+	mousePos->y = y;
 }

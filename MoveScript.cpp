@@ -33,4 +33,13 @@ void MoveScript::onUpdate()
 	{
 		entity->destroy();
 	}
+
+	
+
+	if (Input::isKeyDown(input::KeyCode::C))
+	{
+		glm::vec3 pt = Oakitus::camera->cursorToWorld2D();
+		std::cout << "vp:" << Input::mousePos->x << "," << Input::mousePos->y << std::endl <<
+			"rayWorld:" << pt.x << "," << pt.y << "," << pt.z << std::endl;
+	}
 }

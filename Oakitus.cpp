@@ -7,6 +7,7 @@ IDGenerator* Oakitus::shaderIDGen = new IDGenerator();
 Scene* Oakitus::curScene = nullptr;
 unsigned int Oakitus::defaultShaderID;
 std::queue<unsigned int> Oakitus::destroyEntIDQueue;
+Camera* Oakitus::camera = nullptr;
 
 
 Shader* Oakitus::getShaderByID(unsigned int id)

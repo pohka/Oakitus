@@ -8,6 +8,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+
 #include "Shader.h"
 #include "Camera.h"
 
@@ -27,19 +28,11 @@
 
 
 void processInput(GLFWwindow *window);
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-
-// camera
-glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-
-float fov = 90.0f;
-
-
 
 int main()
 {
@@ -47,7 +40,14 @@ int main()
 	Input::init();
 	Oakitus::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
 	GLFWwindow* window = Oakitus::glWindow->getGLFWWindow();
+	glfwSetCursorPosCallback(window, cursor_position_callback);
 
+	Oakitus::camera = new Camera(
+		glm::vec3(0.0f, 0.0f, 3.0f), //position
+		glm::vec3(0.0f, 0.0f, -1.0f), //front
+		glm::vec3(0.0f, 1.0f, 0.0f), //up
+		90.0f //field or view
+	);
 
 	
 	// build and compile our shader zprogram
@@ -80,12 +80,21 @@ int main()
 
 
 		// pass projection matrix to shader (note that in this case it could change every frame)
-		glm::mat4 projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(
+			glm::radians(Oakitus::camera->fov), 
+			(float)SCR_WIDTH / (float)SCR_HEIGHT, 
+			0.1f, 
+			100.0f
+		);
 		shader->setMat4("projection", projection);
 		
 
 		// camera/view transformation
-		glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+		glm::mat4 view = glm::lookAt(
+			Oakitus::camera->position, 
+			Oakitus::camera->position + Oakitus::camera->front, 
+			Oakitus::camera->up
+		);
 		shader->setMat4("view", view);
 
 
@@ -95,17 +104,11 @@ int main()
 			Oakitus::setScene(*new SampleScene());
 		}
 
-		/*if (Input::isKeyDown(input::KeyCode::A))
-		{
-			std::cout << "A is down" << std::endl;
-		}
-		if (Input::isKeyUp(input::KeyCode::SPACE))
-		{
-			std::cout << "space is up" << std::endl;
-		}*/
 		Oakitus::onUpdate();
 		Oakitus::onDraw();
 		Oakitus::onDestroy();
+
+		
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
@@ -130,10 +133,16 @@ void processInput(GLFWwindow *window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
-	/*else if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-	{
-		std::cout << "w:" << GLFW_KEY_W;
-	}*/
+
 	Input::setKeys(window);
 }
+
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	// invert y-coordinate
+	//todo: screen height should use current viewport height as the window can be resized
+	Input::setMouse((float)xpos, (float)SCR_HEIGHT - (float)ypos);
+}
+
+
 

@@ -13,13 +13,15 @@
 #include <string>
 #include "Scene.h"
 #include <queue>
+#include "Camera.h"
 
 
 class Oakitus
 {
-	
 	public :
 		static GLWindow* glWindow;
+		static Camera* camera;
+
 		static Shader* getShaderByID(unsigned int id);
 		static void addShader(Shader& shader);
 		static Entity* findEntityByID(unsigned int id);
@@ -41,7 +43,6 @@ class Oakitus
 		static Scene* curScene;
 		static std::queue<unsigned int> destroyEntIDQueue;
 		
-
 };
 
 #endif
