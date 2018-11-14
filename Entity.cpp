@@ -18,9 +18,13 @@ Entity::~Entity()
 	{
 		delete c;
 	}
+	for (Script* s : scripts)
+	{
+		delete s;
+	}
 }
 
-void Entity::update()
+void Entity::onUpdate()
 {
 	for (unsigned int i = 0; i < components.size(); i++)
 	{
@@ -33,7 +37,7 @@ void Entity::update()
 	}
 }
 
-void Entity::draw()
+void Entity::onDraw()
 {
 	for (unsigned int i = 0; i < components.size(); i++) 
 	{
@@ -58,3 +62,7 @@ unsigned int Entity::getID()
 	return this->entityID;
 }
 
+void Entity::onDestory()
+{
+
+}

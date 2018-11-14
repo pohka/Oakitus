@@ -18,6 +18,7 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
 	this->y = y;
 	this->w = w;
 	this->h = h;
+	
 	if (shaderID != NULL)
 	{
 		this->shaderID = shaderID;
@@ -26,9 +27,9 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
 	{
 		shaderID = Oakitus::defaultShaderID;
 	}
-
+	
 	this->texture = new Texture(src.c_str());
-
+	
  	float xMin = ((float)x / texture->getWidth());
 	float yMin = ((float)y / texture->getHeight());
 	float xMax = ((float)(x+w) / texture->getWidth());
@@ -44,7 +45,7 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
 		-0.5f,  0.5f, 0.0f,  xMin, yMin, //top left
 		-0.5f, -0.5f, 0.0f,  xMin, yMax, //botom left
 	};
-
+	
 	glGenVertexArrays(1, &this->VAO);
 	glGenBuffers(1, &this->VBO);
 
@@ -60,12 +61,13 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
 	// texture coord attribute
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
-
+	
 	
 }
 
 Sprite::~Sprite()
 {
+	delete texture;
 	glDeleteVertexArrays(1, &this->VAO);
 	glDeleteBuffers(1, &this->VBO);
 }
@@ -82,6 +84,7 @@ unsigned int Sprite::getVAO()
 
 void Sprite::draw()
 {
+	
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, this->texture->getID());
 	glBindVertexArray(this->VAO);
@@ -96,4 +99,5 @@ void Sprite::draw()
 	shader->setMat4("model", model);
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
+	
 }

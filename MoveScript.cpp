@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Entity.h"
 #include "Time.h"
+#include "Oakitus.h"
 
 MoveScript::MoveScript() {}
 MoveScript::~MoveScript() {}
@@ -26,5 +27,10 @@ void MoveScript::update(Entity* ent)
 	if (Input::isKeyPressed(input::KeyCode::W))
 	{
 		this->entity->position->y += speed;
+	}
+
+	if (Input::isKeyDown(input::KeyCode::BACKSPACE))
+	{
+		Oakitus::destroyEntityByID(entity->getID());
 	}
 }

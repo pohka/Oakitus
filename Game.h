@@ -6,7 +6,6 @@
 class Game {
 	public:
 		static void load();
-		static void init();
 };
 
 #endif

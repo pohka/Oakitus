@@ -23,6 +23,8 @@
 #include "Input.h"
 #include "Time.h"
 
+#include "SampleScene.h"
+
 
 void processInput(GLFWwindow *window);
 
@@ -57,7 +59,6 @@ int main()
 
 
 	Game::load();
-	Game::init();
 
 	// render loop
 	// -----------
@@ -88,6 +89,12 @@ int main()
 		shader->setMat4("view", view);
 
 
+		if (Input::isKeyDown(input::KeyCode::R))
+		{
+			std::cout << "r is down " << std::endl;
+			Oakitus::setScene(*new SampleScene());
+		}
+
 		/*if (Input::isKeyDown(input::KeyCode::A))
 		{
 			std::cout << "A is down" << std::endl;
@@ -96,9 +103,9 @@ int main()
 		{
 			std::cout << "space is up" << std::endl;
 		}*/
-		Oakitus::update();
-		Oakitus::draw();
-
+		Oakitus::onUpdate();
+		Oakitus::onDraw();
+		Oakitus::onDestroy();
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------

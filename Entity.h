@@ -14,12 +14,13 @@ class Entity
 	public :
 		Entity();
 		~Entity();
-		void update();
-		void draw();
+		virtual void onUpdate();
+		virtual void onDraw();
 		Vector3* position;
 		void addComponent(Component& component);
 		void addScript(Script& script);
 		unsigned int getID();
+		virtual void onDestory();
 	private : 
 		unsigned int entityID;
 		std::vector<Component*> components;

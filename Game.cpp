@@ -4,20 +4,11 @@
 #include "Sprite.h"
 #include "Entity.h"
 #include "MoveScript.h"
+#include "SampleScene.h"
 
 
 void Game::load()
 {
-	
-}
-
-void Game::init()
-{
-	Entity* ent = new Entity();
-	Sprite* s = new Sprite("face.png", 0, 500, 700, 500, NULL);
-	ent->addComponent(*s);
-	Script* move = new MoveScript();
-	ent->addScript(*move);
-	//Oakitus::destroy(ent->getID());
-
+	Scene* defaultScene = new SampleScene();
+	Oakitus::setScene(*defaultScene);
 }

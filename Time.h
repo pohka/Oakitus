@@ -11,7 +11,7 @@ class Time
 
 		static void init()
 		{
-			lastFrame = glfwGetTime();
+			lastFrame = (float)glfwGetTime();
 		}
 		
 		static void calcDeltaTime()

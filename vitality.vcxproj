@@ -79,6 +79,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\GLFW\glfw-3.2.1.bin.WIN32\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\GLFW\glfw-3.2.1.bin.WIN32\lib-vc2015</AdditionalLibraryDirectories>
@@ -131,6 +132,8 @@
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveScript.cpp" />
+    <ClCompile Include="SampleScene.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Oakitus.cpp" />
@@ -149,6 +152,8 @@
     <ClInclude Include="Key.h" />
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="MoveScript.h" />
+    <ClInclude Include="SampleScene.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Sprite.h" />

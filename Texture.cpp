@@ -19,21 +19,24 @@ Texture::Texture(const char* src)
 	// load image, create texture and generate mipmaps
 	int nrChannels;
 
+	
 	unsigned char *data = stbi_load(src, &width, &height, &nrChannels, 0);
+	
 	if (data)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
 	{
 		std::cout << "Failed to load texture" << std::endl;
 	}
+	
 	stbi_image_free(data);
 }
 
 Texture::~Texture() 
 {
+
 }
 
 unsigned int Texture::getID()

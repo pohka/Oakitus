@@ -4,7 +4,9 @@ GLWindow* Oakitus::glWindow = nullptr;
 std::vector<Shader*> Oakitus::shaders;
 std::vector<Entity*> Oakitus::entities;
 IDGenerator* Oakitus::shaderIDGen = new IDGenerator();
+Scene* Oakitus::curScene = nullptr;
 unsigned int Oakitus::defaultShaderID;
+std::queue<unsigned int> Oakitus::destroyEntIDQueue;
 
 
 Shader* Oakitus::getShaderByID(unsigned int id)
@@ -48,19 +50,19 @@ Shader* Oakitus::findShaderByName(std::string name)
 	return nullptr;
 }
 
-void Oakitus::update()
+void Oakitus::onUpdate()
 {
 	for (unsigned int i = 0; i < entities.size(); i++)
 	{
-		entities[i]->update();
+		entities[i]->onUpdate();
 	}
 }
 
-void Oakitus::draw()
+void Oakitus::onDraw()
 {
 	for (unsigned int i = 0; i < entities.size(); i++)
 	{
-		entities[i]->draw();
+		entities[i]->onDraw();
 	}
 }
 
@@ -74,5 +76,87 @@ void Oakitus::destroy(unsigned int entityID)
 			entities.erase(entities.begin() + i);
 			delete ent;
 		}
+	}
+}
+
+void Oakitus::setScene(Scene& scene)
+{
+	//unload and delete current scene
+	if (curScene != nullptr) {
+		curScene->onUnload();
+		Scene* tmp = curScene;
+		delete tmp;
+	}
+	//set and load new scene
+	curScene = &scene;
+	curScene->onLoad();
+}
+
+void Oakitus::deleteAllEnts()
+{
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		Entity* tmp = entities[i];
+		entities.erase(entities.begin() + i); //remove from vector
+		i--;
+		delete tmp;
+	}
+}
+
+void Oakitus::deleteAllEnts(std::vector<int> exceptionIDs)
+{
+	bool isException = false;
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		isException = false;
+		unsigned int entID = entities[i]->getID();
+		for (unsigned int a = 0; a < exceptionIDs.size() && !isException; a++)
+		{
+			if (entID == exceptionIDs[a])
+			{
+				isException = true;
+			}
+		}
+		if (!isException)
+		{
+			Entity* tmp = entities[i];
+			entities.erase(entities.begin() + i); //remove from vector
+			i--;
+			delete tmp;
+		}
+	}
+}
+
+void Oakitus::destroyEntityByID(unsigned int entityID)
+{
+	destroyEntIDQueue.push(entityID);
+}
+
+void Oakitus::onDestroy()
+{
+	while(!destroyEntIDQueue.empty())
+	{
+		unsigned int id = destroyEntIDQueue.front();
+		Entity* ent= nullptr;
+		bool found = false;
+
+		//find entity with matching id, then remove from vector
+		for (unsigned int i = 0; i < entities.size() && !found; i++)
+		{
+			if (entities[i]->getID() == id)
+			{
+				ent = entities[i];
+				entities.erase(entities.begin() + i);
+				found = true;
+			}
+		}
+		//call onDestroy and delete the object
+		if (found)
+		{
+			ent->onDestory();
+			delete ent;
+		}
+
+		destroyEntIDQueue.pop();
 	}
 }
