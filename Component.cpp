@@ -5,15 +5,15 @@ unsigned int componentCount = 0;
 
 Component::Component()
 {
-	this->componentID = Component::getNextID();
+  this->componentID = Component::getNextID();
 }
 
 Component::~Component() {}
 
 unsigned int Component::getNextID()
 {
-	componentCount++;
-	return componentCount;
+  componentCount++;
+  return componentCount;
 }
 
 void Component::onUpdate() {}

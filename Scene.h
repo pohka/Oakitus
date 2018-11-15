@@ -5,12 +5,12 @@
 
 class Scene
 {
-	public:
-		Scene();
-		~Scene();
-		virtual void onLoad();
-		virtual void onUnload();
-	private:
+  public:
+    Scene();
+    ~Scene();
+    virtual void onLoad();
+    virtual void onUnload();
+  private:
 
 };
 

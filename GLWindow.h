@@ -6,12 +6,12 @@
 
 
 class GLWindow {
-	GLFWwindow* window;
+  GLFWwindow* window;
 
-	public :
-		GLWindow(unsigned int screenW, unsigned int screenH, const char* title);
-		~GLWindow();
-		GLFWwindow* getGLFWWindow();
+  public :
+    GLWindow(unsigned int screenW, unsigned int screenH, const char* title);
+    ~GLWindow();
+    GLFWwindow* getGLFWWindow();
 };
 
 #endif

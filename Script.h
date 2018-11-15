@@ -5,18 +5,18 @@ class Entity;
 
 class Script
 {
-	unsigned int scriptID;
+  unsigned int scriptID;
 
-	friend class Entity;
-	public:
-		Script();
-		virtual ~Script();
-		virtual void onUpdate();
-		virtual void init();
-		
-		
-	protected:
-		Entity* entity;
+  friend class Entity;
+  public:
+    Script();
+    virtual ~Script();
+    virtual void onUpdate();
+    virtual void init();
+    
+    
+  protected:
+    Entity* entity;
 
 };
 

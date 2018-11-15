@@ -9,6 +9,6 @@
 
 void Game::load()
 {
-	Scene* defaultScene = new SampleScene();
-	Oakitus::setScene(*defaultScene);
+  Scene* defaultScene = new SampleScene();
+  Oakitus::setScene(*defaultScene);
 }

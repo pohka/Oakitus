@@ -4,8 +4,8 @@
 #include "Oakitus.h"
 
 class Game {
-	public:
-		static void load();
+  public:
+    static void load();
 };
 
 #endif

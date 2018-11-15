@@ -5,18 +5,18 @@ class Entity;
 
 class Component
 {
-	friend class Entity;
-	unsigned int componentID;
+  friend class Entity;
+  unsigned int componentID;
 
-	public:
-		Component();
-		virtual ~Component();
-		static unsigned int getNextID();
-		virtual void onUpdate();
-		virtual void onDraw();
+  public:
+    Component();
+    virtual ~Component();
+    static unsigned int getNextID();
+    virtual void onUpdate();
+    virtual void onDraw();
 
-	protected:
-		Entity* entity;
+  protected:
+    Entity* entity;
 
 };
 

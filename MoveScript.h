@@ -5,10 +5,10 @@
 
 class MoveScript : public Script
 {
-	public :
-		MoveScript();
-		~MoveScript();
-		void onUpdate() override;
+  public :
+    MoveScript();
+    ~MoveScript();
+    void onUpdate() override;
 };
 
 #endif

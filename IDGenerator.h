@@ -3,12 +3,11 @@
 
 class IDGenerator
 {
-	unsigned int count;
+  unsigned int count;
 
-	public:
-		IDGenerator();
-		~IDGenerator();
-		unsigned int nextID();
-		
+  public:
+    IDGenerator();
+    ~IDGenerator();
+    unsigned int nextID();  
 };
 #endif

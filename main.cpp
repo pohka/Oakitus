@@ -36,90 +36,90 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main()
 {
-	Time::init();
-	Input::init();
-	Oakitus::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
-	GLFWwindow* window = Oakitus::glWindow->getGLFWWindow();
-	glfwSetCursorPosCallback(window, cursor_position_callback);
+  Time::init();
+  Input::init();
+  Oakitus::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
+  GLFWwindow* window = Oakitus::glWindow->getGLFWWindow();
+  glfwSetCursorPosCallback(window, cursor_position_callback);
 
-	Oakitus::camera = new Camera(
-		glm::vec3(0.0f, 0.0f, 3.0f), //position
-		glm::vec3(0.0f, 0.0f, -1.0f), //front
-		glm::vec3(0.0f, 1.0f, 0.0f), //up
-		90.0f //field or view
-	);
+  Oakitus::camera = new Camera(
+    glm::vec3(0.0f, 0.0f, 3.0f), //position
+    glm::vec3(0.0f, 0.0f, -1.0f), //front
+    glm::vec3(0.0f, 1.0f, 0.0f), //up
+    90.0f //field or view
+  );
 
-	
-	// build and compile our shader zprogram
-	// ------------------------------------
-	Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");
-	Oakitus::addShader(*shader);
-	Oakitus::defaultShaderID = shader->getID();
-
-
-
-	Game::load();
-
-	// render loop
-	// -----------
-	while (!glfwWindowShouldClose(window))
-	{
-		Time::calcDeltaTime();
-
-		// input
-		// -----
-		processInput(window);
-
-		// render
-		// ------
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		//// render container
-		shader->use();
+  
+  // build and compile our shader zprogram
+  // ------------------------------------
+  Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");
+  Oakitus::addShader(*shader);
+  Oakitus::defaultShaderID = shader->getID();
 
 
-		// pass projection matrix to shader (note that in this case it could change every frame)
-		glm::mat4 projection = glm::perspective(
-			glm::radians(Oakitus::camera->fov), 
-			(float)SCR_WIDTH / (float)SCR_HEIGHT, 
-			0.1f, 
-			100.0f
-		);
-		shader->setMat4("projection", projection);
-		
 
-		// camera/view transformation
-		glm::mat4 view = glm::lookAt(
-			Oakitus::camera->position, 
-			Oakitus::camera->position + Oakitus::camera->front, 
-			Oakitus::camera->up
-		);
-		shader->setMat4("view", view);
+  Game::load();
+
+  // render loop
+  // -----------
+  while (!glfwWindowShouldClose(window))
+  {
+    Time::calcDeltaTime();
+
+    // input
+    // -----
+    processInput(window);
+
+    // render
+    // ------
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    //// render container
+    shader->use();
 
 
-		if (Input::isKeyDown(input::KeyCode::R))
-		{
-			std::cout << "r is down " << std::endl;
-			Oakitus::setScene(*new SampleScene());
-		}
+    // pass projection matrix to shader (note that in this case it could change every frame)
+    glm::mat4 projection = glm::perspective(
+      glm::radians(Oakitus::camera->fov), 
+      (float)SCR_WIDTH / (float)SCR_HEIGHT, 
+      0.1f, 
+      100.0f
+    );
+    shader->setMat4("projection", projection);
+    
 
-		Oakitus::onUpdate();
-		Oakitus::onDraw();
-		Oakitus::onDestroy();
+    // camera/view transformation
+    glm::mat4 view = glm::lookAt(
+      Oakitus::camera->position, 
+      Oakitus::camera->position + Oakitus::camera->front, 
+      Oakitus::camera->up
+    );
+    shader->setMat4("view", view);
 
-		
 
-		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-		// -------------------------------------------------------------------------------
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-	}
+    if (Input::isKeyDown(input::KeyCode::R))
+    {
+      std::cout << "r is down " << std::endl;
+      Oakitus::setScene(*new SampleScene());
+    }
 
-	// glfw: terminate, clearing all previously allocated GLFW resources.
-	// ------------------------------------------------------------------
-	glfwTerminate();
-	return 0;
+    Oakitus::onUpdate();
+    Oakitus::onDraw();
+    Oakitus::onDestroy();
+
+    
+
+    // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+    // -------------------------------------------------------------------------------
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+  }
+
+  // glfw: terminate, clearing all previously allocated GLFW resources.
+  // ------------------------------------------------------------------
+  glfwTerminate();
+  return 0;
 }
 
 void update()
@@ -131,17 +131,17 @@ void update()
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow *window)
 {
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
+  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    glfwSetWindowShouldClose(window, true);
 
-	Input::setKeys(window);
+  Input::setKeys(window);
 }
 
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
-	// invert y-coordinate
-	//todo: screen height should use current viewport height as the window can be resized
-	Input::setMouse((float)xpos, (float)SCR_HEIGHT - (float)ypos);
+  // invert y-coordinate
+  //todo: screen height should use current viewport height as the window can be resized
+  Input::setMouse((float)xpos, (float)SCR_HEIGHT - (float)ypos);
 }
 
 

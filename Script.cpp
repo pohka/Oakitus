@@ -3,7 +3,7 @@
 
 Script::Script() 
 {
-	this->scriptID = 0;
+  this->scriptID = 0;
 };
 
 Script::~Script() {};

@@ -3,13 +3,13 @@
 
 class Vector3
 {
-	
-	public:
-		Vector3(float x, float y, float z);
-		float x;
-		float y;
-		float z;
-		
+  
+  public:
+    Vector3(float x, float y, float z);
+    float x;
+    float y;
+    float z;
+    
 };
 
 #endif

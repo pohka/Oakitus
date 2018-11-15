@@ -5,11 +5,11 @@
 
 class SampleScene : public Scene
 {
-	public:
-		SampleScene();
-		~SampleScene();
-		void onLoad() override;
-		void onUnload() override;
+  public:
+    SampleScene();
+    ~SampleScene();
+    void onLoad() override;
+    void onUnload() override;
 };
 
 #endif
