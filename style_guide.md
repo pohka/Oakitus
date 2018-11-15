@@ -132,10 +132,17 @@ const int NUMBER_OF_PLAYERS = 10;
 ```
 
 ### File Naming
-*All files must have the first character of each word capital. Also each .cpp file should have a corresponding .h file*
+*All files must be lowercase and have a underscore between each word. Also each .cpp file should have a corresponding .h file*
 ```
-MyClass.cpp
-MyClass.h
+my_class.cpp
+my_class.h
+```
+
+### Folder Naming
+*All folders must be lowercase and use an underscore between each word. (the same format as files)*
+```
+core/
+my_folder/
 ```
 
 ### Header Files
