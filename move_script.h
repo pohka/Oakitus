@@ -1,7 +1,7 @@
 #ifndef MOVE_SCRIPT_H
 #define MOVE_SCRIPT_H
 
-#include "core/Script.h"
+#include "core/script.h"
 
 namespace game
 {

@@ -1,8 +1,8 @@
-#include "SampleScene.h"
-#include "core/Entity.h"
-#include "core/Sprite.h"
-#include "MoveScript.h"
-#include "core/Oakitus.h"
+#include "sample_scene.h"
+#include "core/entity.h"
+#include "core/sprite.h"
+#include "move_script.h"
+#include "core/oakitus.h"
 
 using namespace oak;
 using namespace game;

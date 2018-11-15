@@ -1,4 +1,4 @@
-#include "GLWindow.h"
+#include "gl_window.h"
 #include <iostream>
 
 using namespace oak;

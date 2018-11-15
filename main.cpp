@@ -9,22 +9,22 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
-#include "core/Shader.h"
-#include "core/Camera.h"
+#include "core/shader.h"
+#include "core/camera.h"
 
 
 #include <iostream>
 
-#include "core/Sprite.h"
+#include "core/sprite.h"
 
-#include "core/GLWindow.h"
+#include "core/gl_window.h"
 
-#include "core/Oakitus.h"
-#include "Game.h"
-#include "core/Input.h"
-#include "core/Time.h"
+#include "core/oakitus.h"
+#include "game.h"
+#include "core/input.h"
+#include "core/time.h"
 
-#include "SampleScene.h"
+#include "sample_scene.h"
 
 
 using namespace oak;

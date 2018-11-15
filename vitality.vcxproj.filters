@@ -23,136 +23,136 @@
     <ClCompile Include="main.cpp">
       <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="MoveScript.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="SampleScene.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Camera.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Component.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Entity.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\GLWindow.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\IDGenerator.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Input.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Key.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Oakitus.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Ray.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Scene.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Script.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Sprite.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Texture.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Time.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Vector2.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Vector3.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>main</Filter>
     </ClCompile>
+    <ClCompile Include="core\camera.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\component.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\entity.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\id_generator.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\input.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\key.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\oakitus.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\ray.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\scene.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\script.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\sprite.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\texture.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\time.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\vector2.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\vector3.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="move_script.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="sample_scene.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="core\gl_window.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="core\Camera.h">
+    <ClInclude Include="core\camera.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Component.h">
+    <ClInclude Include="core\component.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Entity.h">
+    <ClInclude Include="core\entity.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\GLWindow.h">
+    <ClInclude Include="core\gl_window.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\IDGenerator.h">
+    <ClInclude Include="core\id_generator.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Input.h">
+    <ClInclude Include="core\input.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Key.h">
+    <ClInclude Include="core\key.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\KeyCode.h">
+    <ClInclude Include="core\key_code.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Oakitus.h">
+    <ClInclude Include="core\oakitus.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Ray.h">
+    <ClInclude Include="core\ray.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Scene.h">
+    <ClInclude Include="core\scene.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Script.h">
+    <ClInclude Include="core\script.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Shader.h">
+    <ClInclude Include="core\shader.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Sprite.h">
+    <ClInclude Include="core\sprite.h">
       <Filter>core\headers</Filter>
     </ClInclude>
     <ClInclude Include="core\stb_image.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Texture.h">
+    <ClInclude Include="core\texture.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Time.h">
+    <ClInclude Include="core\time.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Vector2.h">
+    <ClInclude Include="core\types.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="core\Vector3.h">
+    <ClInclude Include="core\vector2.h">
       <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="core\vector3.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
       <Filter>main</Filter>
     </ClInclude>
-    <ClInclude Include="MoveScript.h">
+    <ClInclude Include="sample_scene.h">
       <Filter>main</Filter>
     </ClInclude>
-    <ClInclude Include="SampleScene.h">
+    <ClInclude Include="move_script.h">
       <Filter>main</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Types.h">
-      <Filter>core\headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

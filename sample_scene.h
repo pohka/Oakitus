@@ -1,7 +1,7 @@
 #ifndef SAMPLE_SCENE_H
 #define SAMPLE_SCENE_H
 
-#include "core/Scene.h"
+#include "core/scene.h"
 
 namespace game
 {

@@ -1,10 +1,10 @@
-#include "MoveScript.h"
+#include "move_script.h"
 
-#include "core/Input.h"
+#include "core/input.h"
 #include <iostream>
-#include "core/Entity.h"
-#include "core/Time.h"
-#include "core/Oakitus.h"
+#include "core/entity.h"
+#include "core/time.h"
+#include "core/oakitus.h"
 
 using namespace oak;
 using namespace game;
