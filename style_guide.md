@@ -1,7 +1,7 @@
 # Style Guide
 
 ### Brackets
-*Open brackets should **ALWAYS** start on a new line*
+Open brackets should **ALWAYS** start on a new line
 
  ```c++
 main
@@ -13,7 +13,7 @@ main
 }
 ```
 
- *Always use { } brackets*
+Always use { } brackets
  ```c++
  //don't do this
 if(flag)
@@ -27,13 +27,13 @@ if(flag)
  ```
 
 ### Classes
-*First character of each word should be capital*
+First character of each word should be capital
 
 ```c++
 MyClass
 ```
 
-*In the .cpp all functions should be in alphabetical order similar to the header file*
+In the .cpp all functions should be in alphabetical order similar to the header file
 ```c++
 MyClass::MyClass()
 {
@@ -53,7 +53,7 @@ void MyClass::setA()
 ```
 
 ### Constructos
-*Don't use the variable initialization in the header file. Class member variables should be initialized within the .cpp file*
+Don't use the variable initialization in the header file. Class member variables should be initialized within the .cpp file
 
 ```c++
 //don't do this!!! (MyClass.h)
@@ -86,7 +86,7 @@ MyClass::MyClass(int x, int y)
 
 
 ### Functions
-*First character of each word should be capital but **NOT** the first character*
+First character of each word should be capital but **NOT** the first character
 
 ```c++
 void myFunction()
@@ -95,7 +95,7 @@ void myFunction()
 }
 ```
 
-*When calling function with a lot of parameters, lines can get pretty long. So put each argument on a new line. The closing bracket should be on a new line too*
+When calling function with a lot of parameters, lines can get pretty long. So put each argument on a new line. The closing bracket should be on a new line too
 ```c++
 //don't do this
 myInterestingFunc(myValueName1, myValueName2, myValueName3, myValueName4);
@@ -109,8 +109,8 @@ myInterestingFunc(
 );
 ```
 
-*If Passing an object it should be passed as a reference when ever possible. Try not use a pointer for the parameters*
-```
+If Passing an object it should be passed as a reference when ever possible. Try not use a pointer for the parameters
+```c++
 void myFunc(MyObject& obj)
 {
 
@@ -118,44 +118,44 @@ void myFunc(MyObject& obj)
 ```
 
 ### Variables
-*First character of each word should be capital but **NOT** the first character*
+First character of each word should be capital but **NOT** the first character
 
  ```c++
  int myValue = 3;
  ```
 
 ### Constants
-*const or constexpr variables should be in all uppercase with an underscore between each word*
+const or constexpr variables should be in all uppercase with an underscore between each word
 
 ```c++
 const int NUMBER_OF_PLAYERS = 10;
 ```
 
 ### File Naming
-*All files must be lowercase and have a underscore between each word. Also each .cpp file should have a corresponding .h file*
+All files must be lowercase and have a underscore between each word. Also each .cpp file should have a corresponding .h file
 ```
 my_class.cpp
 my_class.h
 ```
 
 ### Folder Naming
-*All folders must be lowercase and use an underscore between each word. (the same format as files)*
+All folders must be lowercase and use an underscore between each word. (the same format as files)
 ```
 core/
 my_folder/
 ```
 
 ### Header Files
-*Never use ```using``` in a header file*
+Never use ```using``` in a header file
 
-* *The private variables should always be at the top before public. The order of variables doesn't matter, but they should always be on a new line*
-* *public should have this order*
-  * *variables*
-  * *constructor*
-  * *destructor*
-  * *functions (in alphabetical order)*
+* The private variables should always be at the top before public. The order of variables doesn't matter, but they should always be on a new line
+* public should have this order
+  * variables
+  * constructor
+  * destructor
+  * functions (in alphabetical order)
 
-```
+```c++
 class MyClass
 {
   int b;
@@ -175,7 +175,7 @@ class MyClass
 ```
 
 ### Spacing Indent
-*Use **2 spaces** for indenting and don't use tabs*
+Use **2 spaces** for indenting and don't use tabs
 ```c++
 function myFunc()
 {
@@ -188,7 +188,7 @@ function myFunc()
 ```
 
 ### Arithmetic
-*Use round brackets to make it obvious how the values are being used*
+Use round brackets to make it obvious how the values are being used
 ```c++
 //don't do this
 float result = 10 + 5 / 2 * 4;
@@ -198,7 +198,7 @@ float result = 10 + ((5 / 2) * 4);
 ```
 
 ### Namespaces
-*Namespaces should be all lowercase and use and underscore between each word. Always declare the namespace in the header file*
+Namespaces should be all lowercase and use and underscore between each word. Always declare the namespace in the header file
 ```c++
 namespace my_project
 {
