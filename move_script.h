@@ -1,7 +1,7 @@
 #ifndef MOVE_SCRIPT_H
 #define MOVE_SCRIPT_H
 
-#include "core/script.h"
+#include "oak/oak.h"
 
 namespace game
 {

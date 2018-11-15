@@ -5,18 +5,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="core">
-      <UniqueIdentifier>{f42a416d-40cd-4039-b847-9f0b7bd3149b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\headers">
-      <UniqueIdentifier>{d02bdf4c-03f4-4ed8-be05-2d8e530465a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\src">
-      <UniqueIdentifier>{3168c277-4dc3-4ff7-913d-81af47706c76}</UniqueIdentifier>
-    </Filter>
     <Filter Include="main">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="oak">
+      <UniqueIdentifier>{81245755-1724-4ccf-b605-0ffb85dc6d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\core">
+      <UniqueIdentifier>{f42a416d-40cd-4039-b847-9f0b7bd3149b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -25,51 +22,6 @@
     </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="core\camera.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\component.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\entity.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\id_generator.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\input.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\key.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\oakitus.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ray.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\scene.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\script.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\sprite.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\texture.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\time.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\vector2.cpp">
-      <Filter>core\src</Filter>
-    </ClCompile>
-    <ClCompile Include="core\vector3.cpp">
-      <Filter>core\src</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp">
       <Filter>main</Filter>
@@ -80,71 +32,56 @@
     <ClCompile Include="sample_scene.cpp">
       <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="core\gl_window.cpp">
-      <Filter>core\src</Filter>
+    <ClCompile Include="oak\core\camera.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\component.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\entity.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\gl_window.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\id_generator.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\input.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\key.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\oakitus.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\ray.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\scene.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\script.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\sprite.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\texture.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\time.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\vector2.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\vector3.cpp">
+      <Filter>oak\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="core\camera.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\component.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\entity.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\gl_window.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\id_generator.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\input.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\key.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\key_code.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\oakitus.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ray.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\scene.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\script.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\shader.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\sprite.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\stb_image.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\texture.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\time.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\types.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\vector2.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="core\vector3.h">
-      <Filter>core\headers</Filter>
-    </ClInclude>
     <ClInclude Include="game.h">
       <Filter>main</Filter>
     </ClInclude>
@@ -153,6 +90,72 @@
     </ClInclude>
     <ClInclude Include="move_script.h">
       <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\camera.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\component.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\entity.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\gl_window.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\id_generator.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\input.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\key.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\key_code.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\oakitus.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\ray.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\scene.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\script.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\shader.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\sprite.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\stb_image.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\texture.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\time.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\types.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\vector2.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\vector3.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\oak.h">
+      <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\init.h">
+      <Filter>oak</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

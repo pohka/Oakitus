@@ -1,8 +1,8 @@
 #include "game.h"
 
-#include "core/oakitus.h"
-#include "core/sprite.h"
-#include "core/entity.h"
+#include "oak/core/oakitus.h"
+#include "oak/core/sprite.h"
+#include "oak/core/entity.h"
 #include "move_script.h"
 #include "sample_scene.h"
 

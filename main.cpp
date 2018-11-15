@@ -1,29 +1,8 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#define STB_IMAGE_IMPLEMENTATION
-#include "core/stb_image.h"
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-
-#include "core/shader.h"
-#include "core/camera.h"
-
+#include "oak/init.h"
 
 #include <iostream>
 
-#include "core/sprite.h"
-
-#include "core/gl_window.h"
-
-#include "core/oakitus.h"
 #include "game.h"
-#include "core/input.h"
-#include "core/time.h"
-
 #include "sample_scene.h"
 
 
@@ -40,18 +19,10 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main()
 {
-  Time::init();
-  Input::init();
+  initOak();
   Oakitus::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
   GLFWwindow* window = Oakitus::glWindow->getGLFWWindow();
   glfwSetCursorPosCallback(window, cursor_position_callback);
-
-  Oakitus::camera = new Camera(
-    glm::vec3(0.0f, 0.0f, 3.0f), //position
-    glm::vec3(0.0f, 0.0f, -1.0f), //front
-    glm::vec3(0.0f, 1.0f, 0.0f), //up
-    90.0f //field or view
-  );
 
   
   // build and compile our shader zprogram
@@ -60,7 +31,7 @@ int main()
   Oakitus::addShader(*shader);
   Oakitus::defaultShaderID = shader->getID();
 
-
+  //Shader* shader = Oakitus::findShaderByID(0);
 
   Game::load();
 
@@ -80,6 +51,7 @@ int main()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //// render container
+    
     shader->use();
 
 

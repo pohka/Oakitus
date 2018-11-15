@@ -1,7 +1,7 @@
 #ifndef SAMPLE_SCENE_H
 #define SAMPLE_SCENE_H
 
-#include "core/scene.h"
+#include "oak/core/scene.h"
 
 namespace game
 {
