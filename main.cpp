@@ -26,6 +26,7 @@
 
 #include "SampleScene.h"
 
+
 using namespace oak;
 using namespace game;
 

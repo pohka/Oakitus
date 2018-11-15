@@ -2,7 +2,7 @@
 
 using namespace oak;
 
-unsigned int componentCount = 0;
+uint componentCount = 0;
 
 
 Component::Component()
@@ -12,7 +12,7 @@ Component::Component()
 
 Component::~Component() {}
 
-unsigned int Component::getNextID()
+uint Component::getNextID()
 {
   componentCount++;
   return componentCount;

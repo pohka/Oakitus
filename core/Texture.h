@@ -1,18 +1,20 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include "Types.h"
+
 namespace oak
 {
   class Texture
   {
-    unsigned int id;
+    uint id;
     int width, height;
 
     public:
       Texture(const char* src);
       ~Texture();
       int getHeight();
-      unsigned int getID();
+      uint getID();
       int getWidth();
 
 

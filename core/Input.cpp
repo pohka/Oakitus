@@ -6,9 +6,9 @@ Key* Input::keys[sizeof(glKeys)];
 Vector2* Input::mousePos = new Vector2(0, 0);
 
 
-Key* Input::getKeyByCode(unsigned int query)
+Key* Input::getKeyByCode(uint query)
 {
-  for (unsigned int i = 0; i < KEY_COUNT; i++)
+  for (uint i = 0; i < KEY_COUNT; i++)
   {
     int code = glKeys[i];
     if (keys[i]->code == query)
@@ -21,7 +21,7 @@ Key* Input::getKeyByCode(unsigned int query)
 
 void Input::init()
 {
-  for (unsigned int i = 0; i < KEY_COUNT; i++)
+  for (uint i = 0; i < KEY_COUNT; i++)
   {
     int code = glKeys[i];
     keys[i] = new Key((KeyCode)code);
@@ -48,7 +48,7 @@ bool Input::isKeyUp(KeyCode code)
 
 void Input::setKeys(GLFWwindow* window)
 {
-  for (unsigned int i = 0; i < KEY_COUNT; i++)
+  for (uint i = 0; i < KEY_COUNT; i++)
   {
     int code = glKeys[i];
     bool isKeyDown = glfwGetKey(window, code) == GLFW_PRESS;

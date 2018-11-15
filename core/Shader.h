@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "Types.h"
 
 namespace oak
 {
@@ -64,7 +65,7 @@ namespace oak
         const char* vShaderCode = vertexCode.c_str();
         const char * fShaderCode = fragmentCode.c_str();
         // 2. compile shaders
-        unsigned int vertex, fragment;
+        uint vertex, fragment;
         // vertex shader
         vertex = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertex, 1, &vShaderCode, NULL);
@@ -76,7 +77,7 @@ namespace oak
         glCompileShader(fragment);
         checkCompileErrors(fragment, "FRAGMENT");
         // if geometry shader is given, compile geometry shader
-        unsigned int geometry;
+        uint geometry;
         if (geometryPath != nullptr)
         {
           const char * gShaderCode = geometryCode.c_str();
@@ -165,7 +166,7 @@ namespace oak
         glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
       }
 
-      unsigned int getID()
+      uint getID()
       {
         return ID;
       }
@@ -176,7 +177,7 @@ namespace oak
       }
 
     private:
-      unsigned int ID;
+      uint ID;
       std::string name;
       // utility function for checking shader compilation/linking errors.
       // ------------------------------------------------------------------------

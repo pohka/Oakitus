@@ -41,7 +41,7 @@ void Entity::destroy()
   Oakitus::destroyEntityByID(this->getID());
 }
 
-unsigned int Entity::getID()
+uint Entity::getID()
 {
   return this->entityID;
 }
@@ -54,7 +54,7 @@ void Entity::onDestroy()
 
 void Entity::onDraw()
 {
-  for (unsigned int i = 0; i < components.size(); i++) 
+  for (uint i = 0; i < components.size(); i++) 
   {
     components[i]->onDraw();
   }
@@ -62,12 +62,12 @@ void Entity::onDraw()
 
 void Entity::onUpdate()
 {
-  for (unsigned int i = 0; i < components.size(); i++)
+  for (uint i = 0; i < components.size(); i++)
   {
     components[i]->onUpdate();
   }
 
-  for (unsigned int i = 0; i < scripts.size(); i++)
+  for (uint i = 0; i < scripts.size(); i++)
   {
     scripts[i]->onUpdate();
   }

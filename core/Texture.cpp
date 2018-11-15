@@ -46,7 +46,7 @@ int Texture::getHeight()
   return height;
 }
 
-unsigned int Texture::getID()
+uint Texture::getID()
 {
   return id;
 }

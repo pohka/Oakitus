@@ -7,12 +7,13 @@
 #include <vector>
 #include "Vector3.h"
 #include "IDGenerator.h"
+#include "Types.h"
 
 namespace oak
 {
   class Entity
   {
-	  unsigned int entityID;
+	  uint entityID;
 	  std::vector<Component*> components;
 	  std::vector<Script*> scripts;
 	  IDGenerator* idGen;
@@ -25,7 +26,7 @@ namespace oak
 	  void addComponent(Component& component);
 	  void addScript(Script& script);
 	  void destroy();
-	  unsigned int getID();
+	  uint getID();
 	  virtual void onDestroy();
 	  virtual void onDraw();
 	  virtual void onUpdate();

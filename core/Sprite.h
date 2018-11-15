@@ -6,20 +6,21 @@
 #include "Component.h"
 #include "Texture.h"
 #include "Shader.h"
+#include "Types.h"
 
 namespace oak
 {
   class Sprite : public Component
   {
     std::string src;
-    unsigned int VBO, VAO;
+    uint VBO, VAO;
     Texture* texture;
 
   public:
-    Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderID);
+    Sprite(std::string src, int x, int y, int w, int h, uint shaderID);
     ~Sprite();
     std::string getSrc();
-    unsigned int getVAO();
+    uint getVAO();
     void onDraw() override;
 
 
@@ -27,7 +28,7 @@ namespace oak
     int y;
     int w;
     int h;
-    unsigned int shaderID;
+    uint shaderID;
 
   };
 }

@@ -6,7 +6,7 @@ using namespace oak;
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 
-GLWindow::GLWindow(unsigned int screenW, unsigned int screenH, const char* title)
+GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
 {
   // glfw: initialize and configure
   // ------------------------------

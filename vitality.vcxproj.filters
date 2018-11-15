@@ -151,6 +151,9 @@
     <ClInclude Include="SampleScene.h">
       <Filter>main</Filter>
     </ClInclude>
+    <ClInclude Include="core\Types.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="cave.png">

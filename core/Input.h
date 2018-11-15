@@ -5,6 +5,7 @@
 #include <GLFW/glfw3.h>
 #include "KeyCode.h"
 #include "Vector2.h"
+#include "Types.h"
 
 namespace oak
 {
@@ -13,7 +14,7 @@ namespace oak
     static Key* keys[sizeof(glKeys)];
 
     public:
-      static const unsigned int KEY_COUNT = sizeof(glKeys);
+      static const uint KEY_COUNT = sizeof(glKeys);
       static Vector2* mousePos;
 
       static void init();
@@ -24,7 +25,7 @@ namespace oak
       static void setMouse(float x, float y);
 
     private:
-      static Key* getKeyByCode(unsigned int code);
+      static Key* getKeyByCode(uint code);
   };
 }
 

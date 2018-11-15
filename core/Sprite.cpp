@@ -32,7 +32,7 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
   
   this->texture = new Texture(src.c_str());
   
-   float xMin = ((float)x / texture->getWidth());
+  float xMin = ((float)x / texture->getWidth());
   float yMin = ((float)y / texture->getHeight());
   float xMax = ((float)(x+w) / texture->getWidth());
   float yMax = ((float)(y+h) / texture->getHeight());

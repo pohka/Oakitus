@@ -1,6 +1,7 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
+#include "Types.h"
 
 namespace oak
 {
@@ -9,12 +10,12 @@ namespace oak
   class Component
   {
 	  friend class Entity;
-	  unsigned int componentID;
+	  uint componentID;
 
     public:
 	    Component();
 	    virtual ~Component();
-	    static unsigned int getNextID();
+	    static uint getNextID();
 	    virtual void onUpdate();
 	    virtual void onDraw();
 

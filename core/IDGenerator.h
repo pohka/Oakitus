@@ -1,16 +1,18 @@
 #ifndef ID_GENERATOR_H
 #define ID_GENERATOR_H
 
+#include "Types.h"
+
 namespace oak
 {
   class IDGenerator
   {
-    unsigned int count;
+    uint count;
 
     public:
       IDGenerator();
       ~IDGenerator();
-      unsigned int nextID();
+      uint nextID();
   };
 }
 #endif

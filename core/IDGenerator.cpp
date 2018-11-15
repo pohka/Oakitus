@@ -10,9 +10,9 @@ IDGenerator::IDGenerator()
 
 IDGenerator::~IDGenerator(){}
 
-unsigned int IDGenerator::nextID()
+uint IDGenerator::nextID()
 {
-  unsigned int id = count;
+  uint id = count;
   if (count == UINT_MAX)
   {
     count = 0;

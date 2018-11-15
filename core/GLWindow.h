@@ -3,6 +3,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Types.h"
 
 namespace oak
 {
@@ -11,7 +12,7 @@ namespace oak
     GLFWwindow* window;
 
     public:
-      GLWindow(unsigned int screenW, unsigned int screenH, const char* title);
+      GLWindow(uint screenW, uint screenH, const char* title);
       ~GLWindow();
       GLFWwindow* getGLFWWindow();
   };

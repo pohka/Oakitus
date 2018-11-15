@@ -1,13 +1,15 @@
 #ifndef SCRIPT_H
 #define SCRIPT_H
 
+#include "Types.h"
+
 namespace oak
 {
   class Entity;
 
   class Script
   {
-    unsigned int scriptID;
+    uint scriptID;
 
     friend class Entity;
     public:
