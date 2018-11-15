@@ -1,23 +1,26 @@
 #ifndef SCRIPT_H
 #define SCRIPT_H
 
-class Entity;
-
-class Script
+namespace oak
 {
-  unsigned int scriptID;
+  class Entity;
 
-  friend class Entity;
-  public:
-    Script();
-    virtual ~Script();
-    virtual void onUpdate();
-    virtual void init();
-    
-    
-  protected:
-    Entity* entity;
+  class Script
+  {
+    unsigned int scriptID;
 
-};
+    friend class Entity;
+    public:
+      Script();
+      virtual ~Script();
+      virtual void onUpdate();
+      virtual void init();
+
+
+    protected:
+      Entity* entity;
+
+    };
+}
 
 #endif

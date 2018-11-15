@@ -1,5 +1,7 @@
 #include "Time.h"
 
+using namespace oak;
+
 float Time::timeScale = 1.0f;
 float Time::deltaTime = 0;
 float Time::lastFrame = 0;

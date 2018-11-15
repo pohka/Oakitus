@@ -1,6 +1,8 @@
 #include "IDGenerator.h"
 #include <limits.h>
 
+using namespace oak;
+
 IDGenerator::IDGenerator()
 {
   this->count = 0;

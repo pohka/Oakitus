@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "Oakitus.h"
 
-
+using namespace oak;
 
 Entity::Entity() 
 {
@@ -11,7 +11,7 @@ Entity::Entity()
   Oakitus::addEntity(*this);
 }
 
-Entity::~Entity() 
+Entity::~Entity()
 {
   idGen->~IDGenerator();
   for (Component* c : components)

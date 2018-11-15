@@ -3,6 +3,9 @@
 #include "Input.h"
 #include "Ray.h"
 
+using namespace glm;
+using namespace oak;
+
 Camera::Camera(vec3 position, vec3 front, vec3 up, float fov)
 {
   this->position = position;

@@ -1,6 +1,8 @@
 #include "Input.h"
 
-Key* Input::keys[KEY_COUNT];
+using namespace oak;
+
+Key* Input::keys[sizeof(glKeys)];
 Vector2* Input::mousePos = new Vector2(0, 0);
 
 

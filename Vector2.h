@@ -1,13 +1,16 @@
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
-class Vector2
+namespace oak
 {
-  public:
-    Vector2(float x, float y);
-    ~Vector2();
-    float x;
-    float y;
-};
+  class Vector2
+  {
+    public:
+      Vector2(float x, float y);
+      ~Vector2();
+      float x;
+      float y;
+  };
+}
 
 #endif

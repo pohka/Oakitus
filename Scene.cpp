@@ -2,6 +2,8 @@
 
 #include "Oakitus.h"
 
+using namespace oak;
+
 Scene::Scene()
 {
   

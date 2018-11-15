@@ -1,5 +1,7 @@
 #include "Component.h"
 
+using namespace oak;
+
 unsigned int componentCount = 0;
 
 

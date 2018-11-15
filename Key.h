@@ -2,23 +2,24 @@
 #define KEYOBJ_H
 #include "KeyCode.h"
 
-using namespace input;
-
-class Key
+namespace oak
 {
-  KeyCode code;
-  bool isDown;
-  bool lastIsDown;
+  class Key
+  {
+    KeyCode code;
+    bool isDown;
+    bool lastIsDown;
 
-  public:
-    friend class Input;
-    Key(KeyCode code);
-    ~Key();
-    KeyCode getCode();
+    public:
+      friend class Input;
+      Key(KeyCode code);
+      ~Key();
+      KeyCode getCode();
 
-  private:
-    void setState(bool isDown);
-  
-};
+    private:
+      void setState(bool isDown);
+
+  };
+}
 
 #endif

@@ -7,11 +7,13 @@
 #include "Texture.h"
 #include "Shader.h"
 
-class Sprite : public Component
+namespace oak
 {
-  std::string src;
-  unsigned int VBO, VAO;
-  Texture* texture;
+  class Sprite : public Component
+  {
+    std::string src;
+    unsigned int VBO, VAO;
+    Texture* texture;
 
   public:
     Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderID);
@@ -19,7 +21,7 @@ class Sprite : public Component
     std::string getSrc();
     unsigned int getVAO();
     void onDraw() override;
-    
+
 
     int x;
     int y;
@@ -27,6 +29,7 @@ class Sprite : public Component
     int h;
     unsigned int shaderID;
 
-};
+  };
+}
 
 #endif

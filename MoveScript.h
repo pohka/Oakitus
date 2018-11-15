@@ -3,12 +3,15 @@
 
 #include "Script.h"
 
-class MoveScript : public Script
+namespace oak
 {
-  public :
-    MoveScript();
-    ~MoveScript();
-    void onUpdate() override;
-};
+  class MoveScript : public Script
+  {
+    public:
+      MoveScript();
+      ~MoveScript();
+      void onUpdate() override;
+  };
+}
 
 #endif

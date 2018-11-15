@@ -4,6 +4,8 @@
 #include "MoveScript.h"
 #include "Oakitus.h"
 
+using namespace oak;
+
 SampleScene::SampleScene() {}
 
 SampleScene::~SampleScene() {}

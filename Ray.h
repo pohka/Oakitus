@@ -2,19 +2,20 @@
 #define RAY_H
 
 #include <glm/glm.hpp>
-using namespace glm;
 
-
-class Ray
+namespace oak
 {
-  vec3 direction;
-  vec3 origin;
+  class Ray
+  {
+    glm::vec3 direction;
+    glm::vec3 origin;
 
-  public:
-    Ray(vec3 origin, vec3 direction);
-    ~Ray();
-    vec3 planeIntersectPoint(vec3 planeNormal, vec3 planePoint);
+    public:
+      Ray(glm::vec3 origin, glm::vec3 direction);
+      ~Ray();
+      glm::vec3 planeIntersectPoint(glm::vec3 planeNormal, glm::vec3 planePoint);
 
-};
+  };
+}
 
 #endif

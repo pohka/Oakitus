@@ -4,14 +4,17 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+namespace oak
+{
+  class GLWindow
+  {
+    GLFWwindow* window;
 
-class GLWindow {
-  GLFWwindow* window;
-
-  public :
-    GLWindow(unsigned int screenW, unsigned int screenH, const char* title);
-    ~GLWindow();
-    GLFWwindow* getGLFWWindow();
-};
+    public:
+      GLWindow(unsigned int screenW, unsigned int screenH, const char* title);
+      ~GLWindow();
+      GLFWwindow* getGLFWWindow();
+  };
+}
 
 #endif

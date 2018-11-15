@@ -5,6 +5,8 @@
 
 #include "Texture.h"
 
+using namespace oak;
+
 Texture::Texture(const char* src)
 {
   //load the texture

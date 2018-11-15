@@ -3,9 +3,13 @@
 
 #include "Oakitus.h"
 
-class Game {
-  public:
-    static void load();
-};
+namespace oak
+{
+  class Game
+  {
+    public:
+	  static void load();
+  };
+}
 
 #endif

@@ -3,13 +3,16 @@
 
 #include "Scene.h"
 
-class SampleScene : public Scene
+namespace oak
 {
-  public:
-    SampleScene();
-    ~SampleScene();
-    void onLoad() override;
-    void onUnload() override;
-};
+  class SampleScene : public Scene
+  {
+    public:
+      SampleScene();
+      ~SampleScene();
+      void onLoad() override;
+      void onUnload() override;
+  };
+}
 
 #endif

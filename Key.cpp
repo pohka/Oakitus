@@ -1,5 +1,7 @@
 #include "Key.h"
 
+using namespace oak;
+
 Key::Key(KeyCode code)
 {
   this->code = code;

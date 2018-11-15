@@ -1,5 +1,7 @@
 #include "Oakitus.h"
 
+using namespace oak;
+
 GLWindow* Oakitus::glWindow = nullptr;
 std::vector<Shader*> Oakitus::shaders;
 std::vector<Entity*> Oakitus::entities;

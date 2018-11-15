@@ -2,7 +2,7 @@
 #define KEYCODE_H
 
 
-namespace input
+namespace oak
 {
   enum KeyCode {
     SPACE = 32, 

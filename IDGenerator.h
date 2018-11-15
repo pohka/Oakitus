@@ -1,13 +1,16 @@
 #ifndef ID_GENERATOR_H
 #define ID_GENERATOR_H
 
-class IDGenerator
+namespace oak
 {
-  unsigned int count;
+  class IDGenerator
+  {
+    unsigned int count;
 
-  public:
-    IDGenerator();
-    ~IDGenerator();
-    unsigned int nextID();  
-};
+    public:
+      IDGenerator();
+      ~IDGenerator();
+      unsigned int nextID();
+  };
+}
 #endif

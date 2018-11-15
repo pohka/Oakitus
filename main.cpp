@@ -26,6 +26,8 @@
 
 #include "SampleScene.h"
 
+using namespace oak;
+
 
 void processInput(GLFWwindow *window);
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
@@ -98,7 +100,7 @@ int main()
     shader->setMat4("view", view);
 
 
-    if (Input::isKeyDown(input::KeyCode::R))
+    if (Input::isKeyDown(KeyCode::R))
     {
       std::cout << "r is down " << std::endl;
       Oakitus::setScene(*new SampleScene());

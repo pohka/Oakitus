@@ -1,23 +1,27 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-class Entity;
 
-class Component
+namespace oak
 {
-  friend class Entity;
-  unsigned int componentID;
+  class Entity;
 
-  public:
-    Component();
-    virtual ~Component();
-    static unsigned int getNextID();
-    virtual void onUpdate();
-    virtual void onDraw();
+  class Component
+  {
+	  friend class Entity;
+	  unsigned int componentID;
 
-  protected:
-    Entity* entity;
+    public:
+	    Component();
+	    virtual ~Component();
+	    static unsigned int getNextID();
+	    virtual void onUpdate();
+	    virtual void onDraw();
 
-};
+    protected:
+	    oak::Entity* entity;
+
+  };
+}
 
 #endif

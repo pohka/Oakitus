@@ -6,27 +6,26 @@
 #include "KeyCode.h"
 #include "Vector2.h"
 
-using namespace input;
-
-
-
-class Input
+namespace oak
 {
-  public:
-    static const unsigned int KEY_COUNT = sizeof(input::glKeys);
-    static Vector2* mousePos;
+  class Input
+  {
+    static Key* keys[sizeof(glKeys)];
 
-    static void init();
-    static bool isKeyDown(KeyCode code); //key just pressed down
-    static bool isKeyPressed(KeyCode code); //key current down state
-    static bool isKeyUp(KeyCode code);//key just released
-    static void setKeys(GLFWwindow* window);
-   static void setMouse(float x, float y);
-  
-  private :
-    static Key* keys[KEY_COUNT];
+    public:
+      static const unsigned int KEY_COUNT = sizeof(glKeys);
+      static Vector2* mousePos;
 
-    static Key* getKeyByCode(unsigned int code);
-};
+      static void init();
+      static bool isKeyDown(KeyCode code); //key just pressed down
+      static bool isKeyPressed(KeyCode code); //key current down state
+      static bool isKeyUp(KeyCode code);//key just released
+      static void setKeys(GLFWwindow* window);
+      static void setMouse(float x, float y);
+
+    private:
+      static Key* getKeyByCode(unsigned int code);
+  };
+}
 
 #endif

@@ -2,16 +2,17 @@
 #define SCENE_H
 
 
-
-class Scene
+namespace oak
 {
-  public:
-    Scene();
-    ~Scene();
-    virtual void onLoad();
-    virtual void onUnload();
-  private:
+  class Scene
+  {
+    public:
+      Scene();
+      ~Scene();
+      virtual void onLoad();
+      virtual void onUnload();
+    private:
 
-};
-
+  };
+}
 #endif

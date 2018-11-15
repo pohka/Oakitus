@@ -11,6 +11,8 @@
 #include "Oakitus.h"
 #include "Texture.h"
 
+using namespace oak;
+
 
 Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderID)
 {

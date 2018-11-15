@@ -6,6 +6,7 @@
 #include "MoveScript.h"
 #include "SampleScene.h"
 
+using namespace oak;
 
 void Game::load()
 {

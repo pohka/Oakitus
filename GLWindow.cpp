@@ -1,6 +1,8 @@
 #include "GLWindow.h"
 #include <iostream>
 
+using namespace oak;
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 

@@ -1,5 +1,7 @@
 #include "Ray.h"
 
+using namespace oak;
+using namespace glm;
 
 Ray::Ray(vec3 origin, vec3 direction)
 {
