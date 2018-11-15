@@ -11,22 +11,26 @@
 
 class Entity 
 {
+	unsigned int entityID;
+	std::vector<Component*> components;
+	std::vector<Script*> scripts;
+	IDGenerator* idGen;
+
 	public :
+		Vector3* position;
+
 		Entity();
 		~Entity();
-		virtual void onUpdate();
-		virtual void onDraw();
-		Vector3* position;
 		void addComponent(Component& component);
 		void addScript(Script& script);
+		void destroy();
 		unsigned int getID();
 		virtual void onDestroy();
-		void destroy();
-	private : 
-		unsigned int entityID;
-		std::vector<Component*> components;
-		std::vector<Script*> scripts;
-		IDGenerator* idGen;
+		virtual void onDraw();
+		virtual void onUpdate();
+		
+		
+		
 		
 };
 

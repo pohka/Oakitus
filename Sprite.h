@@ -9,19 +9,24 @@
 
 class Sprite : public Component
 {
+	std::string src;
+	unsigned int VBO, VAO;
+	Texture* texture;
+
 	public:
 		Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderID);
 		~Sprite();
 		std::string getSrc();
-		void onDraw() override;
 		unsigned int getVAO();
+		void onDraw() override;
+		
 
-		int x, y, w, h;
+		int x;
+		int y;
+		int w;
+		int h;
 		unsigned int shaderID;
-	private:
-		std::string src;
-		unsigned int VBO, VAO;
-		Texture* texture;
+
 };
 
 #endif

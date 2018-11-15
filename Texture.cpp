@@ -39,6 +39,11 @@ Texture::~Texture()
 
 }
 
+int Texture::getHeight()
+{
+	return height;
+}
+
 unsigned int Texture::getID()
 {
 	return id;
@@ -47,9 +52,4 @@ unsigned int Texture::getID()
 int Texture::getWidth()
 {
 	return width;
-}
-
-int Texture::getHeight()
-{
-	return height;
 }

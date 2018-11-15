@@ -3,15 +3,17 @@
 
 class Texture
 {
+	unsigned int id;
+	int width, height;
+
 	public:
 		Texture(const char* src);
 		~Texture();
+		int getHeight();
 		unsigned int getID();
 		int getWidth();
-		int getHeight();
-	private:
-		unsigned int id;
-		int width, height;
+		
+
 };
 
 #endif

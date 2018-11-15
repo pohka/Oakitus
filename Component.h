@@ -6,6 +6,8 @@ class Entity;
 class Component
 {
 	friend class Entity;
+	unsigned int componentID;
+
 	public:
 		Component();
 		virtual ~Component();
@@ -16,10 +18,6 @@ class Component
 	protected:
 		Entity* entity;
 
-	private:
-		unsigned int componentID;
-		
-		
 };
 
 #endif

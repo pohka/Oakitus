@@ -10,87 +10,14 @@ std::queue<unsigned int> Oakitus::destroyEntIDQueue;
 Camera* Oakitus::camera = nullptr;
 
 
-Shader* Oakitus::getShaderByID(unsigned int id)
-{
-	return shaders[0];
-}
-
-void Oakitus::addShader(Shader& shader)
-{
-	shaders.push_back(&shader);
-}
-
-Entity* Oakitus::findEntityByID(unsigned int id)
-{
-	for (unsigned int i = 0; i < entities.size(); i++)
-	{
-		if (entities[i]->getID() == id)
-		{
-			return entities[i];
-		}
-	}
-
-	return nullptr;
-}
-
-
 void Oakitus::addEntity(Entity& entity)
 {
 	entities.push_back(&entity);
 }
 
-Shader* Oakitus::findShaderByName(std::string name)
+void Oakitus::addShader(Shader& shader)
 {
-	for (unsigned int i = 0; i < shaders.size(); i++)
-	{
-		if (shaders[i]->getName().compare(name) == 0)
-		{
-			return shaders[i];
-		}
-	}
-	return nullptr;
-}
-
-void Oakitus::onUpdate()
-{
-	for (unsigned int i = 0; i < entities.size(); i++)
-	{
-		entities[i]->onUpdate();
-	}
-}
-
-void Oakitus::onDraw()
-{
-	for (unsigned int i = 0; i < entities.size(); i++)
-	{
-		entities[i]->onDraw();
-	}
-}
-
-void Oakitus::destroy(unsigned int entityID)
-{
-	for (unsigned int i = 0; i < entities.size(); i++)
-	{
-		if (entities[i]->getID() == entityID)
-		{
-			Entity* ent = entities[i];
-			entities.erase(entities.begin() + i);
-			delete ent;
-		}
-	}
-}
-
-void Oakitus::setScene(Scene& scene)
-{
-	//unload and delete current scene
-	if (curScene != nullptr) {
-		curScene->onUnload();
-		Scene* tmp = curScene;
-		delete tmp;
-	}
-	//set and load new scene
-	curScene = &scene;
-	curScene->onLoad();
+	shaders.push_back(&shader);
 }
 
 void Oakitus::deleteAllEnts()
@@ -128,17 +55,64 @@ void Oakitus::deleteAllEnts(std::vector<int> exceptionIDs)
 	}
 }
 
+void Oakitus::destroy(unsigned int entityID)
+{
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		if (entities[i]->getID() == entityID)
+		{
+			Entity* ent = entities[i];
+			entities.erase(entities.begin() + i);
+			delete ent;
+		}
+	}
+}
+
 void Oakitus::destroyEntityByID(unsigned int entityID)
 {
 	destroyEntIDQueue.push(entityID);
 }
 
+
+
+Entity* Oakitus::findEntityByID(unsigned int id)
+{
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		if (entities[i]->getID() == id)
+		{
+			return entities[i];
+		}
+	}
+
+	return nullptr;
+}
+
+Shader* Oakitus::findShaderByID(unsigned int id)
+{
+	return shaders[0];
+}
+
+
+Shader* Oakitus::findShaderByName(std::string name)
+{
+	for (unsigned int i = 0; i < shaders.size(); i++)
+	{
+		if (shaders[i]->getName().compare(name) == 0)
+		{
+			return shaders[i];
+		}
+	}
+	return nullptr;
+}
+
+
 void Oakitus::onDestroy()
 {
-	while(!destroyEntIDQueue.empty())
+	while (!destroyEntIDQueue.empty())
 	{
 		unsigned int id = destroyEntIDQueue.front();
-		Entity* ent= nullptr;
+		Entity* ent = nullptr;
 		bool found = false;
 
 		//find entity with matching id, then remove from vector
@@ -160,4 +134,34 @@ void Oakitus::onDestroy()
 
 		destroyEntIDQueue.pop();
 	}
+}
+
+
+void Oakitus::onDraw()
+{
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		entities[i]->onDraw();
+	}
+}
+
+void Oakitus::onUpdate()
+{
+	for (unsigned int i = 0; i < entities.size(); i++)
+	{
+		entities[i]->onUpdate();
+	}
+}
+
+void Oakitus::setScene(Scene& scene)
+{
+	//unload and delete current scene
+	if (curScene != nullptr) {
+		curScene->onUnload();
+		Scene* tmp = curScene;
+		delete tmp;
+	}
+	//set and load new scene
+	curScene = &scene;
+	curScene->onLoad();
 }

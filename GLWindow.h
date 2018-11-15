@@ -4,15 +4,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-//#include "Vector3.h"
 
 class GLWindow {
+	GLFWwindow* window;
+
 	public :
 		GLWindow(unsigned int screenW, unsigned int screenH, const char* title);
 		~GLWindow();
 		GLFWwindow* getGLFWWindow();
-	private :
-		GLFWwindow* window;
 };
 
 #endif

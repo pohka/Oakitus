@@ -12,18 +12,25 @@ using namespace input;
 
 class Input
 {
-public:
-	static const unsigned int KEY_COUNT = sizeof(input::glKeys);
-	static void init();
-	static void setKeys(GLFWwindow* window);
-	static bool isKeyDown(KeyCode code); //key just pressed down
-	static bool isKeyUp(KeyCode code);//key just released
-	static bool isKeyPressed(KeyCode code); //key current down state
-	static void setMouse(float x, float y);
-	static Vector2* mousePos;
-private :
-	static Key* getKeyByCode(unsigned int code);
-	static Key* keys[KEY_COUNT];
+	
+	
+
+	public:
+		static const unsigned int KEY_COUNT = sizeof(input::glKeys);
+		static Vector2* mousePos;
+
+		static void init();
+		static bool isKeyDown(KeyCode code); //key just pressed down
+		static bool isKeyPressed(KeyCode code); //key current down state
+		static bool isKeyUp(KeyCode code);//key just released
+		static void setKeys(GLFWwindow* window);
+		static void setMouse(float x, float y);
+	
+	private :
+		static Key* keys[KEY_COUNT];
+
+		static Key* getKeyByCode(unsigned int code);
+		
 	
 };
 

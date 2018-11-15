@@ -8,12 +8,12 @@ Script::Script()
 
 Script::~Script() {};
 
-void Script::init()
+void Script::onUpdate()
 {
 
 }
 
-void Script::onUpdate()
+void Script::init()
 {
 
 }

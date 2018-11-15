@@ -94,7 +94,7 @@ void Sprite::onDraw()
 	model = glm::translate(model, pos);
 
 
-	Shader* shader = Oakitus::getShaderByID(this->shaderID);
+	Shader* shader = Oakitus::findShaderByID(this->shaderID);
 
 	shader->setMat4("model", model);
 

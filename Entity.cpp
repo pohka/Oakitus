@@ -24,27 +24,6 @@ Entity::~Entity()
 	}
 }
 
-void Entity::onUpdate()
-{
-	for (unsigned int i = 0; i < components.size(); i++)
-	{
-		components[i]->onUpdate();
-	}
-
-	for (unsigned int i = 0; i < scripts.size(); i++)
-	{
-		scripts[i]->onUpdate();
-	}
-}
-
-void Entity::onDraw()
-{
-	for (unsigned int i = 0; i < components.size(); i++) 
-	{
-		components[i]->onDraw();
-	}
-}
-
 void Entity::addComponent(Component& component)
 {
 	component.entity = this;
@@ -57,6 +36,11 @@ void Entity::addScript(Script& script)
 	this->scripts.push_back(&script);
 }
 
+void Entity::destroy()
+{
+	Oakitus::destroyEntityByID(this->getID());
+}
+
 unsigned int Entity::getID()
 {
 	return this->entityID;
@@ -67,7 +51,24 @@ void Entity::onDestroy()
 
 }
 
-void Entity::destroy()
+
+void Entity::onDraw()
 {
-	Oakitus::destroyEntityByID(this->getID());
+	for (unsigned int i = 0; i < components.size(); i++) 
+	{
+		components[i]->onDraw();
+	}
+}
+
+void Entity::onUpdate()
+{
+	for (unsigned int i = 0; i < components.size(); i++)
+	{
+		components[i]->onUpdate();
+	}
+
+	for (unsigned int i = 0; i < scripts.size(); i++)
+	{
+		scripts[i]->onUpdate();
+	}
 }

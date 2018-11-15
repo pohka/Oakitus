@@ -5,14 +5,14 @@
 
 class Time
 {
+	static float lastFrame;
+	static float m_deltaTime;
+
 	public:
 		static float timeScale;
 		static float deltaTime;
 
-		static void init()
-		{
-			lastFrame = (float)glfwGetTime();
-		}
+		
 		
 		static void calcDeltaTime()
 		{
@@ -22,10 +22,10 @@ class Time
 			deltaTime = (float)(1 * deltaTime);
 		}
 		
-
-	private:
-		static float lastFrame;
-		static float m_deltaTime;
+		static void init()
+		{
+			lastFrame = (float)glfwGetTime();
+		}
 };
 
 #endif

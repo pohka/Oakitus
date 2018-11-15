@@ -6,19 +6,20 @@ using namespace input;
 
 class Key
 {
-public:
-
-	friend class Input;
-	Key(KeyCode code);
-	~Key();
-	KeyCode getCode();
-	
-	
-private:
 	KeyCode code;
-	void setState(bool isDown);
 	bool isDown;
 	bool lastIsDown;
+
+	public:
+		friend class Input;
+		Key(KeyCode code);
+		~Key();
+		KeyCode getCode();
+	
+	
+	private:
+		void setState(bool isDown);
+	
 };
 
 #endif

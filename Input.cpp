@@ -3,14 +3,6 @@
 Key* Input::keys[KEY_COUNT];
 Vector2* Input::mousePos = new Vector2(0, 0);
 
-void Input::init()
-{
-	for (unsigned int i = 0; i<KEY_COUNT; i++)
-	{
-		int code = glKeys[i];
-		keys[i] = new Key((KeyCode)code);
-	}
-}
 
 Key* Input::getKeyByCode(unsigned int query)
 {
@@ -25,13 +17,12 @@ Key* Input::getKeyByCode(unsigned int query)
 	return nullptr;
 }
 
-void Input::setKeys(GLFWwindow* window)
+void Input::init()
 {
 	for (unsigned int i = 0; i < KEY_COUNT; i++)
 	{
 		int code = glKeys[i];
-		bool isKeyDown = glfwGetKey(window, code) == GLFW_PRESS;
-		keys[i]->setState(isKeyDown);
+		keys[i] = new Key((KeyCode)code);
 	}
 }
 
@@ -41,16 +32,26 @@ bool Input::isKeyDown(KeyCode code)
 	return key->isDown == true && key->lastIsDown == false;
 }
 
+bool Input::isKeyPressed(KeyCode code)
+{
+	Key* key = Input::getKeyByCode(code);
+	return key->isDown;
+}
+
 bool Input::isKeyUp(KeyCode code)
 {
 	Key* key = Input::getKeyByCode(code);
 	return key->isDown == false && key->lastIsDown == true;
 }
 
-bool Input::isKeyPressed(KeyCode code)
+void Input::setKeys(GLFWwindow* window)
 {
-	Key* key = Input::getKeyByCode(code);
-	return key->isDown;
+	for (unsigned int i = 0; i < KEY_COUNT; i++)
+	{
+		int code = glKeys[i];
+		bool isKeyDown = glfwGetKey(window, code) == GLFW_PRESS;
+		keys[i]->setState(isKeyDown);
+	}
 }
 
 void Input::setMouse(float x, float y)

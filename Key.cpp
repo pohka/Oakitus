@@ -9,13 +9,15 @@ Key::Key(KeyCode code)
 
 Key::~Key() {}
 
+KeyCode Key::getCode()
+{
+	return this->code;
+}
+
 void Key::setState(bool isDown)
 {
 	this->lastIsDown = this->isDown;
 	this->isDown = isDown;
 }
 
-KeyCode Key::getCode()
-{
-	return this->code;
-}
+
