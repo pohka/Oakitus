@@ -29,9 +29,6 @@ class Entity
 		virtual void onDraw();
 		virtual void onUpdate();
 		
-		
-		
-		
 };
 
 #endif
