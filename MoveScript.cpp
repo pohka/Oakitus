@@ -1,12 +1,13 @@
 #include "MoveScript.h"
 
-#include "Input.h"
+#include "core/Input.h"
 #include <iostream>
-#include "Entity.h"
-#include "Time.h"
-#include "Oakitus.h"
+#include "core/Entity.h"
+#include "core/Time.h"
+#include "core/Oakitus.h"
 
 using namespace oak;
+using namespace game;
 
 MoveScript::MoveScript() {}
 MoveScript::~MoveScript() {}

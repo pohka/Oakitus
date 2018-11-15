@@ -2,31 +2,32 @@
 #include <GLFW/glfw3.h>
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include "core/stb_image.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 
-#include "Shader.h"
-#include "Camera.h"
+#include "core/Shader.h"
+#include "core/Camera.h"
 
 
 #include <iostream>
 
-#include "Sprite.h"
+#include "core/Sprite.h"
 
-#include "GLWindow.h"
+#include "core/GLWindow.h"
 
-#include "Oakitus.h"
+#include "core/Oakitus.h"
 #include "Game.h"
-#include "Input.h"
-#include "Time.h"
+#include "core/Input.h"
+#include "core/Time.h"
 
 #include "SampleScene.h"
 
 using namespace oak;
+using namespace game;
 
 
 void processInput(GLFWwindow *window);

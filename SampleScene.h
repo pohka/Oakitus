@@ -1,11 +1,11 @@
 #ifndef SAMPLE_SCENE_H
 #define SAMPLE_SCENE_H
 
-#include "Scene.h"
+#include "core/Scene.h"
 
-namespace oak
+namespace game
 {
-  class SampleScene : public Scene
+  class SampleScene : public oak::Scene
   {
     public:
       SampleScene();

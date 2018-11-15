@@ -1,150 +1,155 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{f42a416d-40cd-4039-b847-9f0b7bd3149b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\headers">
+      <UniqueIdentifier>{d02bdf4c-03f4-4ed8-be05-2d8e530465a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\src">
+      <UniqueIdentifier>{3168c277-4dc3-4ff7-913d-81af47706c76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\GLFW\glad\src\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Oakitus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GLWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Key.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Script.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>main</Filter>
     </ClCompile>
     <ClCompile Include="MoveScript.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>main</Filter>
     </ClCompile>
     <ClCompile Include="SampleScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="Ray.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="core\Camera.cpp">
+      <Filter>core\src</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="core\Component.cpp">
+      <Filter>core\src</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="core\Entity.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\GLWindow.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\IDGenerator.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Input.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Key.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Oakitus.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Ray.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Scene.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Script.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Sprite.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Texture.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Time.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Vector2.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Vector3.cpp">
+      <Filter>core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stb_image.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\Camera.h">
+      <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\Component.h">
+      <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\Entity.h">
+      <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="Oakitus.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\GLWindow.h">
+      <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\IDGenerator.h">
+      <Filter>core\headers</Filter>
     </ClInclude>
-    <ClInclude Include="GLWindow.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="core\Input.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Key.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\KeyCode.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Oakitus.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Ray.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Scene.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Script.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Shader.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Sprite.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\stb_image.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Texture.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Time.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Vector2.h">
+      <Filter>core\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Vector3.h">
+      <Filter>core\headers</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Key.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyCode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Script.h">
-      <Filter>Header Files</Filter>
+      <Filter>main</Filter>
     </ClInclude>
     <ClInclude Include="MoveScript.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
+      <Filter>main</Filter>
     </ClInclude>
     <ClInclude Include="SampleScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Header Files</Filter>
+      <Filter>main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -157,13 +162,5 @@
     <Image Include="face.png">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="sample_texture.vs">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="sample_texture.fs">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

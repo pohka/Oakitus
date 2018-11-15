@@ -1,10 +1,11 @@
 #include "SampleScene.h"
-#include "Entity.h"
-#include "Sprite.h"
+#include "core/Entity.h"
+#include "core/Sprite.h"
 #include "MoveScript.h"
-#include "Oakitus.h"
+#include "core/Oakitus.h"
 
 using namespace oak;
+using namespace game;
 
 SampleScene::SampleScene() {}
 

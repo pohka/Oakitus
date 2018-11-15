@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\OpenGL\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -123,60 +123,56 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\GLFW\glad\src\glad.c" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="core\Camera.cpp" />
+    <ClCompile Include="core\Component.cpp" />
+    <ClCompile Include="core\Entity.cpp" />
+    <ClCompile Include="core\GLWindow.cpp" />
+    <ClCompile Include="core\IDGenerator.cpp" />
+    <ClCompile Include="core\Input.cpp" />
+    <ClCompile Include="core\Key.cpp" />
+    <ClCompile Include="core\Oakitus.cpp" />
+    <ClCompile Include="core\Ray.cpp" />
+    <ClCompile Include="core\Scene.cpp" />
+    <ClCompile Include="core\Script.cpp" />
+    <ClCompile Include="core\Sprite.cpp" />
+    <ClCompile Include="core\Texture.cpp" />
+    <ClCompile Include="core\Time.cpp" />
+    <ClCompile Include="core\Vector2.cpp" />
+    <ClCompile Include="core\Vector3.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="IDGenerator.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Key.cpp" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveScript.cpp" />
-    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="SampleScene.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Script.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="Oakitus.cpp" />
-    <ClCompile Include="GLWindow.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="Entity.h" />
+    <ClInclude Include="core\Camera.h" />
+    <ClInclude Include="core\Component.h" />
+    <ClInclude Include="core\Entity.h" />
+    <ClInclude Include="core\GLWindow.h" />
+    <ClInclude Include="core\IDGenerator.h" />
+    <ClInclude Include="core\Input.h" />
+    <ClInclude Include="core\Key.h" />
+    <ClInclude Include="core\KeyCode.h" />
+    <ClInclude Include="core\Oakitus.h" />
+    <ClInclude Include="core\Ray.h" />
+    <ClInclude Include="core\Scene.h" />
+    <ClInclude Include="core\Script.h" />
+    <ClInclude Include="core\Shader.h" />
+    <ClInclude Include="core\Sprite.h" />
+    <ClInclude Include="core\stb_image.h" />
+    <ClInclude Include="core\Texture.h" />
+    <ClInclude Include="core\Time.h" />
+    <ClInclude Include="core\Vector2.h" />
+    <ClInclude Include="core\Vector3.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="IDGenerator.h" />
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="Key.h" />
-    <ClInclude Include="KeyCode.h" />
     <ClInclude Include="MoveScript.h" />
-    <ClInclude Include="Ray.h" />
     <ClInclude Include="SampleScene.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Script.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="Oakitus.h" />
-    <ClInclude Include="GLWindow.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="cave.png" />
     <Image Include="face.png" />
     <Image Include="wall.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="sample_texture.fs" />
-    <None Include="sample_texture.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

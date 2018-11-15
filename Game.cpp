@@ -1,11 +1,12 @@
 #include "Game.h"
 
-#include "Oakitus.h"
-#include "Sprite.h"
-#include "Entity.h"
+#include "core/Oakitus.h"
+#include "core/Sprite.h"
+#include "core/Entity.h"
 #include "MoveScript.h"
 #include "SampleScene.h"
 
+using namespace game;
 using namespace oak;
 
 void Game::load()

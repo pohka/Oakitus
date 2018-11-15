@@ -1,11 +1,11 @@
 #ifndef MOVE_SCRIPT_H
 #define MOVE_SCRIPT_H
 
-#include "Script.h"
+#include "core/Script.h"
 
-namespace oak
+namespace game
 {
-  class MoveScript : public Script
+  class MoveScript : public oak::Script
   {
     public:
       MoveScript();

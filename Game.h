@@ -1,9 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Oakitus.h"
+#include "core/Oakitus.h"
 
-namespace oak
+namespace game
 {
   class Game
   {
