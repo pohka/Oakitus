@@ -177,6 +177,10 @@
     <Image Include="face.png" />
     <Image Include="wall.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="sample_texture.fs" />
+    <None Include="sample_texture.vs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

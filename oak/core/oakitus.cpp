@@ -138,9 +138,16 @@ void Oakitus::onDestroy()
   }
 }
 
+struct EntityLayerCompare {
+  bool operator()(const Entity* l, const Entity* r) {
+    return l->layerID < r->layerID;
+  }
+};
 
 void Oakitus::onDraw()
 {
+  std::sort(entities.begin(), entities.end(), EntityLayerCompare());
+
   for (uint i = 0; i < entities.size(); i++)
   {
     entities[i]->onDraw();

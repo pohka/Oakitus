@@ -37,6 +37,7 @@ void MoveScript::onUpdate()
   {
     glm::vec3 pt = Oakitus::camera->cursorToWorld2D();
     std::cout << "vp:" << Input::mousePos->x << "," << Input::mousePos->y << std::endl <<
-      "rayWorld:" << pt.x << "," << pt.y << "," << pt.z << std::endl;
+      "rayWorld:" << pt.x << "," << pt.y << "," << pt.z << std::endl <<
+      "entPos:" << entity->position->x << "," << entity->position->y << std::endl;
   }
 }

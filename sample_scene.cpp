@@ -18,6 +18,12 @@ void SampleScene::onLoad()
   ent->addComponent(*s);
   Script* move = new MoveScript();
   ent->addScript(*move);
+
+  Entity* ground = new Entity();
+  ground->position->x = 0.5f;
+  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, NULL);
+  ground->addComponent(*groundSprite);
+  ground->layerID = -1;
 }
 
 void SampleScene::onUnload()

@@ -3,12 +3,14 @@
 
 using namespace oak;
 
+
 Entity::Entity() 
 {
   idGen = new IDGenerator();
   this->entityID = idGen->nextID();
   this->position = new Vector3(0, 0, 0);
   Oakitus::addEntity(*this);
+  layerID = 0;
 }
 
 Entity::~Entity()

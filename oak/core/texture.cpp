@@ -23,10 +23,21 @@ Texture::Texture(const char* src)
 
   
   unsigned char *data = stbi_load(src, &width, &height, &nrChannels, 0);
+
+  if (strstr(src, ".jpg") != NULL) {
+    std::cout << "image is jpg" << std::endl;
+  }
   
-  if (data)
+if (data)
   {
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    if (strstr(src, ".jpg") != NULL) 
+    {
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    }
+    else
+    {
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    }
   }
   else
   {

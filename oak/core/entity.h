@@ -9,6 +9,8 @@
 #include "id_generator.h"
 #include "types.h"
 
+#include <map>
+
 namespace oak
 {
   class Entity
@@ -18,18 +20,20 @@ namespace oak
 	  std::vector<Script*> scripts;
 	  IDGenerator* idGen;
 
-    public:
-	  Vector3* position;
 
-	  Entity();
-	  ~Entity();
-	  void addComponent(Component& component);
-	  void addScript(Script& script);
-	  void destroy();
-	  uint getID();
-	  virtual void onDestroy();
-	  virtual void onDraw();
-	  virtual void onUpdate();
+    public:
+	    Vector3* position;
+      int layerID;
+
+	    Entity();
+	    ~Entity();
+	    void addComponent(Component& component);
+	    void addScript(Script& script);
+	    void destroy();
+	    uint getID();
+	    virtual void onDestroy();
+	    virtual void onDraw();
+	    virtual void onUpdate();
   };
 }
 
