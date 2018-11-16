@@ -39,13 +39,13 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
 
   float vertices[] = {
     // positions          // texture coords
-    -0.5,  -0.5f, 0.0f,  xMin, yMax, //bottom left
-     0.5f, -0.5f, 0.0f,  xMax, yMax, //bottom right
-     0.5f,  0.5f, 0.0f,  xMax, yMin, //top right
+    -1.0,  -1.0f, 0.0f,  xMin, yMax, //bottom left
+     1.0f, -1.0f, 0.0f,  xMax, yMax, //bottom right
+     1.0f,  1.0f, 0.0f,  xMax, yMin, //top right
 
-     0.5f,  0.5f, 0.0f,  xMax, yMin, //top right
-    -0.5f,  0.5f, 0.0f,  xMin, yMin, //top left
-    -0.5f, -0.5f, 0.0f,  xMin, yMax, //botom left
+     1.0f,  1.0f, 0.0f,  xMax, yMin, //top right
+    -1.0f,  1.0f, 0.0f,  xMin, yMin, //top left
+    -1.0f, -1.0f, 0.0f,  xMin, yMax, //botom left
   };
   
   glGenVertexArrays(1, &this->VAO);
