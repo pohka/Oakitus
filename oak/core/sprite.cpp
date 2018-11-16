@@ -29,7 +29,7 @@ Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float di
   }
   else 
   {
-    shaderID = Oakitus::defaultShaderID;
+    shaderID = Resources::defaultShaderID;
   }
   
   this->texture = new Texture(src.c_str());
@@ -109,7 +109,7 @@ void Sprite::onDraw()
 
  // model = glm::translate(model, Oakitus::camera->position);
 
-  Shader* shader = Oakitus::findShaderByID(this->shaderID);
+  Shader* shader = Resources::findShaderByID(this->shaderID);
 
   shader->setMat4("model", model);
 

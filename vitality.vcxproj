@@ -137,6 +137,7 @@
     <ClCompile Include="oak\core\oakitus.cpp" />
     <ClCompile Include="oak\core\point.cpp" />
     <ClCompile Include="oak\core\ray.cpp" />
+    <ClCompile Include="oak\core\resources.cpp" />
     <ClCompile Include="oak\core\scene.cpp" />
     <ClCompile Include="oak\core\script.cpp" />
     <ClCompile Include="oak\core\sprite.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="oak\core\oakitus.h" />
     <ClInclude Include="oak\core\point.h" />
     <ClInclude Include="oak\core\ray.h" />
+    <ClInclude Include="oak\core\resources.h" />
     <ClInclude Include="oak\core\scene.h" />
     <ClInclude Include="oak\core\script.h" />
     <ClInclude Include="oak\core\shader.h" />

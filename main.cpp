@@ -5,8 +5,6 @@
 #include "game.h"
 #include "sample_scene.h"
 
-//#include <glm/gtc/matrix_transform.hpp>
-
 
 using namespace oak;
 using namespace game;
@@ -30,8 +28,8 @@ int main()
   // build and compile our shader zprogram
   // ------------------------------------
   Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");
-  Oakitus::addShader(*shader);
-  Oakitus::defaultShaderID = shader->getID();
+  Resources::addShader(*shader);
+  Resources::defaultShaderID = shader->getID();
 
   Game::load();
 
