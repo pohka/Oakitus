@@ -14,12 +14,14 @@
 using namespace oak;
 
 
-Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderID)
+Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float displayW, float displayH, unsigned int shaderID)
 {
-  this->x = x;
-  this->y = y;
-  this->w = w;
-  this->h = h;
+  this->srcX = srcX;
+  this->srcY = srcY;
+  this->srcW = srcW;
+  this->srcH = srcH;
+  this->w = displayW;
+  this->h = displayH;
   
   if (shaderID != NULL)
   {
@@ -32,20 +34,26 @@ Sprite::Sprite(std::string src, int x, int y, int w, int h, unsigned int shaderI
   
   this->texture = new Texture(src.c_str());
   
-  float xMin = ((float)x / texture->getWidth());
-  float yMin = ((float)y / texture->getHeight());
-  float xMax = ((float)(x+w) / texture->getWidth());
-  float yMax = ((float)(y+h) / texture->getHeight());
+  float xMin = ((float)srcX / texture->getWidth());
+  float yMin = ((float)srcY / texture->getHeight());
+  float xMax = ((float)(srcX+srcW) / texture->getWidth());
+  float yMax = ((float)(srcY+srcH) / texture->getHeight());
+
+  float screenW = 960;
+  float screenH = 540;
+
+  float xx = this->w / screenH;
+  float yy = this->h / screenH;
 
   float vertices[] = {
     // positions          // texture coords
-    -1.0,  -1.0f, 0.0f,  xMin, yMax, //bottom left
-     1.0f, -1.0f, 0.0f,  xMax, yMax, //bottom right
-     1.0f,  1.0f, 0.0f,  xMax, yMin, //top right
+    -xx, -yy, 0.0f,  xMin, yMax, //bottom left
+     xx, -yy, 0.0f,  xMax, yMax, //bottom right
+     xx,  yy, 0.0f,  xMax, yMin, //top right
 
-     1.0f,  1.0f, 0.0f,  xMax, yMin, //top right
-    -1.0f,  1.0f, 0.0f,  xMin, yMin, //top left
-    -1.0f, -1.0f, 0.0f,  xMin, yMax, //botom left
+     xx,  yy, 0.0f,  xMax, yMin, //top right
+    -xx,  yy, 0.0f,  xMin, yMin, //top left
+    -xx, -yy, 0.0f,  xMin, yMax, //botom left
   };
   
   glGenVertexArrays(1, &this->VAO);
@@ -92,9 +100,14 @@ void Sprite::onDraw()
   glBindVertexArray(this->VAO);
 
   glm::mat4 model = glm::mat4(1.0);
-  glm::vec3 pos(entity->position.x, entity->position.y, entity->position.z);
+  glm::vec3 pos(
+    entity->position.x - Oakitus::camera->position.x,
+    entity->position.y - Oakitus::camera->position.y, 
+    entity->position.z
+  );
   model = glm::translate(model, pos);
 
+ // model = glm::translate(model, Oakitus::camera->position);
 
   Shader* shader = Oakitus::findShaderByID(this->shaderID);
 

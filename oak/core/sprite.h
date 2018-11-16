@@ -17,17 +17,21 @@ namespace oak
     Texture* texture;
 
   public:
-    Sprite(std::string src, int x, int y, int w, int h, uint shaderID);
+    Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float displayW, float displayH, unsigned int shaderID);
     ~Sprite();
     std::string getSrc();
     uint getVAO();
     void onDraw() override;
+    float w;
+    float h;
 
 
-    int x;
-    int y;
-    int w;
-    int h;
+    int srcX;
+    int srcY;
+    int srcW;
+    int srcH;
+    
+    
     uint shaderID;
 
   };

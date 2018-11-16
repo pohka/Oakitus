@@ -14,14 +14,14 @@ SampleScene::~SampleScene() {}
 void SampleScene::onLoad()
 {
   Entity* ent = new Entity();
-  Sprite* s = new Sprite("face.png", 0, 00, 1000, 1000, NULL);
+  Sprite* s = new Sprite("face.png", 0, 0, 1000, 1000, 200, 200, NULL);
   ent->addComponent(*s);
   Script* move = new MoveScript();
   ent->addScript(*move);
 
   Entity* ground = new Entity();
-  ground->position.x = 0.5f;
-  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, NULL);
+  //ground->position.x = 1.0f;
+  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, NULL);
   ground->addComponent(*groundSprite);
   ground->layerID = -1;
 }

@@ -31,6 +31,23 @@ void MoveScript::onUpdate()
     entity->destroy();
   }
 
+  if (Input::isKeyPressed(KeyCode::UP))
+  {
+    Oakitus::camera->position.y += speed;
+  }
+  if (Input::isKeyPressed(KeyCode::DOWN))
+  {
+    Oakitus::camera->position.y -= 1.0f * speed;
+  }
+  if (Input::isKeyPressed(KeyCode::LEFT))
+  {
+    Oakitus::camera->position.x -= speed;
+  }
+  if (Input::isKeyPressed(KeyCode::RIGHT))
+  {
+    Oakitus::camera->position.x += speed;
+  }
+
   
 
   if (Input::isKeyDown(KeyCode::C))

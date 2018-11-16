@@ -16,8 +16,8 @@ void processInput(GLFWwindow *window);
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 960;
+const unsigned int SCR_HEIGHT = 540;
 
 int main()
 {
@@ -32,8 +32,6 @@ int main()
   Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");
   Oakitus::addShader(*shader);
   Oakitus::defaultShaderID = shader->getID();
-
-  //Shader* shader = Oakitus::findShaderByID(0);
 
   Game::load();
 
@@ -56,29 +54,14 @@ int main()
     
     shader->use();
 
+    float aspect = 960.0f / 540.0f;
 
-    // pass projection matrix to shader (note that in this case it could change every frame)
-    glm::mat4 projection = glm::perspective(
-      glm::radians(Oakitus::camera->fov), 
-      (float)SCR_WIDTH / (float)SCR_HEIGHT, 
-      0.1f, 
-      100.0f
-    );
+    glm::mat4 projection = glm::ortho(-1.0f * aspect, 1.0f * aspect, -1.0f, 1.0f, -1.0f, 1.0f);
     shader->setMat4("projection", projection);
-    
-
-    // camera/view transformation
-    glm::mat4 view = glm::lookAt(
-      Oakitus::camera->position, 
-      Oakitus::camera->position + Oakitus::camera->front, 
-      Oakitus::camera->up
-    );
-    shader->setMat4("view", view);
-
 
     if (Input::isKeyDown(KeyCode::R))
     {
-      std::cout << "r is down " << std::endl;
+      std::cout << "refreshed scene" << std::endl;
       Oakitus::setScene(*new SampleScene());
     }
 
