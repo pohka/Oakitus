@@ -30,7 +30,7 @@ vec3 Camera::cursorToWorld2D()
 vec3 Camera::viewportToWorldCoor(float vpPosX, float vpPosY)
 {
   float screenH = 600, screenW = 800;
-  glm::mat4 cameraMatrix = glm::lookAt(
+  glm::mat4 viewMatrix = glm::lookAt(
     Oakitus::camera->position,
     Oakitus::camera->front,
     Oakitus::camera->up
@@ -48,13 +48,13 @@ vec3 Camera::viewportToWorldCoor(float vpPosX, float vpPosY)
     ((2.0f * vpPosY) / screenH) - 1.0f
   );
 
-  glm::mat4 inverse = glm::inverse(projectionMatrix * cameraMatrix);
-  glm::vec4 rayClip = glm::vec4(vpPosX, vpPosY, -1, 1);
+  glm::mat4 inverse = glm::inverse(projectionMatrix * viewMatrix);
+  glm::vec4 rayClip = glm::vec4(nCursor.x, nCursor.y, -1, 1);
 
 
   glm::vec4 rayEye = glm::inverse(projectionMatrix) * rayClip;
   rayEye = glm::vec4(rayEye.x, rayEye.y, -1.0, 0.0);
-  glm::vec3 rayWorld = (glm::inverse(cameraMatrix) * rayEye);
+  glm::vec3 rayWorld = (glm::inverse(viewMatrix) * rayEye);
   rayWorld = glm::normalize(rayWorld);
   return rayWorld;
 }
