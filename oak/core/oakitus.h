@@ -20,7 +20,6 @@ namespace oak
   class Oakitus
   {
     static std::vector<Entity*> entities;
-    static IDGenerator* shaderIDGen;
     static Scene* curScene;
     static std::queue<uint> destroyEntIDQueue;
 

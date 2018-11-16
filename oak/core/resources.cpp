@@ -5,10 +5,17 @@ using namespace oak;
 uint Resources::defaultShaderID;
 
 std::vector<Shader*> Resources::shaders;
+std::vector<Texture*> Resources::textures;
 
 void Resources::addShader(Shader& shader)
 {
   shaders.push_back(&shader);
+}
+
+void Resources::addTexture(std::string src)
+{
+  Texture* tex = new Texture(src);
+  textures.push_back(tex);
 }
 
 Shader* Resources::findShaderByID(uint id)
@@ -26,5 +33,30 @@ Shader* Resources::findShaderByName(std::string name)
       return shaders[i];
     }
   }
+  return nullptr;
+}
+
+Texture* Resources::findTextureByID(uint textureID)
+{
+  for (uint i = 0; i < textures.size(); i++)
+  {
+    if (textures[i]->getID() == textureID)
+    {
+      return textures[i];
+    }
+  }
+  return nullptr;
+}
+
+Texture* Resources::findTextureBySrc(std::string src)
+{
+  for (uint i = 0; i < textures.size(); i++)
+  {
+    if (textures[i]->getSrc().compare(src) == 0)
+    {
+      return textures[i];
+    }
+  }
+  std::cout << "texture not found:" << src << std::endl;
   return nullptr;
 }

@@ -17,7 +17,7 @@ namespace oak
     Texture* texture;
 
   public:
-    Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float displayW, float displayH, unsigned int shaderID);
+    Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float displayW, float displayH, uint shaderID);
     ~Sprite();
     std::string getSrc();
     uint getVAO();
@@ -30,8 +30,8 @@ namespace oak
     int srcY;
     int srcW;
     int srcH;
-    
-    
+
+    uint textureID;
     uint shaderID;
 
   };

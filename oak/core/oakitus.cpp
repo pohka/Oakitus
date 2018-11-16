@@ -3,9 +3,7 @@
 using namespace oak;
 
 GLWindow* Oakitus::glWindow = nullptr;
-//std::vector<Shader*> Oakitus::shaders;
 std::vector<Entity*> Oakitus::entities;
-IDGenerator* Oakitus::shaderIDGen = new IDGenerator();
 Scene* Oakitus::curScene = nullptr;
 std::queue<uint> Oakitus::destroyEntIDQueue;
 Camera* Oakitus::camera = nullptr;

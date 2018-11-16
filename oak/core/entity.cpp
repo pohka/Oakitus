@@ -9,7 +9,6 @@ Entity::Entity()
   idGen = new IDGenerator();
   this->entityID = idGen->nextID();
   this->position = glm::vec3(0, 0, 0);
-  Oakitus::addEntity(*this);
   layerID = 0;
 }
 

@@ -2,6 +2,7 @@
 #define TEXTURE_H
 
 #include "types.h"
+#include <string>
 
 namespace oak
 {
@@ -9,14 +10,15 @@ namespace oak
   {
     uint id;
     int width, height;
+    std::string src;
 
     public:
-      Texture(const char* src);
+      Texture(std::string src);
       ~Texture();
       int getHeight();
       uint getID();
       int getWidth();
-
+      std::string getSrc();
 
   };
 }

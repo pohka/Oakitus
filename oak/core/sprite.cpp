@@ -14,7 +14,7 @@
 using namespace oak;
 
 
-Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float displayW, float displayH, unsigned int shaderID)
+Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float displayW, float displayH, uint shaderID)
 {
   this->srcX = srcX;
   this->srcY = srcY;
@@ -32,7 +32,11 @@ Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float di
     shaderID = Resources::defaultShaderID;
   }
   
+
   this->texture = new Texture(src.c_str());
+  Texture *texture = Resources::findTextureBySrc(src);
+  this->textureID = texture->getID();
+  std::cout << "src:"  << src << "  id:" << textureID << std::endl;
   
   float xMin = ((float)srcX / texture->getWidth());
   float yMin = ((float)srcY / texture->getHeight());
@@ -77,7 +81,7 @@ Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float di
 
 Sprite::~Sprite()
 {
-  delete texture;
+  //delete texture;
   glDeleteVertexArrays(1, &this->VAO);
   glDeleteBuffers(1, &this->VBO);
 }
@@ -96,7 +100,7 @@ void Sprite::onDraw()
 {
   
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, this->texture->getID());
+  glBindTexture(GL_TEXTURE_2D, this->textureID);
   glBindVertexArray(this->VAO);
 
   glm::mat4 model = glm::mat4(1.0);
@@ -106,8 +110,6 @@ void Sprite::onDraw()
     entity->position.z
   );
   model = glm::translate(model, pos);
-
- // model = glm::translate(model, Oakitus::camera->position);
 
   Shader* shader = Resources::findShaderByID(this->shaderID);
 

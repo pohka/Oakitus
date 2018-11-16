@@ -4,7 +4,8 @@
 
 #include "game.h"
 #include "sample_scene.h"
-
+#include <thread> 
+#include <chrono> 
 
 using namespace oak;
 using namespace game;
@@ -16,6 +17,9 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 // settings
 const unsigned int SCR_WIDTH = 960;
 const unsigned int SCR_HEIGHT = 540;
+
+//const double maxFPS = 60;
+//const double minDelta = 1.0 / maxFPS;
 
 int main()
 {
@@ -30,14 +34,25 @@ int main()
   Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");
   Resources::addShader(*shader);
   Resources::defaultShaderID = shader->getID();
+  std::cout << "shader default: " << shader->getID() << std::endl;
+
+  Resources::addTexture("default.png");
+  Resources::addTexture("wall.jpg");
+  Resources::addTexture("face.png");
 
   Game::load();
+
+  int numFrames = 0;
+  double lastTime = glfwGetTime();
 
   // render loop
   // -----------
   while (!glfwWindowShouldClose(window))
   {
-    Time::calcDeltaTime();
+    double currentTime = glfwGetTime();
+    
+
+    Time::update();
 
     // input
     // -----
@@ -73,6 +88,19 @@ int main()
     // -------------------------------------------------------------------------------
     glfwSwapBuffers(window);
     glfwPollEvents();
+
+    if (Input::isKeyDown(KeyCode::F))
+    {
+      std::cout << "FPS:" << Time::getFPS() << std::endl;
+    }
+
+    //sleep to limit fps
+    float minDelta = Time::getMinDeltaTime();
+    if (Time::deltaTime < minDelta)
+    {
+      int sleepTime = (int)((minDelta - Time::deltaTime) * 1000.f);
+      std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
+    }
   }
 
   // glfw: terminate, clearing all previously allocated GLFW resources.

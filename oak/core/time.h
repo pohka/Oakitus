@@ -5,28 +5,29 @@
 
 namespace oak
 {
+  //all time is in seconds
   class Time
   {
     static float lastFrame;
     static float m_deltaTime;
+    static int numFrames;
+    static int fps;
+    static float lastFPSCheck;
+    static int maxFPS;
+    static float minDeltaTime;
 
     public:
       static float timeScale;
       static float deltaTime;
+      
 
-
-      static void calcDeltaTime()
-      {
-        float currentFrame = (float)glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
-        deltaTime = (float)(1 * deltaTime);
-      }
-
-      static void init()
-      {
-        lastFrame = (float)glfwGetTime();
-      }
+      static void update();
+      static int getFPS();
+      static int getMaxFPS();
+      static float getMinDeltaTime();
+      static void init();
+      static void setMaxFPS(int max);
+      
   };
 }
 

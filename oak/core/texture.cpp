@@ -7,8 +7,10 @@
 
 using namespace oak;
 
-Texture::Texture(const char* src)
+Texture::Texture(std::string src)
 {
+  this->src = src;
+
   //load the texture
   glGenTextures(1, &this->id);
   glBindTexture(GL_TEXTURE_2D, this->id);
@@ -20,17 +22,12 @@ Texture::Texture(const char* src)
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   // load image, create texture and generate mipmaps
   int nrChannels;
-
   
-  unsigned char *data = stbi_load(src, &width, &height, &nrChannels, 0);
+  unsigned char *data = stbi_load(src.c_str(), &width, &height, &nrChannels, 0);
 
-  if (strstr(src, ".jpg") != NULL) {
-    std::cout << "image is jpg" << std::endl;
-  }
-  
-if (data)
+  if (data)
   {
-    if (strstr(src, ".jpg") != NULL) 
+    if (strstr(src.c_str(), ".jpg") != NULL)
     {
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
     }
@@ -62,7 +59,12 @@ int Texture::getHeight()
 
 uint Texture::getID()
 {
-  return id;
+  return this->id;
+}
+
+std::string Texture::getSrc()
+{
+  return src;
 }
 
 int Texture::getWidth()

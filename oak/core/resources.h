@@ -6,18 +6,24 @@
 
 #include <vector>
 #include <queue>
+#include <string>
 
+#include "texture.h"
 
 namespace oak
 {
   class Resources
   {
     static std::vector<Shader*> shaders;
+    static std::vector<Texture*> textures;
 
     public:
       static void addShader(Shader& shader);
+      static void addTexture(std::string src);
       static Shader* findShaderByID(uint id);
       static Shader* findShaderByName(std::string name);
+      static Texture* findTextureByID(uint textureID);
+      static Texture * findTextureBySrc(std::string src);
       static uint defaultShaderID;
   };
 }
