@@ -92,7 +92,7 @@ void Sprite::onDraw()
   glBindVertexArray(this->VAO);
 
   glm::mat4 model = glm::mat4(1.0);
-  glm::vec3 pos(entity->position->x, entity->position->y, entity->position->z);
+  glm::vec3 pos(entity->position.x, entity->position.y, entity->position.z);
   model = glm::translate(model, pos);
 
 

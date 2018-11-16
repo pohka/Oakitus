@@ -2,8 +2,9 @@
 
 using namespace oak;
 
+
 Key* Input::keys[sizeof(glKeys)];
-Vector2* Input::mousePos = new Vector2(0, 0);
+Point Input::mousePos(0, 0);
 
 
 Key* Input::getKeyByCode(uint query)
@@ -58,6 +59,6 @@ void Input::setKeys(GLFWwindow* window)
 
 void Input::setMouse(float x, float y)
 {
-  mousePos->x = x;
-  mousePos->y = y;
+  mousePos.x = x;
+  mousePos.y = y;
 }

@@ -74,10 +74,7 @@
     <ClCompile Include="oak\core\time.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="oak\core\vector2.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="oak\core\vector3.cpp">
+    <ClCompile Include="oak\core\point.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -145,17 +142,14 @@
     <ClInclude Include="oak\core\types.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="oak\core\vector2.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\core\vector3.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="oak\oak.h">
       <Filter>oak</Filter>
     </ClInclude>
     <ClInclude Include="oak\init.h">
       <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\point.h">
+      <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

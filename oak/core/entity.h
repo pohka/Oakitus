@@ -5,11 +5,11 @@
 #include "component.h"
 
 #include <vector>
-#include "vector3.h"
 #include "id_generator.h"
 #include "types.h"
 
 #include <map>
+#include <glm/glm.hpp>
 
 namespace oak
 {
@@ -22,7 +22,7 @@ namespace oak
 
 
     public:
-	    Vector3* position;
+      glm::vec3 position;
       int layerID;
 
 	    Entity();

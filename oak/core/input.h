@@ -4,7 +4,7 @@
 #include "key.h"
 #include <GLFW/glfw3.h>
 #include "key_code.h"
-#include "vector2.h"
+#include "point.h"
 #include "types.h"
 
 namespace oak
@@ -15,7 +15,7 @@ namespace oak
 
     public:
       static const uint KEY_COUNT = sizeof(glKeys);
-      static Vector2* mousePos;
+      static Point mousePos;
 
       static void init();
       static bool isKeyDown(KeyCode code); //key just pressed down

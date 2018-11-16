@@ -19,7 +19,7 @@ Camera::~Camera() {}
 vec3 Camera::cursorToWorld2D()
 {
   float screenH = 800;
-  glm::vec3 rayWorld = Oakitus::camera->viewportToWorldCoor(Input::mousePos->x, Input::mousePos->y);
+  glm::vec3 rayWorld = Oakitus::camera->viewportToWorldCoor(Input::mousePos.x, Input::mousePos.y);
   Ray* ray = new Ray(Oakitus::camera->position, rayWorld);
 
   glm::vec3 point = ray->planeIntersectPoint(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0));

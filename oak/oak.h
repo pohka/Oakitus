@@ -27,7 +27,5 @@
 #include "core/texture.h"
 #include "core/time.h"
 #include "core/types.h"
-#include "core/vector2.h"
-#include "core/vector3.h"
 
 #endif
