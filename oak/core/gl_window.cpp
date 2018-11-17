@@ -7,12 +7,10 @@ using namespace oak;
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 
-GLWindow::GLWindow(uint windowW, uint windowH, const char* title)
+GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
 {
-  this->windowW = windowW;
-  this->windowH = windowH;
-  this->viewportW = 960;
-  this->viewportH = 540;
+  this->screenW = screenW;
+  this->screenH = screenH;
   // glfw: initialize and configure
   // ------------------------------
   glfwInit();
@@ -22,7 +20,7 @@ GLWindow::GLWindow(uint windowW, uint windowH, const char* title)
 
   // glfw window creation
   // --------------------
-  this->window = glfwCreateWindow(windowW, windowH, title, NULL, NULL);
+  this->window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
   if (this->window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
@@ -53,7 +51,17 @@ GLFWwindow* GLWindow::getGLFWWindow()
 
 float GLWindow::getAspectRatio()
 {
-  return (float)viewportW / (float)viewportH;
+  return (float)screenW / (float)screenH;
+}
+
+uint GLWindow::getHeight()
+{
+  return screenH;
+}
+
+uint GLWindow::getWidth()
+{
+  return screenW;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

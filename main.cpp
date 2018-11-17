@@ -11,7 +11,6 @@ using namespace oak;
 using namespace game;
 
 
-void processInput(GLFWwindow *window);
 void cursorMoved(GLFWwindow* window, double xpos, double ypos);
 
 // settings
@@ -81,8 +80,7 @@ int main()
 void cursorMoved(GLFWwindow* window, double xpos, double ypos)
 {
   // invert y-coordinate
-  //todo: screen height should use current viewport height as the window can be resized
-  Input::setMouse((float)xpos, (float)SCR_HEIGHT - (float)ypos);
+  Input::setMouse((float)xpos, (float)Oakitus::glWindow->getHeight() - (float)ypos);
 }
 
 

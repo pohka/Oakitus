@@ -49,8 +49,8 @@ Sprite::Sprite(
   float xMax = ((float)(srcX+srcW) / texture->getWidth());
   float yMax = ((float)(srcY+srcH) / texture->getHeight());
 
-  float screenW = (float)Oakitus::glWindow->viewportW;
-  float screenH = (float)Oakitus::glWindow->viewportH;
+  float screenW = (float)Oakitus::glWindow->getWidth();
+  float screenH = (float)Oakitus::glWindow->getHeight();
 
   float xx = this->w / screenH;
   float yy = this->h / screenH;

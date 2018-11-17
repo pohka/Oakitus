@@ -11,18 +11,20 @@ namespace oak
   {
     GLFWwindow* window;
     
-    uint windowW;
-    uint windowH;
+    uint screenW;
+    uint screenH;
 
 
     public:
-      uint viewportW;
-      uint viewportH;
-
+      void cursorMoved(GLFWwindow* window, double xpos, double ypos);
       GLWindow(uint screenW, uint screenH, const char* title);
       ~GLWindow();
       GLFWwindow* getGLFWWindow();
       float getAspectRatio();
+      uint getHeight();
+      uint getWidth();
+      
+      
   };
 }
 

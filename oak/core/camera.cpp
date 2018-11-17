@@ -6,30 +6,61 @@
 using namespace glm;
 using namespace oak;
 
-Camera::Camera(vec3 position, vec3 front, vec3 up, float fov)
+Camera::Camera(vec3 position, vec3 front, vec3 up, float fov, bool isOrthographic)
 {
   this->position = position;
   this->front = front;
   this->up = up;
   this->fov = fov;
+  this->isOrthographic = isOrthographic;
 }
 
 Camera::~Camera() {}
 
 vec3 Camera::cursorToWorld2D()
 {
-  float screenH = 800;
-  glm::vec3 rayWorld = Oakitus::camera->viewportToWorldCoor(Input::mousePos.x, Input::mousePos.y);
-  Ray* ray = new Ray(Oakitus::camera->position, rayWorld);
+  if (isOrthographic)
+  {
+    float screenW = (float)Oakitus::glWindow->getWidth();
+    float screenH = (float)Oakitus::glWindow->getHeight();
 
-  glm::vec3 point = ray->planeIntersectPoint(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0));
-  delete ray;
-  return point;
+    float halfW = screenW / 2.0f;
+    float halfH = screenH / 2.0f;
+
+    //normalized cursor position from -1 to 1
+    glm::vec2 nCursor = glm::vec2(
+      ((Input::mousePos.x - halfW) / screenH) * 2.0f,
+      ((Input::mousePos.y - halfH) / screenH) * 2.0f
+    );
+
+    return glm::vec3(
+      nCursor.x + Oakitus::camera->position.x,
+      nCursor.y + Oakitus::camera->position.y,
+      0.0f
+    );
+  }
+  else
+  {
+    glm::vec3 rayWorld = Oakitus::camera->viewportToWorldCoor(Input::mousePos.x, Input::mousePos.y);
+    Ray* ray = new Ray(Oakitus::camera->position, rayWorld);
+
+    glm::vec3 point = ray->planeIntersectPoint(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0));
+    delete ray;
+    return point;
+  }
 }
 
+bool Camera::getIsOrthographic()
+{
+  return isOrthographic;
+}
+
+//When using perspective view this function converts a viewport position to a world, so you can project a point into world space.
 vec3 Camera::viewportToWorldCoor(float vpPosX, float vpPosY)
 {
-  float screenH = 600, screenW = 800;
+  float screenW = (float)Oakitus::glWindow->getWidth();
+  float screenH = (float)Oakitus::glWindow->getHeight();
+
   glm::mat4 viewMatrix = glm::lookAt(
     Oakitus::camera->position,
     Oakitus::camera->front,

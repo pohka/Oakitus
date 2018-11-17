@@ -70,5 +70,4 @@ void MoveScript::onUpdate()
     entity->position = glm::vec3(pt.x, pt.y, 0);
   }
 
-
 }

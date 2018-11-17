@@ -16,7 +16,8 @@ namespace oak
       glm::vec3(0.0f, 0.0f, 5.0f), //position
       glm::vec3(0.0f, 0.0f, -1.0f), //front
       glm::vec3(0.0f, 1.0f, 0.0f), //up
-      90.0f //field or view
+      90.0f, //field or view
+      true
     );
 
    // Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");

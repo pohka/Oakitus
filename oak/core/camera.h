@@ -15,11 +15,14 @@ namespace oak
 	    glm::vec3 front;
 	    glm::vec3 up;
 	    float fov;
+      bool isOrthographic;
 
-	    Camera(glm::vec3 position, glm::vec3 front, glm::vec3 up, float fov);
+	    Camera(glm::vec3 position, glm::vec3 front, glm::vec3 up, float fov, bool isOrthographic);
 	    ~Camera();
 	    glm::vec3 cursorToWorld2D();
+      bool getIsOrthographic();
 	    glm::vec3 viewportToWorldCoor(float vpPosX, float vpPosY);
+      
   };
 }
 #endif
