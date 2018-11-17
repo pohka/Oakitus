@@ -10,11 +10,19 @@ namespace oak
   class GLWindow
   {
     GLFWwindow* window;
+    
+    uint windowW;
+    uint windowH;
+
 
     public:
+      uint viewportW;
+      uint viewportH;
+
       GLWindow(uint screenW, uint screenH, const char* title);
       ~GLWindow();
       GLFWwindow* getGLFWWindow();
+      float getAspectRatio();
   };
 }
 

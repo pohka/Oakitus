@@ -1,4 +1,5 @@
 #include "move_script.h"
+#include "sample_scene.h"
 
 using namespace oak;
 using namespace game;
@@ -48,7 +49,16 @@ void MoveScript::onUpdate()
     Oakitus::camera->position.x += speed;
   }
 
-  
+  if (Input::isKeyDown(KeyCode::R))
+  {
+    std::cout << "refreshed scene" << std::endl;
+    Oakitus::setScene(*new SampleScene());
+  }
+
+  if (Input::isKeyDown(KeyCode::F))
+  {
+    std::cout << "FPS:" << Time::getFPS() << std::endl;
+  }
 
   if (Input::isKeyDown(KeyCode::C))
   {

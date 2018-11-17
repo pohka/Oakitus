@@ -14,7 +14,16 @@
 using namespace oak;
 
 
-Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float displayW, float displayH, uint shaderID)
+Sprite::Sprite(
+  std::string src,
+  int srcX,
+  int srcY,
+  int srcW,
+  int srcH,
+  float displayW,
+  float displayH,
+  uint shaderID
+)
 {
   this->srcX = srcX;
   this->srcY = srcY;
@@ -32,19 +41,16 @@ Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float di
     shaderID = Resources::defaultShaderID;
   }
   
-
-  this->texture = new Texture(src.c_str());
   Texture *texture = Resources::findTextureBySrc(src);
   this->textureID = texture->getID();
-  std::cout << "src:"  << src << "  id:" << textureID << std::endl;
   
   float xMin = ((float)srcX / texture->getWidth());
   float yMin = ((float)srcY / texture->getHeight());
   float xMax = ((float)(srcX+srcW) / texture->getWidth());
   float yMax = ((float)(srcY+srcH) / texture->getHeight());
 
-  float screenW = 960;
-  float screenH = 540;
+  float screenW = (float)Oakitus::glWindow->viewportW;
+  float screenH = (float)Oakitus::glWindow->viewportH;
 
   float xx = this->w / screenH;
   float yy = this->h / screenH;
@@ -81,7 +87,6 @@ Sprite::Sprite(std::string src, int srcX, int srcY, int srcW, int srcH, float di
 
 Sprite::~Sprite()
 {
-  //delete texture;
   glDeleteVertexArrays(1, &this->VAO);
   glDeleteBuffers(1, &this->VBO);
 }

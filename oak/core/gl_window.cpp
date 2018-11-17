@@ -1,13 +1,18 @@
 #include "gl_window.h"
 #include <iostream>
+#include "input.h"
 
 using namespace oak;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 
-GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
+GLWindow::GLWindow(uint windowW, uint windowH, const char* title)
 {
+  this->windowW = windowW;
+  this->windowH = windowH;
+  this->viewportW = 960;
+  this->viewportH = 540;
   // glfw: initialize and configure
   // ------------------------------
   glfwInit();
@@ -15,18 +20,13 @@ GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-#ifdef __APPLE__
-  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
-#endif
-
   // glfw window creation
   // --------------------
-  this->window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
+  this->window = glfwCreateWindow(windowW, windowH, title, NULL, NULL);
   if (this->window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
-  //  return -1;
   }
   glfwMakeContextCurrent(window);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -36,7 +36,6 @@ GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
   {
     std::cout << "Failed to initialize GLAD" << std::endl;
-  //  return -1;
   }
 
   glEnable(GL_BLEND);
@@ -50,6 +49,11 @@ GLWindow::~GLWindow()
 GLFWwindow* GLWindow::getGLFWWindow()
 {
   return this->window;
+}
+
+float GLWindow::getAspectRatio()
+{
+  return (float)viewportW / (float)viewportH;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

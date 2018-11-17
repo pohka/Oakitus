@@ -21,7 +21,7 @@ namespace oak
       static bool isKeyDown(KeyCode code); //key just pressed down
       static bool isKeyPressed(KeyCode code); //key current down state
       static bool isKeyUp(KeyCode code);//key just released
-      static void setKeys(GLFWwindow* window);
+      static void processInput(GLFWwindow* window);
       static void setMouse(float x, float y);
 
     private:

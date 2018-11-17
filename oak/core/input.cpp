@@ -47,8 +47,13 @@ bool Input::isKeyUp(KeyCode code)
   return key->isDown == false && key->lastIsDown == true;
 }
 
-void Input::setKeys(GLFWwindow* window)
+void Input::processInput(GLFWwindow* window)
 {
+  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+  {
+    glfwSetWindowShouldClose(window, true);
+  }
+
   for (uint i = 0; i < KEY_COUNT; i++)
   {
     int code = glKeys[i];
