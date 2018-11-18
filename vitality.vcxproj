@@ -175,11 +175,6 @@
     <ClInclude Include="sample_scene.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="cave.png" />
-    <Image Include="face.png" />
-    <Image Include="wall.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="sample_texture.fs" />
     <None Include="sample_texture.vs" />
   </ItemGroup>

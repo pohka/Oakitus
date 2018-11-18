@@ -16,8 +16,10 @@ namespace oak
   {
     static std::vector<Shader*> shaders;
     static std::vector<Texture*> textures;
+    
 
     public:
+      const static std::string PATH;
       static void addShader(Shader& shader);
       static void addTexture(std::string src);
       static Shader* findShaderByID(uint id);

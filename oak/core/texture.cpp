@@ -7,9 +7,10 @@
 
 using namespace oak;
 
-Texture::Texture(std::string src)
+Texture::Texture(std::string path, std::string src)
 {
   this->src = src;
+  std::string fullPath = path + src;
 
   //load the texture
   glGenTextures(1, &this->id);
@@ -23,11 +24,11 @@ Texture::Texture(std::string src)
   // load image, create texture and generate mipmaps
   int nrChannels;
   
-  unsigned char *data = stbi_load(src.c_str(), &width, &height, &nrChannels, 0);
+  unsigned char *data = stbi_load(fullPath.c_str(), &width, &height, &nrChannels, 0);
 
   if (data)
   {
-    if (strstr(src.c_str(), ".jpg") != NULL)
+    if (strstr(fullPath.c_str(), ".jpg") != NULL)
     {
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
     }
@@ -40,7 +41,7 @@ Texture::Texture(std::string src)
   {
     std::cout << "Failed load image: " << src << std::endl;
     stbi_image_free(data);
-    unsigned char *data = stbi_load("default.png", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("res/default.png", &width, &height, &nrChannels, 0);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
   }
   

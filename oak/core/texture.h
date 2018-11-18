@@ -13,7 +13,7 @@ namespace oak
     std::string src;
 
     public:
-      Texture(std::string src);
+      Texture(std::string path, std::string src);
       ~Texture();
       int getHeight();
       uint getID();

@@ -6,6 +6,7 @@ uint Resources::defaultShaderID;
 
 std::vector<Shader*> Resources::shaders;
 std::vector<Texture*> Resources::textures;
+const std::string Resources::PATH = "res/";
 
 void Resources::addShader(Shader& shader)
 {
@@ -16,7 +17,7 @@ void Resources::addTexture(std::string src)
 {
   if (findTextureBySrc(src) == nullptr)
   {
-    Texture* tex = new Texture(src);
+    Texture* tex = new Texture(PATH, src);
     textures.push_back(tex);
   }
 }
