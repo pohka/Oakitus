@@ -143,6 +143,8 @@
     <ClCompile Include="oak\core\sprite.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
+    <ClCompile Include="oak\xml\xml_node.cpp" />
+    <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="sample_scene.cpp" />
   </ItemGroup>
@@ -171,12 +173,18 @@
     <ClInclude Include="oak\game.h" />
     <ClInclude Include="oak\init.h" />
     <ClInclude Include="oak\oak.h" />
+    <ClInclude Include="oak\xml\xml_node.h" />
+    <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="sample_scene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sample_texture.fs" />
     <None Include="sample_texture.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="res\map.xml" />
+    <Xml Include="res\test.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

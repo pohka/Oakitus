@@ -7,6 +7,8 @@
 #include <thread> 
 #include <chrono> 
 
+#include "oak/xml/xml_parser.h"
+
 using namespace oak;
 using namespace game;
 
@@ -43,6 +45,12 @@ int main()
 
 
   Game::load();
+
+  double startTime = glfwGetTime();
+  XMLNode root = XMLParser::load("map.xml");
+  std::cout << "file loaded: " << glfwGetTime() - startTime << "s" << std::endl;
+  //XMLNode* child = root.getChildNodes()[0];
+ // std::cout << "xml:" << child->getContent() << std::endl;
 
   // render loop
   // -----------

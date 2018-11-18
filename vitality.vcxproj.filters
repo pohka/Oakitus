@@ -11,6 +11,9 @@
     <Filter Include="oak\core">
       <UniqueIdentifier>{f42a416d-40cd-4039-b847-9f0b7bd3149b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xml">
+      <UniqueIdentifier>{b073a5de-c1d0-4e34-b8ca-4ee04d128a6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,6 +81,12 @@
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\xml\xml_node.cpp">
+      <Filter>xml</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\xml\xml_parser.cpp">
+      <Filter>xml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +168,12 @@
     <ClInclude Include="player.h">
       <Filter>main</Filter>
     </ClInclude>
+    <ClInclude Include="oak\xml\xml_node.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\xml\xml_parser.h">
+      <Filter>xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="sample_texture.fs">
@@ -167,5 +182,13 @@
     <None Include="sample_texture.vs">
       <Filter>main</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="res\test.xml">
+      <Filter>main</Filter>
+    </Xml>
+    <Xml Include="res\map.xml">
+      <Filter>main</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
