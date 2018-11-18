@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "game.h"
+#include "oak/game.h"
 #include "sample_scene.h"
 #include <thread> 
 #include <chrono> 
@@ -21,8 +21,8 @@ const unsigned int SCR_HEIGHT = 540;
 int main()
 {
   initOak();
-  Oakitus::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
-  GLFWwindow* window = Oakitus::glWindow->getGLFWWindow();
+  Store::glWindow = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
+  GLFWwindow* window = Store::glWindow->getGLFWWindow();
   glfwSetCursorPosCallback(window, cursorMoved);
 
   
@@ -34,9 +34,13 @@ int main()
   std::cout << "shader default: " << shader->getID() << std::endl;
   shader->use();
 
+  //set projection matrix
+  float aspect = Store::glWindow->getAspectRatio();
+  glm::mat4 projection = glm::ortho(-1.0f * aspect, 1.0f * aspect, -1.0f, 1.0f, -1.0f, 1.0f);
+  shader->setMat4("projection", projection);
+
   Resources::addTexture("default.png");
-  Resources::addTexture("wall.jpg");
-  Resources::addTexture("face.png");
+
 
   Game::load();
 
@@ -50,14 +54,16 @@ int main()
     glClearColor(0.1f, 0.25f, 0.45f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    //set projection matrix
-    float aspect = Oakitus::glWindow->getAspectRatio();
-    glm::mat4 projection = glm::ortho(-1.0f * aspect, 1.0f * aspect, -1.0f, 1.0f, -1.0f, 1.0f);
-    shader->setMat4("projection", projection);
 
-    Oakitus::onUpdate();
-    Oakitus::onDraw();
-    Oakitus::onDestroy();
+    Store::onUpdate();
+    Store::onDraw();
+
+    if (Store::isNewSceneSet())
+    {
+      Store::onSceneChange();
+    }
+
+    Store::onDestroy();
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
     glfwSwapBuffers(window);
@@ -80,7 +86,7 @@ int main()
 void cursorMoved(GLFWwindow* window, double xpos, double ypos)
 {
   // invert y-coordinate
-  Input::setMouse((float)xpos, (float)Oakitus::glWindow->getHeight() - (float)ypos);
+  Input::setMouse((float)xpos, (float)Store::glWindow->getHeight() - (float)ypos);
 }
 
 

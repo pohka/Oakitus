@@ -34,25 +34,25 @@ void MoveScript::onUpdate()
 
   if (Input::isKeyPressed(KeyCode::UP))
   {
-    Oakitus::camera->position.y += speed;
+    Store::camera->position.y += speed;
   }
   if (Input::isKeyPressed(KeyCode::DOWN))
   {
-    Oakitus::camera->position.y -= 1.0f * speed;
+    Store::camera->position.y -= 1.0f * speed;
   }
   if (Input::isKeyPressed(KeyCode::LEFT))
   {
-    Oakitus::camera->position.x -= speed;
+    Store::camera->position.x -= speed;
   }
   if (Input::isKeyPressed(KeyCode::RIGHT))
   {
-    Oakitus::camera->position.x += speed;
+    Store::camera->position.x += speed;
   }
 
   if (Input::isKeyDown(KeyCode::R))
   {
     std::cout << "refreshed scene" << std::endl;
-    Oakitus::setScene(*new SampleScene());
+    Store::setScene(*new SampleScene());
   }
 
   if (Input::isKeyDown(KeyCode::F))
@@ -62,7 +62,7 @@ void MoveScript::onUpdate()
 
   if (Input::isKeyDown(KeyCode::C))
   {
-    glm::vec3 pt = Oakitus::camera->cursorToWorld2D();
+    glm::vec3 pt = Store::camera->cursorToWorld2D();
     std::cout << "vp:" << Input::mousePos.x << "," << Input::mousePos.y << std::endl <<
       "rayWorld:" << pt.x << "," << pt.y << "," << pt.z << std::endl <<
       "entPos:" << entity->position.x << "," << entity->position.y << std::endl;
@@ -70,4 +70,11 @@ void MoveScript::onUpdate()
     entity->position = glm::vec3(pt.x, pt.y, 0);
   }
 
+  if (Input::isKeyDown(I))
+  {
+    if (Store::findEntityByName("player") != nullptr)
+    {
+      std::cout << "found player" << std::endl;
+    }
+  }
 }

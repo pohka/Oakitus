@@ -10,6 +10,7 @@
 
 #include <map>
 #include <glm/glm.hpp>
+#include <string>
 
 namespace oak
 {
@@ -24,6 +25,8 @@ namespace oak
     public:
       glm::vec3 position;
       int layerID;
+      bool isGlobal;
+      std::string name;
 
 	    Entity();
 	    ~Entity();

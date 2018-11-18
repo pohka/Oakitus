@@ -53,9 +53,6 @@
     <ClCompile Include="oak\core\key.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="oak\core\oakitus.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="oak\core\ray.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
@@ -80,11 +77,14 @@
     <ClCompile Include="oak\core\resources.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
+    <ClCompile Include="oak\core\store.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game.h">
-      <Filter>main</Filter>
-    </ClInclude>
     <ClInclude Include="sample_scene.h">
       <Filter>main</Filter>
     </ClInclude>
@@ -113,9 +113,6 @@
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\key_code.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\core\oakitus.h">
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\ray.h">
@@ -156,6 +153,15 @@
     </ClInclude>
     <ClInclude Include="oak\core\resources.h">
       <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\store.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\game.h">
+      <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

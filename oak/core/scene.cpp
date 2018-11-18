@@ -1,5 +1,5 @@
 #include "scene.h"
-#include "oakitus.h"
+#include "store.h"
 
 using namespace oak;
 
@@ -17,6 +17,5 @@ void Scene::onLoad()
 
 void Scene::onUnload()
 {
-  //todo: dealocate the rest of the scene
-  Oakitus::deleteAllEnts();
+  Store::deleteAllNonGlobalEntitys();
 }

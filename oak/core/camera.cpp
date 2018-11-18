@@ -1,5 +1,5 @@
 #include "camera.h"
-#include "oakitus.h"
+#include "store.h"
 #include "input.h"
 #include "ray.h"
 
@@ -21,8 +21,8 @@ vec3 Camera::cursorToWorld2D()
 {
   if (isOrthographic)
   {
-    float screenW = (float)Oakitus::glWindow->getWidth();
-    float screenH = (float)Oakitus::glWindow->getHeight();
+    float screenW = (float)Store::glWindow->getWidth();
+    float screenH = (float)Store::glWindow->getHeight();
 
     float halfW = screenW / 2.0f;
     float halfH = screenH / 2.0f;
@@ -34,15 +34,15 @@ vec3 Camera::cursorToWorld2D()
     );
 
     return glm::vec3(
-      nCursor.x + Oakitus::camera->position.x,
-      nCursor.y + Oakitus::camera->position.y,
+      nCursor.x + Store::camera->position.x,
+      nCursor.y + Store::camera->position.y,
       0.0f
     );
   }
   else
   {
-    glm::vec3 rayWorld = Oakitus::camera->viewportToWorldCoor(Input::mousePos.x, Input::mousePos.y);
-    Ray* ray = new Ray(Oakitus::camera->position, rayWorld);
+    glm::vec3 rayWorld = Store::camera->viewportToWorldCoor(Input::mousePos.x, Input::mousePos.y);
+    Ray* ray = new Ray(Store::camera->position, rayWorld);
 
     glm::vec3 point = ray->planeIntersectPoint(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0));
     delete ray;
@@ -58,16 +58,16 @@ bool Camera::getIsOrthographic()
 //When using perspective view this function converts a viewport position to a world, so you can project a point into world space.
 vec3 Camera::viewportToWorldCoor(float vpPosX, float vpPosY)
 {
-  float screenW = (float)Oakitus::glWindow->getWidth();
-  float screenH = (float)Oakitus::glWindow->getHeight();
+  float screenW = (float)Store::glWindow->getWidth();
+  float screenH = (float)Store::glWindow->getHeight();
 
   glm::mat4 viewMatrix = glm::lookAt(
-    Oakitus::camera->position,
-    Oakitus::camera->front,
-    Oakitus::camera->up
+    Store::camera->position,
+    Store::camera->front,
+    Store::camera->up
   );
   glm::mat4 projectionMatrix = glm::perspective(
-    glm::radians(Oakitus::camera->fov), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
+    glm::radians(Store::camera->fov), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
     screenW / screenH,       // Aspect Ratio. Depends on the size of your window. Notice that 4/3 == 800/600 == 1280/960, sounds familiar ?
     0.1f,              // Near clipping plane. Keep as big as possible, or you'll get precision issues.
     100.0f             // Far clipping plane. Keep as little as possible.

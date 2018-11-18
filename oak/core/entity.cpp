@@ -1,7 +1,8 @@
 #include "entity.h"
-#include "oakitus.h"
+#include "store.h"
 
 using namespace oak;
+
 
 
 Entity::Entity() 
@@ -10,6 +11,8 @@ Entity::Entity()
   this->entityID = idGen->nextID();
   this->position = glm::vec3(0, 0, 0);
   layerID = 0;
+  isGlobal = false;
+  this->name = "ent_" + entityID;
 }
 
 Entity::~Entity()
@@ -39,7 +42,7 @@ void Entity::addScript(Script& script)
 
 void Entity::destroy()
 {
-  Oakitus::destroyEntityByID(this->getID());
+  Store::destroyEntityByID(this->getID());
 }
 
 uint Entity::getID()

@@ -10,7 +10,7 @@ namespace oak
       Scene();
       ~Scene();
       virtual void onLoad();
-      virtual void onUnload();
+      void onUnload();
     private:
 
   };

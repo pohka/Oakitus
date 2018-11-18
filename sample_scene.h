@@ -11,7 +11,6 @@ namespace game
       SampleScene();
       ~SampleScene();
       void onLoad() override;
-      void onUnload() override;
   };
 }
 

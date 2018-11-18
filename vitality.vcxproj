@@ -134,7 +134,7 @@
     <ClCompile Include="oak\core\id_generator.cpp" />
     <ClCompile Include="oak\core\input.cpp" />
     <ClCompile Include="oak\core\key.cpp" />
-    <ClCompile Include="oak\core\oakitus.cpp" />
+    <ClCompile Include="oak\core\store.cpp" />
     <ClCompile Include="oak\core\point.cpp" />
     <ClCompile Include="oak\core\ray.cpp" />
     <ClCompile Include="oak\core\resources.cpp" />
@@ -143,10 +143,10 @@
     <ClCompile Include="oak\core\sprite.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="sample_scene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game.h" />
     <ClInclude Include="move_script.h" />
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\component.h" />
@@ -156,7 +156,7 @@
     <ClInclude Include="oak\core\input.h" />
     <ClInclude Include="oak\core\key.h" />
     <ClInclude Include="oak\core\key_code.h" />
-    <ClInclude Include="oak\core\oakitus.h" />
+    <ClInclude Include="oak\core\store.h" />
     <ClInclude Include="oak\core\point.h" />
     <ClInclude Include="oak\core\ray.h" />
     <ClInclude Include="oak\core\resources.h" />
@@ -168,8 +168,10 @@
     <ClInclude Include="oak\core\texture.h" />
     <ClInclude Include="oak\core\time.h" />
     <ClInclude Include="oak\core\types.h" />
+    <ClInclude Include="oak\game.h" />
     <ClInclude Include="oak\init.h" />
     <ClInclude Include="oak\oak.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="sample_scene.h" />
   </ItemGroup>
   <ItemGroup>

@@ -14,8 +14,11 @@ void Resources::addShader(Shader& shader)
 
 void Resources::addTexture(std::string src)
 {
-  Texture* tex = new Texture(src);
-  textures.push_back(tex);
+  if (findTextureBySrc(src) == nullptr)
+  {
+    Texture* tex = new Texture(src);
+    textures.push_back(tex);
+  }
 }
 
 Shader* Resources::findShaderByID(uint id)

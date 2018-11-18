@@ -12,7 +12,7 @@ namespace oak
     oak::Time::init();
     oak::Input::init();
 
-    Oakitus::camera = new Camera(
+    Store::camera = new Camera(
       glm::vec3(0.0f, 0.0f, 5.0f), //position
       glm::vec3(0.0f, 0.0f, -1.0f), //front
       glm::vec3(0.0f, 1.0f, 0.0f), //up
@@ -21,8 +21,8 @@ namespace oak
     );
 
    // Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");
-  //  Oakitus::addShader(*shader);
-    //Oakitus::defaultShaderID = shader->getID();
+  //  Store::addShader(*shader);
+    //Store::defaultShaderID = shader->getID();
   }
 }
 

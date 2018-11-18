@@ -8,7 +8,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "oakitus.h"
+#include "store.h"
 #include "texture.h"
 
 using namespace oak;
@@ -49,8 +49,8 @@ Sprite::Sprite(
   float xMax = ((float)(srcX+srcW) / texture->getWidth());
   float yMax = ((float)(srcY+srcH) / texture->getHeight());
 
-  float screenW = (float)Oakitus::glWindow->getWidth();
-  float screenH = (float)Oakitus::glWindow->getHeight();
+  float screenW = (float)Store::glWindow->getWidth();
+  float screenH = (float)Store::glWindow->getHeight();
 
   float xx = this->w / screenH;
   float yy = this->h / screenH;
@@ -110,8 +110,8 @@ void Sprite::onDraw()
 
   glm::mat4 model = glm::mat4(1.0);
   glm::vec3 pos(
-    entity->position.x - Oakitus::camera->position.x,
-    entity->position.y - Oakitus::camera->position.y, 
+    entity->position.x - Store::camera->position.x,
+    entity->position.y - Store::camera->position.y, 
     entity->position.z
   );
   model = glm::translate(model, pos);
