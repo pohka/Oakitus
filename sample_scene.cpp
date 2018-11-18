@@ -12,6 +12,8 @@ SampleScene::~SampleScene() {}
 
 void SampleScene::onLoad()
 {
+  Store::camera->position = glm::vec3(0, 0, 0);
+
   Resources::addTexture("wall.jpg");
   Resources::addTexture("face.png");
   Shader* shader = Resources::findShaderByName("default");

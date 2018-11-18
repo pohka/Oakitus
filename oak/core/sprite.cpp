@@ -49,8 +49,8 @@ Sprite::Sprite(
   float xMax = ((float)(srcX+srcW) / texture->getWidth());
   float yMax = ((float)(srcY+srcH) / texture->getHeight());
 
-  float screenW = (float)Store::glWindow->getWidth();
-  float screenH = (float)Store::glWindow->getHeight();
+  float screenW = (float)Store::window->getWidth();
+  float screenH = (float)Store::window->getHeight();
 
   float xx = this->w / screenH;
   float yy = this->h / screenH;

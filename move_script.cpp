@@ -52,7 +52,8 @@ void MoveScript::onUpdate()
   if (Input::isKeyDown(KeyCode::R))
   {
     std::cout << "refreshed scene" << std::endl;
-    Store::setScene(*new SampleScene());
+   // Store::setScene(*new SampleScene());
+    Store::reloadScene();
   }
 
   if (Input::isKeyDown(KeyCode::F))

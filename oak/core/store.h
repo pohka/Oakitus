@@ -26,7 +26,7 @@ namespace oak
 
 
     public:
-      static GLWindow* glWindow;
+      static GLWindow* window;
       static Camera* camera;
 
       static void addEntity(Entity& entity);
@@ -37,13 +37,16 @@ namespace oak
       static Entity* findEntityByID(uint id);
       static Entity* findEntityByName(std::string name);
       static std::vector<Entity*> getGlobalEntitys();
+      static Scene* getCurrentScene();
+      static void  reloadScene();
       static bool isNewSceneSet();
+      static void loadFirstScene(Scene& scene);
       static void onDestroy();
       static void onDraw();
-      static void onUpdate();
-      static void loadFirstScene(Scene& scene);
-      static void setScene(Scene& scene);
       static void onSceneChange();
+      static void onUpdate();
+      static void setScene(Scene& scene);
+      
       
 
   };

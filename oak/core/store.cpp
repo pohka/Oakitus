@@ -2,7 +2,7 @@
 
 using namespace oak;
 
-GLWindow* Store::glWindow = nullptr;
+GLWindow* Store::window = nullptr;
 std::vector<Entity*> Store::entitys;
 Scene* Store::curScene = nullptr;
 Scene* Store::nextScene = nullptr;
@@ -85,9 +85,20 @@ std::vector<Entity*> Store::getGlobalEntitys()
   return list;
 }
 
+Scene* Store::getCurrentScene()
+{
+  return curScene;
+}
+
 bool Store::isNewSceneSet()
 {
   return (nextScene != nullptr);
+}
+
+void Store::loadFirstScene(Scene& scene)
+{
+  curScene = &scene;
+  curScene->onLoad();
 }
 
 void Store::onDestroy()
@@ -135,25 +146,6 @@ void Store::onDraw()
   }
 }
 
-void Store::onUpdate()
-{
-  for (uint i = 0; i < entitys.size(); i++)
-  {
-    entitys[i]->onUpdate();
-  }
-}
-
-void Store::loadFirstScene(Scene& scene)
-{
-  curScene = &scene;
-  curScene->onLoad();
-}
-
-void Store::setScene(Scene& scene)
-{
-  nextScene = &scene;
-}
-
 void Store::onSceneChange()
 {
   //unload and delete current scene
@@ -166,6 +158,26 @@ void Store::onSceneChange()
   nextScene = nullptr;
   curScene->onLoad();
 }
+
+void Store::onUpdate()
+{
+  for (uint i = 0; i < entitys.size(); i++)
+  {
+    entitys[i]->onUpdate();
+  }
+}
+
+void Store::reloadScene()
+{
+  curScene->onUnload();
+  curScene->onLoad();
+}
+
+void Store::setScene(Scene& scene)
+{
+  nextScene = &scene;
+}
+
 
 void Store::deleteAllNonGlobalEntitys()
 {
