@@ -126,6 +126,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map_loader.cpp" />
     <ClCompile Include="move_script.cpp" />
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
@@ -147,8 +148,10 @@
     <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="sample_scene.cpp" />
+    <ClCompile Include="tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="map_loader.h" />
     <ClInclude Include="move_script.h" />
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\component.h" />
@@ -177,6 +180,7 @@
     <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="sample_scene.h" />
+    <ClInclude Include="tile.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sample_texture.fs" />
