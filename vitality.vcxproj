@@ -148,9 +148,9 @@
     <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="sample_scene.cpp" />
-    <ClCompile Include="tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="chunk.h" />
     <ClInclude Include="map_loader.h" />
     <ClInclude Include="move_script.h" />
     <ClInclude Include="oak\core\camera.h" />
