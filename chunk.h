@@ -3,24 +3,30 @@
 
 #include <string>
 #include <vector>
+#include "layer.h"
 
 
 
 namespace game
 {
-  const int CHUNK_SIZE = 32;
-
-  struct Layer
-  {
-    std::string name;
-    std::vector<std::vector<int>> map;
-  };
-
   struct Chunk
   {
     int x;
     int y;
     std::vector<Layer> layers;
+
+    Layer* findLayerByName(std::string layerName)
+    {
+      for (unsigned int i = 0; i < layers.size(); i++)
+      {
+        if (layers[i].getName().compare(layerName) == 0)
+        {
+          return &layers[i];
+        }
+      }
+
+      return nullptr;
+    }
   };
 }
 

@@ -91,6 +91,15 @@
     <ClCompile Include="map_loader.cpp">
       <Filter>main</Filter>
     </ClCompile>
+    <ClCompile Include="world.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="layer.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="tile.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sample_scene.h">
@@ -186,6 +195,12 @@
     <ClInclude Include="chunk.h">
       <Filter>main</Filter>
     </ClInclude>
+    <ClInclude Include="world.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="layer.h">
+      <Filter>main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="sample_texture.fs">
@@ -200,6 +215,9 @@
       <Filter>main</Filter>
     </Xml>
     <Xml Include="res\map.xml">
+      <Filter>main</Filter>
+    </Xml>
+    <Xml Include="res\bugfix.xml">
       <Filter>main</Filter>
     </Xml>
   </ItemGroup>

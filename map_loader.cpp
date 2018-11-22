@@ -8,7 +8,7 @@
 using namespace game;
 using namespace oak;
 
-void MapLoader::loadMap(std::string path)
+World* MapLoader::loadMap(std::string path)
 {
   double startTime = glfwGetTime();
   XMLNode root = XMLParser::load(path);
@@ -16,11 +16,10 @@ void MapLoader::loadMap(std::string path)
 
   double parseStartTime = glfwGetTime();
 
-  XMLNode* mapNode = root.getChildNodes()[0];
-  std::vector<XMLNode*> nodes = mapNode->getChildNodes();
-  std::cout << "child nodes:" << nodes.size() << std::endl;
+  XMLNode* worldNode = root.getChildNodes()[0];
+  std::vector<XMLNode*> nodes = worldNode->getChildNodes();
 
-  std::vector<Tile> tiles;
+  std::vector<Tile*> tiles;
   std::vector<Chunk> chunks;
   std::vector<std::string> layerOrder;
   int chunkSize;
@@ -57,47 +56,49 @@ void MapLoader::loadMap(std::string path)
     }
   }
 
-  std::cout << "tiles: " << tiles[1].id << std::endl <<
-    "chunkSize:" << chunkSize << std::endl;
-
 
   std::cout << "File Parsed: " << std::fixed << std::setprecision(2) << (glfwGetTime() - parseStartTime) << "s" << std::endl;
+
+  return new World(chunks, tiles, layerOrder, chunkSize, tileSize);
 }
 
-std::vector<Tile> MapLoader::traverseTiles(XMLNode* rootTileNode)
+std::vector<Tile*> MapLoader::traverseTiles(XMLNode* rootTileNode)
 {
-  std::vector<Tile> tiles;
+  std::vector<Tile*> tiles;
   std::vector<XMLNode*> tileNodes = rootTileNode->getChildNodes();
   //iterate through each tile
   for (uint a = 0; a < tileNodes.size(); a++)
   {
     std::vector<XMLNode*>tileParamNodes = tileNodes[a]->getChildNodes();
-    Tile tile;
+
+    std::string src;
+    int x, y, id;
+    Tile::Collision collision;
     //read params for tile
     for (uint b = 0; b < tileParamNodes.size(); b++)
     {
       if (tileParamNodes[b]->name == "src")
       {
-        tile.src = tileParamNodes[b]->content;
+        src = tileParamNodes[b]->content;
       }
       else if (tileParamNodes[b]->name == "x")
       {
-        tile.srcX = std::stoi(tileParamNodes[b]->content);
+        x = std::stoi(tileParamNodes[b]->content);
       }
       else if (tileParamNodes[b]->name == "y")
       {
-        tile.srcY = std::stoi(tileParamNodes[b]->content);
+        y = std::stoi(tileParamNodes[b]->content);
       }
       else if (tileParamNodes[b]->name == "collision")
       {
-        tile.collision = Tile::Collision(std::stoi(tileParamNodes[b]->content));
+        collision = Tile::Collision(std::stoi(tileParamNodes[b]->content));
       }
       else if (tileParamNodes[b]->name == "id")
       {
-        tile.id = std::stoi(tileParamNodes[b]->content);
+        id = std::stoi(tileParamNodes[b]->content);
       }
     }
-    tiles.push_back(tile);
+    tiles.push_back(new Tile(x, y, src, collision, id));
   }
   return tiles;
 }
@@ -129,6 +130,7 @@ std::vector<Chunk> MapLoader::traverseChunks(XMLNode* rootChunkNode)
         chunk.layers = traverseLayers(chunkParamNodes[a]);
       }
     }
+    chunks.push_back(chunk);
   }
 
   return chunks;
@@ -154,26 +156,33 @@ std::vector<Layer> MapLoader::traverseLayers(XMLNode* rootLayerNode)
   
   for (uint i = 0; i < layerNodes.size(); i++)
   {
-    Layer layer;
+    std::string layerName;
+
+    int arr[CHUNK_SIZE][CHUNK_SIZE] = { {-1} };
     std::vector<XMLNode*> layerParamNodes = layerNodes[i]->getChildNodes();
     for (uint a = 0; a < layerParamNodes.size(); a++)
     {
-      std::string paramName = layerParamNodes[i]->name;
+      std::string paramName = layerParamNodes[a]->name;
       if (paramName == "name")
       {
-        layer.name = layerParamNodes[i]->content;
+        layerName = layerParamNodes[i]->content;
       }
-      else if(paramName == "map")
+      else if(paramName =="map")
       {
-        std::vector<XMLNode*> rowNodes = layerParamNodes[i]->getChildNodes();
+        std::vector<XMLNode*> rowNodes = layerParamNodes[a]->getChildNodes();
+        
         for (uint r = 0; r < rowNodes.size(); r++)
         {
           std::vector<int> row = splitRowStr(rowNodes[r]->content);
-          layer.map.push_back(row);
+          for (uint c = 0; c < row.size(); c++)
+          {
+            arr[r][c] = row[c];
+          }
+          
         }
       }
     }
-    layers.push_back(layer);
+    layers.push_back(*new Layer(layerName, arr));
   }
 
   return layers;

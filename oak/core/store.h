@@ -23,6 +23,7 @@ namespace oak
     static Scene* curScene;
     static Scene* nextScene;
     static std::queue<uint> destroyEntIDQueue;
+    
 
 
     public:
