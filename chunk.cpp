@@ -1,5 +1,6 @@
 #include "chunk.h"
 #include "oak/core/types.h"
+#include "world.h"
 
 using namespace game;
 using namespace oak;
@@ -29,54 +30,30 @@ Layer* Chunk::findLayerByName(std::string layerName)
   return nullptr;
 }
 
-int Chunk::chunkTotalSize()
+void Chunk::drawLayer(std::string layerName, World* world, float screenH)
 {
-  return 16 * 32;
-}
+  Layer* layer = findLayerByName(layerName);
 
-Tile* Chunk::findTileByID(std::vector<Tile*> tiles, int id)
-{
-  if (id == -1) {
-    return nullptr;
-  }
-  for (uint i = 0; i < tiles.size(); i++)
+  //convert from chunk to world coords
+  int chunkOffsetX = x * world->getChunkTotalSize();
+  int chunkOffsetY = y * world->getChunkTotalSize();
+
+
+  //draw all tiles in layer of this chunk
+  for (uint y = 0; y < CHUNK_SIZE; y++)
   {
-    if (tiles[i]->id == id)
+    for (uint x = 0; x < CHUNK_SIZE; x++)
     {
-      return tiles[i];
-    }
-  }
-  return nullptr;
-}
-
-void Chunk::drawLayer(std::string layerName, std::vector<Tile*> tiles, float screenH)
-{
-  int tileSize = 16;
-  if (true || x == 0 && y == 0)
-  {
-    Layer* layer = findLayerByName(layerName);
-
-    //convert from chunk to world coords
-    int chunkOffsetX = x * chunkTotalSize();
-    int chunkOffsetY = y * chunkTotalSize();
-
-
-    //draw all tiles in chunk
-    for (uint y = 0; y < CHUNK_SIZE; y++)
-    {
-      for (uint x = 0; x < CHUNK_SIZE; x++)
+      int tileID = layer->map[y][x];
+      if (tileID > -1)
       {
-        int tileID = layer->map[y][x];
-        if (tileID > -1)
-        {
-          Tile* tile = findTileByID(tiles, tileID);
+        Tile* tile = world->findTileByID(tileID);
 
-          int tileOffsetX = x * tileSize;
-          int tileOffsetY = y * tileSize;
-          float vpPosX = (float)(tileOffsetX + chunkOffsetX) / screenH;
-          float vpPosY = (float)(-tileOffsetY + chunkOffsetY) / screenH;
-          tile->onDraw(vpPosX, vpPosY);
-        }
+        int tileOffsetX = x * world->getTileSize();
+        int tileOffsetY = y * world->getTileSize();
+        float vpPosX = (float)(tileOffsetX + chunkOffsetX) / screenH;
+        float vpPosY = (float)(-tileOffsetY + chunkOffsetY) / screenH;
+        tile->onDraw(vpPosX, vpPosY);
       }
     }
   }

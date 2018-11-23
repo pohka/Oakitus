@@ -5,11 +5,13 @@
 #include <vector>
 #include "layer.h"
 #include "tile.h"
-
+#include "world.h"
 
 
 namespace game
 {
+  class World;
+
   class Chunk
   {
     int x;
@@ -21,9 +23,7 @@ namespace game
       ~Chunk();
 
       Layer* findLayerByName(std::string layerName);
-      void drawLayer(std::string layerName, std::vector<Tile*> tiles, float screenH);
-      Tile* findTileByID(std::vector<Tile*> tiles, int id);
-      int chunkTotalSize();
+      void drawLayer(std::string layerName, World* world, float screenH);
   };
 }
 

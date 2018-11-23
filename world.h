@@ -6,17 +6,23 @@
 #include <vector>
 #include "oak/core/entity.h"
 
+
+
 namespace game
 {
+  class Chunk;
+
   class World : public oak::Entity
   {
     std::vector<Chunk> chunks;
     std::vector<Tile*> tiles;
     std::vector<std::string> layerOrder;
-    int chunkSize;
-    int tileSize;
+    
     unsigned int VBO, VAO;
     int shaderID;
+    int chunkSize; //number of tiles per chunk on one dimension
+    int tileSize; //pixels of each tile
+    int chunkTotalSize; //chunk pixel size
 
     public:
       World(
@@ -27,7 +33,9 @@ namespace game
         int tileSize
       );
       ~World();
-      int chunkTotalSize();
+      int getChunkTotalSize();
+      int getTileSize();
+      int getChunkSize();
 
       //void onDestroy();
       void onDraw() override;

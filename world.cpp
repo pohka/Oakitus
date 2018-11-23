@@ -14,12 +14,13 @@ World::World(
   int chunkSize,
   int tileSize
 ) {
-  //std::cout << "chunks:" << chunks.size();
+
   this->chunks = chunks;
   this->tiles = tiles;
   this->layerOrder = layerOrder;
   this->chunkSize = chunkSize;
   this->tileSize = tileSize;
+  this->chunkTotalSize = tileSize * chunkSize;
 
   std::cout << "layer orders: " << std::endl;
   for (uint i = 0; i < layerOrder.size(); i++)
@@ -30,14 +31,24 @@ World::World(
 
   this->shaderID = Resources::defaultShaderID;
 }
+
 World::~World()
 {
 
 }
 
-int World::chunkTotalSize()
+int World::getChunkTotalSize()
 {
-  return chunkSize * tileSize;
+  return chunkTotalSize;
+}
+
+int World::getTileSize()
+{
+  return tileSize;
+}
+int World::getChunkSize()
+{
+  return chunkSize;
 }
 
 
@@ -52,7 +63,7 @@ void World::onDraw()
     for (int a = layerOrder.size() -1; a > -1 ; a--)
     {
       std::string layerName = layerOrder[a];
-      chunks[i].drawLayer(layerName, tiles, screenH);
+      chunks[i].drawLayer(layerName, this, screenH);
     }
   }
 }
