@@ -81,20 +81,9 @@ XMLNode XMLParser::load(string file)
     }
     myfile.close();
 
-    //XMLNode* map = root->getChildNodes()[0];
-
-   //std::cout << "--------" << std::endl;
-    //printNodes(map, 0);
-
-    //std::cout << "xml:" << map->getName() << ":" << map->getContent() << ";" << std::endl;
-    //std::cout << map->getChildNodes()[0]->getName() << ":" << map->getChildNodes()[0]->getContent() << ";" << std::endl;
-
-    // XMLNode* root2 = new XMLNode("map");
-     //XMLNode* ch = new XMLNode("test");
-     //ch->setContent("123");
-    // root2->appendChild(ch);
-
     return *root;
   }
+
+  return *new XMLNode("", nullptr);
 }
 

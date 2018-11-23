@@ -5,12 +5,14 @@
 using namespace oak;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+GLFWwindow* GLWindow::window = nullptr;
+uint GLWindow::screenW;
+uint GLWindow::screenH;
 
-
-GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
+void GLWindow::init(uint screenW, uint screenH, const char* title)
 {
-  this->screenW = screenW;
-  this->screenH = screenH;
+  GLWindow::screenW = screenW;
+  GLWindow::screenH = screenH;
   // glfw: initialize and configure
   // ------------------------------
   glfwInit();
@@ -20,8 +22,8 @@ GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
 
   // glfw window creation
   // --------------------
-  this->window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
-  if (this->window == NULL)
+  GLWindow::window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
+  if (GLWindow::window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
@@ -39,14 +41,9 @@ GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
   glEnable(GL_BLEND);
 }
 
-GLWindow::~GLWindow()
-{
-
-}
-
 GLFWwindow* GLWindow::getGLFWWindow()
 {
-  return this->window;
+  return window;
 }
 
 float GLWindow::getAspectRatio()

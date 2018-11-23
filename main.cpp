@@ -21,8 +21,10 @@ const unsigned int SCR_HEIGHT = 540;
 int main()
 {
   initOak();
-  Store::window = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
-  GLFWwindow* window = Store::window->getGLFWWindow();
+  GLWindow::init(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
+ // Store::window = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
+  //GLFWwindow* window = Store::window->getGLFWWindow();
+  GLFWwindow* window = GLWindow::getGLFWWindow();
   glfwSetCursorPosCallback(window, cursorMoved);
 
   
@@ -35,7 +37,7 @@ int main()
   shader->use();
 
   //set projection matrix
-  float aspect = Store::window->getAspectRatio();
+  float aspect = (float)GLWindow::getAspectRatio();
   glm::mat4 projection = glm::ortho(-1.0f * aspect, 1.0f * aspect, -1.0f, 1.0f, -1.0f, 1.0f);
   shader->setMat4("projection", projection);
 
@@ -90,7 +92,7 @@ int main()
 void cursorMoved(GLFWwindow* window, double xpos, double ypos)
 {
   // invert y-coordinate
-  Input::setMouse((float)xpos, (float)Store::window->getHeight() - (float)ypos);
+  Input::setMouse((float)xpos, (float)GLWindow::getHeight() - (float)ypos);
 }
 
 

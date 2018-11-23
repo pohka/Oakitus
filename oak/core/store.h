@@ -27,7 +27,6 @@ namespace oak
 
 
     public:
-      static GLWindow* window;
       static Camera* camera;
 
       static void addEntity(Entity& entity);

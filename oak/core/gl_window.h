@@ -9,20 +9,19 @@ namespace oak
 {
   class GLWindow
   {
-    GLFWwindow* window;
+    static GLFWwindow* window;
     
-    uint screenW;
-    uint screenH;
+    static uint screenW;
+    static uint screenH;
 
 
     public:
-      void cursorMoved(GLFWwindow* window, double xpos, double ypos);
-      GLWindow(uint screenW, uint screenH, const char* title);
-      ~GLWindow();
-      GLFWwindow* getGLFWWindow();
-      float getAspectRatio();
-      uint getHeight();
-      uint getWidth();
+     // static void cursorMoved(GLFWwindow* window, double xpos, double ypos);
+      static void init(uint screenW, uint screenH, const char* title);
+      static GLFWwindow* getGLFWWindow();
+      static float getAspectRatio();
+      static uint getHeight();
+      static uint getWidth();
       
       
   };

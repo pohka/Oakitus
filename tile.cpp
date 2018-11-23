@@ -22,8 +22,8 @@ Tile::Tile(int x, int y, std::string src, Collision collision, int id)
   float xMax = ((float)((x + 1) * TILE_SIZE) / texture->getWidth());
   float yMax = ((float)((y + 1) * TILE_SIZE) / texture->getHeight());
 
-  float screenW = (float)Store::window->getWidth();
-  float screenH = (float)Store::window->getHeight();
+  float screenW = (float)GLWindow::getWidth();
+  float screenH = (float)GLWindow::getHeight();
 
   float halfSize = (float)(TILE_SIZE / 2);
   float xx = ((float)halfSize / screenH);
@@ -69,16 +69,8 @@ void Tile::onDraw(float x, float y)
   glBindTexture(GL_TEXTURE_2D, this->textureID);
   glBindVertexArray(this->VAO);
 
-  float screenW = (float)Store::window->getWidth();
-  float screenH = (float)Store::window->getHeight();
 
   glm::mat4 model = glm::mat4(1.0);
-
- //glm::vec3 pos(
- //   ((tileCoorX * TILE_SIZE) / screenH) - Store::camera->position.x,
- //   (-(tileCoorY * TILE_SIZE) / screenH) - Store::camera->position.y,
-  //  0.0f
-  //);
 
   glm::vec3 pos(
     x - Store::camera->position.x,

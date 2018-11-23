@@ -21,8 +21,8 @@ vec3 Camera::cursorToWorld2D()
 {
   if (isOrthographic)
   {
-    float screenW = (float)Store::window->getWidth();
-    float screenH = (float)Store::window->getHeight();
+    float screenW = (float)GLWindow::getWidth();
+    float screenH = (float)GLWindow::getHeight();
 
     float halfW = screenW / 2.0f;
     float halfH = screenH / 2.0f;
@@ -58,8 +58,8 @@ bool Camera::getIsOrthographic()
 //When using perspective view this function converts a viewport position to a world, so you can project a point into world space.
 vec3 Camera::viewportToWorldCoor(float vpPosX, float vpPosY)
 {
-  float screenW = (float)Store::window->getWidth();
-  float screenH = (float)Store::window->getHeight();
+  float screenW = (float)GLWindow::getWidth();
+  float screenH = (float)GLWindow::getHeight();
 
   glm::mat4 viewMatrix = glm::lookAt(
     Store::camera->position,

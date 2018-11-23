@@ -1,6 +1,6 @@
 #include "oak/oak.h"
 #include "world.h"
-
+#include "oak/core/gl_window.h"
 
 #include <iostream>
 
@@ -55,7 +55,7 @@ int World::getChunkSize()
 void World::onDraw()
 {
   //float screenW = (float)Store::window->getWidth();
-  float screenH = (float)Store::window->getHeight();
+  float screenH = (float)GLWindow::getHeight();
 
   for (uint i = 0; i < chunks.size(); i++)
   {
