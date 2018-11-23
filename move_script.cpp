@@ -9,7 +9,7 @@ MoveScript::~MoveScript() {}
 
 void MoveScript::onUpdate()
 {
-  float speed = 1.0f * Time::deltaTime;
+  float speed = 800.0f * Time::deltaTime;
   if (Input::isKeyPressed(KeyCode::A))
   {
     this->entity->position.x -= speed;

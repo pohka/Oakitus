@@ -8,13 +8,17 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 GLFWwindow* Window::window = nullptr;
 uint Window::screenW;
 uint Window::screenH;
-uint Window::preferredH;
+float Window::worldToVPRatio;
 
 void Window::init(uint screenW, uint screenH, const char* title)
 {
   Window::screenW = screenW;
   Window::screenH = screenH;
-  Window::preferredH = 320;
+
+  //2 units per dimension
+  float pixelsPerUnit = (float)screenH * 0.5f;
+  worldToVPRatio = 1 / pixelsPerUnit;
+
   // glfw: initialize and configure
   // ------------------------------
   glfwInit();
@@ -63,9 +67,10 @@ uint Window::getWidth()
   return screenW;
 }
 
-uint Window::getPreferredH()
+//converts pixels to viewport units
+float Window::worldToViewportCoords(float pixels)
 {
-  return preferredH;
+  return pixels * worldToVPRatio;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

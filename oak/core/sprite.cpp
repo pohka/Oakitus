@@ -50,10 +50,10 @@ Sprite::Sprite(
   float xMax = ((float)(srcX+srcW) / texture->getWidth());
   float yMax = ((float)(srcY+srcH) / texture->getHeight());
 
-  float screenH = (float)Window::getPreferredH();
+  float screenH = (float)Window::getHeight();
 
-  float xx = this->w / screenH;
-  float yy = this->h / screenH;
+  float xx = Window::worldToViewportCoords(w);
+  float yy = Window::worldToViewportCoords(h);
 
   float vertices[] = {
     // positions          // texture coords
@@ -109,10 +109,14 @@ void Sprite::onDraw()
   glBindVertexArray(this->VAO);
 
   glm::mat4 model = glm::mat4(1.0);
+
+  glm::vec3 camNPos = Store::camera->getNormalizedPos();
+  //float screenH = (float)Window::getHeight();
+
   glm::vec3 pos(
-    entity->position.x - Store::camera->position.x,
-    entity->position.y - Store::camera->position.y, 
-    entity->position.z
+    Window::worldToViewportCoords(entity->position.x) - camNPos.x,
+    Window::worldToViewportCoords(entity->position.y) - camNPos.y,
+    0.0f
   );
   model = glm::translate(model, pos);
 

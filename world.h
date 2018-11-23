@@ -18,7 +18,6 @@ namespace game
     std::vector<Tile*> tiles;
     std::vector<std::string> layerOrder;
     
-    unsigned int VBO, VAO;
     int shaderID;
     int chunkSize; //number of tiles per chunk on one dimension
     int tileSize; //pixels of each tile

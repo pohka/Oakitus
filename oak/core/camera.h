@@ -22,7 +22,7 @@ namespace oak
 	    glm::vec3 cursorToWorld2D();
       bool getIsOrthographic();
 	    glm::vec3 viewportToWorldCoor(float vpPosX, float vpPosY);
-      
+      glm::vec3 getNormalizedPos();
   };
 }
 #endif

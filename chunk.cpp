@@ -1,6 +1,7 @@
 #include "chunk.h"
 #include "oak/core/types.h"
 #include "world.h"
+#include "oak/core/window.h"
 
 using namespace game;
 using namespace oak;
@@ -30,13 +31,15 @@ Layer* Chunk::findLayerByName(std::string layerName)
   return nullptr;
 }
 
-void Chunk::drawLayer(std::string layerName, World* world, float screenH)
+void Chunk::drawLayer(std::string layerName, World& world)
 {
   Layer* layer = findLayerByName(layerName);
 
+  float screenH = (float)Window::getHeight();
+
   //convert from chunk to world coords
-  int chunkOffsetX = x * world->getChunkTotalSize();
-  int chunkOffsetY = y * world->getChunkTotalSize();
+  int chunkOffsetX = x * world.getChunkTotalSize();
+  int chunkOffsetY = y * world.getChunkTotalSize();
 
 
   //draw all tiles in layer of this chunk
@@ -45,16 +48,31 @@ void Chunk::drawLayer(std::string layerName, World* world, float screenH)
     for (uint x = 0; x < CHUNK_SIZE; x++)
     {
       int tileID = layer->map[y][x];
+      
       if (tileID > -1)
       {
-        Tile* tile = world->findTileByID(tileID);
+        //performance: this is slow
+        //should store tiles in ordered list rather than doing id comparisions
+        Tile* tile = world.findTileByID(tileID);
 
-        int tileOffsetX = x * world->getTileSize();
-        int tileOffsetY = y * world->getTileSize();
-        float vpPosX = (float)(tileOffsetX + chunkOffsetX) / screenH;
-        float vpPosY = (float)(-tileOffsetY + chunkOffsetY) / screenH;
+        int tileOffsetX = x * world.getTileSize();
+        int tileOffsetY = y * world.getTileSize();
+        float posX = (float)(tileOffsetX + chunkOffsetX);
+        float posY = (float)(-tileOffsetY + chunkOffsetY);
+        float vpPosX = Window::worldToViewportCoords(posX);
+        float vpPosY = Window::worldToViewportCoords(posY);
         tile->onDraw(vpPosX, vpPosY);
       }
     }
   }
+}
+
+int Chunk::getX()
+{
+  return x;
+}
+
+int Chunk::getY()
+{
+  return y;
 }

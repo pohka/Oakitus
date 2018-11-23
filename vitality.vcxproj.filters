@@ -103,6 +103,9 @@
     <ClCompile Include="oak\core\window.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
+    <ClCompile Include="bounds.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sample_scene.h">
@@ -203,6 +206,9 @@
     </ClInclude>
     <ClInclude Include="oak\core\window.h">
       <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="bounds.h">
+      <Filter>main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

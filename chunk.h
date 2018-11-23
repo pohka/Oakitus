@@ -23,7 +23,9 @@ namespace game
       ~Chunk();
 
       Layer* findLayerByName(std::string layerName);
-      void drawLayer(std::string layerName, World* world, float screenH);
+      void drawLayer(std::string layerName, World& world);
+      int getX();
+      int getY();
   };
 }
 

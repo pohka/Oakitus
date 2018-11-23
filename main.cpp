@@ -14,16 +14,14 @@ using namespace game;
 void cursorMoved(GLFWwindow* window, double xpos, double ypos);
 
 // settings
-const unsigned int SCR_WIDTH = 960;
-const unsigned int SCR_HEIGHT = 540;
+const unsigned int SCR_WIDTH = 1440;
+const unsigned int SCR_HEIGHT = 810;
 
 
 int main()
 {
   initOak();
   Window::init(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
- // Store::window = new GLWindow(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
-  //GLFWwindow* window = Store::window->getGLFWWindow();
   GLFWwindow* window = Window::getGLFWWindow();
   glfwSetCursorPosCallback(window, cursorMoved);
 

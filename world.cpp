@@ -1,6 +1,7 @@
 #include "oak/oak.h"
 #include "world.h"
 #include "oak/core/window.h"
+#include "bounds.h"
 
 #include <iostream>
 
@@ -54,16 +55,43 @@ int World::getChunkSize()
 
 void World::onDraw()
 {
-  //float screenW = (float)Store::window->getWidth();
-  float screenH = (float)Window::getPreferredH();
+  float screenH = (float)Window::getHeight();
+  float cameraX = Store::camera->position.x;
+  float cameraY = Store::camera->position.y;
+  float windowWidth = (float)Window::getWidth();
+  float windowHeight = (float)Window::getHeight();
 
+  float halfW = windowWidth * 0.5f;
+  float halfH = windowHeight * 0.5f;
+
+  Bounds camBounds (
+    cameraX - halfW,
+    cameraY + halfH,
+    windowWidth,
+    windowHeight
+  );
+
+
+  float totalChunkSize = (float)getChunkTotalSize();
+
+  int chunkCount = 0;
   for (uint i = 0; i < chunks.size(); i++)
   {
-    //iterate layer order in reverse as the first index should be drawn last
-    for (int a = layerOrder.size() -1; a > -1 ; a--)
+    Bounds chunkBounds (
+      (float)chunks[i].getX() * totalChunkSize,
+      (float)chunks[i].getY() * totalChunkSize,
+      totalChunkSize,
+      totalChunkSize
+    );
+
+    if (camBounds.intersects(chunkBounds))
     {
-      std::string layerName = layerOrder[a];
-      chunks[i].drawLayer(layerName, this, screenH);
+      //iterate layer order in reverse as the first index should be drawn last
+      for (int a = layerOrder.size() - 1; a > -1; a--)
+      {
+        std::string layerName = layerOrder[a];
+        chunks[i].drawLayer(layerName, *this);
+      }
     }
   }
 }

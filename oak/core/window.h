@@ -13,7 +13,7 @@ namespace oak
     
     static uint screenW;
     static uint screenH;
-    static uint preferredH;
+    static float worldToVPRatio;
 
 
     public:
@@ -23,8 +23,7 @@ namespace oak
       static float getAspectRatio();
       static uint getHeight();
       static uint getWidth();
-      
-      static uint getPreferredH();
+      static float worldToViewportCoords(float pixels);
       
   };
 }

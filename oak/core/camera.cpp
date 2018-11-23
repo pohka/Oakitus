@@ -18,6 +18,15 @@ Camera::Camera(vec3 position, vec3 front, vec3 up, float fov, bool isOrthographi
 
 Camera::~Camera() {}
 
+vec3 Camera::getNormalizedPos()
+{
+  return vec3(
+    Window::worldToViewportCoords(position.x),
+    Window::worldToViewportCoords(position.y),
+    position.z
+  );
+}
+
 vec3 Camera::cursorToWorld2D()
 {
   if (isOrthographic)
