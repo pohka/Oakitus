@@ -55,7 +55,7 @@ int World::getChunkSize()
 void World::onDraw()
 {
   //float screenW = (float)Store::window->getWidth();
-  float screenH = (float)Window::getHeight();
+  float screenH = (float)Window::getPreferredH();
 
   for (uint i = 0; i < chunks.size(); i++)
   {

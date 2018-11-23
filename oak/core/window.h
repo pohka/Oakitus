@@ -13,6 +13,7 @@ namespace oak
     
     static uint screenW;
     static uint screenH;
+    static uint preferredH;
 
 
     public:
@@ -23,6 +24,7 @@ namespace oak
       static uint getHeight();
       static uint getWidth();
       
+      static uint getPreferredH();
       
   };
 }

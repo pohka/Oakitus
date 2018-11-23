@@ -18,6 +18,7 @@ void SampleScene::onLoad()
 
   Resources::addTexture("wall.jpg");
   Resources::addTexture("face.png");
+  Resources::addTexture("player.png");
   Resources::addTexture("tilesets/cave.png");
   Resources::addTexture("tilesets/test.png");
   Shader* shader = Resources::findShaderByName("default");

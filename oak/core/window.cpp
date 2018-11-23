@@ -8,11 +8,13 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 GLFWwindow* Window::window = nullptr;
 uint Window::screenW;
 uint Window::screenH;
+uint Window::preferredH;
 
 void Window::init(uint screenW, uint screenH, const char* title)
 {
   Window::screenW = screenW;
   Window::screenH = screenH;
+  Window::preferredH = 320;
   // glfw: initialize and configure
   // ------------------------------
   glfwInit();
@@ -59,6 +61,11 @@ uint Window::getHeight()
 uint Window::getWidth()
 {
   return screenW;
+}
+
+uint Window::getPreferredH()
+{
+  return preferredH;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

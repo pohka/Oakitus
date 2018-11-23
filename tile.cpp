@@ -17,28 +17,26 @@ Tile::Tile(int x, int y, std::string src, Collision collision, int id)
   this->shaderID = Resources::defaultShaderID;
   
 
-
+  //texture coords
   float xMin = ((float)(x * TILE_SIZE) / texture->getWidth());
   float yMin = ((float)(y * TILE_SIZE) / texture->getHeight());
   float xMax = ((float)((x + 1) * TILE_SIZE) / texture->getWidth());
   float yMax = ((float)((y + 1) * TILE_SIZE) / texture->getHeight());
 
-  float screenW = (float)Window::getWidth();
-  float screenH = (float)Window::getHeight();
-
+  //verticies dimension
+  float screenH = (float)Window::getPreferredH();
   float halfSize = (float)(TILE_SIZE / 2);
-  float xx = ((float)halfSize / screenH);
-  float yy = ((float)halfSize / screenH);
+  float d = halfSize / screenH;
 
   float vertices[] = {
     // positions          // texture coords
-    -xx, -yy, 0.0f,  xMin, yMax, //bottom left
-     xx, -yy, 0.0f,  xMax, yMax, //bottom right
-     xx,  yy, 0.0f,  xMax, yMin, //top right
+    -d, -d, 0.0f,  xMin, yMax, //bottom left
+     d, -d, 0.0f,  xMax, yMax, //bottom right
+     d,  d, 0.0f,  xMax, yMin, //top right
 
-     xx,  yy, 0.0f,  xMax, yMin, //top right
-    -xx,  yy, 0.0f,  xMin, yMin, //top left
-    -xx, -yy, 0.0f,  xMin, yMax, //botom left
+     d,  d, 0.0f,  xMax, yMin, //top right
+    -d,  d, 0.0f,  xMin, yMin, //top left
+    -d, -d, 0.0f,  xMin, yMax, //botom left
   };
 
   glGenVertexArrays(1, &this->VAO);
