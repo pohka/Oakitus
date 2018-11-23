@@ -12,7 +12,7 @@ Tile::Tile(int x, int y, std::string src, Collision collision, int id)
   this->y = y;
   this->src = src;
   this->collision = collision;
-  Texture *texture = Resources::findTextureBySrc("test.png");
+  Texture *texture = Resources::findTextureBySrc(src);
   this->textureID = texture->getID();
   this->shaderID = Resources::defaultShaderID;
   
@@ -64,7 +64,7 @@ Tile::~Tile()
   glDeleteBuffers(1, &this->VBO);
 }
 
-void Tile::onDraw(int tileCoorX, int tileCoorY)
+void Tile::onDraw(float x, float y)
 {
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, this->textureID);
@@ -74,9 +74,16 @@ void Tile::onDraw(int tileCoorX, int tileCoorY)
   float screenH = (float)Store::window->getHeight();
 
   glm::mat4 model = glm::mat4(1.0);
+
+ //glm::vec3 pos(
+ //   ((tileCoorX * TILE_SIZE) / screenH) - Store::camera->position.x,
+ //   (-(tileCoorY * TILE_SIZE) / screenH) - Store::camera->position.y,
+  //  0.0f
+  //);
+
   glm::vec3 pos(
-    ((tileCoorX * TILE_SIZE) / screenH) - Store::camera->position.x,
-    (-(tileCoorY * TILE_SIZE) / screenH) - Store::camera->position.y,
+    x - Store::camera->position.x,
+    y - Store::camera->position.y,
     0.0f
   );
   model = glm::translate(model, pos);

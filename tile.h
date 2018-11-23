@@ -33,7 +33,7 @@ namespace game
 
       Tile(int x, int y, std::string src, Collision collision, int id);
       ~Tile();
-      void onDraw(int tileCoorX, int tileCoorY);
+      void onDraw(float x, float y);
 
   };
 }

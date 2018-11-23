@@ -27,6 +27,7 @@ namespace game
         int tileSize
       );
       ~World();
+      int chunkTotalSize();
 
       //void onDestroy();
       void onDraw() override;

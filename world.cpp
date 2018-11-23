@@ -28,19 +28,31 @@ World::~World()
 
 }
 
+int World::chunkTotalSize()
+{
+  return chunkSize * tileSize;
+}
+
 
 void World::onDraw()
 {
+  float screenW = (float)Store::window->getWidth();
+  float screenH = (float)Store::window->getHeight();
+
   for (uint i = 0; i < chunks.size(); i++)
   {
     
     //draw chunk 0,0
-    if (chunks[i].x == 0 && chunks[i].y == 0)
+    if (true || chunks[i].x == 0 && chunks[i].y == 0)
     {
       
       Layer* layer = chunks[i].findLayerByName("ground");
       
+      int chunkOffsetX = chunks[i].x * chunkTotalSize();
+      int chunkOffsetY = chunks[i].y * chunkTotalSize();
+      
 
+      //draw all tiles in chunk
       for (uint y = 0; y < CHUNK_SIZE; y++)
       {
         for (uint x = 0; x < CHUNK_SIZE; x++)
@@ -49,7 +61,12 @@ void World::onDraw()
           if (tileID > -1)
           {
             Tile* tile = findTileByID(tileID);
-            tile->onDraw(x, y);
+
+            int tileOffsetX = x * tileSize;
+            int tileOffsetY = y * tileSize;
+            float vpPosX = (float)(tileOffsetX + chunkOffsetX) / screenH;
+            float vpPosY = (float)(-tileOffsetY + chunkOffsetY) / screenH;
+            tile->onDraw(vpPosX, vpPosY);
           }
         }
       }

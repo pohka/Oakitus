@@ -18,12 +18,12 @@ void SampleScene::onLoad()
 
   Resources::addTexture("wall.jpg");
   Resources::addTexture("face.png");
-  Resources::addTexture("cave.png");
-  Resources::addTexture("test.png");
+  Resources::addTexture("tilesets/cave.png");
+  Resources::addTexture("tilesets/test.png");
   Shader* shader = Resources::findShaderByName("default");
   uint shaderID = shader->getID();
 
-  World* world = MapLoader::loadMap("bugfix.xml");
+  World* world = MapLoader::loadMap("map2.xml");
   Store::addEntity(*world);
 
 
