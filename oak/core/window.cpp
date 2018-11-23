@@ -1,18 +1,18 @@
-#include "gl_window.h"
+#include "window.h"
 #include <iostream>
 #include "input.h"
 
 using namespace oak;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-GLFWwindow* GLWindow::window = nullptr;
-uint GLWindow::screenW;
-uint GLWindow::screenH;
+GLFWwindow* Window::window = nullptr;
+uint Window::screenW;
+uint Window::screenH;
 
-void GLWindow::init(uint screenW, uint screenH, const char* title)
+void Window::init(uint screenW, uint screenH, const char* title)
 {
-  GLWindow::screenW = screenW;
-  GLWindow::screenH = screenH;
+  Window::screenW = screenW;
+  Window::screenH = screenH;
   // glfw: initialize and configure
   // ------------------------------
   glfwInit();
@@ -22,8 +22,8 @@ void GLWindow::init(uint screenW, uint screenH, const char* title)
 
   // glfw window creation
   // --------------------
-  GLWindow::window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
-  if (GLWindow::window == NULL)
+  Window::window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
+  if (Window::window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
@@ -41,22 +41,22 @@ void GLWindow::init(uint screenW, uint screenH, const char* title)
   glEnable(GL_BLEND);
 }
 
-GLFWwindow* GLWindow::getGLFWWindow()
+GLFWwindow* Window::getGLFWWindow()
 {
   return window;
 }
 
-float GLWindow::getAspectRatio()
+float Window::getAspectRatio()
 {
   return (float)screenW / (float)screenH;
 }
 
-uint GLWindow::getHeight()
+uint Window::getHeight()
 {
   return screenH;
 }
 
-uint GLWindow::getWidth()
+uint Window::getWidth()
 {
   return screenW;
 }

@@ -1,6 +1,7 @@
 #include "tile.h"
 #include "oak/core/resources.h"
 #include "oak/core/store.h"
+#include "oak/core/window.h"
 
 using namespace game;
 using namespace oak;
@@ -22,8 +23,8 @@ Tile::Tile(int x, int y, std::string src, Collision collision, int id)
   float xMax = ((float)((x + 1) * TILE_SIZE) / texture->getWidth());
   float yMax = ((float)((y + 1) * TILE_SIZE) / texture->getHeight());
 
-  float screenW = (float)GLWindow::getWidth();
-  float screenH = (float)GLWindow::getHeight();
+  float screenW = (float)Window::getWidth();
+  float screenH = (float)Window::getHeight();
 
   float halfSize = (float)(TILE_SIZE / 2);
   float xx = ((float)halfSize / screenH);

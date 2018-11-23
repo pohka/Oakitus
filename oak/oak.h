@@ -17,7 +17,7 @@
 #include "core/shader.h"
 #include "core/camera.h"
 #include "core/sprite.h"
-#include "core/gl_window.h"
+#include "core/window.h"
 #include "core/store.h"
 #include "core/input.h"
 #include "core/time.h"

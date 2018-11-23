@@ -133,7 +133,7 @@
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
     <ClCompile Include="oak\core\entity.cpp" />
-    <ClCompile Include="oak\core\gl_window.cpp" />
+    <ClCompile Include="oak\core\window.cpp" />
     <ClCompile Include="oak\core\id_generator.cpp" />
     <ClCompile Include="oak\core\input.cpp" />
     <ClCompile Include="oak\core\key.cpp" />
@@ -161,7 +161,7 @@
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\component.h" />
     <ClInclude Include="oak\core\entity.h" />
-    <ClInclude Include="oak\core\gl_window.h" />
+    <ClInclude Include="oak\core\window.h" />
     <ClInclude Include="oak\core\id_generator.h" />
     <ClInclude Include="oak\core\input.h" />
     <ClInclude Include="oak\core\key.h" />

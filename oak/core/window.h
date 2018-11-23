@@ -7,7 +7,7 @@
 
 namespace oak
 {
-  class GLWindow
+  class Window
   {
     static GLFWwindow* window;
     

@@ -1,7 +1,7 @@
 #ifndef Store_H
 #define Store_H
 
-#include "gl_window.h"
+//#include "window.h"
 
 #include <vector>
 #include "shader.h"

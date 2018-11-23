@@ -2,6 +2,7 @@
 #include "store.h"
 #include "input.h"
 #include "ray.h"
+#include "window.h"
 
 using namespace glm;
 using namespace oak;
@@ -21,8 +22,8 @@ vec3 Camera::cursorToWorld2D()
 {
   if (isOrthographic)
   {
-    float screenW = (float)GLWindow::getWidth();
-    float screenH = (float)GLWindow::getHeight();
+    float screenW = (float)Window::getWidth();
+    float screenH = (float)Window::getHeight();
 
     float halfW = screenW / 2.0f;
     float halfH = screenH / 2.0f;
@@ -58,8 +59,8 @@ bool Camera::getIsOrthographic()
 //When using perspective view this function converts a viewport position to a world, so you can project a point into world space.
 vec3 Camera::viewportToWorldCoor(float vpPosX, float vpPosY)
 {
-  float screenW = (float)GLWindow::getWidth();
-  float screenH = (float)GLWindow::getHeight();
+  float screenW = (float)Window::getWidth();
+  float screenH = (float)Window::getHeight();
 
   glm::mat4 viewMatrix = glm::lookAt(
     Store::camera->position,
