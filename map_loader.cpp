@@ -165,7 +165,7 @@ std::vector<Layer> MapLoader::traverseLayers(XMLNode* rootLayerNode)
       std::string paramName = layerParamNodes[a]->name;
       if (paramName == "name")
       {
-        layerName = layerParamNodes[i]->content;
+        layerName = layerParamNodes[a]->content;
       }
       else if(paramName =="map")
       {
@@ -182,6 +182,7 @@ std::vector<Layer> MapLoader::traverseLayers(XMLNode* rootLayerNode)
         }
       }
     }
+    
     layers.push_back(*new Layer(layerName, arr));
   }
 

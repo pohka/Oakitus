@@ -21,6 +21,13 @@ World::World(
   this->chunkSize = chunkSize;
   this->tileSize = tileSize;
 
+  std::cout << "layer orders: " << std::endl;
+  for (uint i = 0; i < layerOrder.size(); i++)
+  {
+    std::cout << layerOrder[i] << std::endl;
+  }
+  std::cout << "---------" << std::endl;
+
   this->shaderID = Resources::defaultShaderID;
 }
 World::~World()
@@ -41,32 +48,35 @@ void World::onDraw()
 
   for (uint i = 0; i < chunks.size(); i++)
   {
-    
-    //draw chunk 0,0
-    if (true || chunks[i].x == 0 && chunks[i].y == 0)
+    //iterate layer order in reverse as the first index should be drawn last
+    for (int a = layerOrder.size() -1; a > -1 ; a--)
     {
-      
-      Layer* layer = chunks[i].findLayerByName("ground");
-      
-      int chunkOffsetX = chunks[i].x * chunkTotalSize();
-      int chunkOffsetY = chunks[i].y * chunkTotalSize();
-      
-
-      //draw all tiles in chunk
-      for (uint y = 0; y < CHUNK_SIZE; y++)
+      std::string layerName = layerOrder[a];
+      //draw chunk 0,0
+      if (true || chunks[i].x == 0 && chunks[i].y == 0)
       {
-        for (uint x = 0; x < CHUNK_SIZE; x++)
-        {
-          int tileID = layer->map[y][x];
-          if (tileID > -1)
-          {
-            Tile* tile = findTileByID(tileID);
+        Layer* layer = chunks[i].findLayerByName(layerName);
 
-            int tileOffsetX = x * tileSize;
-            int tileOffsetY = y * tileSize;
-            float vpPosX = (float)(tileOffsetX + chunkOffsetX) / screenH;
-            float vpPosY = (float)(-tileOffsetY + chunkOffsetY) / screenH;
-            tile->onDraw(vpPosX, vpPosY);
+        int chunkOffsetX = chunks[i].x * chunkTotalSize();
+        int chunkOffsetY = chunks[i].y * chunkTotalSize();
+
+
+        //draw all tiles in chunk
+        for (uint y = 0; y < CHUNK_SIZE; y++)
+        {
+          for (uint x = 0; x < CHUNK_SIZE; x++)
+          {
+            int tileID = layer->map[y][x];
+            if (tileID > -1)
+            {
+              Tile* tile = findTileByID(tileID);
+
+              int tileOffsetX = x * tileSize;
+              int tileOffsetY = y * tileSize;
+              float vpPosX = (float)(tileOffsetX + chunkOffsetX) / screenH;
+              float vpPosY = (float)(-tileOffsetY + chunkOffsetY) / screenH;
+              tile->onDraw(vpPosX, vpPosY);
+            }
           }
         }
       }

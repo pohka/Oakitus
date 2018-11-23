@@ -25,6 +25,7 @@ void SampleScene::onLoad()
 
   World* world = MapLoader::loadMap("map2.xml");
   Store::addEntity(*world);
+  world->layerID = -1;
 
 
   Entity* gPlayer = Store::findEntityByName("player");

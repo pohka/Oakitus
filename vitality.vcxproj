@@ -194,6 +194,7 @@
   <ItemGroup>
     <Xml Include="res\bugfix.xml" />
     <Xml Include="res\map.xml" />
+    <Xml Include="res\map2.xml" />
     <Xml Include="res\test.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
