@@ -33,7 +33,6 @@ namespace game
       void onDraw() override;
      // void onUpdate() override;
 
-    private:
       Tile* findTileByID(int id);
   };
 }

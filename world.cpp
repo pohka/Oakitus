@@ -43,7 +43,7 @@ int World::chunkTotalSize()
 
 void World::onDraw()
 {
-  float screenW = (float)Store::window->getWidth();
+  //float screenW = (float)Store::window->getWidth();
   float screenH = (float)Store::window->getHeight();
 
   for (uint i = 0; i < chunks.size(); i++)
@@ -52,34 +52,7 @@ void World::onDraw()
     for (int a = layerOrder.size() -1; a > -1 ; a--)
     {
       std::string layerName = layerOrder[a];
-      //draw chunk 0,0
-      if (true || chunks[i].x == 0 && chunks[i].y == 0)
-      {
-        Layer* layer = chunks[i].findLayerByName(layerName);
-
-        int chunkOffsetX = chunks[i].x * chunkTotalSize();
-        int chunkOffsetY = chunks[i].y * chunkTotalSize();
-
-
-        //draw all tiles in chunk
-        for (uint y = 0; y < CHUNK_SIZE; y++)
-        {
-          for (uint x = 0; x < CHUNK_SIZE; x++)
-          {
-            int tileID = layer->map[y][x];
-            if (tileID > -1)
-            {
-              Tile* tile = findTileByID(tileID);
-
-              int tileOffsetX = x * tileSize;
-              int tileOffsetY = y * tileSize;
-              float vpPosX = (float)(tileOffsetX + chunkOffsetX) / screenH;
-              float vpPosY = (float)(-tileOffsetY + chunkOffsetY) / screenH;
-              tile->onDraw(vpPosX, vpPosY);
-            }
-          }
-        }
-      }
+      chunks[i].drawLayer(layerName, tiles, screenH);
     }
   }
 }

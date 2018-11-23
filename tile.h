@@ -23,7 +23,6 @@ namespace game
       };
 
       int id;
-      std::string src;
       int textureID;
       int shaderID;
       int y;

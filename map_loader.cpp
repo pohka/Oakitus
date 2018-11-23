@@ -113,24 +113,26 @@ std::vector<Chunk> MapLoader::traverseChunks(XMLNode* rootChunkNode)
   //iterate through each chunk
   for (uint i = 0; i < chunkNodes.size(); i++)
   {
-    Chunk chunk;
+    int x;
+    int y;
+    std::vector<Layer> layers;
     std::vector<XMLNode*> chunkParamNodes = chunkNodes[i]->getChildNodes();
     for (uint a = 0; a < chunkParamNodes.size(); a++)
     {
       if (chunkParamNodes[a]->name == "x")
       {
-        chunk.x = std::stoi(chunkParamNodes[a]->content);
+        x = std::stoi(chunkParamNodes[a]->content);
       }
       else if (chunkParamNodes[a]->name == "y")
       {
-        chunk.y = std::stoi(chunkParamNodes[a]->content);
+        y = std::stoi(chunkParamNodes[a]->content);
       }
       else if(chunkParamNodes[a]->name == "layers")
       {
-        chunk.layers = traverseLayers(chunkParamNodes[a]);
+        layers = traverseLayers(chunkParamNodes[a]);
       }
     }
-    chunks.push_back(chunk);
+    chunks.push_back(*new Chunk(x, y, layers));
   }
 
   return chunks;

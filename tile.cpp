@@ -10,7 +10,6 @@ Tile::Tile(int x, int y, std::string src, Collision collision, int id)
   this->id = id;
   this->x = x;
   this->y = y;
-  this->src = src;
   this->collision = collision;
   Texture *texture = Resources::findTextureBySrc(src);
   this->textureID = texture->getID();

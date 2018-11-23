@@ -4,29 +4,26 @@
 #include <string>
 #include <vector>
 #include "layer.h"
+#include "tile.h"
 
 
 
 namespace game
 {
-  struct Chunk
+  class Chunk
   {
     int x;
     int y;
     std::vector<Layer> layers;
 
-    Layer* findLayerByName(std::string layerName)
-    {
-      for (unsigned int i = 0; i < layers.size(); i++)
-      {
-        if (layers[i].getName().compare(layerName) == 0)
-        {
-          return &layers[i];
-        }
-      }
+    public:
+      Chunk(int x, int y, std::vector<Layer> layers);
+      ~Chunk();
 
-      return nullptr;
-    }
+      Layer* findLayerByName(std::string layerName);
+      void drawLayer(std::string layerName, std::vector<Tile*> tiles, float screenH);
+      Tile* findTileByID(std::vector<Tile*> tiles, int id);
+      int chunkTotalSize();
   };
 }
 
