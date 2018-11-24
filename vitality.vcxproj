@@ -162,6 +162,7 @@
     <ClInclude Include="move_script.h" />
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\component.h" />
+    <ClInclude Include="oak\core\debug.h" />
     <ClInclude Include="oak\core\entity.h" />
     <ClInclude Include="oak\core\window.h" />
     <ClInclude Include="oak\core\id_generator.h" />

@@ -4,6 +4,7 @@
 #include "player.h"
 #include "world.h"
 #include "map_loader.h"
+#include "oak/core/debug.h"
 
 using namespace oak;
 using namespace game;
@@ -48,4 +49,6 @@ void SampleScene::onLoad()
   ground->addComponent(*groundSprite);
   ground->layerID = -1;
   //Store::addEntity(*ground);
+
+  LOG << "test debuging " << 123;
 }

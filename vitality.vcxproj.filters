@@ -210,6 +210,9 @@
     <ClInclude Include="bounds.h">
       <Filter>main</Filter>
     </ClInclude>
+    <ClInclude Include="oak\core\debug.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="res\test.xml">
