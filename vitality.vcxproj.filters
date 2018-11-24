@@ -212,14 +212,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="sample_texture.fs">
-      <Filter>main</Filter>
-    </None>
-    <None Include="sample_texture.vs">
-      <Filter>main</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Xml Include="res\test.xml">
       <Filter>main</Filter>
     </Xml>

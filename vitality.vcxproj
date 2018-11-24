@@ -191,10 +191,6 @@
     <ClInclude Include="world.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="sample_texture.fs" />
-    <None Include="sample_texture.vs" />
-  </ItemGroup>
-  <ItemGroup>
     <Xml Include="res\bugfix.xml" />
     <Xml Include="res\map.xml" />
     <Xml Include="res\map2.xml" />

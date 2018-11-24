@@ -56,14 +56,14 @@ Sprite::Sprite(
   float yy = Window::worldToViewportCoords(h);
 
   float vertices[] = {
-    // positions          // texture coords
-    -xx, -yy, 0.0f,  xMin, yMax, //bottom left
-     xx, -yy, 0.0f,  xMax, yMax, //bottom right
-     xx,  yy, 0.0f,  xMax, yMin, //top right
+    // positions    // texture coords
+    -xx, -yy,       xMin, yMax, //bottom left
+     xx, -yy,       xMax, yMax, //bottom right
+     xx,  yy,       xMax, yMin, //top right
 
-     xx,  yy, 0.0f,  xMax, yMin, //top right
-    -xx,  yy, 0.0f,  xMin, yMin, //top left
-    -xx, -yy, 0.0f,  xMin, yMax, //botom left
+     xx,  yy,       xMax, yMin, //top right
+    -xx,  yy,       xMin, yMin, //top left
+    -xx, -yy,       xMin, yMax, //botom left
   };
   
   glGenVertexArrays(1, &this->VAO);
@@ -75,11 +75,11 @@ Sprite::Sprite(
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
   // position attribute
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
   glEnableVertexAttribArray(0);
 
   // texture coord attribute
-  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
   glEnableVertexAttribArray(1);
   
   

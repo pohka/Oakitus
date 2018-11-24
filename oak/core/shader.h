@@ -9,6 +9,7 @@
 #include <sstream>
 #include <iostream>
 #include "types.h"
+#include <string.h>
 
 namespace oak
 {
@@ -21,6 +22,15 @@ namespace oak
       Shader(std::string name, const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr)
       {
         this->name = name;
+        char basePath[16] = "res/shaders/";
+        char fullFragmentPath[80];
+        strcpy_s(fullFragmentPath, basePath);
+        strcat_s(fullFragmentPath, fragmentPath);
+
+        char fullVertexPath[80];
+        strcpy_s(fullVertexPath, basePath);
+        strcat_s(fullVertexPath, vertexPath);
+
 
         // 1. retrieve the vertex/fragment source code from filePath
         std::string vertexCode;
@@ -36,8 +46,8 @@ namespace oak
         try
         {
           // open files
-          vShaderFile.open(vertexPath);
-          fShaderFile.open(fragmentPath);
+          vShaderFile.open(fullVertexPath);
+          fShaderFile.open(fullFragmentPath);
           std::stringstream vShaderStream, fShaderStream;
           // read file's buffer contents into streams
           vShaderStream << vShaderFile.rdbuf();

@@ -28,7 +28,7 @@ int main()
   
   // build and compile our shader zprogram
   // ------------------------------------
-  Shader *shader = new Shader("default", "sample_texture.vs", "sample_texture.fs");
+  Shader *shader = new Shader("default", "default.vs", "default.fs");
   Resources::addShader(*shader);
   Resources::defaultShaderID = shader->getID();
   std::cout << "shader default: " << shader->getID() << std::endl;
