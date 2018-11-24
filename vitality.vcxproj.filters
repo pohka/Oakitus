@@ -40,9 +40,6 @@
     <ClCompile Include="oak\core\entity.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="oak\core\gl_window.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="oak\core\id_generator.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
@@ -88,10 +85,25 @@
     <ClCompile Include="oak\xml\xml_parser.cpp">
       <Filter>xml</Filter>
     </ClCompile>
+    <ClCompile Include="map_loader.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="world.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="layer.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
     <ClCompile Include="tile.cpp">
       <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="map_loader.cpp">
+    <ClCompile Include="chunk.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\window.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="bounds.cpp">
       <Filter>main</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,9 +121,6 @@
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\entity.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\core\gl_window.h">
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\id_generator.h">
@@ -186,6 +195,21 @@
     <ClInclude Include="map_loader.h">
       <Filter>main</Filter>
     </ClInclude>
+    <ClInclude Include="chunk.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="world.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="layer.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\window.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="bounds.h">
+      <Filter>main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="sample_texture.fs">
@@ -200,6 +224,12 @@
       <Filter>main</Filter>
     </Xml>
     <Xml Include="res\map.xml">
+      <Filter>main</Filter>
+    </Xml>
+    <Xml Include="res\bugfix.xml">
+      <Filter>main</Filter>
+    </Xml>
+    <Xml Include="res\map2.xml">
       <Filter>main</Filter>
     </Xml>
   </ItemGroup>

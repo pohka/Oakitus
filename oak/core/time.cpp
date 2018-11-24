@@ -18,7 +18,7 @@ void Time::update()
   float currentFrame = (float)glfwGetTime();
   deltaTime = currentFrame - lastFrame;
   lastFrame = currentFrame;
-  deltaTime = (float)(1 * deltaTime);
+  deltaTime = (float)(1.0f * deltaTime);
   
   //track fps
   if (currentFrame - lastFPSCheck >= 1.0)

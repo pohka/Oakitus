@@ -1,16 +1,24 @@
-#include "gl_window.h"
+#include "window.h"
 #include <iostream>
 #include "input.h"
 
 using namespace oak;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+GLFWwindow* Window::window = nullptr;
+uint Window::screenW;
+uint Window::screenH;
+float Window::worldToVPRatio;
 
-
-GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
+void Window::init(uint screenW, uint screenH, const char* title)
 {
-  this->screenW = screenW;
-  this->screenH = screenH;
+  Window::screenW = screenW;
+  Window::screenH = screenH;
+
+  //2 units per dimension
+  float pixelsPerUnit = (float)screenH * 0.5f;
+  worldToVPRatio = 1 / pixelsPerUnit;
+
   // glfw: initialize and configure
   // ------------------------------
   glfwInit();
@@ -20,8 +28,8 @@ GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
 
   // glfw window creation
   // --------------------
-  this->window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
-  if (this->window == NULL)
+  Window::window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
+  if (Window::window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
@@ -39,29 +47,30 @@ GLWindow::GLWindow(uint screenW, uint screenH, const char* title)
   glEnable(GL_BLEND);
 }
 
-GLWindow::~GLWindow()
+GLFWwindow* Window::getGLFWWindow()
 {
-
+  return window;
 }
 
-GLFWwindow* GLWindow::getGLFWWindow()
-{
-  return this->window;
-}
-
-float GLWindow::getAspectRatio()
+float Window::getAspectRatio()
 {
   return (float)screenW / (float)screenH;
 }
 
-uint GLWindow::getHeight()
+uint Window::getHeight()
 {
   return screenH;
 }
 
-uint GLWindow::getWidth()
+uint Window::getWidth()
 {
   return screenW;
+}
+
+//converts pixels to viewport units
+float Window::worldToViewportCoords(float pixels)
+{
+  return pixels * worldToVPRatio;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

@@ -2,6 +2,8 @@
 #include "move_script.h"
 #include "oak/core/store.h"
 #include "player.h"
+#include "world.h"
+#include "map_loader.h"
 
 using namespace oak;
 using namespace game;
@@ -16,8 +18,16 @@ void SampleScene::onLoad()
 
   Resources::addTexture("wall.jpg");
   Resources::addTexture("face.png");
+  Resources::addTexture("player.png");
+  Resources::addTexture("tilesets/cave.png");
+  Resources::addTexture("tilesets/test.png");
   Shader* shader = Resources::findShaderByName("default");
   uint shaderID = shader->getID();
+
+  World* world = MapLoader::loadMap("map2.xml");
+  Store::addEntity(*world);
+  world->layerID = -1;
+
 
   Entity* gPlayer = Store::findEntityByName("player");
   if (gPlayer == nullptr)
@@ -37,5 +47,5 @@ void SampleScene::onLoad()
   Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, shaderID);
   ground->addComponent(*groundSprite);
   ground->layerID = -1;
-  Store::addEntity(*ground);
+  //Store::addEntity(*ground);
 }

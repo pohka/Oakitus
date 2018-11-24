@@ -2,7 +2,6 @@
 
 using namespace oak;
 
-GLWindow* Store::window = nullptr;
 std::vector<Entity*> Store::entitys;
 Scene* Store::curScene = nullptr;
 Scene* Store::nextScene = nullptr;

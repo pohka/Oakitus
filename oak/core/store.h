@@ -1,7 +1,7 @@
 #ifndef Store_H
 #define Store_H
 
-#include "gl_window.h"
+//#include "window.h"
 
 #include <vector>
 #include "shader.h"
@@ -23,10 +23,10 @@ namespace oak
     static Scene* curScene;
     static Scene* nextScene;
     static std::queue<uint> destroyEntIDQueue;
+    
 
 
     public:
-      static GLWindow* window;
       static Camera* camera;
 
       static void addEntity(Entity& entity);

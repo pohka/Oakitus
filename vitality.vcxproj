@@ -123,15 +123,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bounds.cpp" />
+    <ClCompile Include="chunk.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map_loader.cpp" />
     <ClCompile Include="move_script.cpp" />
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
     <ClCompile Include="oak\core\entity.cpp" />
-    <ClCompile Include="oak\core\gl_window.cpp" />
+    <ClCompile Include="oak\core\window.cpp" />
     <ClCompile Include="oak\core\id_generator.cpp" />
     <ClCompile Include="oak\core\input.cpp" />
     <ClCompile Include="oak\core\key.cpp" />
@@ -149,14 +152,18 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="sample_scene.cpp" />
     <ClCompile Include="tile.cpp" />
+    <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bounds.h" />
+    <ClInclude Include="chunk.h" />
+    <ClInclude Include="layer.h" />
     <ClInclude Include="map_loader.h" />
     <ClInclude Include="move_script.h" />
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\component.h" />
     <ClInclude Include="oak\core\entity.h" />
-    <ClInclude Include="oak\core\gl_window.h" />
+    <ClInclude Include="oak\core\window.h" />
     <ClInclude Include="oak\core\id_generator.h" />
     <ClInclude Include="oak\core\input.h" />
     <ClInclude Include="oak\core\key.h" />
@@ -181,13 +188,16 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="sample_scene.h" />
     <ClInclude Include="tile.h" />
+    <ClInclude Include="world.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sample_texture.fs" />
     <None Include="sample_texture.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="res\bugfix.xml" />
     <Xml Include="res\map.xml" />
+    <Xml Include="res\map2.xml" />
     <Xml Include="res\test.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
