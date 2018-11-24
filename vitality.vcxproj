@@ -133,6 +133,7 @@
     <ClCompile Include="move_script.cpp" />
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
+    <ClCompile Include="oak\core\debug.cpp" />
     <ClCompile Include="oak\core\entity.cpp" />
     <ClCompile Include="oak\core\window.cpp" />
     <ClCompile Include="oak\core\id_generator.cpp" />

@@ -57,3 +57,8 @@ void Time::setMaxFPS(int max)
   Time::maxFPS = max;
   Time::minDeltaTime = 1.0f / maxFPS;
 }
+
+float Time::getTimeNow()
+{
+  return (float)glfwGetTime();
+}

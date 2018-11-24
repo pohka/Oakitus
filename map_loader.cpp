@@ -4,17 +4,17 @@
 #include <vector>
 #include "oak/xml/xml_parser.h"
 #include <iomanip>
+#include "oak/core/debug.h"
 
 using namespace game;
 using namespace oak;
 
 World* MapLoader::loadMap(std::string path)
 {
-  double startTime = glfwGetTime();
+  Debug::startTimer("maploader", "File loaded");
   XMLNode root = XMLParser::load(path);
-  std::cout << "File Loaded: " << std::fixed << std::setprecision(2) << (glfwGetTime() - startTime) << "s" << std::endl;
-
-  double parseStartTime = glfwGetTime();
+  Debug::endTimer("maploader");
+  Debug::startTimer("xmlparse", "File Parsed");
 
   XMLNode* worldNode = root.getChildNodes()[0];
   std::vector<XMLNode*> nodes = worldNode->getChildNodes();
@@ -55,9 +55,7 @@ World* MapLoader::loadMap(std::string path)
       layerOrder = traverseList(nodes[i]);
     }
   }
-
-
-  std::cout << "File Parsed: " << std::fixed << std::setprecision(2) << (glfwGetTime() - parseStartTime) << "s" << std::endl;
+  Debug::endTimer("xmlparse");
 
   return new World(chunks, tiles, layerOrder, chunkSize, tileSize);
 }

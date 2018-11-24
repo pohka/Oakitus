@@ -25,6 +25,7 @@ namespace oak
       static int getFPS();
       static int getMaxFPS();
       static float getMinDeltaTime();
+      static float getTimeNow();
       static void init();
       static void setMaxFPS(int max);
       

@@ -3,38 +3,38 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <iomanip>
+#include "time.h"
 
 namespace oak
 {
   class Debug
   {
     bool isError = false;
+    struct Timer
+    {
+      float startTime;
+      std::string name;
+      std::string msg;
+    };
+    
+    static std::vector<Timer> timers;
+
     public:
       //LOG
-      Debug()
-      {
-
-      }
-
+      Debug();
       //LOG_ERROR and LOG_WARNING
-      Debug(const std::string &funcName, const std::string &file, int line, bool isError)
-      {
-        this->isError = isError;
-        std::string output = ""+ std::to_string(line);
-        //spacing between log
-        while (output.length() < 3)
-        {
-          output += ' ';
-        }
-        output += "- " + funcName + "()";
-        while (output.length() < 42)
-        {
-          output += ' ';
-        }
-        output += " | ";
+      Debug(
+        const std::string &funcName, 
+        const std::string &file, 
+        int line, 
+        bool isError
+      );
+      ~Debug();
 
-        std::cout << output;
-      }
+      static void startTimer(std::string name, std::string msg);
+      static void endTimer(std::string name);
 
       //print the next value
       template <class T>
@@ -43,18 +43,11 @@ namespace oak
         std::cout << v;
         return *this;
       }
-
-      ~Debug()
-      {
-        std::cout << std::endl;
-        //pause if error logged
-        if (isError)
-        {
-          system("Pause");
-        }
-      }
   };
+
+  
 }
+
 
 #define LOG_ERROR Debug(__FUNCTION__, __FILE__, __LINE__, true)
 #define LOG_WARNING Debug(__FUNCTION__, __FILE__, __LINE__, false)
