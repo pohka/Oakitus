@@ -1,4 +1,4 @@
-#include "oak/oak.h"
+//#include "oak/oak.h"
 #include "oak/game.h"
 
 #include "sample_scene.h"
@@ -12,7 +12,7 @@ void Game::load()
 {
 
   Scene* defaultScene = new SampleScene();
-  Store::loadFirstScene(*defaultScene);
+  Scene::loadFirstScene(*defaultScene);
 
   
 }

@@ -140,7 +140,6 @@
     <ClCompile Include="oak\core\id_generator.cpp" />
     <ClCompile Include="oak\core\input.cpp" />
     <ClCompile Include="oak\core\key.cpp" />
-    <ClCompile Include="oak\core\store.cpp" />
     <ClCompile Include="oak\core\point.cpp" />
     <ClCompile Include="oak\core\ray.cpp" />
     <ClCompile Include="oak\core\resources.cpp" />
@@ -172,7 +171,6 @@
     <ClInclude Include="oak\core\input.h" />
     <ClInclude Include="oak\core\key.h" />
     <ClInclude Include="oak\core\key_code.h" />
-    <ClInclude Include="oak\core\store.h" />
     <ClInclude Include="oak\core\point.h" />
     <ClInclude Include="oak\core\ray.h" />
     <ClInclude Include="oak\core\resources.h" />

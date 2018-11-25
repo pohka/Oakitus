@@ -1,7 +1,6 @@
 #include "move_script.h"
 #include "sample_scene.h"
-#include "oak/core/camera.h"
-#include "oak/core/debug.h"
+#include "oak/oak.h"
 
 using namespace oak;
 using namespace game;
@@ -55,8 +54,8 @@ void MoveScript::onUpdate()
   if (Input::isKeyDown(KeyCode::R))
   {
     std::cout << "refreshed scene" << std::endl;
-   // Store::setScene(*new SampleScene());
-    Store::reloadScene();
+   // Scene::setScene(*new SampleScene());
+    Scene::reloadScene();
   }
 
   if (Input::isKeyDown(KeyCode::F))

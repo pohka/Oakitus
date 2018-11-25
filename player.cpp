@@ -1,6 +1,7 @@
 #include "player.h"
 #include "oak/oak.h"
 #include "move_script.h"
+#include "oak/core/resources.h"
 
 using namespace oak;
 using namespace game;

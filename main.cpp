@@ -61,9 +61,9 @@ int main()
     Oakitus::updateEnts();
     Oakitus::drawEnts();
 
-    if (Store::isNewSceneSet())
+    if (Scene::isNewSceneSet())
     {
-      Store::onSceneChange();
+      Scene::swapScene();
     }
 
     Oakitus::destroyQueue();

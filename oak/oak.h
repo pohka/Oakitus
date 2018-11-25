@@ -18,7 +18,6 @@
 #include "core/camera.h"
 #include "core/sprite.h"
 #include "core/window.h"
-#include "core/store.h"
 #include "core/input.h"
 #include "core/time.h"
 #include "core/ray.h"
@@ -27,5 +26,7 @@
 #include "core/texture.h"
 #include "core/time.h"
 #include "core/types.h"
+#include "core/resources.h"
+#include "core/debug.h"
 
 #endif

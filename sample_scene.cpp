@@ -1,6 +1,5 @@
 #include "sample_scene.h"
 #include "move_script.h"
-#include "oak/core/store.h"
 #include "player.h"
 #include "world.h"
 #include "map_loader.h"

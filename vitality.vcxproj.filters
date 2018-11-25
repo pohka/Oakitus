@@ -73,9 +73,6 @@
     <ClCompile Include="oak\core\resources.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="oak\core\store.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>main</Filter>
     </ClCompile>
@@ -178,9 +175,6 @@
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\resources.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\core\store.h">
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\game.h">
