@@ -5,6 +5,7 @@
 #include "world.h"
 #include "map_loader.h"
 #include "oak/core/debug.h"
+#include "oak/core/oakitus.h"
 
 using namespace oak;
 using namespace game;
@@ -25,21 +26,21 @@ void SampleScene::onLoad()
   Shader* shader = Resources::findShaderByName("default");
   uint shaderID = shader->getID();
 
-  World* world = MapLoader::loadMap("map2.xml");
-  Store::addEntity(*world);
-  world->layerID = -1;
+  //World* world = MapLoader::loadMap("map2.xml");
+  //Entity::addEntity(*world);
+  //world->layerID = -1;
 
 
-  Entity* gPlayer = Store::findEntityByName("player");
+  Entity* gPlayer = Entity::findEntityByName("player");
   if (gPlayer == nullptr)
   {
     Entity* player = new Player();
     player->isGlobal = true;
-    Store::addEntity(*player);
+    Entity::addEntity(*player);
   }
   else
   {
-    std::cout << "found global player" << std::endl;
+    LOG << "found global player";
     gPlayer->position = glm::vec3(1.0f, 0.0f, 0.0f);
   }
 
@@ -48,7 +49,6 @@ void SampleScene::onLoad()
   Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, shaderID);
   ground->addComponent(*groundSprite);
   ground->layerID = -1;
-  //Store::addEntity(*ground);
+  Entity::addEntity(*ground);
 
-  LOG << "test debuging " << 123;
 }

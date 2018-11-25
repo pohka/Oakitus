@@ -5,10 +5,13 @@ using namespace oak;
 
 IDGenerator::IDGenerator()
 {
-  this->count = 0;
+  this->count = 1;
 }
 
-IDGenerator::~IDGenerator(){}
+IDGenerator::~IDGenerator()
+{
+ 
+}
 
 uint IDGenerator::nextID()
 {

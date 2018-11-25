@@ -109,6 +109,9 @@
     <ClCompile Include="oak\core\debug.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
+    <ClCompile Include="oak\core\oakitus.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sample_scene.h">
@@ -214,6 +217,9 @@
       <Filter>main</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\debug.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\oakitus.h">
       <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>

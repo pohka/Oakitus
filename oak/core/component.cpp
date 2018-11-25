@@ -2,21 +2,12 @@
 
 using namespace oak;
 
-uint componentCount = 0;
-
-
-Component::Component()
+Component::Component() 
 {
-  this->componentID = Component::getNextID();
+  componentID = 0;
 }
 
 Component::~Component() {}
-
-uint Component::getNextID()
-{
-  componentCount++;
-  return componentCount;
-}
 
 void Component::onUpdate() {}
 

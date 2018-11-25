@@ -15,7 +15,6 @@ namespace oak
     public:
 	    Component();
 	    virtual ~Component();
-	    static uint getNextID();
 	    virtual void onUpdate();
 	    virtual void onDraw();
 

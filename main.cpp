@@ -5,7 +5,7 @@
 #include "oak/game.h"
 #include <thread> 
 #include <chrono> 
-
+#include "oak/core/oakitus.h"
 
 using namespace oak;
 using namespace game;
@@ -58,16 +58,15 @@ int main()
     glClearColor(0.1f, 0.25f, 0.45f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-    Store::onUpdate();
-    Store::onDraw();
+    Oakitus::updateEnts();
+    Oakitus::drawEnts();
 
     if (Store::isNewSceneSet())
     {
       Store::onSceneChange();
     }
 
-    Store::onDestroy();
+    Oakitus::destroyQueue();
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
     glfwSwapBuffers(window);

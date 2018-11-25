@@ -3,21 +3,23 @@
 
 using namespace oak;
 
+std::vector<Entity*> Entity::entitys;
+std::queue<uint> Entity::destroyEntIDQueue;
+IDGenerator Entity::entityIDGen = IDGenerator();
 
 
 Entity::Entity() 
 {
-  idGen = new IDGenerator();
-  this->entityID = idGen->nextID();
+  componentIDGen = IDGenerator();
+  this->entityID = entityIDGen.nextID();
   this->position = glm::vec3(0, 0, 0);
   layerID = 0;
   isGlobal = false;
-  this->name = "ent_" + entityID;
+  this->name = "ent_" + std::to_string(entityID);
 }
 
 Entity::~Entity()
 {
-  idGen->~IDGenerator();
   for (Component* c : components)
   {
     delete c;
@@ -31,6 +33,7 @@ Entity::~Entity()
 void Entity::addComponent(Component& component)
 {
   component.entity = this;
+  component.componentID = componentIDGen.nextID();
   this->components.push_back(&component);
 }
 
@@ -42,12 +45,17 @@ void Entity::addScript(Script& script)
 
 void Entity::destroy()
 {
-  Store::destroyEntityByID(this->getID());
+  destroyEntityByID(this->getID());
 }
 
 uint Entity::getID()
 {
   return this->entityID;
+}
+
+std::string Entity::getName()
+{
+  return name;
 }
 
 void Entity::onDestroy()
@@ -75,4 +83,68 @@ void Entity::onUpdate()
   {
     scripts[i]->onUpdate();
   }
+}
+
+
+//static functions
+//----------------------------
+
+void Entity::addEntity(Entity& entity)
+{
+  entitys.push_back(&entity);
+}
+
+void Entity::deleteAllEntitys()
+{
+  for (uint i = 0; i < entitys.size(); i++)
+  {
+    Entity* tmp = entitys[i];
+    entitys.erase(entitys.begin() + i); //remove from vector
+    i--;
+    delete tmp;
+  }
+}
+
+void Entity::destroyEntityByID(uint entityID)
+{
+  destroyEntIDQueue.push(entityID);
+}
+
+Entity* Entity::findEntityByID(uint id)
+{
+  for (uint i = 0; i < entitys.size(); i++)
+  {
+    if (entitys[i]->getID() == id)
+    {
+      return entitys[i];
+    }
+  }
+
+  return nullptr;
+}
+
+Entity* Entity::findEntityByName(std::string name)
+{
+  for (uint i = 0; i < entitys.size(); i++)
+  {
+    if (entitys[i]->name.compare(name) == 0)
+    {
+      return entitys[i];
+    }
+  }
+
+  return nullptr;
+}
+
+std::vector<Entity*> Entity::getGlobalEntitys()
+{
+  std::vector<Entity*> list;
+  for (uint i = 0; i < entitys.size(); i++)
+  {
+    if (entitys[i]->isGlobal)
+    {
+      list.push_back(entitys[i]);
+    }
+  }
+  return list;
 }

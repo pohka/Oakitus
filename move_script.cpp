@@ -1,6 +1,7 @@
 #include "move_script.h"
 #include "sample_scene.h"
 #include "oak/core/camera.h"
+#include "oak/core/debug.h"
 
 using namespace oak;
 using namespace game;
@@ -30,6 +31,7 @@ void MoveScript::onUpdate()
 
   if (Input::isKeyDown(KeyCode::BACKSPACE))
   {
+    LOG << "ent:" << entity->getName() << ":" << entity->getID();
     entity->destroy();
   }
 
@@ -74,7 +76,7 @@ void MoveScript::onUpdate()
 
   if (Input::isKeyDown(I))
   {
-    if (Store::findEntityByName("player") != nullptr)
+    if (Entity::findEntityByName("player") != nullptr)
     {
       std::cout << "found player" << std::endl;
     }
