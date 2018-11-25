@@ -77,15 +77,21 @@ int Oakitus::loop()
     glClearColor(0.1f, 0.25f, 0.45f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    updateEnts();
-    drawEnts();
+    Entity::instantiateQueuedEnts();
 
-    if (Scene::isNewSceneSet())
+    Entity::updateInstances();
+    Entity::drawInstances();
+
+    
+
+    if (Scene::isNextSceneSet())
     {
       Scene::swapScene();
     }
-
-    destroyQueue();
+    else
+    {
+      Entity::destroyQueuedInstances();
+    }
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
     glfwSwapBuffers(window);
@@ -101,73 +107,4 @@ int Oakitus::loop()
   }
   glfwTerminate();
   return 0;
-}
-
-void Oakitus::updateEnts()
-{
-  for (uint i = 0; i < Entity::entitys.size(); i++)
-  {
-    Entity::entitys[i]->onUpdate();
-  }
-}
-
-struct EntityLayerCompare {
-  bool operator()(const Entity* l, const Entity* r) {
-    return l->layerID < r->layerID;
-  }
-};
-
-void Oakitus::drawEnts()
-{
-  std::sort(Entity::entitys.begin(), Entity::entitys.end(), EntityLayerCompare());
-
-  for (uint i = 0; i < Entity::entitys.size(); i++)
-  {
-    Entity::entitys[i]->onDraw();
-  }
-}
-
-void Oakitus::destroyQueue()
-{
-  while (!Entity::destroyEntIDQueue.empty())
-  {
-    uint id = Entity::destroyEntIDQueue.front();
-    Entity* ent = nullptr;
-    bool found = false;
-  
-    //find entity with matching id, then remove from vector
-    for (uint i = 0; i < Entity::entitys.size() && !found; i++)
-    {
-      if (Entity::entitys[i]->getID() == id)
-      {
-        ent = Entity::entitys[i];
-        Entity::entitys.erase(Entity::entitys.begin() + i);
-        found = true;
-      }
-    }
-    //call onDestroy and delete the object
-    if (found)
-    {
-      //LOG << "destroyed:" << ent->getName() << ":" << ent->getID();
-      ent->onDestroy();
-      delete ent;
-    }
-  
-    Entity::destroyEntIDQueue.pop();
-  }
-}
-
-
-void Oakitus::deleteAllNonGlobalEntitys()
-{
-  for (uint i = 0; i < Entity::entitys.size(); i++)
-  {
-    Entity* ent = Entity::entitys[i];
-    if (ent->isGlobal == false)
-    {
-      Entity::entitys.erase(Entity::entitys.begin() + i); //remove from vector
-      i--;
-      delete ent;
-    }
-  }
 }

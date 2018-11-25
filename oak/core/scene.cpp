@@ -21,7 +21,7 @@ void Scene::onLoad()
 
 void Scene::onUnload()
 {
-  Oakitus::deleteAllNonGlobalEntitys();
+  Entity::deleteAllEnts(true);
 }
 
 //static functions
@@ -32,7 +32,7 @@ Scene* Scene::getCurrentScene()
   return curScene;
 }
 
-bool Scene::isNewSceneSet()
+bool Scene::isNextSceneSet()
 {
   return (nextScene != nullptr);
 }
@@ -70,7 +70,7 @@ void Scene::reloadScene()
   curScene->onLoad();
 }
 //
-void Scene::setScene(Scene& scene)
+void Scene::setNextScene(Scene& scene)
 {
   nextScene = &scene;
 }

@@ -3,8 +3,9 @@
 using namespace oak;
 
 std::vector<Entity*> Entity::entitys;
-std::queue<uint> Entity::destroyEntIDQueue;
+std::queue<uint> Entity::queuedDestroyEntityIDs;
 IDGenerator Entity::entityIDGen = IDGenerator();
+std::queue<Entity*> Entity::pendingEntityInstances;
 
 
 Entity::Entity() 
@@ -42,9 +43,19 @@ void Entity::addScript(Script& script)
   this->scripts.push_back(&script);
 }
 
+void Entity::instantiate()
+{
+  Entity::pendingEntityInstances.push(this);
+}
+
 void Entity::destroy()
 {
-  destroyEntityByID(this->getID());
+  Entity::queuedDestroyEntityIDs.push(entityID);
+}
+
+void Entity::destroyEntityByID(uint id)
+{
+  Entity::queuedDestroyEntityIDs.push(id);
 }
 
 uint Entity::getID()
@@ -57,9 +68,14 @@ std::string Entity::getName()
   return name;
 }
 
-void Entity::onDestroy()
+void Entity::onStart()
 {
 
+}
+
+void Entity::onDestroy()
+{
+  
 }
 
 
@@ -87,28 +103,6 @@ void Entity::onUpdate()
 
 //static functions
 //----------------------------
-
-void Entity::addEntity(Entity& entity)
-{
-  entitys.push_back(&entity);
-}
-
-void Entity::deleteAllEntitys()
-{
-  for (uint i = 0; i < entitys.size(); i++)
-  {
-    Entity* tmp = entitys[i];
-    entitys.erase(entitys.begin() + i); //remove from vector
-    i--;
-    delete tmp;
-  }
-}
-
-void Entity::destroyEntityByID(uint entityID)
-{
-  destroyEntIDQueue.push(entityID);
-}
-
 Entity* Entity::findEntityByID(uint id)
 {
   for (uint i = 0; i < entitys.size(); i++)
@@ -146,4 +140,124 @@ std::vector<Entity*> Entity::getGlobalEntitys()
     }
   }
   return list;
+}
+
+void Entity::updateInstances()
+{
+  for (uint i = 0; i < Entity::entitys.size(); i++)
+  {
+    Entity::entitys[i]->onUpdate();
+  }
+}
+
+struct EntityLayerCompare {
+  bool operator()(const Entity* l, const Entity* r) {
+    return l->layerID < r->layerID;
+  }
+};
+
+
+void Entity::drawInstances()
+{
+  std::sort(Entity::entitys.begin(), Entity::entitys.end(), EntityLayerCompare());
+
+  for (uint i = 0; i < Entity::entitys.size(); i++)
+  {
+    Entity::entitys[i]->onDraw();
+  }
+}
+
+void Entity::destroyQueuedInstances()
+{
+  bool found;
+  Entity* ent;
+
+  while (!Entity::queuedDestroyEntityIDs.empty())
+  {
+    uint id = Entity::queuedDestroyEntityIDs.front();
+    ent = nullptr;
+    found = false;
+
+    //find entity with matching id, then remove from vector
+    for (uint i = 0; i < Entity::entitys.size() && !found; i++)
+    {
+      if (Entity::entitys[i]->getID() == id)
+      {
+        ent = Entity::entitys[i];
+        Entity::entitys.erase(Entity::entitys.begin() + i);
+        found = true;
+      }
+    }
+    //call onDestroy and delete the object
+    if (found)
+    {
+      //LOG << "destroyed:" << ent->getName() << ":" << ent->getID();
+      ent->onDestroy();
+      delete ent;
+    }
+
+    Entity::queuedDestroyEntityIDs.pop();
+  }
+}
+
+void Entity::clearQueues()
+{
+  while (!queuedDestroyEntityIDs.empty())
+  {
+    queuedDestroyEntityIDs.pop();
+  }
+
+  while (!pendingEntityInstances.empty())
+  {
+    Entity* ent = pendingEntityInstances.front();
+    pendingEntityInstances.pop();
+    delete ent;
+  }
+}
+
+void Entity::deleteAllEnts(bool isGlobalExempt)
+{
+  if (isGlobalExempt == true)
+  {
+    for (uint i = 0; i < Entity::entitys.size(); i++)
+    {
+      Entity* ent = Entity::entitys[i];
+      if (ent->isGlobal == false)
+      {
+        Entity::entitys.erase(Entity::entitys.begin() + i); //remove from vector
+        i--;
+        delete ent;
+      }
+    }
+  }
+  else
+  {
+    for (uint i = 0; i < Entity::entitys.size(); i++)
+    {
+      Entity* ent = Entity::entitys[i];
+      Entity::entitys.erase(Entity::entitys.begin() + i); 
+      i--;
+      delete ent;
+    }
+  }
+}
+
+void Entity::instantiateQueuedEnts()
+{
+  std::queue<Entity*> temp;
+  //add all entity instances to the game
+  while (!Entity::pendingEntityInstances.empty())
+  {
+    Entity* ent = Entity::pendingEntityInstances.front();
+    Entity::entitys.push_back(ent);
+    temp.push(ent);
+    Entity::pendingEntityInstances.pop();
+  }
+
+  //call onStart() for all the newly instances
+  while (!temp.empty())
+  {
+    temp.front()->onStart();
+    temp.pop();
+  }
 }

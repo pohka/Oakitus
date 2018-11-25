@@ -18,9 +18,17 @@ namespace oak
   class Entity
   {
     friend class Oakitus;
-    static std::queue<uint> destroyEntIDQueue;
+    static std::queue<uint> queuedDestroyEntityIDs;
+    static std::queue<Entity*> pendingEntityInstances;
     static std::vector<Entity*> entitys;
     static IDGenerator entityIDGen;
+
+    static void updateInstances();
+    static void drawInstances();
+    static void destroyQueuedInstances();
+    static void deleteAllEnts(bool isGlobalExempt);
+    static void instantiateQueuedEnts();
+    static void clearQueues();
 
 	  uint entityID;
 	  std::vector<Component*> components;
@@ -29,13 +37,12 @@ namespace oak
 
 
     public:
-      static void addEntity(Entity& entity);
-      static void deleteAllEntitys();
-      //static void deleteAllNonGlobalEntitys();
-      static void destroyEntityByID(uint entityID);
+      friend class Scene;
       static Entity* findEntityByID(uint id);
       static Entity* findEntityByName(std::string name);
       static std::vector<Entity*> getGlobalEntitys();
+      static void destroyEntityByID(uint id);
+      
 
       glm::vec3 position;
       int layerID;
@@ -46,9 +53,11 @@ namespace oak
 	    ~Entity();
 	    void addComponent(Component& component);
 	    void addScript(Script& script);
+      void instantiate();
 	    void destroy();
 	    uint getID();
       std::string getName();
+      virtual void onStart();
 	    virtual void onDestroy();
 	    virtual void onDraw();
 	    virtual void onUpdate();

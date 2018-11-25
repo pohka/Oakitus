@@ -32,6 +32,7 @@ void MoveScript::onUpdate()
   {
     LOG << "ent:" << entity->getName() << ":" << entity->getID();
     entity->destroy();
+    //Entity::destroyEntityByID(entity->getID());
   }
 
   if (Input::isKeyPressed(KeyCode::UP))

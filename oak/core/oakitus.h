@@ -10,15 +10,9 @@ namespace oak
     
     public:
       static void init();
-      static int loop();
       
     private:
-      friend class Scene;
-
-      static void updateEnts();
-      static void drawEnts();
-      static void destroyQueue();
-      static void deleteAllNonGlobalEntitys();
+      static int loop();
   };
 }
 

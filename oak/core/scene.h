@@ -16,9 +16,9 @@ namespace oak
 
       static Scene* getCurrentScene();
       static void  reloadScene();
-      static bool isNewSceneSet();
+      static bool isNextSceneSet();
       static void loadFirstScene(Scene& scene);
-      static void setScene(Scene& scene);
+      static void setNextScene(Scene& scene);
 
       Scene();
       ~Scene();

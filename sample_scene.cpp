@@ -35,7 +35,7 @@ void SampleScene::onLoad()
   {
     Entity* player = new Player();
     player->isGlobal = true;
-    Entity::addEntity(*player);
+    player->instantiate();
   }
   else
   {
@@ -48,6 +48,6 @@ void SampleScene::onLoad()
   Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, shaderID);
   ground->addComponent(*groundSprite);
   ground->layerID = -1;
-  Entity::addEntity(*ground);
+  ground->instantiate();
 
 }
