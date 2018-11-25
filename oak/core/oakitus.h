@@ -7,6 +7,7 @@ namespace oak
   {
     public:
       static void init();
+      static int loop();
       static void updateEnts();
       static void drawEnts();
       static void destroyQueue();
