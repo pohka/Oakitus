@@ -10,7 +10,6 @@
 #include <string>
 #include "scene.h"
 #include <queue>
-#include "camera.h"
 #include "types.h"
 #include "resources.h"
 
@@ -27,7 +26,6 @@ namespace oak
 
 
     public:
-      static Camera* camera;
 
       static void addEntity(Entity& entity);
       static void deleteAllEntitys();

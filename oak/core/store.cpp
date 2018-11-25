@@ -6,7 +6,6 @@ std::vector<Entity*> Store::entitys;
 Scene* Store::curScene = nullptr;
 Scene* Store::nextScene = nullptr;
 std::queue<uint> Store::destroyEntIDQueue;
-Camera* Store::camera = nullptr;
 
 
 void Store::addEntity(Entity& entity)

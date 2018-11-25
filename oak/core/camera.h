@@ -11,18 +11,17 @@ namespace oak
   class Camera
   {
     public:
-	    glm::vec3 position;
-	    glm::vec3 front;
-	    glm::vec3 up;
-	    float fov;
-      bool isOrthographic;
+	    static glm::vec3 position;
+      static glm::vec3 front;
+      static glm::vec3 up;
+      static float fov;
+      static bool isOrthographic;
 
-	    Camera(glm::vec3 position, glm::vec3 front, glm::vec3 up, float fov, bool isOrthographic);
-	    ~Camera();
-	    glm::vec3 cursorToWorld2D();
-      bool getIsOrthographic();
-	    glm::vec3 viewportToWorldCoor(float vpPosX, float vpPosY);
-      glm::vec3 getNormalizedPos();
+      static void init(glm::vec3 position, glm::vec3 front, glm::vec3 up, float fov, bool isOrthographic);
+      static glm::vec3 cursorToWorld2D();
+      static bool getIsOrthographic();
+      static glm::vec3 viewportToWorldCoor(float vpPosX, float vpPosY);
+      static glm::vec3 getNormalizedPos();
   };
 }
 #endif

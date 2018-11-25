@@ -1,5 +1,4 @@
 #include "camera.h"
-#include "store.h"
 #include "input.h"
 #include "ray.h"
 #include "window.h"
@@ -7,16 +6,21 @@
 using namespace glm;
 using namespace oak;
 
-Camera::Camera(vec3 position, vec3 front, vec3 up, float fov, bool isOrthographic)
+glm::vec3 Camera::position;
+glm::vec3 Camera::front;
+glm::vec3 Camera::up;
+float Camera::fov;
+bool Camera::isOrthographic;
+
+void Camera::init(vec3 position, vec3 front, vec3 up, float fov, bool isOrthographic)
 {
-  this->position = position;
-  this->front = front;
-  this->up = up;
-  this->fov = fov;
-  this->isOrthographic = isOrthographic;
+  Camera::position = position;
+  Camera::front = front;
+  Camera::up = up;
+  Camera::fov = fov;
+  Camera::isOrthographic = isOrthographic;
 }
 
-Camera::~Camera() {}
 
 vec3 Camera::getNormalizedPos()
 {
@@ -44,15 +48,15 @@ vec3 Camera::cursorToWorld2D()
     );
 
     return glm::vec3(
-      nCursor.x + Store::camera->position.x,
-      nCursor.y + Store::camera->position.y,
+      nCursor.x + position.x,
+      nCursor.y + position.y,
       0.0f
     );
   }
   else
   {
-    glm::vec3 rayWorld = Store::camera->viewportToWorldCoor(Input::mousePos.x, Input::mousePos.y);
-    Ray* ray = new Ray(Store::camera->position, rayWorld);
+    glm::vec3 rayWorld = Camera::viewportToWorldCoor(Input::mousePos.x, Input::mousePos.y);
+    Ray* ray = new Ray(Camera::position, rayWorld);
 
     glm::vec3 point = ray->planeIntersectPoint(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0));
     delete ray;
@@ -72,12 +76,12 @@ vec3 Camera::viewportToWorldCoor(float vpPosX, float vpPosY)
   float screenH = (float)Window::getHeight();
 
   glm::mat4 viewMatrix = glm::lookAt(
-    Store::camera->position,
-    Store::camera->front,
-    Store::camera->up
+    position,
+    front,
+    up
   );
   glm::mat4 projectionMatrix = glm::perspective(
-    glm::radians(Store::camera->fov), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
+    glm::radians(fov), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
     screenW / screenH,       // Aspect Ratio. Depends on the size of your window. Notice that 4/3 == 800/600 == 1280/960, sounds familiar ?
     0.1f,              // Near clipping plane. Keep as big as possible, or you'll get precision issues.
     100.0f             // Far clipping plane. Keep as little as possible.

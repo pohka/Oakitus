@@ -2,6 +2,7 @@
 #include "world.h"
 #include "oak/core/window.h"
 #include "bounds.h"
+#include "oak/core/camera.h"
 
 #include <iostream>
 
@@ -56,8 +57,8 @@ int World::getChunkSize()
 void World::onDraw()
 {
   float screenH = (float)Window::getHeight();
-  float cameraX = Store::camera->position.x;
-  float cameraY = Store::camera->position.y;
+  float cameraX = Camera::position.x;
+  float cameraY = Camera::position.y;
   float windowWidth = (float)Window::getWidth();
   float windowHeight = (float)Window::getHeight();
 

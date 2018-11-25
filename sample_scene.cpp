@@ -15,7 +15,7 @@ SampleScene::~SampleScene() {}
 
 void SampleScene::onLoad()
 {
-  Store::camera->position = glm::vec3(0, 0, 0);
+  Camera::position = glm::vec3(0, 0, 0);
 
   Resources::addTexture("wall.jpg");
   Resources::addTexture("face.png");

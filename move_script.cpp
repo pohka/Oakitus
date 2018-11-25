@@ -1,5 +1,6 @@
 #include "move_script.h"
 #include "sample_scene.h"
+#include "oak/core/camera.h"
 
 using namespace oak;
 using namespace game;
@@ -34,19 +35,19 @@ void MoveScript::onUpdate()
 
   if (Input::isKeyPressed(KeyCode::UP))
   {
-    Store::camera->position.y += speed;
+    Camera::position.y += speed;
   }
   if (Input::isKeyPressed(KeyCode::DOWN))
   {
-    Store::camera->position.y -= 1.0f * speed;
+    Camera::position.y -= 1.0f * speed;
   }
   if (Input::isKeyPressed(KeyCode::LEFT))
   {
-    Store::camera->position.x -= speed;
+    Camera::position.x -= speed;
   }
   if (Input::isKeyPressed(KeyCode::RIGHT))
   {
-    Store::camera->position.x += speed;
+    Camera::position.x += speed;
   }
 
   if (Input::isKeyDown(KeyCode::R))
@@ -63,7 +64,7 @@ void MoveScript::onUpdate()
 
   if (Input::isKeyDown(KeyCode::C))
   {
-    glm::vec3 pt = Store::camera->cursorToWorld2D();
+    glm::vec3 pt = Camera::cursorToWorld2D();
     std::cout << "vp:" << Input::mousePos.x << "," << Input::mousePos.y << std::endl <<
       "rayWorld:" << pt.x << "," << pt.y << "," << pt.z << std::endl <<
       "entPos:" << entity->position.x << "," << entity->position.y << std::endl;

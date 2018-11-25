@@ -1,6 +1,7 @@
 #include "tile.h"
 #include "oak/core/resources.h"
-#include "oak/core/store.h"
+#include "oak/core/camera.h"
+#include "oak/core/resources.h"
 #include "oak/core/window.h"
 
 using namespace game;
@@ -71,7 +72,7 @@ void Tile::onDraw(float x, float y)
 
   glm::mat4 model = glm::mat4(1.0);
 
-  glm::vec3 camNPos = Store::camera->getNormalizedPos();
+  glm::vec3 camNPos = Camera::getNormalizedPos();
 
   glm::vec3 pos(
     x - camNPos.x,
