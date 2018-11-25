@@ -12,6 +12,7 @@
 #include "../game.h"
 #include "scene.h"
 #include "texture.h"
+#include "../game.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -59,7 +60,8 @@ void Oakitus::init()
   Resources::addTexture("default.png");
 
 
-  game::Game::load();
+  Game::load();
+  loop();
 }
 
 int Oakitus::loop()
