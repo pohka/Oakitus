@@ -41,15 +41,15 @@ vec3 Camera::cursorToWorld2D()
     float halfW = screenW / 2.0f;
     float halfH = screenH / 2.0f;
 
-    //normalized cursor position from -1 to 1
-    glm::vec2 nCursor = glm::vec2(
-      ((Input::mousePos.x - halfW) / screenH) * 2.0f,
-      ((Input::mousePos.y - halfH) / screenH) * 2.0f
+    //cursor pixels offset from center of viewport
+    glm::vec2 cursorOffset = glm::vec2(
+      Input::mousePos.x - halfW,
+      Input::mousePos.y - halfH
     );
 
     return glm::vec3(
-      nCursor.x + position.x,
-      nCursor.y + position.y,
+      cursorOffset.x + position.x,
+      cursorOffset.y + position.y,
       0.0f
     );
   }

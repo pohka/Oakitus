@@ -183,7 +183,6 @@
     <ClInclude Include="oak\core\time.h" />
     <ClInclude Include="oak\core\types.h" />
     <ClInclude Include="oak\game.h" />
-    <ClInclude Include="oak\init.h" />
     <ClInclude Include="oak\oak.h" />
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />

@@ -1,3 +1,4 @@
+
 #include "oakitus.h"
 #include "time.h"
 #include "input.h"
@@ -10,6 +11,10 @@
 #include "resources.h"
 #include "../game.h"
 #include "scene.h"
+#include "texture.h"
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 #include <thread> 
 #include <chrono> 
@@ -19,13 +24,7 @@ using namespace oak;
 const unsigned int SCR_WIDTH = 1440;
 const unsigned int SCR_HEIGHT = 810;
 
-void cursorMoved(GLFWwindow* window, double xpos, double ypos);
 
-void cursorMoved(GLFWwindow* window, double xpos, double ypos)
-{
-  // invert y-coordinate
-  Input::setMouse((float)xpos, (float)Window::getHeight() - (float)ypos);
-}
 
 void Oakitus::init()
 {
@@ -42,15 +41,15 @@ void Oakitus::init()
 
   Window::init(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
   GLFWwindow* window = Window::getGLFWWindow();
-  glfwSetCursorPosCallback(window, cursorMoved);
-
-  // build and compile our shader zprogram
-// ------------------------------------
+  
+  //set default resources
   Shader *shader = new Shader("default", "default.vs", "default.fs");
   Resources::addShader(*shader);
   Resources::defaultShaderID = shader->getID();
   std::cout << "shader default: " << shader->getID() << std::endl;
   shader->use();
+
+  
 
   //set projection matrix
   float aspect = (float)Window::getAspectRatio();
@@ -76,15 +75,15 @@ int Oakitus::loop()
     glClearColor(0.1f, 0.25f, 0.45f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    Oakitus::updateEnts();
-    Oakitus::drawEnts();
+    updateEnts();
+    drawEnts();
 
     if (Scene::isNewSceneSet())
     {
       Scene::swapScene();
     }
 
-    Oakitus::destroyQueue();
+    destroyQueue();
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
     glfwSwapBuffers(window);

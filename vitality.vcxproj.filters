@@ -168,9 +168,6 @@
     <ClInclude Include="oak\oak.h">
       <Filter>oak</Filter>
     </ClInclude>
-    <ClInclude Include="oak\init.h">
-      <Filter>oak</Filter>
-    </ClInclude>
     <ClInclude Include="oak\core\point.h">
       <Filter>oak\core</Filter>
     </ClInclude>

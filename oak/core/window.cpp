@@ -45,6 +45,7 @@ void Window::init(uint screenW, uint screenH, const char* title)
   }
 
   glEnable(GL_BLEND);
+  glfwSetCursorPosCallback(window, cursorMoved);
 }
 
 GLFWwindow* Window::getGLFWWindow()
@@ -71,6 +72,13 @@ uint Window::getWidth()
 float Window::worldToViewportCoords(float pixels)
 {
   return pixels * worldToVPRatio;
+}
+
+
+void Window::cursorMoved(GLFWwindow* window, double xpos, double ypos)
+{
+  // invert y-coordinate
+  Input::setMouse((float)xpos, (float)Window::getHeight() - (float)ypos);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

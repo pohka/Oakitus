@@ -6,6 +6,7 @@ namespace oak
 {
   class Scene
   {
+    
     static Scene* curScene;
     static Scene* nextScene;
     

@@ -17,6 +17,7 @@ namespace oak
 
 
     public:
+      static void cursorMoved(GLFWwindow* window, double xpos, double ypos);
      // static void cursorMoved(GLFWwindow* window, double xpos, double ypos);
       static void init(uint screenW, uint screenH, const char* title);
       static GLFWwindow* getGLFWWindow();
