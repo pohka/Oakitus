@@ -1,10 +1,16 @@
-#include "oak/core/oakitus.h"
+#include "oak/setup.h"
+
+using namespace oak;
 
 int main()
 {
-  oak::Oakitus::init();
+  Oakitus::init();
   return 0;
 }
 
 
+void Oakitus::load()
+{
+  Scene::loadFirstScene(*new Scene());
+}
 

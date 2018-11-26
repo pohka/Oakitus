@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="main">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="oak">
       <UniqueIdentifier>{81245755-1724-4ccf-b605-0ffb85dc6d05}</UniqueIdentifier>
     </Filter>
@@ -14,23 +10,11 @@
     <Filter Include="oak\xml">
       <UniqueIdentifier>{b073a5de-c1d0-4e34-b8ca-4ee04d128a6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{22fc5fb7-8bf1-48d0-8cb4-ec6be336aca9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="move_script.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="sample_scene.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
     <ClCompile Include="oak\core\camera.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
@@ -70,29 +54,11 @@
     <ClCompile Include="oak\core\resources.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
     <ClCompile Include="oak\xml\xml_node.cpp">
       <Filter>oak\xml</Filter>
     </ClCompile>
     <ClCompile Include="oak\xml\xml_parser.cpp">
       <Filter>oak\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="map_loader.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="world.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="layer.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="tile.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="chunk.cpp">
-      <Filter>main</Filter>
     </ClCompile>
     <ClCompile Include="oak\core\window.cpp">
       <Filter>oak\core</Filter>
@@ -109,14 +75,17 @@
     <ClCompile Include="oak\core\bounds.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\setup.h">
+      <Filter>oak</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sample_scene.h">
-      <Filter>main</Filter>
-    </ClInclude>
-    <ClInclude Include="move_script.h">
-      <Filter>main</Filter>
-    </ClInclude>
     <ClInclude Include="oak\core\camera.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -174,29 +143,11 @@
     <ClInclude Include="oak\game.h">
       <Filter>oak</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>main</Filter>
-    </ClInclude>
     <ClInclude Include="oak\xml\xml_node.h">
       <Filter>oak\xml</Filter>
     </ClInclude>
     <ClInclude Include="oak\xml\xml_parser.h">
       <Filter>oak\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="tile.h">
-      <Filter>main</Filter>
-    </ClInclude>
-    <ClInclude Include="map_loader.h">
-      <Filter>main</Filter>
-    </ClInclude>
-    <ClInclude Include="chunk.h">
-      <Filter>main</Filter>
-    </ClInclude>
-    <ClInclude Include="world.h">
-      <Filter>main</Filter>
-    </ClInclude>
-    <ClInclude Include="layer.h">
-      <Filter>main</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\window.h">
       <Filter>oak\core</Filter>
@@ -213,19 +164,5 @@
     <ClInclude Include="oak\core\bounds.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="res\test.xml">
-      <Filter>main</Filter>
-    </Xml>
-    <Xml Include="res\map.xml">
-      <Filter>main</Filter>
-    </Xml>
-    <Xml Include="res\bugfix.xml">
-      <Filter>main</Filter>
-    </Xml>
-    <Xml Include="res\map2.xml">
-      <Filter>main</Filter>
-    </Xml>
   </ItemGroup>
 </Project>

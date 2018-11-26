@@ -1,8 +1,6 @@
 #ifndef OAKITUS_H
 #define OAKITUS_H
 
-
-
 namespace oak
 {
   class Oakitus
@@ -13,6 +11,7 @@ namespace oak
       
     private:
       static int loop();
+      static void load();
   };
 }
 

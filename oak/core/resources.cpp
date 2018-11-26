@@ -61,6 +61,6 @@ Texture* Resources::findTextureBySrc(std::string src)
       return textures[i];
     }
   }
-  std::cout << "texture not found:" << src << std::endl;
+
   return nullptr;
 }

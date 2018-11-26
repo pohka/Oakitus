@@ -47,7 +47,7 @@ void Oakitus::init()
   Shader *shader = new Shader("default", "default.vs", "default.fs");
   Resources::addShader(*shader);
   Resources::defaultShaderID = shader->getID();
-  std::cout << "shader default: " << shader->getID() << std::endl;
+  //std::cout << "shader default: " << shader->getID() << std::endl;
   shader->use();
 
   
@@ -60,7 +60,7 @@ void Oakitus::init()
   Resources::addTexture("default.png");
 
 
-  Game::load();
+  Oakitus::load();
   loop();
 }
 

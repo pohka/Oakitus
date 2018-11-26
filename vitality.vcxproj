@@ -124,13 +124,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="chunk.cpp" />
-    <ClCompile Include="game.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="layer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="map_loader.cpp" />
-    <ClCompile Include="move_script.cpp" />
     <ClCompile Include="oak\core\bounds.cpp" />
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
@@ -149,18 +144,11 @@
     <ClCompile Include="oak\core\sprite.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
+    <ClCompile Include="oak\setup.h" />
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="sample_scene.cpp" />
-    <ClCompile Include="tile.cpp" />
-    <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="chunk.h" />
-    <ClInclude Include="layer.h" />
-    <ClInclude Include="map_loader.h" />
-    <ClInclude Include="move_script.h" />
     <ClInclude Include="oak\core\bounds.h" />
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\component.h" />
@@ -187,16 +175,6 @@
     <ClInclude Include="oak\oak.h" />
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="sample_scene.h" />
-    <ClInclude Include="tile.h" />
-    <ClInclude Include="world.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="res\bugfix.xml" />
-    <Xml Include="res\map.xml" />
-    <Xml Include="res\map2.xml" />
-    <Xml Include="res\test.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
