@@ -41,11 +41,18 @@ Sprite::Sprite(
   }
   else 
   {
-    shaderID = Resources::defaultShaderID;
+    shaderID = Resources::getDefaultShader().getID();
   }
   
   Texture *texture = Resources::findTextureBySrc(src);
-  this->textureID = texture->getID();
+  if (texture != nullptr)
+  {
+    this->textureID = texture->getID();
+  }
+  else
+  {
+    this->textureID = Resources::getDefaultTexture().getID();
+  }
   
   float xMin = ((float)srcX / texture->getWidth());
   float yMin = ((float)srcY / texture->getHeight());

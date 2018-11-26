@@ -2,7 +2,8 @@
 
 using namespace oak;
 
-uint Resources::defaultShaderID;
+Shader* Resources::defaultShader;
+Texture* Resources::defaultTexture;
 
 std::vector<Shader*> Resources::shaders;
 std::vector<Texture*> Resources::textures;
@@ -63,4 +64,14 @@ Texture* Resources::findTextureBySrc(std::string src)
   }
 
   return nullptr;
+}
+
+Shader& Resources::getDefaultShader()
+{
+  return *defaultShader;
+}
+
+Texture& Resources::getDefaultTexture()
+{
+  return *defaultTexture;
 }

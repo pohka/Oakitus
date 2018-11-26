@@ -19,7 +19,7 @@ namespace game
       ~Unit();
 
       Player* getOwner();
-      void setOwner(Player& player);
+     // void setOwner(Player& player);
       bool hasOwner();
 
       //void onStart() override;

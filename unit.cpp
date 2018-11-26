@@ -18,10 +18,11 @@ Player* Unit::getOwner()
   return owner;
 }
 
-void Unit::setOwner(Player& player)
-{
-  owner = &player;
-}
+//void Unit::setOwner(Player& player)
+//{
+//  owner = &player;
+//  player.assignedUnit = this;
+//}
 
 bool Unit::hasOwner()
 {

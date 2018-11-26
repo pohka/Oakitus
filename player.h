@@ -13,13 +13,18 @@ namespace game
   {
     static oak::IDGenerator idGen;
     uint playerID;
-    Unit* unit;
+    Unit* assignedUnit;
+    
 
     public :
+      
+
       Player();
       ~Player();
 
-      unsigned int getID();
+      uint getID();
+      void setAssignedUnit(Unit& unit);
+      Unit& getAssignedUnit();
   };
 }
 

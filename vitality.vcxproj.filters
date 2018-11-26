@@ -16,6 +16,9 @@
     <Filter Include="game\scenes">
       <UniqueIdentifier>{700637d8-c510-44f1-9b1a-cc6cbb5f40ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\prefabs">
+      <UniqueIdentifier>{32c3c0fa-6998-4335-83aa-3eb326c08a18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="unit.cpp">
       <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="prefabs\u_player.cpp">
+      <Filter>game\prefabs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="unit.h">
       <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="prefabs\u_player.h">
+      <Filter>game\prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
