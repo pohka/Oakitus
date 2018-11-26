@@ -40,7 +40,7 @@ void Oakitus::init()
     true
   );
 
-  Window::init(SCR_WIDTH, SCR_HEIGHT, "Oakitus");
+  Window::init(SCR_WIDTH, SCR_HEIGHT, SCR_WIDTH/2, SCR_HEIGHT/2, "Oakitus");
   GLFWwindow* window = Window::getGLFWWindow();
   
   //set default resources

@@ -4,19 +4,38 @@
 
 using namespace oak;
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+//void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 GLFWwindow* Window::window = nullptr;
-uint Window::screenW;
-uint Window::screenH;
+uint Window::viewportW;
+uint Window::viewportH;
+uint Window::windowW;
+uint Window::windowH;
+float Window::vpAspectRatio;
+float Window::windowToVPRatioX;
+float Window::windowToVPRatioY;
+
 float Window::worldToVPRatio;
 
-void Window::init(uint screenW, uint screenH, const char* title)
+void Window::init(
+  uint viewportW,
+  uint viewportH,
+  uint windowW,
+  uint windowH,
+  const char* title
+)
 {
-  Window::screenW = screenW;
-  Window::screenH = screenH;
+  Window::viewportW = viewportW;
+  Window::viewportH = viewportH;
+
+  Window::windowW = windowW;
+  Window::windowH = windowH;
+
+  updateWindowToVPRatio();
+
+  Window::vpAspectRatio = (float)viewportW / (float)viewportH;
 
   //2 units per dimension
-  float pixelsPerUnit = (float)screenH * 0.5f;
+  float pixelsPerUnit = (float)viewportH * 0.5f;
   worldToVPRatio = 1 / pixelsPerUnit;
 
   // glfw: initialize and configure
@@ -28,12 +47,23 @@ void Window::init(uint screenW, uint screenH, const char* title)
 
   // glfw window creation
   // --------------------
-  Window::window = glfwCreateWindow(screenW, screenH, title, NULL, NULL);
+  Window::window = glfwCreateWindow(windowW, windowH, title, NULL, NULL);
   if (Window::window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
   }
+
+  const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+  int monitorWidth = mode->width;
+  int monitorHeight = mode->height;
+
+  
+  int windowPosX = monitorWidth / 2 - windowW / 2;
+  int windowPosY = monitorHeight / 2 - windowH / 2;
+
+  glfwSetWindowPos(window, windowPosX, windowPosY);
   glfwMakeContextCurrent(window);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
@@ -55,18 +85,19 @@ GLFWwindow* Window::getGLFWWindow()
 
 float Window::getAspectRatio()
 {
-  return (float)screenW / (float)screenH;
+  return vpAspectRatio;
 }
 
 uint Window::getHeight()
 {
-  return screenH;
+  return viewportH;
 }
 
 uint Window::getWidth()
 {
-  return screenW;
+  return viewportW;
 }
+
 
 //converts pixels to viewport units
 float Window::worldToViewportCoords(float pixels)
@@ -78,14 +109,29 @@ float Window::worldToViewportCoords(float pixels)
 void Window::cursorMoved(GLFWwindow* window, double xpos, double ypos)
 {
   // invert y-coordinate
-  Input::setMouse((float)xpos, (float)Window::getHeight() - (float)ypos);
+  Input::setMouse((float)xpos * windowToVPRatioX, ((float)Window::windowH - (float)ypos) * windowToVPRatioY);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void Window::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
+  windowW = width;
+  windowH = height;
+
+  updateWindowToVPRatio();
+  //windowToVPRatioX = (float)Window::viewportW / (float)Window::windowW;
+  //windowToVPRatioY = (float)Window::viewportH / (float)Window::windowH;
   // make sure the viewport matches the new window dimensions; note that width and 
   // height will be significantly larger than specified on retina displays.
+ 
+
   glViewport(0, 0, width, height);
+}
+
+
+void Window::updateWindowToVPRatio()
+{
+  windowToVPRatioX = (float)Window::viewportW / (float)Window::windowW;
+  windowToVPRatioY = (float)Window::viewportH / (float)Window::windowH;
 }

@@ -1,15 +1,17 @@
 #ifndef POINT_H
 #define POINT_H
 
-class Point
+namespace oak
 {
-public:
-  float x;
-  float y;
+  class Point
+  {
+  public:
+    float x;
+    float y;
 
-  Point(float x, float y);
-  ~Point();
-
-};
+    Point(float x, float y);
+    ~Point();
+  };
+}
 
 #endif

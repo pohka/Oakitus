@@ -11,7 +11,7 @@
     <Filter Include="oak\core">
       <UniqueIdentifier>{f42a416d-40cd-4039-b847-9f0b7bd3149b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xml">
+    <Filter Include="oak\xml">
       <UniqueIdentifier>{b073a5de-c1d0-4e34-b8ca-4ee04d128a6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -67,9 +67,6 @@
     <ClCompile Include="oak\core\time.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="oak\core\point.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="oak\core\resources.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
@@ -77,10 +74,10 @@
       <Filter>main</Filter>
     </ClCompile>
     <ClCompile Include="oak\xml\xml_node.cpp">
-      <Filter>xml</Filter>
+      <Filter>oak\xml</Filter>
     </ClCompile>
     <ClCompile Include="oak\xml\xml_parser.cpp">
-      <Filter>xml</Filter>
+      <Filter>oak\xml</Filter>
     </ClCompile>
     <ClCompile Include="map_loader.cpp">
       <Filter>main</Filter>
@@ -100,13 +97,16 @@
     <ClCompile Include="oak\core\window.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="bounds.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
     <ClCompile Include="oak\core\debug.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="oak\core\oakitus.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\point.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\bounds.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -168,9 +168,6 @@
     <ClInclude Include="oak\oak.h">
       <Filter>oak</Filter>
     </ClInclude>
-    <ClInclude Include="oak\core\point.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="oak\core\resources.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -181,10 +178,10 @@
       <Filter>main</Filter>
     </ClInclude>
     <ClInclude Include="oak\xml\xml_node.h">
-      <Filter>xml</Filter>
+      <Filter>oak\xml</Filter>
     </ClInclude>
     <ClInclude Include="oak\xml\xml_parser.h">
-      <Filter>xml</Filter>
+      <Filter>oak\xml</Filter>
     </ClInclude>
     <ClInclude Include="tile.h">
       <Filter>main</Filter>
@@ -204,13 +201,16 @@
     <ClInclude Include="oak\core\window.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="bounds.h">
-      <Filter>main</Filter>
-    </ClInclude>
     <ClInclude Include="oak\core\debug.h">
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\oakitus.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\point.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\bounds.h">
       <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>

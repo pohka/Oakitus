@@ -1,9 +1,8 @@
 #include "bounds.h"
 #include <cstdlib>
-#include <iostream>
 
 
-using namespace game;
+using namespace oak;
 
 Bounds::Bounds(float x, float y, float w, float h)
 {

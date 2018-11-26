@@ -1,7 +1,7 @@
 #include "oak/oak.h"
 #include "world.h"
 #include "oak/core/window.h"
-#include "bounds.h"
+#include "oak/core/bounds.h"
 #include "oak/core/camera.h"
 
 #include <iostream>

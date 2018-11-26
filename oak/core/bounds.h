@@ -1,9 +1,9 @@
 #ifndef BOUNDS_H
 #define BOUNDS_H
 
-#include "oak/core/point.h"
+#include "point.h"
 
-namespace game
+namespace oak
 {
   class Bounds
   {
