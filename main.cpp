@@ -1,6 +1,7 @@
 #include <oak_setup.h>
 #include "scenes/main_scene.h"
-#include "player_resource.h"
+#include <core/player_resource.h>
+#include "player.h"
 
 using namespace oak;
 using namespace game;
@@ -14,8 +15,10 @@ int main()
 
 void Oakitus::load()
 {
-  PlayerResource::addPlayer();
+  BasePlayer* player1 = new Player();
+  PlayerResource::addPlayer(*player1);
 
-  Scene::loadFirstScene(*new MainScene());
+  Scene* mainScene = new MainScene();
+  Scene::loadFirstScene(*mainScene);
 }
 

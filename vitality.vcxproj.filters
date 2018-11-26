@@ -93,17 +93,20 @@
     <ClCompile Include="oak\oak_setup.h">
       <Filter>oak</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
-    <ClCompile Include="player_resource.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
     <ClCompile Include="unit.cpp">
       <Filter>game</Filter>
     </ClCompile>
     <ClCompile Include="prefabs\u_player.cpp">
       <Filter>game\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\player_resource.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\core\base_player.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,17 +188,23 @@
     <ClInclude Include="scenes\main_scene.h">
       <Filter>game\scenes</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>game</Filter>
-    </ClInclude>
-    <ClInclude Include="player_resource.h">
-      <Filter>game</Filter>
-    </ClInclude>
     <ClInclude Include="unit.h">
       <Filter>game</Filter>
     </ClInclude>
     <ClInclude Include="prefabs\u_player.h">
       <Filter>game\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\player_resource.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\command.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\base_player.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
