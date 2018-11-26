@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\include;C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\oak;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -144,9 +144,13 @@
     <ClCompile Include="oak\core\sprite.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
-    <ClCompile Include="oak\setup.h" />
+    <ClCompile Include="oak\oak_setup.h" />
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="player_resource.cpp" />
+    <ClCompile Include="scenes\main_scene.cpp" />
+    <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\bounds.h" />
@@ -171,10 +175,13 @@
     <ClInclude Include="oak\core\texture.h" />
     <ClInclude Include="oak\core\time.h" />
     <ClInclude Include="oak\core\types.h" />
-    <ClInclude Include="oak\game.h" />
     <ClInclude Include="oak\oak.h" />
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="player_resource.h" />
+    <ClInclude Include="scenes\main_scene.h" />
+    <ClInclude Include="unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,6 +13,9 @@
     <Filter Include="game">
       <UniqueIdentifier>{22fc5fb7-8bf1-48d0-8cb4-ec6be336aca9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\scenes">
+      <UniqueIdentifier>{700637d8-c510-44f1-9b1a-cc6cbb5f40ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -81,8 +84,20 @@
     <ClCompile Include="main.cpp">
       <Filter>game</Filter>
     </ClCompile>
-    <ClCompile Include="oak\setup.h">
+    <ClCompile Include="scenes\main_scene.cpp">
+      <Filter>game\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\oak_setup.h">
       <Filter>oak</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="player_resource.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="unit.cpp">
+      <Filter>game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +155,6 @@
     <ClInclude Include="oak\core\resources.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="oak\game.h">
-      <Filter>oak</Filter>
-    </ClInclude>
     <ClInclude Include="oak\xml\xml_node.h">
       <Filter>oak\xml</Filter>
     </ClInclude>
@@ -163,6 +175,18 @@
     </ClInclude>
     <ClInclude Include="oak\core\bounds.h">
       <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="scenes\main_scene.h">
+      <Filter>game\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="player_resource.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="unit.h">
+      <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,10 +9,8 @@
 #include "window.h"
 #include "shader.h"
 #include "resources.h"
-#include "../game.h"
 #include "scene.h"
 #include "texture.h"
-#include "../game.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
