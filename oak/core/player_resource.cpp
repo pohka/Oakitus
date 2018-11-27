@@ -35,3 +35,14 @@ BasePlayer* PlayerResource::getPlayerByIndex(uint index)
 {
   return players[index];
 }
+
+void PlayerResource::executeAllCommands()
+{
+  for (uint i = 0; i < MAX_PLAYER_COUNT; i++)
+  {
+    if (players[i] != nullptr)
+    {
+      players[i]->executeCommands();
+    }
+  }
+}

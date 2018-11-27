@@ -13,20 +13,25 @@ namespace game
   {
 
     Player* owner;
+    float moveSpeed;
+    static const float BASE_MOVE_SPEED;
 
     public:
       Unit();
       ~Unit();
 
       Player* getOwner();
-     // void setOwner(Player& player);
       bool hasOwner();
+      float getMoveSpeed();
+      void setMoveSpeed(float moveSpeed);
 
       //void onStart() override;
       //void onDestroy() override;
       //void onDraw() override;
       //void onUpdate() override;
   };
+
+  
 }
 
 #endif

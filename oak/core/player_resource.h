@@ -16,6 +16,7 @@ namespace oak
       static void addPlayer(BasePlayer& player);
       static BasePlayer* getPlayer(uint playerID);
       static BasePlayer* getPlayerByIndex(uint index);
+      static void executeAllCommands();
   };
 
   //Player* PlayerResource::players[4];

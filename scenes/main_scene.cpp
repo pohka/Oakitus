@@ -3,7 +3,7 @@
 #include "../unit.h"
 #include <core/player_resource.h>
 #include "../prefabs/u_player.h"
-#include "../player.h";
+#include "../player.h"
 
 using namespace game;
 using namespace oak;
@@ -24,11 +24,9 @@ void MainScene::onLoad()
   ground->addComponent(*groundSprite);
   ground->instantiate();
 
-  Player* player1 = new Player();
-  PlayerResource::addPlayer(*player1);
-  //Player* player1 = PlayerResource::getPlayerByIndex(0);
+  
+  Player* player1 = static_cast<Player*>(PlayerResource::getPlayerByIndex(0));
   Unit* playerUnit = new UPlayer();
   playerUnit->instantiate();
   player1->setAssignedUnit(*playerUnit);
-  
 }

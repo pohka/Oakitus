@@ -26,6 +26,11 @@ void BasePlayer::executeCommands()
 {
   for (uint i = 0; i < commands.size(); i++)
   {
-    commands[i].execute();
+    commands[i]->execute();
   }
+}
+
+void BasePlayer::addCommand(Command& command)
+{
+  commands.push_back(&command);
 }

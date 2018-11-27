@@ -19,6 +19,9 @@
     <Filter Include="game\prefabs">
       <UniqueIdentifier>{32c3c0fa-6998-4335-83aa-3eb326c08a18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\commands">
+      <UniqueIdentifier>{dbac625b-7601-4b5d-baba-3ce23c0ec280}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -107,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\movement.cpp">
+      <Filter>game\commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="player.h">
       <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\movement.h">
+      <Filter>game\commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

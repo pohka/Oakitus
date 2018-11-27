@@ -8,6 +8,7 @@
 
 namespace oak
 {
+  class Command;
 
   class BasePlayer
   {
@@ -15,19 +16,16 @@ namespace oak
     uint playerID;
     
     
-    
-
     public :
-      
-
       BasePlayer();
-      ~BasePlayer();
+      virtual ~BasePlayer();
 
       uint getID();
       void executeCommands();
+      void addCommand(Command& command);
 
     protected:
-      std::vector<Command> commands;
+      std::vector<Command*> commands;
   };
 }
 
