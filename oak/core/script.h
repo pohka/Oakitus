@@ -2,6 +2,7 @@
 #define SCRIPT_H
 
 #include "types.h"
+#include "entity.h"
 
 namespace oak
 {
@@ -14,7 +15,7 @@ namespace oak
     friend class Entity;
     public:
       Script();
-      virtual ~Script();
+     // virtual ~Script();
       virtual void onUpdate();
       virtual void init();
 

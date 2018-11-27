@@ -15,6 +15,8 @@
 
 namespace oak
 {
+  class Script;
+
   class Entity
   {
     friend class Oakitus;

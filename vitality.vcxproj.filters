@@ -22,6 +22,9 @@
     <Filter Include="game\commands">
       <UniqueIdentifier>{dbac625b-7601-4b5d-baba-3ce23c0ec280}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\scripts">
+      <UniqueIdentifier>{5c15be53-6554-4c40-98b9-d6079e0b3bfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -113,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="commands\movement.cpp">
       <Filter>game\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="scripts\camera_follow.cpp">
+      <Filter>game\scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="commands\movement.h">
       <Filter>game\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\camera_follow.h">
+      <Filter>game\scripts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

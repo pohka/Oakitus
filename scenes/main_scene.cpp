@@ -4,6 +4,7 @@
 #include <core/player_resource.h>
 #include "../prefabs/u_player.h"
 #include "../player.h"
+#include "../scripts/camera_follow.h"
 
 using namespace game;
 using namespace oak;
@@ -29,4 +30,5 @@ void MainScene::onLoad()
   Unit* playerUnit = new UPlayer();
   playerUnit->instantiate();
   player1->setAssignedUnit(*playerUnit);
+  playerUnit->addScript(*new CameraFollow());
 }

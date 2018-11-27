@@ -17,7 +17,6 @@ Movement::~Movement()
 
 void Movement::execute()
 {
- 
   float axisX = 0.0f;
   float axisY = 0.0f;
 
@@ -38,11 +37,13 @@ void Movement::execute()
     axisX += 1.0f;
   }
 
+  //if no input
+  if (axisX != 0.0f || axisY != 0.0f)
+  {
+    Unit* unit = &player->getAssignedUnit();
+    float speed = unit->getMoveSpeed() * Time::deltaTime;
 
-
-  Unit* unit = &player->getAssignedUnit();
-  float speed = unit->getMoveSpeed() * Time::deltaTime;
-
-  unit->position.x += speed * axisX;
-  unit->position.y += speed * axisY;
+    unit->position.x += speed * axisX;
+    unit->position.y += speed * axisY;
+  }
 }

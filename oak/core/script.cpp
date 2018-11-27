@@ -8,7 +8,7 @@ Script::Script()
   this->scriptID = 0;
 };
 
-Script::~Script() {};
+//Script::~Script() {};
 
 void Script::onUpdate()
 {
