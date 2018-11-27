@@ -15,6 +15,7 @@ namespace oak
     public:
 	    Component();
 	    virtual ~Component();
+      virtual void onStart();
 	    virtual void onUpdate();
 	    virtual void onDraw();
 

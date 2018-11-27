@@ -16,6 +16,8 @@ namespace game
         CastAbilitys(Player& player);
         ~CastAbilitys();
         void execute() override;
+      private:
+        glm::vec3 getCasterPosition();
     };
   }
 }

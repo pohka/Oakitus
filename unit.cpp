@@ -38,6 +38,7 @@ void Unit::setMoveSpeed(float moveSpeed)
 
 void Unit::addAbility(Ability& ability)
 {
+  ability.caster = this;
   abilitys.push_back(&ability);
 }
 

@@ -15,7 +15,7 @@ void Script::onUpdate()
 
 }
 
-void Script::init()
+void Script::onStart()
 {
 
 }

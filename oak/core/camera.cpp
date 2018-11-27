@@ -31,7 +31,7 @@ vec3 Camera::getNormalizedPos()
   );
 }
 
-vec3 Camera::cursorToWorld2D()
+vec2 Camera::cursorToWorld2D()
 {
   if (isOrthographic)
   {
@@ -47,10 +47,9 @@ vec3 Camera::cursorToWorld2D()
       Input::mousePos.y - halfH
     );
 
-    return glm::vec3(
+    return glm::vec2(
       cursorOffset.x + position.x,
-      cursorOffset.y + position.y,
-      0.0f
+      cursorOffset.y + position.y
     );
   }
   else

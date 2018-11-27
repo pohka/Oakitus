@@ -14,6 +14,7 @@ void MainScene::onLoad()
 {
   Resources::addTexture("player.png");
   Resources::addTexture("wall.jpg");
+  Resources::addTexture("face.png");
 
   Shader* shader = Resources::findShaderByName("default");
   uint shaderID = shader->getID();

@@ -153,9 +153,11 @@
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="prefabs\arrow.cpp" />
     <ClCompile Include="prefabs\camera_controller.cpp" />
     <ClCompile Include="prefabs\u_player.cpp" />
     <ClCompile Include="scenes\main_scene.cpp" />
+    <ClCompile Include="scripts\linear_projectile.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,9 +194,11 @@
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="prefabs\arrow.h" />
     <ClInclude Include="prefabs\camera_controller.h" />
     <ClInclude Include="prefabs\u_player.h" />
     <ClInclude Include="scenes\main_scene.h" />
+    <ClInclude Include="scripts\linear_projectile.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

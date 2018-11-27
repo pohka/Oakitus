@@ -9,6 +9,7 @@
 namespace game
 {
   class Player;
+  class Ability;
 
   class Unit : public oak::Entity
   {

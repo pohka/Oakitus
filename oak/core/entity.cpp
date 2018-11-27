@@ -70,7 +70,14 @@ std::string Entity::getName()
 
 void Entity::onStart()
 {
-
+  for (Component* comp : components)
+  {
+    comp->onStart();
+  }
+  for (Script* script : scripts)
+  {
+    script->onStart();
+  }
 }
 
 void Entity::onDestroy()

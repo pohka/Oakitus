@@ -9,6 +9,8 @@ Component::Component()
 
 Component::~Component() {}
 
+void Component::onStart() {}
+
 void Component::onUpdate() {}
 
 void Component::onDraw(){}

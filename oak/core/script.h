@@ -16,8 +16,9 @@ namespace oak
     public:
       Script();
      // virtual ~Script();
+      virtual void onStart();
       virtual void onUpdate();
-      virtual void init();
+      
 
 
     protected:

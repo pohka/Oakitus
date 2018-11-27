@@ -18,7 +18,7 @@ namespace oak
       static bool isOrthographic;
 
       static void init(glm::vec3 position, glm::vec3 front, glm::vec3 up, float fov, bool isOrthographic);
-      static glm::vec3 cursorToWorld2D();
+      static glm::vec2 cursorToWorld2D();
       static bool getIsOrthographic();
       static glm::vec3 viewportToWorldCoor(float vpPosX, float vpPosY);
       static glm::vec3 getNormalizedPos();
