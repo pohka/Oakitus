@@ -93,9 +93,6 @@
     <ClCompile Include="main.cpp">
       <Filter>game</Filter>
     </ClCompile>
-    <ClCompile Include="scenes\main_scene.cpp">
-      <Filter>game\scenes</Filter>
-    </ClCompile>
     <ClCompile Include="oak\oak_setup.h">
       <Filter>oak</Filter>
     </ClCompile>
@@ -117,8 +114,11 @@
     <ClCompile Include="commands\movement.cpp">
       <Filter>game\commands</Filter>
     </ClCompile>
-    <ClCompile Include="scripts\camera_follow.cpp">
-      <Filter>game\scripts</Filter>
+    <ClCompile Include="prefabs\camera_controller.cpp">
+      <Filter>game\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="scenes\main_scene.cpp">
+      <Filter>game\scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -221,8 +221,8 @@
     <ClInclude Include="commands\movement.h">
       <Filter>game\commands</Filter>
     </ClInclude>
-    <ClInclude Include="scripts\camera_follow.h">
-      <Filter>game\scripts</Filter>
+    <ClInclude Include="prefabs\camera_controller.h">
+      <Filter>game\prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
