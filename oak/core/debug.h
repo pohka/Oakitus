@@ -49,8 +49,8 @@ namespace oak
 }
 
 
-#define LOG_ERROR Debug(__FUNCTION__, __FILE__, __LINE__, true)
-#define LOG_WARNING Debug(__FUNCTION__, __FILE__, __LINE__, false)
-#define LOG Debug()
+#define LOG_ERROR oak::Debug(__FUNCTION__, __FILE__, __LINE__, true)
+#define LOG_WARNING oak::Debug(__FUNCTION__, __FILE__, __LINE__, false)
+#define LOG oak::Debug()
 
 #endif

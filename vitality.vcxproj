@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="oak\core\bounds.cpp" />
@@ -132,6 +133,8 @@
     <ClCompile Include="oak\core\debug.cpp" />
     <ClCompile Include="oak\core\entity.cpp" />
     <ClCompile Include="oak\core\oakitus.cpp" />
+    <ClCompile Include="oak\core\base_player.cpp" />
+    <ClCompile Include="oak\core\player_resource.cpp" />
     <ClCompile Include="oak\core\point.cpp" />
     <ClCompile Include="oak\core\window.cpp" />
     <ClCompile Include="oak\core\id_generator.cpp" />
@@ -148,18 +151,21 @@
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="player_resource.cpp" />
     <ClCompile Include="prefabs\u_player.cpp" />
     <ClCompile Include="scenes\main_scene.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="commands\movement.h" />
     <ClInclude Include="oak\core\bounds.h" />
     <ClInclude Include="oak\core\camera.h" />
+    <ClInclude Include="oak\core\command.h" />
     <ClInclude Include="oak\core\component.h" />
     <ClInclude Include="oak\core\debug.h" />
     <ClInclude Include="oak\core\entity.h" />
     <ClInclude Include="oak\core\oakitus.h" />
+    <ClInclude Include="oak\core\base_player.h" />
+    <ClInclude Include="oak\core\player_resource.h" />
     <ClInclude Include="oak\core\point.h" />
     <ClInclude Include="oak\core\window.h" />
     <ClInclude Include="oak\core\id_generator.h" />
@@ -180,7 +186,6 @@
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="player_resource.h" />
     <ClInclude Include="prefabs\u_player.h" />
     <ClInclude Include="scenes\main_scene.h" />
     <ClInclude Include="unit.h" />

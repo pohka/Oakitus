@@ -11,6 +11,7 @@
 #include "resources.h"
 #include "scene.h"
 #include "texture.h"
+#include "player_resource.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -78,6 +79,7 @@ int Oakitus::loop()
 
     Entity::instantiateQueuedEnts();
 
+    PlayerResource::executeAllCommands();
     Entity::updateInstances();
     Entity::drawInstances();
 

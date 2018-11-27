@@ -1,25 +1,23 @@
 #include "player.h"
+#include "commands/movement.h"
 
-using namespace oak;
 using namespace game;
-
-IDGenerator Player::idGen = IDGenerator();
-
+using namespace oak;
 
 Player::Player()
 {
-  playerID = idGen.nextID();
   assignedUnit = nullptr;
+
+  command::Movement* moveCmd = new command::Movement(*this);
+  addCommand(*moveCmd);
 }
 
 Player::~Player()
 {
-
-}
-
-uint Player::getID()
-{
-  return playerID;
+  if (assignedUnit != nullptr)
+  {
+    delete assignedUnit;
+  }
 }
 
 void Player::setAssignedUnit(Unit& unit)
