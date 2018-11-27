@@ -4,18 +4,21 @@
 #include <core/command.h>
 #include "../player.h"
 
-namespace command
+namespace game
 {
-  class Movement : public oak::Command
+  namespace command
   {
-    game::Player* player;
+    class Movement : public oak::Command
+    {
+      game::Player* player;
 
     public:
       Movement(game::Player& player);
       ~Movement();
 
       void execute() override;
-  };
+    };
+  }
 }
 
 #endif

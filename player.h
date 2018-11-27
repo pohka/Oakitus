@@ -17,7 +17,7 @@ namespace game
       ~Player();
 
       void setAssignedUnit(Unit& unit);
-      Unit& getAssignedUnit();
+      Unit* getAssignedUnit();
   };
 }
 

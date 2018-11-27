@@ -25,6 +25,9 @@
     <Filter Include="game\scripts">
       <UniqueIdentifier>{5c15be53-6554-4c40-98b9-d6079e0b3bfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\abilitys">
+      <UniqueIdentifier>{69d5299a-3674-4161-8be4-e81dd864ed10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -119,6 +122,12 @@
     </ClCompile>
     <ClCompile Include="scenes\main_scene.cpp">
       <Filter>game\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="abilitys\shoot.cpp">
+      <Filter>game\abilitys</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\cast_abilitys.cpp">
+      <Filter>game\commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +232,15 @@
     </ClInclude>
     <ClInclude Include="prefabs\camera_controller.h">
       <Filter>game\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="ability.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitys\shoot.h">
+      <Filter>game\abilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\cast_abiltiys.h">
+      <Filter>game\commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

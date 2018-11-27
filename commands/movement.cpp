@@ -3,7 +3,7 @@
 
 using namespace oak;
 using namespace game;
-using namespace command;
+using namespace game::command;
 
 Movement::Movement(Player& player)
 {
@@ -40,7 +40,7 @@ void Movement::execute()
   //if no input
   if (axisX != 0.0f || axisY != 0.0f)
   {
-    Unit* unit = &player->getAssignedUnit();
+    Unit* unit = player->getAssignedUnit();
     float speed = unit->getMoveSpeed() * Time::deltaTime;
 
     unit->position.x += speed * axisX;

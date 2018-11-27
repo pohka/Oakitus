@@ -1,5 +1,6 @@
 #include "player.h"
 #include "commands/movement.h"
+#include "commands/cast_abiltiys.h"
 
 using namespace game;
 using namespace oak;
@@ -10,6 +11,8 @@ Player::Player()
 
   command::Movement* moveCmd = new command::Movement(*this);
   addCommand(*moveCmd);
+  command::CastAbilitys* abilityCastCmd = new command::CastAbilitys(*this);
+  addCommand(*abilityCastCmd);
 }
 
 Player::~Player()
@@ -25,7 +28,7 @@ void Player::setAssignedUnit(Unit& unit)
   assignedUnit = &unit;
 }
 
-Unit& Player::getAssignedUnit()
+Unit* Player::getAssignedUnit()
 {
-  return *assignedUnit;
+  return assignedUnit;
 }

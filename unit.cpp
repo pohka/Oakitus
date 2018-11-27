@@ -35,3 +35,17 @@ void Unit::setMoveSpeed(float moveSpeed)
 {
   this->moveSpeed = moveSpeed;
 }
+
+void Unit::addAbility(Ability& ability)
+{
+  abilitys.push_back(&ability);
+}
+
+Ability* Unit::getAbilityByIndex(uint index)
+{
+  if (index >= abilitys.size())
+  {
+    return nullptr;
+  }
+  return abilitys[index];
+}

@@ -4,6 +4,7 @@
 #include <core/entity.h>
 
 #include "player.h"
+#include "ability.h"
 
 namespace game
 {
@@ -15,6 +16,7 @@ namespace game
     Player* owner;
     float moveSpeed;
     static const float BASE_MOVE_SPEED;
+    std::vector<Ability*> abilitys;
 
     public:
       Unit();
@@ -24,6 +26,8 @@ namespace game
       bool hasOwner();
       float getMoveSpeed();
       void setMoveSpeed(float moveSpeed);
+      void addAbility(Ability& ability);
+      Ability* getAbilityByIndex(uint index);
 
       //void onStart() override;
       //void onDestroy() override;
