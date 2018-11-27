@@ -9,7 +9,6 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "camera.h"
-#include "texture.h"
 #include "window.h"
 #include "resources.h"
 #include "entity.h"
@@ -43,7 +42,38 @@ Sprite::Sprite(
   {
     shaderID = Resources::getDefaultShader().getID();
   }
+  Texture *texture = setTextureIDFromSrc(src);
   
+  if (texture != nullptr)
+  {
+    float xMin = ((float)srcX / texture->getWidth());
+    float yMin = ((float)srcY / texture->getHeight());
+    float xMax = ((float)(srcX + srcW) / texture->getWidth());
+    float yMax = ((float)(srcY + srcH) / texture->getHeight());
+
+    construct(xMin, xMax, yMin, yMax);
+  }
+  else
+  {
+    construct(0.0f, 1.0f, 0.0f, 1.0f);
+  }
+}
+
+Sprite::Sprite(
+  std::string src,
+  float displayW,
+  float displayH
+)
+{
+  this->w = displayW;
+  this->h = displayH;
+  shaderID = Resources::getDefaultShader().getID();
+  setTextureIDFromSrc(src);
+  construct(0.0f, 1.0f, 0.0f, 1.0f);
+}
+
+Texture* Sprite::setTextureIDFromSrc(std::string src)
+{
   Texture *texture = Resources::findTextureBySrc(src);
   if (texture != nullptr)
   {
@@ -53,14 +83,11 @@ Sprite::Sprite(
   {
     this->textureID = Resources::getDefaultTexture().getID();
   }
-  
-  float xMin = ((float)srcX / texture->getWidth());
-  float yMin = ((float)srcY / texture->getHeight());
-  float xMax = ((float)(srcX+srcW) / texture->getWidth());
-  float yMax = ((float)(srcY+srcH) / texture->getHeight());
+  return texture;
+}
 
-  float screenH = (float)Window::getHeight();
-
+void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
+{
   float xx = Window::worldToViewportCoords(w);
   float yy = Window::worldToViewportCoords(h);
 
@@ -74,7 +101,7 @@ Sprite::Sprite(
     -xx,  yy,       xMin, yMin, //top left
     -xx, -yy,       xMin, yMax, //botom left
   };
-  
+
   glGenVertexArrays(1, &this->VAO);
   glGenBuffers(1, &this->VBO);
 
@@ -90,8 +117,6 @@ Sprite::Sprite(
   // texture coord attribute
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
   glEnableVertexAttribArray(1);
-  
-  
 }
 
 Sprite::~Sprite()
@@ -112,7 +137,6 @@ unsigned int Sprite::getVAO()
 
 void Sprite::onDraw()
 {
-  
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, this->textureID);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);

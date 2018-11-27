@@ -6,6 +6,7 @@
 #include "component.h"
 #include "shader.h"
 #include "types.h"
+#include "texture.h"
 
 namespace oak
 {
@@ -14,32 +15,41 @@ namespace oak
     std::string src;
     uint VBO, VAO;
 
-  public:
-    float w;
-    float h;
-    int srcX;
-    int srcY;
-    int srcW;
-    int srcH;
-    uint textureID;
-    uint shaderID;
+    public:
+      float w;
+      float h;
+      int srcX;
+      int srcY;
+      int srcW;
+      int srcH;
+      uint textureID;
+      uint shaderID;
 
-    Sprite(
-      std::string src, 
-      int srcX, 
-      int srcY, 
-      int srcW, 
-      int srcH, 
-      float displayW, 
-      float displayH, 
-      uint shaderID
-    );
-    ~Sprite();
-    std::string getSrc();
-    uint getVAO();
-    void onDraw() override;
+      Sprite(
+        std::string src, 
+        int srcX, 
+        int srcY, 
+        int srcW, 
+        int srcH, 
+        float displayW, 
+        float displayH, 
+        uint shaderID
+      );
+
+      Sprite(
+        std::string src,
+        float displayW,
+        float displayH
+      );
+
+      ~Sprite();
+      std::string getSrc();
+      uint getVAO();
+      void onDraw() override;
     
-
+    private:
+      void construct(float xMin, float xMax, float yMin, float yMax);
+      Texture* setTextureIDFromSrc(std::string src);
   };
 }
 

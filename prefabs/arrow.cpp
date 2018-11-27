@@ -7,7 +7,7 @@ using namespace oak;
 
 Arrow::Arrow()
 {
-  Sprite* sprite = new Sprite("face.png", 0, 0, 1000, 1000, 16.0f, 16.0f, NULL);
+  Sprite* sprite = new Sprite("face.png", 16.0f, 16.0f);
   addComponent(*sprite);
 
 
