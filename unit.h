@@ -21,7 +21,7 @@ namespace game
 
     public:
       Unit();
-      ~Unit();
+      virtual ~Unit();
 
       Player* getOwner();
       bool hasOwner();

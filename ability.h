@@ -13,7 +13,7 @@ namespace game
 
     public:
     //  Ability();
-    //  ~Ability();
+      virtual ~Ability() = default;
       Unit* caster;
       virtual void cast() = 0;
   };

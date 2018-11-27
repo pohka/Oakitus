@@ -13,13 +13,13 @@ namespace game
       uint targetEntityID;
       bool hasTarget;
 
-    public:
-      CameraController();
-      ~CameraController();
+      public:
+        CameraController();
+        ~CameraController();
 
-      void onUpdate() override;
+        void onUpdate() override;
 
-      void followTarget(uint entityID);
+        void followTarget(uint entityID);
     };
   }
 }

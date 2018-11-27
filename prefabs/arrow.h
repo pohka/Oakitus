@@ -10,9 +10,9 @@ namespace game
     class Arrow : public oak::Entity
     {
 
-    public:
-      Arrow();
-      ~Arrow();
+      public:
+        Arrow();
+        ~Arrow();
     };
   }
 }

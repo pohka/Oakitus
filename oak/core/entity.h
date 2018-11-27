@@ -52,7 +52,7 @@ namespace oak
       std::string name;
 
 	    Entity();
-	    ~Entity();
+	    virtual ~Entity();
 	    void addComponent(Component& component);
 	    void addScript(Script& script);
       void instantiate();

@@ -1,17 +1,17 @@
 #ifndef U_DUMMY_H
 #define U_DUMMY_H
 
-#include <core/entity.h>
+#include "../unit.h"
 
 namespace game
 {
   namespace prefab
   {
-    class UDummy : public oak::Entity
+    class UDummy : public Unit
     {
-    public:
-      UDummy();
-      ~UDummy();
+      public:
+        UDummy();
+        ~UDummy();
 
     };
   }

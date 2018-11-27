@@ -1,4 +1,5 @@
 #include "unit.h"
+#include <debug.h>
 
 using namespace game;
 
@@ -12,7 +13,13 @@ Unit::Unit()
 
 Unit::~Unit()
 {
-
+  owner = nullptr;
+  while (!abilitys.empty())
+  {
+    delete abilitys[0];
+    abilitys.erase(abilitys.begin());
+  }
+  LOG << "deallocated unit: " << name;
 }
 
 Player* Unit::getOwner()

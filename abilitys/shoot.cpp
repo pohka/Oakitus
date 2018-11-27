@@ -11,7 +11,7 @@ Shoot::Shoot()
 
 Shoot::~Shoot()
 {
-
+  LOG << "Delocated shoot ability";
 }
 
 void Shoot::cast()

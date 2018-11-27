@@ -20,8 +20,6 @@ CastAbilitys::~CastAbilitys()
 
 void CastAbilitys::execute()
 {
-
-
   if (Input::isKeyDown(KeyCode::Q))
   {
     Unit* unit = player->getAssignedUnit();

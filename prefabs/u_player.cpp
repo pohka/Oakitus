@@ -8,6 +8,7 @@ using namespace game::ability;
 
 UPlayer::UPlayer()
 {
+  name = "u_player";
   Sprite* sprite = new Sprite("player.png", 0, 0, 32, 40, 32.0f, 40.0f, NULL);
   addComponent(*sprite);
   addAbility(*new Shoot());

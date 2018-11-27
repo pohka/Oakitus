@@ -9,7 +9,7 @@ UDummy::UDummy()
   Sprite* sprite = new Sprite("dummy.png", 0, 0, 32, 40, 32.0f, 40.0f, NULL);
   addComponent(*sprite);
 
-
+  this->name = "dummy";
 }
 
 UDummy::~UDummy()

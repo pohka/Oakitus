@@ -11,11 +11,12 @@ namespace oak
   class Script
   {
     uint scriptID;
+    
 
     friend class Entity;
     public:
       Script();
-     // virtual ~Script();
+      virtual ~Script() = default;
       virtual void onStart();
       virtual void onUpdate();
       
