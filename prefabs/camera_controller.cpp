@@ -1,7 +1,7 @@
 #include "camera_controller.h"
 #include <core/camera.h>
 
-using namespace game;
+using namespace game::prefab;
 using namespace oak;
 
 CameraController::CameraController()

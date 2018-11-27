@@ -5,13 +5,16 @@
 
 namespace game
 {
-  class Arrow : public oak::Entity
+  namespace prefab
   {
+    class Arrow : public oak::Entity
+    {
 
     public:
       Arrow();
       ~Arrow();
-  };
+    };
+  }
 }
 
 #endif

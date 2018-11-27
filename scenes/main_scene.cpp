@@ -5,7 +5,7 @@
 #include "../prefabs/u_player.h"
 #include "../player.h"
 #include "../prefabs/camera_controller.h"
-#include "../prefabs/dummy.h"
+#include "../prefabs/u_dummy.h"
 
 using namespace game;
 using namespace oak;
@@ -30,15 +30,15 @@ void MainScene::onLoad()
 
   
   Player* player1 = static_cast<Player*>(PlayerResource::getPlayerByIndex(0));
-  Unit* playerUnit = new UPlayer();
+  Unit* playerUnit = new prefab::UPlayer();
   playerUnit->instantiate();
   player1->setAssignedUnit(*playerUnit);
 
 
-  CameraController* camController = new CameraController();
+  prefab::CameraController* camController = new prefab::CameraController();
   camController->followTarget(playerUnit->getID());
   camController->instantiate();
 
-  Dummy* dummy = new Dummy();
+  prefab::UDummy* dummy = new prefab::UDummy();
   dummy->instantiate(500.0f, 100.0f);
 }

@@ -6,18 +6,21 @@
 
 namespace game
 {
-  class CameraController : public oak::Entity
+  namespace prefab
   {
-    uint targetEntityID;
-    bool hasTarget;
+    class CameraController : public oak::Entity
+    {
+      uint targetEntityID;
+      bool hasTarget;
 
-  public:
-    CameraController();
-    ~CameraController();
+    public:
+      CameraController();
+      ~CameraController();
 
-    void onUpdate() override;
+      void onUpdate() override;
 
-    void followTarget(uint entityID);
-  };
+      void followTarget(uint entityID);
+    };
+  }
 }
 #endif

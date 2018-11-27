@@ -2,9 +2,9 @@
 #include <oak.h>
 #include "../abilitys/shoot.h"
 
-using namespace game;
+using namespace game::prefab;
 using namespace oak;
-using namespace ability;
+using namespace game::ability;
 
 UPlayer::UPlayer()
 {

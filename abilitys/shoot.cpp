@@ -17,6 +17,6 @@ Shoot::~Shoot()
 void Shoot::cast()
 {
   LOG << "casting";
-  Arrow* arrow = new Arrow();
+  prefab::Arrow* arrow = new prefab::Arrow();
   arrow->instantiate(caster->position.x, caster->position.y);
 }

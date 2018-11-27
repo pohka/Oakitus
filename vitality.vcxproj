@@ -155,7 +155,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="prefabs\arrow.cpp" />
     <ClCompile Include="prefabs\camera_controller.cpp" />
-    <ClCompile Include="prefabs\dummy.cpp" />
+    <ClCompile Include="prefabs\u_dummy.cpp" />
     <ClCompile Include="prefabs\u_player.cpp" />
     <ClCompile Include="scenes\main_scene.cpp" />
     <ClCompile Include="scripts\linear_projectile.cpp" />
@@ -197,7 +197,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="prefabs\arrow.h" />
     <ClInclude Include="prefabs\camera_controller.h" />
-    <ClInclude Include="prefabs\dummy.h" />
+    <ClInclude Include="prefabs\u_dummy.h" />
     <ClInclude Include="prefabs\u_player.h" />
     <ClInclude Include="scenes\main_scene.h" />
     <ClInclude Include="scripts\linear_projectile.h" />

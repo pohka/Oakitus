@@ -135,7 +135,7 @@
     <ClCompile Include="scripts\linear_projectile.cpp">
       <Filter>game\scripts</Filter>
     </ClCompile>
-    <ClCompile Include="prefabs\dummy.cpp">
+    <ClCompile Include="prefabs\u_dummy.cpp">
       <Filter>game\prefabs</Filter>
     </ClCompile>
   </ItemGroup>
@@ -257,7 +257,7 @@
     <ClInclude Include="scripts\linear_projectile.h">
       <Filter>game\scripts</Filter>
     </ClInclude>
-    <ClInclude Include="prefabs\dummy.h">
+    <ClInclude Include="prefabs\u_dummy.h">
       <Filter>game\prefabs</Filter>
     </ClInclude>
   </ItemGroup>

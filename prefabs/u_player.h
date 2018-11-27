@@ -5,12 +5,15 @@
 
 namespace game
 {
-  class UPlayer : public Unit
+  namespace prefab
   {
-    public:
-      UPlayer();
-      ~UPlayer();
-  };
+    class UPlayer : public Unit
+    {
+      public:
+        UPlayer();
+        ~UPlayer();
+    };
+  }
 }
 
 #endif

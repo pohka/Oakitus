@@ -2,7 +2,7 @@
 #include <oak.h>
 #include "../scripts/linear_projectile.h"
 
-using namespace game;
+using namespace game::prefab;
 using namespace oak;
 
 Arrow::Arrow()
