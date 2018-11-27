@@ -132,7 +132,6 @@
     <ClCompile Include="oak\core\bounds.cpp" />
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
-    <ClCompile Include="oak\core\debug.cpp" />
     <ClCompile Include="oak\core\entity.cpp" />
     <ClCompile Include="oak\core\oakitus.cpp" />
     <ClCompile Include="oak\core\base_player.cpp" />
@@ -149,6 +148,7 @@
     <ClCompile Include="oak\core\sprite.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
+    <ClCompile Include="oak\debug\logger.cpp" />
     <ClCompile Include="oak\oak_setup.h" />
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
@@ -170,7 +170,6 @@
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\command.h" />
     <ClInclude Include="oak\core\component.h" />
-    <ClInclude Include="oak\core\debug.h" />
     <ClInclude Include="oak\core\entity.h" />
     <ClInclude Include="oak\core\oakitus.h" />
     <ClInclude Include="oak\core\base_player.h" />
@@ -191,6 +190,8 @@
     <ClInclude Include="oak\core\texture.h" />
     <ClInclude Include="oak\core\time.h" />
     <ClInclude Include="oak\core\types.h" />
+    <ClInclude Include="oak\debug.h" />
+    <ClInclude Include="oak\debug\logger.h" />
     <ClInclude Include="oak\oak.h" />
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />

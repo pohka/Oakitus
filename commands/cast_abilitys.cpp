@@ -1,6 +1,6 @@
 #include "cast_abiltiys.h"
 #include "../unit.h"
-#include <core/debug.h>
+#include <debug.h>
 
 using namespace game;
 using namespace oak;

@@ -1,5 +1,5 @@
 #include "movement.h"
-#include <core/debug.h>
+#include <debug.h>
 
 using namespace oak;
 using namespace game;
