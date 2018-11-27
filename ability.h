@@ -15,7 +15,7 @@ namespace game
     //  Ability();
     //  ~Ability();
       Unit* caster;
-      virtual void cast(float x, float y) = 0;
+      virtual void cast() = 0;
   };
 }
 #endif

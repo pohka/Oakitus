@@ -26,8 +26,8 @@ void CastAbilitys::execute()
   {
     Unit* unit = player->getAssignedUnit();
     Ability* ability = unit->getAbilityByIndex(0);
-    glm::vec3 pos = getCasterPosition();
-    ability->cast(pos.x, pos.y);
+    glm::vec3 casterPos = getCasterPosition();
+    ability->cast();
   }
 }
 

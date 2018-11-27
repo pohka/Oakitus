@@ -48,6 +48,13 @@ void Entity::instantiate()
   Entity::pendingEntityInstances.push(this);
 }
 
+void oak::Entity::instantiate(float x, float y)
+{
+  this->position.x = x;
+  this->position.y = y;
+  Entity::pendingEntityInstances.push(this);
+}
+
 void Entity::destroy()
 {
   Entity::queuedDestroyEntityIDs.push(entityID);

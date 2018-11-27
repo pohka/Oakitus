@@ -5,15 +5,14 @@ using namespace game;
 using namespace oak;
 
 LinearProjectile::LinearProjectile(
-  glm::vec2 spawnOrigin,
   glm::vec2 targetPos,
   float speed,
   float maxDistance,
   bool destroyOnHit
 )
 {
-  this->spawnOrigin = spawnOrigin;
-  this->velocity = glm::normalize(targetPos - spawnOrigin) * speed;
+  this->targetPos = targetPos;
+  this->speed = speed;
   this->maxDistance = maxDistance;
   this->destroyOnHit = destroyOnHit;
 }
@@ -25,8 +24,8 @@ LinearProjectile::~LinearProjectile()
 
 void LinearProjectile::onStart()
 {
-  entity->position.x = spawnOrigin.x;
-  entity->position.y = spawnOrigin.y;
+  this->spawnOrigin = glm::vec2(entity->position.x, entity->position.y);
+  this->velocity = glm::normalize(targetPos - spawnOrigin) * speed;
 }
 
 void LinearProjectile::onUpdate()

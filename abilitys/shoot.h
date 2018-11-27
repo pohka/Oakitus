@@ -13,7 +13,7 @@ namespace game
         Shoot();
         ~Shoot();
 
-        void cast(float x, float y) override;
+        void cast() override;
     };
   }
 }

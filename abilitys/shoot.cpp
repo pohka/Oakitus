@@ -14,9 +14,9 @@ Shoot::~Shoot()
 
 }
 
-void Shoot::cast(float x, float y)
+void Shoot::cast()
 {
   LOG << "casting";
-  Arrow* arrow = new Arrow(x, y);
-  arrow->instantiate();
+  Arrow* arrow = new Arrow();
+  arrow->instantiate(caster->position.x, caster->position.y);
 }

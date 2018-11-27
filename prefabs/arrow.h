@@ -9,7 +9,7 @@ namespace game
   {
 
     public:
-      Arrow(float x, float y);
+      Arrow();
       ~Arrow();
   };
 }

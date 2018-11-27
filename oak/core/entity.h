@@ -56,6 +56,7 @@ namespace oak
 	    void addComponent(Component& component);
 	    void addScript(Script& script);
       void instantiate();
+      void instantiate(float x, float y);
 	    void destroy();
 	    uint getID();
       std::string getName();

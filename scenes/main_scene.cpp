@@ -5,6 +5,7 @@
 #include "../prefabs/u_player.h"
 #include "../player.h"
 #include "../prefabs/camera_controller.h"
+#include "../prefabs/dummy.h"
 
 using namespace game;
 using namespace oak;
@@ -15,6 +16,7 @@ void MainScene::onLoad()
   Resources::addTexture("player.png");
   Resources::addTexture("wall.jpg");
   Resources::addTexture("face.png");
+  Resources::addTexture("dummy.png");
 
   Shader* shader = Resources::findShaderByName("default");
   uint shaderID = shader->getID();
@@ -36,4 +38,7 @@ void MainScene::onLoad()
   CameraController* camController = new CameraController();
   camController->followTarget(playerUnit->getID());
   camController->instantiate();
+
+  Dummy* dummy = new Dummy();
+  dummy->instantiate(500.0f, 100.0f);
 }

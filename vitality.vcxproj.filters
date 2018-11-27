@@ -135,6 +135,9 @@
     <ClCompile Include="scripts\linear_projectile.cpp">
       <Filter>game\scripts</Filter>
     </ClCompile>
+    <ClCompile Include="prefabs\dummy.cpp">
+      <Filter>game\prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="scripts\linear_projectile.h">
       <Filter>game\scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="prefabs\dummy.h">
+      <Filter>game\prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
