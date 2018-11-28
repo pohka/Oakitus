@@ -2,7 +2,7 @@
 #define ABILITY_H
 
 #include "unit.h"
-
+#include <core/id_generator.h>
 
 namespace game
 {
@@ -31,7 +31,13 @@ namespace game
 
   class Ability
   {
+    static oak::IDGenerator idGen;
+    uint id;
+    float startTime;
+    float endTime;
+
     public:
+      Ability();
       virtual ~Ability() = default;
       Unit* caster;
       void castOnTarget(Unit& unit);
@@ -40,11 +46,15 @@ namespace game
 
       CastingState getCastingState() const;
       TargetType getTargetType() const;
+      uint getID() const;
+      float getStartTime() const;
+      float getEndTime() const;
 
       virtual void onCast(); //when casting was successfully requested
       virtual void onAbilityStart(); //when the precast ends
       virtual void onAbilityEnd(); //when the cast time ends
 
+      void setCastingState(CastingState state);
 
     protected:
       Target target;
@@ -53,6 +63,8 @@ namespace game
       CastingState castingState = CastingState::NONE;
       TargetType targetType = TargetType::NO_TARGET;
       
+    private:
+      void beginCasting();
   };
 }
 #endif

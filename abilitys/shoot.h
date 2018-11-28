@@ -14,6 +14,8 @@ namespace game
         ~Shoot();
 
         void onCast() override;
+        void onAbilityStart() override;
+        void onAbilityEnd() override;
     };
   }
 }

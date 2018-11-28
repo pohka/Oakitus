@@ -29,11 +29,12 @@ namespace game
       void setMoveSpeed(float moveSpeed);
       void addAbility(Ability& ability);
       Ability* getAbilityByIndex(uint index) const;
+      
 
       //void onStart() override;
       //void onDestroy() override;
       //void onDraw() override;
-      //void onUpdate() override;
+      void onUpdate();
   };
 
   

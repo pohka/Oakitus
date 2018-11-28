@@ -1,5 +1,6 @@
 #include "unit.h"
 #include <debug.h>
+#include <core/time.h>
 
 using namespace game;
 
@@ -56,4 +57,25 @@ Ability* Unit::getAbilityByIndex(uint index) const
     return nullptr;
   }
   return abilitys[index];
+}
+
+void Unit::onUpdate()
+{
+ 
+  float now = oak::Time::getTimeNow();
+
+  //update ability casting states
+  for (Ability* abil : abilitys)
+  {
+    if (abil->getCastingState() == CastingState::PRECAST && now >= abil->getStartTime())
+    {
+      abil->onAbilityStart();
+      abil->setCastingState(CastingState::CASTING);
+    }
+    if (abil->getCastingState() == CastingState::CASTING && now >= abil->getEndTime())
+    {
+      abil->onAbilityEnd();
+      abil->setCastingState(CastingState::NONE);
+    }
+  }
 }

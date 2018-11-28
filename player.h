@@ -11,6 +11,7 @@ namespace game
   class Player : public oak::BasePlayer
   {
     Unit* assignedUnit;
+    
 
     public:
       Player();
