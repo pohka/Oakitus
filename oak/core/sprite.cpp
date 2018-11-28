@@ -125,17 +125,17 @@ Sprite::~Sprite()
   glDeleteBuffers(1, &this->VBO);
 }
 
-std::string Sprite::getSrc()
+std::string Sprite::getSrc() const
 {
   return this->src;
 }
 
-unsigned int Sprite::getVAO()
+unsigned int Sprite::getVAO() const
 {
   return this->VAO;
 }
 
-void Sprite::onDraw()
+void Sprite::onDraw() const
 {
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, this->textureID);

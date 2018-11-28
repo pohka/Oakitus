@@ -29,7 +29,7 @@ void CastAbilitys::execute()
   }
 }
 
-glm::vec3 CastAbilitys::getCasterPosition()
+glm::vec3 CastAbilitys::getCasterPosition() const
 {
   
   Unit* unit = player->getAssignedUnit();

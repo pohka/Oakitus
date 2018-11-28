@@ -17,14 +17,14 @@ namespace oak
       Bounds(float x, float y, float w, float h);
       ~Bounds();
 
-      float minX();
-      float minY();
-      float maxX();
-      float maxY();
-      float height();
-      float width();
-      bool intersects(Bounds& b);
-      Point* getOrigin();
+      float minX() const;
+      float minY() const;
+      float maxX() const;
+      float maxY() const;
+      float height() const;
+      float width() const;
+      bool intersects(Bounds& b) const;
+      Point* getOrigin() const;
   };
 }
 

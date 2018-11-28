@@ -54,22 +54,22 @@ Texture::~Texture()
 
 }
 
-int Texture::getHeight()
+int Texture::getHeight() const
 {
   return height;
 }
 
-uint Texture::getID()
+uint Texture::getID() const
 {
   return this->id;
 }
 
-std::string Texture::getSrc()
+std::string Texture::getSrc() const
 {
   return src;
 }
 
-int Texture::getWidth()
+int Texture::getWidth() const
 {
   return width;
 }

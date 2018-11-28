@@ -28,7 +28,7 @@ void Player::setAssignedUnit(Unit& unit)
   assignedUnit = &unit;
 }
 
-Unit* Player::getAssignedUnit()
+Unit* Player::getAssignedUnit() const
 {
   return assignedUnit;
 }

@@ -22,18 +22,18 @@ Unit::~Unit()
   LOG << "deallocated unit: " << name;
 }
 
-Player* Unit::getOwner()
+Player* Unit::getOwner() const
 {
   return owner;
 }
 
 
-bool Unit::hasOwner()
+bool Unit::hasOwner() const
 {
   return (owner != nullptr);
 }
 
-float Unit::getMoveSpeed()
+float Unit::getMoveSpeed() const
 {
   return moveSpeed;
 }
@@ -49,7 +49,7 @@ void Unit::addAbility(Ability& ability)
   abilitys.push_back(&ability);
 }
 
-Ability* Unit::getAbilityByIndex(uint index)
+Ability* Unit::getAbilityByIndex(uint index) const
 {
   if (index >= abilitys.size())
   {

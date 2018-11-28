@@ -65,12 +65,12 @@ void Entity::destroyEntityByID(uint id)
   Entity::queuedDestroyEntityIDs.push(id);
 }
 
-uint Entity::getID()
+uint Entity::getID() const
 {
   return this->entityID;
 }
 
-std::string Entity::getName()
+std::string Entity::getName() const
 {
   return name;
 }

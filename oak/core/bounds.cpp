@@ -22,7 +22,7 @@ Bounds::~Bounds()
   delete origin;
 }
 
-bool Bounds::intersects(Bounds& b)
+bool Bounds::intersects(Bounds& b) const
 {
   Point* aOrigin = this->getOrigin();
   Point* bOrigin = b.getOrigin();
@@ -33,37 +33,37 @@ bool Bounds::intersects(Bounds& b)
   );
 }
 
-float Bounds::minX()
+float Bounds::minX() const
 {
   return x;
 }
 
-float Bounds::minY()
+float Bounds::minY() const
 {
   return y;
 }
 
-float Bounds::maxX()
+float Bounds::maxX() const
 {
   return x + w;
 }
 
-float Bounds::maxY()
+float Bounds::maxY() const
 {
   return y - h;
 }
 
-float Bounds::height()
+float Bounds::height() const
 {
   return h;
 }
 
-float Bounds::width()
+float Bounds::width() const
 {
   return w;
 }
 
-Point* Bounds::getOrigin()
+Point* Bounds::getOrigin() const
 {
   return origin;
 }

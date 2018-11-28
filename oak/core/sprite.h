@@ -43,9 +43,9 @@ namespace oak
       );
 
       ~Sprite();
-      std::string getSrc();
-      uint getVAO();
-      void onDraw() override;
+      std::string getSrc() const;
+      uint getVAO() const;
+      void onDraw() const override;
     
     private:
       void construct(float xMin, float xMax, float yMin, float yMax);

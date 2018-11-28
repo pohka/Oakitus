@@ -20,7 +20,7 @@ namespace oak
       BasePlayer();
       virtual ~BasePlayer();
 
-      uint getID();
+      uint getID() const;
       void executeCommands();
       void addCommand(Command& command);
 

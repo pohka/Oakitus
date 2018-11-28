@@ -15,10 +15,10 @@ namespace oak
     public:
       Texture(std::string path, std::string src);
       ~Texture();
-      int getHeight();
-      uint getID();
-      int getWidth();
-      std::string getSrc();
+      int getHeight() const;
+      uint getID() const;
+      int getWidth() const;
+      std::string getSrc() const;
 
   };
 }

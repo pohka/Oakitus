@@ -58,8 +58,8 @@ namespace oak
       void instantiate();
       void instantiate(float x, float y);
 	    void destroy();
-	    uint getID();
-      std::string getName();
+	    uint getID() const;
+      std::string getName() const;
       virtual void onStart();
 	    virtual void onDestroy();
 	    virtual void onDraw();

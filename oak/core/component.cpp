@@ -13,5 +13,5 @@ void Component::onStart() {}
 
 void Component::onUpdate() {}
 
-void Component::onDraw(){}
+void Component::onDraw() const {}
 

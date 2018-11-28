@@ -17,7 +17,7 @@ namespace oak
 	    virtual ~Component();
       virtual void onStart();
 	    virtual void onUpdate();
-	    virtual void onDraw();
+	    virtual void onDraw() const;
 
     protected:
 	    oak::Entity* entity;

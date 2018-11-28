@@ -14,7 +14,7 @@ namespace oak
       friend class Input;
       Key(KeyCode code);
       ~Key();
-      KeyCode getCode();
+      KeyCode getCode() const;
 
     private:
       void setState(bool isDown);

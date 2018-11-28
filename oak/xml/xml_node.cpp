@@ -20,17 +20,17 @@ void XMLNode::appendChild(XMLNode* node)
   this->children.push_back(node);
 }
 
-std::vector<XMLNode*> XMLNode::getChildNodes()
+std::vector<XMLNode*> XMLNode::getChildNodes() const
 {
   return children;
 }
 
-XMLNode* XMLNode::getParent()
+XMLNode* XMLNode::getParent() const
 {
   return parent;
 }
 
-bool XMLNode::hasChildNodes()
+bool XMLNode::hasChildNodes() const
 {
   return !children.empty();
 }

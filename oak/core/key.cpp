@@ -11,7 +11,7 @@ Key::Key(KeyCode code)
 
 Key::~Key() {}
 
-KeyCode Key::getCode()
+KeyCode Key::getCode() const
 {
   return this->code;
 }

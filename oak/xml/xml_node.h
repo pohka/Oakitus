@@ -17,9 +17,9 @@ class XMLNode
     XMLNode(std::string name, XMLNode* parent);
     ~XMLNode();
     void appendChild(XMLNode* node);
-    std::vector<XMLNode*> getChildNodes();
-    XMLNode* getParent();
-    bool hasChildNodes();
+    std::vector<XMLNode*> getChildNodes() const;
+    XMLNode* getParent() const;
+    bool hasChildNodes() const;
 };
 
 #endif

@@ -23,12 +23,12 @@ namespace game
       Unit();
       virtual ~Unit();
 
-      Player* getOwner();
-      bool hasOwner();
-      float getMoveSpeed();
+      Player* getOwner() const;
+      bool hasOwner() const;
+      float getMoveSpeed() const;
       void setMoveSpeed(float moveSpeed);
       void addAbility(Ability& ability);
-      Ability* getAbilityByIndex(uint index);
+      Ability* getAbilityByIndex(uint index) const;
 
       //void onStart() override;
       //void onDestroy() override;
