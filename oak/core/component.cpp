@@ -15,3 +15,4 @@ void Component::onUpdate() {}
 
 void Component::onDraw() const {}
 
+void Component::onDebugDraw() const {}

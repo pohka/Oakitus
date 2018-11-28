@@ -3,10 +3,10 @@
 
 #include <string>
 
-#include "component.h"
-#include "shader.h"
-#include "types.h"
-#include "texture.h"
+#include "../core/component.h"
+#include "../core/shader.h"
+#include "../core/types.h"
+#include "../core/texture.h"
 
 namespace oak
 {

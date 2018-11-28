@@ -1,6 +1,7 @@
 #include "u_player.h"
 #include <oak.h>
 #include "../abilitys/shoot.h"
+#include "../oak/components/collision_box.h"
 
 using namespace game::prefab;
 using namespace oak;
@@ -12,6 +13,7 @@ UPlayer::UPlayer()
   Sprite* sprite = new Sprite("player.png", 0, 0, 32, 40, 32.0f, 40.0f, NULL);
   addComponent(*sprite);
   addAbility(*new Shoot());
+  addComponent(*new CollisionBox(0.0f, 0.0f, 32.0f, 40.0f));
 }
 
 UPlayer::~UPlayer()

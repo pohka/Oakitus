@@ -31,6 +31,9 @@
     <Filter Include="oak\debug">
       <UniqueIdentifier>{b88d0195-967f-4f8b-97f0-c0b842ec2d63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\components">
+      <UniqueIdentifier>{a2080c66-e681-43cb-bb4e-635b57192c2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -58,9 +61,6 @@
       <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="oak\core\script.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="oak\core\sprite.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="oak\core\texture.cpp">
@@ -144,6 +144,12 @@
     <ClCompile Include="ability.cpp">
       <Filter>game</Filter>
     </ClCompile>
+    <ClCompile Include="oak\components\sprite.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\components\collision_box.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -177,9 +183,6 @@
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\shader.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\core\sprite.h">
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\stb_image.h">
@@ -268,6 +271,15 @@
     </ClInclude>
     <ClInclude Include="oak\debug\logger.h">
       <Filter>oak\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\sprite.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\collision_box.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\collision_shape.h">
+      <Filter>oak\components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
