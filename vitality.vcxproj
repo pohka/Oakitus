@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ability.cpp" />
     <ClCompile Include="abilitys\shoot.cpp" />
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />

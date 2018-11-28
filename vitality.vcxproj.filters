@@ -141,6 +141,9 @@
     <ClCompile Include="oak\debug\logger.cpp">
       <Filter>oak\debug</Filter>
     </ClCompile>
+    <ClCompile Include="ability.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">

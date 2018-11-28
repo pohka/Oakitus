@@ -6,7 +6,7 @@ using namespace game::ability;
 
 Shoot::Shoot()
 {
-
+  targetType = TargetType::POINT;
 }
 
 Shoot::~Shoot()
@@ -14,9 +14,9 @@ Shoot::~Shoot()
   LOG << "Delocated shoot ability";
 }
 
-void Shoot::cast()
+void Shoot::onCast()
 {
-  LOG << "casting";
-  prefab::Arrow* arrow = new prefab::Arrow();
+  LOG << "onCast()";
+  prefab::Arrow* arrow = new prefab::Arrow(target.point);
   arrow->instantiate(caster->position.x, caster->position.y);
 }

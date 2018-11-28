@@ -11,7 +11,7 @@ namespace game
     {
 
       public:
-        Arrow();
+        Arrow(glm::vec2 targetPos);
         ~Arrow();
     };
   }
