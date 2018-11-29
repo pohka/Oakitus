@@ -208,6 +208,12 @@
     <ClInclude Include="scripts\linear_projectile.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\collision.vs" />
+    <None Include="res\shaders\collision.fs" />
+    <None Include="res\shaders\default.fs" />
+    <None Include="res\shaders\default.vs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -43,21 +43,15 @@ void Oakitus::init()
   GLFWwindow* window = Window::getGLFWWindow();
   
   //set default resources
-  Shader *shader = new Shader("default", "default.vs", "default.fs");
+  Shader *shader = new Shader("default");
   Resources::addShader(*shader);
   Resources::defaultShader = shader;
-  //std::cout << "shader default: " << shader->getID() << std::endl;
-  shader->use();
-
-  
-
-  //set projection matrix
-  float aspect = (float)Window::getAspectRatio();
-  glm::mat4 projection = glm::ortho(-1.0f * aspect, 1.0f * aspect, -1.0f, 1.0f, -1.0f, 1.0f);
-  shader->setMat4("projection", projection);
 
   Resources::addTexture("default.png");
   Resources::defaultTexture = Resources::findTextureBySrc("default.png");
+
+  Shader *collisionShader = new Shader("collision");
+  Resources::addShader(*collisionShader);
 
 
   Oakitus::load();

@@ -34,6 +34,12 @@
     <Filter Include="oak\components">
       <UniqueIdentifier>{a2080c66-e681-43cb-bb4e-635b57192c2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{567f8de8-2bce-4b23-87b8-e86958255da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\shaders">
+      <UniqueIdentifier>{b1a6133d-6a60-4105-b8e6-fd75834a8cbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -281,5 +287,19 @@
     <ClInclude Include="oak\components\collision_shape.h">
       <Filter>oak\components</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\default.fs">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\default.vs">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\collision.vs">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="res\shaders\collision.fs">
+      <Filter>res\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

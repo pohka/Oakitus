@@ -4,6 +4,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "types.h"
+#include <glm/glm.hpp>
 
 namespace oak
 {
@@ -19,6 +20,7 @@ namespace oak
     static float vpAspectRatio;
     static float windowToVPRatioX;
     static float windowToVPRatioY;
+    static glm::mat4 projectionMatrix;
 
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
     static void updateWindowToVPRatio();
@@ -37,6 +39,7 @@ namespace oak
       static uint getHeight();
       static uint getWidth();
       static float worldToViewportCoords(float pixels);
+      static glm::mat4& getProjectionMatrix();
       
   };
 }

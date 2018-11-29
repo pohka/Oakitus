@@ -6,6 +6,7 @@
 #include "../player.h"
 #include "../prefabs/camera_controller.h"
 #include "../prefabs/u_dummy.h"
+#include <debug.h>
 
 using namespace game;
 using namespace oak;
@@ -18,13 +19,12 @@ void MainScene::onLoad()
   Resources::addTexture("face.png");
   Resources::addTexture("dummy.png");
 
-  Shader* shader = Resources::findShaderByName("default");
-  uint shaderID = shader->getID();
+  
 
   Camera::position = glm::vec3(0, 0, 0);
 
   Entity* ground = new Entity();
-  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, shaderID);
+  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, NULL);
   ground->addComponent(*groundSprite);
   ground->instantiate();
 

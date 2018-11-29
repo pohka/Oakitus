@@ -13,6 +13,7 @@ namespace oak
     float offsetY;
     float w;
     float h;
+    uint VAO, VBO, EBO;
 
   public:
     CollisionBox(float offsetX, float offsetY, float width, float height);

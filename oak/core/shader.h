@@ -10,6 +10,7 @@
 #include <iostream>
 #include "types.h"
 #include <string.h>
+#include <core/window.h>
 
 namespace oak
 {
@@ -19,17 +20,19 @@ namespace oak
 
       // constructor generates the shader on the fly
       // ------------------------------------------------------------------------
-      Shader(std::string name, const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr)
+      Shader(std::string name, const char* geometryPath = nullptr)
       {
         this->name = name;
-        char basePath[16] = "res/shaders/";
+
+        std::string basePath = "res/shaders/" + name;
+
         char fullFragmentPath[80];
-        strcpy_s(fullFragmentPath, basePath);
-        strcat_s(fullFragmentPath, fragmentPath);
+        strcpy_s(fullFragmentPath, basePath.c_str());
+        strcat_s(fullFragmentPath, ".fs");
 
         char fullVertexPath[80];
-        strcpy_s(fullVertexPath, basePath);
-        strcat_s(fullVertexPath, vertexPath);
+        strcpy_s(fullVertexPath, basePath.c_str());
+        strcat_s(fullVertexPath, ".vs");
 
 
         // 1. retrieve the vertex/fragment source code from filePath
@@ -110,6 +113,9 @@ namespace oak
         if (geometryPath != nullptr)
           glDeleteShader(geometry);
 
+
+        use();
+        setMat4("projection", Window::getProjectionMatrix());
       }
       // activate the shader
       // ------------------------------------------------------------------------
