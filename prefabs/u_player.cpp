@@ -1,7 +1,6 @@
 #include "u_player.h"
 #include <oak.h>
 #include "../abilitys/shoot.h"
-#include "../oak/components/collision_box.h"
 
 using namespace game::prefab;
 using namespace oak;

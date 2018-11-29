@@ -22,35 +22,37 @@ CollisionBox::CollisionBox(float offsetX, float offsetY, float width, float heig
   float xx = Window::worldToViewportCoords(w);
   float yy = Window::worldToViewportCoords(h);
 
+  textureID = Resources::findTextureBySrc("box.png")->getID();
+
+  float texMin = 0.0f;
+  float texMax = 1.0f;
+
   float vertices[] = {
-       xx,  yy,  // top right
-       xx, -yy,  // bottom right
-      -xx, -yy,  // bottom left
-      -xx,  yy   // top left 
+    // positions    // texture coords
+    -xx, -yy,       texMin, texMax, //bottom left
+     xx, -yy,       texMax, texMax, //bottom right
+     xx,  yy,       texMax, texMin, //top right
+
+     xx,  yy,       texMax, texMin, //top right
+    -xx,  yy,       texMin, texMin, //top left
+    -xx, -yy,       texMin, texMax //botom left
   };
 
-  unsigned int indices[] = {  // note that we start from 0!
-    0, 1, 3,  // first Triangle
-    1, 2, 3   // second Triangle
-  };
+  glGenVertexArrays(1, &this->VAO);
+  glGenBuffers(1, &this->VBO);
 
-  glGenVertexArrays(1, &VAO);
-  glGenBuffers(1, &VBO);
-  glGenBuffers(1, &EBO);
-  glBindVertexArray(VAO);
+  glBindVertexArray(this->VAO);
 
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+  // position attribute
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
   glEnableVertexAttribArray(0);
 
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
-  glBindVertexArray(0);
-
+  // texture coord attribute
+  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+  glEnableVertexAttribArray(1);
 }
 
 bool oak::CollisionBox::intersects(CollisionShape &shape) const
@@ -110,7 +112,9 @@ float CollisionBox::originY() const
 
 void CollisionBox::onDebugDraw() const
 {
-  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, this->textureID);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glBindVertexArray(this->VAO);
 
   glm::mat4 model = glm::mat4(1.0);
@@ -125,11 +129,9 @@ void CollisionBox::onDebugDraw() const
   model = glm::translate(model, pos);
 
 
-  Shader* shader = Resources::findShaderByName("collision");
+  Shader* shader = &Resources::getDefaultShader();
   shader->use();
   shader->setMat4("model", model);
 
-  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+  glDrawArrays(GL_TRIANGLES, 0, 6);
 }

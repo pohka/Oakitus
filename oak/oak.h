@@ -1,8 +1,6 @@
 #ifndef OAK_H
 #define OAK_H
 
-
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -27,5 +25,6 @@
 #include "core/time.h"
 #include "core/types.h"
 #include "core/resources.h"
+#include "components/collision_box.h"
 
 #endif

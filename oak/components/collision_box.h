@@ -14,6 +14,7 @@ namespace oak
     float w;
     float h;
     uint VAO, VBO, EBO;
+    uint textureID;
 
   public:
     CollisionBox(float offsetX, float offsetY, float width, float height);

@@ -98,7 +98,7 @@ void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
 
      xx,  yy,       xMax, yMin, //top right
     -xx,  yy,       xMin, yMin, //top left
-    -xx, -yy,       xMin, yMax, //botom left
+    -xx, -yy,       xMin, yMax //botom left
   };
 
   glGenVertexArrays(1, &this->VAO);
