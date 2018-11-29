@@ -130,6 +130,8 @@
     <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="oak\components\collision_box.cpp" />
+    <ClCompile Include="oak\components\sprite.cpp" />
     <ClCompile Include="oak\core\bounds.cpp" />
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
@@ -146,7 +148,6 @@
     <ClCompile Include="oak\core\resources.cpp" />
     <ClCompile Include="oak\core\scene.cpp" />
     <ClCompile Include="oak\core\script.cpp" />
-    <ClCompile Include="oak\core\sprite.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
     <ClCompile Include="oak\debug\logger.cpp" />
@@ -167,6 +168,9 @@
     <ClInclude Include="abilitys\shoot.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
+    <ClInclude Include="oak\components\collision_box.h" />
+    <ClInclude Include="oak\components\collision_shape.h" />
+    <ClInclude Include="oak\components\sprite.h" />
     <ClInclude Include="oak\core\bounds.h" />
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\command.h" />
@@ -186,7 +190,6 @@
     <ClInclude Include="oak\core\scene.h" />
     <ClInclude Include="oak\core\script.h" />
     <ClInclude Include="oak\core\shader.h" />
-    <ClInclude Include="oak\core\sprite.h" />
     <ClInclude Include="oak\core\stb_image.h" />
     <ClInclude Include="oak\core\texture.h" />
     <ClInclude Include="oak\core\time.h" />
@@ -204,6 +207,12 @@
     <ClInclude Include="scenes\main_scene.h" />
     <ClInclude Include="scripts\linear_projectile.h" />
     <ClInclude Include="unit.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\collision.vs" />
+    <None Include="res\shaders\collision.fs" />
+    <None Include="res\shaders\default.fs" />
+    <None Include="res\shaders\default.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

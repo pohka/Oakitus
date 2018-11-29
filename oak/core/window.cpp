@@ -1,6 +1,8 @@
 #include "window.h"
 #include <iostream>
 #include "input.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 using namespace oak;
 
@@ -13,6 +15,7 @@ uint Window::windowH;
 float Window::vpAspectRatio;
 float Window::windowToVPRatioX;
 float Window::windowToVPRatioY;
+glm::mat4 Window::projectionMatrix;
 
 float Window::worldToVPRatio;
 
@@ -33,6 +36,7 @@ void Window::init(
   updateWindowToVPRatio();
 
   Window::vpAspectRatio = (float)viewportW / (float)viewportH;
+  projectionMatrix = glm::ortho(-1.0f * vpAspectRatio, 1.0f * vpAspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
 
   //2 units per dimension
   float pixelsPerUnit = (float)viewportH * 0.5f;
@@ -62,6 +66,8 @@ void Window::init(
   
   int windowPosX = monitorWidth / 2 - windowW / 2;
   int windowPosY = monitorHeight / 2 - windowH / 2;
+
+  
 
   glfwSetWindowPos(window, windowPosX, windowPosY);
   glfwMakeContextCurrent(window);
@@ -134,4 +140,9 @@ void Window::updateWindowToVPRatio()
 {
   windowToVPRatioX = (float)Window::viewportW / (float)Window::windowW;
   windowToVPRatioY = (float)Window::viewportH / (float)Window::windowH;
+}
+
+glm::mat4& Window::getProjectionMatrix()
+{
+  return projectionMatrix;
 }

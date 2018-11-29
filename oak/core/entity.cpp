@@ -93,11 +93,19 @@ void Entity::onDestroy()
 }
 
 
-void Entity::onDraw()
+void Entity::onDraw() const
 {
   for (uint i = 0; i < components.size(); i++) 
   {
     components[i]->onDraw();
+  }
+}
+
+void Entity::onDebugDraw() const
+{
+  for(Component* comp : components)
+  {
+    comp->onDebugDraw();
   }
 }
 
@@ -178,6 +186,14 @@ void Entity::drawInstances()
   for (uint i = 0; i < Entity::entitys.size(); i++)
   {
     Entity::entitys[i]->onDraw();
+  }
+}
+
+void Entity::debugDrawInstances()
+{
+  for (Entity* ent : entitys)
+  {
+    ent->onDebugDraw();
   }
 }
 

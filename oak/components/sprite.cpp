@@ -1,17 +1,16 @@
 #include "sprite.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "stb_image.h"
+#include "../core/stb_image.h"
 
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "camera.h"
-#include "window.h"
-#include "resources.h"
-#include "entity.h"
+#include "../core/camera.h"
+#include "../core/window.h"
+#include "../core/resources.h"
 
 using namespace oak;
 
@@ -155,7 +154,7 @@ void Sprite::onDraw() const
   model = glm::translate(model, pos);
 
   Shader* shader = Resources::findShaderByID(this->shaderID);
-
+  shader->use();
   shader->setMat4("model", model);
 
   glDrawArrays(GL_TRIANGLES, 0, 6);
