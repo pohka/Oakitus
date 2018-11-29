@@ -1,7 +1,7 @@
 #ifndef LINEAR_PROJECTILE_H
 #define LINEAR_PROJECTILE_H
 
-#include <core/entity.h>
+#include <core/script.h>
 #include <glm/glm.hpp>
 
 namespace game

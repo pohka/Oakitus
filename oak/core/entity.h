@@ -1,12 +1,9 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "script.h"
-#include "component.h"
-
 #include <vector>
-#include "id_generator.h"
 #include "types.h"
+#include "id_generator.h"
 
 #include <map>
 #include <glm/glm.hpp>
@@ -17,6 +14,7 @@ namespace oak
 {
   class Script;
   class Component;
+  class IDGenerator;
 
   class Entity
   {

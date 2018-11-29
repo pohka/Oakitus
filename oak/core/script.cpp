@@ -1,7 +1,9 @@
 #include "script.h"
-#include "entity.h"
+//#include "entity.h"
 
 using namespace oak;
+
+
 
 Script::Script() 
 {

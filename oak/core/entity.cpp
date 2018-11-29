@@ -1,4 +1,7 @@
 #include "entity.h"
+#include "script.h"
+#include "component.h"
+
 
 using namespace oak;
 
