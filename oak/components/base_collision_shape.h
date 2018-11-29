@@ -8,42 +8,27 @@ namespace oak
   class CollisionRect;
   class CollisionCircle;
 
-  enum CollisionShape
-  {
-    RECT,
-    CIRCLE
-  };
-
   class BaseCollisionShape : public Component
   {
 
     public:
+      BaseCollisionShape();
+      ~BaseCollisionShape();
       virtual bool intersects(const CollisionRect& shape) const = 0;
       virtual bool intersects(const CollisionCircle& shape) const = 0;
 
-      CollisionShape getType()
-      {
-        return type;
-      }
+      float originX() const;
+      float originY() const;
 
-      float originX() const
-      {
-        return this->entity->position.x + offsetX;
-      }
-
-      float originY() const
-      {
-        return this->entity->position.x + offsetX;
-      }
+      void onDebugDraw() const override;
 
     protected:
-      CollisionShape type;
       float offsetX;
       float offsetY;
       uint VAO, VBO;
       uint textureID;
 
-      
+      void initVAO(float quadW, float quadH);
   };
 
 }

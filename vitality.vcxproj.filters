@@ -162,6 +162,9 @@
     <ClCompile Include="oak\components\collision.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
+    <ClCompile Include="oak\components\base_collision_shape.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">

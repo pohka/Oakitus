@@ -1,4 +1,5 @@
 #include "collision.h"
+#include <core/resources.h>
 
 using namespace oak;
 
@@ -7,6 +8,11 @@ CollisionCircle::CollisionCircle(float radius, float offsetX, float offsetY)
   this->radius = radius;
   this->offsetX = offsetX;
   this->offsetY = offsetY;
+
+  textureID = Resources::findTextureBySrc("circle.png")->getID();
+
+  float d = radius * 2.0f;
+  initVAO(d, d);
 }
 
 CollisionCircle::~CollisionCircle()

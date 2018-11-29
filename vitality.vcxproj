@@ -130,6 +130,7 @@
     <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="oak\components\base_collision_shape.cpp" />
     <ClCompile Include="oak\components\collision.cpp" />
     <ClCompile Include="oak\components\collision_circle.cpp" />
     <ClCompile Include="oak\components\collision_rect.cpp" />

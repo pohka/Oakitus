@@ -23,9 +23,6 @@ namespace oak
       float maxY() const;
       float width() const;
       float height() const;
-    
-
-      void onDebugDraw() const override;
   };
 }
 #endif
