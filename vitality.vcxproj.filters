@@ -153,7 +153,13 @@
     <ClCompile Include="oak\components\sprite.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
-    <ClCompile Include="oak\components\collision_box.cpp">
+    <ClCompile Include="oak\components\collision_rect.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\components\collision_circle.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\components\collision.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,10 +287,16 @@
     <ClInclude Include="oak\components\sprite.h">
       <Filter>oak\components</Filter>
     </ClInclude>
-    <ClInclude Include="oak\components\collision_box.h">
+    <ClInclude Include="oak\components\collision_circle.h">
       <Filter>oak\components</Filter>
     </ClInclude>
-    <ClInclude Include="oak\components\collision_shape.h">
+    <ClInclude Include="oak\components\collision_rect.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\collision.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\base_collision_shape.h">
       <Filter>oak\components</Filter>
     </ClInclude>
   </ItemGroup>

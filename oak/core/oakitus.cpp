@@ -50,6 +50,7 @@ void Oakitus::init()
   Resources::addTexture("default.png");
   Resources::defaultTexture = Resources::findTextureBySrc("default.png");
   Resources::addTexture("box.png");
+  Resources::addTexture("circle.png");
 
   Shader *collisionShader = new Shader("collision");
   Resources::addShader(*collisionShader);
