@@ -43,12 +43,12 @@ float CollisionRect::minY() const
 
 float CollisionRect::maxX() const
 {
-  return this->entity->position.x + offsetX - (w * 0.5f);
+  return this->entity->position.x + offsetX + (w * 0.5f);
 }
 
 float CollisionRect::maxY() const
 {
-  return this->entity->position.y + offsetY - (h * 0.5f);
+  return this->entity->position.y + offsetY + (h * 0.5f);
 }
 
 float CollisionRect::width() const

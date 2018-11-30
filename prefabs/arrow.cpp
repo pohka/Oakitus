@@ -13,7 +13,7 @@ Arrow::Arrow(glm::vec2 targetPos)
 
   LinearProjectile* proj = new LinearProjectile(
     targetPos,
-    100.0f,
+    50.0f,
     1000.0f,
     true
   );
