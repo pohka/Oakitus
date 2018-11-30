@@ -17,10 +17,10 @@ Arrow::Arrow(glm::vec2 targetPos)
     1000.0f,
     true
   );
-  addScript(proj);
+  addComponent(proj);
 }
 
 Arrow::~Arrow()
 {
-
+  
 }

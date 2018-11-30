@@ -2,7 +2,8 @@
 #include <cmath>
 #include <cstdlib>
 #include <debug.h>
-
+#include <core/entity.h>
+#include "collision_layer.h"
 
 
 using namespace oak;
@@ -163,3 +164,35 @@ bool Collision::sideCheckRectCircle(
 
    return false;
  }
+
+bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
+{
+  for (uint a = 0; a < entA->collisionShapes.size(); a++)
+  {
+    BaseCollisionShape* colA = entA->collisionShapes[a];
+
+    for (uint b = 0; b < entB->collisionShapes.size(); b++)
+    {
+      BaseCollisionShape* colB = entB->collisionShapes[b];
+      if (colA->intersects(*colB))
+      {
+        LOG << "HAS COLLISION";
+        entA->notifyCollision();
+        entB->notifyCollision();
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+void Collision::resolveCollisions()
+{
+  for (uint a = 0; a < Entity::entitys.size() - 1; a++)
+  {
+    for (uint b = a + 1; b < Entity::entitys.size(); b++)
+    {
+      checkEntEntCollision(Entity::entitys[a], Entity::entitys[b]);
+    }
+  }
+}

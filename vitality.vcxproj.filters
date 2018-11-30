@@ -66,9 +66,6 @@
     <ClCompile Include="oak\core\scene.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="oak\core\script.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="oak\core\texture.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
@@ -194,9 +191,6 @@
     <ClInclude Include="oak\core\scene.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="oak\core\script.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="oak\core\shader.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -300,6 +294,9 @@
       <Filter>oak\components</Filter>
     </ClInclude>
     <ClInclude Include="oak\components\base_collision_shape.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\collision_layer.h">
       <Filter>oak\components</Filter>
     </ClInclude>
   </ItemGroup>

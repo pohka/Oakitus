@@ -1,12 +1,12 @@
 #ifndef LINEAR_PROJECTILE_H
 #define LINEAR_PROJECTILE_H
 
-#include <core/script.h>
+#include <core/component.h>
 #include <glm/glm.hpp>
 
 namespace game
 {
-  class LinearProjectile : public oak::Script
+  class LinearProjectile : public oak::Component
   {
     glm::vec2 targetPos;
     glm::vec2 spawnOrigin;
@@ -27,6 +27,7 @@ namespace game
 
       void onStart() override;
       void onUpdate() override;
+      void onCollisionHit() override;
   };
 }
 

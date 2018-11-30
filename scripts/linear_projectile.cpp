@@ -43,3 +43,8 @@ void LinearProjectile::onUpdate()
     entity->destroy();
   }
 }
+
+void LinearProjectile::onCollisionHit()
+{
+  entity->destroy();
+}

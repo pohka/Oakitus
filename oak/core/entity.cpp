@@ -1,5 +1,4 @@
 #include "entity.h"
-#include "script.h"
 #include "component.h"
 #include "../components/base_collision_shape.h"
 #include <debug.h>
@@ -15,12 +14,12 @@ std::queue<Entity*> Entity::pendingEntityInstances;
 Entity::Entity() 
 {
   componentIDGen = IDGenerator();
-  scriptIDGen = IDGenerator();
   this->entityID = entityIDGen.nextID();
   this->position = glm::vec3(0, 0, 0);
   layerID = 0;
   isGlobal = false;
   this->name = "ent_" + std::to_string(entityID);
+  collisionLayer = CollisionLayer::NONE;
 }
 
 Entity::~Entity()
@@ -29,10 +28,6 @@ Entity::~Entity()
   {
     delete c;
   }
-  for (Script* s : scripts)
-  {
-    delete s;
-  }
 }
 
 void Entity::addComponent(Component* component)
@@ -40,13 +35,6 @@ void Entity::addComponent(Component* component)
   component->entity = this;
   component->componentID = componentIDGen.nextID();
   this->components.push_back(component);
-}
-
-void Entity::addScript(Script* script)
-{
-  script->entity = this;
-  script->scriptID = scriptIDGen.nextID();
-  this->scripts.push_back(script);
 }
 
 void Entity::addCollision(BaseCollisionShape* shape)
@@ -82,6 +70,11 @@ uint Entity::getID() const
   return this->entityID;
 }
 
+CollisionLayer Entity::getCollisionLayer() const
+{
+  return collisionLayer;
+}
+
 std::string Entity::getName() const
 {
   return name;
@@ -92,10 +85,6 @@ void Entity::onStart()
   for (Component* comp : components)
   {
     comp->onStart();
-  }
-  for (Script* script : scripts)
-  {
-    script->onStart();
   }
 }
 
@@ -131,11 +120,6 @@ void Entity::onUpdate()
   for (uint i = 0; i < components.size(); i++)
   {
     components[i]->onUpdate();
-  }
-
-  for (uint i = 0; i < scripts.size(); i++)
-  {
-    scripts[i]->onUpdate();
   }
 }
 
@@ -309,32 +293,11 @@ void Entity::instantiateQueuedEnts()
   }
 }
 
-bool Entity::checkEntEntCollision(Entity* entA, Entity* entB)
-{
-  for (uint a = 0; a < entA->collisionShapes.size(); a++)
-  {
-    BaseCollisionShape* colA = entA->collisionShapes[a];
 
-    for (uint b = 0; b < entB->collisionShapes.size(); b++)
-    {
-      BaseCollisionShape* colB = entB->collisionShapes[b];
-      if (colA->intersects(*colB))
-      {
-        LOG << "HAS COLLISION";
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
-void Entity::resolveCollisions()
+void Entity::notifyCollision() const
 {
-  for (uint a = 0; a < entitys.size() - 1; a++)
+  for (Component* comp : components)
   {
-    for (uint b = a + 1; b < entitys.size(); b++)
-    {
-      checkEntEntCollision(entitys[a], entitys[b]);
-    }
+    comp->onCollisionHit();
   }
 }

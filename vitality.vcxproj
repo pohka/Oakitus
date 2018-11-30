@@ -150,7 +150,6 @@
     <ClCompile Include="oak\core\ray.cpp" />
     <ClCompile Include="oak\core\resources.cpp" />
     <ClCompile Include="oak\core\scene.cpp" />
-    <ClCompile Include="oak\core\script.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
     <ClCompile Include="oak\debug\logger.cpp" />
@@ -173,6 +172,7 @@
     <ClInclude Include="commands\movement.h" />
     <ClInclude Include="oak\components\collision.h" />
     <ClInclude Include="oak\components\collision_circle.h" />
+    <ClInclude Include="oak\components\collision_layer.h" />
     <ClInclude Include="oak\components\collision_rect.h" />
     <ClInclude Include="oak\components\base_collision_shape.h" />
     <ClInclude Include="oak\components\sprite.h" />
@@ -193,7 +193,6 @@
     <ClInclude Include="oak\core\ray.h" />
     <ClInclude Include="oak\core\resources.h" />
     <ClInclude Include="oak\core\scene.h" />
-    <ClInclude Include="oak\core\script.h" />
     <ClInclude Include="oak\core\shader.h" />
     <ClInclude Include="oak\core\stb_image.h" />
     <ClInclude Include="oak\core\texture.h" />
