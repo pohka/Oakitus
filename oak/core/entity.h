@@ -15,6 +15,7 @@ namespace oak
   class Script;
   class Component;
   class IDGenerator;
+  class CollisionShape;
 
   class Entity
   {
@@ -35,7 +36,9 @@ namespace oak
 	  uint entityID;
 	  std::vector<Component*> components;
 	  std::vector<Script*> scripts;
+    std::vector<CollisionShape*> collisionShapes;
 	  IDGenerator componentIDGen;
+    IDGenerator scriptIDGen;
 
 
     public:
@@ -53,8 +56,9 @@ namespace oak
 
 	    Entity();
 	    virtual ~Entity();
-	    void addComponent(Component& component);
-	    void addScript(Script& script);
+	    void addComponent(Component* component);
+      void addCollision(CollisionShape* shape);
+	    void addScript(Script* script);
       void instantiate();
       void instantiate(float x, float y);
 	    void destroy();

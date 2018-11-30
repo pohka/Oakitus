@@ -14,6 +14,7 @@ std::queue<Entity*> Entity::pendingEntityInstances;
 Entity::Entity() 
 {
   componentIDGen = IDGenerator();
+  scriptIDGen = IDGenerator();
   this->entityID = entityIDGen.nextID();
   this->position = glm::vec3(0, 0, 0);
   layerID = 0;
@@ -33,17 +34,23 @@ Entity::~Entity()
   }
 }
 
-void Entity::addComponent(Component& component)
+void Entity::addComponent(Component* component)
 {
-  component.entity = this;
-  component.componentID = componentIDGen.nextID();
-  this->components.push_back(&component);
+  component->entity = this;
+  component->componentID = componentIDGen.nextID();
+  this->components.push_back(component);
 }
 
-void Entity::addScript(Script& script)
+void Entity::addScript(Script* script)
 {
-  script.entity = this;
-  this->scripts.push_back(&script);
+  script->entity = this;
+  script->scriptID = scriptIDGen.nextID();
+  this->scripts.push_back(script);
+}
+
+void Entity::addCollision(CollisionShape* shape)
+{
+  collisionShapes.push_back(shape);
 }
 
 void Entity::instantiate()

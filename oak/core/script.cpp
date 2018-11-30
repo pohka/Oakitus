@@ -7,7 +7,7 @@ using namespace oak;
 
 Script::Script() 
 {
-  this->scriptID = 0;
+  
 };
 
 //Script::~Script() {};

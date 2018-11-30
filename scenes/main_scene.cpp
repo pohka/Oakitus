@@ -25,7 +25,7 @@ void MainScene::onLoad()
 
   Entity* ground = new Entity();
   Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, NULL);
-  ground->addComponent(*groundSprite);
+  ground->addComponent(groundSprite);
   ground->instantiate();
 
   

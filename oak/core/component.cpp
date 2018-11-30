@@ -4,7 +4,7 @@ using namespace oak;
 
 Component::Component() 
 {
-  componentID = 0;
+  
 }
 
 Component::~Component() {}
