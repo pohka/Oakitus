@@ -9,11 +9,11 @@ Arrow::Arrow(glm::vec2 targetPos)
 {
   Sprite* sprite = new Sprite("face.png", 16.0f, 16.0f);
   addComponent(sprite);
- // addCollision(new CollisionCircle(16.0f, 0.0f, 0.0f));
+  addCollision(new CollisionCircle(16.0f, 0.0f, 0.0f));
 
   LinearProjectile* proj = new LinearProjectile(
     targetPos,
-    1000.0f,
+    100.0f,
     1000.0f,
     true
   );

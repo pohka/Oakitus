@@ -315,7 +315,6 @@ bool Entity::checkEntEntCollision(Entity* entA, Entity* entB)
   {
     BaseCollisionShape* colA = entA->collisionShapes[a];
 
-
     for (uint b = 0; b < entB->collisionShapes.size(); b++)
     {
       BaseCollisionShape* colB = entB->collisionShapes[b];
