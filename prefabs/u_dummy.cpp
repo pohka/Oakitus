@@ -10,7 +10,7 @@ UDummy::UDummy()
   addComponent(sprite);
  // addCollision(new CollisionRect(0.0f, 0.0f, 32.0f, 40.0f));
   addCollision(new CollisionCircle(20.0f, 0.0f, 0.0f));
-
+  faction = Faction::ENEMY;
   this->name = "dummy";
 }
 

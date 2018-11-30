@@ -3,13 +3,21 @@
 
 #include <core/entity.h>
 
-#include "player.h"
-#include "ability.h"
+
+
+class oak::Entity;
 
 namespace game
 {
   class Player;
   class Ability;
+
+  enum Faction
+  {
+    NO_FACTION,
+    PLAYER,
+    ENEMY
+  };
 
   class Unit : public oak::Entity
   {
@@ -29,12 +37,16 @@ namespace game
       void setMoveSpeed(float moveSpeed);
       void addAbility(Ability* ability);
       Ability* getAbilityByIndex(uint index) const;
+      Faction getFaction() const;
       
 
       //void onStart() override;
       //void onDestroy() override;
       //void onDraw() override;
       void onUpdate();
+
+    protected:
+      Faction faction;
   };
 
   

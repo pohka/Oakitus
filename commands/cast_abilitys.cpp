@@ -2,6 +2,7 @@
 #include "../unit.h"
 #include <debug.h>
 #include <core/camera.h>
+#include "../ability.h"
 
 using namespace game;
 using namespace oak;

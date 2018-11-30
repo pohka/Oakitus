@@ -1,5 +1,6 @@
 #include "linear_projectile.h"
 #include <oak.h>
+#include "../unit.h"
 
 using namespace game;
 using namespace oak;
@@ -48,6 +49,13 @@ void LinearProjectile::onCollisionHit(Entity& hit)
 {
   if (hit.getCollisionLayer() == CollisionLayer::UNIT)
   {
-    entity->destroy();
+    Unit* unitHit = static_cast<Unit*>(&hit);
+    if (unitHit->getFaction() != Faction::PLAYER)
+    {
+      if (destroyOnHit)
+      {
+        entity->destroy();
+      }
+    }
   }
 }

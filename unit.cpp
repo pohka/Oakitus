@@ -1,6 +1,8 @@
 #include "unit.h"
 #include <debug.h>
 #include <core/time.h>
+#include "player.h"
+#include "ability.h"
 
 using namespace game;
 
@@ -11,6 +13,7 @@ Unit::Unit()
   Player* owner = nullptr;
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
+  faction = Faction::NO_FACTION;
 }
 
 Unit::~Unit()
@@ -79,4 +82,9 @@ void Unit::onUpdate()
       abil->setCastingState(CastingState::NONE);
     }
   }
+}
+
+Faction Unit::getFaction() const
+{
+  return faction;
 }
