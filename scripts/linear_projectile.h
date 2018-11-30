@@ -4,6 +4,7 @@
 #include <core/component.h>
 #include <glm/glm.hpp>
 #include <core/entity.h>
+#include "../ability.h"
 
 namespace game
 {
@@ -17,6 +18,9 @@ namespace game
     float maxDistance;
     bool destroyOnHit;
     float speed;
+    TargetTeam targetTeam;
+    Faction casterFaction;
+
     
 
     public:
@@ -24,7 +28,9 @@ namespace game
         glm::vec2 targetPos,
         float speed,
         float maxDistance,
-        bool destroyOnHit
+        bool destroyOnHit,
+        TargetTeam targetTeam,
+        Faction casterFaction
       );
       ~LinearProjectile();
 

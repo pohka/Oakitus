@@ -22,6 +22,14 @@ namespace game
     UNIT_TARGET
   };
 
+  enum TargetTeam
+  {
+    NO_TEAM,
+    FRIENDLY_TEAM,
+    ENEMY_TEAM,
+    BOTH_TEAM
+  };
+
   struct Target
   {
     uint targetEntityID = 0;
@@ -62,6 +70,7 @@ namespace game
       float castTime = 0.0f; //time to cast the ability
       CastingState castingState = CastingState::NONE;
       TargetType targetType = TargetType::NO_TARGET;
+      TargetTeam targetTeam = TargetTeam::NO_TEAM;
       
     private:
       void beginCasting();

@@ -1,11 +1,12 @@
 #include "arrow.h"
 #include <oak.h>
 #include "../scripts/linear_projectile.h"
+#include "../ability.h"
 
 using namespace game::prefab;
 using namespace oak;
 
-Arrow::Arrow(glm::vec2 targetPos)
+Arrow::Arrow(glm::vec2 targetPos, game::Faction casterFaction)
 {
   Sprite* sprite = new Sprite("face.png", 16.0f, 16.0f);
   addComponent(sprite);
@@ -15,7 +16,9 @@ Arrow::Arrow(glm::vec2 targetPos)
     targetPos,
     150.0f,
     1000.0f,
-    true
+    true,
+    TargetTeam::FRIENDLY_TEAM,
+    casterFaction
   );
   addComponent(proj);
   collisionLayer = CollisionLayer::PROJECTILE;

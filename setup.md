@@ -1,7 +1,9 @@
 
 ## Setup for Visual Studio on Windows
 Project Properties:
-VC++ Directories > Include Directories > "myProjectPath/include"
+VC++ Directories > Include Directories > 
+* "myProjectPath/include"
+* "myProjectPath/oak"
 
 Download the 3.2.1 release for your version visual studio here: https://github.com/glfw/glfw/releases
 

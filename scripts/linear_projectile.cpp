@@ -9,13 +9,17 @@ LinearProjectile::LinearProjectile(
   glm::vec2 targetPos,
   float speed,
   float maxDistance,
-  bool destroyOnHit
+  bool destroyOnHit,
+  TargetTeam targetTeam,
+  Faction casterFaction
 )
 {
   this->targetPos = targetPos;
   this->speed = speed;
   this->maxDistance = maxDistance;
   this->destroyOnHit = destroyOnHit;
+  this->targetTeam = targetTeam;
+  this->casterFaction = casterFaction;
 }
 
 LinearProjectile::~LinearProjectile()
@@ -50,7 +54,21 @@ void LinearProjectile::onCollisionHit(Entity& hit)
   if (hit.getCollisionLayer() == CollisionLayer::UNIT)
   {
     Unit* unitHit = static_cast<Unit*>(&hit);
-    if (unitHit->getFaction() != Faction::PLAYER)
+    if(this->targetTeam == TargetTeam::ENEMY_TEAM && unitHit->getFaction() != casterFaction)
+    {
+      if (destroyOnHit)
+      {
+        entity->destroy();
+      }
+    }
+    else if (this->targetTeam == TargetTeam::FRIENDLY_TEAM && unitHit->getFaction() == casterFaction)
+    {
+      if (destroyOnHit)
+      {
+        entity->destroy();
+      }
+    }
+    if (this->targetTeam == TargetTeam::BOTH_TEAM)
     {
       if (destroyOnHit)
       {
