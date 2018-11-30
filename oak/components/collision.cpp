@@ -176,9 +176,9 @@ bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
       BaseCollisionShape* colB = entB->collisionShapes[b];
       if (colA->intersects(*colB))
       {
-        LOG << "HAS COLLISION";
-        entA->notifyCollision();
-        entB->notifyCollision();
+       // LOG << "HAS COLLISION";
+        entA->notifyCollision(*entB);
+        entB->notifyCollision(*entA);
         return true;
       }
     }

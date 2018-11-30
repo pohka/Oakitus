@@ -20,7 +20,7 @@ namespace oak
 	    virtual void onUpdate();
 	    virtual void onDraw() const;
       virtual void onDebugDraw() const;
-      virtual void onCollisionHit();
+      virtual void onCollisionHit(Entity& hit);
 
     protected:
 	    oak::Entity* entity;

@@ -10,6 +10,7 @@ Unit::Unit()
 {
   Player* owner = nullptr;
   moveSpeed = BASE_MOVE_SPEED;
+  collisionLayer = oak::CollisionLayer::UNIT;
 }
 
 Unit::~Unit()

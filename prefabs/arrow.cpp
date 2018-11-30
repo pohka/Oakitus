@@ -18,6 +18,7 @@ Arrow::Arrow(glm::vec2 targetPos)
     true
   );
   addComponent(proj);
+  collisionLayer = CollisionLayer::PROJECTILE;
 }
 
 Arrow::~Arrow()

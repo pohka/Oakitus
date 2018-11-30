@@ -3,9 +3,12 @@
 
 #include <core/component.h>
 #include <glm/glm.hpp>
+#include <core/entity.h>
 
 namespace game
 {
+  //class Entity;
+
   class LinearProjectile : public oak::Component
   {
     glm::vec2 targetPos;
@@ -27,7 +30,7 @@ namespace game
 
       void onStart() override;
       void onUpdate() override;
-      void onCollisionHit() override;
+      void onCollisionHit(oak::Entity& hit) override;
   };
 }
 

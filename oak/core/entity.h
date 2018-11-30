@@ -40,7 +40,7 @@ namespace oak
 	  std::vector<Component*> components;
     std::vector<BaseCollisionShape*> collisionShapes;
 	  IDGenerator componentIDGen;
-    CollisionLayer collisionLayer;
+    
 
 
     public:
@@ -71,7 +71,10 @@ namespace oak
 	    virtual void onDraw() const;
 	    virtual void onUpdate();
       virtual void onDebugDraw() const;
-      virtual void notifyCollision() const;
+      virtual void notifyCollision(Entity& hit) const;
+
+    protected:
+      CollisionLayer collisionLayer;
   };
 }
 

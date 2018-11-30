@@ -17,4 +17,4 @@ void Component::onDraw() const {}
 
 void Component::onDebugDraw() const {}
 
-void Component::onCollisionHit() {}
+void Component::onCollisionHit(Entity& hit) {}

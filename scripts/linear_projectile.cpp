@@ -44,7 +44,10 @@ void LinearProjectile::onUpdate()
   }
 }
 
-void LinearProjectile::onCollisionHit()
+void LinearProjectile::onCollisionHit(Entity& hit)
 {
-  entity->destroy();
+  if (hit.getCollisionLayer() == CollisionLayer::UNIT)
+  {
+    entity->destroy();
+  }
 }
