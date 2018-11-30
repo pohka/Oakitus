@@ -40,7 +40,7 @@ void Window::init(
 
   //2 units per dimension
   float pixelsPerUnit = (float)viewportH * 0.5f;
-  worldToVPRatio = 1 / pixelsPerUnit;
+  worldToVPRatio = 2.0f / (float)viewportH;
 
   // glfw: initialize and configure
   // ------------------------------
@@ -65,7 +65,7 @@ void Window::init(
 
   
   int windowPosX = monitorWidth / 2 - windowW / 2;
-  int windowPosY = monitorHeight / 2 - windowH / 2;
+  int windowPosY = monitorHeight / 3 - windowH / 2;
 
   
 

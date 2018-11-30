@@ -15,7 +15,7 @@ namespace oak
   class Script;
   class Component;
   class IDGenerator;
-  class CollisionShape;
+  class BaseCollisionShape;
 
   class Entity
   {
@@ -32,11 +32,13 @@ namespace oak
     static void deleteAllEnts(bool isGlobalExempt);
     static void instantiateQueuedEnts();
     static void clearQueues();
+    static void resolveCollisions();
+    static bool checkEntEntCollision(Entity* entA, Entity* entB);
 
 	  uint entityID;
 	  std::vector<Component*> components;
 	  std::vector<Script*> scripts;
-    std::vector<CollisionShape*> collisionShapes;
+    std::vector<BaseCollisionShape*> collisionShapes;
 	  IDGenerator componentIDGen;
     IDGenerator scriptIDGen;
 
@@ -57,7 +59,7 @@ namespace oak
 	    Entity();
 	    virtual ~Entity();
 	    void addComponent(Component* component);
-      void addCollision(CollisionShape* shape);
+      void addCollision(BaseCollisionShape* shape);
 	    void addScript(Script* script);
       void instantiate();
       void instantiate(float x, float y);

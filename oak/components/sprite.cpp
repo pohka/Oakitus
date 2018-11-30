@@ -87,8 +87,8 @@ Texture* Sprite::setTextureIDFromSrc(std::string src)
 
 void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
 {
-  float xx = Window::worldToViewportCoords(w);
-  float yy = Window::worldToViewportCoords(h);
+  float xx = Window::worldToViewportCoords(w) * 0.5f;
+  float yy = Window::worldToViewportCoords(h) * 0.5f;
 
   float vertices[] = {
     // positions    // texture coords

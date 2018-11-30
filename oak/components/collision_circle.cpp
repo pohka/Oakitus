@@ -8,6 +8,7 @@ CollisionCircle::CollisionCircle(float radius, float offsetX, float offsetY)
   this->radius = radius;
   this->offsetX = offsetX;
   this->offsetY = offsetY;
+  type = ShapeType::CIRCLE;
 
   textureID = Resources::findTextureBySrc("circle.png")->getID();
 
@@ -20,11 +21,11 @@ CollisionCircle::~CollisionCircle()
 
 }
 
-bool CollisionCircle::intersects(const CollisionRect& shape) const
+bool CollisionCircle::intersectsRect(const CollisionRect& shape) const
 {
   return Collision::checkRectCircle(shape, *this);
 }
-bool CollisionCircle::intersects(const CollisionCircle& shape) const
+bool CollisionCircle::intersectsCircle(const CollisionCircle& shape) const
 {
   return Collision::checkCircleCircle(*this, shape);
 }

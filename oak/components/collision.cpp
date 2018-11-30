@@ -1,4 +1,8 @@
 #include "collision.h"
+#include <cmath>
+#include <cstdlib>
+#include <debug.h>
+
 
 using namespace oak;
 
@@ -16,8 +20,8 @@ bool Collision::checkRectCircle(const CollisionRect& a, const CollisionCircle& b
 
 bool Collision::checkCircleCircle(const CollisionCircle& a, const CollisionCircle& b)
 {
-  float sqrdDist = std::powf(a.originX() - b.originX(), 2.0f) + std::powf(b.originY() - a.originY(), 2.0f);
-  float sqrdMaxDist = std::powf(a.getRadius() + b.getRadius(), 2);
+  float sqrdDist = std::pow(a.originX() - b.originX(), 2.0f) + std::pow(b.originY() - a.originY(), 2.0f);
+  float sqrdMaxDist = std::pow(a.getRadius() + b.getRadius(), 2);
 
   return sqrdDist < sqrdMaxDist;
 }

@@ -1,32 +1,47 @@
-#ifndef COLLISION_SHAPE_H
-#define COLLISION_SHAPE_H
+#ifndef BASE_COLLISION_SHAPE_H
+#define BASE_COLLISION_SHAPE_H
 
-#include "../core/component.h"
+#include <core/types.h>
 
 namespace oak
 {
   class CollisionRect;
   class CollisionCircle;
+  class Entity;
 
-  class BaseCollisionShape : public Component
+  enum ShapeType
+  {
+    RECT,
+    CIRCLE
+  };
+
+  class BaseCollisionShape
   {
 
     public:
+      friend class Entity;
+
       BaseCollisionShape();
       ~BaseCollisionShape();
-      virtual bool intersects(const CollisionRect& shape) const = 0;
-      virtual bool intersects(const CollisionCircle& shape) const = 0;
+      bool intersects(BaseCollisionShape& shape);
+
+      virtual bool intersectsRect(const CollisionRect& shape) const = 0;
+      virtual bool intersectsCircle(const CollisionCircle& shape) const = 0;
 
       float originX() const;
       float originY() const;
+      ShapeType getType() const;
 
-      void onDebugDraw() const override;
+      void onDebugDraw() const;
+      
 
     protected:
+      ShapeType type;
       float offsetX;
       float offsetY;
       uint VAO, VBO;
       uint textureID;
+      Entity* entity;
 
       void initVAO(float quadW, float quadH);
   };

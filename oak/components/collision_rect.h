@@ -14,8 +14,8 @@ namespace oak
     public:
       CollisionRect(float offsetX, float offsetY, float width, float height);
     
-      bool intersects(const CollisionRect& shape) const override;
-      bool intersects(const CollisionCircle& shape) const override;
+      bool intersectsRect(const CollisionRect& shape) const override;
+      bool intersectsCircle(const CollisionCircle& shape) const override;
 
       float minX() const;
       float minY() const;

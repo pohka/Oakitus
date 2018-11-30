@@ -44,10 +44,10 @@ void Unit::setMoveSpeed(float moveSpeed)
   this->moveSpeed = moveSpeed;
 }
 
-void Unit::addAbility(Ability& ability)
+void Unit::addAbility(Ability* ability)
 {
-  ability.caster = this;
-  abilitys.push_back(&ability);
+  ability->caster = this;
+  abilitys.push_back(ability);
 }
 
 Ability* Unit::getAbilityByIndex(uint index) const

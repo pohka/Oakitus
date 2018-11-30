@@ -1,7 +1,8 @@
 #include "entity.h"
 #include "script.h"
 #include "component.h"
-
+#include "../components/base_collision_shape.h"
+#include <debug.h>
 
 using namespace oak;
 
@@ -48,8 +49,9 @@ void Entity::addScript(Script* script)
   this->scripts.push_back(script);
 }
 
-void Entity::addCollision(CollisionShape* shape)
+void Entity::addCollision(BaseCollisionShape* shape)
 {
+  shape->entity = this;
   collisionShapes.push_back(shape);
 }
 
@@ -116,6 +118,11 @@ void Entity::onDebugDraw() const
   for(Component* comp : components)
   {
     comp->onDebugDraw();
+  }
+
+  for (BaseCollisionShape* shape : collisionShapes)
+  {
+    shape->onDebugDraw();
   }
 }
 
@@ -299,5 +306,36 @@ void Entity::instantiateQueuedEnts()
   {
     temp.front()->onStart();
     temp.pop();
+  }
+}
+
+bool Entity::checkEntEntCollision(Entity* entA, Entity* entB)
+{
+  for (uint a = 0; a < entA->collisionShapes.size(); a++)
+  {
+    BaseCollisionShape* colA = entA->collisionShapes[a];
+
+
+    for (uint b = 0; b < entB->collisionShapes.size(); b++)
+    {
+      BaseCollisionShape* colB = entB->collisionShapes[b];
+      if (colA->intersects(*colB))
+      {
+        LOG << "HAS COLLISION";
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+void Entity::resolveCollisions()
+{
+  for (uint a = 0; a < entitys.size() - 1; a++)
+  {
+    for (uint b = a + 1; b < entitys.size(); b++)
+    {
+      checkEntEntCollision(entitys[a], entitys[b]);
+    }
   }
 }

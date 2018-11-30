@@ -14,8 +14,8 @@ namespace oak
     CollisionCircle(float radius, float offsetX, float offsetY);
     ~CollisionCircle();
 
-    bool intersects(const CollisionRect& shape) const override;
-    bool intersects(const CollisionCircle& shape) const override;
+    bool intersectsRect(const CollisionRect& shape) const override;
+    bool intersectsCircle(const CollisionCircle& shape) const override;
     float getRadius() const;
 
   };

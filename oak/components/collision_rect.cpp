@@ -15,17 +15,18 @@ CollisionRect::CollisionRect(float offsetX, float offsetY, float width, float he
   this->offsetY = offsetY;
   this->w = width;
   this->h = height;
+  type = ShapeType::RECT;
 
   textureID = Resources::findTextureBySrc("box.png")->getID();
   initVAO(w, h);
 }
 
-bool CollisionRect::intersects(const CollisionRect &shape) const
+bool CollisionRect::intersectsRect(const CollisionRect &shape) const
 {
   return Collision::checkRectRect(*this, shape);
 }
 
-bool CollisionRect::intersects(const CollisionCircle &shape) const
+bool CollisionRect::intersectsCircle(const CollisionCircle &shape) const
 {
   return Collision::checkRectCircle(*this, shape);
 }

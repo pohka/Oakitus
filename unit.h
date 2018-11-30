@@ -27,7 +27,7 @@ namespace game
       bool hasOwner() const;
       float getMoveSpeed() const;
       void setMoveSpeed(float moveSpeed);
-      void addAbility(Ability& ability);
+      void addAbility(Ability* ability);
       Ability* getAbilityByIndex(uint index) const;
       
 

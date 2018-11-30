@@ -8,6 +8,10 @@
 #include <core/shader.h>
 #include <core/resources.h>
 
+#include <core/entity.h>
+#include "collision_rect.h"
+#include "collision_circle.h"
+
 using namespace oak;
 
 BaseCollisionShape::BaseCollisionShape()
@@ -26,7 +30,7 @@ float BaseCollisionShape::originX() const
 
 float BaseCollisionShape::originY() const
 {
-  return this->entity->position.x + offsetX;
+  return this->entity->position.y + offsetY;
 }
 
 void BaseCollisionShape::onDebugDraw() const
@@ -57,8 +61,8 @@ void BaseCollisionShape::onDebugDraw() const
 
 void BaseCollisionShape::initVAO(float quadW, float quadH)
 {
-  float xx = Window::worldToViewportCoords(quadW);
-  float yy = Window::worldToViewportCoords(quadH);
+  float xx = Window::worldToViewportCoords(quadW) * 0.5f;
+  float yy = Window::worldToViewportCoords(quadH) * 0.5f;
 
   float texMin = 0.0f;
   float texMax = 1.0f;
@@ -89,4 +93,27 @@ void BaseCollisionShape::initVAO(float quadW, float quadH)
   // texture coord attribute
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
   glEnableVertexAttribArray(1);
+}
+
+ShapeType BaseCollisionShape::getType() const
+{
+  return type;
+}
+
+
+bool BaseCollisionShape::intersects(BaseCollisionShape& shape)
+{
+  if (shape.getType() == ShapeType::RECT)
+  {
+    CollisionRect* rect =  static_cast<CollisionRect*>(&shape);
+    return intersectsRect(*rect);
+  }
+  else if (shape.getType() == ShapeType::CIRCLE)
+  {
+    CollisionCircle* circle = static_cast<CollisionCircle*>(&shape);
+    return intersectsCircle(*circle);
+  }
+
+
+  return false;
 }

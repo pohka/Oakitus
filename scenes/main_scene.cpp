@@ -40,5 +40,5 @@ void MainScene::onLoad()
   camController->instantiate();
 
   prefab::UDummy* dummy = new prefab::UDummy();
-  dummy->instantiate(500.0f, 100.0f);
+  dummy->instantiate(200.0f, 100.0f);
 }

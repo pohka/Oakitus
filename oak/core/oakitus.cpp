@@ -21,8 +21,8 @@
 
 using namespace oak;
 
-const unsigned int SCR_WIDTH = 1440;
-const unsigned int SCR_HEIGHT = 810;
+const unsigned int SCR_WIDTH = 736;
+const unsigned int SCR_HEIGHT = 414;
 
 
 
@@ -39,7 +39,7 @@ void Oakitus::init()
     true
   );
 
-  Window::init(SCR_WIDTH, SCR_HEIGHT, SCR_WIDTH/2, SCR_HEIGHT/2, "Oakitus");
+  Window::init(SCR_WIDTH, SCR_HEIGHT, SCR_WIDTH, SCR_HEIGHT, "Oakitus");
   GLFWwindow* window = Window::getGLFWWindow();
   
   //set default resources
@@ -77,6 +77,7 @@ int Oakitus::loop()
 
     PlayerResource::executeAllCommands();
     Entity::updateInstances();
+    Entity::resolveCollisions();
     Entity::drawInstances();
     Entity::debugDrawInstances();
 
