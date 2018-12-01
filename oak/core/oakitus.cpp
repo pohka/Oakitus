@@ -44,9 +44,8 @@ void Oakitus::init()
   GLFWwindow* window = Window::getGLFWWindow();
   
   //set default resources
-  Shader *shader = new Shader("default");
-  Resources::addShader(*shader);
-  Resources::defaultShader = shader;
+  Resources::addShader("default");
+  Resources::defaultShader = &Resources::getShaderByName("default");
 
   Resources::addTexture("default.png");
   Resources::defaultTexture = &Resources::getTextureBySrc("default.png");

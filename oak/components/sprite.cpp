@@ -23,7 +23,7 @@ Sprite::Sprite(
   int srcH,
   float displayW,
   float displayH,
-  uint shaderID
+  std::string shaderName
 )
 {
   this->srcX = srcX;
@@ -33,16 +33,9 @@ Sprite::Sprite(
   this->w = displayW;
   this->h = displayH;
   
-  if (shaderID != NULL)
-  {
-    this->shaderID = shaderID;
-  }
-  else 
-  {
-    shaderID = Resources::getDefaultShader().getID();
-  }
+  shaderID = Resources::getShaderByName(shaderName).getID();
+
   Texture* texture = &Resources::getTextureBySrc(src);
-  
   this->textureID = texture->getID();
   float xMin = ((float)srcX / texture->getWidth());
   float yMin = ((float)srcY / texture->getHeight());

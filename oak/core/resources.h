@@ -23,7 +23,7 @@ namespace oak
 
     public:
       const static std::string PATH;
-      static void addShader(Shader& shader);
+      static void addShader(std::string shaderName);
       static void addTexture(std::string src);
       static Shader& getShaderByID(uint id);
       static Shader& getShaderByName(std::string name);

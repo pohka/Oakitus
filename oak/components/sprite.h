@@ -33,7 +33,7 @@ namespace oak
         int srcH, 
         float displayW, 
         float displayH, 
-        uint shaderID
+        std::string shaderName
       );
 
       Sprite(
@@ -49,7 +49,6 @@ namespace oak
     
     private:
       void construct(float xMin, float xMax, float yMin, float yMax);
-    //  Texture* setTextureIDFromSrc(std::string src);
   };
 }
 

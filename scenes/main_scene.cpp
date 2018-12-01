@@ -24,7 +24,7 @@ void MainScene::onLoad()
   Camera::position = glm::vec3(0, 0, 0);
 
   Entity* ground = new Entity();
-  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, NULL);
+  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, "default");
   ground->addComponent(groundSprite);
   ground->instantiate();
 

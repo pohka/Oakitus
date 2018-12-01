@@ -9,18 +9,19 @@ std::vector<Shader*> Resources::shaders;
 std::vector<Texture*> Resources::textures;
 const std::string Resources::PATH = "res/";
 
-void Resources::addShader(Shader& shader)
+void Resources::addShader(std::string shaderName)
 {
- // if(!isShaderLoaded)
-  shaders.push_back(&shader);
+  if (!isShaderLoaded(shaderName))
+  {
+    shaders.push_back(new Shader(shaderName));
+  }
 }
 
 void Resources::addTexture(std::string src)
 {
   if (!isTextureLoaded(src))
   {
-    Texture* tex = new Texture(PATH, src);
-    textures.push_back(tex);
+    textures.push_back(new Texture(PATH, src));
   }
 }
 
