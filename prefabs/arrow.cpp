@@ -17,7 +17,7 @@ Arrow::Arrow(glm::vec2 targetPos, game::Faction casterFaction)
     150.0f,
     1000.0f,
     true,
-    TargetTeam::FRIENDLY_TEAM,
+    TARGET_TEAM_ENEMY,
     casterFaction
   );
   addComponent(proj);

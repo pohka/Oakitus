@@ -6,7 +6,7 @@ using namespace game::ability;
 
 Shoot::Shoot()
 {
-  targetType = TargetType::POINT;
+  targetType = TARGET_TYPE_POINT;
   preCastTime = 0.0f;
   castTime = 0.5f;
 }

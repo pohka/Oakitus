@@ -95,7 +95,7 @@ void BaseCollisionShape::initVAO(float quadW, float quadH)
   glEnableVertexAttribArray(1);
 }
 
-ShapeType BaseCollisionShape::getType() const
+uchar BaseCollisionShape::getType() const
 {
   return type;
 }
@@ -103,12 +103,12 @@ ShapeType BaseCollisionShape::getType() const
 
 bool BaseCollisionShape::intersects(BaseCollisionShape& shape)
 {
-  if (shape.getType() == ShapeType::RECT)
+  if (shape.getType() == COLLISION_SHAPE_RECT)
   {
     CollisionRect* rect =  static_cast<CollisionRect*>(&shape);
     return intersectsRect(*rect);
   }
-  else if (shape.getType() == ShapeType::CIRCLE)
+  else if (shape.getType() == COLLISION_SHAPE_CIRCLE)
   {
     CollisionCircle* circle = static_cast<CollisionCircle*>(&shape);
     return intersectsCircle(*circle);

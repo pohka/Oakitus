@@ -10,7 +10,7 @@ LinearProjectile::LinearProjectile(
   float speed,
   float maxDistance,
   bool destroyOnHit,
-  TargetTeam targetTeam,
+  uchar targetTeam,
   Faction casterFaction
 )
 {
@@ -54,21 +54,21 @@ void LinearProjectile::onCollisionHit(Entity& hit)
   if (hit.getCollisionLayer() == CollisionLayer::UNIT)
   {
     Unit* unitHit = static_cast<Unit*>(&hit);
-    if(this->targetTeam == TargetTeam::ENEMY_TEAM && unitHit->getFaction() != casterFaction)
+    if(this->targetTeam == TARGET_TEAM_ENEMY && unitHit->getFaction() != casterFaction)
     {
       if (destroyOnHit)
       {
         entity->destroy();
       }
     }
-    else if (this->targetTeam == TargetTeam::FRIENDLY_TEAM && unitHit->getFaction() == casterFaction)
+    else if (this->targetTeam == TARGET_TEAM_FRIENDLY && unitHit->getFaction() == casterFaction)
     {
       if (destroyOnHit)
       {
         entity->destroy();
       }
     }
-    if (this->targetTeam == TargetTeam::BOTH_TEAM)
+    if (this->targetTeam == TARGET_TEAM_BOTH)
     {
       if (destroyOnHit)
       {

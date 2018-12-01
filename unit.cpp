@@ -71,15 +71,15 @@ void Unit::onUpdate()
   //update ability casting states
   for (Ability* abil : abilitys)
   {
-    if (abil->getCastingState() == CastingState::PRECAST && now >= abil->getStartTime())
+    if (abil->getCastState() == CAST_STATE_PRECAST && now >= abil->getStartTime())
     {
       abil->onAbilityStart();
-      abil->setCastingState(CastingState::CASTING);
+      abil->setCastState(CAST_STATE_CASTING);
     }
-    if (abil->getCastingState() == CastingState::CASTING && now >= abil->getEndTime())
+    if (abil->getCastState() == CAST_STATE_CASTING && now >= abil->getEndTime())
     {
       abil->onAbilityEnd();
-      abil->setCastingState(CastingState::NONE);
+      abil->setCastState(CAST_STATE_NONE);
     }
   }
 }

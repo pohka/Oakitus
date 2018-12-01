@@ -8,7 +8,7 @@ CollisionCircle::CollisionCircle(float radius, float offsetX, float offsetY)
   this->radius = radius;
   this->offsetX = offsetX;
   this->offsetY = offsetY;
-  type = ShapeType::CIRCLE;
+  type = COLLISION_SHAPE_CIRCLE;
 
   textureID = Resources::findTextureBySrc("circle.png")->getID();
 

@@ -44,7 +44,7 @@ void Ability::beginCasting()
   startTime = now + preCastTime;
   endTime = startTime + castTime;
 
-  castingState = CastingState::PRECAST;
+  castState = CAST_STATE_PRECAST;
   onCast();
 }
 
@@ -58,19 +58,19 @@ float Ability::getEndTime() const
 }
 
 
-CastingState Ability::getCastingState() const
+uchar Ability::getCastState() const
 {
-  return castingState;
+  return castState;
 }
 
-TargetType Ability::getTargetType() const
+uchar Ability::getTargetType() const
 {
   return targetType;
 }
 
-void Ability::setCastingState(CastingState state)
+void Ability::setCastState(uchar state)
 {
-  castingState = state;
+  castState = state;
 }
 
 //when casting was successfully requested

@@ -18,7 +18,7 @@ namespace game
     float maxDistance;
     bool destroyOnHit;
     float speed;
-    TargetTeam targetTeam;
+    uchar targetTeam;
     Faction casterFaction;
 
     
@@ -29,7 +29,7 @@ namespace game
         float speed,
         float maxDistance,
         bool destroyOnHit,
-        TargetTeam targetTeam,
+        uchar targetTeam,
         Faction casterFaction
       );
       ~LinearProjectile();

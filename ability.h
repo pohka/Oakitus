@@ -3,32 +3,26 @@
 
 #include "unit.h"
 #include <core/id_generator.h>
+#include <core/types.h>
 
 namespace game
 {
   class Unit;
 
-  enum CastingState 
-  {
-    NONE,
-    PRECAST,
-    CASTING
-  };
+  cnum CAST_STATE_NONE =    0;
+  cnum CAST_STATE_PRECAST = 1;
+  cnum CAST_STATE_CASTING = 2;
 
-  enum TargetType 
-  {
-    NO_TARGET,
-    POINT,
-    UNIT_TARGET
-  };
+  cnum TARGET_TYPE_NONE =         0;
+  cnum TARGET_TYPE_NO_TARGET =    1;
+  cnum TARGET_TYPE_POINT =        2;
+  cnum TARGET_TYPE_UNIT_TARGET =  3;
 
-  enum TargetTeam
-  {
-    NO_TEAM,
-    FRIENDLY_TEAM,
-    ENEMY_TEAM,
-    BOTH_TEAM
-  };
+
+  cnum TARGET_TEAM_NONE =      0;
+  cnum TARGET_TEAM_FRIENDLY =  1;
+  cnum TARGET_TEAM_ENEMY =     2;
+  cnum TARGET_TEAM_BOTH =      3;
 
   struct Target
   {
@@ -52,8 +46,8 @@ namespace game
       void castOnPoint(glm::vec2 point);
       void castNoTarget();
 
-      CastingState getCastingState() const;
-      TargetType getTargetType() const;
+      uchar getCastState() const;
+      uchar getTargetType() const;
       uint getID() const;
       float getStartTime() const;
       float getEndTime() const;
@@ -62,15 +56,15 @@ namespace game
       virtual void onAbilityStart(); //when the precast ends
       virtual void onAbilityEnd(); //when the cast time ends
 
-      void setCastingState(CastingState state);
+      void setCastState(uchar state);
 
     protected:
       Target target;
       float preCastTime = 0.0f; //wind up before casting
       float castTime = 0.0f; //time to cast the ability
-      CastingState castingState = CastingState::NONE;
-      TargetType targetType = TargetType::NO_TARGET;
-      TargetTeam targetTeam = TargetTeam::NO_TEAM;
+      uchar castState = 0;
+      uchar targetType = 0;
+      uchar targetTeam = 0;
       
     private:
       void beginCasting();
