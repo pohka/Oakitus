@@ -49,7 +49,7 @@ void Oakitus::init()
   Resources::defaultShader = shader;
 
   Resources::addTexture("default.png");
-  Resources::defaultTexture = Resources::findTextureBySrc("default.png");
+  Resources::defaultTexture = &Resources::getTextureBySrc("default.png");
   Resources::addTexture("box.png");
   Resources::addTexture("circle.png");
 

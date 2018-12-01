@@ -41,23 +41,15 @@ Sprite::Sprite(
   {
     shaderID = Resources::getDefaultShader().getID();
   }
-  Texture* texture = Resources::findTextureBySrc(src);
+  Texture* texture = &Resources::getTextureBySrc(src);
   
-  if (texture != nullptr)
-  {
-    this->textureID = texture->getID();
-    float xMin = ((float)srcX / texture->getWidth());
-    float yMin = ((float)srcY / texture->getHeight());
-    float xMax = ((float)(srcX + srcW) / texture->getWidth());
-    float yMax = ((float)(srcY + srcH) / texture->getHeight());
+  this->textureID = texture->getID();
+  float xMin = ((float)srcX / texture->getWidth());
+  float yMin = ((float)srcY / texture->getHeight());
+  float xMax = ((float)(srcX + srcW) / texture->getWidth());
+  float yMax = ((float)(srcY + srcH) / texture->getHeight());
 
-    construct(xMin, xMax, yMin, yMax);
-  }
-  else
-  {
-    this->textureID = Resources::getDefaultTexture().getID();
-    construct(0.0f, 1.0f, 0.0f, 1.0f);
-  }
+  construct(xMin, xMax, yMin, yMax);
 }
 
 Sprite::Sprite(
@@ -72,20 +64,6 @@ Sprite::Sprite(
   this->textureID = Resources::getTextureIDBySrc(src);
   construct(0.0f, 1.0f, 0.0f, 1.0f);
 }
-
-//Texture* Sprite::setTextureIDFromSrc(std::string src)
-//{
-//  Texture *texture = Resources::findTextureBySrc(src);
-//  if (texture != nullptr)
-//  {
-//    this->textureID = texture->getID();
-//  }
-//  else
-//  {
-//    this->textureID = Resources::getDefaultTexture().getID();
-//  }
-//  return texture;
-//}
 
 void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
 {
@@ -154,7 +132,7 @@ void Sprite::onDraw() const
   );
   model = glm::translate(model, pos);
 
-  Shader* shader = Resources::findShaderByID(this->shaderID);
+  Shader* shader = &Resources::getShaderByID(this->shaderID);
   shader->use();
   shader->setMat4("model", model);
 

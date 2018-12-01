@@ -25,13 +25,15 @@ namespace oak
       const static std::string PATH;
       static void addShader(Shader& shader);
       static void addTexture(std::string src);
-      static Shader* findShaderByID(uint id);
-      static Shader* findShaderByName(std::string name);
-      static Texture* findTextureByID(uint textureID);
-      static Texture * findTextureBySrc(std::string src);
+      static Shader& getShaderByID(uint id);
+      static Shader& getShaderByName(std::string name);
+      static Texture& getTextureByID(uint textureID);
+      static Texture& getTextureBySrc(std::string src);
       static Shader& getDefaultShader();
       static Texture& getDefaultTexture();
       static uint getTextureIDBySrc(std::string src);
+      static bool isTextureLoaded(std::string src);
+      static bool isShaderLoaded(std::string name);
   };
 }
 
