@@ -8,3 +8,4 @@
 * Comment code
 * unit tests
 * sword ability
+* damage tables unit health

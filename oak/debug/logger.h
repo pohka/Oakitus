@@ -6,12 +6,26 @@
 #include <vector>
 #include <iomanip>
 #include <core/time.h>
+#include <core/types.h>
 
 namespace debug
 {
+  cnum DEBUG_LOG_MSG = 0;
+  cnum DEBUG_LOG_WARNING = 1;
+  cnum DEBUG_LOG_ERROR = 2;
+
+  struct LogData
+  {
+    std::string funcName;
+    std::string file;
+    int line;
+    uchar logType;
+  };
+
   class Logger
   {
-    bool isError = false;
+    uchar logType;
+
     struct Timer
     {
       float startTime;
@@ -20,16 +34,19 @@ namespace debug
     };
     
     static std::vector<Timer> timers;
+    
+    
+    static LogData lastLog;
+    static uint logRepeatCount;
+    static const uint MAX_REPEATED_LOGS = 5;
+    static bool hasReachedMaxRepeats;
 
     public:
-      //LOG
-      Logger();
-      //LOG_ERROR and LOG_WARNING
       Logger(
         const std::string &funcName, 
         const std::string &file, 
         int line, 
-        bool isError
+        uchar logType
       );
       ~Logger();
 
@@ -40,17 +57,29 @@ namespace debug
       template <class T>
       Logger &operator<<(const T &v)
       {
-        std::cout << v;
+        if (!hasReachedMaxRepeats)
+        {
+          std::cout << v;
+        }
         return *this;
       }
+  private:
+    static bool isRepeatedLog(
+      const std::string &funcName,
+      const std::string &file,
+      int line,
+      uchar logType
+    );
   };
 
   
 }
 
 
-#define LOG_ERROR debug::Logger(__FUNCTION__, __FILE__, __LINE__, true)
-#define LOG_WARNING debug::Logger(__FUNCTION__, __FILE__, __LINE__, false)
-#define LOG debug::Logger()
+#define LOG debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_MSG)
+#define LOG_WARNING debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_WARNING)
+#define LOG_ERROR debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_ERROR)
+
+
 
 #endif

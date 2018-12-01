@@ -2,6 +2,7 @@
 #include <oak.h>
 #include "../scripts/linear_projectile.h"
 #include "../ability.h"
+#include <debug.h>
 
 using namespace game::prefab;
 using namespace oak;
@@ -26,5 +27,5 @@ Arrow::Arrow(glm::vec2 targetPos, game::Faction casterFaction)
 
 Arrow::~Arrow()
 {
-  
+  LOG << "here";
 }
