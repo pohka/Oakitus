@@ -12,6 +12,7 @@
 #include "scene.h"
 #include "texture.h"
 #include "player_resource.h"
+#include "../components/collision.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -77,7 +78,7 @@ int Oakitus::loop()
 
     PlayerResource::executeAllCommands();
     Entity::updateInstances();
-    Entity::resolveCollisions();
+    Collision::resolveCollisions();
     Entity::drawInstances();
     Entity::debugDrawInstances();
 

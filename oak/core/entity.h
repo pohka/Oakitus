@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <queue>
+#include "../components/collision_layer.h"
 
 namespace oak
 {
@@ -20,6 +21,8 @@ namespace oak
   class Entity
   {
     friend class Oakitus;
+    friend class Collision;
+
     static std::queue<uint> queuedDestroyEntityIDs;
     static std::queue<Entity*> pendingEntityInstances;
     static std::vector<Entity*> entitys;
@@ -32,15 +35,12 @@ namespace oak
     static void deleteAllEnts(bool isGlobalExempt);
     static void instantiateQueuedEnts();
     static void clearQueues();
-    static void resolveCollisions();
-    static bool checkEntEntCollision(Entity* entA, Entity* entB);
 
 	  uint entityID;
 	  std::vector<Component*> components;
-	  std::vector<Script*> scripts;
     std::vector<BaseCollisionShape*> collisionShapes;
 	  IDGenerator componentIDGen;
-    IDGenerator scriptIDGen;
+    
 
 
     public:
@@ -60,17 +60,21 @@ namespace oak
 	    virtual ~Entity();
 	    void addComponent(Component* component);
       void addCollision(BaseCollisionShape* shape);
-	    void addScript(Script* script);
       void instantiate();
       void instantiate(float x, float y);
 	    void destroy();
 	    uint getID() const;
+      CollisionLayer getCollisionLayer() const;
       std::string getName() const;
       virtual void onStart();
 	    virtual void onDestroy();
 	    virtual void onDraw() const;
 	    virtual void onUpdate();
       virtual void onDebugDraw() const;
+      virtual void notifyCollision(Entity& hit) const;
+
+    protected:
+      CollisionLayer collisionLayer;
   };
 }
 

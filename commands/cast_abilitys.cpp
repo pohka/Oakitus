@@ -2,6 +2,7 @@
 #include "../unit.h"
 #include <debug.h>
 #include <core/camera.h>
+#include "../ability.h"
 
 using namespace game;
 using namespace oak;
@@ -26,12 +27,12 @@ void CastAbilitys::execute()
     Unit* unit = player->getAssignedUnit();
     Ability* ability = unit->getAbilityByIndex(0);
 
-    if (ability->getTargetType() == TargetType::POINT)
+    if (ability->getTargetType() == TARGET_TYPE_POINT)
     {
       glm::vec2 point = Camera::cursorToWorld2D();
       ability->castOnPoint(point);
     }
-    else if (ability->getTargetType() == TargetType::NO_TARGET)
+    else if (ability->getTargetType() == TARGET_TYPE_NO_TARGET)
     {
       //glm::vec2 target = Camera::cursorToWorld2D();
       ability->castNoTarget();

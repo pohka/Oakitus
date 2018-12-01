@@ -15,7 +15,7 @@ CollisionRect::CollisionRect(float offsetX, float offsetY, float width, float he
   this->offsetY = offsetY;
   this->w = width;
   this->h = height;
-  type = ShapeType::RECT;
+  type = COLLISION_SHAPE_RECT;
 
   textureID = Resources::findTextureBySrc("box.png")->getID();
   initVAO(w, h);
@@ -43,12 +43,12 @@ float CollisionRect::minY() const
 
 float CollisionRect::maxX() const
 {
-  return this->entity->position.x + offsetX - (w * 0.5f);
+  return this->entity->position.x + offsetX + (w * 0.5f);
 }
 
 float CollisionRect::maxY() const
 {
-  return this->entity->position.y + offsetY - (h * 0.5f);
+  return this->entity->position.y + offsetY + (h * 0.5f);
 }
 
 float CollisionRect::width() const

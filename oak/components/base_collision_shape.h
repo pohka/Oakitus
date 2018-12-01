@@ -9,11 +9,8 @@ namespace oak
   class CollisionCircle;
   class Entity;
 
-  enum ShapeType
-  {
-    RECT,
-    CIRCLE
-  };
+  cnum COLLISION_SHAPE_RECT = 0;
+  cnum COLLISION_SHAPE_CIRCLE = 1;
 
   class BaseCollisionShape
   {
@@ -30,13 +27,13 @@ namespace oak
 
       float originX() const;
       float originY() const;
-      ShapeType getType() const;
+      uchar getType() const;
 
       void onDebugDraw() const;
       
 
     protected:
-      ShapeType type;
+      uchar type;
       float offsetX;
       float offsetY;
       uint VAO, VBO;
