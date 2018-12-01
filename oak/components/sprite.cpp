@@ -41,10 +41,11 @@ Sprite::Sprite(
   {
     shaderID = Resources::getDefaultShader().getID();
   }
-  Texture *texture = setTextureIDFromSrc(src);
+  Texture* texture = Resources::findTextureBySrc(src);
   
   if (texture != nullptr)
   {
+    this->textureID = texture->getID();
     float xMin = ((float)srcX / texture->getWidth());
     float yMin = ((float)srcY / texture->getHeight());
     float xMax = ((float)(srcX + srcW) / texture->getWidth());
@@ -54,6 +55,7 @@ Sprite::Sprite(
   }
   else
   {
+    this->textureID = Resources::getDefaultTexture().getID();
     construct(0.0f, 1.0f, 0.0f, 1.0f);
   }
 }
@@ -66,24 +68,24 @@ Sprite::Sprite(
 {
   this->w = displayW;
   this->h = displayH;
-  shaderID = Resources::getDefaultShader().getID();
-  setTextureIDFromSrc(src);
+  this->shaderID = Resources::getDefaultShader().getID();
+  this->textureID = Resources::getTextureIDBySrc(src);
   construct(0.0f, 1.0f, 0.0f, 1.0f);
 }
 
-Texture* Sprite::setTextureIDFromSrc(std::string src)
-{
-  Texture *texture = Resources::findTextureBySrc(src);
-  if (texture != nullptr)
-  {
-    this->textureID = texture->getID();
-  }
-  else
-  {
-    this->textureID = Resources::getDefaultTexture().getID();
-  }
-  return texture;
-}
+//Texture* Sprite::setTextureIDFromSrc(std::string src)
+//{
+//  Texture *texture = Resources::findTextureBySrc(src);
+//  if (texture != nullptr)
+//  {
+//    this->textureID = texture->getID();
+//  }
+//  else
+//  {
+//    this->textureID = Resources::getDefaultTexture().getID();
+//  }
+//  return texture;
+//}
 
 void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
 {
@@ -105,7 +107,6 @@ void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
   glGenBuffers(1, &this->VBO);
 
   glBindVertexArray(this->VAO);
-
   glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 

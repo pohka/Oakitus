@@ -75,3 +75,14 @@ Texture& Resources::getDefaultTexture()
 {
   return *defaultTexture;
 }
+
+uint Resources::getTextureIDBySrc(std::string src)
+{
+  Texture *texture = Resources::findTextureBySrc(src);
+  if (texture != nullptr)
+  {
+    return texture->getID();
+  }
+
+  return defaultTexture->getID();
+}

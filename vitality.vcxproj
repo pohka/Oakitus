@@ -135,6 +135,7 @@
     <ClCompile Include="oak\components\collision_circle.cpp" />
     <ClCompile Include="oak\components\collision_rect.cpp" />
     <ClCompile Include="oak\components\sprite.cpp" />
+    <ClCompile Include="oak\components\sprite_animation.cpp" />
     <ClCompile Include="oak\core\bounds.cpp" />
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="oak\components\collision_rect.h" />
     <ClInclude Include="oak\components\base_collision_shape.h" />
     <ClInclude Include="oak\components\sprite.h" />
+    <ClInclude Include="oak\components\sprite_animation.h" />
     <ClInclude Include="oak\core\bounds.h" />
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\command.h" />

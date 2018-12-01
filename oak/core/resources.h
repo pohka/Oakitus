@@ -31,6 +31,7 @@ namespace oak
       static Texture * findTextureBySrc(std::string src);
       static Shader& getDefaultShader();
       static Texture& getDefaultTexture();
+      static uint getTextureIDBySrc(std::string src);
   };
 }
 

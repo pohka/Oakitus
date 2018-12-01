@@ -49,7 +49,7 @@ namespace oak
     
     private:
       void construct(float xMin, float xMax, float yMin, float yMax);
-      Texture* setTextureIDFromSrc(std::string src);
+    //  Texture* setTextureIDFromSrc(std::string src);
   };
 }
 

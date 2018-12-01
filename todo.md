@@ -1,6 +1,6 @@
 # todo
 
-* damage tables unit health
+* onDeath
 * collision
   * bool isStatic
   * isTrigger
@@ -12,3 +12,4 @@
 * world (tiles)
 * HUD
 * inventory and items
+* automatically deciding which textures need to be loaded
