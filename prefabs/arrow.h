@@ -3,6 +3,7 @@
 
 #include <core/entity.h>
 #include "../ability.h"
+#include "../unit.h"
 
 namespace game
 {
@@ -13,7 +14,7 @@ namespace game
     {
 
       public:
-        Arrow(glm::vec2 targetPos, game::Faction casterFaction);
+        Arrow(glm::vec2 targetPos, Unit& caster, uint abilityID);
         ~Arrow();
     };
   }

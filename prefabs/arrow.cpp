@@ -4,10 +4,12 @@
 #include "../ability.h"
 #include <debug.h>
 
+
 using namespace game::prefab;
 using namespace oak;
+using namespace game;
 
-Arrow::Arrow(glm::vec2 targetPos, game::Faction casterFaction)
+Arrow::Arrow(glm::vec2 targetPos, Unit& caster, uint abilityID)
 {
   Sprite* sprite = new Sprite("face.png", 16.0f, 16.0f);
   addComponent(sprite);
@@ -15,11 +17,14 @@ Arrow::Arrow(glm::vec2 targetPos, game::Faction casterFaction)
 
   LinearProjectile* proj = new LinearProjectile(
     targetPos,
+    20,
     150.0f,
     1000.0f,
     true,
     TARGET_TEAM_ENEMY,
-    casterFaction
+    caster.getFaction(),
+    abilityID,
+    caster.getID()
   );
   addComponent(proj);
   collisionLayer = CollisionLayer::PROJECTILE;

@@ -14,6 +14,7 @@ Unit::Unit()
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
   faction = Faction::NO_FACTION;
+  health = 100;
 }
 
 Unit::~Unit()
@@ -87,4 +88,39 @@ void Unit::onUpdate()
 Faction Unit::getFaction() const
 {
   return faction;
+}
+
+int Unit::getHealth() const
+{
+  return health;
+}
+void Unit::setHealth(int hp)
+{
+  health = hp;
+}
+
+void Unit::applyDamage(int amount, uint attackerID, uint abilityID)
+{
+  if (isAlive())
+  {
+    this->health -= amount;
+    LOG << "health :" << health;
+    if (health <= 0)
+    {
+      health = 0;
+      onDeath();
+    }
+  }
+}
+
+bool Unit::isAlive() const
+{
+  return health > 0;
+}
+
+void Unit::onDeath()
+{
+  LOG << "onDeath()";
+  //notify components
+  //then do something
 }

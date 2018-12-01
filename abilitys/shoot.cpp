@@ -25,7 +25,7 @@ void Shoot::onCast()
 void Shoot::onAbilityStart()
 {
   //LOG << "onAbilityStart()";
-  prefab::Arrow* arrow = new prefab::Arrow(target.point, caster->getFaction());
+  prefab::Arrow* arrow = new prefab::Arrow(target.point, *caster, this->getID());
   arrow->instantiate(caster->position.x, caster->position.y);
 }
 

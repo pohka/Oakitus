@@ -19,6 +19,15 @@ namespace game
     ENEMY
   };
 
+  //struct Damage
+  //{
+  //  uint attackerID;
+  //  uint abilityID;
+  //  int damage;
+  //  //uchar damageType;
+
+  //};
+
   class Unit : public oak::Entity
   {
 
@@ -26,6 +35,7 @@ namespace game
     float moveSpeed;
     static const float BASE_MOVE_SPEED;
     std::vector<Ability*> abilitys;
+    int health;
 
     public:
       Unit();
@@ -38,6 +48,11 @@ namespace game
       void addAbility(Ability* ability);
       Ability* getAbilityByIndex(uint index) const;
       Faction getFaction() const;
+      int getHealth() const;
+      void setHealth(int hp);
+      void applyDamage(int amount, uint attackerID, uint abilityID);
+      bool isAlive() const;
+      
       
 
       //void onStart() override;
@@ -47,6 +62,9 @@ namespace game
 
     protected:
       Faction faction;
+
+    private:
+      void onDeath();
   };
 
   

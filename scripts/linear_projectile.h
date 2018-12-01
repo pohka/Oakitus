@@ -20,23 +20,30 @@ namespace game
     float speed;
     uchar targetTeam;
     Faction casterFaction;
+    int damage;
+    uint abilityID;
+    uint casterID;
 
     
 
     public:
       LinearProjectile(
         glm::vec2 targetPos,
+        int damage,
         float speed,
         float maxDistance,
         bool destroyOnHit,
         uchar targetTeam,
-        Faction casterFaction
+        Faction casterFaction,
+        uint abilityID,
+        uint casterID
       );
       ~LinearProjectile();
 
       void onStart() override;
       void onUpdate() override;
       void onCollisionHit(oak::Entity& hit) override;
+      void onProjectileHit(Unit& unitHit);
   };
 }
 

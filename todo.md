@@ -1,11 +1,14 @@
-#todo
+# todo
 
+* damage tables unit health
 * collision
   * bool isStatic
   * isTrigger
-* debug console
-  * doesnt print out repeated messages
 * Comment code
 * unit tests
 * sword ability
-* damage tables unit health
+* spritesheet animations
+* sound
+* world (tiles)
+* HUD
+* inventory and items
