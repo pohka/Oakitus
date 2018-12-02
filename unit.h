@@ -17,21 +17,11 @@ namespace game
   cnum ANIM_TYPE_RUN =  2;
   cnum ANIM_TYPE_ATTACK = 3;
 
-  enum Faction
-  {
-    NO_FACTION,
-    PLAYER,
-    ENEMY
-  };
 
-  //struct Damage
-  //{
-  //  uint attackerID;
-  //  uint abilityID;
-  //  int damage;
-  //  //uchar damageType;
+  cnum FACTION_NONE = 0;
+  cnum FACTION_PLAYER = 1;
+  cnum FACTION_ENEMY = 2;
 
-  //};
 
   class Unit : public oak::Entity
   {
@@ -52,7 +42,7 @@ namespace game
       void setMoveSpeed(float moveSpeed);
       void addAbility(Ability* ability);
       Ability* getAbilityByIndex(uint index) const;
-      Faction getFaction() const;
+      uchar getFaction() const;
       int getHealth() const;
       void setHealth(int hp);
       void applyDamage(int amount, uint attackerID, uint abilityID);
@@ -66,7 +56,7 @@ namespace game
       void onUpdate();
 
     protected:
-      Faction faction;
+      uchar faction;
 
     private:
       void onDeath();

@@ -13,7 +13,7 @@ Unit::Unit()
   Player* owner = nullptr;
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
-  faction = Faction::NO_FACTION;
+  faction = FACTION_NONE;
   health = 100;
 }
 
@@ -85,7 +85,7 @@ void Unit::onUpdate()
   }
 }
 
-Faction Unit::getFaction() const
+uchar Unit::getFaction() const
 {
   return faction;
 }

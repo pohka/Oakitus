@@ -53,7 +53,7 @@ UPlayer::UPlayer()
     )
   );
 
-  animator->setAnim(ANIM_TYPE_IDLE);
+  animator->setAnim(ANIM_TYPE_ATTACK);
   addComponent(animator);
 
   //addComponent(
@@ -63,8 +63,8 @@ UPlayer::UPlayer()
   //    "anim_test2.png", 384, 192, 200, 100, 0.04f, "default", 14, 4)
   //);
   addAbility(new Shoot());
-  addCollision(new CollisionRect(0.0f, 0.0f, 32.0f, 40.0f));
-  faction = Faction::PLAYER;
+  addCollision(new CollisionRect(10.0f, -10.0f, 40.0f, 60.0f));
+  faction = FACTION_PLAYER;
 }
 
 UPlayer::~UPlayer()
