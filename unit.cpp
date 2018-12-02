@@ -66,7 +66,7 @@ Ability* Unit::getAbilityByIndex(uint index) const
 
 void Unit::onUpdate()
 {
- 
+  Entity::onUpdate();
   float now = oak::Time::getTimeNow();
 
   //update ability casting states

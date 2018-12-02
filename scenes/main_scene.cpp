@@ -18,6 +18,7 @@ void MainScene::onLoad()
   Resources::addTexture("wall.jpg");
   Resources::addTexture("face.png");
   Resources::addTexture("dummy.png");
+  Resources::addTexture("anim_test.png");
 
   
 

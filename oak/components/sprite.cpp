@@ -116,7 +116,6 @@ void Sprite::onDraw() const
   glm::mat4 model = glm::mat4(1.0);
 
   glm::vec3 camNPos = Camera::getNormalizedPos();
-  //float screenH = (float)Window::getHeight();
 
   glm::vec3 pos(
     Window::worldToViewportCoords(entity->position.x) - camNPos.x,
