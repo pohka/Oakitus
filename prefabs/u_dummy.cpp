@@ -22,7 +22,7 @@ UDummy::UDummy()
       0.04f,
       "default",
       12,
-      4
+      0
     )
   );
   addAnimator(animator);

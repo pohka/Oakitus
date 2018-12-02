@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="ability.cpp" />
     <ClCompile Include="abilitys\shoot.cpp" />
+    <ClCompile Include="abilitys\sword_attack.cpp" />
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="glad.c" />
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="ability.h" />
     <ClInclude Include="abilitys\shoot.h" />
+    <ClInclude Include="abilitys\sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
     <ClInclude Include="oak\components\animator.h" />

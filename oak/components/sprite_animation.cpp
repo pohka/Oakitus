@@ -94,8 +94,8 @@ bool SpriteAnimation::onUpdate()
       }
     }
     
-    LOG << "here";
-    LOG << "new frame: " << curFrameX << ", " << curFrameY;
+    //LOG << "here";
+    //LOG << "new frame: " << curFrameX << ", " << curFrameY;
 
     setFrame();
 

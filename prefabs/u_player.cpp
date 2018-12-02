@@ -1,6 +1,7 @@
 #include "u_player.h"
 #include <oak.h>
 #include "../abilitys/shoot.h"
+#include "../abilitys/sword_attack.h"
 #include "../oak/components/sprite_animation.h"
 #include "../oak/components/animator.h"
 
@@ -62,6 +63,7 @@ UPlayer::UPlayer()
   //    "anim_test2.png", 384, 192, 200, 100, 0.04f, "default", 14, 4)
   //);
   addAbility(new Shoot());
+  addAbility(new SwordAttack());
   addCollision(new CollisionRect(10.0f, -10.0f, 40.0f, 60.0f));
   faction = FACTION_PLAYER;
 }

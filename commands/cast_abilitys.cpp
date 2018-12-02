@@ -24,22 +24,26 @@ void CastAbilitys::execute()
 {
   if (Input::isKeyDown(KeyCode::Q))
   {
-    Unit* unit = player->getAssignedUnit();
-    Ability* ability = unit->getAbilityByIndex(0);
+    beginCast(0);
+    //Unit* unit = player->getAssignedUnit();
+    //Ability* ability = unit->getAbilityByIndex(0);
 
-    if (ability->getTargetType() == TARGET_TYPE_POINT)
-    {
-      glm::vec2 point = Camera::cursorToWorld2D();
-      ability->castOnPoint(point);
-    }
-    else if (ability->getTargetType() == TARGET_TYPE_NO_TARGET)
-    {
-      //glm::vec2 target = Camera::cursorToWorld2D();
-      ability->castNoTarget();
-    }
+    //if (ability->getTargetType() == TARGET_TYPE_POINT)
+    //{
+    //  glm::vec2 point = Camera::cursorToWorld2D();
+    //  ability->castOnPoint(point);
+    //}
+    //else if (ability->getTargetType() == TARGET_TYPE_NO_TARGET)
+    //{
+    //  //glm::vec2 target = Camera::cursorToWorld2D();
+    //  ability->castNoTarget();
+    //}
 
-    //glm::vec3 casterPos = getCasterPosition();
-    //ability->cast();
+  }
+
+  if (Input::isKeyDown(KeyCode::E))
+  {
+    beginCast(1);
   }
 }
 
@@ -54,4 +58,21 @@ glm::vec3 CastAbilitys::getCasterPosition() const
   }
 
   return unit->position;
+}
+
+void CastAbilitys::beginCast(const int index) const
+{
+  Unit* unit = player->getAssignedUnit();
+  Ability* ability = unit->getAbilityByIndex(index);
+
+  if (ability->getTargetType() == TARGET_TYPE_POINT)
+  {
+    glm::vec2 point = Camera::cursorToWorld2D();
+    ability->castOnPoint(point);
+  }
+  else if (ability->getTargetType() == TARGET_TYPE_NO_TARGET)
+  {
+    //glm::vec2 target = Camera::cursorToWorld2D();
+    ability->castNoTarget();
+  }
 }
