@@ -124,3 +124,14 @@ void Unit::onDeath()
   //notify components
   //then do something
 }
+
+void Unit::addAnimator(oak::Animator* animator)
+{
+  this->animator = animator;
+  addComponent(animator);
+}
+
+void Unit::setAnimation(uchar animType)
+{
+  animator->setAnim(animType);
+}

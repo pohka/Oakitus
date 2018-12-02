@@ -13,9 +13,8 @@ UPlayer::UPlayer()
   name = "u_player";
   //Sprite* sprite = new Sprite("player.png", 0, 0, 32, 40, 32.0f, 40.0f, "default");
   //addComponent(sprite);
-  Animator* animator = new Animator();
-  animator->addAnim(
-    ANIM_TYPE_IDLE, 
+  Animator* animator = new Animator(
+    ANIM_TYPE_IDLE,
     new SpriteAnimation(
       "anim_test2.png", 
       192, 192, 
@@ -53,8 +52,8 @@ UPlayer::UPlayer()
     )
   );
 
-  animator->setAnim(ANIM_TYPE_ATTACK);
-  addComponent(animator);
+  animator->setAnim(ANIM_TYPE_IDLE);
+  addAnimator(animator);
 
   //addComponent(
   //  new SpriteAnimation(

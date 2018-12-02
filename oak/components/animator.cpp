@@ -2,9 +2,11 @@
 
 using namespace oak;
 
-Animator::Animator()
+Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation)
 {
-
+  this->baseAnim = baseAnimType;
+  anims[baseAnimType] = baseAnimation;
+  this->curAnim = baseAnimType;
 }
 
 Animator::~Animator()
@@ -21,7 +23,11 @@ void Animator::onUpdate()
 {
   if (curAnim > 0)
   {
-    anims.at(curAnim)->onUpdate();
+    bool hasEnded = anims.at(curAnim)->onUpdate();
+    if (hasEnded && curAnim != baseAnim)
+    {
+      setAnim(baseAnim);
+    }
   }
 }
 
@@ -43,6 +49,7 @@ void Animator::setAnim(const uchar animType)
   else
   {
     curAnim = animType;
+    anims.at(curAnim)->reset();
   }
 }
 

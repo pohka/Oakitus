@@ -31,6 +31,7 @@ SpriteAnimation::SpriteAnimation(
   this->startFrameY = startFrameY;
   this->totalFrameCount = totalFrameCount;
   this->curFrameCount = 0;
+  this->totalAnimDuration = totalFrameCount * frameDuration;
 
   this->curFrameX = 0;
   this->curFrameY = startFrameY;
@@ -50,8 +51,18 @@ SpriteAnimation::~SpriteAnimation()
   glDeleteBuffers(1, &VBO);
 }
 
-void SpriteAnimation::onUpdate()
+void SpriteAnimation::reset()
 {
+  curFrameX = 0;
+  curFrameY = startFrameY;
+  curFrameCount = 0;
+  setFrame();
+}
+
+bool SpriteAnimation::onUpdate()
+{
+  bool hasAnimEnded = false;
+
   float now = Time::getTimeNow();
   if (now - lastFrameTime > frameDuration)
   {
@@ -61,6 +72,7 @@ void SpriteAnimation::onUpdate()
       curFrameX = 0;
       curFrameY = startFrameY;
       curFrameCount = 0;
+      hasAnimEnded = true;
     }
     else
     {
@@ -87,8 +99,10 @@ void SpriteAnimation::onUpdate()
 
     setFrame();
 
-    lastFrameTime = now;
+    
   }
+
+  return hasAnimEnded;
 }
 
 void SpriteAnimation::onDraw(float positionX, float positionY) const
@@ -118,6 +132,8 @@ void SpriteAnimation::onDraw(float positionX, float positionY) const
 
 void SpriteAnimation::setFrame()
 {
+  lastFrameTime = Time::getTimeNow();
+
   Texture& texture = Resources::getTextureByID(textureID);
   
   float xx = Window::worldToViewportCoords((float)displayW) * 0.5f;
@@ -151,4 +167,9 @@ void SpriteAnimation::setFrame()
   // texture coord attribute
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
   glEnableVertexAttribArray(1);
+}
+
+float SpriteAnimation::getTotalAnimDuration() const
+{
+  return totalAnimDuration;
 }

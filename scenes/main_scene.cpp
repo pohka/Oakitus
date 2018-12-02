@@ -19,7 +19,7 @@ void MainScene::onLoad()
   Resources::addTexture("face.png");
   Resources::addTexture("dummy.png");
   Resources::addTexture("anim_test2.png");
-
+  Resources::addTexture("wolf_sheet.png");
   
 
   Camera::position = glm::vec3(0, 0, 0);

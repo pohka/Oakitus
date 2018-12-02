@@ -3,6 +3,7 @@
 
 #include <core/entity.h>
 #include <core/types.h>
+#include <components/animator.h>
 
 
 class oak::Entity;
@@ -31,6 +32,8 @@ namespace game
     static const float BASE_MOVE_SPEED;
     std::vector<Ability*> abilitys;
     int health;
+    oak::Animator* animator;
+    
 
     public:
       Unit();
@@ -48,7 +51,8 @@ namespace game
       void applyDamage(int amount, uint attackerID, uint abilityID);
       bool isAlive() const;
       
-      
+      void addAnimator(oak::Animator* animator);
+      void setAnimation(uchar animType);
 
       //void onStart() override;
       //void onDestroy() override;
@@ -57,6 +61,7 @@ namespace game
 
     protected:
       uchar faction;
+      
 
     private:
       void onDeath();

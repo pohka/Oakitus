@@ -14,10 +14,11 @@ namespace oak
   {
 
     std::unordered_map<uchar, SpriteAnimation*> anims;
-    uchar curAnim = 0;
+    uchar curAnim;
+    uchar baseAnim;
 
     public:
-      Animator();
+      Animator(uchar baseAnimType, SpriteAnimation* baseAnimation);
       ~Animator();
 
       void addAnim(uchar animType, SpriteAnimation* animation);

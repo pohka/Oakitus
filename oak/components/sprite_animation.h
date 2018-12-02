@@ -31,6 +31,7 @@ namespace oak
     uint curFrameY;
     uint totalFrameCount;
     uint curFrameCount;
+    float totalAnimDuration;
 
 
     public:
@@ -47,8 +48,10 @@ namespace oak
       );
       ~SpriteAnimation();
 
-      void onUpdate();
+      void reset();
+      bool onUpdate();
       void onDraw(float positionX, float positionY) const;
+      float getTotalAnimDuration() const;
     private:
       void setFrame();
   };
