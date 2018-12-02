@@ -121,6 +121,7 @@ bool Unit::isAlive() const
 void Unit::onDeath()
 {
   LOG << "onDeath()";
+  destroy();
   //notify components
   //then do something
 }

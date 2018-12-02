@@ -12,7 +12,11 @@ Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation)
 
 Animator::~Animator()
 {
-
+  for (auto itr = anims.begin(); itr != anims.end(); itr++)
+  {
+    delete (itr->second);
+  }
+  anims.clear();
 }
 
 void Animator::addAnim(const uchar animType, SpriteAnimation* animation)

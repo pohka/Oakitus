@@ -43,8 +43,6 @@ SpriteAnimation::SpriteAnimation(
 
   maxFramesX = texture.getWidth() / frameW;
   maxFramesY = texture.getHeight() / frameH;
-  //this->isFlipped = false;
-
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
