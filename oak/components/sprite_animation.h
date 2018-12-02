@@ -8,7 +8,7 @@
 namespace oak
 {
 
-  class SpriteAnimation : public Component
+  class SpriteAnimation
   {
 
     uint textureID;
@@ -26,11 +26,10 @@ namespace oak
     uint VBO;
     uint maxFramesX;
     uint maxFramesY;
-    uint frameStartX;
-    uint frameStartY;
+    uint startFrameY;
     uint curFrameX;
     uint curFrameY;
-    uint frameCount;
+    uint totalFrameCount;
     uint curFrameCount;
 
 
@@ -43,16 +42,15 @@ namespace oak
         uint displayH,
         float frameDuration,
         std::string shaderName,
-        uint frameCount,
-        uint frameStartX,
-        uint frameStartY
+        uint totalFrameCount,
+        uint startFrameY
       );
       ~SpriteAnimation();
 
-      void onUpdate() override;
-      void onDraw() const override;
+      void onUpdate();
+      void onDraw(float positionX, float positionY) const;
     private:
-      void setFrame(uint frameX, uint frameY);
+      void setFrame();
   };
 }
 #endif

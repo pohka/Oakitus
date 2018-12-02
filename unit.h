@@ -2,7 +2,7 @@
 #define UNIT_H
 
 #include <core/entity.h>
-
+#include <core/types.h>
 
 
 class oak::Entity;
@@ -11,6 +11,11 @@ namespace game
 {
   class Player;
   class Ability;
+
+  cnum ANIM_TYPE_NONE = 0;
+  cnum ANIM_TYPE_IDLE = 1;
+  cnum ANIM_TYPE_RUN =  2;
+  cnum ANIM_TYPE_ATTACK = 3;
 
   enum Faction
   {

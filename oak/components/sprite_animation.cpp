@@ -8,8 +8,6 @@
 
 using namespace oak;
 
-
-
 SpriteAnimation::SpriteAnimation(
   std::string src,
   uint frameW,
@@ -18,9 +16,8 @@ SpriteAnimation::SpriteAnimation(
   uint displayH,
   float frameDuration,
   std::string shaderName,
-  uint frameCount,
-  uint frameStartX,
-  uint frameStartY
+  uint totalFrameCount,
+  uint startFrameY
 )
 {
   Texture& texture = Resources::getTextureBySrc(src);
@@ -31,19 +28,20 @@ SpriteAnimation::SpriteAnimation(
   this->displayH = displayH;
   this->displayW = displayW;
   this->frameDuration = frameDuration;
-  this->frameStartX = frameStartX;
-  this->frameStartY = frameStartY;
-  this->curFrameX = frameStartX;
-  this->curFrameY = frameStartY;
-  this->frameCount = frameCount;
+  this->startFrameY = startFrameY;
+  this->totalFrameCount = totalFrameCount;
   this->curFrameCount = 0;
+
+  this->curFrameX = 0;
+  this->curFrameY = startFrameY;
 
   maxFramesX = texture.getWidth() / frameW;
   maxFramesY = texture.getHeight() / frameH;
 
-  glGenVertexArrays(1, &this->VAO);
-  glGenBuffers(1, &this->VBO);
-  setFrame(curFrameX, curFrameY);
+
+  glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &VBO);
+  setFrame();
 }
 
 SpriteAnimation::~SpriteAnimation()
@@ -58,10 +56,10 @@ void SpriteAnimation::onUpdate()
   if (now - lastFrameTime > frameDuration)
   {
     curFrameCount++;
-    if (curFrameCount == frameCount)
+    if (curFrameCount == totalFrameCount)
     {
-      curFrameX = frameStartX;
-      curFrameY = frameStartY;
+      curFrameX = 0;
+      curFrameY = startFrameY;
       curFrameCount = 0;
     }
     else
@@ -84,29 +82,29 @@ void SpriteAnimation::onUpdate()
       }
     }
     
-
+    LOG << "here";
     LOG << "new frame: " << curFrameX << ", " << curFrameY;
 
-    setFrame(curFrameX, curFrameY);
+    setFrame();
 
     lastFrameTime = now;
   }
 }
 
-void SpriteAnimation::onDraw() const
+void SpriteAnimation::onDraw(float positionX, float positionY) const
 {
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, this->textureID);
+  glBindTexture(GL_TEXTURE_2D, textureID);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-  glBindVertexArray(this->VAO);
+  glBindVertexArray(VAO);
 
   glm::mat4 model = glm::mat4(1.0);
 
   glm::vec3 camNPos = Camera::getNormalizedPos();
 
   glm::vec3 pos(
-    Window::worldToViewportCoords(entity->position.x) - camNPos.x,
-    Window::worldToViewportCoords(entity->position.y) - camNPos.y,
+    Window::worldToViewportCoords(positionX) - camNPos.x,
+    Window::worldToViewportCoords(positionY) - camNPos.y,
     0.0f
   );
   model = glm::translate(model, pos);
@@ -118,17 +116,17 @@ void SpriteAnimation::onDraw() const
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void SpriteAnimation::setFrame(uint frameX, uint frameY)
+void SpriteAnimation::setFrame()
 {
   Texture& texture = Resources::getTextureByID(textureID);
   
   float xx = Window::worldToViewportCoords((float)displayW) * 0.5f;
   float yy = Window::worldToViewportCoords((float)displayH) * 0.5f;
 
-  float xMin = (float)(frameX * frameW)/ texture.getWidth();
-  float xMax = (float)((frameX+1) * frameW) / texture.getWidth();
-  float yMin = (float)(frameY * frameH) / texture.getHeight();
-  float yMax = (float)((frameY + 1) * frameH) / texture.getHeight();
+  float xMin = (float)(curFrameX * frameW)/ texture.getWidth();
+  float xMax = (float)((curFrameX+1) * frameW) / texture.getWidth();
+  float yMin = (float)(curFrameY * frameH) / texture.getHeight();
+  float yMax = (float)((curFrameY + 1) * frameH) / texture.getHeight();
 
 
   float vertices[] = {

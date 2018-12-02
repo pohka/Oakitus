@@ -165,6 +165,9 @@
     <ClCompile Include="oak\components\sprite_animation.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
+    <ClCompile Include="oak\components\animator.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -303,6 +306,9 @@
       <Filter>oak\components</Filter>
     </ClInclude>
     <ClInclude Include="oak\components\sprite_animation.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\animator.h">
       <Filter>oak\components</Filter>
     </ClInclude>
   </ItemGroup>

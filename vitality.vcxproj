@@ -130,6 +130,7 @@
     <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="oak\components\animator.cpp" />
     <ClCompile Include="oak\components\base_collision_shape.cpp" />
     <ClCompile Include="oak\components\collision.cpp" />
     <ClCompile Include="oak\components\collision_circle.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="abilitys\shoot.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
+    <ClInclude Include="oak\components\animator.h" />
     <ClInclude Include="oak\components\collision.h" />
     <ClInclude Include="oak\components\collision_circle.h" />
     <ClInclude Include="oak\components\collision_layer.h" />
