@@ -25,20 +25,6 @@ void CastAbilitys::execute()
   if (Input::isKeyDown(KeyCode::Q))
   {
     beginCast(0);
-    //Unit* unit = player->getAssignedUnit();
-    //Ability* ability = unit->getAbilityByIndex(0);
-
-    //if (ability->getTargetType() == TARGET_TYPE_POINT)
-    //{
-    //  glm::vec2 point = Camera::cursorToWorld2D();
-    //  ability->castOnPoint(point);
-    //}
-    //else if (ability->getTargetType() == TARGET_TYPE_NO_TARGET)
-    //{
-    //  //glm::vec2 target = Camera::cursorToWorld2D();
-    //  ability->castNoTarget();
-    //}
-
   }
 
   if (Input::isKeyDown(KeyCode::E))

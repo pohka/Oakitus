@@ -7,6 +7,7 @@ Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation)
   this->baseAnim = baseAnimType;
   anims[baseAnimType] = baseAnimation;
   this->curAnim = baseAnimType;
+
 }
 
 Animator::~Animator()
@@ -23,12 +24,13 @@ void Animator::onUpdate()
 {
   if (curAnim > 0)
   {
-    bool hasEnded = anims.at(curAnim)->onUpdate();
+    bool hasEnded = anims.at(curAnim)->onUpdate(direction, hasChangedDirection);
     if (hasEnded && curAnim != baseAnim)
     {
       setAnim(baseAnim, true);
     }
   }
+  hasChangedDirection = false;
 }
 
 void Animator::onDraw() const
@@ -66,4 +68,19 @@ void Animator::setAnim(const uchar animType, const bool ignorePriority)
 uchar Animator::getCurAnimType() const
 {
   return curAnim;
+}
+
+
+uchar Animator::getDirection() const
+{
+  return direction;
+}
+
+void Animator::setDirection(uchar direction)
+{
+  if (this->direction != direction)
+  {
+    hasChangedDirection = true;
+    this->direction = direction;
+  }
 }

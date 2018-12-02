@@ -32,6 +32,8 @@ namespace game
   cnum ANIM_PRIORITY_ABILITY =  2;
   cnum ANIM_PRIORITY_DISABLE =  3;
 
+  
+
   class Unit : public oak::Entity
   {
 
@@ -41,7 +43,6 @@ namespace game
     std::vector<Ability*> abilitys;
     int health;
     oak::Animator* animator;
-    
 
     public:
       Unit();
@@ -61,6 +62,8 @@ namespace game
       
       void addAnimator(oak::Animator* animator);
       void setAnimation(uchar animType);
+      uchar getAnimDirection() const;
+      void setAnimDirection(uchar direction);
 
       //void onStart() override;
       //void onDestroy() override;

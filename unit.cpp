@@ -135,3 +135,13 @@ void Unit::setAnimation(uchar animType)
 {
   animator->setAnim(animType);
 }
+
+uchar Unit::getAnimDirection() const
+{
+  return animator->getDirection();
+}
+
+void Unit::setAnimDirection(uchar direction)
+{
+  animator->setDirection(direction);
+}

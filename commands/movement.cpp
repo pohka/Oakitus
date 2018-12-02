@@ -47,7 +47,20 @@ void Movement::execute()
     unit->position.x += speed * axisX;
     unit->position.y += speed * axisY;
 
+    //flip direction if required
+    if (axisX > 0.0f && unit->getAnimDirection() != ANIM_DIRECTION_RIGHT)
+    {
+      unit->setAnimDirection(ANIM_DIRECTION_RIGHT);
+      LOG << "DIRECTION RIGHT";
+    }
+    else if (axisX < 0.0f && unit->getAnimDirection() != ANIM_DIRECTION_LEFT)
+    {
+      unit->setAnimDirection(ANIM_DIRECTION_LEFT);
+      LOG << "DIRECTION LEFT";
+    }
+
     unit->setAnimation(ANIM_TYPE_RUN);
+
   }
   else
   {

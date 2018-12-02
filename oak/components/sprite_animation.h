@@ -5,6 +5,7 @@
 #include <string>
 #include <core/types.h>
 
+
 namespace oak
 {
 
@@ -52,12 +53,13 @@ namespace oak
       ~SpriteAnimation();
 
       void reset();
-      bool onUpdate();
+      bool onUpdate(uchar direction, bool hasChangedDirection);
       void onDraw(float positionX, float positionY) const;
       float getTotalAnimDuration() const;
       uchar getPriority() const;
+
     private:
-      void setFrame();
+      void setFrame(uchar direction);
   };
 }
 #endif

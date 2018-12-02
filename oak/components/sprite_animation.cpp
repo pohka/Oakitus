@@ -5,6 +5,7 @@
 #include <core/camera.h>
 #include <core/time.h>
 #include <debug.h>
+#include "animator.h"
 
 using namespace oak;
 
@@ -42,11 +43,13 @@ SpriteAnimation::SpriteAnimation(
 
   maxFramesX = texture.getWidth() / frameW;
   maxFramesY = texture.getHeight() / frameH;
+  //this->isFlipped = false;
 
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
-  setFrame();
+  setFrame(ANIM_DIRECTION_RIGHT);
+  lastFrameTime = Time::getTimeNow();
 }
 
 SpriteAnimation::~SpriteAnimation()
@@ -60,10 +63,11 @@ void SpriteAnimation::reset()
   curFrameX = 0;
   curFrameY = startFrameY;
   curFrameCount = 0;
-  setFrame();
+  setFrame(ANIM_DIRECTION_RIGHT);
+  lastFrameTime = Time::getTimeNow();
 }
 
-bool SpriteAnimation::onUpdate()
+bool SpriteAnimation::onUpdate(uchar direction, bool hasChangedDirection)
 {
   bool hasAnimEnded = false;
 
@@ -101,9 +105,15 @@ bool SpriteAnimation::onUpdate()
     //LOG << "here";
     //LOG << "new frame: " << curFrameX << ", " << curFrameY;
 
-    setFrame();
+    setFrame(direction);
+    lastFrameTime = Time::getTimeNow();
 
     
+  }
+  //if on same frame but the direction has changed
+  else if (hasChangedDirection)
+  {
+    setFrame(direction);
   }
 
   if (isLooping)
@@ -139,10 +149,8 @@ void SpriteAnimation::onDraw(float positionX, float positionY) const
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void SpriteAnimation::setFrame()
+void SpriteAnimation::setFrame(uchar direction)
 {
-  lastFrameTime = Time::getTimeNow();
-
   Texture& texture = Resources::getTextureByID(textureID);
   
   float xx = Window::worldToViewportCoords((float)displayW) * 0.5f;
@@ -150,6 +158,15 @@ void SpriteAnimation::setFrame()
 
   float xMin = (float)(curFrameX * frameW)/ texture.getWidth();
   float xMax = (float)((curFrameX+1) * frameW) / texture.getWidth();
+
+  //flip x
+  if (direction == ANIM_DIRECTION_LEFT)
+  {
+    float tmp = xMin;
+    xMin = xMax;
+    xMax = tmp;
+  }
+
   float yMin = (float)(curFrameY * frameH) / texture.getHeight();
   float yMax = (float)((curFrameY + 1) * frameH) / texture.getHeight();
 

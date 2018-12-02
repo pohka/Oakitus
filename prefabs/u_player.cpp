@@ -77,15 +77,9 @@ UPlayer::UPlayer()
   animator->setAnim(ANIM_TYPE_IDLE);
   addAnimator(animator);
 
-  //addComponent(
-  //  new SpriteAnimation(
-  //   // "anim_test2.png", 192, 192, 100, 100, 0.04f, "default", 14, 0)
-  //    //"anim_test2.png", 192, 192, 100, 100, 0.04f, "default", 12, 2)
-  //    "anim_test2.png", 384, 192, 200, 100, 0.04f, "default", 14, 4)
-  //);
   addAbility(new Shoot());
   addAbility(new SwordAttack());
-  addCollision(new CollisionRect(10.0f, -10.0f, 40.0f, 60.0f));
+  addCollision(new CollisionRect(0.0f, -10.0f, 40.0f, 60.0f));
   faction = FACTION_PLAYER;
 }
 
