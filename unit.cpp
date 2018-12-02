@@ -13,7 +13,7 @@ Unit::Unit()
   Player* owner = nullptr;
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
-  faction = Faction::NO_FACTION;
+  faction = FACTION_NONE;
   health = 100;
 }
 
@@ -66,7 +66,7 @@ Ability* Unit::getAbilityByIndex(uint index) const
 
 void Unit::onUpdate()
 {
- 
+  Entity::onUpdate();
   float now = oak::Time::getTimeNow();
 
   //update ability casting states
@@ -85,7 +85,7 @@ void Unit::onUpdate()
   }
 }
 
-Faction Unit::getFaction() const
+uchar Unit::getFaction() const
 {
   return faction;
 }
@@ -123,4 +123,25 @@ void Unit::onDeath()
   LOG << "onDeath()";
   //notify components
   //then do something
+}
+
+void Unit::addAnimator(oak::Animator* animator)
+{
+  this->animator = animator;
+  addComponent(animator);
+}
+
+void Unit::setAnimation(uchar animType)
+{
+  animator->setAnim(animType);
+}
+
+uchar Unit::getAnimDirection() const
+{
+  return animator->getDirection();
+}
+
+void Unit::setAnimDirection(uchar direction)
+{
+  animator->setDirection(direction);
 }

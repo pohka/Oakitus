@@ -12,7 +12,7 @@ LinearProjectile::LinearProjectile(
   float maxDistance,
   bool destroyOnHit,
   uchar targetTeam,
-  Faction casterFaction,
+  uchar casterFaction,
   uint abilityID,
   uint casterID
 )

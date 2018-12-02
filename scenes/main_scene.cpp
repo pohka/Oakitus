@@ -18,13 +18,14 @@ void MainScene::onLoad()
   Resources::addTexture("wall.jpg");
   Resources::addTexture("face.png");
   Resources::addTexture("dummy.png");
-
+  Resources::addTexture("anim_test2.png");
+  Resources::addTexture("wolf_sheet.png");
   
 
   Camera::position = glm::vec3(0, 0, 0);
 
   Entity* ground = new Entity();
-  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, NULL);
+  Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, "default");
   ground->addComponent(groundSprite);
   ground->instantiate();
 

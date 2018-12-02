@@ -126,15 +126,18 @@
   <ItemGroup>
     <ClCompile Include="ability.cpp" />
     <ClCompile Include="abilitys\shoot.cpp" />
+    <ClCompile Include="abilitys\sword_attack.cpp" />
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="oak\components\animator.cpp" />
     <ClCompile Include="oak\components\base_collision_shape.cpp" />
     <ClCompile Include="oak\components\collision.cpp" />
     <ClCompile Include="oak\components\collision_circle.cpp" />
     <ClCompile Include="oak\components\collision_rect.cpp" />
     <ClCompile Include="oak\components\sprite.cpp" />
+    <ClCompile Include="oak\components\sprite_animation.cpp" />
     <ClCompile Include="oak\core\bounds.cpp" />
     <ClCompile Include="oak\core\camera.cpp" />
     <ClCompile Include="oak\core\component.cpp" />
@@ -168,14 +171,17 @@
   <ItemGroup>
     <ClInclude Include="ability.h" />
     <ClInclude Include="abilitys\shoot.h" />
+    <ClInclude Include="abilitys\sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
+    <ClInclude Include="oak\components\animator.h" />
     <ClInclude Include="oak\components\collision.h" />
     <ClInclude Include="oak\components\collision_circle.h" />
     <ClInclude Include="oak\components\collision_layer.h" />
     <ClInclude Include="oak\components\collision_rect.h" />
     <ClInclude Include="oak\components\base_collision_shape.h" />
     <ClInclude Include="oak\components\sprite.h" />
+    <ClInclude Include="oak\components\sprite_animation.h" />
     <ClInclude Include="oak\core\bounds.h" />
     <ClInclude Include="oak\core\camera.h" />
     <ClInclude Include="oak\core\command.h" />

@@ -18,6 +18,7 @@ namespace game
         void execute() override;
       private:
         glm::vec3 getCasterPosition() const;
+        void beginCast(const int index) const;
     };
   }
 }

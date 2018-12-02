@@ -162,6 +162,15 @@
     <ClCompile Include="oak\components\base_collision_shape.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
+    <ClCompile Include="oak\components\sprite_animation.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\components\animator.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="abilitys\sword_attack.cpp">
+      <Filter>game\abilitys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -298,6 +307,15 @@
     </ClInclude>
     <ClInclude Include="oak\components\collision_layer.h">
       <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\sprite_animation.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\animator.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitys\sword_attack.h">
+      <Filter>game\abilitys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,7 @@ Sprite::Sprite(
   int srcH,
   float displayW,
   float displayH,
-  uint shaderID
+  std::string shaderName
 )
 {
   this->srcX = srcX;
@@ -33,29 +33,16 @@ Sprite::Sprite(
   this->w = displayW;
   this->h = displayH;
   
-  if (shaderID != NULL)
-  {
-    this->shaderID = shaderID;
-  }
-  else 
-  {
-    shaderID = Resources::getDefaultShader().getID();
-  }
-  Texture *texture = setTextureIDFromSrc(src);
-  
-  if (texture != nullptr)
-  {
-    float xMin = ((float)srcX / texture->getWidth());
-    float yMin = ((float)srcY / texture->getHeight());
-    float xMax = ((float)(srcX + srcW) / texture->getWidth());
-    float yMax = ((float)(srcY + srcH) / texture->getHeight());
+  shaderID = Resources::getShaderByName(shaderName).getID();
 
-    construct(xMin, xMax, yMin, yMax);
-  }
-  else
-  {
-    construct(0.0f, 1.0f, 0.0f, 1.0f);
-  }
+  Texture* texture = &Resources::getTextureBySrc(src);
+  this->textureID = texture->getID();
+  float xMin = ((float)srcX / texture->getWidth());
+  float yMin = ((float)srcY / texture->getHeight());
+  float xMax = ((float)(srcX + srcW) / texture->getWidth());
+  float yMax = ((float)(srcY + srcH) / texture->getHeight());
+
+  construct(xMin, xMax, yMin, yMax);
 }
 
 Sprite::Sprite(
@@ -66,23 +53,9 @@ Sprite::Sprite(
 {
   this->w = displayW;
   this->h = displayH;
-  shaderID = Resources::getDefaultShader().getID();
-  setTextureIDFromSrc(src);
+  this->shaderID = Resources::getDefaultShader().getID();
+  this->textureID = Resources::getTextureIDBySrc(src);
   construct(0.0f, 1.0f, 0.0f, 1.0f);
-}
-
-Texture* Sprite::setTextureIDFromSrc(std::string src)
-{
-  Texture *texture = Resources::findTextureBySrc(src);
-  if (texture != nullptr)
-  {
-    this->textureID = texture->getID();
-  }
-  else
-  {
-    this->textureID = Resources::getDefaultTexture().getID();
-  }
-  return texture;
 }
 
 void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
@@ -105,7 +78,6 @@ void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
   glGenBuffers(1, &this->VBO);
 
   glBindVertexArray(this->VAO);
-
   glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -144,7 +116,6 @@ void Sprite::onDraw() const
   glm::mat4 model = glm::mat4(1.0);
 
   glm::vec3 camNPos = Camera::getNormalizedPos();
-  //float screenH = (float)Window::getHeight();
 
   glm::vec3 pos(
     Window::worldToViewportCoords(entity->position.x) - camNPos.x,
@@ -153,7 +124,7 @@ void Sprite::onDraw() const
   );
   model = glm::translate(model, pos);
 
-  Shader* shader = Resources::findShaderByID(this->shaderID);
+  Shader* shader = &Resources::getShaderByID(this->shaderID);
   shader->use();
   shader->setMat4("model", model);
 

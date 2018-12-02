@@ -19,7 +19,7 @@ namespace game
     bool destroyOnHit;
     float speed;
     uchar targetTeam;
-    Faction casterFaction;
+    uchar casterFaction;
     int damage;
     uint abilityID;
     uint casterID;
@@ -34,7 +34,7 @@ namespace game
         float maxDistance,
         bool destroyOnHit,
         uchar targetTeam,
-        Faction casterFaction,
+        uchar casterFaction,
         uint abilityID,
         uint casterID
       );

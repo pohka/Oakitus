@@ -9,7 +9,8 @@ namespace oak
   class Texture
   {
     uint id;
-    int width, height;
+    int width;
+    int height;
     std::string src;
 
     public:
