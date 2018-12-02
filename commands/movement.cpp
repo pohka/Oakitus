@@ -37,13 +37,20 @@ void Movement::execute()
     axisX += 1.0f;
   }
 
-  //if no input
+  Unit* unit = player->getAssignedUnit();
+
+  //if has input
   if (axisX != 0.0f || axisY != 0.0f)
   {
-    Unit* unit = player->getAssignedUnit();
     float speed = unit->getMoveSpeed() * Time::deltaTime;
 
     unit->position.x += speed * axisX;
     unit->position.y += speed * axisY;
+
+    unit->setAnimation(ANIM_TYPE_RUN);
+  }
+  else
+  {
+    unit->setAnimation(ANIM_TYPE_IDLE);
   }
 }

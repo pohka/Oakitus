@@ -18,12 +18,14 @@ UPlayer::UPlayer()
     ANIM_TYPE_IDLE,
     new SpriteAnimation(
       "anim_test2.png", 
+      ANIM_PRIORITY_BASE,
       192, 192, 
       100, 100, 
       0.04f, 
       "default", 
       14, 
-      0
+      0,
+      true
     )
   );
 
@@ -31,25 +33,44 @@ UPlayer::UPlayer()
     ANIM_TYPE_RUN,
     new SpriteAnimation(
       "anim_test2.png",
+      ANIM_PRIORITY_BASE,
       192, 192,
       100, 100,
       0.04f,
       "default",
       12,
-      2
+      2,
+      true
     )
   );
 
   animator->addAnim(
-    ANIM_TYPE_ATTACK,
+    ANIM_TYPE_ABILITY_1,
     new SpriteAnimation(
       "anim_test2.png",
+      ANIM_PRIORITY_ABILITY,
       384, 192,
       200, 100,
       0.04f,
       "default",
       14,
-      4
+      4,
+      false
+    )
+  );
+
+  animator->addAnim(
+    ANIM_TYPE_ABILITY_2,
+    new SpriteAnimation(
+      "anim_test2.png",
+      ANIM_PRIORITY_ABILITY,
+      384, 192,
+      200, 100,
+      0.04f,
+      "default",
+      14,
+      4,
+      false
     )
   );
 

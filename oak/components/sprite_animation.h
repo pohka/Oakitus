@@ -32,11 +32,13 @@ namespace oak
     uint totalFrameCount;
     uint curFrameCount;
     float totalAnimDuration;
-
+    bool isLooping;
+    uchar priority;
 
     public:
       SpriteAnimation(
         std::string src,
+        uchar priority,
         uint frameW,
         uint frameH,
         uint displayW,
@@ -44,7 +46,8 @@ namespace oak
         float frameDuration,
         std::string shaderName,
         uint totalFrameCount,
-        uint startFrameY
+        uint startFrameY,
+        bool isLooping
       );
       ~SpriteAnimation();
 
@@ -52,6 +55,7 @@ namespace oak
       bool onUpdate();
       void onDraw(float positionX, float positionY) const;
       float getTotalAnimDuration() const;
+      uchar getPriority() const;
     private:
       void setFrame();
   };

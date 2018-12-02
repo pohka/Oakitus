@@ -19,7 +19,7 @@ Shoot::~Shoot()
 void Shoot::onCast()
 {
   //LOG << "onCast()";
-  caster->setAnimation(ANIM_TYPE_ATTACK);
+  caster->setAnimation(ANIM_TYPE_ABILITY_1);
 }
 
 void Shoot::onAbilityStart()

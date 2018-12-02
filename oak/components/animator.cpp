@@ -26,7 +26,7 @@ void Animator::onUpdate()
     bool hasEnded = anims.at(curAnim)->onUpdate();
     if (hasEnded && curAnim != baseAnim)
     {
-      setAnim(baseAnim);
+      setAnim(baseAnim, true);
     }
   }
 }
@@ -39,21 +39,31 @@ void Animator::onDraw() const
   }
 }
 
-void Animator::setAnim(const uchar animType)
+void Animator::setAnim(const uchar animType, const bool ignorePriority)
 {
+  if (curAnim == animType)
+  {
+    return;
+  }
+
   //check if animation type exist
   if (anims.find(animType) == anims.end())
   {
     curAnim = 0;
   }
+  //if animation exists
   else
   {
-    curAnim = animType;
-    anims.at(curAnim)->reset();
+    SpriteAnimation* curAnimPtr = anims.at(curAnim);
+    if (ignorePriority || curAnimPtr->getPriority() <= anims.at(animType)->getPriority())
+    {
+      curAnim = animType;
+      curAnimPtr->reset();
+    }
   }
 }
 
-uchar Animator::getCurAnimType()
+uchar Animator::getCurAnimType() const
 {
   return curAnim;
 }

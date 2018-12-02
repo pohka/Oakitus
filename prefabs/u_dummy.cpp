@@ -17,12 +17,14 @@ UDummy::UDummy()
     ANIM_TYPE_IDLE,
     new SpriteAnimation(
       "wolf_sheet.png",
+      ANIM_PRIORITY_BASE,
       192, 192,
       100, 100,
       0.04f,
       "default",
       12,
-      0
+      0,
+      true
     )
   );
   addAnimator(animator);

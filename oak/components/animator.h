@@ -16,17 +16,20 @@ namespace oak
     std::unordered_map<uchar, SpriteAnimation*> anims;
     uchar curAnim;
     uchar baseAnim;
+    
 
     public:
       Animator(uchar baseAnimType, SpriteAnimation* baseAnimation);
       ~Animator();
 
       void addAnim(uchar animType, SpriteAnimation* animation);
-      void setAnim(uchar animType);
-      uchar getCurAnimType();
+      void setAnim(uchar animType, const bool ignorePriority = false);
+      uchar getCurAnimType() const;
+
 
       void onUpdate() override;
       void onDraw() const override;
+
   };
 }
 

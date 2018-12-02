@@ -10,6 +10,7 @@ using namespace oak;
 
 SpriteAnimation::SpriteAnimation(
   std::string src,
+  uchar priority,
   uint frameW,
   uint frameH,
   uint displayW,
@@ -17,7 +18,8 @@ SpriteAnimation::SpriteAnimation(
   float frameDuration,
   std::string shaderName,
   uint totalFrameCount,
-  uint startFrameY
+  uint startFrameY,
+  bool isLooping
 )
 {
   Texture& texture = Resources::getTextureBySrc(src);
@@ -32,6 +34,8 @@ SpriteAnimation::SpriteAnimation(
   this->totalFrameCount = totalFrameCount;
   this->curFrameCount = 0;
   this->totalAnimDuration = totalFrameCount * frameDuration;
+  this->isLooping = isLooping;
+  this->priority = priority;
 
   this->curFrameX = 0;
   this->curFrameY = startFrameY;
@@ -100,6 +104,11 @@ bool SpriteAnimation::onUpdate()
     setFrame();
 
     
+  }
+
+  if (isLooping)
+  {
+    return false;
   }
 
   return hasAnimEnded;
@@ -172,4 +181,9 @@ void SpriteAnimation::setFrame()
 float SpriteAnimation::getTotalAnimDuration() const
 {
   return totalAnimDuration;
+}
+
+uchar SpriteAnimation::getPriority() const
+{
+  return priority;
 }

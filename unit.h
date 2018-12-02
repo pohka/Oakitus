@@ -13,16 +13,24 @@ namespace game
   class Player;
   class Ability;
 
-  cnum ANIM_TYPE_NONE = 0;
-  cnum ANIM_TYPE_IDLE = 1;
-  cnum ANIM_TYPE_RUN =  2;
-  cnum ANIM_TYPE_ATTACK = 3;
+  cnum ANIM_TYPE_NONE =       0;
+  cnum ANIM_TYPE_IDLE =       1;
+  cnum ANIM_TYPE_RUN =        2;
+  cnum ANIM_TYPE_ATTACK =     3;
+  cnum ANIM_TYPE_ABILITY_1 =  4;
+  cnum ANIM_TYPE_ABILITY_2 =  5;
+  cnum ANIM_TYPE_ABILITY_3 =  6;
+  cnum ANIM_TYPE_ABILITY_4 =  7;
 
 
   cnum FACTION_NONE = 0;
   cnum FACTION_PLAYER = 1;
   cnum FACTION_ENEMY = 2;
 
+  cnum ANIM_PRIORITY_LOWEST =   0;
+  cnum ANIM_PRIORITY_BASE =     1;
+  cnum ANIM_PRIORITY_ABILITY =  2;
+  cnum ANIM_PRIORITY_DISABLE =  3;
 
   class Unit : public oak::Entity
   {

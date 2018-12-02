@@ -19,7 +19,7 @@ SwordAttack::~SwordAttack()
 void SwordAttack::onCast()
 {
   LOG << "onCast sword attack";
-  caster->setAnimation(ANIM_TYPE_ATTACK);
+  caster->setAnimation(ANIM_TYPE_ABILITY_2);
 }
 
 void SwordAttack::onAbilityStart()
