@@ -41,8 +41,8 @@ void LinearProjectile::onStart()
 
 void LinearProjectile::onUpdate()
 {
-  entity->position.x += velocity.x * Time::deltaTime;
-  entity->position.y += velocity.y * Time::deltaTime;
+  entity->position.x += velocity.x * Time::deltaTime();
+  entity->position.y += velocity.y * Time::deltaTime();
 
   //check if out of range
   float xDiff = entity->position.x - spawnOrigin.x;

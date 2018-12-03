@@ -43,7 +43,7 @@ void Movement::execute()
   //if has input
   if (axisX != 0.0f || axisY != 0.0f)
   {
-    float speed = unit->getMoveSpeed() * Time::deltaTime;
+    float speed = unit->getMoveSpeed() * Time::deltaTime();
 
     unit->position.x += speed * axisX;
     unit->position.y += speed * axisY;

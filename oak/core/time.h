@@ -11,17 +11,18 @@ namespace oak
     friend class Oakitus;
 
     static float lastFrame;
-    static float m_deltaTime;
     static int numFrames;
     static int fps;
     static float lastFPSCheck;
     static int maxFPS;
     static float minDeltaTime;
+    static float m_deltaTime; 
 
     public:
       static float timeScale; ///<summary>Scale time to speed up or slow down gameplay</summary>
-      static float deltaTime; ///<summary>The time since last frame</summary>
       
+      ///<summary>The time since last frame</summary>
+      static float deltaTime();
       
       static int getFPS();
       static int getMaxFPS();

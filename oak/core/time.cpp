@@ -3,9 +3,8 @@
 using namespace oak;
 
 float Time::timeScale = 1.0f;
-float Time::deltaTime = 0;
-float Time::lastFrame = 0;
 float Time::m_deltaTime = 0;
+float Time::lastFrame = 0;
 int Time::numFrames = 0;
 float Time::lastFPSCheck = (float)glfwGetTime();
 int Time::fps = 0;
@@ -16,9 +15,9 @@ void Time::update()
 {
   //calculate delta time
   float currentFrame = (float)glfwGetTime();
-  deltaTime = currentFrame - lastFrame;
+  m_deltaTime = currentFrame - lastFrame;
   lastFrame = currentFrame;
-  deltaTime = (float)(1.0f * deltaTime);
+ // m_deltaTime = (float)(1.0f * m_deltaTime);
   
   //track fps
   if (currentFrame - lastFPSCheck >= 1.0f)
@@ -30,6 +29,11 @@ void Time::update()
     lastFPSCheck = currentFrame;
   }
   numFrames++;
+}
+
+float Time::deltaTime()
+{
+  return m_deltaTime;
 }
 
 int Time::getFPS()

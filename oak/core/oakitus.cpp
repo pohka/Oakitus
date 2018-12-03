@@ -96,9 +96,9 @@ int Oakitus::loop()
 
     //sleep to limit fps
     float minDelta = Time::getMinDeltaTime();
-    if (Time::deltaTime < minDelta)
+    if (Time::deltaTime() < minDelta)
     {
-      int sleepTime = (int)((minDelta - Time::deltaTime) * 1000.f);
+      int sleepTime = (int)((minDelta - Time::deltaTime()) * 1000.f);
       std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
     }
   }
