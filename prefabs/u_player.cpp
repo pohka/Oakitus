@@ -74,6 +74,8 @@ UPlayer::UPlayer()
     )
   );
 
+  
+
   animator->setAnim(ANIM_TYPE_IDLE);
   addAnimator(animator);
 

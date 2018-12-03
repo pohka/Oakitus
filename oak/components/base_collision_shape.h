@@ -3,12 +3,14 @@
 
 #include <core/types.h>
 
+///<summary>The base collision shape</summary>
 namespace oak
 {
   class CollisionRect;
   class CollisionCircle;
   class Entity;
 
+  //all type of collision shapes
   cnum COLLISION_SHAPE_RECT = 0;
   cnum COLLISION_SHAPE_CIRCLE = 1;
 
@@ -34,12 +36,15 @@ namespace oak
 
     protected:
       uchar type;
-      float offsetX;
-      float offsetY;
+
+      //collision offset from entity origin
+      float offsetX; ///<summary>X-axis offset from entity position</summary>
+      float offsetY; ///<summary>Y-axis offset from entity position</summary>
       uint VAO, VBO;
       uint textureID;
       Entity* entity;
 
+      ///<summary>Initialize the VAO</summary>
       void initVAO(float quadW, float quadH);
   };
 

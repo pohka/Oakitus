@@ -4,15 +4,16 @@
 #include <string>
 #include <vector>
 
+///<summary>An XML node</summary>
 class XMLNode
 {
   
-  std::vector<XMLNode*> children;
-  XMLNode* parent;
+  std::vector<XMLNode*> children; //all the child nodes
+  XMLNode* parent; //parent node
 
   public :
-    std::string content;
-    std::string name;
+    std::string content; //content between the opening and closing tags
+    std::string name; //name of the tag
 
     XMLNode(std::string name, XMLNode* parent);
     ~XMLNode();

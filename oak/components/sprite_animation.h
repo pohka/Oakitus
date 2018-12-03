@@ -8,7 +8,6 @@
 
 namespace oak
 {
-
   class SpriteAnimation
   {
     uint textureID;

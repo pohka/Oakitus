@@ -5,6 +5,7 @@
 
 namespace oak
 {
+  //this was being used for world clipping with the camera
   class Bounds
   {
     float x;

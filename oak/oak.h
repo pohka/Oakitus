@@ -1,6 +1,8 @@
 #ifndef OAK_H
 #define OAK_H
 
+//all the oak includes for simple scripting
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 

@@ -17,9 +17,12 @@ namespace game
         CameraController();
         ~CameraController();
 
-        void onUpdate() override;
+        
 
         void followTarget(uint entityID);
+
+      protected:
+        void onUpdate() override;
     };
   }
 }

@@ -6,6 +6,7 @@
 
 namespace oak
 {
+  ///<summary>Texture</summary>
   class Texture
   {
     uint id;

@@ -6,20 +6,27 @@
 
 namespace oak
 {
+  ///<summary>Accessing and management of Players</summary>
   class PlayerResource
   {
-    const static uint MAX_PLAYER_COUNT = 4;
-    static BasePlayer* players[MAX_PLAYER_COUNT];
-    static uint playerCount;
+
+    const static uint MAX_PLAYER_COUNT = 4; ///<summary>Maximum number of players in the game</summary>
+    static BasePlayer* players[MAX_PLAYER_COUNT]; ///<summary>Array of players in the game</summary>
+    static uint playerCount; ///<summary>Current player count</summary>
 
     public :
+      ///<summary>Add a Player</summary>
       static void addPlayer(BasePlayer& player);
+
+      ///<summary>Get a Player by ID</summary>
       static BasePlayer* getPlayer(uint playerID);
+
+      ///<summary>Get a Player by index</summary>
       static BasePlayer* getPlayerByIndex(uint index);
+
+      ///<summary>Execute all Players input Commands</summary>
       static void executeAllCommands();
   };
-
-  //Player* PlayerResource::players[4];
 }
 
 

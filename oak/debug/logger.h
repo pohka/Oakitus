@@ -14,6 +14,7 @@ namespace debug
   cnum DEBUG_LOG_WARNING = 1;
   cnum DEBUG_LOG_ERROR = 2;
 
+  ///<summary>Debug logger</summary>
   struct LogData
   {
     std::string funcName;

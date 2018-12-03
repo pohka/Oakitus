@@ -1,10 +1,5 @@
 # todo
 
-* animator
-  * should be a variable on a unit, not tied to entity
-  * control of animations
-  * animtion weights
-* flip images on x-axis
 * onDeath
 * collision
   * bool isStatic
@@ -22,3 +17,4 @@
   * add endl to repeat info msg
   * more efficent logger
   * should log if the message is different but the line of code is the same
+  

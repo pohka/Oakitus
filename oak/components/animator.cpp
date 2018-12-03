@@ -52,15 +52,19 @@ void Animator::setAnim(const uchar animType, const bool ignorePriority)
     return;
   }
 
-  //check if animation type exist
+  //if animation type doesn't exist
   if (anims.find(animType) == anims.end())
   {
-    curAnim = 0;
+    //this is a fallback to is to display nothing, which make it obvious there is a visual problem with the animation
+    curAnim = 0; 
   }
   //if animation exists
+  //only set the animation if the priority is equal or greater than the current animation's prioirty
+  //ignorePrioirty can force an animation change regardless of the priority
   else
   {
     SpriteAnimation* curAnimPtr = anims.at(curAnim);
+    
     if (ignorePriority || curAnimPtr->getPriority() <= anims.at(animType)->getPriority())
     {
       curAnim = animType;

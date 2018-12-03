@@ -5,9 +5,11 @@
 
 namespace oak
 {
-  //all time is in seconds
+  ///<summary>Useful time functions, all time is in seconds</summary>
   class Time
   {
+    friend class Oakitus;
+
     static float lastFrame;
     static float m_deltaTime;
     static int numFrames;
@@ -17,18 +19,19 @@ namespace oak
     static float minDeltaTime;
 
     public:
-      static float timeScale;
-      static float deltaTime;
+      static float timeScale; ///<summary>Scale time to speed up or slow down gameplay</summary>
+      static float deltaTime; ///<summary>The time since last frame</summary>
       
-
-      static void update();
+      
       static int getFPS();
       static int getMaxFPS();
       static float getMinDeltaTime();
       static float getTimeNow();
-      static void init();
       static void setMaxFPS(int max);
       
+  protected:
+    static void init();
+    static void update();
   };
 }
 

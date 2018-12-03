@@ -5,6 +5,7 @@
 
 namespace oak
 {
+  ///<summary>ID generator using an auto incrementer uint</summary>
   class IDGenerator
   {
     uint count;

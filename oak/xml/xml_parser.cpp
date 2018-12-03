@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//used for debugging
 static void printNodes(XMLNode* node, unsigned int depth)
 {
   std::cout << "node (" << depth << "):" << node->name << ":" << node->content << ";" << std::endl;
@@ -15,10 +16,12 @@ static void printNodes(XMLNode* node, unsigned int depth)
   }
 }
 
+///<summary>Fast and simple XML parser</summary>
+//this implementation doesn't parse attributes and only allows leaf nodes to have content
 XMLNode XMLParser::load(string file)
 {
   string line;
-  ifstream myfile(oak::Resources::PATH + file);
+  ifstream myfile(oak::Resources::RESOURCES_ROOT_PATH + file);
 
   XMLNode* root = new XMLNode("root", nullptr);
 

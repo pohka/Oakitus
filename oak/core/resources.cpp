@@ -7,7 +7,9 @@ Texture* Resources::defaultTexture;
 
 std::vector<Shader*> Resources::shaders;
 std::vector<Texture*> Resources::textures;
-const std::string Resources::PATH = "res/";
+
+const std::string Resources::RESOURCES_ROOT_PATH = "resources/";
+//const std::string RESOURCES_ROOT_PATH = "resources/";
 
 void Resources::addShader(std::string shaderName)
 {
@@ -21,7 +23,7 @@ void Resources::addTexture(std::string src)
 {
   if (!isTextureLoaded(src))
   {
-    textures.push_back(new Texture(PATH, src));
+    textures.push_back(new Texture(RESOURCES_ROOT_PATH, src));
   }
 }
 

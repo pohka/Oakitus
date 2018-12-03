@@ -4,6 +4,7 @@
 
 namespace oak
 {
+  ///<summary>Key buffer that tracks the input for a key</summary>
   class Key
   {
     KeyCode code;
@@ -14,9 +15,11 @@ namespace oak
       friend class Input;
       Key(KeyCode code);
       ~Key();
+      ///<summary>Returns the KeyCode of this key</summary>
       KeyCode getCode() const;
 
     private:
+      ///<summary>Set the captured state for the key for this frame</summary>
       void setState(bool isDown);
 
   };

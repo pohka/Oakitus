@@ -12,7 +12,6 @@ void PlayerResource::addPlayer(BasePlayer& player)
   //if enough player slots
   if (playerCount + 1 < MAX_PLAYER_COUNT)
   {
-    //return nullptr;
     PlayerResource::players[playerCount] = &player;
     playerCount++;
   }

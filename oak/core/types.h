@@ -1,11 +1,13 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-typedef unsigned int uint;
-typedef unsigned char uchar;
-typedef unsigned short ushort;
+//global types
 
-typedef const unsigned char cnum;
-typedef const unsigned short csnum;
+typedef unsigned int uint; //unsigned int shorthand
+typedef unsigned char uchar; //unsigned char shorthand
+typedef unsigned short ushort; //unsigned short shorthand
+
+typedef const unsigned char cnum; //used for char enums
+typedef const unsigned short snum; //used for short enums
 
 #endif

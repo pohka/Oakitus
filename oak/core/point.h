@@ -3,6 +3,7 @@
 
 namespace oak
 {
+  ///<summary>Simple 2D Point</summary>
   class Point
   {
   public:

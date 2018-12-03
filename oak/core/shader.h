@@ -14,6 +14,7 @@
 
 namespace oak
 {
+  ///<summary>Loads and manages a vertex and fragement shader for OpenGL</summary>
   class Shader
   {
     public:
@@ -24,7 +25,7 @@ namespace oak
       {
         this->name = name;
 
-        std::string basePath = "res/shaders/" + name;
+        std::string basePath = "resources/shaders/" + name;
 
         char fullFragmentPath[80];
         strcpy_s(fullFragmentPath, basePath.c_str());

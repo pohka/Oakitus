@@ -13,6 +13,7 @@ std::queue<Entity*> Entity::pendingEntityInstances;
 
 Entity::Entity() 
 {
+  //set default values
   componentIDGen = IDGenerator();
   this->entityID = entityIDGen.nextID();
   this->position = glm::vec3(0, 0, 0);
@@ -32,6 +33,7 @@ Entity::~Entity()
 
 void Entity::addComponent(Component* component)
 {
+  //give the component a unique ID and tell it who its owner entity is
   component->entity = this;
   component->componentID = componentIDGen.nextID();
   this->components.push_back(component);
@@ -92,7 +94,6 @@ void Entity::onDestroy()
 {
   
 }
-
 
 void Entity::onDraw() const
 {
@@ -219,10 +220,9 @@ void Entity::destroyQueuedInstances()
         found = true;
       }
     }
-    //call onDestroy and delete the object
+    //call onDestroy() and delete the object
     if (found)
     {
-      //LOG << "destroyed:" << ent->getName() << ":" << ent->getID();
       ent->onDestroy();
       delete ent;
     }
@@ -255,7 +255,7 @@ void Entity::deleteAllEnts(bool isGlobalExempt)
       Entity* ent = Entity::entitys[i];
       if (ent->isGlobal == false)
       {
-        Entity::entitys.erase(Entity::entitys.begin() + i); //remove from vector
+        Entity::entitys.erase(Entity::entitys.begin() + i);
         i--;
         delete ent;
       }
@@ -285,7 +285,7 @@ void Entity::instantiateQueuedEnts()
     Entity::pendingEntityInstances.pop();
   }
 
-  //call onStart() for all the newly instances
+  //call onStart() for all the newly added instances
   while (!temp.empty())
   {
     temp.front()->onStart();
