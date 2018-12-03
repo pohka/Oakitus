@@ -18,8 +18,6 @@ namespace oak
     uint displayH;
     float frameDuration;
     float lastFrameTime;
-    uint textureW;
-    uint textureH;
 
     uint VAO;
     uint VBO;

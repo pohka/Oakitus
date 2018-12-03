@@ -7,12 +7,9 @@ oak::IDGenerator Ability::idGen = oak::IDGenerator();
 
 Ability::Ability()
 {
- // LOG << "ability contrustcor";
   id = idGen.nextID();
   startTime = 0;
   endTime = 0;
-  //CastingState castingState = CastingState::NONE;
-  //TargetType targetType = TargetType::NO_TARGET;
 }
 
 uint Ability::getID() const

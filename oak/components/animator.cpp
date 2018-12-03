@@ -8,7 +8,7 @@ Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation)
   this->baseAnim = baseAnimType;
   anims[baseAnimType] = baseAnimation;
   this->curAnim = baseAnimType;
-
+  this->direction = ANIM_DIRECTION_RIGHT;
 }
 
 Animator::~Animator()

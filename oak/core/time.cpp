@@ -21,7 +21,7 @@ void Time::update()
   deltaTime = (float)(1.0f * deltaTime);
   
   //track fps
-  if (currentFrame - lastFPSCheck >= 1.0)
+  if (currentFrame - lastFPSCheck >= 1.0f)
   {
     float diffTime = currentFrame - lastFPSCheck;
     //divide by 2 because of double buffer
