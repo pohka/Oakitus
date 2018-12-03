@@ -8,8 +8,6 @@
 
 namespace game
 {
-  //class Entity;
-
   class LinearProjectile : public oak::Component
   {
     glm::vec2 targetPos;

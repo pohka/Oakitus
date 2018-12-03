@@ -175,6 +175,7 @@
     <ClInclude Include="abilitys\sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
+    <ClInclude Include="game_def.h" />
     <ClInclude Include="oak\components\animator.h" />
     <ClInclude Include="oak\components\collision.h" />
     <ClInclude Include="oak\components\collision_circle.h" />

@@ -1,3 +1,6 @@
+#ifndef OAK_DEF_H
+#define OAK_DEF_H
+
 #include "core/types.h"
 
 
@@ -15,3 +18,5 @@ const uint SCR_HEIGHT = 414;
 
 
 const char RESOURCES_ROOT_PATH [] = "resources/";
+
+#endif

@@ -3,26 +3,11 @@
 
 #include "unit.h"
 #include <core/id_generator.h>
-#include <core/types.h>
+#include "game_def.h"
 
 namespace game
 {
   class Unit;
-
-  cnum CAST_STATE_NONE =    0;
-  cnum CAST_STATE_PRECAST = 1;
-  cnum CAST_STATE_CASTING = 2;
-
-  cnum TARGET_TYPE_NONE =         0;
-  cnum TARGET_TYPE_NO_TARGET =    1;
-  cnum TARGET_TYPE_POINT =        2;
-  cnum TARGET_TYPE_UNIT_TARGET =  3;
-
-
-  cnum TARGET_TEAM_NONE =      0;
-  cnum TARGET_TEAM_FRIENDLY =  1;
-  cnum TARGET_TEAM_ENEMY =     2;
-  cnum TARGET_TEAM_BOTH =      3;
 
   struct Target
   {

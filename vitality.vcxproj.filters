@@ -323,6 +323,9 @@
     <ClInclude Include="oak\oak_def.h">
       <Filter>oak</Filter>
     </ClInclude>
+    <ClInclude Include="game_def.h">
+      <Filter>game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\default.fs">
