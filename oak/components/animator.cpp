@@ -1,4 +1,5 @@
 #include "animator.h"
+#include <oak_def.h>
 
 using namespace oak;
 

@@ -13,6 +13,7 @@
 #include "texture.h"
 #include "player_resource.h"
 #include "../components/collision.h"
+#include "../oak_def.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -20,11 +21,8 @@
 #include <thread> 
 #include <chrono> 
 
+
 using namespace oak;
-
-const unsigned int SCR_WIDTH = 736;
-const unsigned int SCR_HEIGHT = 414;
-
 
 
 void Oakitus::init()

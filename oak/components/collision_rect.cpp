@@ -6,6 +6,7 @@
 #include <core/window.h>
 #include <core/resources.h>
 #include "collision.h"
+#include <oak_def.h>
 
 using namespace oak;
 

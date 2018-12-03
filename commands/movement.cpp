@@ -1,5 +1,6 @@
 #include "movement.h"
 #include <debug.h>
+#include <oak_def.h>
 
 using namespace oak;
 using namespace game;

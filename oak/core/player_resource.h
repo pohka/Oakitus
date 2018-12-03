@@ -9,7 +9,6 @@ namespace oak
   ///<summary>Accessing and management of Players</summary>
   class PlayerResource
   {
-
     const static uint MAX_PLAYER_COUNT = 4; ///<summary>Maximum number of players in the game</summary>
     static BasePlayer* players[MAX_PLAYER_COUNT]; ///<summary>Array of players in the game</summary>
     static uint playerCount; ///<summary>Current player count</summary>

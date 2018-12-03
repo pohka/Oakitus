@@ -13,7 +13,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
+#include "oak_def.h"
 #include "core/shader.h"
 #include "core/camera.h"
 #include "components/sprite.h"

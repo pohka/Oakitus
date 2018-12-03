@@ -1,5 +1,8 @@
 # todo
 
+* constants should be in their own file
+* fallbacks, some of the early code returns nullptrs instead of a fallback.
+* fallback warning logs
 * onDeath
 * collision
   * bool isStatic
@@ -7,7 +10,6 @@
 * Comment code
 * unit tests
 * sword ability
-* spritesheet animations
 * sound
 * world (tiles)
 * HUD
@@ -17,4 +19,4 @@
   * add endl to repeat info msg
   * more efficent logger
   * should log if the message is different but the line of code is the same
-  
+ 

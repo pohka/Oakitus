@@ -31,8 +31,6 @@ namespace oak
 
 
     public:
-      const static std::string RESOURCES_ROOT_PATH;
-
       static void addShader(std::string shaderName);
       static void addTexture(std::string src);
       static Shader& getShaderByID(uint id);

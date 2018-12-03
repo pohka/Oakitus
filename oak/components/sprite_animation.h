@@ -58,6 +58,7 @@ namespace oak
 
     private:
       void setFrame(uchar direction);
+      void setVertexAttrs() const;
   };
 }
 #endif

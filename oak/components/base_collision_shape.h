@@ -10,9 +10,7 @@ namespace oak
   class CollisionCircle;
   class Entity;
 
-  //all type of collision shapes
-  cnum COLLISION_SHAPE_RECT = 0;
-  cnum COLLISION_SHAPE_CIRCLE = 1;
+
 
   class BaseCollisionShape
   {

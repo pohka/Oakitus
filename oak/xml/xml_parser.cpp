@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include "../core/resources.h"
+#include "../oak_def.h"
 
 using namespace std;
 
@@ -21,7 +22,7 @@ static void printNodes(XMLNode* node, unsigned int depth)
 XMLNode XMLParser::load(string file)
 {
   string line;
-  ifstream myfile(oak::Resources::RESOURCES_ROOT_PATH + file);
+  ifstream myfile(RESOURCES_ROOT_PATH + file);
 
   XMLNode* root = new XMLNode("root", nullptr);
 

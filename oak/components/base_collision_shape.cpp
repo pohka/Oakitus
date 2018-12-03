@@ -11,6 +11,7 @@
 #include <core/entity.h>
 #include "collision_rect.h"
 #include "collision_circle.h"
+#include <oak_def.h>
 
 using namespace oak;
 

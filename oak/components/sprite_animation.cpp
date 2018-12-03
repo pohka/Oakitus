@@ -6,6 +6,8 @@
 #include <core/time.h>
 #include <debug.h>
 #include "animator.h"
+#include <oak_def.h>
+#include <core/window.h>
 
 using namespace oak;
 
@@ -46,8 +48,28 @@ SpriteAnimation::SpriteAnimation(
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
+  glBindVertexArray(VAO);
   setFrame(ANIM_DIRECTION_RIGHT);
+  setVertexAttrs();
+
   lastFrameTime = Time::getTimeNow();
+}
+
+//setup of vertex attributes layout
+void SpriteAnimation::setVertexAttrs() const
+{
+  const int POS_COORDS = 2;
+  const int TEX_COORDS = 2;
+  const int TOTAL_SIZEOF = (POS_COORDS * TEX_COORDS) * sizeof(float);
+
+  // position attribute
+  glVertexAttribPointer(0, POS_COORDS, GL_FLOAT, GL_FALSE, TOTAL_SIZEOF, (void*)0);
+  glEnableVertexAttribArray(0);
+
+
+  // texture coord attribute
+  glVertexAttribPointer(1, POS_COORDS, GL_FLOAT, GL_FALSE, TOTAL_SIZEOF, (void*)(POS_COORDS * sizeof(float)));
+  glEnableVertexAttribArray(1);
 }
 
 SpriteAnimation::~SpriteAnimation()
@@ -140,9 +162,9 @@ void SpriteAnimation::onDraw(float positionX, float positionY) const
   );
   model = glm::translate(model, pos);
 
-  Shader* shader = &Resources::getShaderByID(this->shaderID);
-  shader->use();
-  shader->setMat4("model", model);
+  Shader& shader = Resources::getShaderByID(this->shaderID);
+  shader.use();
+  shader.setMat4("model", model);
 
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
@@ -180,17 +202,8 @@ void SpriteAnimation::setFrame(uchar direction)
     -xx, -yy,       xMin, yMax //botom left
   };
 
-  glBindVertexArray(this->VAO);
-  glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-  // position attribute
-  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-  glEnableVertexAttribArray(0);
-
-  // texture coord attribute
-  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-  glEnableVertexAttribArray(1);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
 
 float SpriteAnimation::getTotalAnimDuration() const

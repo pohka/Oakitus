@@ -171,6 +171,9 @@
     <ClCompile Include="abilitys\sword_attack.cpp">
       <Filter>game\abilitys</Filter>
     </ClCompile>
+    <ClCompile Include="oak\core\shader.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="abilitys\sword_attack.h">
       <Filter>game\abilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\oak_def.h">
+      <Filter>oak</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

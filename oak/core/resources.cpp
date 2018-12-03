@@ -1,4 +1,6 @@
 #include "resources.h"
+#include "../oak_def.h"
+
 
 using namespace oak;
 
@@ -7,9 +9,6 @@ Texture* Resources::defaultTexture;
 
 std::vector<Shader*> Resources::shaders;
 std::vector<Texture*> Resources::textures;
-
-const std::string Resources::RESOURCES_ROOT_PATH = "resources/";
-//const std::string RESOURCES_ROOT_PATH = "resources/";
 
 void Resources::addShader(std::string shaderName)
 {

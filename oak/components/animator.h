@@ -8,9 +8,7 @@
 
 namespace oak
 {
-  //direction of the animation
-  cnum ANIM_DIRECTION_RIGHT = 0;
-  cnum ANIM_DIRECTION_LEFT = 1;
+
 
   ///<summary>Controlling the animations, a set animation will only play if it has a greater or equal prioirty to the current animation</summary>
   class Animator : public Component

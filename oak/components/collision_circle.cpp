@@ -1,5 +1,6 @@
 #include "collision.h"
 #include <core/resources.h>
+#include <oak_def.h>
 
 using namespace oak;
 
