@@ -23,9 +23,7 @@ namespace game
     std::vector<Ability*> abilitys;
     int health;
     oak::Animator* animator;
-    bool m_hasOwner = false;
     bool m_isOwnerBotPlayer = false;
-    bool m_hasAnimator = false;
 
     public:
       Unit();

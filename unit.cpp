@@ -3,7 +3,6 @@
 #include <core/time.h>
 #include "player.h"
 #include "ability.h"
-#include "gFallback.h"
 #include <fallback.h>
 
 using namespace game;
@@ -12,12 +11,12 @@ const float Unit::BASE_MOVE_SPEED = 400.0f;
 
 Unit::Unit()
 {
-  owner = &gFallback::player;
+  owner = nullptr;
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
   faction = FACTION_NONE;
   health = 100;
-  animator = &gFallback::animator;
+  animator = nullptr;
 }
 
 Unit::~Unit()
@@ -32,9 +31,9 @@ Unit::~Unit()
 
 void Unit::onStart()
 {
-  if (!m_hasAnimator)
+  if (animator == nullptr)
   {
-    LOG_WARNING << "FALLBACK | Unit '" << name << "' does not have an animator, use addAnimator() ";
+    LOG_WARNING << "Unit '" << name << "' does not have an animator, use addAnimator() ";
   }
 }
 
@@ -51,7 +50,7 @@ bool Unit::isOwnerBotPlayer() const
 
 bool Unit::hasOwner() const
 {
-  return m_hasOwner;
+  return (owner != nullptr);
 }
 
 float Unit::getMoveSpeed() const
@@ -74,6 +73,7 @@ Ability* Unit::getAbilityByIndex(uint index) const
 {
   if (index >= abilitys.size())
   {
+    LOG_WARNING << "Unit '" << name << "' does not have an ability at index: " << index;
     return nullptr;
   }
   return abilitys[index];
@@ -143,7 +143,6 @@ void Unit::onDeath()
 
 void Unit::addAnimator(oak::Animator* animator)
 {
-  m_hasAnimator = true;
   this->animator = animator;
   addComponent(animator);
 }

@@ -177,9 +177,6 @@
     <ClCompile Include="oak\fallback.cpp">
       <Filter>oak</Filter>
     </ClCompile>
-    <ClCompile Include="gFallback.cpp">
-      <Filter>game</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -334,9 +331,6 @@
     </ClInclude>
     <ClInclude Include="oak\fallback.h">
       <Filter>oak</Filter>
-    </ClInclude>
-    <ClInclude Include="gFallback.h">
-      <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

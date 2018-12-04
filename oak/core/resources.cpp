@@ -1,5 +1,6 @@
 #include "resources.h"
 #include "../oak_def.h"
+#include <debug.h>
 
 
 using namespace oak;
@@ -68,6 +69,10 @@ Shader& Resources::getShaderByID(uint id)
       return *shaders[i];
     }
   }
+  if (id != Fallback::shader.getID())
+  {
+    LOG_WARNING << "FALLBACK | Shader id '" << id << "' was not found";
+  }
   return Fallback::shader;
 }
 
@@ -81,6 +86,10 @@ Shader& Resources::getShaderByName(std::string name)
       return *shaders[i];
     }
   }
+  if (name != Fallback::shader.getName())
+  {
+    LOG_WARNING << "FALLBACK | Shader name '" << name << "' was not found";
+  }
   return Fallback::shader;
 }
 
@@ -92,6 +101,10 @@ Texture& Resources::getTextureByID(uint textureID)
     {
       return *textures[i];
     }
+  }
+  if (textureID != Fallback::texture.getID())
+  {
+    LOG_WARNING << "FALLBACK | Texture ID '" << textureID << "' was not found";
   }
   return Fallback::texture;
 }
@@ -105,7 +118,10 @@ Texture& Resources::getTextureBySrc(std::string src)
       return *textures[i];
     }
   }
-
+  if (src != Fallback::texture.getSrc())
+  {
+    LOG_WARNING << "FALLBACK | Texture src '" << src << "' was not found";
+  }
   return Fallback::texture;
 }
 
