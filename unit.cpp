@@ -4,6 +4,7 @@
 #include "player.h"
 #include "ability.h"
 #include "gFallback.h"
+#include <fallback.h>
 
 using namespace game;
 
@@ -16,7 +17,7 @@ Unit::Unit()
   collisionLayer = oak::CollisionLayer::UNIT;
   faction = FACTION_NONE;
   health = 100;
- // animator = &gFallback::animator;
+  animator = &oak::Fallback::animator;
 }
 
 Unit::~Unit()

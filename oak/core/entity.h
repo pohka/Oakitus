@@ -65,6 +65,7 @@ namespace oak
 
     public:
       friend class Scene;
+      friend struct Fallback;
 
       //STATIC
       //-------------------------------------------------------------
@@ -83,8 +84,9 @@ namespace oak
       int layerID; ///<summary>Drawing layerID</summary>
       bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
       std::string name; ///<summary>Name of this Entity</summary>
+      bool m_isFallback;
 
-	    Entity();
+	    Entity(bool isFallback = false);
 	    virtual ~Entity();
       
       ///<summary>Adds a Component to this Entity</summary>

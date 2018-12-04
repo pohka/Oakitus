@@ -13,8 +13,7 @@ namespace game
   {
     static Player player;
     static Unit unit;
-    static oak::Animator animator;
-    static oak::SpriteAnimation spriteAnim;
+    
 
     static void init();
   };

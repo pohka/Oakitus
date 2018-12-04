@@ -11,8 +11,9 @@ IDGenerator Entity::entityIDGen = IDGenerator();
 std::queue<Entity*> Entity::pendingEntityInstances;
 
 
-Entity::Entity() 
+Entity::Entity(bool isFallback) 
 {
+  m_isFallback = isFallback;
   //set default values
   componentIDGen = IDGenerator();
   this->entityID = entityIDGen.nextID();
@@ -25,9 +26,12 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-  for (Component* c : components)
+  if (!m_isFallback)
   {
-    delete c;
+    for (Component* c : components)
+    {
+      delete c;
+    }
   }
 }
 

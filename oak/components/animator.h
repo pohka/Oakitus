@@ -13,6 +13,7 @@ namespace oak
   ///<summary>Controlling the animations, a set animation will only play if it has a greater or equal prioirty to the current animation</summary>
   class Animator : public Component
   {
+    friend struct Fallback;
 
     std::unordered_map<uchar, SpriteAnimation*> anims; ///<summary>Map of the animatons available</summary>
     bool m_isFallback;

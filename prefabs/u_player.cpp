@@ -77,7 +77,7 @@ UPlayer::UPlayer()
   
 
   animator->setAnim(ANIM_TYPE_IDLE);
-  addAnimator(animator);
+  //addAnimator(animator);
 
   addAbility(new Shoot());
   addAbility(new SwordAttack());

@@ -52,7 +52,7 @@ void Animator::onDraw() const
 
 void Animator::setAnim(const uchar animType, const bool ignorePriority)
 {
-  if (curAnim == animType)
+  if (m_isFallback || curAnim == animType)
   {
     return;
   }
