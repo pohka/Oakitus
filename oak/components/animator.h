@@ -16,14 +16,13 @@ namespace oak
     friend struct Fallback;
 
     std::unordered_map<uchar, SpriteAnimation*> anims; ///<summary>Map of the animatons available</summary>
-    bool m_isFallback;
     uchar curAnim; ///<summary>Current animation key</summary>
     uchar baseAnim; ///<summary>Base animation key</summary>
     uchar direction; ///<summary>Direction of the current animation</summary>
     bool hasChangedDirection = false; ///<summary>True if the direction of the animation has changed this frame</summary>
 
     public:
-      Animator(uchar baseAnimType, SpriteAnimation* baseAnimation, bool isFallback = false);
+      Animator(uchar baseAnimType, SpriteAnimation* baseAnimation);
       ~Animator();
 
       ///<summary>Add an animation with a key</summary>
