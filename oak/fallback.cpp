@@ -43,14 +43,3 @@ void Fallback::init()
   animator.setAnim(1, true);
   entity.addComponent(&animator);
 }
-
-void Fallback::update()
-{
-  entity.onUpdate();
-  animator.onUpdate();
-}
-
-void Fallback::draw()
-{
-  animator.onDraw();
-}

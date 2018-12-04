@@ -20,8 +20,6 @@ namespace oak
     static Entity entity;
 
     static void init();
-    static void update();
-    static void draw();
   };
 }
 

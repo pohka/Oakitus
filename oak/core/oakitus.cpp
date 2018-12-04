@@ -71,10 +71,8 @@ int Oakitus::loop()
 
     PlayerResource::executeAllCommands();
     Entity::updateInstances();
-    Fallback::update();
     Collision::resolveCollisions();
     Entity::drawInstances();
-    Fallback::draw();
     Entity::debugDrawInstances();
 
     

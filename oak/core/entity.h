@@ -65,7 +65,6 @@ namespace oak
 
     public:
       friend class Scene;
-      friend struct Fallback;
 
       //STATIC
       //-------------------------------------------------------------
