@@ -4,8 +4,7 @@
 #include "core/shader.h"
 #include "core/texture.h"
 #include "core/base_player.h"
-#include "components/animator.h"
-#include "components/sprite_animation.h"
+
 
 namespace oak
 {
@@ -15,9 +14,7 @@ namespace oak
     static Shader shader;
     static Texture texture;
     static BasePlayer basePlayer;
-    static Animator animator;
-    static SpriteAnimation spriteAnim;
-    static Entity entity;
+
 
     static void init();
   };

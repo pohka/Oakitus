@@ -17,7 +17,7 @@ Unit::Unit()
   collisionLayer = oak::CollisionLayer::UNIT;
   faction = FACTION_NONE;
   health = 100;
-  animator = &oak::Fallback::animator;
+  animator = &gFallback::animator;
 }
 
 Unit::~Unit()

@@ -5,6 +5,7 @@
 #include "player.h"
 #include <components/animator.h>
 #include <components/sprite_animation.h>
+#include "components/animator.h"
 
 namespace game
 {
@@ -13,8 +14,11 @@ namespace game
   {
     static Player player;
     static Unit unit;
-    
 
+    static oak::Entity entity;
+    static oak::Animator animator;
+    static oak::SpriteAnimation spriteAnim;
+    
     static void init();
   };
 }
