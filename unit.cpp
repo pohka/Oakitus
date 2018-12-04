@@ -30,6 +30,14 @@ Unit::~Unit()
   LOG << "deallocated unit: " << name;
 }
 
+void Unit::onStart()
+{
+  if (!m_hasAnimator)
+  {
+    LOG_WARNING << "FALLBACK | Unit '" << name << "' does not have an animator, use addAnimator() ";
+  }
+}
+
 oak::BasePlayer& Unit::getOwner() const
 {
   return *owner;

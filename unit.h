@@ -49,7 +49,7 @@ namespace game
       uchar getAnimDirection() const;
       void setAnimDirection(uchar direction);
 
-      //void onStart() override;
+      void onStart() override;
       //void onDestroy() override;
       //void onDraw() override;
       void onUpdate();

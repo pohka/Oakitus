@@ -1,6 +1,7 @@
 #include "player_resource.h"
 #include "types.h"
 #include "../fallback.h"
+#include <debug.h>
 
 using namespace oak;
 
@@ -29,14 +30,15 @@ BasePlayer& PlayerResource::getPlayer(uint playerID)
     }
   }
 
+  LOG_WARNING << "FALLBACK | BasePlayer not found with ID: " << playerID;
   return Fallback::basePlayer;
- // return nullptr;
 }
 
 BasePlayer& PlayerResource::getPlayerByIndex(uint index)
 {
   if (index >= MAX_PLAYER_COUNT || players[index] == nullptr)
   {
+    LOG_WARNING << "FALLBACK | BasePlayer not found at index: " << index;
     return Fallback::basePlayer;
   }
   return *players[index];

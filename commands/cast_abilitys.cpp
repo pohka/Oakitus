@@ -35,7 +35,6 @@ void CastAbilitys::execute()
 
 glm::vec3 CastAbilitys::getCasterPosition() const
 {
-  
   Unit* unit = player->getAssignedUnit();
   if (unit == nullptr)
   {

@@ -33,6 +33,5 @@ oak::Animator gFallback::animator = oak::Animator(
 void gFallback::init()
 {
   spriteAnim.load();
-  animator.setAnim(1, true);
   entity.addComponent(&animator);
 }
