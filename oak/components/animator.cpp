@@ -3,19 +3,23 @@
 
 using namespace oak;
 
-Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation)
+Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation, bool isFallback)
 {
   this->baseAnim = baseAnimType;
   anims[baseAnimType] = baseAnimation;
   this->curAnim = baseAnimType;
   this->direction = ANIM_DIRECTION_RIGHT;
+  m_isFallback = isFallback;
 }
 
 Animator::~Animator()
 {
-  for (auto itr = anims.begin(); itr != anims.end(); itr++)
+  if (!m_isFallback)
   {
-    delete (itr->second);
+    for (auto itr = anims.begin(); itr != anims.end(); itr++)
+    {
+      delete (itr->second);
+    }
   }
   anims.clear();
 }

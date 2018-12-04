@@ -4,6 +4,7 @@
 #include <core/entity.h>
 #include <components/animator.h>
 #include "game_def.h"
+#include <core/base_player.h>
 
 
 class oak::Entity;
@@ -16,18 +17,21 @@ namespace game
   class Unit : public oak::Entity
   {
 
-    Player* owner;
+    oak::BasePlayer* owner;
     float moveSpeed;
     static const float BASE_MOVE_SPEED;
     std::vector<Ability*> abilitys;
     int health;
     oak::Animator* animator;
+    bool m_hasOwner = false;
+    bool m_isOwnerBotPlayer = false;
+    bool m_hasAnimator = false;
 
     public:
       Unit();
       virtual ~Unit();
 
-      Player* getOwner() const;
+      oak::BasePlayer& getOwner() const;
       bool hasOwner() const;
       float getMoveSpeed() const;
       void setMoveSpeed(float moveSpeed);
@@ -38,6 +42,7 @@ namespace game
       void setHealth(int hp);
       void applyDamage(int amount, uint attackerID, uint abilityID);
       bool isAlive() const;
+      bool isOwnerBotPlayer() const;
       
       void addAnimator(oak::Animator* animator);
       void setAnimation(uchar animType);

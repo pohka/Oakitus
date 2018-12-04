@@ -22,7 +22,8 @@ SpriteAnimation::SpriteAnimation(
   std::string shaderName,
   uint totalFrameCount,
   uint startFrameY,
-  bool isLooping
+  bool isLooping,
+  bool isOnHeap
 )
 {
   Texture& texture = Resources::getTextureBySrc(src);
@@ -46,6 +47,14 @@ SpriteAnimation::SpriteAnimation(
   maxFramesX = texture.getWidth() / frameW;
   maxFramesY = texture.getHeight() / frameH;
 
+  if (isOnHeap)
+  {
+    load();
+  }
+}
+
+void SpriteAnimation::load()
+{
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
   glBindVertexArray(VAO);

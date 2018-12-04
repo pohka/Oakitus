@@ -132,6 +132,7 @@
     <ClCompile Include="abilitys\sword_attack.cpp" />
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />
+    <ClCompile Include="gFallback.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="oak\components\animator.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
     <ClInclude Include="game_def.h" />
+    <ClInclude Include="gFallback.h" />
     <ClInclude Include="oak\components\animator.h" />
     <ClInclude Include="oak\components\collision.h" />
     <ClInclude Include="oak\components\collision_circle.h" />

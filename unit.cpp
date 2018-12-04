@@ -3,6 +3,7 @@
 #include <core/time.h>
 #include "player.h"
 #include "ability.h"
+#include "gFallback.h"
 
 using namespace game;
 
@@ -10,16 +11,16 @@ const float Unit::BASE_MOVE_SPEED = 400.0f;
 
 Unit::Unit()
 {
-  Player* owner = nullptr;
+  owner = &gFallback::player;
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
   faction = FACTION_NONE;
   health = 100;
+ // animator = &gFallback::animator;
 }
 
 Unit::~Unit()
 {
-  owner = nullptr;
   while (!abilitys.empty())
   {
     delete abilitys[0];
@@ -28,15 +29,20 @@ Unit::~Unit()
   LOG << "deallocated unit: " << name;
 }
 
-Player* Unit::getOwner() const
+oak::BasePlayer& Unit::getOwner() const
 {
-  return owner;
+  return *owner;
+}
+
+bool Unit::isOwnerBotPlayer() const
+{
+  return m_isOwnerBotPlayer;
 }
 
 
 bool Unit::hasOwner() const
 {
-  return (owner != nullptr);
+  return m_hasOwner;
 }
 
 float Unit::getMoveSpeed() const
@@ -128,6 +134,7 @@ void Unit::onDeath()
 
 void Unit::addAnimator(oak::Animator* animator)
 {
+  m_hasAnimator = true;
   this->animator = animator;
   addComponent(animator);
 }

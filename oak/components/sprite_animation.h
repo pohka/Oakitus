@@ -44,10 +44,12 @@ namespace oak
         std::string shaderName,
         uint totalFrameCount,
         uint startFrameY,
-        bool isLooping
+        bool isLooping,
+        bool isOnHeap = true
       );
       ~SpriteAnimation();
 
+      void load();
       void reset();
       bool onUpdate(uchar direction, bool hasChangedDirection);
       void onDraw(float positionX, float positionY) const;

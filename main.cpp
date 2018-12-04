@@ -2,9 +2,11 @@
 #include "scenes/main_scene.h"
 #include <core/player_resource.h>
 #include "player.h"
+#include "gFallback.h"
 
 using namespace oak;
 using namespace game;
+
 
 int main()
 {
@@ -15,6 +17,8 @@ int main()
 
 void Oakitus::load()
 {
+  gFallback::init();
+
   BasePlayer* player1 = new Player();
   PlayerResource::addPlayer(*player1);
 
