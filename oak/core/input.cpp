@@ -3,11 +3,11 @@
 using namespace oak;
 
 
-Key* Input::keys[sizeof(glKeys)];
+KeyBuffer* Input::keys[sizeof(glKeys)];
 Point Input::mousePos(0, 0);
 
 
-Key* Input::getKeyByCode(uint query)
+KeyBuffer* Input::getKeyBufferByCode(uint query)
 {
   for (uint i = 0; i < KEY_COUNT; i++)
   {
@@ -25,25 +25,25 @@ void Input::init()
   for (uint i = 0; i < KEY_COUNT; i++)
   {
     int code = glKeys[i];
-    keys[i] = new Key((KeyCode)code);
+    keys[i] = new KeyBuffer((KeyCode)code);
   }
 }
 
 bool Input::isKeyDown(KeyCode code)
 {
-  Key* key = Input::getKeyByCode(code);
+  KeyBuffer* key = Input::getKeyBufferByCode(code);
   return key->isDown == true && key->lastIsDown == false;
 }
 
 bool Input::isKeyPressed(KeyCode code)
 {
-  Key* key = Input::getKeyByCode(code);
+  KeyBuffer* key = Input::getKeyBufferByCode(code);
   return key->isDown;
 }
 
 bool Input::isKeyUp(KeyCode code)
 {
-  Key* key = Input::getKeyByCode(code);
+  KeyBuffer* key = Input::getKeyBufferByCode(code);
   return key->isDown == false && key->lastIsDown == true;
 }
 

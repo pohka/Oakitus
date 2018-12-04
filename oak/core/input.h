@@ -1,7 +1,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "key.h"
+#include "key_buffer.h"
 #include <GLFW/glfw3.h>
 #include "key_code.h"
 #include "point.h"
@@ -12,7 +12,7 @@ namespace oak
   ///<summary>Input states</summary>
   class Input
   {
-    static Key* keys[sizeof(glKeys)]; ///<summary>All of the tracked keys buffers</summary>
+    static KeyBuffer* keys[sizeof(glKeys)]; ///<summary>All of the tracked keys buffers</summary>
 
     public:
       
@@ -39,7 +39,7 @@ namespace oak
 
     private:
       ///<summary>Returns the Key buffer with a maching code</summary>
-      static Key* getKeyByCode(uint code);
+      static KeyBuffer* getKeyBufferByCode(uint code);
   };
 }
 

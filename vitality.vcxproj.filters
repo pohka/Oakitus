@@ -57,9 +57,6 @@
     <ClCompile Include="oak\core\input.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="oak\core\key.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="oak\core\ray.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
@@ -177,6 +174,9 @@
     <ClCompile Include="oak\fallback.cpp">
       <Filter>oak</Filter>
     </ClCompile>
+    <ClCompile Include="oak\core\key_buffer.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -192,9 +192,6 @@
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\input.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\core\key.h">
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\key_code.h">
@@ -331,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="oak\fallback.h">
       <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\key_buffer.h">
+      <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

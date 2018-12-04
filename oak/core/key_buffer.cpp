@@ -1,22 +1,22 @@
-#include "key.h"
+#include "key_buffer.h"
 
 using namespace oak;
 
-Key::Key(KeyCode code)
+KeyBuffer::KeyBuffer(KeyCode code)
 {
   this->code = code;
   this->isDown = false;
   this->lastIsDown = false;
 }
 
-Key::~Key() {}
+KeyBuffer::~KeyBuffer() {}
 
-KeyCode Key::getCode() const
+KeyCode KeyBuffer::getCode() const
 {
   return this->code;
 }
 
-void Key::setState(bool isDown)
+void KeyBuffer::setState(bool isDown)
 {
   this->lastIsDown = this->isDown;
   this->isDown = isDown;

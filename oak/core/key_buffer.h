@@ -5,7 +5,7 @@
 namespace oak
 {
   ///<summary>Key buffer that tracks the input for a key</summary>
-  class Key
+  class KeyBuffer
   {
     KeyCode code;
     bool isDown;
@@ -13,8 +13,8 @@ namespace oak
 
     public:
       friend class Input;
-      Key(KeyCode code);
-      ~Key();
+      KeyBuffer(KeyCode code);
+      ~KeyBuffer();
       ///<summary>Returns the KeyCode of this key</summary>
       KeyCode getCode() const;
 
