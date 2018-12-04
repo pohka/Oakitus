@@ -14,6 +14,7 @@
 #include "player_resource.h"
 #include "../components/collision.h"
 #include "../oak_def.h"
+#include "../fallback.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -41,12 +42,7 @@ void Oakitus::init()
   Window::init(SCR_WIDTH, SCR_HEIGHT, SCR_WIDTH, SCR_HEIGHT, "Oakitus");
   GLFWwindow* window = Window::getGLFWWindow();
   
-  //set default resources
-  Resources::addShader("default");
-  Resources::defaultShader = &Resources::getShaderByName("default");
-
-  Resources::addTexture("default.png");
-  Resources::defaultTexture = &Resources::getTextureBySrc("default.png");
+  Fallback::init();
   Resources::addTexture("box.png");
   Resources::addTexture("circle.png");
 

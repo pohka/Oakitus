@@ -2,13 +2,12 @@
 #define RESOURCES_H
 
 #include "entity.h"
-#include "shader.h"
 
 #include <vector>
 #include <queue>
 #include <string>
 
-#include "texture.h"
+#include "../fallback.h"
 
 namespace oak
 {
@@ -25,14 +24,12 @@ namespace oak
     static std::vector<Shader*> shaders;
     static std::vector<Texture*> textures;
 
-    //default resouces
-    static Shader* defaultShader;
-    static Texture* defaultTexture;
-
 
     public:
       static void addShader(std::string shaderName);
+      static void addShader(Shader& shader);
       static void addTexture(std::string src);
+      static void addTexture(Texture& texture);
       static Shader& getShaderByID(uint id);
       static Shader& getShaderByName(std::string name);
       static Texture& getTextureByID(uint textureID);

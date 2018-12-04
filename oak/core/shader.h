@@ -16,7 +16,9 @@ namespace oak
 
       // constructor generates the shader on the fly
       // ------------------------------------------------------------------------
-      Shader(std::string name, const char* geometryPath = nullptr);
+      Shader(std::string name, bool isOnHeap = true, const char* geometryPath = nullptr);
+
+      void load();
 
       // activate the shader
       // ------------------------------------------------------------------------
@@ -43,6 +45,7 @@ namespace oak
     private:
       uint ID;
       std::string name;
+      const char* geometryPath;
       // utility function for checking shader compilation/linking errors.
       // ------------------------------------------------------------------------
       void checkCompileErrors(GLuint shader, std::string type);

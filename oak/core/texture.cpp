@@ -5,12 +5,23 @@
 #include "stb_image.h"
 
 #include "texture.h"
+#include "../oak_def.h"
+#include <debug.h>
 
 using namespace oak;
 
-Texture::Texture(std::string path, std::string src)
+Texture::Texture(std::string src, bool isOnHeap)
 {
   this->src = src;
+  if (isOnHeap)
+  {
+    load();
+  }
+}
+
+void Texture::load()
+{
+  std::string path = RESOURCES_ROOT_PATH;
   std::string fullPath = path + src;
 
   //load the texture
@@ -24,7 +35,7 @@ Texture::Texture(std::string path, std::string src)
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   // load image, create texture and generate mipmaps
   int nrChannels;
-  
+
   unsigned char *data = stbi_load(fullPath.c_str(), &width, &height, &nrChannels, 0);
 
   if (data)
@@ -45,7 +56,7 @@ Texture::Texture(std::string path, std::string src)
     unsigned char *data = stbi_load("res/default.png", &width, &height, &nrChannels, 0);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
   }
-  
+
   stbi_image_free(data);
 }
 

@@ -4,8 +4,7 @@
 
 using namespace oak;
 
-Shader* Resources::defaultShader;
-Texture* Resources::defaultTexture;
+
 
 std::vector<Shader*> Resources::shaders;
 std::vector<Texture*> Resources::textures;
@@ -18,12 +17,22 @@ void Resources::addShader(std::string shaderName)
   }
 }
 
+void Resources::addShader(Shader& shader)
+{
+  shaders.push_back(&shader);
+}
+
 void Resources::addTexture(std::string src)
 {
   if (!isTextureLoaded(src))
   {
-    textures.push_back(new Texture(RESOURCES_ROOT_PATH, src));
+    textures.push_back(new Texture(src));
   }
+}
+
+void Resources::addTexture(Texture& texture)
+{
+  textures.push_back(&texture);
 }
 
 bool Resources::isTextureLoaded(std::string src)
@@ -59,7 +68,7 @@ Shader& Resources::getShaderByID(uint id)
       return *shaders[i];
     }
   }
-  return *defaultShader;
+  return Fallback::shader;
 }
 
 
@@ -72,7 +81,7 @@ Shader& Resources::getShaderByName(std::string name)
       return *shaders[i];
     }
   }
-  return *defaultShader;
+  return Fallback::shader;
 }
 
 Texture& Resources::getTextureByID(uint textureID)
@@ -84,7 +93,7 @@ Texture& Resources::getTextureByID(uint textureID)
       return *textures[i];
     }
   }
-  return *defaultTexture;
+  return Fallback::texture;
 }
 
 Texture& Resources::getTextureBySrc(std::string src)
@@ -97,17 +106,17 @@ Texture& Resources::getTextureBySrc(std::string src)
     }
   }
 
-  return *defaultTexture;
+  return Fallback::texture;
 }
 
 Shader& Resources::getDefaultShader()
 {
-  return *defaultShader;
+  return Fallback::shader;
 }
 
 Texture& Resources::getDefaultTexture()
 {
-  return *defaultTexture;
+  return Fallback::texture;
 }
 
 uint Resources::getTextureIDBySrc(std::string src)

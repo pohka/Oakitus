@@ -8,10 +8,19 @@
 
 using namespace oak;
 
-Shader::Shader(std::string name, const char* geometryPath)
+Shader::Shader(std::string name, bool isOnHeap, const char* geometryPath)
 {
   this->name = name;
+  this->geometryPath = geometryPath;
 
+  if (isOnHeap)
+  {
+    load();
+  }
+}
+
+void Shader::load()
+{
   std::string root = RESOURCES_ROOT_PATH;
   std::string basePath =  root + "shaders/" + name;
 
