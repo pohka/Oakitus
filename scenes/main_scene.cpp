@@ -30,10 +30,10 @@ void MainScene::onLoad()
   ground->instantiate();
 
   
-  Player* player1 = static_cast<Player*>(PlayerResource::getPlayerByIndex(0));
+  Player& player1 = static_cast<Player&>(PlayerResource::getPlayerByIndex(0));
   Unit* playerUnit = new prefab::UPlayer();
   playerUnit->instantiate();
-  player1->setAssignedUnit(*playerUnit);
+  player1.setAssignedUnit(*playerUnit);
 
 
   prefab::CameraController* camController = new prefab::CameraController();

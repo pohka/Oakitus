@@ -1,5 +1,6 @@
 #include "player_resource.h"
 #include "types.h"
+#include "../fallback.h"
 
 using namespace oak;
 
@@ -18,21 +19,27 @@ void PlayerResource::addPlayer(BasePlayer& player)
   
 }
 
-BasePlayer* PlayerResource::getPlayer(uint playerID)
+BasePlayer& PlayerResource::getPlayer(uint playerID)
 {
   for (uint i = 0; i < MAX_PLAYER_COUNT; i++)
   {
     if (players[i]->getID() == playerID)
     {
-      return players[i];
+      return *players[i];
     }
   }
-  return nullptr;
+
+  return Fallback::basePlayer;
+ // return nullptr;
 }
 
-BasePlayer* PlayerResource::getPlayerByIndex(uint index)
+BasePlayer& PlayerResource::getPlayerByIndex(uint index)
 {
-  return players[index];
+  if (index >= MAX_PLAYER_COUNT || players[index] == nullptr)
+  {
+    return Fallback::basePlayer;
+  }
+  return *players[index];
 }
 
 void PlayerResource::executeAllCommands()

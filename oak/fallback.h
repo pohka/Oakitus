@@ -3,6 +3,7 @@
 
 #include "core/shader.h"
 #include "core/texture.h"
+#include "core/base_player.h"
 
 namespace oak
 {
@@ -11,6 +12,7 @@ namespace oak
     //default resouces
     static Shader shader;
     static Texture texture;
+    static BasePlayer basePlayer;
 
     static void init();
   };
