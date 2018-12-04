@@ -39,7 +39,7 @@ namespace debug
     
     static LogData lastLog;
     static uint logRepeatCount;
-    static const uint MAX_REPEATED_LOGS = 5;
+    static const uint MAX_REPEATED_LOGS = 10;
     static bool hasReachedMaxRepeats;
 
     public:

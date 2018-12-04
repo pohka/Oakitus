@@ -1,13 +1,9 @@
 # todo
 
-* constants should be in their own file
-* fallbacks, some of the early code returns nullptrs instead of a fallback.
-* fallback warning logs
-* onDeath
+* onDeath, broadcasting with event system
 * collision
   * bool isStatic
   * isTrigger
-* Comment code
 * unit tests
 * sword ability
 * sound

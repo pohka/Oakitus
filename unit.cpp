@@ -37,9 +37,13 @@ void Unit::onStart()
   }
 }
 
-oak::BasePlayer& Unit::getOwner() const
+oak::BasePlayer* Unit::getOwner() const
 {
-  return *owner;
+  if (owner == nullptr)
+  {
+    LOG_WARNING << "Unit '" << name << "' does not have an owner";
+  }
+  return owner;
 }
 
 bool Unit::isOwnerBotPlayer() const

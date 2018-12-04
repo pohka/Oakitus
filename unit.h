@@ -29,7 +29,7 @@ namespace game
       Unit();
       virtual ~Unit();
 
-      oak::BasePlayer& getOwner() const;
+      oak::BasePlayer* getOwner() const;
       bool hasOwner() const;
       float getMoveSpeed() const;
       void setMoveSpeed(float moveSpeed);

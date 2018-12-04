@@ -29,7 +29,7 @@ void CastAbilitys::execute()
 
   if (Input::isKeyDown(KeyCode::E))
   {
-    beginCast(1);
+    beginCast(3);
   }
 }
 
@@ -38,7 +38,7 @@ glm::vec3 CastAbilitys::getCasterPosition() const
   Unit* unit = player->getAssignedUnit();
   if (unit == nullptr)
   {
-    LOG << "UNIT NOT FOUND";
+    LOG_WARNING << "UNIT NOT FOUND";
     return glm::vec3(0, 0, 0);
   }
 
@@ -49,15 +49,17 @@ void CastAbilitys::beginCast(const int index) const
 {
   Unit* unit = player->getAssignedUnit();
   Ability* ability = unit->getAbilityByIndex(index);
-
-  if (ability->getTargetType() == TARGET_TYPE_POINT)
+  if (ability != nullptr)
   {
-    glm::vec2 point = Camera::cursorToWorld2D();
-    ability->castOnPoint(point);
-  }
-  else if (ability->getTargetType() == TARGET_TYPE_NO_TARGET)
-  {
-    //glm::vec2 target = Camera::cursorToWorld2D();
-    ability->castNoTarget();
+    if (ability->getTargetType() == TARGET_TYPE_POINT)
+    {
+      glm::vec2 point = Camera::cursorToWorld2D();
+      ability->castOnPoint(point);
+    }
+    else if (ability->getTargetType() == TARGET_TYPE_NO_TARGET)
+    {
+      //glm::vec2 target = Camera::cursorToWorld2D();
+      ability->castNoTarget();
+    }
   }
 }
