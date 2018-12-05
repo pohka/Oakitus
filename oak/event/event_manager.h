@@ -1,32 +1,34 @@
-#ifndef EVENTS_MANAGER_H
-#define EVENTS_MANAGER_H
+#ifndef EVENT_MANAGER_H
+#define EVENT_MANAGER_H
 
-#include "../core/types.h"
 #include <vector>
-#include <unordered_map>
-#include "event_listener.h"
-#include "base_event.h"
+#include "event.h"
 
 namespace oak
 {
-  
-
   class EventManager
   {
-    static std::vector<BaseEvent*> eventList;
-    
-    public:
-      static void addEvent(BaseEvent* event);
-      static BaseEvent* getEventByID(uchar id);
-      static void addListener(uchar eventID, EventListener* listener);
+    static std::vector<Event*> events;
+
+    public :
+      static void addEvent(Event* event)
+      {
+        events.push_back(event);
+      }
+
+      static Event* getEvent(uchar id)
+      {
+        for (uint i = 0; i < events.size(); i++)
+        {
+          if (events[i]->getID() == id)
+          {
+            return events[i];
+          }
+        }
+
+        return nullptr;
+      }
   };
-
-
-  template <typename Event, typename Data>
-  void fireEvent(uchar eventID, Data& data)
-  {
-    BaseEvent* evt = EventManager::getEventByID(eventID);
-    static_cast<Event*>(evt)->fire(data);
-  }
 }
+
 #endif

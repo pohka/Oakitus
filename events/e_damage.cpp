@@ -1,12 +1,25 @@
 #include "e_damage.h"
+#include "../game_def.h"
+#include "damage_data.h"
 
 using namespace game;
 
-void EDamage::fire(int amount)
+EDamage::EDamage(uchar eventID) : Event(eventID)
 {
+
+}
+
+void EDamage::fire(oak::EventData& data)
+{
+  DamageData& damData = static_cast<DamageData&>(data);
+
   for (uint i = 0; i < listeners.size(); i++)
   {
-    DamageListener* lis = static_cast<DamageListener*>(listeners[i]);
-    lis->onFire(amount);
+    listeners[i]->onDamageTaken(damData);
   }
+}
+
+void EDamage::addListener(DamageListener* listener)
+{
+  listeners.push_back(listener);
 }

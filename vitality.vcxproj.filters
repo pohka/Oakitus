@@ -186,14 +186,8 @@
     <ClCompile Include="oak\event\event_manager.cpp">
       <Filter>oak\event</Filter>
     </ClCompile>
-    <ClCompile Include="oak\event\event_listener.cpp">
-      <Filter>oak\event</Filter>
-    </ClCompile>
     <ClCompile Include="events\e_damage.cpp">
       <Filter>game\events</Filter>
-    </ClCompile>
-    <ClCompile Include="oak\event\base_event.cpp">
-      <Filter>oak\event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -353,17 +347,20 @@
     <ClInclude Include="oak\event\event_manager.h">
       <Filter>oak\event</Filter>
     </ClInclude>
-    <ClInclude Include="oak\event\event_listener.h">
+    <ClInclude Include="oak\event\event_data.h">
       <Filter>oak\event</Filter>
     </ClInclude>
-    <ClInclude Include="events\damage_listener.h">
-      <Filter>game\events</Filter>
+    <ClInclude Include="oak\event\event.h">
+      <Filter>oak\event</Filter>
     </ClInclude>
     <ClInclude Include="events\e_damage.h">
       <Filter>game\events</Filter>
     </ClInclude>
-    <ClInclude Include="oak\event\base_event.h">
-      <Filter>oak\event</Filter>
+    <ClInclude Include="events\damage_listener.h">
+      <Filter>game\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\damage_data.h">
+      <Filter>game\events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

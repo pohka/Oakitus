@@ -4,6 +4,8 @@
 #include "player.h"
 #include "ability.h"
 #include <fallback.h>
+#include <event/event_manager.h>
+#include <event/event.h>
 
 using namespace game;
 
@@ -11,12 +13,17 @@ const float Unit::BASE_MOVE_SPEED = 400.0f;
 
 Unit::Unit()
 {
+  EDamage();
   owner = nullptr;
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
   faction = FACTION_NONE;
   health = 100;
   animator = nullptr;
+
+  oak::Event* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
+  EDamage* damageEvent = static_cast<EDamage*>(event);
+  damageEvent->addListener(this);
 }
 
 Unit::~Unit()
@@ -127,7 +134,8 @@ void Unit::applyDamage(int amount, uint attackerID, uint abilityID)
     if (health <= 0)
     {
       health = 0;
-      onDeath();
+      
+     //onDeath();
     }
   }
 }
@@ -135,6 +143,11 @@ void Unit::applyDamage(int amount, uint attackerID, uint abilityID)
 bool Unit::isAlive() const
 {
   return health > 0;
+}
+
+void Unit::onDamageTaken(DamageData& data)
+{
+  LOG << "onDamageTaken() ";// << data.amount;
 }
 
 void Unit::onDeath()

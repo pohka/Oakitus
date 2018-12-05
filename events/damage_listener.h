@@ -1,19 +1,16 @@
 #ifndef DAMAGE_LISTENER_H
 #define DAMAGE_LISTENER_H
 
-#include <event/event_listener.h>
+#include "damage_data.h"
 
 namespace game
 {
-  class DamageListener : public oak::EventListener
-  {
-    virtual void onDamageTaken(int amount) = 0;
+  class DamageData;
 
-  public:
-    void onFire(int amount)
-    {
-      onDamageTaken(amount);
-    }
+  class DamageListener
+  {
+    public :
+      virtual void onDamageTaken(DamageData& data) = 0;
   };
 }
 

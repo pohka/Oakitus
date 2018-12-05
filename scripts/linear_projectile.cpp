@@ -1,9 +1,6 @@
 #include "linear_projectile.h"
 #include <oak.h>
 #include "../unit.h"
-#include <event/event_manager.h>
-#include "../events/damage_listener.h"
-#include "../events/e_damage.h"
 
 using namespace game;
 using namespace oak;
@@ -83,5 +80,11 @@ void LinearProjectile::onCollisionHit(Entity& hit)
 void LinearProjectile::onProjectileHit(Unit& unitHit)
 {
   unitHit.applyDamage(damage, casterID, abilityID);
-  fireEvent<EDamage,int&>(EVENT_ON_DAMAGE_TAKEN, damage);
+ // fireEvent<EDamage,int&>(EVENT_ON_DAMAGE_TAKEN, damage);
+
+  oak::Event* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
+  EDamage* damageEvent = static_cast<EDamage*>(event);
+  DamageData data;
+  data.amount = 33;
+  damageEvent->fire(data);
 }

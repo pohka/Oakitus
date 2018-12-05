@@ -161,8 +161,6 @@
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
     <ClCompile Include="oak\debug\logger.cpp" />
-    <ClCompile Include="oak\event\base_event.cpp" />
-    <ClCompile Include="oak\event\event_listener.cpp" />
     <ClCompile Include="oak\event\event_manager.cpp" />
     <ClCompile Include="oak\fallback.cpp" />
     <ClCompile Include="oak\oak_setup.h" />
@@ -183,6 +181,7 @@
     <ClInclude Include="abilitys\sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
+    <ClInclude Include="events\damage_data.h" />
     <ClInclude Include="events\damage_listener.h" />
     <ClInclude Include="events\e_damage.h" />
     <ClInclude Include="game_def.h" />
@@ -218,8 +217,8 @@
     <ClInclude Include="oak\core\types.h" />
     <ClInclude Include="oak\debug.h" />
     <ClInclude Include="oak\debug\logger.h" />
-    <ClInclude Include="oak\event\base_event.h" />
-    <ClInclude Include="oak\event\event_listener.h" />
+    <ClInclude Include="oak\event\event.h" />
+    <ClInclude Include="oak\event\event_data.h" />
     <ClInclude Include="oak\event\event_manager.h" />
     <ClInclude Include="oak\fallback.h" />
     <ClInclude Include="oak\oak.h" />
