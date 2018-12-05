@@ -3,10 +3,8 @@
 
 namespace oak
 {
-  class EventData
+  struct EventData
   {
-    public:
-      EventData() {}
   };
 }
 

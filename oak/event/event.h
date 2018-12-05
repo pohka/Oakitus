@@ -2,6 +2,7 @@
 #define EVENT_H
 
 #include "../core/types.h"
+#include "event_data.h"
 
 namespace oak
 {
@@ -20,7 +21,7 @@ namespace oak
         return id;
       }
 
-     
+      virtual void fire(oak::EventData& data) = 0;
   };
 }
 

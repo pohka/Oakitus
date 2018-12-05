@@ -147,7 +147,7 @@ bool Unit::isAlive() const
 
 void Unit::onDamageTaken(DamageData& data)
 {
-  LOG << "onDamageTaken() ";// << data.amount;
+  LOG << "onDamageTaken() " << data.amount;
 }
 
 void Unit::onDeath()

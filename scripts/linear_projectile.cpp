@@ -83,8 +83,7 @@ void LinearProjectile::onProjectileHit(Unit& unitHit)
  // fireEvent<EDamage,int&>(EVENT_ON_DAMAGE_TAKEN, damage);
 
   oak::Event* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
-  EDamage* damageEvent = static_cast<EDamage*>(event);
   DamageData data;
   data.amount = 33;
-  damageEvent->fire(data);
+  event->fire(data);
 }

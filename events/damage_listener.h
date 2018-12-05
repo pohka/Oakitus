@@ -5,7 +5,7 @@
 
 namespace game
 {
-  class DamageData;
+  struct DamageData;
 
   class DamageListener
   {
