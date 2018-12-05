@@ -4,10 +4,10 @@
 
 using namespace game;
 
-EDamage::EDamage(uchar eventID) : Event(eventID)
-{
-
-}
+//EDamage::EDamage(uchar eventID) : Event(eventID)
+//{
+//
+//}
 
 void EDamage::fire(oak::EventData& data)
 {

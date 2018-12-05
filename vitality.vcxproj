@@ -133,6 +133,7 @@
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="events\e_damage.cpp" />
+    <ClCompile Include="events\e_death.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="oak\components\animator.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="events\damage_data.h" />
     <ClInclude Include="events\damage_listener.h" />
     <ClInclude Include="events\e_damage.h" />
+    <ClInclude Include="events\e_death.h" />
     <ClInclude Include="game_def.h" />
     <ClInclude Include="oak\components\animator.h" />
     <ClInclude Include="oak\components\collision.h" />

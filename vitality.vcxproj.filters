@@ -189,6 +189,9 @@
     <ClCompile Include="events\e_damage.cpp">
       <Filter>game\events</Filter>
     </ClCompile>
+    <ClCompile Include="events\e_death.cpp">
+      <Filter>game\events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -360,6 +363,9 @@
       <Filter>game\events</Filter>
     </ClInclude>
     <ClInclude Include="events\damage_data.h">
+      <Filter>game\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\e_death.h">
       <Filter>game\events</Filter>
     </ClInclude>
   </ItemGroup>

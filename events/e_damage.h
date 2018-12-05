@@ -13,11 +13,11 @@ namespace game
 
   class EDamage : public oak::Event
   {
-    
+
     std::vector<DamageListener*> listeners;
 
     public:
-      EDamage(uchar eventID = EVENT_ON_DAMAGE_TAKEN);
+      EDamage(uchar eventID = EVENT_ON_DAMAGE_TAKEN) : Event(eventID) {}
 
       void fire(oak::EventData& data);
 

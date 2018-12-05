@@ -7,6 +7,7 @@
 #include <core/base_player.h>
 #include <event/event_manager.h>
 #include "events/e_damage.h"
+#include "events/e_death.h"
 
 class oak::Entity;
 
@@ -15,7 +16,7 @@ namespace game
   class Player;
   class Ability;
 
-  class Unit : public oak::Entity, public DamageListener
+  class Unit : public oak::Entity, public DamageListener, public DeathListener
   {
 
     oak::BasePlayer* owner;
@@ -57,9 +58,9 @@ namespace game
       uchar faction;
       
       void onDamageTaken(DamageData& data) override;
-
+      void onDeath(DeathData& data) override;
     private:
-      void onDeath();
+      
       
   };
 
