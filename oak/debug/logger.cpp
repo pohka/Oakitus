@@ -49,7 +49,7 @@ Logger::Logger(
     }
     output += " |";
 
-    //|WARNING| and |ERROR|
+    //|--WARNING--| and |--ERROR--|
     if (logType == DEBUG_LOG_WARNING)
     {
       output += "--WARNING--|";

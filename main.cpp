@@ -2,6 +2,8 @@
 #include "scenes/main_scene.h"
 #include <core/player_resource.h>
 #include "player.h"
+#include "events/e_damage.h"
+#include <event/event_manager.h>
 
 using namespace oak;
 using namespace game;
@@ -16,6 +18,11 @@ int main()
 
 void Oakitus::load()
 {
+ /// EDamage* damageEvent = new EDamage(EVENT_ON_DAMAGE_TAKEN);
+ // EventManager::addEvent(damageEvent);
+  BaseEvent* evt = new EDamage(EVENT_ON_DAMAGE_TAKEN, 10);
+  EventManager::addEvent(evt);
+
   BasePlayer* player1 = new Player();
   PlayerResource::addPlayer(*player1);
 

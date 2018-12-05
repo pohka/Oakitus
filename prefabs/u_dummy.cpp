@@ -1,5 +1,8 @@
 #include "u_dummy.h"
 #include <oak.h>
+#include <debug.h>
+#include <event/event_manager.h>
+#include "../events/e_damage.h"
 
 using namespace game::prefab;
 using namespace oak;
@@ -28,9 +31,16 @@ UDummy::UDummy()
     )
   );
   addAnimator(animator);
+  BaseEvent* e = EventManager::getEventByID(EVENT_ON_DAMAGE_TAKEN);
+  EDamage* damageEvent = static_cast<EDamage*>(e);// .addListener(this);
+  damageEvent->addListener(this);
 }
 
 UDummy::~UDummy()
 {
 
+}
+void UDummy::onDamageTaken(int amount)
+{
+  LOG << "onDamageTaken() " << amount;
 }

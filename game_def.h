@@ -41,4 +41,6 @@ cnum FACTION_NONE = 0;
 cnum FACTION_PLAYER = 1;
 cnum FACTION_ENEMY = 2;
 
+cnum EVENT_ON_DAMAGE_TAKEN = 1;
+
 #endif

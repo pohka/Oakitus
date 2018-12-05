@@ -29,6 +29,15 @@ void CastAbilitys::execute()
 
   if (Input::isKeyDown(KeyCode::E))
   {
+    beginCast(1);
+  }
+
+  if (Input::isKeyDown(KeyCode::SPACE))
+  {
+    beginCast(2);
+  }
+  if (Input::isKeyDown(KeyCode::R))
+  {
     beginCast(3);
   }
 }
