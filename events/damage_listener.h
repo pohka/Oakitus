@@ -5,7 +5,7 @@
 
 namespace game
 {
-  class DamageListener
+  class DamageListener : public oak::EventListener
   {
     virtual void onDamageTaken(int amount) = 0;
 
@@ -14,13 +14,6 @@ namespace game
     {
       onDamageTaken(amount);
     }
-
- // public :
-    //DamageListener()
-    //{
-    //  onFire = this->onDamageTaken;
-    //}
-    
   };
 }
 

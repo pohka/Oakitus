@@ -17,12 +17,13 @@ namespace oak
     BaseEvent(uchar eventID);
 
     uchar getEventID();
-    //void addListener(EventListener* listener);
-    //void fire();
+    void addListener(EventListener* listener);
 
-  //protected:
-   // std::vector<EventListener*> listeners;
+  protected:
+    std::vector<EventListener*> listeners;
   };
+
+
 }
 
 #endif

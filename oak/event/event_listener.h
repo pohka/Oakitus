@@ -5,13 +5,8 @@ namespace oak
 {
   class EventListener
   {
-    public:
-      virtual void onFire() = 0;
-    
-
-  protected:
-    //void (*onFire)();
-    
+    //public:
+      //virtual void addListe() = 0;
   };
 
   

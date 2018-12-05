@@ -31,9 +31,7 @@ UDummy::UDummy()
     )
   );
   addAnimator(animator);
-  BaseEvent* e = EventManager::getEventByID(EVENT_ON_DAMAGE_TAKEN);
-  EDamage* damageEvent = static_cast<EDamage*>(e);// .addListener(this);
-  damageEvent->addListener(this);
+  EventManager::addListener(EVENT_ON_DAMAGE_TAKEN, this);
 }
 
 UDummy::~UDummy()

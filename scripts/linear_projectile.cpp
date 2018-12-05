@@ -83,7 +83,5 @@ void LinearProjectile::onCollisionHit(Entity& hit)
 void LinearProjectile::onProjectileHit(Unit& unitHit)
 {
   unitHit.applyDamage(damage, casterID, abilityID);
-  BaseEvent* evt = EventManager::getEventByID(EVENT_ON_DAMAGE_TAKEN);
-  static_cast<EDamage*>(evt)->fire(15);
-  //oak::fireEvent<DamageListener,int>(EVENT_ON_DAMAGE_TAKEN, 10);
+  fireEvent<EDamage,int&>(EVENT_ON_DAMAGE_TAKEN, damage);
 }

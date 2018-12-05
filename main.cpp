@@ -18,10 +18,8 @@ int main()
 
 void Oakitus::load()
 {
- /// EDamage* damageEvent = new EDamage(EVENT_ON_DAMAGE_TAKEN);
- // EventManager::addEvent(damageEvent);
-  BaseEvent* evt = new EDamage(EVENT_ON_DAMAGE_TAKEN, 10);
-  EventManager::addEvent(evt);
+  BaseEvent* damageEvent = new EDamage(EVENT_ON_DAMAGE_TAKEN);
+  EventManager::addEvent(damageEvent);
 
   BasePlayer* player1 = new Player();
   PlayerResource::addPlayer(*player1);

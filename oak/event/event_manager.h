@@ -9,32 +9,24 @@
 
 namespace oak
 {
-
+  
 
   class EventManager
   {
-    
     static std::vector<BaseEvent*> eventList;
     
-
     public:
       static void addEvent(BaseEvent* event);
-
-      //template <class Listener, class Param>
-      //static void fireEvent(uchar eventID, Param& param);
-
-      //static void addListener(uchar eventID, EventListener* listener);
-
-   // private:
       static BaseEvent* getEventByID(uchar id);
+      static void addListener(uchar eventID, EventListener* listener);
   };
 
 
-  template <class Listener, class Param>
-  void fireEvent(uchar eventID, Param& param)
+  template <typename Event, typename Data>
+  void fireEvent(uchar eventID, Data& data)
   {
     BaseEvent* evt = EventManager::getEventByID(eventID);
-    static_cast<Listener*>(evt)->fire(param);
+    static_cast<Event*>(evt)->fire(data);
   }
 }
 #endif
