@@ -25,11 +25,25 @@ namespace game
   //listener interface
   class DamageTakenListener
   {
+    uint listenerID;
+
   public:
     DamageTakenListener()
     {
       oak::addEventListener<DamageTakenEvent, DamageTakenListener>(EVENT_ON_DAMAGE_TAKEN, this);
     }
+
+    ~DamageTakenListener()
+    {
+      oak::removeEventListener<DamageTakenEvent, DamageTakenListener>(EVENT_ON_DAMAGE_TAKEN, listenerID);
+    }
+
+
+    uint getListenerID()
+    {
+      return listenerID;
+    }
+
     virtual void onDamageTaken(DamageTakenData& data) = 0;
   };
 

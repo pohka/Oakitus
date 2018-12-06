@@ -3,6 +3,7 @@
 
 #include "../core/types.h"
 #include <vector>
+#include <debug.h>
 
 namespace oak
 {
@@ -65,6 +66,21 @@ namespace oak
     void addListener(Listener* listener)
     {
       listeners.push_back(listener);
+    }
+
+    void removeListener(uint listenerID)
+    {
+      for (uint i = 0; i < listeners.size(); i++)
+      {
+        if (listeners[i]->getListenerID() == listenerID)
+        {
+          listeners.erase(listeners.begin() + i);
+          LOG << "removed listener";
+          return;
+        }
+      }
+      LOG_WARNING << "Listener was not found with listenerID:" << listenerID << 
+        ", eventID:" << getID();
     }
   };
 }

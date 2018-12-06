@@ -19,17 +19,34 @@ namespace game
     int killerID;
   };
 
+  static uint deathListenerIDCount = 0;
 
    //listener interface
   class DeathListener
   {
+    uint listenerID;
+    
   public:
+    
     DeathListener()
     {
       oak::addEventListener<DeathEvent, DeathListener>(EVENT_ON_DEATH, this);
     }
+    ~DeathListener()
+    {
+      oak::removeEventListener<DeathEvent, DeathListener>(EVENT_ON_DEATH, listenerID);
+    }
+
+    
+
+    uint getListenerID()
+    {
+      return listenerID;
+    }
+
     virtual void onDeath(DeathData& data) = 0;
   };
+  
 
   //onFire callback function
   template <typename Listener, typename Data>
