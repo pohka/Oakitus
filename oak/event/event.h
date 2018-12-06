@@ -43,6 +43,15 @@ namespace oak
       this->onFire = onFire;
     }
 
+    ~Event()
+    {
+      for (Listener* listener : listeners)
+      {
+        delete listener;
+      }
+      listeners.clear();
+    }
+
     void fire(IEventData& data) override
     {
       Data& customData = static_cast<Data&>(data);
