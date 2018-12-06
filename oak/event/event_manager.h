@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "event.h"
-#include <debug.h>
 
 namespace oak
 {
@@ -12,23 +11,8 @@ namespace oak
     static std::vector<IEvent*> events;
 
     public :
-      static void addEvent(IEvent* event)
-      {
-        events.push_back(event);
-      }
-
-      static IEvent* getEvent(uchar id)
-      {
-        for (uint i = 0; i < events.size(); i++)
-        {
-          if (events[i]->getID() == id)
-          {
-            return events[i];
-          }
-        }
-        LOG_WARNING << "Event not found with id:" << id;
-        return nullptr;
-      }
+      static void addEvent(IEvent* event);
+      static IEvent* getEvent(uchar id);
   };
 
   template <typename mEvent, typename Listener>
