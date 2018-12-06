@@ -15,6 +15,7 @@
 #include "../components/collision.h"
 #include "../oak_def.h"
 #include "../fallback.h"
+#include "../ui/ui_canvas.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -74,6 +75,8 @@ int Oakitus::loop()
     Collision::resolveCollisions();
     Entity::drawInstances();
     Entity::debugDrawInstances();
+    ui::UICanvas::render();
+
 
     
 

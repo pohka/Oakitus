@@ -7,9 +7,11 @@
 #include "../prefabs/camera_controller.h"
 #include "../prefabs/u_dummy.h"
 #include <debug.h>
+#include <ui/ui_canvas.h>
 
 using namespace game;
 using namespace oak;
+using namespace oak::ui;
 
 
 void MainScene::onLoad()
@@ -45,4 +47,7 @@ void MainScene::onLoad()
 
   prefab::UDummy* dummy2 = new prefab::UDummy();
   dummy2->instantiate(-200.0f, 80.0f);
+
+  UIElement* el;
+  UICanvas::addElement(el);
 }

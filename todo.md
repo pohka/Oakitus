@@ -1,6 +1,5 @@
 # todo
 
-* onDeath, broadcasting with event system
 * collision
   * bool isStatic
   * isTrigger
