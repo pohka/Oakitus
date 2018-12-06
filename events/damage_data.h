@@ -5,7 +5,7 @@
 
 namespace game
 {
-  struct DamageData : public oak::EventData
+  struct DamageData : public oak::IEventData
   {
     int amount;
   };

@@ -81,7 +81,7 @@ void LinearProjectile::onProjectileHit(Unit& unitHit)
 {
   unitHit.applyDamage(damage, casterID, abilityID);
 
-  oak::Event* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
+  oak::IEvent* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
   DamageData data;
   data.amount = 33;
   event->fire(data);

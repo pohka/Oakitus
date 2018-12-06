@@ -21,7 +21,7 @@ Unit::Unit() : DeathListener()
   health = 100;
   animator = nullptr;
 
-  oak::Event* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
+  oak::IEvent* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
   EDamage* damageEvent = static_cast<EDamage*>(event);
   damageEvent->addListener(this);
 

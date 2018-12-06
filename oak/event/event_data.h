@@ -3,9 +3,7 @@
 
 namespace oak
 {
-  struct EventData
-  {
-  };
+  
 }
 
 #endif

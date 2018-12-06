@@ -2,4 +2,4 @@
 
 using namespace oak;
 
-std::vector<Event*> EventManager::events;
+std::vector<IEvent*> EventManager::events;

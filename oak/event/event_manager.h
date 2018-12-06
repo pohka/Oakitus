@@ -9,15 +9,15 @@ namespace oak
 {
   class EventManager
   {
-    static std::vector<Event*> events;
+    static std::vector<IEvent*> events;
 
     public :
-      static void addEvent(Event* event)
+      static void addEvent(IEvent* event)
       {
         events.push_back(event);
       }
 
-      static Event* getEvent(uchar id)
+      static IEvent* getEvent(uchar id)
       {
         for (uint i = 0; i < events.size(); i++)
         {
@@ -31,11 +31,11 @@ namespace oak
       }
   };
 
-  template <typename CustomEvent, typename Listener>
+  template <typename mEvent, typename Listener>
   void addEventListener(uchar eventType, Listener* listener)
   {
-    oak::Event* event = oak::EventManager::getEvent(eventType);
-    CustomEvent* customEvent = static_cast<CustomEvent*>(event);
+    oak::IEvent* event = oak::EventManager::getEvent(eventType);
+    mEvent* customEvent = static_cast<mEvent*>(event);
     customEvent->addListener(listener);
   }
 }

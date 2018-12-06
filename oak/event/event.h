@@ -3,15 +3,22 @@
 
 #include "../core/types.h"
 #include "event_data.h"
+#include <vector>
 
 namespace oak
 {
-  class Event
+  //event data interface
+  struct IEventData
+  {
+  };
+
+  //event base class
+  class IEvent
   {
     uchar id;
 
     public:
-      Event(uchar id)
+      IEvent(uchar id)
       {
         this->id = id;
       }
@@ -21,7 +28,36 @@ namespace oak
         return id;
       }
 
-      virtual void fire(oak::EventData& data) = 0;
+      virtual void fire(oak::IEventData& data) = 0;
+  };
+
+  //generic event
+  template <typename Listener, typename Data>
+  class CustomEvent : public IEvent
+  {
+    std::vector<Listener*> listeners;
+    void(*onFire)(Listener*, Data&);
+
+  public:
+    CustomEvent(uchar eventID, void(*onFire)(Listener*, Data&)) : IEvent(eventID)
+    {
+      this->onFire = onFire;
+    }
+
+    void fire(IEventData& data) override
+    {
+      Data& customData = static_cast<Data&>(data);
+
+      for (uint i = 0; i < listeners.size(); i++)
+      {
+        onFire(listeners[i], customData);
+      }
+    }
+
+    void addListener(Listener* listener)
+    {
+      listeners.push_back(listener);
+    }
   };
 }
 

@@ -9,7 +9,7 @@ using namespace game;
 //
 //}
 
-void EDamage::fire(oak::EventData& data)
+void EDamage::fire(oak::IEventData& data)
 {
   DamageData& damData = static_cast<DamageData&>(data);
 
