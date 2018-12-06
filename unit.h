@@ -56,7 +56,7 @@ namespace game
     protected:
       uchar faction;
       
-      void onDamageTaken(DamageTakenData& data) override;
+      void onDamageTaken(DamageData& data) override;
       void onDeath(DeathData& data) override;
     private:
       

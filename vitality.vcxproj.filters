@@ -353,6 +353,9 @@
     <ClInclude Include="events\e_damage_taken.h">
       <Filter>game\events</Filter>
     </ClInclude>
+    <ClInclude Include="global_funcs.h">
+      <Filter>game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\default.fs">

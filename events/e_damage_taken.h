@@ -8,12 +8,12 @@ namespace game
 {
   //typedef
   class DamageTakenListener;
-  struct DamageTakenData;
-  typedef oak::Event<DamageTakenListener, DamageTakenData> DamageTakenEvent;
+  struct DamageData;
+  typedef oak::Event<DamageTakenListener, DamageData> DamageTakenEvent;
   typedef oak::BaseListener<DamageTakenEvent, DamageTakenListener> BaseDamageTakenListener;
 
   //event data
-  struct DamageTakenData : public oak::IEventData
+  struct DamageData : public oak::IEventData
   {
     int amount;
     int victimID;
@@ -27,7 +27,7 @@ namespace game
       BaseDamageTakenListener(eventID)
     {}
     ~DamageTakenListener() {}
-    virtual void onDamageTaken(DamageTakenData& data) = 0;
+    virtual void onDamageTaken(DamageData& data) = 0;
   };
 
 

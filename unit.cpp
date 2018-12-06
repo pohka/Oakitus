@@ -125,7 +125,7 @@ bool Unit::isAlive() const
   return health > 0;
 }
 
-void Unit::onDamageTaken(DamageTakenData& data)
+void Unit::onDamageTaken(DamageData& data)
 {
   if (isAlive() && data.victimID == getID())
   {

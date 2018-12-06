@@ -8,9 +8,7 @@
 namespace oak
 {
   //event data interface
-  struct IEventData
-  {
-  };
+  struct IEventData {};
 
   //event base class
   class IEvent
@@ -35,8 +33,8 @@ namespace oak
   template <typename Listener, typename Data>
   class Event : public IEvent
   {
-    std::vector<Listener*> listeners;
-    void(*onFire)(Listener*, Data&);
+    std::vector<Listener*> listeners; ///all the listeners for this event
+    void(*onFire)(Listener*, Data&); ///callback function pointer
 
   public:
     Event(uchar eventID, void(*onFire)(Listener*, Data&)) : IEvent(eventID)
@@ -53,6 +51,7 @@ namespace oak
       listeners.clear();
     }
 
+    ///notify all listeners
     void fire(IEventData& data) override
     {
       Data& customData = static_cast<Data&>(data);
@@ -63,11 +62,13 @@ namespace oak
       }
     }
 
+    ///add a listener to this event
     void addListener(Listener* listener)
     {
       listeners.push_back(listener);
     }
 
+    ///remove a listener to this event
     void removeListener(uint listenerID)
     {
       for (uint i = 0; i < listeners.size(); i++)
@@ -84,9 +85,9 @@ namespace oak
     }
   };
 
-  static uint listenerIDCount = 0;
+  static uint listenerIDCount = 0; ///counter for listenerID auto increment
 
-  //listener interface
+  ///generic listener
   template <typename mEvent, typename Listener>
   class BaseListener
   {
@@ -94,7 +95,7 @@ namespace oak
     uchar eventID;
 
     public:
-
+      ///adds this listener to the event manager when constructed
       BaseListener(uchar eventID)
       {
         listenerID = listenerIDCount;
@@ -104,11 +105,13 @@ namespace oak
         oak::addEventListener<mEvent, Listener>(eventID, li);
       }
 
+      ///removes this listener to the event manager when deconstructed
       ~BaseListener()
       {
         oak::removeEventListener<mEvent>(eventID, listenerID);
       }
 
+      ///returns the listenerID
       uint getListenerID()
       {
         return listenerID;
