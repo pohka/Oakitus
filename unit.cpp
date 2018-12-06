@@ -11,25 +11,14 @@ using namespace game;
 
 const float Unit::BASE_MOVE_SPEED = 400.0f;
 
-Unit::Unit() : DeathListener()
+Unit::Unit()
 {
-  EDamage();
   owner = nullptr;
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
   faction = FACTION_NONE;
   health = 100;
   animator = nullptr;
-
-  oak::IEvent* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
-  EDamage* damageEvent = static_cast<EDamage*>(event);
-  damageEvent->addListener(this);
-
-  //oak::addGListener<EDeath, DeathListener>(EVENT_ON_DEATH, this);
-
-  //oak::Event* event2 = oak::EventManager::getEvent(EVENT_ON_DEATH);
-  //EDeath* deathEvent = static_cast<EDeath*>(event2);
-  //deathEvent->addListener(this);
 }
 
 Unit::~Unit()
@@ -131,39 +120,31 @@ void Unit::setHealth(int hp)
   health = hp;
 }
 
-void Unit::applyDamage(int amount, uint attackerID, uint abilityID)
-{
-  if (isAlive())
-  {
-    this->health -= amount;
-    LOG << "health :" << health;
-    if (health <= 0)
-    {
-      health = 0;
-
-      DeathData data;
-      data.killerID = attackerID;
-      data.victimID = this->getID();
-      oak::EventManager::getEvent(EVENT_ON_DEATH)->fire(data);
-     //onDeath();
-    }
-  }
-}
-
 bool Unit::isAlive() const
 {
   return health > 0;
 }
 
-void Unit::onDamageTaken(DamageData& data)
+void Unit::onDamageTaken(DamageTakenData& data)
 {
-  LOG << "onDamageTaken() " << data.amount;
+  if (isAlive() && data.victimID == getID())
+  {
+    this->health -= data.amount;
+    LOG << "health :" << health;
+    if (health <= 0)
+    {
+      health = 0;
+
+      DeathData deathData;
+      deathData.killerID = data.attackerID;
+      deathData.victimID = this->getID();
+      oak::EventManager::getEvent(EVENT_ON_DEATH)->fire(deathData);
+    }
+  }
 }
 
 void Unit::onDeath(DeathData& data)
 {
-  
-
   if (data.victimID == getID())
   {
     LOG << "onDeath()";

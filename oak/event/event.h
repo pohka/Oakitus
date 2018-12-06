@@ -2,7 +2,6 @@
 #define EVENT_H
 
 #include "../core/types.h"
-#include "event_data.h"
 #include <vector>
 
 namespace oak
@@ -33,13 +32,13 @@ namespace oak
 
   //generic event
   template <typename Listener, typename Data>
-  class CustomEvent : public IEvent
+  class Event : public IEvent
   {
     std::vector<Listener*> listeners;
     void(*onFire)(Listener*, Data&);
 
   public:
-    CustomEvent(uchar eventID, void(*onFire)(Listener*, Data&)) : IEvent(eventID)
+    Event(uchar eventID, void(*onFire)(Listener*, Data&)) : IEvent(eventID)
     {
       this->onFire = onFire;
     }

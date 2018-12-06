@@ -79,10 +79,12 @@ void LinearProjectile::onCollisionHit(Entity& hit)
 
 void LinearProjectile::onProjectileHit(Unit& unitHit)
 {
-  unitHit.applyDamage(damage, casterID, abilityID);
+  //unitHit.applyDamage(damage, casterID, abilityID);
 
   oak::IEvent* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
-  DamageData data;
-  data.amount = 33;
+  DamageTakenData data;
+  data.amount = damage;
+  data.victimID = unitHit.getID();
+  data.attackerID = casterID;
   event->fire(data);
 }

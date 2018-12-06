@@ -6,7 +6,7 @@
 #include "game_def.h"
 #include <core/base_player.h>
 #include <event/event_manager.h>
-#include "events/e_damage.h"
+#include "events/e_damage_taken.h"
 #include "events/e_death.h"
 
 class oak::Entity;
@@ -16,7 +16,7 @@ namespace game
   class Player;
   class Ability;
 
-  class Unit : public oak::Entity, public DamageListener, public DeathListener
+  class Unit : public oak::Entity, public DamageTakenListener, public DeathListener
   {
 
     oak::BasePlayer* owner;
@@ -40,7 +40,6 @@ namespace game
       uchar getFaction() const;
       int getHealth() const;
       void setHealth(int hp);
-      void applyDamage(int amount, uint attackerID, uint abilityID);
       bool isAlive() const;
       bool isOwnerBotPlayer() const;
       
@@ -57,7 +56,7 @@ namespace game
     protected:
       uchar faction;
       
-      void onDamageTaken(DamageData& data) override;
+      void onDamageTaken(DamageTakenData& data) override;
       void onDeath(DeathData& data) override;
     private:
       
