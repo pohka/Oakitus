@@ -6,12 +6,11 @@
 
 namespace game
 {
-
   //typedef
   class DamageTakenListener;
   struct DamageTakenData;
   typedef oak::Event<DamageTakenListener, DamageTakenData> DamageTakenEvent;
-
+  typedef oak::BaseListener<DamageTakenEvent, DamageTakenListener> BaseDamageTakenListener;
 
   //event data
   struct DamageTakenData : public oak::IEventData
@@ -21,31 +20,16 @@ namespace game
     int attackerID;
   };
 
-
-  //listener interface
-  class DamageTakenListener
+  class DamageTakenListener : public BaseDamageTakenListener
   {
-    uint listenerID;
-
   public:
-    DamageTakenListener()
-    {
-      oak::addEventListener<DamageTakenEvent, DamageTakenListener>(EVENT_ON_DAMAGE_TAKEN, this);
-    }
-
-    ~DamageTakenListener()
-    {
-      oak::removeEventListener<DamageTakenEvent, DamageTakenListener>(EVENT_ON_DAMAGE_TAKEN, listenerID);
-    }
-
-
-    uint getListenerID()
-    {
-      return listenerID;
-    }
-
+    DamageTakenListener(const uchar eventID = EVENT_ON_DAMAGE_TAKEN) :
+      BaseDamageTakenListener(eventID)
+    {}
+    ~DamageTakenListener() {}
     virtual void onDamageTaken(DamageTakenData& data) = 0;
   };
+
 
   //onFire callback function
   template <typename Listener, typename Data>

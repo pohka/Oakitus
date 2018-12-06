@@ -83,6 +83,37 @@ namespace oak
         ", eventID:" << getID();
     }
   };
+
+  static uint listenerIDCount = 0;
+
+  //listener interface
+  template <typename mEvent, typename Listener>
+  class BaseListener
+  {
+    uint listenerID;
+    uchar eventID;
+
+    public:
+
+      BaseListener(uchar eventID)
+      {
+        listenerID = listenerIDCount;
+        listenerIDCount++;
+        this->eventID = eventID;
+        Listener* li = static_cast<Listener*>(this);
+        oak::addEventListener<mEvent, Listener>(eventID, li);
+      }
+
+      ~BaseListener()
+      {
+        oak::removeEventListener<mEvent>(eventID, listenerID);
+      }
+
+      uint getListenerID()
+      {
+        return listenerID;
+      }
+  };
 }
 
 #endif

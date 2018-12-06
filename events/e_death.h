@@ -10,7 +10,7 @@ namespace game
   class DeathListener;
   struct DeathData;
   typedef oak::Event<DeathListener, DeathData> DeathEvent;
-
+  typedef oak::BaseListener<DeathEvent, DeathListener> BaseDeathListener;
 
   //event data
   struct DeathData : public oak::IEventData
@@ -19,32 +19,14 @@ namespace game
     int killerID;
   };
 
-  static uint deathListenerIDCount = 0;
-
-   //listener interface
-  class DeathListener
+  class DeathListener : public BaseDeathListener
   {
-    uint listenerID;
-    
-  public:
-    
-    DeathListener()
-    {
-      oak::addEventListener<DeathEvent, DeathListener>(EVENT_ON_DEATH, this);
-    }
-    ~DeathListener()
-    {
-      oak::removeEventListener<DeathEvent, DeathListener>(EVENT_ON_DEATH, listenerID);
-    }
-
-    
-
-    uint getListenerID()
-    {
-      return listenerID;
-    }
-
-    virtual void onDeath(DeathData& data) = 0;
+    public:
+      DeathListener(const uchar eventID = EVENT_ON_DEATH) : 
+        BaseDeathListener(eventID)
+      {}
+      ~DeathListener() {}
+      virtual void onDeath(DeathData& data) = 0;
   };
   
 

@@ -23,13 +23,12 @@ namespace oak
     customEvent->addListener(listener);
   }
 
-  template <typename mEvent, typename Listener>
+  template <typename mEvent>
   void removeEventListener(uchar eventType, uint listenerID)
   {
     oak::IEvent* event = oak::EventManager::getEvent(eventType);
     mEvent* customEvent = static_cast<mEvent*>(event);
     customEvent->removeListener(listenerID);
-    //customEvent->addListener(listener);
   }
 }
 

@@ -42,4 +42,7 @@ void MainScene::onLoad()
 
   prefab::UDummy* dummy = new prefab::UDummy();
   dummy->instantiate(200.0f, 100.0f);
+
+  prefab::UDummy* dummy2 = new prefab::UDummy();
+  dummy2->instantiate(-200.0f, 80.0f);
 }
