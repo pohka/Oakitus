@@ -6,52 +6,65 @@
 #include <vector>
 #include "../game_def.h"
 
+
+
 namespace game
 {
-  //event data to be passed to the listenr
+
+  template <typename Listener, typename Data>
+  void deathonFire(Listener* listener, Data& data)
+  {
+    listener->onDeath(data);
+  }
+
+  template <typename Listener, typename Data>
+  class EGeneric : public oak::Event
+  {
+    std::vector<Listener*> listeners;
+    void(*onFire)(Listener*, Data&);
+
+  public:
+    EGeneric(uchar eventID, void(*onFire)(Listener*, Data&)) : Event(eventID) 
+    {
+      this->onFire = onFire;
+    }
+
+    void fire(oak::EventData& data) override
+    {
+      Data& customData = static_cast<Data&>(data);
+
+      for (uint i = 0; i < listeners.size(); i++)
+      {
+        onFire(listeners[i], customData);
+      }
+    }
+
+    void addListener(Listener* listener)
+    {
+      listeners.push_back(listener);
+    }
+  };
+
+
   struct DeathData : public oak::EventData
   {
     int victimID;
     int killerID;
   };
 
-  class EDeath;
+  class DeathListener;
+  typedef EGeneric<DeathListener, DeathData> DeathEvent;
 
-  //listener interface
+   //listener interface
   class DeathListener
   {
-    public:
-      DeathListener()
-      {
-        oak::addEventListener<EDeath,DeathListener>(EVENT_ON_DEATH, this);
-      }
-      virtual void onDeath(DeathData& data) = 0;
+  public:
+    DeathListener()
+    {
+      oak::addEventListener<DeathEvent, DeathListener>(EVENT_ON_DEATH, this);
+    }
+    virtual void onDeath(DeathData& data) = 0;
   };
-
-  //event
-  class EDeath: public oak::Event
-  {
-    std::vector<DeathListener*> listeners;
-
-    public:
-      EDeath(uchar eventID = EVENT_ON_DEATH) : Event(eventID) {}
-
-      void fire(oak::EventData& data)
-      {
-        DeathData& deathData = static_cast<DeathData&>(data);
-
-        for (uint i = 0; i < listeners.size(); i++)
-        {
-          listeners[i]->onDeath(deathData);
-        }
-      }
-
-      void addListener(DeathListener* listener)
-      {
-        listeners.push_back(listener);
-      }
-  };
-
 }
 
 #endif

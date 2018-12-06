@@ -20,7 +20,8 @@ void Oakitus::load()
 {
   Event* damageEvent = new EDamage(EVENT_ON_DAMAGE_TAKEN);
   EventManager::addEvent(damageEvent);
-  Event* deathEvent = new EDeath();
+  //Event* deathEvent = new EDeath();
+  Event* deathEvent = new EGeneric<DeathListener,DeathData>(EVENT_ON_DEATH, game::deathonFire);
   EventManager::addEvent(deathEvent);
 
   BasePlayer* player1 = new Player();
