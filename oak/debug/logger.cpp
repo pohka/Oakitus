@@ -47,9 +47,19 @@ Logger::Logger(
     {
       output += ' ';
     }
-    output += " | ";
+    output += " |";
 
-    std::cout << output;
+    //|--WARNING--| and |--ERROR--|
+    if (logType == DEBUG_LOG_WARNING)
+    {
+      output += "--WARNING--|";
+    }
+    else if (logType == DEBUG_LOG_ERROR)
+    {
+      output += "--ERROR--|";
+    }
+
+    std::cout <<  output + " ";
 
     lastLog.funcName = funcName;
     lastLog.file = file;

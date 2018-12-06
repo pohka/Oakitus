@@ -1,6 +1,7 @@
 #include "player.h"
 #include "commands/movement.h"
 #include "commands/cast_abiltiys.h"
+#include <debug.h>
 
 using namespace game;
 using namespace oak;
@@ -30,5 +31,9 @@ void Player::setAssignedUnit(Unit& unit)
 
 Unit* Player::getAssignedUnit() const
 {
+  if (assignedUnit == nullptr)
+  {
+    LOG_WARNING << "PLayer doesn't have an assigned unit, playerID:" << this->getID();
+  }
   return assignedUnit;
 }

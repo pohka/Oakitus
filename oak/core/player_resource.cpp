@@ -17,6 +17,10 @@ void PlayerResource::addPlayer(BasePlayer& player)
     PlayerResource::players[playerCount] = &player;
     playerCount++;
   }
+  else
+  {
+    LOG_WARNING << "Player not added because the max player count has been reached";
+  }
   
 }
 

@@ -1,6 +1,7 @@
 #include "linear_projectile.h"
 #include <oak.h>
 #include "../unit.h"
+#include "../global_funcs.h"
 
 using namespace game;
 using namespace oak;
@@ -79,5 +80,9 @@ void LinearProjectile::onCollisionHit(Entity& hit)
 
 void LinearProjectile::onProjectileHit(Unit& unitHit)
 {
-  unitHit.applyDamage(damage, casterID, abilityID);
+  DamageData data;
+  data.amount = damage;
+  data.victimID = unitHit.getID();
+  data.attackerID = casterID;
+  applyDamage(data);
 }

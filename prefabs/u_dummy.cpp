@@ -1,5 +1,6 @@
 #include "u_dummy.h"
 #include <oak.h>
+#include <debug.h>
 
 using namespace game::prefab;
 using namespace oak;
@@ -28,6 +29,9 @@ UDummy::UDummy()
     )
   );
   addAnimator(animator);
+
+
+
 }
 
 UDummy::~UDummy()

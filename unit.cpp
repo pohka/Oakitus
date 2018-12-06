@@ -4,6 +4,8 @@
 #include "player.h"
 #include "ability.h"
 #include <fallback.h>
+#include <event/event_manager.h>
+#include <event/event.h>
 
 using namespace game;
 
@@ -37,9 +39,13 @@ void Unit::onStart()
   }
 }
 
-oak::BasePlayer& Unit::getOwner() const
+oak::BasePlayer* Unit::getOwner() const
 {
-  return *owner;
+  if (owner == nullptr)
+  {
+    LOG_WARNING << "Unit '" << name << "' does not have an owner";
+  }
+  return owner;
 }
 
 bool Unit::isOwnerBotPlayer() const
@@ -114,29 +120,36 @@ void Unit::setHealth(int hp)
   health = hp;
 }
 
-void Unit::applyDamage(int amount, uint attackerID, uint abilityID)
-{
-  if (isAlive())
-  {
-    this->health -= amount;
-    LOG << "health :" << health;
-    if (health <= 0)
-    {
-      health = 0;
-      onDeath();
-    }
-  }
-}
-
 bool Unit::isAlive() const
 {
   return health > 0;
 }
 
-void Unit::onDeath()
+void Unit::onDamageTaken(DamageData& data)
 {
-  LOG << "onDeath()";
-  destroy();
+  if (isAlive() && data.victimID == getID())
+  {
+    this->health -= data.amount;
+    LOG << "health :" << health;
+    if (health <= 0)
+    {
+      health = 0;
+
+      DeathData deathData;
+      deathData.killerID = data.attackerID;
+      deathData.victimID = this->getID();
+      oak::EventManager::getEvent(EVENT_ON_DEATH)->fire(deathData);
+    }
+  }
+}
+
+void Unit::onDeath(DeathData& data)
+{
+  if (data.victimID == getID())
+  {
+    LOG << "onDeath()";
+    destroy();
+  }
   //notify components
   //then do something
 }
