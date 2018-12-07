@@ -16,6 +16,9 @@ namespace oak
     cnum UI_ALIGN_MIDDLE_LEFT =    6;
     cnum UI_ALIGN_MIDDLE_CENTER =  7;
     cnum UI_ALIGN_MIDDLE_RIGHT =   8;
+
+    cnum UI_NODE_LABEL = 0;
+    cnum UI_NODE_IMAGE = 1;
   }
 }
 

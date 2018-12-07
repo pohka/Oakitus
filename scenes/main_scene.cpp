@@ -48,12 +48,12 @@ void MainScene::onLoad()
   prefab::UDummy* dummy2 = new prefab::UDummy();
   dummy2->instantiate(-200.0f, 80.0f);
 
-  UIImage* img = UICanvas::createImage("face.png", 32, 32);
+  UINode* img = UICanvas::createImage("face.png", 32, 32);
   img->y = 200.0f;
-  UICanvas::imgs.push_back(img);
+  UICanvas::nodes.push_back(img);
 
  // UIElement* el = new UIElement;
  // UICanvas::addElement(el);
   UILabel* label = UICanvas::createLabel("test", 400, 100);
-  UICanvas::labels.push_back(label);
+  UICanvas::nodes.push_back(label);
 }

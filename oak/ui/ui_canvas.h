@@ -21,16 +21,6 @@ namespace oak
 {
   namespace ui
   {
-    struct UIElement
-    {
-      std::vector<UIElement*> children;
-      uchar alignment = UI_ALIGN_MIDDLE_CENTER;
-      short x = 0;
-      short y = 0;
-      ushort w = 1;
-      ushort h = 1;
-    };
-
     struct Color
     {
       float r = 0.0f;
@@ -38,40 +28,50 @@ namespace oak
       float b = 0.0f;
     };
 
-    struct UILabel
+    struct UINode
     {
+      uchar nodeType;
+      float x = 0;
+      float y = 0;
+      ushort w;
+      ushort h;
+    };
+
+    struct UILabel : public UINode
+    {
+      UILabel()
+      {
+        nodeType = UI_NODE_LABEL;
+      }
+
       std::string text;
       float scale = 1.0f;
       uint VAO, VBO;
-      float x = 0;
-      float y = 0;
-      ushort w;
-      ushort h;
       Color color;
     };
 
-    struct UIImage
+    struct UIImage : public UINode
     {
+      UIImage()
+      {
+        nodeType = UI_NODE_IMAGE;
+      }
       std::string src;
       uint VAO, VBO;
       uint textureID;
-      float x = 0;
-      float y = 0;
-      ushort w;
-      ushort h;
     };
 
     struct Character
     {
-      GLuint     TextureID;  // ID handle of the glyph texture
-      glm::ivec2 Size;       // Size of glyph
-      glm::ivec2 Bearing;    // Offset from baseline to left/top of glyph
-      GLuint     Advance;    // Offset to advance to next glyph
+      GLuint     textureID;  // ID handle of the glyph texture
+      glm::ivec2 size;       // Size of glyph
+      glm::ivec2 bearing;    // Offset from baseline to left/top of glyph
+      GLuint     advance;    // Offset to advance to next glyph
     };
 
     class UICanvas
     {
-      static std::vector<UIElement*> elements;
+      //static std::vector<UIElement*> elements;
 
 
       static std::map<GLchar, Character> characters;
@@ -81,16 +81,12 @@ namespace oak
         friend class oak::Window;
         friend class oak::Oakitus;
 
-        static std::vector<UIImage*> imgs;
-        static std::vector<UILabel*> labels;
+        static std::vector<UINode*> nodes;
 
-        
-        static void addElement(UIElement* element);
         static UIImage* createImage(std::string src, ushort w, ushort h);
         static UILabel* createLabel(std::string src, ushort w, ushort h);
         static void renderImage(UIImage* img);
         static void removeImage(UIImage* img);
-        static void renderElement(UIElement* element);
         static void renderLabel(UILabel* label);
 
     private:

@@ -4,24 +4,13 @@
 #include <core/resources.h>
 #include <core/window.h>
 
-
-
-
 #include <debug.h>
-
-
-
-//#include <ft2build.h>
-//#include FT_FREETYPE_H  
-
 
 using namespace oak::ui;
 using namespace oak;
 
-std::vector<UIElement*> UICanvas::elements;
-std::vector<UIImage*> UICanvas::imgs;
-std::vector<UILabel*> UICanvas::labels;
 std::map<GLchar, Character> UICanvas::characters;
+std::vector<UINode*> UICanvas::nodes;
 
 void UICanvas::init()
 {
@@ -105,38 +94,40 @@ void UICanvas::initChars(FT_Library& ft, FT_Face& face)
 
 void UICanvas::render()
 {
-  for (uint i = 0; i < elements.size(); i++)
+  for (uint i = 0; i < nodes.size(); i++)
   {
-    renderElement(elements[i]);
+    if (nodes[i]->nodeType == UI_NODE_IMAGE)
+    {
+      UIImage* image = static_cast<UIImage*>(nodes[i]);
+      renderImage(image);
+    }
+    else if (nodes[i]->nodeType == UI_NODE_LABEL)
+    {
+      UILabel* label = static_cast<UILabel*>(nodes[i]);
+      renderLabel(label);
+    }
   }
-
-  for (uint i = 0; i < imgs.size(); i++)
-  {
-    renderImage(imgs[i]);
-  }
-
-  for (uint i = 0; i < labels.size(); i++)
-  {
-    renderLabel(labels[i]);
-  }
-}
-
-void UICanvas::addElement(UIElement* element)
-{
-
 }
 
 void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 {
-  for (uint i = 0; i < imgs.size(); i++)
+  //resize all the image nodes
+  for (uint i = 0; i < nodes.size(); i++)
   {
-    setImageBuffer(imgs[i], windowToVPRatioX, windowToVPRatioY);
+    if (nodes[i]->nodeType == UI_NODE_IMAGE)
+    {
+      setImageBuffer(
+        static_cast<UIImage*>(nodes[i]), 
+        windowToVPRatioX,
+        windowToVPRatioY
+      );
+    }
   }
 }
 
 UIImage* UICanvas::createImage(std::string src, ushort w, ushort h)
 {
-  UIImage* img = new UIImage;
+  UIImage* img = new UIImage();
   img->src = src;
   img->textureID = Resources::getTextureIDBySrc(src);
   img->w = w;
@@ -224,14 +215,9 @@ void UICanvas::removeImage(UIImage* img)
   glDeleteBuffers(1, &img->VBO);
 }
 
-void UICanvas::renderElement(UIElement* element)
-{
-
-}
-
 UILabel* UICanvas::createLabel(std::string text, ushort w, ushort h)
 {
-  UILabel* label = new UILabel;
+  UILabel* label = new UILabel();
   label->text = text;
   label->w = w;
   label->h = h;
@@ -268,11 +254,11 @@ void UICanvas::renderLabel(UILabel* label)
 
   // Iterate through all characters
   std::string::const_iterator c;
-  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
-  LOG << label->scale << ":" << Window::worldToViewportCoords(label->scale);
 
+  
+  //get projection from font size to viewport to window coords
+  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
   float worldToVP = Window::worldToViewportCoords(1.0f);
-  //projection from font size to viewport to window coords
   float projectionX = windowToVPRatio.x * worldToVP;
   float projectionY = windowToVPRatio.y * worldToVP;
 
@@ -280,11 +266,13 @@ void UICanvas::renderLabel(UILabel* label)
   {
     Character ch = characters[*c];
 
-    GLfloat xpos = x + projectionX * (ch.Bearing.x * label->scale);
-    GLfloat ypos = y - projectionY * ((ch.Size.y - ch.Bearing.y) * label->scale);
+    float bearingX = ch.bearing.x * label->scale;
+    float bearingY = (ch.size.y - ch.bearing.y) * label->scale;
+    GLfloat xpos = x + projectionX * bearingX;
+    GLfloat ypos = y - projectionY * bearingY;
 
-    GLfloat ww = ch.Size.x * label->scale;
-    GLfloat hh = ch.Size.y * label->scale;
+    GLfloat ww = ch.size.x * label->scale;
+    GLfloat hh = ch.size.y * label->scale;
 
     float w = projectionX * ww;
     float h = projectionY * hh;
@@ -300,7 +288,7 @@ void UICanvas::renderLabel(UILabel* label)
         { xpos + w, ypos + h,   1.0, 0.0 }
     };
     // Render glyph texture over quad
-    glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+    glBindTexture(GL_TEXTURE_2D, ch.textureID);
     // Update content of VBO memory
     glBindBuffer(GL_ARRAY_BUFFER, label->VBO);
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // Be sure to use glBufferSubData and not glBufferData
@@ -309,8 +297,8 @@ void UICanvas::renderLabel(UILabel* label)
     // Render quad
     glDrawArrays(GL_TRIANGLES, 0, 6);
     // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-    float append = (ch.Advance >> 6) * label->scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
-    x += projectionX * append;
+    float advance = (ch.advance >> 6) * label->scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+    x += projectionX * advance;
   }
 
   glBindVertexArray(0);
