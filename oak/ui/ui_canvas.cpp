@@ -236,7 +236,7 @@ UILabel* UICanvas::createLabel(std::string text, ushort w, ushort h)
   label->w = w;
   label->h = h;
   label->color.r = 1.0f;
-  label->scale = 0.01f;
+  label->scale = 1.0f;
 
   glGenVertexArrays(1, &label->VAO);
   glGenBuffers(1, &label->VBO);
@@ -268,17 +268,26 @@ void UICanvas::renderLabel(UILabel* label)
 
   // Iterate through all characters
   std::string::const_iterator c;
+  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
+  LOG << label->scale << ":" << Window::worldToViewportCoords(label->scale);
+
+  float worldToVP = Window::worldToViewportCoords(1.0f);
+  //projection from font size to viewport to window coords
+  float projectionX = windowToVPRatio.x * worldToVP;
+  float projectionY = windowToVPRatio.y * worldToVP;
+
   for (c = label->text.begin(); c != label->text.end(); c++)
   {
     Character ch = characters[*c];
 
-    GLfloat xpos = x + ch.Bearing.x * label->scale;
-    GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * label->scale;
+    GLfloat xpos = x + projectionX * (ch.Bearing.x * label->scale);
+    GLfloat ypos = y - projectionY * ((ch.Size.y - ch.Bearing.y) * label->scale);
 
-    GLfloat w = ch.Size.x * label->scale;
-    GLfloat h = ch.Size.y * label->scale;
+    GLfloat ww = ch.Size.x * label->scale;
+    GLfloat hh = ch.Size.y * label->scale;
 
-   // GLfloat w = 1.0f;// , h = 1.0f;
+    float w = projectionX * ww;
+    float h = projectionY * hh;
 
     // Update VBO for each character
     GLfloat vertices[6][4] = {
@@ -300,8 +309,10 @@ void UICanvas::renderLabel(UILabel* label)
     // Render quad
     glDrawArrays(GL_TRIANGLES, 0, 6);
     // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-    x += (ch.Advance >> 6) * label->scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+    float append = (ch.Advance >> 6) * label->scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+    x += projectionX * append;
   }
+
   glBindVertexArray(0);
   glBindTexture(GL_TEXTURE_2D, 0);
 }
