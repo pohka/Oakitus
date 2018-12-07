@@ -165,8 +165,8 @@
     <ClCompile Include="oak\fallback.cpp" />
     <ClCompile Include="oak\oak_setup.h" />
     <ClCompile Include="oak\ui\ui_canvas.cpp" />
-    <ClCompile Include="oak\ui\ui_element.cpp" />
     <ClCompile Include="oak\ui\ui_image.cpp" />
+    <ClCompile Include="oak\ui\ui_label.cpp" />
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
@@ -225,11 +225,14 @@
     <ClInclude Include="oak\fallback.h" />
     <ClInclude Include="oak\oak.h" />
     <ClInclude Include="oak\oak_def.h" />
+    <ClInclude Include="oak\ui\color.h" />
+    <ClInclude Include="oak\ui\ui.h" />
     <ClInclude Include="oak\ui\ui_canvas.h" />
+    <ClInclude Include="oak\ui\ui_character.h" />
     <ClInclude Include="oak\ui\ui_def.h" />
-    <ClInclude Include="oak\ui\ui_element.h" />
     <ClInclude Include="oak\ui\ui_image.h" />
     <ClInclude Include="oak\ui\ui_label.h" />
+    <ClInclude Include="oak\ui\ui_node.h" />
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />

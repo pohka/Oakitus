@@ -7,7 +7,7 @@
 #include "../prefabs/camera_controller.h"
 #include "../prefabs/u_dummy.h"
 #include <debug.h>
-#include <ui/ui_canvas.h>
+#include <ui/ui.h>
 
 using namespace game;
 using namespace oak;
@@ -48,12 +48,10 @@ void MainScene::onLoad()
   prefab::UDummy* dummy2 = new prefab::UDummy();
   dummy2->instantiate(-200.0f, 80.0f);
 
-  UINode* img = UICanvas::createImage("face.png", 32, 32);
+  UINode* img = UIImage::createImage("face.png", 32, 32);
   img->y = 200.0f;
   UICanvas::nodes.push_back(img);
 
- // UIElement* el = new UIElement;
- // UICanvas::addElement(el);
-  UILabel* label = UICanvas::createLabel("test", 400, 100);
+  UILabel* label = UILabel::createLabel("test", 400, 100);
   UICanvas::nodes.push_back(label);
 }

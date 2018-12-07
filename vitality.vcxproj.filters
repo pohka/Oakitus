@@ -189,13 +189,13 @@
     <ClCompile Include="oak\event\event_manager.cpp">
       <Filter>oak\event</Filter>
     </ClCompile>
-    <ClCompile Include="oak\ui\ui_element.cpp">
-      <Filter>oak\ui</Filter>
-    </ClCompile>
     <ClCompile Include="oak\ui\ui_canvas.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
     <ClCompile Include="oak\ui\ui_image.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_label.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
   </ItemGroup>
@@ -368,9 +368,6 @@
     <ClInclude Include="global_funcs.h">
       <Filter>game</Filter>
     </ClInclude>
-    <ClInclude Include="oak\ui\ui_element.h">
-      <Filter>oak\ui</Filter>
-    </ClInclude>
     <ClInclude Include="oak\ui\ui_def.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
@@ -381,6 +378,18 @@
       <Filter>oak\ui</Filter>
     </ClInclude>
     <ClInclude Include="oak\ui\ui_image.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_node.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\color.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_character.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
   </ItemGroup>
