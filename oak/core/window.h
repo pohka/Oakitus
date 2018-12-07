@@ -61,6 +61,8 @@ namespace oak
 
       ///<summary>returns the projection matrix for the viewport</summary>
       static glm::mat4& getProjectionMatrix();
+
+      static glm::vec2 getWindowToVPRatio();
       
     protected:
       ///<summary>Initialized the window</summary>

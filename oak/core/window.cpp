@@ -3,6 +3,7 @@
 #include "input.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <ui/ui_canvas.h>
 
 using namespace oak;
 
@@ -132,9 +133,18 @@ void Window::framebuffer_size_callback(GLFWwindow* window, int width, int height
   //windowToVPRatioY = (float)Window::viewportH / (float)Window::windowH;
   // make sure the viewport matches the new window dimensions; note that width and 
   // height will be significantly larger than specified on retina displays.
- 
+  ui::UICanvas::onWindowResize(windowToVPRatioX, windowToVPRatioY);
+
 
   glViewport(0, 0, width, height);
+}
+
+glm::vec2 Window::getWindowToVPRatio()
+{
+  return glm::vec2(
+    windowToVPRatioX,
+    windowToVPRatioY
+  );
 }
 
 

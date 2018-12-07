@@ -9,17 +9,46 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <debug.h>
+
+#include <ft2build.h>
+#include FT_FREETYPE_H  
+
 
 using namespace oak::ui;
+using namespace oak;
 
 std::vector<UIElement*> UICanvas::elements;
 std::vector<UIImage*> UICanvas::imgs;
+
+void UICanvas::init()
+{
+  FT_Library ft;
+  if (FT_Init_FreeType(&ft))
+  {
+    LOG_WARNING << "ERROR::FREETYPE: Could not init FreeType Library";
+  }
+  else
+  {
+    LOG << "WORKING";
+  }
+
+  FT_Face face;
+  if (FT_New_Face(ft, "fonts/arial.ttf", 0, &face))
+  {
+    LOG_WARNING << "ERROR::FREETYPE: Failed to load font";
+  }
+  else
+  {
+    LOG << "Font loaded";
+  }
+}
 
 void UICanvas::render()
 {
   for (uint i = 0; i < elements.size(); i++)
   {
-    
+    renderElement(elements[i]);
   }
 
   for (uint i = 0; i < imgs.size(); i++)
@@ -31,6 +60,14 @@ void UICanvas::render()
 void UICanvas::addElement(UIElement* element)
 {
 
+}
+
+void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
+{
+  for (uint i = 0; i < imgs.size(); i++)
+  {
+    setImageBuffer(imgs[i], windowToVPRatioX, windowToVPRatioY);
+  }
 }
 
 UIImage* UICanvas::createImage(std::string src, ushort w, ushort h)
@@ -47,8 +84,33 @@ UIImage* UICanvas::createImage(std::string src, ushort w, ushort h)
   glGenBuffers(1, &img->VBO);
   glBindVertexArray(img->VAO);
 
-  float xx = Window::worldToViewportCoords((float)w) * 0.5f;
-  float yy = Window::worldToViewportCoords((float)h) * 0.5f;
+  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
+  setImageBuffer(img, windowToVPRatio.x, windowToVPRatio.y);
+
+  const int POS_COORDS = 2;
+  const int TEX_COORDS = 2;
+  const int TOTAL_SIZEOF = (POS_COORDS * TEX_COORDS) * sizeof(float);
+
+  // position attribute
+  glVertexAttribPointer(0, POS_COORDS, GL_FLOAT, GL_FALSE, TOTAL_SIZEOF, (void*)0);
+  glEnableVertexAttribArray(0);
+
+
+  // texture coord attribute
+  glVertexAttribPointer(1, POS_COORDS, GL_FLOAT, GL_FALSE, TOTAL_SIZEOF, (void*)(POS_COORDS * sizeof(float)));
+  glEnableVertexAttribArray(1);
+
+  return img;
+}
+
+void UICanvas::setImageBuffer(
+  UIImage* img, 
+  float windowToVPRatioX, 
+  float windowToVPRatioY
+)
+{
+  float xx = (windowToVPRatioX * Window::worldToViewportCoords((float)img->w)) * 0.5f;
+  float yy = (windowToVPRatioY * Window::worldToViewportCoords((float)img->h)) * 0.5f;
   float xMin = 0.0f;
   float xMax = 1.0f;
   float yMin = 0.0f;
@@ -67,21 +129,6 @@ UIImage* UICanvas::createImage(std::string src, ushort w, ushort h)
 
   glBindBuffer(GL_ARRAY_BUFFER, img->VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
-
-  const int POS_COORDS = 2;
-  const int TEX_COORDS = 2;
-  const int TOTAL_SIZEOF = (POS_COORDS * TEX_COORDS) * sizeof(float);
-
-  // position attribute
-  glVertexAttribPointer(0, POS_COORDS, GL_FLOAT, GL_FALSE, TOTAL_SIZEOF, (void*)0);
-  glEnableVertexAttribArray(0);
-
-
-  // texture coord attribute
-  glVertexAttribPointer(1, POS_COORDS, GL_FLOAT, GL_FALSE, TOTAL_SIZEOF, (void*)(POS_COORDS * sizeof(float)));
-  glEnableVertexAttribArray(1);
-
-  return img;
 }
 
 void UICanvas::renderImage(UIImage* img)
@@ -113,3 +160,7 @@ void UICanvas::removeImage(UIImage* img)
   glDeleteBuffers(1, &img->VBO);
 }
 
+void UICanvas::renderElement(UIElement* element)
+{
+
+}

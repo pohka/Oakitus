@@ -46,6 +46,9 @@
     <Filter Include="game\events">
       <UniqueIdentifier>{b755d75d-f995-489d-89f1-9aaba66d664b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\ui">
+      <UniqueIdentifier>{147c9fce-43ee-4ee7-962a-d8cf160c6e27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -185,6 +188,15 @@
     </ClCompile>
     <ClCompile Include="oak\event\event_manager.cpp">
       <Filter>oak\event</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_element.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_canvas.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_image.cpp">
+      <Filter>oak\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +367,21 @@
     </ClInclude>
     <ClInclude Include="global_funcs.h">
       <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_element.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_def.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_label.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_canvas.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_image.h">
+      <Filter>oak\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

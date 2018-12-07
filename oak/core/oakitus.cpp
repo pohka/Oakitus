@@ -31,6 +31,7 @@ void Oakitus::init()
 {
   Time::init();
   Input::init();
+  ui::UICanvas::init();
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position

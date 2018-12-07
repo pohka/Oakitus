@@ -71,6 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\include;C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\oak;C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\prefabs;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\library;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,8 +84,8 @@
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\GLFW\glfw-3.2.1.bin.WIN32\lib-vc2015</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Jeoff\Documents\vitality\vitalityGL\vitality\library</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>/NODEFAULTLIB:MSVCRT</IgnoreSpecificDefaultLibraries>
@@ -163,6 +164,9 @@
     <ClCompile Include="oak\event\event_manager.cpp" />
     <ClCompile Include="oak\fallback.cpp" />
     <ClCompile Include="oak\oak_setup.h" />
+    <ClCompile Include="oak\ui\ui_canvas.cpp" />
+    <ClCompile Include="oak\ui\ui_element.cpp" />
+    <ClCompile Include="oak\ui\ui_image.cpp" />
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
@@ -221,6 +225,11 @@
     <ClInclude Include="oak\fallback.h" />
     <ClInclude Include="oak\oak.h" />
     <ClInclude Include="oak\oak_def.h" />
+    <ClInclude Include="oak\ui\ui_canvas.h" />
+    <ClInclude Include="oak\ui\ui_def.h" />
+    <ClInclude Include="oak\ui\ui_element.h" />
+    <ClInclude Include="oak\ui\ui_image.h" />
+    <ClInclude Include="oak\ui\ui_label.h" />
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />
