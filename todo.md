@@ -1,5 +1,10 @@
 # todo
 
+* UI
+  * load fonts into Resources
+  * Node aligment (NODE_ALIGN)
+  * text alignment (left, center, right)
+  * nested nodes
 * collision
   * bool isStatic
   * isTrigger
@@ -7,7 +12,7 @@
 * sword ability
 * sound
 * world (tiles)
-* HUD
+
 * inventory and items
 * automatically deciding which textures need to be loaded
 * debug logger
