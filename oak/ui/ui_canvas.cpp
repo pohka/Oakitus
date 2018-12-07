@@ -5,14 +5,14 @@
 #include <core/window.h>
 
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+
 
 #include <debug.h>
 
-#include <ft2build.h>
-#include FT_FREETYPE_H  
+
+
+//#include <ft2build.h>
+//#include FT_FREETYPE_H  
 
 
 using namespace oak::ui;
@@ -20,9 +20,12 @@ using namespace oak;
 
 std::vector<UIElement*> UICanvas::elements;
 std::vector<UIImage*> UICanvas::imgs;
+std::vector<UILabel*> UICanvas::labels;
+std::map<GLchar, Character> UICanvas::characters;
 
 void UICanvas::init()
 {
+  Resources::addShader("text");
   FT_Library ft;
   if (FT_Init_FreeType(&ft))
   {
@@ -41,7 +44,63 @@ void UICanvas::init()
   else
   {
     LOG << "Font loaded";
+    initChars(ft, face);
   }
+
+  
+}
+
+void UICanvas::initChars(FT_Library& ft, FT_Face& face)
+{
+  // Set size to load glyphs as
+  FT_Set_Pixel_Sizes(face, 0, 48);
+
+  // Disable byte-alignment restriction
+  glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+  // Load first 128 characters of ASCII set
+  for (GLubyte c = 0; c < 128; c++)
+  {
+    // Load character glyph 
+    if (FT_Load_Char(face, c, FT_LOAD_RENDER))
+    {
+      std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
+      continue;
+    }
+    // Generate texture
+    GLuint texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexImage2D(
+      GL_TEXTURE_2D,
+      0,
+      GL_RED,
+      face->glyph->bitmap.width,
+      face->glyph->bitmap.rows,
+      0,
+      GL_RED,
+      GL_UNSIGNED_BYTE,
+      face->glyph->bitmap.buffer
+    );
+    // Set texture options
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    // Now store character for later use
+    Character character =
+    {
+        texture,
+        glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+        glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
+        face->glyph->advance.x
+    };
+    characters.insert(std::pair<GLchar, Character>(c, character));
+  }
+  glBindTexture(GL_TEXTURE_2D, 0);
+  // Destroy FreeType once we're finished
+  FT_Done_Face(face);
+  FT_Done_FreeType(ft);
 }
 
 void UICanvas::render()
@@ -54,6 +113,11 @@ void UICanvas::render()
   for (uint i = 0; i < imgs.size(); i++)
   {
     renderImage(imgs[i]);
+  }
+
+  for (uint i = 0; i < labels.size(); i++)
+  {
+    renderLabel(labels[i]);
   }
 }
 
@@ -163,4 +227,81 @@ void UICanvas::removeImage(UIImage* img)
 void UICanvas::renderElement(UIElement* element)
 {
 
+}
+
+UILabel* UICanvas::createLabel(std::string text, ushort w, ushort h)
+{
+  UILabel* label = new UILabel;
+  label->text = text;
+  label->w = w;
+  label->h = h;
+  label->color.r = 1.0f;
+  label->scale = 0.01f;
+
+  glGenVertexArrays(1, &label->VAO);
+  glGenBuffers(1, &label->VBO);
+  glBindVertexArray(label->VAO);
+  glBindBuffer(GL_ARRAY_BUFFER, label->VBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindVertexArray(0);
+
+  return label;
+}
+
+void UICanvas::renderLabel(UILabel* label)
+{
+  Shader& shader = Resources::getShaderByName("text");
+  // Activate corresponding render state	
+  shader.use();
+  glUniform3f(
+    glGetUniformLocation(shader.getID(), "textColor"), 
+    label->color.r, label->color.g, label->color.b
+  );
+  glActiveTexture(GL_TEXTURE0);
+  glBindVertexArray(label->VAO);
+
+  float x = label->x;
+  float y = label->y;
+
+  // Iterate through all characters
+  std::string::const_iterator c;
+  for (c = label->text.begin(); c != label->text.end(); c++)
+  {
+    Character ch = characters[*c];
+
+    GLfloat xpos = x + ch.Bearing.x * label->scale;
+    GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * label->scale;
+
+    GLfloat w = ch.Size.x * label->scale;
+    GLfloat h = ch.Size.y * label->scale;
+
+   // GLfloat w = 1.0f;// , h = 1.0f;
+
+    // Update VBO for each character
+    GLfloat vertices[6][4] = {
+        { xpos,     ypos + h,   0.0, 0.0 },
+        { xpos,     ypos,       0.0, 1.0 },
+        { xpos + w, ypos,       1.0, 1.0 },
+
+        { xpos,     ypos + h,   0.0, 0.0 },
+        { xpos + w, ypos,       1.0, 1.0 },
+        { xpos + w, ypos + h,   1.0, 0.0 }
+    };
+    // Render glyph texture over quad
+    glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+    // Update content of VBO memory
+    glBindBuffer(GL_ARRAY_BUFFER, label->VBO);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // Be sure to use glBufferSubData and not glBufferData
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    // Render quad
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+    x += (ch.Advance >> 6) * label->scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+  }
+  glBindVertexArray(0);
+  glBindTexture(GL_TEXTURE_2D, 0);
 }

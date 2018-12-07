@@ -31,7 +31,7 @@ void Oakitus::init()
 {
   Time::init();
   Input::init();
-  ui::UICanvas::init();
+  
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position
@@ -42,6 +42,7 @@ void Oakitus::init()
   );
 
   Window::init(SCR_WIDTH, SCR_HEIGHT, SCR_WIDTH, SCR_HEIGHT, "Oakitus");
+  ui::UICanvas::init();
   GLFWwindow* window = Window::getGLFWWindow();
   
   Fallback::init();

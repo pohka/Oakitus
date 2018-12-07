@@ -52,6 +52,8 @@ void MainScene::onLoad()
   img->y = 200.0f;
   UICanvas::imgs.push_back(img);
 
-  UIElement* el = new UIElement;
-  UICanvas::addElement(el);
+ // UIElement* el = new UIElement;
+ // UICanvas::addElement(el);
+  UILabel* label = UICanvas::createLabel("test", 400, 100);
+  UICanvas::labels.push_back(label);
 }

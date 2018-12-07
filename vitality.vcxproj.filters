@@ -385,16 +385,22 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\default.fs">
+    <None Include="resources\shaders\text.fs">
       <Filter>res\shaders</Filter>
     </None>
-    <None Include="res\shaders\default.vs">
+    <None Include="resources\shaders\text.vs">
       <Filter>res\shaders</Filter>
     </None>
-    <None Include="res\shaders\collision.vs">
+    <None Include="resources\shaders\collision.fs">
       <Filter>res\shaders</Filter>
     </None>
-    <None Include="res\shaders\collision.fs">
+    <None Include="resources\shaders\collision.vs">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\default.fs">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\default.vs">
       <Filter>res\shaders</Filter>
     </None>
   </ItemGroup>
