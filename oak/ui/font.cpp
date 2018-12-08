@@ -38,6 +38,11 @@ std::string Font::getName()
   return name;
 }
 
+Character& Font::getCharacter(std::string::const_iterator& c)
+{
+  return characters[*c];
+}
+
 void Font::initChars(FT_Library& ft, Font* font)
 {
   // Set size to load glyphs as
