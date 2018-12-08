@@ -30,12 +30,12 @@ namespace oak
         static std::vector<UINode*> nodes;
 
         static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
-        static void init();
+        //static void init();
         static void render();
 
     private:
       
-      static void initChars(FT_Library& ft, FT_Face& face);
+      //static void initChars(FT_Library& ft, FT_Face& face);
 
       
     };

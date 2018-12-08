@@ -16,6 +16,7 @@ UILabel* UILabel::createLabel(std::string text, ushort w, ushort h)
   label->h = h;
   label->color.r = 1.0f;
   label->scale = 1.0f;
+  label->fontID = Resources::getFontIDByName("arial.ttf");
 
   glGenVertexArrays(1, &label->VAO);
   glGenBuffers(1, &label->VBO);
@@ -55,9 +56,11 @@ void UILabel::renderLabel(UILabel* label)
   float projectionX = windowToVPRatio.x * worldToVP;
   float projectionY = windowToVPRatio.y * worldToVP;
 
+  Font& font = Resources::getFontByID(label->fontID);
+
   for (c = label->text.begin(); c != label->text.end(); c++)
   {
-    Character ch = Character::characters[*c];
+    Character ch = font.characters[*c];
 
     float bearingX = ch.bearing.x * label->scale;
     float bearingY = (ch.size.y - ch.bearing.y) * label->scale;

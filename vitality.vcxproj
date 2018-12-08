@@ -164,6 +164,7 @@
     <ClCompile Include="oak\event\event_manager.cpp" />
     <ClCompile Include="oak\fallback.cpp" />
     <ClCompile Include="oak\oak_setup.h" />
+    <ClCompile Include="oak\ui\font.cpp" />
     <ClCompile Include="oak\ui\ui_canvas.cpp" />
     <ClCompile Include="oak\ui\ui_image.cpp" />
     <ClCompile Include="oak\ui\ui_label.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="oak\oak.h" />
     <ClInclude Include="oak\oak_def.h" />
     <ClInclude Include="oak\ui\color.h" />
+    <ClInclude Include="oak\ui\font.h" />
     <ClInclude Include="oak\ui\ui.h" />
     <ClInclude Include="oak\ui\ui_canvas.h" />
     <ClInclude Include="oak\ui\ui_character.h" />

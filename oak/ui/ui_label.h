@@ -5,6 +5,7 @@
 #include <string>
 #include "ui_def.h"
 #include "color.h"
+#include "font.h"
 
 namespace oak
 {
@@ -21,6 +22,7 @@ namespace oak
       float scale = 1.0f;
       uint VAO, VBO;
       Color color;
+      uchar fontID;
 
       static UILabel* createLabel(std::string src, ushort w, ushort h);
       static void renderLabel(UILabel* label);

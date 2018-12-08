@@ -198,6 +198,9 @@
     <ClCompile Include="oak\ui\ui_label.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
+    <ClCompile Include="oak\ui\font.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -390,6 +393,9 @@
       <Filter>oak\ui</Filter>
     </ClInclude>
     <ClInclude Include="oak\ui\ui.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\font.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
   </ItemGroup>
