@@ -45,9 +45,6 @@ void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, b
   GLFWwindow* window = Window::getGLFWWindow();
   
   Fallback::init();
-  Resources::addTexture("box.png");
-  Resources::addTexture("circle.png");
-
   Resources::init();
 
   //Shader *collisionShader = new Shader("collision");

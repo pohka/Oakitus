@@ -32,10 +32,7 @@ void Window::init(
   Window::viewportW = viewportW;
   Window::viewportH = viewportH;
 
-  Window::windowW = windowW;
-  Window::windowH = windowH;
-
-  updateWindowToVPRatio();
+  
 
   Window::vpAspectRatio = (float)viewportW / (float)viewportH;
   projectionMatrix = glm::ortho(-1.0f * vpAspectRatio, 1.0f * vpAspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
@@ -55,11 +52,19 @@ void Window::init(
   if (isFullscreen)
   {
     monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    windowW = mode->width;
+    windowH = mode->height;
   }
   else
   {
     monitor = NULL;
   }
+
+  Window::windowW = windowW;
+  Window::windowH = windowH;
+
+  updateWindowToVPRatio();
 
   // glfw window creation
   // --------------------

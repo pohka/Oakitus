@@ -15,6 +15,11 @@ FT_Library Resources::freeType;
 
 void Resources::init()
 {
+  //collision shape textures
+  addTexture("box.png");
+  addTexture("circle.png");
+
+  //default font
   addShader("text");
   if (FT_Init_FreeType(&freeType))
   {
