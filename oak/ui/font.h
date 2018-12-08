@@ -19,13 +19,13 @@ namespace oak
       std::string name;
       FT_Face face;
       uchar id;
-      std::map<GLchar, Character> characters;
+      std::map<GLchar, Character*> characters;
 
       public:
         Font(std::string name, FT_Library& freetype);
         uchar getID();
         std::string getName();
-        Character& getCharacter(std::string::const_iterator& c);
+        Character* getCharacter(std::string::const_iterator& c);
 
     private:
       static void initChars(FT_Library& freetype, Font* font);

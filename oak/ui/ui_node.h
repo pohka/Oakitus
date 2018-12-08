@@ -2,6 +2,7 @@
 #define UI_NODE_H
 
 #include "../core/types.h"
+#include "ui_def.h"
 
 namespace oak
 {
@@ -14,6 +15,7 @@ namespace oak
       float y = 0;
       ushort w;
       ushort h;
+      uchar alignment = UI_ALIGN_TOP_LEFT;
     };
   }
 }

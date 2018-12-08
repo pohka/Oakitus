@@ -8,6 +8,7 @@
 #include "../prefabs/u_dummy.h"
 #include <debug.h>
 #include <ui/ui.h>
+#include <ui/ui_component.h>
 
 using namespace game;
 using namespace oak;
@@ -48,10 +49,15 @@ void MainScene::onLoad()
   prefab::UDummy* dummy2 = new prefab::UDummy();
   dummy2->instantiate(-200.0f, 80.0f);
 
+
+  UIComponent* comp = new UIComponent;
+
   UINode* img = UIImage::createImage("face.png", 32, 32);
   img->y = 200.0f;
-  UICanvas::nodes.push_back(img);
+  comp->nodes.push_back(img);
 
   UILabel* label = UILabel::createLabel("test", 400, 100);
-  UICanvas::nodes.push_back(label);
+  comp->nodes.push_back(label);
+
+  UICanvas::components.push_back(comp);
 }

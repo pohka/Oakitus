@@ -60,7 +60,7 @@ void UILabel::renderLabel(UILabel* label)
 
   for (c = label->text.begin(); c != label->text.end(); c++)
   {
-    Character ch = font.getCharacter(c);
+    Character ch = *font.getCharacter(c);
 
     float bearingX = ch.bearing.x * label->scale;
     float bearingY = (ch.size.y - ch.bearing.y) * label->scale;

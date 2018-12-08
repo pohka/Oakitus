@@ -1,7 +1,6 @@
 # todo
 
 * UI
-  * load fonts into Resources
   * Node aligment (NODE_ALIGN)
   * text alignment (left, center, right)
   * nested nodes

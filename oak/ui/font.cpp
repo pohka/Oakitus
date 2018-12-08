@@ -38,7 +38,7 @@ std::string Font::getName()
   return name;
 }
 
-Character& Font::getCharacter(std::string::const_iterator& c)
+Character* Font::getCharacter(std::string::const_iterator& c)
 {
   return characters[*c];
 }
@@ -81,7 +81,7 @@ void Font::initChars(FT_Library& ft, Font* font)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // Now store character for later use
-    Character character =
+    Character* character = new Character
     {
         texture,
         glm::ivec2(font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows),
@@ -89,7 +89,7 @@ void Font::initChars(FT_Library& ft, Font* font)
         font->face->glyph->advance.x
     };
 
-    font->characters.insert(std::pair<GLchar, Character>(c, character));
+    font->characters.insert(std::pair<GLchar, Character*>(c, character));
   }
   glBindTexture(GL_TEXTURE_2D, 0);
   // Destroy FreeType once we're finished

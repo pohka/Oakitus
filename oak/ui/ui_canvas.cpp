@@ -13,21 +13,24 @@
 using namespace oak::ui;
 using namespace oak;
 
-std::vector<UINode*> UICanvas::nodes;
+std::vector<UIComponent*> UICanvas::components;
 
 void UICanvas::render()
 {
-  for (uint i = 0; i < nodes.size(); i++)
+  for (uint i = 0; i < components.size(); i++)
   {
-    if (nodes[i]->nodeType == UI_NODE_IMAGE)
+    for (UINode* node : components[i]->nodes)
     {
-      UIImage* image = static_cast<UIImage*>(nodes[i]);
-      UIImage::renderImage(image);
-    }
-    else if (nodes[i]->nodeType == UI_NODE_LABEL)
-    {
-      UILabel* label = static_cast<UILabel*>(nodes[i]);
-      UILabel::renderLabel(label);
+      if (node->nodeType == UI_NODE_IMAGE)
+      {
+        UIImage* image = static_cast<UIImage*>(node);
+        UIImage::renderImage(image);
+      }
+      else if (node->nodeType == UI_NODE_LABEL)
+      {
+        UILabel* label = static_cast<UILabel*>(node);
+        UILabel::renderLabel(label);
+      }
     }
   }
 }
@@ -35,15 +38,18 @@ void UICanvas::render()
 void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 {
   //resize all the image nodes
-  for (uint i = 0; i < nodes.size(); i++)
+  for (uint i = 0; i < components.size(); i++)
   {
-    if (nodes[i]->nodeType == UI_NODE_IMAGE)
+    for (UINode* node : components[i]->nodes)
     {
-      UIImage::setImageBuffer(
-        static_cast<UIImage*>(nodes[i]), 
-        windowToVPRatioX,
-        windowToVPRatioY
-      );
+      if (node->nodeType == UI_NODE_IMAGE)
+      {
+        UIImage::setImageBuffer(
+          static_cast<UIImage*>(node),
+          windowToVPRatioX,
+          windowToVPRatioY
+        );
+      }
     }
   }
 }

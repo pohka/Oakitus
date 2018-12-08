@@ -398,6 +398,9 @@
     <ClInclude Include="oak\ui\font.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
+    <ClInclude Include="oak\ui\ui_component.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\text.fs">

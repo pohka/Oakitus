@@ -16,6 +16,7 @@
 
 #include "ui_character.h"
 #include "ui_node.h"
+#include "ui_component.h"
 
 
 namespace oak
@@ -27,7 +28,7 @@ namespace oak
       public:
         friend class oak::Window;
 
-        static std::vector<UINode*> nodes;
+        static std::vector<UIComponent*> components;
 
         static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
         static void render();

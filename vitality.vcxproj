@@ -231,6 +231,7 @@
     <ClInclude Include="oak\ui\ui.h" />
     <ClInclude Include="oak\ui\ui_canvas.h" />
     <ClInclude Include="oak\ui\ui_character.h" />
+    <ClInclude Include="oak\ui\ui_component.h" />
     <ClInclude Include="oak\ui\ui_def.h" />
     <ClInclude Include="oak\ui\ui_image.h" />
     <ClInclude Include="oak\ui\ui_label.h" />
