@@ -29,7 +29,7 @@ void UICanvas::render()
       else if (node->nodeType == UI_NODE_LABEL)
       {
         UILabel* label = static_cast<UILabel*>(node);
-        UILabel::renderLabel(label);
+        UILabel::renderLabel(label, comp->alignX, comp->alignY);
       }
     }
   }

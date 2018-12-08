@@ -19,13 +19,13 @@ namespace oak
       }
 
       std::string text;
-      float scale = 1.0f;
+      float scale = 1.0f; //font scale
       uint VAO, VBO;
       Color color;
       uchar fontID;
 
-      static UILabel* createLabel(std::string src, ushort w, ushort h);
-      static void renderLabel(UILabel* label);
+      static UILabel* createLabel(std::string src, ushort fontSize, ushort w, ushort h);
+      static void renderLabel(UILabel* label, float alignX, float alignY);
     };
   }
 }

@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "../oak_def.h"
+#include "ui_def.h"
 
 using namespace oak::ui;
 
@@ -46,7 +47,7 @@ Character* Font::getCharacter(std::string::const_iterator& c)
 void Font::initChars(FT_Library& ft, Font* font)
 {
   // Set size to load glyphs as
-  FT_Set_Pixel_Sizes(font->face, 0, 48);
+  FT_Set_Pixel_Sizes(font->face, 0, FONT_LOADED_SIZE);
 
   // Disable byte-alignment restriction
   glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

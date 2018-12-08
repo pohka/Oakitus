@@ -8,14 +8,14 @@
 using namespace oak::ui;
 using namespace oak;
 
-UILabel* UILabel::createLabel(std::string text, ushort w, ushort h)
+UILabel* UILabel::createLabel(std::string text, ushort fontSize, ushort w, ushort h)
 {
   UILabel* label = new UILabel();
   label->text = text;
   label->w = w;
   label->h = h;
-  label->color.r = 1.0f;
-  label->scale = 1.0f;
+
+  label->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
   label->fontID = Resources::getFontIDByName("arial.ttf");
 
   glGenVertexArrays(1, &label->VAO);
@@ -31,7 +31,7 @@ UILabel* UILabel::createLabel(std::string text, ushort w, ushort h)
   return label;
 }
 
-void UILabel::renderLabel(UILabel* label)
+void UILabel::renderLabel(UILabel* label, float alignX, float alignY)
 {
   Shader& shader = Resources::getShaderByName("text");
   // Activate corresponding render state	
@@ -43,8 +43,7 @@ void UILabel::renderLabel(UILabel* label)
   glActiveTexture(GL_TEXTURE0);
   glBindVertexArray(label->VAO);
 
-  float x = label->x;
-  float y = label->y;
+  
 
   // Iterate through all characters
   std::string::const_iterator c;
@@ -56,6 +55,9 @@ void UILabel::renderLabel(UILabel* label)
   float projectionX = windowToVPRatio.x * worldToVP;
   float projectionY = windowToVPRatio.y * worldToVP;
 
+  float x = label->x;
+  float y = label->y - (label->scale * FONT_LOADED_SIZE);
+
   Font& font = Resources::getFontByID(label->fontID);
 
   for (c = label->text.begin(); c != label->text.end(); c++)
@@ -64,8 +66,8 @@ void UILabel::renderLabel(UILabel* label)
 
     float bearingX = ch.bearing.x * label->scale;
     float bearingY = (ch.size.y - ch.bearing.y) * label->scale;
-    GLfloat xpos = x + projectionX * bearingX;
-    GLfloat ypos = y - projectionY * bearingY;
+    GLfloat xpos = (alignX * oak::Window::getAspectRatio()) +(x + projectionX * bearingX);
+    GLfloat ypos = alignY + (projectionY * (y - bearingY));
 
     GLfloat ww = ch.size.x * label->scale;
     GLfloat hh = ch.size.y * label->scale;

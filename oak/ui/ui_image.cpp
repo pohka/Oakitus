@@ -80,9 +80,15 @@ void UIImage::renderImage(UIImage* img, float alignX, float alignY)
 
   glm::mat4 model = glm::mat4(1.0);
 
+  //projection from world pixels to viewport coords to window coords
+  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
+  float worldToVP = Window::worldToViewportCoords(1.0f);
+  float projectionX = windowToVPRatio.x * worldToVP;
+  float projectionY = windowToVPRatio.y * worldToVP;
+
   glm::vec3 pos(
-    (alignX*Window::getAspectRatio()) + (float)((float)img->x / (float)Window::getWidth()),
-    alignY + (float)((float)img->y / (float)Window::getHeight()),
+    (alignX*Window::getAspectRatio()) + (projectionX * (float)img->x),
+    alignY + (projectionY * (float)img->y),
     0.0f
   );
   model = glm::translate(model, pos);

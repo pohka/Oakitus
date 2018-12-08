@@ -30,6 +30,7 @@ namespace oak
     private:
       static void initChars(FT_Library& freetype, Font* font);
       static uchar idCounter;
+      
     };
   }
 }
