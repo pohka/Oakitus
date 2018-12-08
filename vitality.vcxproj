@@ -177,6 +177,7 @@
     <ClCompile Include="prefabs\u_player.cpp" />
     <ClCompile Include="scenes\main_scene.cpp" />
     <ClCompile Include="scripts\linear_projectile.cpp" />
+    <ClCompile Include="ui\action_panel.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +246,7 @@
     <ClInclude Include="prefabs\u_player.h" />
     <ClInclude Include="scenes\main_scene.h" />
     <ClInclude Include="scripts\linear_projectile.h" />
+    <ClInclude Include="ui\action_panel.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>

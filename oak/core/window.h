@@ -63,6 +63,8 @@ namespace oak
       static glm::mat4& getProjectionMatrix();
 
       static glm::vec2 getWindowToVPRatio();
+
+      //static glm::vec2 getWindowSize();
       
     protected:
       ///<summary>Initialized the window</summary>

@@ -9,6 +9,7 @@
 #include <debug.h>
 #include <ui/ui.h>
 #include <ui/ui_component.h>
+#include "../ui/action_panel.h"
 
 using namespace game;
 using namespace oak;
@@ -49,16 +50,6 @@ void MainScene::onLoad()
   prefab::UDummy* dummy2 = new prefab::UDummy();
   dummy2->instantiate(-200.0f, 80.0f);
 
-
-  UIComponent* comp = new UIComponent;
-
-  UINode* img = UIImage::createImage("default.png", 32, 32);
-  img->x = 16.0f;
-  img->y = -16.0f;
-  comp->nodes.push_back(img);
-
-  UILabel* label = UILabel::createLabel("test", 400, 100);
-  comp->nodes.push_back(label);
-
+  auto* comp = new game::ui::ActionPanel();
   UICanvas::components.push_back(comp);
 }

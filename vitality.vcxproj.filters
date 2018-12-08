@@ -49,6 +49,9 @@
     <Filter Include="oak\ui">
       <UniqueIdentifier>{147c9fce-43ee-4ee7-962a-d8cf160c6e27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\ui">
+      <UniqueIdentifier>{3706d1cc-017c-4603-bab5-74ef7847aa44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -200,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="oak\ui\font.cpp">
       <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\action_panel.cpp">
+      <Filter>game\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -400,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="oak\ui\ui_component.h">
       <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\action_panel.h">
+      <Filter>game\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

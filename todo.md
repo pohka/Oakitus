@@ -1,7 +1,6 @@
 # todo
 
 * UI
-  * Node aligment (NODE_ALIGN)
   * text alignment (left, center, right)
   * nested nodes
 * collision
