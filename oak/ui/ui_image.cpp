@@ -71,7 +71,7 @@ void UIImage::setImageBuffer(
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
 
-void UIImage::renderImage(UIImage* img)
+void UIImage::renderImage(UIImage* img, float alignX, float alignY)
 {
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, img->textureID);
@@ -81,8 +81,8 @@ void UIImage::renderImage(UIImage* img)
   glm::mat4 model = glm::mat4(1.0);
 
   glm::vec3 pos(
-    (float)((float)img->x / (float)Window::getWidth()),
-    (float)((float)img->y / (float)Window::getHeight()),
+    (alignX*Window::getAspectRatio()) + (float)((float)img->x / (float)Window::getWidth()),
+    alignY + (float)((float)img->y / (float)Window::getHeight()),
     0.0f
   );
   model = glm::translate(model, pos);

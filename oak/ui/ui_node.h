@@ -15,7 +15,7 @@ namespace oak
       float y = 0;
       ushort w;
       ushort h;
-      uchar alignment = UI_ALIGN_TOP_LEFT;
+      
     };
   }
 }

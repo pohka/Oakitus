@@ -17,14 +17,14 @@ std::vector<UIComponent*> UICanvas::components;
 
 void UICanvas::render()
 {
-  for (uint i = 0; i < components.size(); i++)
+  for (UIComponent* comp : components)
   {
-    for (UINode* node : components[i]->nodes)
+    for (UINode* node : comp->nodes)
     {
       if (node->nodeType == UI_NODE_IMAGE)
       {
         UIImage* image = static_cast<UIImage*>(node);
-        UIImage::renderImage(image);
+        UIImage::renderImage(image, comp->alignX, comp->alignY);
       }
       else if (node->nodeType == UI_NODE_LABEL)
       {
@@ -53,4 +53,3 @@ void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
     }
   }
 }
-

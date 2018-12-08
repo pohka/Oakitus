@@ -11,8 +11,9 @@ namespace oak
   {
     struct UIComponent
     {
-      uchar alignment;
       std::vector<UINode*> nodes;
+      float alignX = UI_ALIGN_HORZ_LEFT;
+      float alignY = UI_ALIGN_VERT_TOP;
     };
   }
 }

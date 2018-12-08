@@ -71,7 +71,8 @@ namespace oak
         uint viewportH,
         uint windowW,
         uint windowH,
-        const char* title
+        const char* title,
+        bool isFullscreen
       );
   };
 }

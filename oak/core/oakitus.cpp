@@ -27,7 +27,7 @@
 using namespace oak;
 
 
-void Oakitus::init()
+void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, bool isFullscreen)
 {
   Time::init();
   Input::init();
@@ -41,8 +41,7 @@ void Oakitus::init()
     true
   );
 
-  Window::init(SCR_WIDTH, SCR_HEIGHT, SCR_WIDTH, SCR_HEIGHT, "Oakitus");
-  //ui::UICanvas::init();
+  Window::init(viewportW, viewportH, windowW, windowH, "Oakitus", isFullscreen);
   GLFWwindow* window = Window::getGLFWWindow();
   
   Fallback::init();

@@ -52,8 +52,9 @@ void MainScene::onLoad()
 
   UIComponent* comp = new UIComponent;
 
-  UINode* img = UIImage::createImage("face.png", 32, 32);
-  img->y = 200.0f;
+  UINode* img = UIImage::createImage("default.png", 32, 32);
+  img->x = 16.0f;
+  img->y = -16.0f;
   comp->nodes.push_back(img);
 
   UILabel* label = UILabel::createLabel("test", 400, 100);

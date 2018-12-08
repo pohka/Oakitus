@@ -10,7 +10,13 @@ using namespace game;
 
 int main()
 {
-  Oakitus::init();
+  uint windowW = 1920;
+  uint windowH = 1080;
+
+  uint virwportW = 1920;
+  uint viewportH = 1080;
+
+  Oakitus::init(736, 414, windowW, windowH, true);
   return 0;
 }
 

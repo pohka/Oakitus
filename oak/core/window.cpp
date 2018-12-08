@@ -25,7 +25,8 @@ void Window::init(
   uint viewportH,
   uint windowW,
   uint windowH,
-  const char* title
+  const char* title,
+  bool isFullscreen
 )
 {
   Window::viewportW = viewportW;
@@ -50,9 +51,19 @@ void Window::init(
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+  GLFWmonitor* monitor;
+  if (isFullscreen)
+  {
+    monitor = glfwGetPrimaryMonitor();
+  }
+  else
+  {
+    monitor = NULL;
+  }
+
   // glfw window creation
   // --------------------
-  Window::window = glfwCreateWindow(windowW, windowH, title, NULL, NULL);
+  Window::window = glfwCreateWindow(windowW, windowH, title, monitor, NULL);
   if (Window::window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
