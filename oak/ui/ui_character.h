@@ -13,6 +13,7 @@ namespace oak
 {
   namespace ui
   {
+    ///font face character data
     struct Character
     {
       GLuint     textureID;  // ID handle of the glyph texture

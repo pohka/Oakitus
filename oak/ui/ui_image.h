@@ -9,6 +9,7 @@ namespace oak
 {
   namespace ui
   {
+    ///an image UI node
     struct UIImage : public UINode
     {
       UIImage()
@@ -19,13 +20,16 @@ namespace oak
       uint VAO, VBO;
       uint textureID;
 
+      ///creates and returns a new UIImage node
       static UIImage* createImage(std::string src, ushort w, ushort h);
       static void setImageBuffer(
         UIImage* img,
         float windowToVPRatioX,
         float windowToVPRatioY
       );
+      ///renders a UI image
       static void renderImage(UIImage* img, float parentX, float parentY);
+      ///deletes a ui image buffers
       static void removeImage(UIImage* img);
     };
   }

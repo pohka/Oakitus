@@ -25,20 +25,25 @@ namespace oak
 {
   namespace ui
   {
+    ///container for all of the ui
     class UICanvas
     {
       public:
         friend class oak::Window;
-
+        ///called when the window is resized
         static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
+        ///renders all the components
         static void render();
-        static const oak::Point& getProjection();
+        ///Projection from pixel units to viewport coords to window coords
+        static const oak::Point& getProjection(); 
+        ///add a ui component
         static void addComponent(ushort id, UIComponent* component);
+        ///returns a component by id
         static UIComponent* getComponent(ushort id);
 
     private:
-        static oak::Point projection;
-        static std::map<ushort, UIComponent*> components;
+        static oak::Point projection; //current projection
+        static std::map<ushort, UIComponent*> components; //all if the existing components
     };
 
     

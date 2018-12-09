@@ -11,6 +11,7 @@ namespace oak
 {
   namespace ui
   {
+    ///a container for UI nodes
     struct UIComponent
     {
       std::vector<UINode*> nodes;

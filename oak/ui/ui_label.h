@@ -11,6 +11,7 @@ namespace oak
 {
   namespace ui
   {
+    ///a label has data that will display text
     struct UILabel : public UINode
     {
       UILabel()
@@ -24,7 +25,9 @@ namespace oak
       Color color;
       uchar fontID;
 
+      ///creates and returns a new label
       static UILabel* createLabel(std::string src, ushort fontSize, ushort w, ushort h);
+      ///renders a label
       static void renderLabel(UILabel* label, float parentX, float parentY);
     };
   }

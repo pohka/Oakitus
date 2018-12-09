@@ -6,6 +6,7 @@ namespace oak
 {
   namespace ui
   {
+    ///rgba color, range: 0.0f to 1.0f
     struct Color
     {
       float r = 0.0f;

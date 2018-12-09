@@ -13,7 +13,7 @@ namespace oak
 {
   namespace ui
   {
-
+    ///font class
     class Font
     {
       std::string name;

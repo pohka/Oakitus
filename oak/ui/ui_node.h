@@ -9,13 +9,13 @@ namespace oak
 {
   namespace ui
   {
+    ///a ui node which
     struct UINode
     {
       uchar nodeType;
       Point offset = { 0,0 };
       ushort w;
       ushort h;
-      
     };
   }
 }

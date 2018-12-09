@@ -8,6 +8,7 @@ namespace game
 {
   namespace ui
   {
+    //example ui component
     class ActionPanel: public oak::ui::UIComponent
     {
       int prop_hp;
@@ -17,7 +18,7 @@ namespace game
         ActionPanel();
         ~ActionPanel();
       
-      
+         //updating ui prop for HP
         void setHP(int hp);
     };
   }
