@@ -3,15 +3,11 @@
 
 namespace oak
 {
-  ///<summary>Simple 2D Point</summary>
-  class Point
+  ///<summary>2D Point</summary>
+  struct Point
   {
-  public:
     float x;
     float y;
-
-    Point(float x, float y);
-    ~Point();
   };
 }
 

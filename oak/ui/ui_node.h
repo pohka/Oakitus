@@ -3,6 +3,7 @@
 
 #include "../core/types.h"
 #include "ui_def.h"
+#include <core/point.h>
 
 namespace oak
 {
@@ -11,8 +12,7 @@ namespace oak
     struct UINode
     {
       uchar nodeType;
-      float x = 0;
-      float y = 0;
+      Point offset = { 0,0 };
       ushort w;
       ushort h;
       

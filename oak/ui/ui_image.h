@@ -25,7 +25,7 @@ namespace oak
         float windowToVPRatioX,
         float windowToVPRatioY
       );
-      static void renderImage(UIImage* img, float alignX, float alignY);
+      static void renderImage(UIImage* img, float parentX, float parentY);
       static void removeImage(UIImage* img);
     };
   }

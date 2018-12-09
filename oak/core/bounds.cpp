@@ -11,25 +11,25 @@ Bounds::Bounds(float x, float y, float w, float h)
   this->w = w;
   this->h = h;
 
-  this->origin = new Point(
+  this->origin = {
     x + (w * 0.5f),
     y - (h * 0.5f)
-  );
+  };
 }
 
 Bounds::~Bounds()
 {
-  delete origin;
+  //delete origin;
 }
 
 bool Bounds::intersects(Bounds& b) const
 {
-  Point* aOrigin = this->getOrigin();
-  Point* bOrigin = b.getOrigin();
+  const Point& aOrigin = this->getOrigin();
+  const Point& bOrigin = b.getOrigin();
 
   return (
-    std::abs(aOrigin->x - bOrigin->x) < (this->w * 0.5f + b.width() * 0.5f) &&
-    std::abs(aOrigin->y - bOrigin->y) < (this->h * 0.5f + b.height() * 0.5f)
+    std::abs(aOrigin.x - bOrigin.x) < (this->w * 0.5f + b.width() * 0.5f) &&
+    std::abs(aOrigin.y - bOrigin.y) < (this->h * 0.5f + b.height() * 0.5f)
   );
 }
 
@@ -63,7 +63,7 @@ float Bounds::width() const
   return w;
 }
 
-Point* Bounds::getOrigin() const
+const Point& Bounds::getOrigin() const
 {
   return origin;
 }

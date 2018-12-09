@@ -96,9 +96,6 @@
     <ClCompile Include="oak\core\oakitus.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="oak\core\point.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="oak\core\bounds.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>

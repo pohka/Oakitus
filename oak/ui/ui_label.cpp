@@ -31,7 +31,7 @@ UILabel* UILabel::createLabel(std::string text, ushort fontSize, ushort w, ushor
   return label;
 }
 
-void UILabel::renderLabel(UILabel* label, float alignX, float alignY)
+void UILabel::renderLabel(UILabel* label, float parentX, float parentY)
 {
   Shader& shader = Resources::getShaderByName("text");
   // Activate corresponding render state	
@@ -55,8 +55,8 @@ void UILabel::renderLabel(UILabel* label, float alignX, float alignY)
   float projectionX = windowToVPRatio.x * worldToVP;
   float projectionY = windowToVPRatio.y * worldToVP;
 
-  float x = label->x * projectionX;
-  float y = (label->y - (label->scale * FONT_LOADED_SIZE))* projectionY;
+  float x = label->offset.x * projectionX;
+  float y = (label->offset.y - (label->scale * FONT_LOADED_SIZE))* projectionY;
 
   Font& font = Resources::getFontByID(label->fontID);
 
@@ -66,8 +66,8 @@ void UILabel::renderLabel(UILabel* label, float alignX, float alignY)
 
     float bearingX = ch.bearing.x * label->scale;
     float bearingY = (ch.size.y - ch.bearing.y) * label->scale;
-    GLfloat xpos = (alignX * oak::Window::getAspectRatio()) +(x + projectionX * bearingX);
-    GLfloat ypos = alignY + (y - (projectionY * bearingY));
+    GLfloat xpos = (parentX * oak::Window::getAspectRatio()) +(x + projectionX * bearingX);
+    GLfloat ypos = parentY + (y - (projectionY * bearingY));
 
     GLfloat ww = ch.size.x * label->scale;
     GLfloat hh = ch.size.y * label->scale;

@@ -18,6 +18,8 @@
 #include "ui_node.h"
 #include "ui_component.h"
 
+#include <core/point.h>
+
 
 
 namespace oak
@@ -33,6 +35,9 @@ namespace oak
 
         static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
         static void render();
+        static const oak::Point& getProjection();
+    private:
+        static oak::Point projection;
     };
   }
 }

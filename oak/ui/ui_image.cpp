@@ -17,8 +17,8 @@ UIImage* UIImage::createImage(std::string src, ushort w, ushort h)
   img->textureID = Resources::getTextureIDBySrc(src);
   img->w = w;
   img->h = h;
-  img->x = 0.0f;
-  img->y = 0.0f;
+ // img->offsetx = 0.0f;
+  //img->offset.y = 0.0f;
 
   glGenVertexArrays(1, &img->VAO);
   glGenBuffers(1, &img->VBO);
@@ -71,7 +71,7 @@ void UIImage::setImageBuffer(
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
 
-void UIImage::renderImage(UIImage* img, float alignX, float alignY)
+void UIImage::renderImage(UIImage* img, float parentX, float parentY)
 {
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, img->textureID);
@@ -87,8 +87,8 @@ void UIImage::renderImage(UIImage* img, float alignX, float alignY)
   float projectionY = windowToVPRatio.y * worldToVP;
 
   glm::vec3 pos(
-    (alignX*Window::getAspectRatio()) + (projectionX * (float)img->x),
-    alignY + (projectionY * (float)img->y),
+    (parentX * Window::getAspectRatio()) + (projectionX * (float)img->offset.x),
+    parentY + (projectionY * (float)img->offset.y),
     0.0f
   );
   model = glm::translate(model, pos);

@@ -52,5 +52,6 @@ void MainScene::onLoad()
   dummy2->instantiate(-200.0f, 80.0f);
 
   auto* comp = new game::ui::ActionPanel();
+  comp->offset.x = 100.0f;
   UICanvas::components.push_back(comp);
 }

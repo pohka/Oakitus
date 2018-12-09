@@ -14,22 +14,34 @@ using namespace oak::ui;
 using namespace oak;
 
 std::vector<UIComponent*> UICanvas::components;
+oak::Point UICanvas::projection = { 0,0 };
 
 void UICanvas::render()
 {
+  //get projection from font size to viewport to window coords
+  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
+  float worldToVP = Window::worldToViewportCoords(1.0f);
+  projection.x = windowToVPRatio.x * worldToVP;
+  projection.y = windowToVPRatio.y * worldToVP;
+
+  Point compPos;
+
   for (UIComponent* comp : components)
   {
+    compPos.x = comp->offset.x * projection.x + comp->align.x;
+    compPos.y = comp->offset.y * projection.y + comp->align.y;
+
     for (UINode* node : comp->nodes)
     {
       if (node->nodeType == UI_NODE_IMAGE)
       {
         UIImage* image = static_cast<UIImage*>(node);
-        UIImage::renderImage(image, comp->alignX, comp->alignY);
+        UIImage::renderImage(image, compPos.x, compPos.y);
       }
       else if (node->nodeType == UI_NODE_LABEL)
       {
         UILabel* label = static_cast<UILabel*>(node);
-        UILabel::renderLabel(label, comp->alignX, comp->alignY);
+        UILabel::renderLabel(label, compPos.x, compPos.y);
       }
     }
   }

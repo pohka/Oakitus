@@ -25,7 +25,7 @@ namespace oak
       uchar fontID;
 
       static UILabel* createLabel(std::string src, ushort fontSize, ushort w, ushort h);
-      static void renderLabel(UILabel* label, float alignX, float alignY);
+      static void renderLabel(UILabel* label, float parentX, float parentY);
     };
   }
 }

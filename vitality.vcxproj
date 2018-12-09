@@ -149,7 +149,6 @@
     <ClCompile Include="oak\core\oakitus.cpp" />
     <ClCompile Include="oak\core\base_player.cpp" />
     <ClCompile Include="oak\core\player_resource.cpp" />
-    <ClCompile Include="oak\core\point.cpp" />
     <ClCompile Include="oak\core\shader.cpp" />
     <ClCompile Include="oak\core\window.cpp" />
     <ClCompile Include="oak\core\id_generator.cpp" />
