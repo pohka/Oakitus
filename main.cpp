@@ -10,8 +10,8 @@ using namespace game;
 
 int main()
 {
-  uint windowW = 736;
-  uint windowH = 414;
+  uint windowW = 1066;
+  uint windowH = 600;
 
   uint viewportW = 736;
   uint viewportH = 414;
