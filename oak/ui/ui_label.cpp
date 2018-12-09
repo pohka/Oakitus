@@ -37,9 +37,9 @@ void UILabel::renderLabel(UILabel* label, float parentX, float parentY)
   Shader& shader = Resources::getShaderByName("text");
   // Activate corresponding render state	
   shader.use();
-  glUniform3f(
+  glUniform4f(
     glGetUniformLocation(shader.getID(), "textColor"),
-    label->color.r, label->color.g, label->color.b
+    label->color.r, label->color.g, label->color.b, label->color.a
   );
   glActiveTexture(GL_TEXTURE0);
   glBindVertexArray(label->VAO);
