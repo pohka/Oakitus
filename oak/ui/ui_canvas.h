@@ -3,7 +3,7 @@
 
 
 
-#include <vector>
+#include <map>
 #include <core/types.h>
 
 #include "../core/window.h"
@@ -31,13 +31,16 @@ namespace oak
       public:
         friend class oak::Window;
 
-        static std::vector<UIComponent*> components;
+        
 
         static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
         static void render();
         static const oak::Point& getProjection();
+        static void addComponent(ushort id, UIComponent* component);
+
     private:
         static oak::Point projection;
+        static std::map<ushort, UIComponent*> components;
     };
 
     

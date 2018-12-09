@@ -53,5 +53,5 @@ void MainScene::onLoad()
 
   auto* comp = new game::ui::ActionPanel();
   comp->offset.x = 10.0f;
-  UICanvas::components.push_back(comp);
+  UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
 }

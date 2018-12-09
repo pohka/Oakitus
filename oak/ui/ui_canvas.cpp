@@ -13,7 +13,7 @@
 using namespace oak::ui;
 using namespace oak;
 
-std::vector<UIComponent*> UICanvas::components;
+std::map<ushort, UIComponent*> UICanvas::components;
 oak::Point UICanvas::projection = { 0,0 };
 std::map<uint, std::string> strings;
 
@@ -27,8 +27,10 @@ void UICanvas::render()
 
   Point compPos;
 
-  for (UIComponent* comp : components)
+  UIComponent* comp;
+  for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
   {
+    comp = it->second;
     compPos.x = (comp->offset.x * projection.x) + comp->align.x;
     compPos.y = (comp->offset.y * projection.y) + comp->align.y;
 
@@ -46,6 +48,11 @@ void UICanvas::render()
       }
     }
   }
+}
+
+void UICanvas::addComponent(ushort id, UIComponent* component)
+{
+  components.insert(std::pair<ushort, UIComponent*>(id, component));
 }
 
 void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
