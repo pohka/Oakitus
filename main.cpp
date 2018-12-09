@@ -4,7 +4,7 @@
 #include "player.h"
 #include "events/e_damage_taken.h"
 #include "strings_def.h"
-#include <ui/localization.h>
+#include <ui/ui.h>
 
 using namespace oak;
 using namespace game;

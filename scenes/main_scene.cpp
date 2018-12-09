@@ -8,7 +8,6 @@
 #include "../prefabs/u_dummy.h"
 #include <debug.h>
 #include <ui/ui.h>
-#include <ui/ui_component.h>
 #include "../ui/action_panel.h"
 
 using namespace game;

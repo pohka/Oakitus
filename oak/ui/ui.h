@@ -3,3 +3,4 @@
 #include "ui_image.h"
 #include "ui_def.h"
 #include "color.h"
+#include "localization.h"

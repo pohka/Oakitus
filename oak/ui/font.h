@@ -23,6 +23,7 @@ namespace oak
 
       public:
         Font(std::string name, FT_Library& freetype);
+        ~Font();
         uchar getID();
         std::string getName();
         Character* getCharacter(std::string::const_iterator& c);

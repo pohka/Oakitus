@@ -1,5 +1,6 @@
 # todo
 
+* deleting texture (fonts too)
 * UI
   * text alignment (left, center, right)
   * nested nodes

@@ -1,5 +1,5 @@
 #ifndef LOCALIZATION_H
-#define LOCALIXATION_H
+#define LOCALIZATION_H
 
 #include <map>
 #include <string>

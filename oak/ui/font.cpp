@@ -29,6 +29,15 @@ Font::Font(std::string name, FT_Library& freetype)
   }
 }
 
+Font::~Font()
+{
+  for (std::map<GLchar, Character*>::iterator it = characters.begin(); it != characters.end(); ++it)
+  {
+    delete it->second;
+  }
+  characters.clear();
+}
+
 uchar Font::getID()
 {
   return id;

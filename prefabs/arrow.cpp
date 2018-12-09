@@ -21,7 +21,7 @@ Arrow::Arrow(glm::vec2 targetPos, Unit& caster, uint abilityID)
     150.0f,
     1000.0f,
     true,
-    TARGET_TEAM_BOTH,
+    TARGET_TEAM_ENEMY,
     caster.getFaction(),
     abilityID,
     caster.getID()

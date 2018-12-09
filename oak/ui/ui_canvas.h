@@ -17,7 +17,6 @@
 #include "ui_character.h"
 #include "ui_node.h"
 #include "ui_component.h"
-
 #include <core/point.h>
 
 
@@ -30,8 +29,6 @@ namespace oak
     {
       public:
         friend class oak::Window;
-
-        
 
         static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
         static void render();
