@@ -4,6 +4,7 @@
 #include <core/resources.h>
 #include "ui_character.h"
 #include <core/window.h>
+#include "ui_canvas.h"
 
 using namespace oak::ui;
 using namespace oak;
@@ -44,19 +45,13 @@ void UILabel::renderLabel(UILabel* label, float parentX, float parentY)
   glBindVertexArray(label->VAO);
 
   
-
   // Iterate through all characters
   std::string::const_iterator c;
 
+  const Point& projection = UICanvas::getProjection();
 
-  //get projection from font size to viewport to window coords
-  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
-  float worldToVP = Window::worldToViewportCoords(1.0f);
-  float projectionX = windowToVPRatio.x * worldToVP;
-  float projectionY = windowToVPRatio.y * worldToVP;
-
-  float x = label->offset.x * projectionX;
-  float y = (label->offset.y - (label->scale * FONT_LOADED_SIZE))* projectionY;
+  float x = label->offset.x * projection.x;
+  float y = (label->offset.y - (label->scale * FONT_LOADED_SIZE))* projection.y;
 
   Font& font = Resources::getFontByID(label->fontID);
 
@@ -66,14 +61,14 @@ void UILabel::renderLabel(UILabel* label, float parentX, float parentY)
 
     float bearingX = ch.bearing.x * label->scale;
     float bearingY = (ch.size.y - ch.bearing.y) * label->scale;
-    GLfloat xpos = (parentX * oak::Window::getAspectRatio()) +(x + projectionX * bearingX);
-    GLfloat ypos = parentY + (y - (projectionY * bearingY));
+    GLfloat xpos = (parentX * oak::Window::getAspectRatio()) +(x + projection.x * bearingX);
+    GLfloat ypos = parentY + (y - (projection.y * bearingY));
 
     GLfloat ww = ch.size.x * label->scale;
     GLfloat hh = ch.size.y * label->scale;
 
-    float w = projectionX * ww;
-    float h = projectionY * hh;
+    float w = projection.x * ww;
+    float h = projection.y * hh;
 
     // Update VBO for each character
     GLfloat vertices[6][4] = {
@@ -96,7 +91,7 @@ void UILabel::renderLabel(UILabel* label, float parentX, float parentY)
     glDrawArrays(GL_TRIANGLES, 0, 6);
     // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
     float advance = (ch.advance >> 6) * label->scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
-    x += projectionX * advance;
+    x += projection.x * advance;
   }
 
   glBindVertexArray(0);

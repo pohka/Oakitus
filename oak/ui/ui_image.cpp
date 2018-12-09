@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "ui_canvas.h"
 
 using namespace oak::ui;
 using namespace oak;
@@ -80,15 +81,11 @@ void UIImage::renderImage(UIImage* img, float parentX, float parentY)
 
   glm::mat4 model = glm::mat4(1.0);
 
-  //projection from world pixels to viewport coords to window coords
-  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
-  float worldToVP = Window::worldToViewportCoords(1.0f);
-  float projectionX = windowToVPRatio.x * worldToVP;
-  float projectionY = windowToVPRatio.y * worldToVP;
+  const Point& projection = UICanvas::getProjection();
 
   glm::vec3 pos(
-    (parentX * Window::getAspectRatio()) + (projectionX * (float)img->offset.x),
-    parentY + (projectionY * (float)img->offset.y),
+    (parentX * Window::getAspectRatio()) + (projection.x * (float)img->offset.x),
+    parentY + (projection.y * (float)img->offset.y),
     0.0f
   );
   model = glm::translate(model, pos);

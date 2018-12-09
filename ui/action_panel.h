@@ -10,6 +10,8 @@ namespace game
     struct ActionPanel : public oak::ui::UIComponent
     {
       ActionPanel();
+      int prop_hp;
+      
     };
   }
 }

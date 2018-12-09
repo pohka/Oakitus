@@ -204,6 +204,9 @@
     <ClCompile Include="ui\action_panel.cpp">
       <Filter>game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="oak\ui\localization.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -406,6 +409,12 @@
     </ClInclude>
     <ClInclude Include="ui\action_panel.h">
       <Filter>game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="strings_def.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\localization.h">
+      <Filter>oak\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

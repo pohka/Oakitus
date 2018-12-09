@@ -39,6 +39,8 @@ namespace oak
     private:
         static oak::Point projection;
     };
+
+    
   }
 }
 

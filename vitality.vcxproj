@@ -164,6 +164,7 @@
     <ClCompile Include="oak\fallback.cpp" />
     <ClCompile Include="oak\oak_setup.h" />
     <ClCompile Include="oak\ui\font.cpp" />
+    <ClCompile Include="oak\ui\localization.cpp" />
     <ClCompile Include="oak\ui\ui_canvas.cpp" />
     <ClCompile Include="oak\ui\ui_image.cpp" />
     <ClCompile Include="oak\ui\ui_label.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="oak\oak_def.h" />
     <ClInclude Include="oak\ui\color.h" />
     <ClInclude Include="oak\ui\font.h" />
+    <ClInclude Include="oak\ui\localization.h" />
     <ClInclude Include="oak\ui\ui.h" />
     <ClInclude Include="oak\ui\ui_canvas.h" />
     <ClInclude Include="oak\ui\ui_character.h" />
@@ -245,6 +247,7 @@
     <ClInclude Include="prefabs\u_player.h" />
     <ClInclude Include="scenes\main_scene.h" />
     <ClInclude Include="scripts\linear_projectile.h" />
+    <ClInclude Include="strings_def.h" />
     <ClInclude Include="ui\action_panel.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>

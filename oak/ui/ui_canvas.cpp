@@ -15,6 +15,7 @@ using namespace oak;
 
 std::vector<UIComponent*> UICanvas::components;
 oak::Point UICanvas::projection = { 0,0 };
+std::map<uint, std::string> strings;
 
 void UICanvas::render()
 {
@@ -28,8 +29,8 @@ void UICanvas::render()
 
   for (UIComponent* comp : components)
   {
-    compPos.x = comp->offset.x * projection.x + comp->align.x;
-    compPos.y = comp->offset.y * projection.y + comp->align.y;
+    compPos.x = (comp->offset.x * projection.x) + comp->align.x;
+    compPos.y = (comp->offset.y * projection.y) + comp->align.y;
 
     for (UINode* node : comp->nodes)
     {
@@ -64,4 +65,9 @@ void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
       }
     }
   }
+}
+
+const oak::Point& UICanvas::getProjection()
+{
+  return projection;
 }

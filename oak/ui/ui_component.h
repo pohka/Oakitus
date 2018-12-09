@@ -5,6 +5,7 @@
 #include <vector>
 #include "ui_node.h"
 #include <core/point.h>
+#include "localization.h"
 
 namespace oak
 {
