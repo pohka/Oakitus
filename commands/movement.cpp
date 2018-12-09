@@ -18,6 +18,12 @@ Movement::~Movement()
 
 void Movement::execute()
 {
+  Unit* unit = player->getAssignedUnit();
+  if (unit == nullptr || !unit->isAlive())
+  {
+    return;
+  }
+
   float axisX = 0.0f;
   float axisY = 0.0f;
 
@@ -38,7 +44,7 @@ void Movement::execute()
     axisX += 1.0f;
   }
 
-  Unit* unit = player->getAssignedUnit();
+  
 
   //if has input
   if (axisX != 0.0f || axisY != 0.0f)

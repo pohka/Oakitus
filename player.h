@@ -10,7 +10,8 @@ namespace game
 
   class Player : public oak::BasePlayer
   {
-    Unit* assignedUnit;
+    uint assignedUnitID;
+    bool hasAssignedUnit = false;
     
 
     public:

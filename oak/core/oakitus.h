@@ -1,6 +1,8 @@
 #ifndef OAKITUS_H
 #define OAKITUS_H
 
+#include "types.h"
+
 namespace oak
 {
   ///<summary>Engine</summary>
@@ -9,7 +11,7 @@ namespace oak
     
     public:
       ///<summary>Initalize the engine</summary>
-      static void init();
+      static void init(uint viewportW, uint viewportH,  uint windowW, uint windowH, bool isFullscreen);
       
     private:
       ///<summary>Called before the game loop to load the game</summary>

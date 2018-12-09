@@ -4,7 +4,7 @@ using namespace oak;
 
 
 KeyBuffer* Input::keys[sizeof(glKeys)];
-Point Input::mousePos(0, 0);
+Point Input::mousePos = { 0,0 };
 
 
 KeyBuffer* Input::getKeyBufferByCode(uint query)

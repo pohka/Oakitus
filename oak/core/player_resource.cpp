@@ -28,7 +28,7 @@ BasePlayer& PlayerResource::getPlayer(uint playerID)
 {
   for (uint i = 0; i < MAX_PLAYER_COUNT; i++)
   {
-    if (players[i]->getID() == playerID)
+    if (players[i]->getPlayerID() == playerID)
     {
       return *players[i];
     }
@@ -57,4 +57,10 @@ void PlayerResource::executeAllCommands()
       players[i]->executeCommands();
     }
   }
+}
+
+bool PlayerResource::isLocalPlayerID(uint id)
+{
+  //for future multiplayer feature
+  return true;
 }

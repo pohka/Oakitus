@@ -15,6 +15,7 @@
 #include "../components/collision.h"
 #include "../oak_def.h"
 #include "../fallback.h"
+#include "../ui/ui_canvas.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -26,10 +27,11 @@
 using namespace oak;
 
 
-void Oakitus::init()
+void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, bool isFullscreen)
 {
   Time::init();
   Input::init();
+  
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position
@@ -39,12 +41,11 @@ void Oakitus::init()
     true
   );
 
-  Window::init(SCR_WIDTH, SCR_HEIGHT, SCR_WIDTH, SCR_HEIGHT, "Oakitus");
+  Window::init(viewportW, viewportH, windowW, windowH, "Oakitus", isFullscreen);
   GLFWwindow* window = Window::getGLFWWindow();
   
   Fallback::init();
-  Resources::addTexture("box.png");
-  Resources::addTexture("circle.png");
+  Resources::init();
 
   //Shader *collisionShader = new Shader("collision");
   //Resources::addShader(*collisionShader);
@@ -74,6 +75,8 @@ int Oakitus::loop()
     Collision::resolveCollisions();
     Entity::drawInstances();
     Entity::debugDrawInstances();
+    ui::UICanvas::render();
+
 
     
 

@@ -25,6 +25,8 @@ namespace oak
 
       ///<summary>Execute all Players input Commands</summary>
       static void executeAllCommands();
+
+      static bool isLocalPlayerID(uint playerID);
   };
 }
 

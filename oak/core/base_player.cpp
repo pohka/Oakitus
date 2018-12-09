@@ -17,7 +17,7 @@ BasePlayer::~BasePlayer()
 
 }
 
-uint BasePlayer::getID() const
+uint BasePlayer::getPlayerID() const
 {
   return playerID;
 }

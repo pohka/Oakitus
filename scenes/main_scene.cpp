@@ -7,9 +7,12 @@
 #include "../prefabs/camera_controller.h"
 #include "../prefabs/u_dummy.h"
 #include <debug.h>
+#include <ui/ui.h>
+#include "../ui/action_panel.h"
 
 using namespace game;
 using namespace oak;
+using namespace oak::ui;
 
 
 void MainScene::onLoad()
@@ -20,6 +23,7 @@ void MainScene::onLoad()
   Resources::addTexture("dummy.png");
   Resources::addTexture("anim_test2.png");
   Resources::addTexture("wolf_sheet.png");
+  Resources::addTexture("action_panel.png");
   
 
   Camera::position = glm::vec3(0, 0, 0);
@@ -45,4 +49,8 @@ void MainScene::onLoad()
 
   prefab::UDummy* dummy2 = new prefab::UDummy();
   dummy2->instantiate(-200.0f, 80.0f);
+
+  auto* comp = new game::ui::ActionPanel();
+  comp->offset.x = 10.0f;
+  UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
 }

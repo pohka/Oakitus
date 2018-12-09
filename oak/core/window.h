@@ -61,6 +61,10 @@ namespace oak
 
       ///<summary>returns the projection matrix for the viewport</summary>
       static glm::mat4& getProjectionMatrix();
+
+      static glm::vec2 getWindowToVPRatio();
+
+      //static glm::vec2 getWindowSize();
       
     protected:
       ///<summary>Initialized the window</summary>
@@ -69,7 +73,8 @@ namespace oak
         uint viewportH,
         uint windowW,
         uint windowH,
-        const char* title
+        const char* title,
+        bool isFullscreen
       );
   };
 }

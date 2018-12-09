@@ -12,7 +12,7 @@ namespace oak
     float y;
     float w;
     float h;
-    Point* origin;
+    Point origin;
 
     public:
       Bounds(float x, float y, float w, float h);
@@ -25,7 +25,7 @@ namespace oak
       float height() const;
       float width() const;
       bool intersects(Bounds& b) const;
-      Point* getOrigin() const;
+      const Point& getOrigin() const;
   };
 }
 

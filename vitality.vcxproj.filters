@@ -46,6 +46,12 @@
     <Filter Include="game\events">
       <UniqueIdentifier>{b755d75d-f995-489d-89f1-9aaba66d664b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\ui">
+      <UniqueIdentifier>{147c9fce-43ee-4ee7-962a-d8cf160c6e27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\ui">
+      <UniqueIdentifier>{3706d1cc-017c-4603-bab5-74ef7847aa44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -88,9 +94,6 @@
       <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="oak\core\oakitus.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="oak\core\point.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="oak\core\bounds.cpp">
@@ -185,6 +188,24 @@
     </ClCompile>
     <ClCompile Include="oak\event\event_manager.cpp">
       <Filter>oak\event</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_canvas.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_image.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_label.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\font.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\action_panel.cpp">
+      <Filter>game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\localization.cpp">
+      <Filter>oak\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -356,18 +377,63 @@
     <ClInclude Include="global_funcs.h">
       <Filter>game</Filter>
     </ClInclude>
+    <ClInclude Include="oak\ui\ui_def.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_label.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_canvas.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_image.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_node.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\color.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_character.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\font.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_component.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\action_panel.h">
+      <Filter>game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="strings_def.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\localization.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\default.fs">
+    <None Include="resources\shaders\text.fs">
       <Filter>res\shaders</Filter>
     </None>
-    <None Include="res\shaders\default.vs">
+    <None Include="resources\shaders\text.vs">
       <Filter>res\shaders</Filter>
     </None>
-    <None Include="res\shaders\collision.vs">
+    <None Include="resources\shaders\collision.fs">
       <Filter>res\shaders</Filter>
     </None>
-    <None Include="res\shaders\collision.fs">
+    <None Include="resources\shaders\collision.vs">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\default.fs">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="resources\shaders\default.vs">
       <Filter>res\shaders</Filter>
     </None>
   </ItemGroup>

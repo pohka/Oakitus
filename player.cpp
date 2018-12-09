@@ -8,7 +8,6 @@ using namespace oak;
 
 Player::Player()
 {
-  assignedUnit = nullptr;
 
   command::Movement* moveCmd = new command::Movement(*this);
   addCommand(*moveCmd);
@@ -18,22 +17,30 @@ Player::Player()
 
 Player::~Player()
 {
-  if (assignedUnit != nullptr)
-  {
-    delete assignedUnit;
-  }
+  //if (!hasAssignedUnit)
+  //{
+  //  //delete assignedUnit;
+  //}
 }
 
 void Player::setAssignedUnit(Unit& unit)
 {
-  assignedUnit = &unit;
+  hasAssignedUnit = true;
+  assignedUnitID = unit.getID();
+  unit.setOwner(getPlayerID());
 }
 
 Unit* Player::getAssignedUnit() const
 {
-  if (assignedUnit == nullptr)
+  if (!hasAssignedUnit)
   {
-    LOG_WARNING << "PLayer doesn't have an assigned unit, playerID:" << this->getID();
+    LOG_WARNING << "PLayer doesn't have an assigned unit, playerID:" << this->getPlayerID();
   }
-  return assignedUnit;
+  Entity* ent = Entity::findEntityByID(assignedUnitID);
+  if (ent == nullptr)
+  {
+    return nullptr;
+  }
+
+  return static_cast<Unit*>(Entity::findEntityByID(assignedUnitID));
 }

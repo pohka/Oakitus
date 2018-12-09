@@ -1,6 +1,9 @@
 # todo
 
-* onDeath, broadcasting with event system
+* deleting texture (fonts too)
+* UI
+  * text alignment (left, center, right)
+  * nested nodes
 * collision
   * bool isStatic
   * isTrigger
@@ -8,7 +11,7 @@
 * sword ability
 * sound
 * world (tiles)
-* HUD
+
 * inventory and items
 * automatically deciding which textures need to be loaded
 * debug logger

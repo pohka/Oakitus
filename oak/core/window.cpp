@@ -3,6 +3,7 @@
 #include "input.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <ui/ui_canvas.h>
 
 using namespace oak;
 
@@ -24,16 +25,14 @@ void Window::init(
   uint viewportH,
   uint windowW,
   uint windowH,
-  const char* title
+  const char* title,
+  bool isFullscreen
 )
 {
   Window::viewportW = viewportW;
   Window::viewportH = viewportH;
 
-  Window::windowW = windowW;
-  Window::windowH = windowH;
-
-  updateWindowToVPRatio();
+  
 
   Window::vpAspectRatio = (float)viewportW / (float)viewportH;
   projectionMatrix = glm::ortho(-1.0f * vpAspectRatio, 1.0f * vpAspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
@@ -49,9 +48,27 @@ void Window::init(
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+  GLFWmonitor* monitor;
+  if (isFullscreen)
+  {
+    monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    windowW = mode->width;
+    windowH = mode->height;
+  }
+  else
+  {
+    monitor = NULL;
+  }
+
+  Window::windowW = windowW;
+  Window::windowH = windowH;
+
+  updateWindowToVPRatio();
+
   // glfw window creation
   // --------------------
-  Window::window = glfwCreateWindow(windowW, windowH, title, NULL, NULL);
+  Window::window = glfwCreateWindow(windowW, windowH, title, monitor, NULL);
   if (Window::window == NULL)
   {
     std::cout << "Failed to create GLFW window" << std::endl;
@@ -132,9 +149,18 @@ void Window::framebuffer_size_callback(GLFWwindow* window, int width, int height
   //windowToVPRatioY = (float)Window::viewportH / (float)Window::windowH;
   // make sure the viewport matches the new window dimensions; note that width and 
   // height will be significantly larger than specified on retina displays.
- 
+  ui::UICanvas::onWindowResize(windowToVPRatioX, windowToVPRatioY);
+
 
   glViewport(0, 0, width, height);
+}
+
+glm::vec2 Window::getWindowToVPRatio()
+{
+  return glm::vec2(
+    windowToVPRatioX,
+    windowToVPRatioY
+  );
 }
 
 

@@ -19,7 +19,9 @@ namespace game
   class Unit : public oak::Entity, public DamageTakenListener, public DeathListener
   {
 
-    oak::BasePlayer* owner;
+   // oak::BasePlayer* owner;
+    uint ownerID;
+    bool m_hasOwner = false;
     float moveSpeed;
     static const float BASE_MOVE_SPEED;
     std::vector<Ability*> abilitys;
@@ -33,6 +35,8 @@ namespace game
 
       oak::BasePlayer* getOwner() const;
       bool hasOwner() const;
+      void setOwner(uint playerID);
+      void removeOwner();
       float getMoveSpeed() const;
       void setMoveSpeed(float moveSpeed);
       void addAbility(Ability* ability);

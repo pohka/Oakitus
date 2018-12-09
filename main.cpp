@@ -3,6 +3,8 @@
 #include <core/player_resource.h>
 #include "player.h"
 #include "events/e_damage_taken.h"
+#include "strings_def.h"
+#include <ui/ui.h>
 
 using namespace oak;
 using namespace game;
@@ -10,16 +12,24 @@ using namespace game;
 
 int main()
 {
-  Oakitus::init();
+  uint windowW = 1066;
+  uint windowH = 600;
+
+  uint viewportW = 736;
+  uint viewportH = 414;
+
+  Oakitus::init(viewportW, viewportH, windowW, windowH, false);
   return 0;
 }
 
 
 void Oakitus::load()
 {
+  //load localized strings
+  ui::Localization::addString(STRING_HEALTH, "health:");
+
   IEvent* damageEvent = new DamageTakenEvent(EVENT_ON_DAMAGE_TAKEN, game::onDamageTakenFire);
   EventManager::addEvent(damageEvent);
-  //Event* deathEvent = new EDeath();
   IEvent* deathEvent = new DeathEvent(EVENT_ON_DEATH, game::onDeathFire);
   EventManager::addEvent(deathEvent);
 
