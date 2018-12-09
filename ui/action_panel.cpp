@@ -2,6 +2,7 @@
 #include <ui/ui_image.h>
 #include <ui/ui_label.h>
 #include "../strings_def.h"
+#include <debug.h>
 
 using namespace game::ui;
 using namespace oak::ui;
@@ -35,6 +36,7 @@ ActionPanel::~ActionPanel()
 
 void ActionPanel::setHP(int hp)
 {
+  LOG << "setting hp";
   prop_hp = hp;
   label->text = Localization::strings[STRING_HEALTH] + std::to_string(prop_hp);
 }

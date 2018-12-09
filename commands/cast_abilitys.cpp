@@ -57,6 +57,10 @@ glm::vec3 CastAbilitys::getCasterPosition() const
 void CastAbilitys::beginCast(const int index) const
 {
   Unit* unit = player->getAssignedUnit();
+  if (unit == nullptr || !unit->isAlive())
+  {
+    return;
+  }
   Ability* ability = unit->getAbilityByIndex(index);
   if (ability != nullptr)
   {

@@ -37,6 +37,7 @@ namespace oak
         static void render();
         static const oak::Point& getProjection();
         static void addComponent(ushort id, UIComponent* component);
+        static UIComponent* getComponent(ushort id);
 
     private:
         static oak::Point projection;

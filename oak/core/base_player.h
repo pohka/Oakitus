@@ -24,13 +24,14 @@ namespace oak
       virtual ~BasePlayer();
 
       ///<summary>Returns the playerID</summary>
-      uint getID() const;
+      uint getPlayerID() const;
 
       ///<summary>Calls execute() on all the Commands for this Player</summary>
       void executeCommands();
 
       ///<summary>Adds an input Command to this Player</summary>
       void addCommand(Command& command);
+
 
     protected:
       ///<summary>All of the commands for this Player</summary>

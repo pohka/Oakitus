@@ -6,6 +6,9 @@
 #include <fallback.h>
 #include <event/event_manager.h>
 #include <event/event.h>
+#include <core/player_resource.h>
+#include <ui/ui_canvas.h>
+#include "ui/action_panel.h"
 
 using namespace game;
 
@@ -13,7 +16,6 @@ const float Unit::BASE_MOVE_SPEED = 400.0f;
 
 Unit::Unit()
 {
-  owner = nullptr;
   moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
   faction = FACTION_NONE;
@@ -41,11 +43,11 @@ void Unit::onStart()
 
 oak::BasePlayer* Unit::getOwner() const
 {
-  if (owner == nullptr)
+  if (!m_hasOwner)
   {
     LOG_WARNING << "Unit '" << name << "' does not have an owner";
   }
-  return owner;
+  return &oak::PlayerResource::getPlayer(ownerID);
 }
 
 bool Unit::isOwnerBotPlayer() const
@@ -53,10 +55,20 @@ bool Unit::isOwnerBotPlayer() const
   return m_isOwnerBotPlayer;
 }
 
+void Unit::setOwner(uint playerID)
+{
+  ownerID = playerID;
+  m_hasOwner = true;
+}
+
+void Unit::removeOwner()
+{
+  m_hasOwner = false;
+}
 
 bool Unit::hasOwner() const
 {
-  return (owner != nullptr);
+  return m_hasOwner;
 }
 
 float Unit::getMoveSpeed() const
@@ -130,6 +142,16 @@ void Unit::onDamageTaken(DamageData& data)
   if (isAlive() && data.victimID == getID())
   {
     this->health -= data.amount;
+
+    //update the UI if a local players health has changed
+    if (hasOwner() && oak::PlayerResource::isLocalPlayerID(getOwner()->getPlayerID()))
+    {
+      LOG << "has owner and is local player";
+      auto* comp = oak::ui::UICanvas::getComponent(UI_COMPONENT_ACTION_PANEL);
+      ui::ActionPanel* actionPanel = static_cast<ui::ActionPanel*>(comp);
+      actionPanel->setHP(health);
+    }
+
     LOG << "health :" << health;
     if (health <= 0)
     {

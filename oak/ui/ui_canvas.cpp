@@ -55,6 +55,11 @@ void UICanvas::addComponent(ushort id, UIComponent* component)
   components.insert(std::pair<ushort, UIComponent*>(id, component));
 }
 
+UIComponent* UICanvas::getComponent(ushort id)
+{
+  return components[id];
+}
+
 void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 {
   //resize all the image nodes
