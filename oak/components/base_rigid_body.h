@@ -19,7 +19,7 @@ namespace oak
       BaseRigidBody(bool isStatic);
 
       void onStart() override;
-      void onLateUpdate() override;
+     // void onResolveFinsihed() override;
   };
 }
 

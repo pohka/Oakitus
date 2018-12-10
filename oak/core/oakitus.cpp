@@ -72,8 +72,8 @@ int Oakitus::loop()
 
     PlayerResource::executeAllCommands();
     Entity::updateInstances();
-    Entity::lateUpdateInstances();
     Collision::resolveCollisions();
+    Entity::lateUpdateInstances();
     Entity::drawInstances();
     Entity::debugDrawInstances();
     ui::UICanvas::render();

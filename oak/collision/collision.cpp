@@ -192,7 +192,25 @@ bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
 
 void Collision::resolveCollisions()
 {
+  //pointers to increase readablity of loops
+  Entity* ent;
+  BaseRigidBody* rb;
+  
+  //set the rigidbody variables based on the current entity position
+  for (uint i = 0; i < Entity::entitys.size(); i++)
+  {
+    ent = Entity::entitys[i];
+    rb = ent->rigidBody;
 
+    if (rb != nullptr && rb->isStatic == false)
+    {
+      rb->desiredNextPos = ent->position;
+      rb->nextPos = rb->desiredNextPos;
+      rb->velocity = rb->desiredNextPos - rb->lastPos;
+    }
+  }
+
+  //resolve 
   for (uint a = 0; a < Entity::entitys.size() - 1; a++)
   {
     for (uint b = a + 1; b < Entity::entitys.size(); b++)
@@ -211,10 +229,13 @@ void Collision::resolveCollisions()
   //update the resolved positions
   for (uint i = 0; i < Entity::entitys.size(); i++)
   {
-    if (Entity::entitys[i]->rigidBody != nullptr && Entity::entitys[i]->rigidBody->isStatic == false)
+     ent = Entity::entitys[i];
+     rb = ent->rigidBody;
+
+    if (rb != nullptr && rb->isStatic == false)
     {
-      Entity::entitys[i]->rigidBody->lastPos = Entity::entitys[i]->rigidBody->nextPos;
-      Entity::entitys[i]->position = Entity::entitys[i]->rigidBody->nextPos;
+      rb->lastPos = Entity::entitys[i]->rigidBody->nextPos;
+      ent->position = Entity::entitys[i]->rigidBody->nextPos;
     }
   }
 }
@@ -223,7 +244,6 @@ void Collision::solve1(Entity* entA, Entity* entB)
 {
   if (entA->rigidBody != nullptr && entB->rigidBody != nullptr)
   {
-    //LOG << "2 rigidbodys";
     if (entA->rigidBody->isStatic == true && entB->rigidBody->isStatic == false)
     {
       solveStaticDynamic(entA, entB);
@@ -233,23 +253,6 @@ void Collision::solve1(Entity* entA, Entity* entB)
       solveStaticDynamic(entB, entA);
     }
   }
-
-  //for (uint a = 0; a < entA->collisionShapes.size(); a++)
-  //{
-  //  BaseCollisionShape* colA = entA->collisionShapes[a];
-
-  //  for (uint b = 0; b < entB->collisionShapes.size(); b++)
-  //  {
-  //    BaseCollisionShape* colB = entB->collisionShapes[b];
-  //    if (colA->intersects(*colB))
-  //    {
-  //      // LOG << "HAS COLLISION";
-  //      //entA->notifyCollision(*entB);
-  //      //entB->notifyCollision(*entA);
-  //      //return true;
-  //    }
-  //  }
-  //}
 }
 
 glm::vec3 Collision::colliderDesiredPos(Entity* ent, BaseCollisionShape* shape)

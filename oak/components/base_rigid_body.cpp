@@ -19,9 +19,9 @@ void BaseRigidBody::onStart()
   lastPos = entity->position;
 }
 
-void BaseRigidBody::onLateUpdate()
-{
-  desiredNextPos = entity->position;
-  nextPos = desiredNextPos;
-  velocity = desiredNextPos - lastPos;
-}
+//void BaseRigidBody::onResolveFinsihed()
+//{
+//  desiredNextPos = entity->position;
+//  nextPos = desiredNextPos;
+//  velocity = desiredNextPos - lastPos;
+//}
