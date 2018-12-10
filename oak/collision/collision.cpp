@@ -11,9 +11,6 @@ using namespace oak;
 
 bool Collision::checkRectRect(const CollisionRect& a, const CollisionRect& b)
 {
-  LOG << "origin X:" << a.originX() << "," << b.originX() << " Y:" << a.originY() << "," << b.originY();
-  LOG << std::abs(a.originX() - b.originX()) << " < " << (a.width() * 0.5f + b.width() * 0.5f);
-  LOG << std::abs(a.originY() - b.originY()) << " < " << (a.height() * 0.5f + b.height() * 0.5f);
   return (
     std::abs(a.originX() - b.originX()) < (a.width() * 0.5f + b.width() * 0.5f) &&
     std::abs(a.originY() - b.originY()) < (a.height() * 0.5f + b.height() * 0.5f)
@@ -276,9 +273,6 @@ void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
         //both are physical and have collision
         if (dynamicCol->isTrigger == false && dynamicCol->intersects(*staticCol))
         {
-          LOG << "has rect rect collision";
-         // return;
-
           if (dynamicCol->getType() == COLLISION_SHAPE_RECT && staticCol->getType() == COLLISION_SHAPE_RECT)
           {
             CollisionRect* dynamicRect = static_cast<CollisionRect*>(dynamicCol);
@@ -312,14 +306,12 @@ void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
             else
             {
               //difference on y-axis between the top side of dynamic rect and bottom side of static rect
-              diffY = (dynamicRectOrigin.y - (dynamicRect->height() * 0.5f)) - (staticRect->originY() + (staticRect->height() *0.5f));
+              diffY = (dynamicRectOrigin.y + (dynamicRect->height() * 0.5f)) - (staticRect->originY() - (staticRect->height() *0.5f));
             }
 
             //distance of difference
             float depthX = std::abs(diffX);
             float depthY = std::abs(diffY);
-
-            LOG << "depth: " << depthX << "," << depthY;
 
             //use the smallest depth for resolve
             if (depthX < depthY)
