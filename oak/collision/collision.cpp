@@ -262,7 +262,6 @@ void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
   for (uint a = 0; a < staticEnt->collisionShapes.size(); a++)
   {
     BaseCollisionShape* staticCol = staticEnt->collisionShapes[a];
-   
 
     if(staticCol->isTrigger == false)
     {
@@ -273,72 +272,88 @@ void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
         //both are physical and have collision
         if (dynamicCol->isTrigger == false && dynamicCol->intersects(*staticCol))
         {
+          //solve rect rect
           if (dynamicCol->getType() == COLLISION_SHAPE_RECT && staticCol->getType() == COLLISION_SHAPE_RECT)
           {
             CollisionRect* dynamicRect = static_cast<CollisionRect*>(dynamicCol);
             CollisionRect* staticRect = static_cast<CollisionRect*>(staticCol);
 
-            glm::vec3 dynamicRectOrigin = dynamicEnt->rigidBody->nextPos + dynamicCol->offset();
-
-            //find depth of collision on each axis
-            //first check the direction the dynamic rect is in relation to the static rect
-            bool isLeft = dynamicRectOrigin.x < staticRect->originX();
-            bool isUp = dynamicRectOrigin.y > staticRect->originY();
-
-            float diffX;
-            float diffY;
-            if (isLeft)
-            {
-              //difference on x-axis between the right side of dynamic rect and left side of static rect
-              diffX = (dynamicRectOrigin.x + (dynamicRect->width() * 0.5f)) - (staticRect->originX() - (staticRect->width() *0.5f));
-            }
-            else
-            {
-              //difference on x-axis between the left side of dynamic rect and right side of static rect
-              diffX = (dynamicRectOrigin.x - (dynamicRect->width() * 0.5f)) - (staticRect->originX() + (staticRect->width() *0.5f));
-            }
-
-            if (isUp)
-            {
-              //difference on y-axis between the bottom side of dynamic rect and top side of static rect
-              diffY = (dynamicRectOrigin.y - (dynamicRect->height() * 0.5f)) - (staticRect->originY() + (staticRect->height() *0.5f));
-            }
-            else
-            {
-              //difference on y-axis between the top side of dynamic rect and bottom side of static rect
-              diffY = (dynamicRectOrigin.y + (dynamicRect->height() * 0.5f)) - (staticRect->originY() - (staticRect->height() *0.5f));
-            }
-
-            //distance of difference
-            float depthX = std::abs(diffX);
-            float depthY = std::abs(diffY);
-
-            //use the smallest depth for resolve
-            if (depthX < depthY)
-            {
-              if (isLeft)
-              {
-                dynamicEnt->rigidBody->nextPos.x -= depthX;
-              }
-              else
-              {
-                dynamicEnt->rigidBody->nextPos.x += depthX;
-              }
-            }
-            else
-            {
-              if (isUp)
-              {
-                dynamicEnt->rigidBody->nextPos.y += depthY;
-              }
-              else
-              {
-                dynamicEnt->rigidBody->nextPos.y -= depthY;
-              }
-            }
+            solveStaticRectDynamicRect(
+              staticEnt,
+              staticRect,
+              dynamicEnt,
+              dynamicRect
+            );
           }
         }
       }
+    }
+  }
+}
+
+void Collision::solveStaticRectDynamicRect(
+  Entity* staticEnt,
+  CollisionRect* staticRect,
+  Entity* dynamicEnt,
+  CollisionRect* dynamicRect
+)
+{
+  glm::vec3 dynamicRectOrigin = dynamicEnt->rigidBody->nextPos + dynamicRect->offset();
+
+
+  //first check the direction the dynamic rect is in relation to the static rect
+  bool isLeft = dynamicRectOrigin.x < staticRect->originX();
+  bool isUp = dynamicRectOrigin.y > staticRect->originY();
+
+  float diffX;
+  float diffY;
+  if (isLeft)
+  {
+    //difference on x-axis between the right side of dynamic rect and left side of static rect
+    diffX = (dynamicRectOrigin.x + (dynamicRect->width() * 0.5f)) - (staticRect->originX() - (staticRect->width() *0.5f));
+  }
+  else
+  {
+    //difference on x-axis between the left side of dynamic rect and right side of static rect
+    diffX = (dynamicRectOrigin.x - (dynamicRect->width() * 0.5f)) - (staticRect->originX() + (staticRect->width() *0.5f));
+  }
+
+  if (isUp)
+  {
+    //difference on y-axis between the bottom side of dynamic rect and top side of static rect
+    diffY = (dynamicRectOrigin.y - (dynamicRect->height() * 0.5f)) - (staticRect->originY() + (staticRect->height() *0.5f));
+  }
+  else
+  {
+    //difference on y-axis between the top side of dynamic rect and bottom side of static rect
+    diffY = (dynamicRectOrigin.y + (dynamicRect->height() * 0.5f)) - (staticRect->originY() - (staticRect->height() *0.5f));
+  }
+
+  //depth of collision on each axis
+  float depthX = std::abs(diffX);
+  float depthY = std::abs(diffY);
+
+  //use the smallest depth for resolve
+  if (depthX < depthY)
+  {
+    if (isLeft)
+    {
+      dynamicEnt->rigidBody->nextPos.x -= depthX;
+    }
+    else
+    {
+      dynamicEnt->rigidBody->nextPos.x += depthX;
+    }
+  }
+  else
+  {
+    if (isUp)
+    {
+      dynamicEnt->rigidBody->nextPos.y += depthY;
+    }
+    else
+    {
+      dynamicEnt->rigidBody->nextPos.y -= depthY;
     }
   }
 }
