@@ -2,6 +2,7 @@
 #define BASE_COLLISION_SHAPE_H
 
 #include <core/types.h>
+#include <glm/glm.hpp>
 
 ///<summary>The base collision shape</summary>
 namespace oak
@@ -25,9 +26,13 @@ namespace oak
       virtual bool intersectsRect(const CollisionRect& shape) const = 0;
       virtual bool intersectsCircle(const CollisionCircle& shape) const = 0;
 
+      float offsetX() const;
+      float offsetY() const;
+      glm::vec3 offset();
       float originX() const;
       float originY() const;
       uchar getType() const;
+      bool isTrigger = false;
 
       void onDebugDraw() const;
       
@@ -36,11 +41,12 @@ namespace oak
       uchar type;
 
       //collision offset from entity origin
-      float offsetX; ///<summary>X-axis offset from entity position</summary>
-      float offsetY; ///<summary>Y-axis offset from entity position</summary>
+      float m_offsetX; ///<summary>X-axis offset from entity position</summary>
+      float m_offsetY; ///<summary>Y-axis offset from entity position</summary>
       uint VAO, VBO;
       uint textureID;
       Entity* entity;
+      
 
       ///<summary>Initialize the VAO</summary>
       void initVAO(float quadW, float quadH);

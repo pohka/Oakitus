@@ -9,6 +9,7 @@
 #include <debug.h>
 #include <ui/ui.h>
 #include "../ui/action_panel.h"
+#include "../oak/components/rigid_body_2d.h"
 
 using namespace game;
 using namespace oak;
@@ -53,4 +54,10 @@ void MainScene::onLoad()
   auto* comp = new game::ui::ActionPanel();
   comp->offset.x = 10.0f;
   UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
+
+  Entity* wallTest = new Entity();
+  wallTest->addComponent(new Sprite("default.png", 50.0f, 200.0f));
+  wallTest->addCollision(new CollisionRect(0.0f, 0.0f, 50.0f, 200.0f));
+  wallTest->addRigidBody(new RigidBody2D(true));
+  wallTest->instantiate(100.0f, 20.0f);
 }

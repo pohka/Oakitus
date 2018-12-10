@@ -4,6 +4,7 @@
 #include "../abilitys/sword_attack.h"
 #include "../oak/components/sprite_animation.h"
 #include "../oak/components/animator.h"
+#include "../oak/components/rigid_body_2d.h"
 
 using namespace game::prefab;
 using namespace oak;
@@ -80,6 +81,7 @@ UPlayer::UPlayer()
   addAbility(new Shoot());
   addAbility(new SwordAttack());
   addCollision(new CollisionRect(0.0f, -10.0f, 40.0f, 60.0f));
+  addRigidBody(new RigidBody2D(false));
   faction = FACTION_PLAYER;
 }
 

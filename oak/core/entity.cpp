@@ -49,6 +49,13 @@ void Entity::addCollision(BaseCollisionShape* shape)
   collisionShapes.push_back(shape);
 }
 
+void Entity::addRigidBody(BaseRigidBody* rigidBody)
+{
+  rigidBody->entity = this;
+  this->rigidBody = rigidBody;
+  this->components.push_back(rigidBody);
+}
+
 void Entity::instantiate()
 {
   Entity::pendingEntityInstances.push(this);
@@ -128,6 +135,14 @@ void Entity::onUpdate()
   }
 }
 
+void Entity::onLateUpdate()
+{
+  for (uint i = 0; i < components.size(); i++)
+  {
+    components[i]->onLateUpdate();
+  }
+}
+
 
 //static functions
 //----------------------------
@@ -175,6 +190,14 @@ void Entity::updateInstances()
   for (uint i = 0; i < Entity::entitys.size(); i++)
   {
     Entity::entitys[i]->onUpdate();
+  }
+}
+
+void Entity::lateUpdateInstances()
+{
+  for (uint i = 0; i < Entity::entitys.size(); i++)
+  {
+    Entity::entitys[i]->onLateUpdate();
   }
 }
 

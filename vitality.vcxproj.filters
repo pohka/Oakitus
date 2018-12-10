@@ -210,6 +210,12 @@
     <ClCompile Include="oak\collision\collision_rect.cpp">
       <Filter>oak\collision</Filter>
     </ClCompile>
+    <ClCompile Include="oak\components\base_rigid_body.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\components\rigid_body_2d.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -418,6 +424,12 @@
     </ClInclude>
     <ClInclude Include="oak\collision\collision_rect.h">
       <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\base_rigid_body.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\components\rigid_body_2d.h">
+      <Filter>oak\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

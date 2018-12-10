@@ -140,6 +140,8 @@
     <ClCompile Include="oak\collision\collision_circle.cpp" />
     <ClCompile Include="oak\collision\collision_rect.cpp" />
     <ClCompile Include="oak\components\animator.cpp" />
+    <ClCompile Include="oak\components\base_rigid_body.cpp" />
+    <ClCompile Include="oak\components\rigid_body_2d.cpp" />
     <ClCompile Include="oak\components\sprite.cpp" />
     <ClCompile Include="oak\components\sprite_animation.cpp" />
     <ClCompile Include="oak\core\bounds.cpp" />
@@ -196,6 +198,8 @@
     <ClInclude Include="oak\collision\collision_layer.h" />
     <ClInclude Include="oak\collision\collision_rect.h" />
     <ClInclude Include="oak\components\animator.h" />
+    <ClInclude Include="oak\components\base_rigid_body.h" />
+    <ClInclude Include="oak\components\rigid_body_2d.h" />
     <ClInclude Include="oak\components\sprite.h" />
     <ClInclude Include="oak\components\sprite_animation.h" />
     <ClInclude Include="oak\core\bounds.h" />

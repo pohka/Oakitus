@@ -7,8 +7,8 @@ using namespace oak;
 CollisionCircle::CollisionCircle(float radius, float offsetX, float offsetY)
 {
   this->radius = radius;
-  this->offsetX = offsetX;
-  this->offsetY = offsetY;
+  m_offsetX = offsetX;
+  m_offsetY = offsetY;
   type = COLLISION_SHAPE_CIRCLE;
 
   textureID = Resources::getTextureIDBySrc("circle.png");

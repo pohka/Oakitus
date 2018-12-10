@@ -10,6 +10,7 @@
 #include <string>
 #include <queue>
 #include "../collision/collision_layer.h"
+#include "../components/base_rigid_body.h"
 
 namespace oak
 {
@@ -36,6 +37,8 @@ namespace oak
     ///<summary>Calls onUpdate() for all Entitys in the world</summary>
     static void updateInstances(); 
 
+    static void lateUpdateInstances();
+
     ///<summary>Calls onDraw() for all the Entitys in the world</summary>
     static void drawInstances(); 
 
@@ -61,6 +64,7 @@ namespace oak
 	  std::vector<Component*> components; ///<summary>All of the Components added to this Entity</summary>
     std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
 	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
+    BaseRigidBody* rigidBody;
     
 
     public:
@@ -94,6 +98,8 @@ namespace oak
       ///<summary>Adds a CollisionShape to this Entity</summary>
       void addCollision(BaseCollisionShape* shape); 
 
+      void addRigidBody(BaseRigidBody* rigidBody);
+
       ///<summary>Adds this Entity to the world</summary>
       void instantiate();
 
@@ -123,6 +129,8 @@ namespace oak
 
       ///<summary>Called once each frame</summary>
       virtual void onUpdate();
+
+      virtual void onLateUpdate();
 
       ///<summary>Draws all renderable components each frame</summary>
       virtual void onDraw() const;

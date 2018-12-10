@@ -12,8 +12,8 @@ using namespace oak;
 
 CollisionRect::CollisionRect(float offsetX, float offsetY, float width, float height)
 {
-  this->offsetX = offsetX;
-  this->offsetY = offsetY;
+  m_offsetX = offsetX;
+  m_offsetY = offsetY;
   this->w = width;
   this->h = height;
   type = COLLISION_SHAPE_RECT;
@@ -34,22 +34,22 @@ bool CollisionRect::intersectsCircle(const CollisionCircle &shape) const
 
 float CollisionRect::minX() const
 {
-  return this->entity->position.x + offsetX - (w * 0.5f);
+  return this->entity->position.x + m_offsetX - (w * 0.5f);
 }
 
 float CollisionRect::minY() const
 {
-  return this->entity->position.y + offsetY - (h * 0.5f);
+  return this->entity->position.y + m_offsetY - (h * 0.5f);
 }
 
 float CollisionRect::maxX() const
 {
-  return this->entity->position.x + offsetX + (w * 0.5f);
+  return this->entity->position.x + m_offsetX + (w * 0.5f);
 }
 
 float CollisionRect::maxY() const
 {
-  return this->entity->position.y + offsetY + (h * 0.5f);
+  return this->entity->position.y + m_offsetY + (h * 0.5f);
 }
 
 float CollisionRect::width() const
