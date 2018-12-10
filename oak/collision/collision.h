@@ -50,6 +50,13 @@ namespace oak
       CollisionRect* dynamicRect
     );
 
+    static void solveStaticCircleDynamicRect(
+      Entity* staticEnt,
+      CollisionCircle* staticCircle,
+      Entity* dynamicEnt,
+      CollisionRect* dynamicRect
+    );
+
     static glm::vec3 colliderDesiredPos(Entity* ent, BaseCollisionShape* shape);
 
     //helper function to check the side of a rect overlaps with a circle

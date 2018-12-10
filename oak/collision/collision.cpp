@@ -272,18 +272,36 @@ void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
         //both are physical and have collision
         if (dynamicCol->isTrigger == false && dynamicCol->intersects(*staticCol))
         {
-          //solve rect rect
-          if (dynamicCol->getType() == COLLISION_SHAPE_RECT && staticCol->getType() == COLLISION_SHAPE_RECT)
+          
+          if (dynamicCol->getType() == COLLISION_SHAPE_RECT)
           {
             CollisionRect* dynamicRect = static_cast<CollisionRect*>(dynamicCol);
-            CollisionRect* staticRect = static_cast<CollisionRect*>(staticCol);
 
-            solveStaticRectDynamicRect(
-              staticEnt,
-              staticRect,
-              dynamicEnt,
-              dynamicRect
-            );
+            //solve rect rect
+            if (staticCol->getType() == COLLISION_SHAPE_RECT)
+            {
+              CollisionRect* staticRect = static_cast<CollisionRect*>(staticCol);
+
+              solveStaticRectDynamicRect(
+                staticEnt,
+                staticRect,
+                dynamicEnt,
+                dynamicRect
+              );
+            }
+
+            //solve rect circle
+            else if (staticCol->getType() == COLLISION_SHAPE_CIRCLE)
+            {
+              CollisionCircle* staticCircle = static_cast<CollisionCircle*>(staticCol);
+
+              solveStaticCircleDynamicRect(
+                staticEnt,
+                staticCircle,
+                dynamicEnt,
+                dynamicRect
+              );
+            }
           }
         }
       }
@@ -356,4 +374,14 @@ void Collision::solveStaticRectDynamicRect(
       dynamicEnt->rigidBody->nextPos.y -= depthY;
     }
   }
+}
+
+void Collision::solveStaticCircleDynamicRect(
+  Entity* staticEnt,
+  CollisionCircle* staticCircle,
+  Entity* dynamicEnt,
+  CollisionRect* dynamicRect
+)
+{
+  //bob do something!
 }
