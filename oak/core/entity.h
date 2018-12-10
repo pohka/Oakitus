@@ -9,7 +9,7 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <queue>
-#include "../components/collision_layer.h"
+#include "../collision/collision_layer.h"
 
 namespace oak
 {

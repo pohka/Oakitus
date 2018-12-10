@@ -52,6 +52,9 @@
     <Filter Include="game\ui">
       <UniqueIdentifier>{3706d1cc-017c-4603-bab5-74ef7847aa44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\collision">
+      <UniqueIdentifier>{db25475d-2e59-442f-80ae-e7a34ee52639}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -156,18 +159,6 @@
     <ClCompile Include="oak\components\sprite.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
-    <ClCompile Include="oak\components\collision_rect.cpp">
-      <Filter>oak\components</Filter>
-    </ClCompile>
-    <ClCompile Include="oak\components\collision_circle.cpp">
-      <Filter>oak\components</Filter>
-    </ClCompile>
-    <ClCompile Include="oak\components\collision.cpp">
-      <Filter>oak\components</Filter>
-    </ClCompile>
-    <ClCompile Include="oak\components\base_collision_shape.cpp">
-      <Filter>oak\components</Filter>
-    </ClCompile>
     <ClCompile Include="oak\components\sprite_animation.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
@@ -206,6 +197,18 @@
     </ClCompile>
     <ClCompile Include="oak\ui\localization.cpp">
       <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\collision\base_collision_shape.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\collision\collision.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\collision\collision_circle.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\collision\collision_rect.cpp">
+      <Filter>oak\collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,21 +329,6 @@
     <ClInclude Include="oak\components\sprite.h">
       <Filter>oak\components</Filter>
     </ClInclude>
-    <ClInclude Include="oak\components\collision_circle.h">
-      <Filter>oak\components</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\components\collision_rect.h">
-      <Filter>oak\components</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\components\collision.h">
-      <Filter>oak\components</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\components\base_collision_shape.h">
-      <Filter>oak\components</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\components\collision_layer.h">
-      <Filter>oak\components</Filter>
-    </ClInclude>
     <ClInclude Include="oak\components\sprite_animation.h">
       <Filter>oak\components</Filter>
     </ClInclude>
@@ -415,6 +403,21 @@
     </ClInclude>
     <ClInclude Include="oak\ui\localization.h">
       <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\collision\base_collision_shape.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\collision\collision.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\collision\collision_circle.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\collision\collision_layer.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\collision\collision_rect.h">
+      <Filter>oak\collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
