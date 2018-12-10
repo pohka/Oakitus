@@ -18,10 +18,3 @@ void BaseRigidBody::onStart()
 {
   lastPos = entity->position;
 }
-
-//void BaseRigidBody::onResolveFinsihed()
-//{
-//  desiredNextPos = entity->position;
-//  nextPos = desiredNextPos;
-//  velocity = desiredNextPos - lastPos;
-//}
