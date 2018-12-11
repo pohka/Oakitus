@@ -303,6 +303,28 @@ void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
               );
             }
           }
+          else if (dynamicCol->getType() == COLLISION_SHAPE_CIRCLE)
+          {
+            CollisionCircle* dynamicCircle = static_cast<CollisionCircle*>(dynamicCol);
+
+            //solve circle rect
+            if (staticCol->getType() == COLLISION_SHAPE_RECT)
+            {
+              CollisionRect* staticRect = static_cast<CollisionRect*>(staticCol);
+              //todo
+            }
+            //solve circle rect
+            else if (staticCol->getType() == COLLISION_SHAPE_CIRCLE)
+            {
+              CollisionCircle* staticCircle = static_cast<CollisionCircle*>(staticCol);
+              solveStaticCricleDynamicCircle(
+                staticEnt,
+                staticCircle,
+                dynamicEnt,
+                dynamicCircle
+              );
+            }
+          }
         }
       }
     }
@@ -501,4 +523,26 @@ void Collision::solveStaticCircleDynamicRect(
       }
     }
   }
+}
+
+void Collision::solveStaticCricleDynamicCircle(
+  Entity* staticEnt,
+  CollisionCircle* staticCircle,
+  Entity* dynamicEnt,
+  CollisionCircle* dynamicCircle
+)
+{
+  glm::vec3 direction = glm::normalize((dynamicEnt->rigidBody->nextPos + dynamicCircle->offset()) - glm::vec3(staticCircle->originX(), staticCircle->originY(), 0.0f));
+  float minDist = staticCircle->getRadius() + dynamicCircle->getRadius();
+  dynamicEnt->rigidBody->nextPos = staticEnt->position + staticCircle->offset() - dynamicCircle->offset() + (direction * minDist);
+}
+
+void Collision::solveStaticRectDynamicCircle(
+  Entity* staticEnt,
+  CollisionRect* staticRect,
+  Entity* dynamicEnt,
+  CollisionCircle* dynamicCircle
+)
+{
+  
 }

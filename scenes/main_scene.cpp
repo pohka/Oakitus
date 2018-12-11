@@ -10,6 +10,7 @@
 #include <ui/ui.h>
 #include "../ui/action_panel.h"
 #include "../oak/components/rigid_body_2d.h"
+#include "../prefabs/wall_test.h"
 
 using namespace game;
 using namespace oak;
@@ -55,15 +56,16 @@ void MainScene::onLoad()
   comp->offset.x = 10.0f;
   UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
 
-  Entity* wallTest = new Entity();
-  wallTest->addComponent(new Sprite("default.png", 50.0f, 200.0f));
-  wallTest->addCollision(new CollisionRect(0.0f, 0.0f, 50.0f, 200.0f));
-  wallTest->addRigidBody(new RigidBody2D(true));
-  wallTest->instantiate(100.0f, 20.0f);
+  auto* wall1 = new WallTest(50.0f, 200.0f);
+  wall1->instantiate(100.0f, 0.0f);
 
+  auto* wall3 = new WallTest(100.0f, 200.0f);
+  wall3->instantiate(100.0f, 200.0f);
+
+  float radius = 40.0f;
   Entity* wallTest2 = new Entity();
-  wallTest2->addComponent(new Sprite("face.png", 40.0f, 40.0f));
-  wallTest2->addCollision(new CollisionCircle(20.0f, 0.0f, 0.0f));
+  wallTest2->addComponent(new Sprite("face.png", radius*2.0f, radius*2.0f));
+  wallTest2->addCollision(new CollisionCircle(radius, 0.0f, 0.0f));
   wallTest2->addRigidBody(new RigidBody2D(true));
   wallTest2->instantiate(-100.0f, -20.0f);
 }

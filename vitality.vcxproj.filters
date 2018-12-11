@@ -216,6 +216,9 @@
     <ClCompile Include="oak\components\rigid_body_2d.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
+    <ClCompile Include="prefabs\wall_test.cpp">
+      <Filter>game\prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -430,6 +433,9 @@
     </ClInclude>
     <ClInclude Include="oak\components\rigid_body_2d.h">
       <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="prefabs\wall_test.h">
+      <Filter>game\prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
