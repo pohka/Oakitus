@@ -60,4 +60,10 @@ void MainScene::onLoad()
   wallTest->addCollision(new CollisionRect(0.0f, 0.0f, 50.0f, 200.0f));
   wallTest->addRigidBody(new RigidBody2D(true));
   wallTest->instantiate(100.0f, 20.0f);
+
+  Entity* wallTest2 = new Entity();
+  wallTest2->addComponent(new Sprite("face.png", 40.0f, 40.0f));
+  wallTest2->addCollision(new CollisionCircle(20.0f, 0.0f, 0.0f));
+  wallTest2->addRigidBody(new RigidBody2D(true));
+  wallTest2->instantiate(-100.0f, -20.0f);
 }

@@ -383,5 +383,160 @@ void Collision::solveStaticCircleDynamicRect(
   CollisionRect* dynamicRect
 )
 {
-  //bob do something!
+  glm::vec3 dynamicRectOrigin = dynamicEnt->rigidBody->nextPos + dynamicRect->offset();
+
+
+  //first check the direction the dynamic rect is in relation to the static rect
+  bool isLeft = dynamicRectOrigin.x < staticCircle->originX();
+  bool isUp = dynamicRectOrigin.y > staticCircle->originY();
+
+  //difference bewteen rect side and origin or circle
+  float rectX;
+  float rectY;
+
+  //float depthX;
+  //float depthY;
+
+  //if (isLeft)
+  //{
+  //  rectX = dynamicRectOrigin.x + (dynamicRect->width() * 0.5f) - staticCircle->originX(); //negative value
+  //  if (rectX > 0.0f)
+  //  {
+  //    depthX = staticCircle->getRadius();
+  //  }
+  //  else
+  //  {
+  //    float y = std::abs(std::sqrt((rectX*rectX) - (staticCircle->getRadius() * staticCircle->getRadius())));
+
+  //    //is left up
+  //    if (isUp)
+  //    {
+  //      rectY = std::abs(dynamicRectOrigin.y - (dynamicRect->height() * 0.5f) - staticCircle->originY());
+  //      depthY = y - rectY;
+  //      float x = std::abs(std::sqrt((rectY*rectY) - (staticCircle->getRadius() * staticCircle->getRadius())));
+  //      depthX = x - rectX;
+  //    }
+  //    //is left down
+  //    else
+  //    {
+  //      rectY = std::abs(dynamicRectOrigin.y + (dynamicRect->height() * 0.5f) - staticCircle->originY());
+  //      depthY = y - rectY;
+
+  //      float x = std::abs(std::sqrt((rectY*rectY) - (staticCircle->getRadius() * staticCircle->getRadius())));
+  //      depthX = x - rectX;
+  //    }
+  //  }
+  //}
+  ////isRight
+  //else
+  //{
+  //  rectX = dynamicRectOrigin.x - (dynamicRect->width() * 0.5f) - staticCircle->originX(); //positive
+  //  if (rectX < 0.0f)
+  //  {
+  //    depthX = staticCircle->getRadius();
+  //  }
+  //  else
+  //  {
+  //    float y = std::sqrt((rectX*rectX) - (staticCircle->getRadius() * staticCircle->getRadius()));
+  //    //right up
+  //    if (isUp)
+  //    {
+  //      rectY = std::abs(dynamicRectOrigin.y - (dynamicRect->height() * 0.5f) - staticCircle->originY());
+  //      depthY = y - rectY;
+  //      float x = std::sqrt((rectY*rectY) - (staticCircle->getRadius() * staticCircle->getRadius()));
+  //      depthX = x - rectX;
+  //    }
+  //    //right down
+  //    else
+  //    {
+  //      rectY = std::abs(dynamicRectOrigin.y + (dynamicRect->height() * 0.5f) - staticCircle->originY());
+  //      depthY = y - rectY;
+  //      float x = std::abs(std::sqrt((rectY*rectY) - (staticCircle->getRadius() * staticCircle->getRadius())));
+  //      depthX = x - rectX;
+  //    }
+  //  }
+  //}
+
+  //set rectX rectY
+  if (isLeft)
+  {
+    rectX = std::abs(dynamicRectOrigin.x + (dynamicRect->width() * 0.5f) - staticCircle->originX());
+  }
+  else
+  {
+    rectX = std::abs(dynamicRectOrigin.x - (dynamicRect->width() * 0.5f) - staticCircle->originX());
+  }
+
+  if (isUp)
+  {
+    rectY = std::abs(dynamicRectOrigin.y - (dynamicRect->height() * 0.5f) - staticCircle->originY());
+  }
+  else
+  {
+    rectY = std::abs(dynamicRectOrigin.y + (dynamicRect->height() * 0.5f) - staticCircle->originY());
+  }
+   
+
+  float x = ((rectY*rectY) - (staticCircle->getRadius() * staticCircle->getRadius()));
+  float y = ((rectX*rectX) - (staticCircle->getRadius() * staticCircle->getRadius()));
+  
+
+  x = std::sqrtf(std::abs(x));
+  y = std::sqrtf(std::abs(y));
+
+  float depthY = std::abs(y - rectY);
+  float depthX = std::abs(x - rectX);
+
+  LOG << "max" << x << "," << y;
+  LOG << "rect" << rectX << "," << rectY;
+  LOG << "depth:" << depthX << "," << depthY;
+
+  if (depthX < depthY)
+  {
+    if (isLeft)
+    {
+      dynamicEnt->rigidBody->nextPos.x -= depthX;
+    }
+    else
+    {
+      dynamicEnt->rigidBody->nextPos.x += depthX;
+    }
+  }
+  else
+  {
+    if (isUp)
+    {
+      dynamicEnt->rigidBody->nextPos.y += depthY;
+    }
+    else
+    {
+      dynamicEnt->rigidBody->nextPos.y -= depthY;
+    }
+  }
+
+
+  //if (diffX < diffY)
+  //{
+  //  if (isLeft)
+  //  {
+  //    dynamicEnt->rigidBody->nextPos.x -= diffX;
+  //  }
+  //  else
+  //  {
+  //    dynamicEnt->rigidBody->nextPos.x += diffX;
+  //  }
+  //}
+  //else
+  //{
+  //  if (isUp)
+  //  {
+  //    dynamicEnt->rigidBody->nextPos.y += diffY;
+  //  }
+  //  else
+  //  {
+  //    dynamicEnt->rigidBody->nextPos.y -= diffY;
+  //  }
+  //}
+
+  
 }
