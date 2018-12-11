@@ -376,6 +376,11 @@ void Collision::solveStaticRectDynamicRect(
   }
 }
 
+//2 cases
+//corner case: 
+// find depth of collision on single corner and solve by axis wtih the smallest depth
+//side case:
+// find side rect is on and solve by setting the rect colliding side to touch radius of the circle on that axis
 void Collision::solveStaticCircleDynamicRect(
   Entity* staticEnt,
   CollisionCircle* staticCircle,
@@ -385,24 +390,12 @@ void Collision::solveStaticCircleDynamicRect(
 {
   glm::vec3 dynamicRectOrigin = dynamicEnt->rigidBody->nextPos + dynamicRect->offset();
 
-
   //first check the direction the dynamic rect is in relation to the static rect
   bool isLastLeft = dynamicEnt->rigidBody->lastPos.x + dynamicRect->offsetX() < staticCircle->originX();
   bool isLastUp = dynamicEnt->rigidBody->lastPos.y + dynamicRect->offsetY() < staticCircle->originY();
 
-  //bool isLeft = dynamicEnt->rigidBody->nextPos.x < staticCircle->originX();
-  //bool isUp = dynamicEnt->rigidBody->nextPos.y > staticCircle->originY();
-
-  bool isNextLeft = dynamicEnt->rigidBody->nextPos.x + dynamicRect->offsetX() < staticCircle->originX();
-  bool isNextUp = dynamicEnt->rigidBody->nextPos.y + dynamicRect->offsetY() > staticCircle->originY();
-
-
-  //difference bewteen rect side and origin or circle
-  float rectX;
-  float rectY;
-  float depthX, depthY;
-  float x, y;
-
+  
+  //half rect size
   float rectHalfW = dynamicRect->width() * 0.5f;
   float rectHalfH = dynamicRect->height() * 0.5f;
 
@@ -416,68 +409,75 @@ void Collision::solveStaticCircleDynamicRect(
     dynamicRectOrigin.y - rectHalfH < staticCircle->originY()
   );
 
-  if (isSideCaseX || isSideCaseY)
+  //side case on top or bottom of circle
+  if (isSideCaseX)
   {
-    LOG << "SIDE CASE";
-    if (isSideCaseX)
+    if (isLastUp)
     {
-      if (isLastUp)
-      {
-        dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() - staticCircle->getRadius() - rectHalfH;
-      }
-      else
-      {
-        dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() + staticCircle->getRadius() + rectHalfH;
-      }
+      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() - staticCircle->getRadius() - rectHalfH;
     }
-    else if (isSideCaseY)
+    else
     {
-      if (isLastLeft)
-      {
-        dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() - staticCircle->getRadius() - rectHalfW;
-      }
-      else
-      {
-        dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() + staticCircle->getRadius() + rectHalfW;
-      }
+      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() + staticCircle->getRadius() + rectHalfH;
     }
   }
+  //side case on left or right of circle
+  else if (isSideCaseY)
+  {
+    if (isLastLeft)
+    {
+      dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() - staticCircle->getRadius() - rectHalfW;
+    }
+    else
+    {
+      dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() + staticCircle->getRadius() + rectHalfW;
+    }
+  }
+  //corner case
   else
   {
-    LOG << "NOT SIDE CASE";
+    //rect side for next pos
+    bool isNextLeft = dynamicEnt->rigidBody->nextPos.x + dynamicRect->offsetX() < staticCircle->originX();
+    bool isNextUp = dynamicEnt->rigidBody->nextPos.y + dynamicRect->offsetY() > staticCircle->originY();
+
+    //difference bewteen rect side and origin of circle, for each axis
+    float rectX, rectY;
 
     if (isNextLeft)
     {
       rectX = dynamicRectOrigin.x + rectHalfW - staticCircle->originX();
-      rectX = std::abs(rectX);
     }
     else
     {
       rectX = dynamicRectOrigin.x - rectHalfW - staticCircle->originX();
-      rectX = std::abs(rectX);
     }
 
     if (isNextUp)
     {
       rectY = dynamicRectOrigin.y - rectHalfH - staticCircle->originY();
-      rectY = std::abs(rectY);
     }
     else
     {
       rectY = dynamicRectOrigin.y + rectHalfH - staticCircle->originY();
-      rectY = std::abs(rectY);
     }
 
-    x = ((rectY*rectY) - (staticCircle->getRadius() * staticCircle->getRadius()));
-    y = ((rectX*rectX) - (staticCircle->getRadius() * staticCircle->getRadius()));
+    rectX = std::abs(rectX);
+    rectY = std::abs(rectY);
+
+    //distance from circle origin to circle intersection, for each axis
+    //using pythagoras therom
+    float intersectDistX = ((rectY*rectY) - (staticCircle->getRadius() * staticCircle->getRadius()));
+    float intersectDistY = ((rectX*rectX) - (staticCircle->getRadius() * staticCircle->getRadius()));
 
 
-    x = std::sqrtf(std::abs(x));
-    y = std::sqrtf(std::abs(y));
+    intersectDistX = std::sqrtf(std::abs(intersectDistX));
+    intersectDistY = std::sqrtf(std::abs(intersectDistY));
 
-    depthY = std::abs(y - rectY);
-    depthX = std::abs(x - rectX);
-
+    //depth of collision for each axis
+    float depthX = std::abs(intersectDistX - rectX);
+    float depthY = std::abs(intersectDistY - rectY);
+    
+    //solve by the smallest depth
     if (depthX < depthY)
     {
       if (isNextLeft)
@@ -501,141 +501,4 @@ void Collision::solveStaticCircleDynamicRect(
       }
     }
   }
-
-  return;
-
-  ////set rectX rectY
-  //if (isLastLeft)
-  //{
-  //  rectX = dynamicRectOrigin.x + (dynamicRect->width() * 0.5f) - staticCircle->originX();
-  //  if (rectX <= 0.0f)
-  //  {
-  //   //// depthX = std::abs(rectX) + staticCircle->getRadius();
-  //   // depthY = staticCircle->getRadius();
-
-  //   // 
-  //   // if (isUp)
-  //   // {
-  //   //   float ypos = staticCircle->originY() + staticCircle->getRadius() + (dynamicRect->height()*0.5f);
-  //   //   dynamicEnt->rigidBody->nextPos.y = ypos;
-  //   // }
-  //   // else
-  //   // {
-  //   //   float ypos = staticCircle->originY() - staticCircle->getRadius() - (dynamicRect->height()*0.5f);
-  //   //   dynamicEnt->rigidBody->nextPos.y = depthY;
-  //   // }
-  //    return;
-  //  }
-  //  else
-  //  {
-  //    rectX = std::abs(rectX);
-  //  }
-  //}
-  //else
-  //{
-  //  //here
-  //  rectX = dynamicRectOrigin.x - (dynamicRect->width() * 0.5f) - staticCircle->originX();
-  //  if (rectX >= 0.0f)
-  //  {
-  //  //  depthX = std::abs(rectX) + staticCircle->getRadius();
-  //  /*  depthY = staticCircle->getRadius();
-  //    if (isUp)
-  //    {
-  //      float ypos = staticCircle->originY() + staticCircle->getRadius() + (dynamicRect->height()*0.5f);
-  //      dynamicEnt->rigidBody->nextPos.y = ypos;
-  //    }
-  //    else
-  //    {
-  //      float ypos = staticCircle->originY() - staticCircle->getRadius() - (dynamicRect->height()*0.5f);
-  //      dynamicEnt->rigidBody->nextPos.y = depthY;
-  //    }*/
-  //    return;
-  //  }
-  //  else
-  //  {
-  //    rectX = std::abs(rectX);
-  //  }
-  //}
-
-  //if (isLastUp)
-  //{
-  //  rectY = dynamicRectOrigin.y - (dynamicRect->height() * 0.5f) - staticCircle->originY();
-  //  if (rectY <= 0.0f)
-  //  {
-  //    ////depthY = std::abs(rectY) + staticCircle->getRadius();
-  //    //depthX = staticCircle->getRadius();
-  //    //if (isLeft)
-  //    //{
-  //    //  float xpos = staticCircle->originX() - staticCircle->getRadius() - (dynamicRect->width()*0.5f);
-  //    //  dynamicEnt->rigidBody->nextPos.x = xpos;
-  //    //}
-  //    //else
-  //    //{
-  //    //  float xpos = staticCircle->originX() + staticCircle->getRadius() + (dynamicRect->width()*0.5f);
-  //    //  dynamicEnt->rigidBody->nextPos.x = xpos;
-  //    //}
-  //    return;
-  //  }
-  //  else
-  //  {
-  //    rectY = std::abs(rectY);
-  //  }
-  //}
-  //else
-  //{
-  //  rectY = dynamicRectOrigin.y + (dynamicRect->height() * 0.5f) - staticCircle->originY();
-  //  if (rectY >= 0.0f)
-  //  {
-  //    //depthY = std::abs(rectY) + staticCircle->getRadius();
-  //    /*depthX = staticCircle->getRadius();
-  //    if (isLeft)
-  //    {
-  //      dynamicEnt->rigidBody->nextPos.x -= depthX;
-  //    }
-  //    else
-  //    {
-  //      dynamicEnt->rigidBody->nextPos.x += depthX;
-  //    }*/
-  //    return;
-  //  }
-  //  else
-  //  {
-  //    rectY = std::abs(rectY);
-  //  }
-  //}
-
-  //x = ((rectY*rectY) - (staticCircle->getRadius() * staticCircle->getRadius()));
-  //y = ((rectX*rectX) - (staticCircle->getRadius() * staticCircle->getRadius()));
-
-
-  //x = std::sqrtf(std::abs(x));
-  //y = std::sqrtf(std::abs(y));
-
-  //depthY = std::abs(y - rectY);
-  //depthX = std::abs(x - rectX);
-
-  //LOG << "depth:" << depthX << "," << depthY;
-
-  //if (depthX < depthY)
-  //{
-  //  if (isLastLeft)
-  //  {
-  //    dynamicEnt->rigidBody->nextPos.x -= depthX;
-  //  }
-  //  else
-  //  {
-  //    dynamicEnt->rigidBody->nextPos.x += depthX;
-  //  }
-  //}
-  //else
-  //{
-  //  if (isLastUp)
-  //  {
-  //    dynamicEnt->rigidBody->nextPos.y += depthY;
-  //  }
-  //  else
-  //  {
-  //    dynamicEnt->rigidBody->nextPos.y -= depthY;
-  //  }
-  //}
 }
