@@ -409,31 +409,31 @@ void Collision::solveStaticCircleDynamicRect(
     dynamicRectOrigin.y - rectHalfH < staticCircle->originY()
   );
 
-  //side case on top or bottom of circle
+  //SIDE CASE: on top or bottom of circle
   if (isSideCaseX)
   {
     if (isLastUp)
     {
-      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() - staticCircle->getRadius() - rectHalfH;
+      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() - staticCircle->getRadius() - rectHalfH - dynamicRect->offsetY();
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() + staticCircle->getRadius() + rectHalfH;
+      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() + staticCircle->getRadius() + rectHalfH - dynamicRect->offsetY();
     }
   }
-  //side case on left or right of circle
+  //SIDE CASE: on left or right of circle
   else if (isSideCaseY)
   {
     if (isLastLeft)
     {
-      dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() - staticCircle->getRadius() - rectHalfW;
+      dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() - staticCircle->getRadius() - rectHalfW - dynamicRect->offsetX();
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() + staticCircle->getRadius() + rectHalfW;
+      dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() + staticCircle->getRadius() + rectHalfW - dynamicRect->offsetX();
     }
   }
-  //corner case
+  //CORNER CASE
   else
   {
     //rect side for next pos

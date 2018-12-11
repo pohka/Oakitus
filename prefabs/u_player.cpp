@@ -80,7 +80,7 @@ UPlayer::UPlayer()
 
   addAbility(new Shoot());
   addAbility(new SwordAttack());
-  addCollision(new CollisionRect(0.0f, 0.0f, 40.0f, 60.0f));
+  addCollision(new CollisionRect(20.0f, -10.0f, 40.0f, 60.0f));
   addRigidBody(new RigidBody2D(false));
   faction = FACTION_PLAYER;
 }
