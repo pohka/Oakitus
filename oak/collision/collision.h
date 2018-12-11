@@ -78,6 +78,8 @@ namespace oak
       const CollisionRect& rect,
       const CollisionCircle& circle
     );
+
+    static void checkEntEntTrigger(Entity* entA, Entity* entB);
   };
 }
 #endif

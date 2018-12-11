@@ -171,13 +171,12 @@ bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
   for (uint a = 0; a < entA->collisionShapes.size(); a++)
   {
     BaseCollisionShape* colA = entA->collisionShapes[a];
-
     for (uint b = 0; b < entB->collisionShapes.size(); b++)
     {
       BaseCollisionShape* colB = entB->collisionShapes[b];
       if (colA->intersects(*colB))
       {
-       // LOG << "HAS COLLISION";
+        // LOG << "HAS COLLISION";
         entA->notifyCollision(*entB);
         entB->notifyCollision(*entA);
         return true;
@@ -187,6 +186,37 @@ bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
   return false;
 }
 
+void Collision::checkEntEntTrigger(Entity* entA, Entity* entB)
+{
+  for (uint a = 0; a < entA->collisionShapes.size(); a++)
+  {
+    BaseCollisionShape* colA = entA->collisionShapes[a];
+    for (uint b = 0; b < entB->collisionShapes.size(); b++)
+    {
+      BaseCollisionShape* colB = entB->collisionShapes[b];
+      //overlap fround
+      if (colA->intersects(*colB))
+      {
+       // if (colA->isTrigger)
+        //{
+          entA->notifyCollision(*entB);
+        //}
+        //else
+        //{
+          entB->notifyCollision(*entA);
+        //}
+        return; //only trigger once
+      }
+    }
+  }
+}
+
+//update rigidbodys to current entity position
+//dynamic dynamic solve
+//dynamic static solve
+//set rigidbody last position to solved position
+//set entity position to the solved postion
+//check triggers
 void Collision::resolveCollisions()
 {
   //pointers to increase readablity of loops
@@ -212,13 +242,6 @@ void Collision::resolveCollisions()
   {
     for (uint b = a + 1; b < Entity::entitys.size(); b++)
     {
-      //dynamic dynamic 
-      //dynamic static
-      //set next postion
-      //set last position
-      //check triggers
-
-      //checkEntEntCollision(Entity::entitys[a], Entity::entitys[b]);
       solve1(Entity::entitys[a], Entity::entitys[b]);
     }
   }
@@ -235,10 +258,20 @@ void Collision::resolveCollisions()
       ent->position = Entity::entitys[i]->rigidBody->nextPos;
     }
   }
+
+  //check triggers
+  for (uint a = 0; a < Entity::entitys.size() - 1; a++)
+  {
+    for (uint b = a + 1; b < Entity::entitys.size(); b++)
+    {
+      checkEntEntTrigger(Entity::entitys[a], Entity::entitys[b]);
+    }
+  }
 }
 
 void Collision::solve1(Entity* entA, Entity* entB)
 {
+  //static x dynamic
   if (entA->rigidBody != nullptr && entB->rigidBody != nullptr)
   {
     if (entA->rigidBody->isStatic == true && entB->rigidBody->isStatic == false)
@@ -250,6 +283,8 @@ void Collision::solve1(Entity* entA, Entity* entB)
       solveStaticDynamic(entB, entA);
     }
   }
+
+  //todo: dynamic x dynamic
 }
 
 glm::vec3 Collision::colliderDesiredPos(Entity* ent, BaseCollisionShape* shape)
