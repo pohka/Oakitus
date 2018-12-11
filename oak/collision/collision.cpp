@@ -311,7 +311,13 @@ void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
             if (staticCol->getType() == COLLISION_SHAPE_RECT)
             {
               CollisionRect* staticRect = static_cast<CollisionRect*>(staticCol);
-              //todo
+              
+              solveStaticRectDynamicCircle(
+                staticEnt,
+                staticRect,
+                dynamicEnt,
+                dynamicCircle
+              );
             }
             //solve circle rect
             else if (staticCol->getType() == COLLISION_SHAPE_CIRCLE)
@@ -414,7 +420,7 @@ void Collision::solveStaticCircleDynamicRect(
 
   //first check the direction the dynamic rect is in relation to the static rect
   bool isLastLeft = dynamicEnt->rigidBody->lastPos.x + dynamicRect->offsetX() < staticCircle->originX();
-  bool isLastUp = dynamicEnt->rigidBody->lastPos.y + dynamicRect->offsetY() < staticCircle->originY();
+  bool isLastUp = dynamicEnt->rigidBody->lastPos.y + dynamicRect->offsetY() < staticCircle->originY(); //should be >
 
   
   //half rect size
@@ -544,5 +550,118 @@ void Collision::solveStaticRectDynamicCircle(
   CollisionCircle* dynamicCircle
 )
 {
-  
+  glm::vec3 dynamicCircleOrigin = dynamicEnt->rigidBody->nextPos + dynamicCircle->offset();
+
+  //first check the direction the dynamic circle is in relation to the static rect
+  bool isLastLeft = dynamicEnt->rigidBody->lastPos.x + dynamicCircle->offsetX() < staticRect->originX();
+  bool isLastUp = dynamicEnt->rigidBody->lastPos.y + dynamicCircle->offsetY() > staticRect->originY();
+
+
+  //half rect size
+  float rectHalfW = staticRect->width() * 0.5f;
+  float rectHalfH = staticRect->height() * 0.5f;
+
+  bool isSideCaseX = (
+    dynamicCircleOrigin.x < staticRect->originX() + rectHalfW &&
+    dynamicCircleOrigin.x > staticRect->originX() - rectHalfW
+  );
+
+  bool isSideCaseY = (
+    dynamicCircleOrigin.y < staticRect->originY() + rectHalfH &&
+    dynamicCircleOrigin.y > staticRect->originY() - rectHalfH
+  );
+
+  //SIDE CASE: circle on top or bottom side of rect
+  if (isSideCaseX)
+  {
+    if (isLastUp)
+    {
+      dynamicEnt->rigidBody->nextPos.y = staticRect->originY() + rectHalfH + dynamicCircle->getRadius() - dynamicCircle->offsetY();
+    }
+    else
+    {
+      dynamicEnt->rigidBody->nextPos.y = staticRect->originY() - rectHalfH - dynamicCircle->getRadius() - dynamicCircle->offsetY();
+    }
+  }
+  //SIDE CASE: circle on left or right side of rect
+  else if (isSideCaseY)
+  {
+    if (isLastLeft)
+    {
+      dynamicEnt->rigidBody->nextPos.x = staticRect->originX() - rectHalfW - dynamicCircle->getRadius() - dynamicCircle->offsetX();
+    }
+    else
+    {
+      dynamicEnt->rigidBody->nextPos.x = staticRect->originX() + rectHalfW + dynamicCircle->getRadius() - dynamicCircle->offsetX();
+    }
+  }
+
+  //CORNER CASE
+  else
+  {
+    //circle side for next position
+    bool isNextLeft = dynamicEnt->rigidBody->nextPos.x + dynamicCircle->offsetX() < staticRect->originX();
+    bool isNextUp = dynamicEnt->rigidBody->nextPos.y + dynamicCircle->offsetY() > staticRect->originY();
+
+    //difference bewteen rect side and origin of circle, for each axis
+    float rectX, rectY;
+    
+    if (isNextLeft)
+    {
+      rectX = staticRect->originX() - rectHalfW - dynamicCircleOrigin.x;
+    }
+    else
+    {
+      rectX = staticRect->originX() + rectHalfW - dynamicCircleOrigin.x;
+    }
+
+    if (isNextUp)
+    {
+      rectY = staticRect->originY() + rectHalfH - dynamicCircleOrigin.y;
+    }
+    else
+    {
+      rectY = staticRect->originY() - rectHalfH - dynamicCircleOrigin.y;
+    }
+
+    rectX = std::abs(rectX);
+    rectY = std::abs(rectY);
+
+    //distance from circle origin to circle intersection, for each axis
+    //using pythagoras therom
+    float intersectDistX = ((rectY*rectY) - (dynamicCircle->getRadius() * dynamicCircle->getRadius()));
+    float intersectDistY = ((rectX*rectX) - (dynamicCircle->getRadius() * dynamicCircle->getRadius()));
+
+
+    intersectDistX = std::sqrtf(std::abs(intersectDistX));
+    intersectDistY = std::sqrtf(std::abs(intersectDistY));
+
+    //depth of collision for each axis
+    float depthX = std::abs(intersectDistX - rectX);
+    float depthY = std::abs(intersectDistY - rectY);
+
+    //solve by the smallest depth
+    if (depthX < depthY)
+    {
+      if (isNextLeft)
+      {
+        dynamicEnt->rigidBody->nextPos.x -= depthX;
+      }
+      else
+      {
+        dynamicEnt->rigidBody->nextPos.x += depthX;
+      }
+    }
+    else
+    {
+      if (isNextUp)
+      {
+        dynamicEnt->rigidBody->nextPos.y += depthY;
+      }
+      else
+      {
+        dynamicEnt->rigidBody->nextPos.y -= depthY;
+      }
+    }
+  }
 }
