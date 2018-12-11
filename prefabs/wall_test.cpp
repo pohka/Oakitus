@@ -7,6 +7,6 @@ using namespace oak;
 WallTest::WallTest(float w, float h)
 {
   addComponent(new Sprite("default.png", w, h));
-  addCollision(new CollisionRect(0.0f, 0.0f, w, h));
+  addCollision(new CollisionRect(20.0f, 0.0f, w, h));
   addRigidBody(new RigidBody2D(true));
 }

@@ -420,7 +420,7 @@ void Collision::solveStaticCircleDynamicRect(
 
   //first check the direction the dynamic rect is in relation to the static rect
   bool isLastLeft = dynamicEnt->rigidBody->lastPos.x + dynamicRect->offsetX() < staticCircle->originX();
-  bool isLastUp = dynamicEnt->rigidBody->lastPos.y + dynamicRect->offsetY() < staticCircle->originY(); //should be >
+  bool isLastUp = dynamicEnt->rigidBody->lastPos.y + dynamicRect->offsetY() > staticCircle->originY();
 
   
   //half rect size
@@ -442,11 +442,11 @@ void Collision::solveStaticCircleDynamicRect(
   {
     if (isLastUp)
     {
-      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() - staticCircle->getRadius() - rectHalfH - dynamicRect->offsetY();
+      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() + staticCircle->getRadius() + rectHalfH - dynamicRect->offsetY();
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() + staticCircle->getRadius() + rectHalfH - dynamicRect->offsetY();
+      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() - staticCircle->getRadius() - rectHalfH - dynamicRect->offsetY();
     }
   }
   //SIDE CASE: on left or right of circle
