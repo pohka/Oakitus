@@ -274,17 +274,23 @@ void Collision::solve1(Entity* entA, Entity* entB)
   //static x dynamic
   if (entA->rigidBody != nullptr && entB->rigidBody != nullptr)
   {
+    //static x dynamic
     if (entA->rigidBody->isStatic == true && entB->rigidBody->isStatic == false)
     {
       solveStaticDynamic(entA, entB);
     }
+    //dynamic x static
     else if (entA->rigidBody->isStatic == false && entB->rigidBody->isStatic == true)
     {
       solveStaticDynamic(entB, entA);
     }
-  }
 
-  //todo: dynamic x dynamic
+    //dynamic x dynamic
+    else if (entA->rigidBody->isStatic == false && entB->rigidBody->isStatic == false)
+    {
+      solveDynamicDynamic(entA, entB);
+    }
+  }
 }
 
 glm::vec3 Collision::colliderDesiredPos(Entity* ent, BaseCollisionShape* shape)
@@ -699,4 +705,91 @@ void Collision::solveStaticRectDynamicCircle(
       }
     }
   }
+}
+
+void Collision::solveDynamicDynamic(Entity* entA, Entity* entB)
+{
+  for (uint a = 0; a < entA->collisionShapes.size(); a++)
+  {
+    BaseCollisionShape* colA = entA->collisionShapes[a];
+
+    if (colA->isTrigger == false)
+    {
+      for (uint b = 0; b < entB->collisionShapes.size(); b++)
+      {
+        BaseCollisionShape* colB = entB->collisionShapes[b];
+
+        //both are physical and have collision
+        if (colB->isTrigger == false && colA->intersects(*colB))
+        {
+          
+          if (colA->getType() == COLLISION_SHAPE_RECT)
+          {
+            CollisionRect* rectA = static_cast<CollisionRect*>(colA);
+
+            if (colB->getType() == COLLISION_SHAPE_RECT)
+            {
+              CollisionRect* rectB = static_cast<CollisionRect*>(colB);
+            }
+            else if (colB->getType() == COLLISION_SHAPE_CIRCLE)
+            {
+              CollisionCircle* circleB = static_cast<CollisionCircle*>(colB);
+            }
+          }
+
+          if (colA->getType() == COLLISION_SHAPE_CIRCLE)
+          {
+            CollisionCircle* circleA = static_cast<CollisionCircle*>(colA);
+
+            if (colB->getType() == COLLISION_SHAPE_RECT)
+            {
+              CollisionRect* rectB = static_cast<CollisionRect*>(colB);
+            }
+            else if (colB->getType() == COLLISION_SHAPE_CIRCLE)
+            {
+              CollisionCircle* circleB = static_cast<CollisionCircle*>(colB);
+              solveDynamicCircleDynamicCircle(
+                entA,
+                circleA,
+                entB,
+                circleB
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+void Collision::solveDynamicCircleDynamicCircle(
+  Entity* entA,
+  CollisionCircle* circleA,
+  Entity* entB,
+  CollisionCircle* circleB
+)
+{
+  glm::vec3 velA = entA->rigidBody->velocity;
+  glm::vec3 velB = entB->rigidBody->velocity;
+
+  float magA = glm::length(velA);
+  float magB = glm::length(velB);
+
+  glm::vec3 diff = (entB->rigidBody->nextPos + circleB->offset()) - (entA->rigidBody->nextPos + circleA->offset());
+  //diff.x = std::abs(diff.x);
+  //diff.y = std::abs(diff.y);
+  //float diffLength = glm::length(diff);
+
+  float minDiff = circleA->getRadius() + circleB->getRadius();
+
+  //float changeMagB = minDiff * (circleB->getRadius() / minDiff);
+ // float changeMagA = minDiff * (circleA->getRadius() / minDiff);
+  glm::vec3 dir = glm::normalize(diff);
+
+  glm::vec3 touchingPt = entA->rigidBody->nextPos + circleA->offset() + (dir * circleA->getRadius());
+
+  
+
+  entA->rigidBody->nextPos = touchingPt - (dir * circleA->getRadius());
+  entB->rigidBody->nextPos = touchingPt + (dir * circleB->getRadius());
 }

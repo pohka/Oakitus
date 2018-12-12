@@ -42,6 +42,7 @@ namespace oak
 
     static void solve1(Entity* entA, Entity* entB);
     static void solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt);
+    static void solveDynamicDynamic(Entity* entA, Entity* entB);
 
     static void solveStaticRectDynamicRect(
       Entity* staticEnt, 
@@ -69,6 +70,13 @@ namespace oak
       CollisionRect* staticRect,
       Entity* dynamicEnt,
       CollisionCircle* dynamicCircle
+    );
+
+    static void solveDynamicCircleDynamicCircle(
+      Entity* entA,
+      CollisionCircle* circleA,
+      Entity* entB,
+      CollisionCircle* circleB
     );
 
     static glm::vec3 colliderDesiredPos(Entity* ent, BaseCollisionShape* shape);

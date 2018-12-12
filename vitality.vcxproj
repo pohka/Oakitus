@@ -179,6 +179,7 @@
     <ClCompile Include="prefabs\u_player.cpp" />
     <ClCompile Include="prefabs\wall_test.cpp" />
     <ClCompile Include="scenes\main_scene.cpp" />
+    <ClCompile Include="scripts\ai_test.cpp" />
     <ClCompile Include="scripts\linear_projectile.cpp" />
     <ClCompile Include="ui\action_panel.cpp" />
     <ClCompile Include="unit.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="prefabs\u_player.h" />
     <ClInclude Include="prefabs\wall_test.h" />
     <ClInclude Include="scenes\main_scene.h" />
+    <ClInclude Include="scripts\ai_test.h" />
     <ClInclude Include="scripts\linear_projectile.h" />
     <ClInclude Include="strings_def.h" />
     <ClInclude Include="ui\action_panel.h" />
