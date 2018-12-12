@@ -36,21 +36,25 @@ void MainScene::onLoad()
   ground->instantiate();
 
   
-  Player& player1 = static_cast<Player&>(PlayerResource::getPlayerByIndex(0));
-  Unit* playerUnit = new prefab::UPlayer();
-  playerUnit->instantiate();
-  player1.setAssignedUnit(*playerUnit);
+  
 
 
-  prefab::CameraController* camController = new prefab::CameraController();
-  camController->followTarget(playerUnit->getID());
-  camController->instantiate();
+  
 
   prefab::UDummy* dummy = new prefab::UDummy();
   dummy->instantiate(200.0f, 100.0f);
 
   prefab::UDummy* dummy2 = new prefab::UDummy();
   dummy2->instantiate(-200.0f, 80.0f);
+
+  Player& player1 = static_cast<Player&>(PlayerResource::getPlayerByIndex(0));
+  Unit* playerUnit = new prefab::UPlayer();
+  playerUnit->instantiate();
+  player1.setAssignedUnit(*playerUnit);
+
+  prefab::CameraController* camController = new prefab::CameraController();
+  camController->followTarget(playerUnit->getID());
+  camController->instantiate();
 
   auto* comp = new game::ui::ActionPanel();
   comp->offset.x = 10.0f;

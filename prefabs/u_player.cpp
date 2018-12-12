@@ -84,6 +84,7 @@ UPlayer::UPlayer()
   addCollision(new CollisionCircle(30.0f, 0.0f, 00.0f));
   addRigidBody(new RigidBody2D(false));
   faction = FACTION_PLAYER;
+  setMoveSpeed(200.0f);
 }
 
 UPlayer::~UPlayer()

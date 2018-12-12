@@ -769,27 +769,32 @@ void Collision::solveDynamicCircleDynamicCircle(
   CollisionCircle* circleB
 )
 {
+  //velocity of both entitys
   glm::vec3 velA = entA->rigidBody->velocity;
   glm::vec3 velB = entB->rigidBody->velocity;
 
-  float magA = glm::length(velA);
-  float magB = glm::length(velB);
+  //float magA = glm::length(velA);
+  //float magB = glm::length(velB);
 
+  //resulting velocity of collision
+  //(Ax + Bx)/2, (Ay + By)/2
+  glm::vec3 resultVel = glm::vec3(
+    (velA.x + velB.x) * 0.5f, 
+    (velA.y + velB.y) * 0.5f, 
+    0.0f
+  );
+
+  //find direction vector between 2 next positions
   glm::vec3 diff = (entB->rigidBody->nextPos + circleB->offset()) - (entA->rigidBody->nextPos + circleA->offset());
-  //diff.x = std::abs(diff.x);
-  //diff.y = std::abs(diff.y);
-  //float diffLength = glm::length(diff);
-
-  float minDiff = circleA->getRadius() + circleB->getRadius();
-
-  //float changeMagB = minDiff * (circleB->getRadius() / minDiff);
- // float changeMagA = minDiff * (circleA->getRadius() / minDiff);
   glm::vec3 dir = glm::normalize(diff);
 
-  glm::vec3 touchingPt = entA->rigidBody->nextPos + circleA->offset() + (dir * circleA->getRadius());
+  //min seperation dist
+  float minDiff = circleA->getRadius() + circleB->getRadius();
 
-  
+  //touching point of both circles after collision
+  glm::vec3 touchingPt = resultVel + entA->rigidBody->nextPos + circleA->offset() + (dir * circleA->getRadius());
 
+  //set next position
   entA->rigidBody->nextPos = touchingPt - (dir * circleA->getRadius());
   entB->rigidBody->nextPos = touchingPt + (dir * circleB->getRadius());
 }
