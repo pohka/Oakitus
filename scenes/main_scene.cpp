@@ -36,21 +36,43 @@ void MainScene::onLoad()
   ground->instantiate();
 
   
+
   
-
-
+  Player& player1 = static_cast<Player&>(PlayerResource::getPlayerByIndex(0));
+  Unit* playerUnit = new prefab::UPlayer();
+  playerUnit->instantiate();
+  player1.setAssignedUnit(*playerUnit);
   
 
   prefab::UDummy* dummy = new prefab::UDummy();
   dummy->instantiate(200.0f, 100.0f);
 
-  prefab::UDummy* dummy2 = new prefab::UDummy();
-  dummy2->instantiate(-200.0f, 80.0f);
+  //prefab::UDummy* dummy2 = new prefab::UDummy();
+  //dummy2->instantiate(-250.0f, 100.0f);
 
-  Player& player1 = static_cast<Player&>(PlayerResource::getPlayerByIndex(0));
-  Unit* playerUnit = new prefab::UPlayer();
-  playerUnit->instantiate();
-  player1.setAssignedUnit(*playerUnit);
+  //prefab::UDummy* dummy3 = new prefab::UDummy();
+  //dummy3->instantiate(-250.0f, 150.0f);
+
+  //prefab::UDummy* dummy4 = new prefab::UDummy();
+  //dummy4->instantiate(-200.0f, 80.0f);
+
+  for (uint i = 0; i < 4; i++)
+  {
+    for (uint j = 0; j < 4; j++)
+    {
+      prefab::UDummy* dummy0 = new prefab::UDummy();
+      dummy0->instantiate(-200.0f + j * 50.0f, 80.0f + i * 50.0f);
+    }
+  }
+
+  
+  
+
+  Entity* ball = new Entity();
+  ball->addComponent(new Sprite("face.png", 60.0f, 60.0f));
+  ball->addCollision(new CollisionCircle(30.0f, 0.0f, 00.0f));
+  ball->addRigidBody(new RigidBody2D(false));
+  ball->instantiate(-100.0f, -200.0f);
 
   prefab::CameraController* camController = new prefab::CameraController();
   camController->followTarget(playerUnit->getID());

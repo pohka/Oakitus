@@ -773,33 +773,47 @@ void Collision::solveDynamicCircleDynamicCircle(
   glm::vec3 velA = entA->rigidBody->velocity;
   glm::vec3 velB = entB->rigidBody->velocity;
 
-  //each rigidbody mass in relation to the total mass
-  float totalMass = entA->rigidBody->mass + entA->rigidBody->mass;
-  float aWeight = entA->rigidBody->mass / totalMass;
-  float bWeight = entB->rigidBody->mass / totalMass;
+  float massA = entA->rigidBody->mass;
+  float massB = entB->rigidBody->mass;
 
-  //force of each rigidbody
-  glm::vec3 forceA = velA * aWeight;
-  glm::vec3 forceB = velB * bWeight;
+  //difference of next position direction
+  glm::vec3 diffDir = glm::normalize(entB->rigidBody->nextPos - entA->rigidBody->nextPos);
 
   //resulting change vector of impact, in relation to entA
-  glm::vec3 resultVel = glm::vec3(
-    (forceA.x + forceB.x) * 0.5f,
-    (forceA.y + forceB.y) * 0.5f,
+  glm::vec3 resultForce = glm::vec3(
+    (velA.x + velB.x) * 0.5f,
+    (velA.y + velB.y) * 0.5f,
     0.0f
   );
-
-  //find direction vector between 2 next positions
-  glm::vec3 diff = (entB->rigidBody->nextPos + circleB->offset()) - (entA->rigidBody->nextPos + circleA->offset());
-  glm::vec3 dir = glm::normalize(diff);
 
   //min seperation dist
   float minDiff = circleA->getRadius() + circleB->getRadius();
 
-  //touching point of both circles after collision
-  glm::vec3 nextAPos =  entA->rigidBody->nextPos + circleA->offset() + resultVel;
+  //which ever entity has the highest mass use that for setting the result force
+  if (massA > massB)
+  {
+    entA->rigidBody->nextPos = entA->rigidBody->lastPos + resultForce;
 
-  //set next position
-  entA->rigidBody->nextPos = nextAPos;
-  entB->rigidBody->nextPos = nextAPos + (dir * minDiff);
+    //find direction vector between 2 next positions
+    glm::vec3 diff = (entB->rigidBody->lastPos + circleB->offset()) - (entA->rigidBody->nextPos + circleA->offset());
+    glm::vec3 dir = glm::normalize(diff);
+
+    //set next position and update velocity
+    entA->rigidBody->velocity = entA->rigidBody->nextPos - entA->rigidBody->lastPos;
+    entB->rigidBody->nextPos = entA->rigidBody->nextPos + (dir * minDiff * 1.0f);
+    entB->rigidBody->velocity = entB->rigidBody->nextPos - entB->rigidBody->lastPos;
+  }
+  else
+  {
+    entB->rigidBody->nextPos = entB->rigidBody->lastPos + resultForce;
+
+    //find direction vector between 2 next positions
+    glm::vec3 diff = (entA->rigidBody->lastPos + circleA->offset()) - (entB->rigidBody->nextPos + circleB->offset());
+    glm::vec3 dir = glm::normalize(diff);
+
+    //set next position and update velocity
+    entB->rigidBody->velocity = entB->rigidBody->nextPos - entB->rigidBody->lastPos;
+    entA->rigidBody->nextPos = entB->rigidBody->nextPos + (dir * minDiff * 1.0f);
+    entA->rigidBody->velocity = entA->rigidBody->nextPos - entA->rigidBody->lastPos;
+  }
 }

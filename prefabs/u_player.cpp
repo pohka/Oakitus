@@ -81,11 +81,11 @@ UPlayer::UPlayer()
   addAbility(new Shoot());
   addAbility(new SwordAttack());
   //addCollision(new CollisionRect(-20.0f, -10.0f, 40.0f, 60.0f));
-  addCollision(new CollisionCircle(60.0f, 0.0f, 00.0f));
+  addCollision(new CollisionCircle(20.0f, 0.0f, 00.0f));
   addRigidBody(new RigidBody2D(false));
   faction = FACTION_PLAYER;
   setMoveSpeed(200.0f);
-  this->rigidBody->mass = 3.0f;
+  this->rigidBody->mass = 10.0f;
 }
 
 UPlayer::~UPlayer()
