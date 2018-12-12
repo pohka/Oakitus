@@ -769,18 +769,23 @@ void Collision::solveDynamicCircleDynamicCircle(
   CollisionCircle* circleB
 )
 {
-  //velocity of both entitys
+  //velocity of each rigidbody
   glm::vec3 velA = entA->rigidBody->velocity;
   glm::vec3 velB = entB->rigidBody->velocity;
 
-  //float magA = glm::length(velA);
-  //float magB = glm::length(velB);
+  //each rigidbody mass in relation to the total mass
+  float totalMass = entA->rigidBody->mass + entA->rigidBody->mass;
+  float aWeight = entA->rigidBody->mass / totalMass;
+  float bWeight = entB->rigidBody->mass / totalMass;
 
-  //resulting velocity of collision
-  //(Ax + Bx)/2, (Ay + By)/2
+  //force of each rigidbody
+  glm::vec3 forceA = velA * aWeight;
+  glm::vec3 forceB = velB * bWeight;
+
+  //resulting change vector of impact, in relation to entA
   glm::vec3 resultVel = glm::vec3(
-    (velA.x + velB.x) * 0.5f, 
-    (velA.y + velB.y) * 0.5f, 
+    (forceA.x + forceB.x) * 0.5f,
+    (forceA.y + forceB.y) * 0.5f,
     0.0f
   );
 
@@ -792,9 +797,9 @@ void Collision::solveDynamicCircleDynamicCircle(
   float minDiff = circleA->getRadius() + circleB->getRadius();
 
   //touching point of both circles after collision
-  glm::vec3 touchingPt = resultVel + entA->rigidBody->nextPos + circleA->offset() + (dir * circleA->getRadius());
+  glm::vec3 nextAPos =  entA->rigidBody->nextPos + circleA->offset() + resultVel;
 
   //set next position
-  entA->rigidBody->nextPos = touchingPt - (dir * circleA->getRadius());
-  entB->rigidBody->nextPos = touchingPt + (dir * circleB->getRadius());
+  entA->rigidBody->nextPos = nextAPos;
+  entB->rigidBody->nextPos = nextAPos + (dir * minDiff);
 }

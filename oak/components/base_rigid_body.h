@@ -12,10 +12,13 @@ namespace oak
     glm::vec3 desiredNextPos;
     glm::vec3 velocity;
     glm::vec3 nextPos;
+    
 
     public:
       friend class Collision;
       bool isStatic;
+      float mass = 1.0f;
+
       BaseRigidBody(bool isStatic);
 
       void onStart() override;

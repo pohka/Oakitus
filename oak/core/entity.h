@@ -64,7 +64,7 @@ namespace oak
 	  std::vector<Component*> components; ///<summary>All of the Components added to this Entity</summary>
     std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
 	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
-    BaseRigidBody* rigidBody;
+    
     
 
     public:
@@ -121,6 +121,7 @@ namespace oak
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
       CollisionLayer collisionLayer;
+      BaseRigidBody* rigidBody;
 
       //EVENTS
       //-------------------------------------------------------------
