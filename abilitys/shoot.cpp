@@ -1,6 +1,6 @@
 #include "shoot.h"
 #include <debug.h>
-#include "../prefabs/projectile.h"
+#include "../prefabs/projectile_linear.h"
 #include "../oak/components/sprite.h"
 
 using namespace game::ability;
@@ -30,7 +30,7 @@ void Shoot::onAbilityStart()
   damage.attackerID = caster->getID();
   damage.victimID = 0;
 
-  prefab::Projectile* proj = new prefab::Projectile(
+  prefab::Projectile* proj = new prefab::ProjectileLinear(
     target.point, 
     *caster, 
     getID(),

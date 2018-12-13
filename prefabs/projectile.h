@@ -12,36 +12,34 @@ namespace game
   {
     class Projectile : public oak::Entity
     {
-      glm::vec2 targetPos;
-      glm::vec2 spawnOrigin;
-      glm::vec2 velocity;
-      float maxDistance;
-      bool destroyOnHit;
-      float speed;
-      uchar targetTeam;
-      uchar casterFaction;
-      DamageData damage;
-      uint abilityID;
-      uint casterID;
+      public:
+        Projectile(
+          glm::vec2 targetPos,
+          Unit& caster,
+          uint abilityID,
+          DamageData damage,
+          float speed,
+          float radius,
+          bool destroyOnHit = true,
+          uchar targetTeam = TARGET_TEAM_ENEMY
+        );
+        ~Projectile();
 
-    public:
-      Projectile(
-        glm::vec2 targetPos,
-        Unit& caster,
-        uint abilityID,
-        DamageData damage,
-        float speed,
-        float radius,
-        float maxDistance = 1000.0f,
-        bool destroyOnHit = true,
-        uchar targetTeam = TARGET_TEAM_ENEMY
-      );
-      ~Projectile();
+        virtual void onStart() = 0;
+        virtual void onUpdate() = 0;
+        void onCollisionHit(oak::Entity& hit);
+        virtual void onProjectileHit(Unit& unitHit);
 
-      void onStart();
-      void onUpdate();
-      void onCollisionHit(oak::Entity& hit);
-      void onProjectileHit(Unit& unitHit);
+      protected:
+        glm::vec2 targetPos;
+        glm::vec2 spawnOrigin;
+        bool destroyOnHit;
+        float speed;
+        uchar targetTeam;
+        uchar casterFaction;
+        DamageData damage;
+        uint abilityID;
+        uint casterID;
     };
   }
 }

@@ -175,6 +175,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="prefabs\camera_controller.cpp" />
     <ClCompile Include="prefabs\projectile.cpp" />
+    <ClCompile Include="prefabs\projectile_linear.cpp" />
     <ClCompile Include="prefabs\u_dummy.cpp" />
     <ClCompile Include="prefabs\u_player.cpp" />
     <ClCompile Include="prefabs\wall_test.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="prefabs\camera_controller.h" />
     <ClInclude Include="prefabs\projectile.h" />
+    <ClInclude Include="prefabs\projectile_linear.h" />
     <ClInclude Include="prefabs\u_dummy.h" />
     <ClInclude Include="prefabs\u_player.h" />
     <ClInclude Include="prefabs\wall_test.h" />

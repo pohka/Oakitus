@@ -219,6 +219,9 @@
     <ClCompile Include="prefabs\projectile.cpp">
       <Filter>game\prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="prefabs\projectile_linear.cpp">
+      <Filter>game\prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -439,6 +442,9 @@
     </ClInclude>
     <ClInclude Include="events\damage_data.h">
       <Filter>game\events</Filter>
+    </ClInclude>
+    <ClInclude Include="prefabs\projectile_linear.h">
+      <Filter>game\prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

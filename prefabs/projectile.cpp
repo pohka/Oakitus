@@ -16,7 +16,6 @@ Projectile::Projectile(
   DamageData damage,
   float speed,
   float radius,
-  float maxDistance,
   bool destroyOnHit,
   uchar targetTeam
 )
@@ -25,7 +24,6 @@ Projectile::Projectile(
   this->abilityID = abilityID;
   this->damage = damage;
   this->speed = speed;
-  this->maxDistance = maxDistance;
   this->destroyOnHit = destroyOnHit;
   this->targetTeam = targetTeam;
   casterFaction = caster.getFaction();
@@ -38,28 +36,6 @@ Projectile::Projectile(
 Projectile::~Projectile()
 {
   
-}
-
-void Projectile::onStart()
-{
-  spawnOrigin = glm::vec2(position.x, position.y);
-  velocity = glm::normalize(targetPos - spawnOrigin) * speed;
-}
-
-void Projectile::onUpdate()
-{
-  position.x += velocity.x * Time::deltaTime();
-  position.y += velocity.y * Time::deltaTime();
-
-  //check if out of range
-  float xDiff = position.x - spawnOrigin.x;
-  float yDiff = position.y - spawnOrigin.y;
-  float sqrdDistanceTravelled = (xDiff * xDiff) + (yDiff * yDiff);
-
-  if (sqrdDistanceTravelled > maxDistance * maxDistance)
-  {
-    destroy();
-  }
 }
 
 void Projectile::onCollisionHit(Entity& hit)
