@@ -4,6 +4,7 @@
 #include "unit.h"
 #include <core/id_generator.h>
 #include "game_def.h"
+#include "events/damage_data.h"
 
 namespace game
 {

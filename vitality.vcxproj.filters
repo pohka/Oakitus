@@ -141,12 +141,6 @@
     <ClCompile Include="commands\cast_abilitys.cpp">
       <Filter>game\commands</Filter>
     </ClCompile>
-    <ClCompile Include="prefabs\arrow.cpp">
-      <Filter>game\prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="scripts\linear_projectile.cpp">
-      <Filter>game\scripts</Filter>
-    </ClCompile>
     <ClCompile Include="prefabs\u_dummy.cpp">
       <Filter>game\prefabs</Filter>
     </ClCompile>
@@ -326,12 +320,6 @@
     <ClInclude Include="commands\cast_abiltiys.h">
       <Filter>game\commands</Filter>
     </ClInclude>
-    <ClInclude Include="prefabs\arrow.h">
-      <Filter>game\prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="scripts\linear_projectile.h">
-      <Filter>game\scripts</Filter>
-    </ClInclude>
     <ClInclude Include="prefabs\u_dummy.h">
       <Filter>game\prefabs</Filter>
     </ClInclude>
@@ -448,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="prefabs\projectile.h">
       <Filter>game\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="events\damage_data.h">
+      <Filter>game\events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

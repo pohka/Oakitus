@@ -1,6 +1,5 @@
 #include "projectile.h"
 #include <oak.h>
-//#include "../scripts/linear_projectile.h"
 #include "../ability.h"
 #include <debug.h>
 #include "../global_funcs.h"
@@ -10,23 +9,29 @@ using namespace game::prefab;
 using namespace oak;
 using namespace game;
 
-Projectile::Projectile(glm::vec2 targetPos, Unit& caster, uint abilityID)
+Projectile::Projectile(
+  glm::vec2 targetPos,
+  Unit& caster,
+  uint abilityID,
+  DamageData damage,
+  float speed,
+  float radius,
+  float maxDistance,
+  bool destroyOnHit,
+  uchar targetTeam
+)
 {
-  Sprite* sprite = new Sprite("face.png", 16.0f, 16.0f);
-  addComponent(sprite);
-  addCollision(new CollisionCircle(16.0f, 0.0f, 0.0f));
-
-
   this->targetPos = targetPos;
-  damage = 20;
-  speed = 150.0f;
-  maxDistance = 1000.0f;
-  destroyOnHit = true;
-  targetTeam = TARGET_TEAM_ENEMY;
-  casterFaction = caster.getFaction();
   this->abilityID = abilityID;
+  this->damage = damage;
+  this->speed = speed;
+  this->maxDistance = maxDistance;
+  this->destroyOnHit = destroyOnHit;
+  this->targetTeam = targetTeam;
+  casterFaction = caster.getFaction();
   casterID = caster.getID();
 
+  addCollision(new CollisionCircle(radius, 0.0f, 0.0f));
   this->collisionLayer = CollisionLayer::PROJECTILE;
 }
 
@@ -81,9 +86,6 @@ void Projectile::onCollisionHit(Entity& hit)
 
 void Projectile::onProjectileHit(Unit& unitHit)
 {
-  DamageData data;
-  data.amount = damage;
-  data.victimID = unitHit.getID();
-  data.attackerID = casterID;
-  applyDamage(data);
+  damage.victimID = unitHit.getID();
+  applyDamage(damage);
 }

@@ -173,7 +173,6 @@
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="prefabs\arrow.cpp" />
     <ClCompile Include="prefabs\camera_controller.cpp" />
     <ClCompile Include="prefabs\projectile.cpp" />
     <ClCompile Include="prefabs\u_dummy.cpp" />
@@ -181,7 +180,6 @@
     <ClCompile Include="prefabs\wall_test.cpp" />
     <ClCompile Include="scenes\main_scene.cpp" />
     <ClCompile Include="scripts\ai_test.cpp" />
-    <ClCompile Include="scripts\linear_projectile.cpp" />
     <ClCompile Include="ui\action_panel.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
@@ -191,6 +189,7 @@
     <ClInclude Include="abilitys\sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
+    <ClInclude Include="events\damage_data.h" />
     <ClInclude Include="events\e_damage_taken.h" />
     <ClInclude Include="events\e_death.h" />
     <ClInclude Include="game_def.h" />
@@ -248,7 +247,6 @@
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="prefabs\arrow.h" />
     <ClInclude Include="prefabs\camera_controller.h" />
     <ClInclude Include="prefabs\projectile.h" />
     <ClInclude Include="prefabs\u_dummy.h" />
@@ -256,7 +254,6 @@
     <ClInclude Include="prefabs\wall_test.h" />
     <ClInclude Include="scenes\main_scene.h" />
     <ClInclude Include="scripts\ai_test.h" />
-    <ClInclude Include="scripts\linear_projectile.h" />
     <ClInclude Include="strings_def.h" />
     <ClInclude Include="ui\action_panel.h" />
     <ClInclude Include="unit.h" />

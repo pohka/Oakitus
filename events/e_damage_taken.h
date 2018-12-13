@@ -3,6 +3,7 @@
 
 #include <event/event.h>
 #include "../game_def.h"
+#include "damage_data.h"
 
 namespace game
 {
@@ -11,14 +12,6 @@ namespace game
   struct DamageData;
   typedef oak::Event<DamageTakenListener, DamageData> DamageTakenEvent;
   typedef oak::BaseListener<DamageTakenEvent, DamageTakenListener> BaseDamageTakenListener;
-
-  //event data
-  struct DamageData : public oak::IEventData
-  {
-    int amount;
-    int victimID;
-    int attackerID;
-  };
 
   class DamageTakenListener : public BaseDamageTakenListener
   {

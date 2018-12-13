@@ -166,6 +166,7 @@ bool Collision::sideCheckRectCircle(
    return false;
  }
 
+//todo: is this even being used?
 bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
 {
   for (uint a = 0; a < entA->collisionShapes.size(); a++)
@@ -197,14 +198,8 @@ void Collision::checkEntEntTrigger(Entity* entA, Entity* entB)
       //overlap fround
       if (colA->intersects(*colB))
       {
-       // if (colA->isTrigger)
-        //{
-          entA->onCollisionHit(*entB);
-        //}
-        //else
-        //{
-          entB->onCollisionHit(*entA);
-        //}
+        entA->onCollisionHit(*entB);
+        entB->onCollisionHit(*entA);
         return; //only trigger once
       }
     }

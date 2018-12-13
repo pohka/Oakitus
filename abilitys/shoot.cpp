@@ -1,7 +1,7 @@
 #include "shoot.h"
-#include "../prefabs/arrow.h"
 #include <debug.h>
 #include "../prefabs/projectile.h"
+#include "../oak/components/sprite.h"
 
 using namespace game::ability;
 
@@ -25,14 +25,25 @@ void Shoot::onCast()
 
 void Shoot::onAbilityStart()
 {
-  prefab::Projectile* proj = new prefab::Projectile(target.point, *caster, this->getID());
+  DamageData damage;
+  damage.amount = 20;
+  damage.attackerID = caster->getID();
+  damage.victimID = 0;
+
+  prefab::Projectile* proj = new prefab::Projectile(
+    target.point, 
+    *caster, 
+    getID(),
+    damage,
+    150.0f,
+    15.0f
+  );
+  proj->addComponent(new oak::Sprite("face.png", 30.0f, 30.0f));
+
   proj->instantiate(caster->position.x, caster->position.y);
-  //LOG << "onAbilityStart()";
- // prefab::Arrow* arrow = new prefab::Arrow(target.point, *caster, this->getID());
- // arrow->instantiate(caster->position.x, caster->position.y);
 }
 
 void Shoot::onAbilityEnd()
 {
- //LOG << "onAbilityEnd()";
+
 }

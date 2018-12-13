@@ -20,17 +20,27 @@ namespace game
       float speed;
       uchar targetTeam;
       uchar casterFaction;
-      int damage;
+      DamageData damage;
       uint abilityID;
       uint casterID;
 
     public:
-      Projectile(glm::vec2 targetPos, Unit& caster, uint abilityID);
+      Projectile(
+        glm::vec2 targetPos,
+        Unit& caster,
+        uint abilityID,
+        DamageData damage,
+        float speed,
+        float radius,
+        float maxDistance = 1000.0f,
+        bool destroyOnHit = true,
+        uchar targetTeam = TARGET_TEAM_ENEMY
+      );
       ~Projectile();
 
-      void onStart() override;
-      void onUpdate() override;
-      void onCollisionHit(oak::Entity& hit) override;
+      void onStart();
+      void onUpdate();
+      void onCollisionHit(oak::Entity& hit);
       void onProjectileHit(Unit& unitHit);
     };
   }
