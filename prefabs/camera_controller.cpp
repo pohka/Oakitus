@@ -20,7 +20,7 @@ void CameraController::followTarget(uint entityID)
   targetEntityID = entityID;
 }
 
-void CameraController::onUpdate()
+void CameraController::onLateUpdate()
 {
   if (hasTarget)
   {

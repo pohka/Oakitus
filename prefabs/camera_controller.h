@@ -22,7 +22,7 @@ namespace game
         void followTarget(uint entityID);
 
       protected:
-        void onUpdate() override;
+        void onLateUpdate() override;
     };
   }
 }

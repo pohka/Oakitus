@@ -13,6 +13,8 @@ void Component::onStart() {}
 
 void Component::onUpdate() {}
 
+void Component::onLateUpdate() {}
+
 void Component::onDraw() const {}
 
 void Component::onDebugDraw() const {}

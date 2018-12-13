@@ -26,7 +26,8 @@
 #include "core/time.h"
 #include "core/types.h"
 #include "core/resources.h"
-#include "components/collision_rect.h"
-#include "components/collision_circle.h"
+#include "collision/collision_rect.h"
+#include "collision/collision_circle.h"
+#include "components/rigid_body_2d.h"
 
 #endif

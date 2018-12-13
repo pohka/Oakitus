@@ -9,7 +9,8 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <queue>
-#include "../components/collision_layer.h"
+#include "../collision/collision_layer.h"
+#include "../components/base_rigid_body.h"
 
 namespace oak
 {
@@ -36,6 +37,8 @@ namespace oak
     ///<summary>Calls onUpdate() for all Entitys in the world</summary>
     static void updateInstances(); 
 
+    static void lateUpdateInstances();
+
     ///<summary>Calls onDraw() for all the Entitys in the world</summary>
     static void drawInstances(); 
 
@@ -61,6 +64,7 @@ namespace oak
 	  std::vector<Component*> components; ///<summary>All of the Components added to this Entity</summary>
     std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
 	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
+    
     
 
     public:
@@ -94,6 +98,8 @@ namespace oak
       ///<summary>Adds a CollisionShape to this Entity</summary>
       void addCollision(BaseCollisionShape* shape); 
 
+      void addRigidBody(BaseRigidBody* rigidBody);
+
       ///<summary>Adds this Entity to the world</summary>
       void instantiate();
 
@@ -115,6 +121,7 @@ namespace oak
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
       CollisionLayer collisionLayer;
+      BaseRigidBody* rigidBody;
 
       //EVENTS
       //-------------------------------------------------------------
@@ -123,6 +130,8 @@ namespace oak
 
       ///<summary>Called once each frame</summary>
       virtual void onUpdate();
+
+      virtual void onLateUpdate();
 
       ///<summary>Draws all renderable components each frame</summary>
       virtual void onDraw() const;
@@ -133,7 +142,7 @@ namespace oak
 	    virtual void onDestroy();
 
       ///<summary>Called when a collision occured</summary>
-      virtual void notifyCollision(Entity& hit) const;
+      virtual void onCollisionHit(Entity& hit);
       //-------------------------------------------------------------
 
       

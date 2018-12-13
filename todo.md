@@ -1,19 +1,19 @@
 # todo
 
-* deleting texture (fonts too)
+* inventory and items
+* modifiers (buffs and debuffs)
+* asset streaming: automatically deciding which textures need to be loaded
+  * deleting texture (fonts too)
+
 * UI
   * text alignment (left, center, right)
-  * nested nodes
-* collision
-  * bool isStatic
-  * isTrigger
+	
 * unit tests
 * sword ability
 * sound
 * world (tiles)
 
-* inventory and items
-* automatically deciding which textures need to be loaded
+
 * debug logger
   * add endl to repeat info msg
   * more efficent logger

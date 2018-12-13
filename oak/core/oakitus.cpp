@@ -12,7 +12,7 @@
 #include "scene.h"
 #include "texture.h"
 #include "player_resource.h"
-#include "../components/collision.h"
+#include "../collision/collision.h"
 #include "../oak_def.h"
 #include "../fallback.h"
 #include "../ui/ui_canvas.h"
@@ -73,6 +73,7 @@ int Oakitus::loop()
     PlayerResource::executeAllCommands();
     Entity::updateInstances();
     Collision::resolveCollisions();
+    Entity::lateUpdateInstances();
     Entity::drawInstances();
     Entity::debugDrawInstances();
     ui::UICanvas::render();

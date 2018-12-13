@@ -2,7 +2,7 @@
 #define COMPONENT_H
 
 #include "types.h"
-#include "entity.h"
+//#include "entity.h"
 
 namespace oak
 {
@@ -28,6 +28,8 @@ namespace oak
 
       ///<summary>Do logic, called once each frame</summary>
       virtual void onUpdate();
+
+      virtual void onLateUpdate();
 
       ///<summary>Draw, called once each frame</summary>
       virtual void onDraw() const;

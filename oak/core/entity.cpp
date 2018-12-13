@@ -1,6 +1,6 @@
 #include "entity.h"
 #include "component.h"
-#include "../components/base_collision_shape.h"
+#include "../collision/base_collision_shape.h"
 #include <debug.h>
 
 using namespace oak;
@@ -47,6 +47,13 @@ void Entity::addCollision(BaseCollisionShape* shape)
 {
   shape->entity = this;
   collisionShapes.push_back(shape);
+}
+
+void Entity::addRigidBody(BaseRigidBody* rigidBody)
+{
+  rigidBody->entity = this;
+  this->rigidBody = rigidBody;
+  this->components.push_back(rigidBody);
 }
 
 void Entity::instantiate()
@@ -128,6 +135,14 @@ void Entity::onUpdate()
   }
 }
 
+void Entity::onLateUpdate()
+{
+  for (uint i = 0; i < components.size(); i++)
+  {
+    components[i]->onLateUpdate();
+  }
+}
+
 
 //static functions
 //----------------------------
@@ -175,6 +190,14 @@ void Entity::updateInstances()
   for (uint i = 0; i < Entity::entitys.size(); i++)
   {
     Entity::entitys[i]->onUpdate();
+  }
+}
+
+void Entity::lateUpdateInstances()
+{
+  for (uint i = 0; i < Entity::entitys.size(); i++)
+  {
+    Entity::entitys[i]->onLateUpdate();
   }
 }
 
@@ -298,7 +321,7 @@ void Entity::instantiateQueuedEnts()
 }
 
 
-void Entity::notifyCollision(Entity& hit) const
+void Entity::onCollisionHit(Entity& hit)
 {
   for (Component* comp : components)
   {

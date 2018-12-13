@@ -1,6 +1,7 @@
 #include "u_dummy.h"
 #include <oak.h>
 #include <debug.h>
+#include "../scripts/ai_test.h"
 
 using namespace game::prefab;
 using namespace oak;
@@ -11,6 +12,7 @@ UDummy::UDummy()
  // addComponent(sprite);
  // addCollision(new CollisionRect(0.0f, 0.0f, 32.0f, 40.0f));
   addCollision(new CollisionCircle(20.0f, 0.0f, 0.0f));
+  addRigidBody(new RigidBody2D(false));
   faction = FACTION_ENEMY;
   this->name = "dummy";
 
@@ -31,7 +33,7 @@ UDummy::UDummy()
   addAnimator(animator);
 
 
-
+  addComponent(new AITest());
 }
 
 UDummy::~UDummy()

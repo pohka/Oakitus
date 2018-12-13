@@ -1,6 +1,7 @@
 #include "shoot.h"
 #include "../prefabs/arrow.h"
 #include <debug.h>
+#include "../prefabs/projectile.h"
 
 using namespace game::ability;
 
@@ -24,9 +25,11 @@ void Shoot::onCast()
 
 void Shoot::onAbilityStart()
 {
+  prefab::Projectile* proj = new prefab::Projectile(target.point, *caster, this->getID());
+  proj->instantiate(caster->position.x, caster->position.y);
   //LOG << "onAbilityStart()";
-  prefab::Arrow* arrow = new prefab::Arrow(target.point, *caster, this->getID());
-  arrow->instantiate(caster->position.x, caster->position.y);
+ // prefab::Arrow* arrow = new prefab::Arrow(target.point, *caster, this->getID());
+ // arrow->instantiate(caster->position.x, caster->position.y);
 }
 
 void Shoot::onAbilityEnd()
