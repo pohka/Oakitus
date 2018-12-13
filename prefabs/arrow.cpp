@@ -15,18 +15,18 @@ Arrow::Arrow(glm::vec2 targetPos, Unit& caster, uint abilityID)
   addComponent(sprite);
   addCollision(new CollisionCircle(16.0f, 0.0f, 0.0f));
 
-  LinearProjectile* proj = new LinearProjectile(
-    targetPos,
-    20,
-    150.0f,
-    1000.0f,
-    true,
-    TARGET_TEAM_ENEMY,
-    caster.getFaction(),
-    abilityID,
-    caster.getID()
-  );
-  addComponent(proj);
+  //LinearProjectile* proj = new LinearProjectile(
+  //  targetPos,
+  //  20,
+  //  150.0f,
+  //  1000.0f,
+  //  true,
+  //  TARGET_TEAM_ENEMY,
+  //  caster.getFaction(),
+  //  abilityID,
+  //  caster.getID()
+  //);
+  //addComponent(proj);
   collisionLayer = CollisionLayer::PROJECTILE;
 }
 

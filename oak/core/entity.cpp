@@ -321,7 +321,7 @@ void Entity::instantiateQueuedEnts()
 }
 
 
-void Entity::notifyCollision(Entity& hit) const
+void Entity::onCollisionHit(Entity& hit)
 {
   for (Component* comp : components)
   {

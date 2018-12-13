@@ -177,8 +177,8 @@ bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
       if (colA->intersects(*colB))
       {
         // LOG << "HAS COLLISION";
-        entA->notifyCollision(*entB);
-        entB->notifyCollision(*entA);
+        entA->onCollisionHit(*entB);
+        entB->onCollisionHit(*entA);
         return true;
       }
     }
@@ -199,11 +199,11 @@ void Collision::checkEntEntTrigger(Entity* entA, Entity* entB)
       {
        // if (colA->isTrigger)
         //{
-          entA->notifyCollision(*entB);
+          entA->onCollisionHit(*entB);
         //}
         //else
         //{
-          entB->notifyCollision(*entA);
+          entB->onCollisionHit(*entA);
         //}
         return; //only trigger once
       }

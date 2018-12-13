@@ -56,9 +56,9 @@ void MainScene::onLoad()
   //prefab::UDummy* dummy4 = new prefab::UDummy();
   //dummy4->instantiate(-200.0f, 80.0f);
 
-  for (uint i = 0; i < 4; i++)
+  for (uint i = 0; i < 1; i++)
   {
-    for (uint j = 0; j < 4; j++)
+    for (uint j = 0; j < 1; j++)
     {
       prefab::UDummy* dummy0 = new prefab::UDummy();
       dummy0->instantiate(-200.0f + j * 50.0f, 80.0f + i * 50.0f);

@@ -142,7 +142,7 @@ namespace oak
 	    virtual void onDestroy();
 
       ///<summary>Called when a collision occured</summary>
-      virtual void notifyCollision(Entity& hit) const;
+      virtual void onCollisionHit(Entity& hit);
       //-------------------------------------------------------------
 
       
