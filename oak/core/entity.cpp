@@ -18,6 +18,7 @@ Entity::Entity(bool isFallback)
   componentIDGen = IDGenerator();
   this->entityID = entityIDGen.nextID();
   this->position = glm::vec3(0, 0, 0);
+  this->rotation = glm::vec3(0, 0, 0);
   layerID = 0;
   isGlobal = false;
   this->name = "ent_" + std::to_string(entityID);

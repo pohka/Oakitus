@@ -171,6 +171,10 @@ void SpriteAnimation::onDraw(float positionX, float positionY) const
   );
   model = glm::translate(model, pos);
 
+  float rotation = this->animator->entity->rotation.z;
+  model = glm::rotate(model, rotation, glm::vec3(0.0, 0.0, 1.0f));
+
+
   Shader& shader = Resources::getShaderByID(this->shaderID);
   shader.use();
   shader.setMat4("model", model);
@@ -184,6 +188,10 @@ void SpriteAnimation::setFrame(uchar direction)
   
   float xx = Window::worldToViewportCoords((float)displayW) * 0.5f;
   float yy = Window::worldToViewportCoords((float)displayH) * 0.5f;
+
+  
+
+  
 
   float xMin = (float)(curFrameX * frameW)/ texture.getWidth();
   float xMax = (float)((curFrameX+1) * frameW) / texture.getWidth();

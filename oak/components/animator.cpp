@@ -10,6 +10,7 @@ Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation)
   anims[baseAnimType] = baseAnimation;
   this->curAnim = baseAnimType;
   this->direction = ANIM_DIRECTION_RIGHT;
+  baseAnimation->animator = this;
 }
 
 Animator::~Animator()
@@ -24,6 +25,7 @@ Animator::~Animator()
 void Animator::addAnim(const uchar animType, SpriteAnimation* animation)
 {
   anims[animType] = animation;
+  animation->animator = this;
 }
 
 void Animator::onUpdate()

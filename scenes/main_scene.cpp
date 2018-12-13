@@ -26,6 +26,7 @@ void MainScene::onLoad()
   Resources::addTexture("anim_test2.png");
   Resources::addTexture("wolf_sheet.png");
   Resources::addTexture("action_panel.png");
+  Resources::addTexture("anim_arrow.png");
   
 
   Camera::position = glm::vec3(0, 0, 0);

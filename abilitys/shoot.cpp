@@ -38,7 +38,22 @@ void Shoot::onAbilityStart()
     150.0f,
     15.0f
   );
-  proj->addComponent(new oak::Sprite("face.png", 30.0f, 30.0f));
+  //proj->addComponent(new oak::Sprite("face.png", 30.0f, 30.0f));
+  oak::Animator* animator = new oak::Animator(
+    1,
+    new oak::SpriteAnimation(
+      "anim_arrow.png", 
+      ANIM_PRIORITY_BASE, 
+      32,32, //frame size
+      32,32, //display size
+      0.04f, 
+      "default", 
+      6, 
+      0, 
+      true
+    )
+  );
+  proj->addComponent(animator);
 
   proj->instantiate(caster->position.x, caster->position.y);
 }

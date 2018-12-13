@@ -6,8 +6,11 @@
 #include <core/types.h>
 
 
+
 namespace oak
 {
+  class Animator;
+
   class SpriteAnimation
   {
     uint textureID;
@@ -31,6 +34,7 @@ namespace oak
     float totalAnimDuration;
     bool isLooping;
     uchar priority;
+    
 
     public:
       SpriteAnimation(
@@ -55,6 +59,7 @@ namespace oak
       void onDraw(float positionX, float positionY) const;
       float getTotalAnimDuration() const;
       uchar getPriority() const;
+      Animator* animator;
 
     private:
       void setFrame(uchar direction);

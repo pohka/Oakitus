@@ -18,7 +18,7 @@ Projectile::Projectile(
   float radius,
   bool destroyOnHit,
   uchar targetTeam
-)
+) : Entity()
 {
   this->targetPos = targetPos;
   this->abilityID = abilityID;
@@ -40,6 +40,7 @@ Projectile::~Projectile()
 
 void Projectile::onCollisionHit(Entity& hit)
 {
+  Entity::onCollisionHit(hit);
   if (hit.getCollisionLayer() == CollisionLayer::UNIT)
   {
     Unit& unitHit = static_cast<Unit&>(hit);

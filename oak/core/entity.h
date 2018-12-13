@@ -84,6 +84,7 @@ namespace oak
       
 
       glm::vec3 position; ///<summary>World position of this Entity</summary>
+      glm::vec3 rotation;
       int layerID; ///<summary>Drawing layerID</summary>
       bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
       std::string name; ///<summary>Name of this Entity</summary>

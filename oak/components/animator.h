@@ -5,6 +5,7 @@
 #include "sprite_animation.h"
 #include <unordered_map>
 #include <core/types.h>
+#include <glm/glm.hpp>
 
 namespace oak
 {
@@ -14,6 +15,7 @@ namespace oak
   class Animator : public Component
   {
     friend struct Fallback;
+    friend class SpriteAnimation;
 
     std::unordered_map<uchar, SpriteAnimation*> anims; ///<summary>Map of the animatons available</summary>
     uchar curAnim; ///<summary>Current animation key</summary>
@@ -39,6 +41,7 @@ namespace oak
 
       ///<summary>sets the current direction</summary>
       void setDirection(uchar direction);
+
 
     protected:
       ///<summary>Updates the current animation</summary>
