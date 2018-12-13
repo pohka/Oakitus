@@ -55,6 +55,9 @@
     <Filter Include="oak\collision">
       <UniqueIdentifier>{db25475d-2e59-442f-80ae-e7a34ee52639}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\systems">
+      <UniqueIdentifier>{1e4f06ae-0f6c-44bf-b47e-217f33e3d821}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -221,6 +224,15 @@
     </ClCompile>
     <ClCompile Include="prefabs\projectile_linear.cpp">
       <Filter>game\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="inventory.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\item.cpp">
+      <Filter>game\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\modifier.cpp">
+      <Filter>game\systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +457,15 @@
     </ClInclude>
     <ClInclude Include="prefabs\projectile_linear.h">
       <Filter>game\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="inventory.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\item.h">
+      <Filter>game\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\modifier.h">
+      <Filter>game\systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -86,6 +86,11 @@ UPlayer::UPlayer()
   faction = FACTION_PLAYER;
   setMoveSpeed(200.0f);
   this->rigidBody->mass = 10.0f;
+
+  //testing item
+  Item* item = new Item();
+  item->modifier.addProperty(MODIFIER_DAMAGE, 10);
+  getInventory().addItem(item);
 }
 
 UPlayer::~UPlayer()

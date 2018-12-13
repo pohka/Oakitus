@@ -30,6 +30,9 @@ Unit::~Unit()
     delete abilitys[0];
     abilitys.erase(abilitys.begin());
   }
+
+ // inventory = Inventory();
+
   LOG << "deallocated unit: " << name;
 }
 
@@ -195,4 +198,9 @@ uchar Unit::getAnimDirection() const
 void Unit::setAnimDirection(uchar direction)
 {
   animator->setDirection(direction);
+}
+
+Inventory& Unit::getInventory()
+{
+  return inventory;
 }

@@ -8,6 +8,7 @@
 #include <event/event_manager.h>
 #include "events/e_damage_taken.h"
 #include "events/e_death.h"
+#include "inventory.h"
 
 class oak::Entity;
 
@@ -28,6 +29,7 @@ namespace game
     int health;
     oak::Animator* animator;
     bool m_isOwnerBotPlayer = false;
+    Inventory inventory;
 
     public:
       Unit();
@@ -51,6 +53,8 @@ namespace game
       void setAnimation(uchar animType);
       uchar getAnimDirection() const;
       void setAnimDirection(uchar direction);
+      
+      Inventory& getInventory();
 
       void onStart() override;
       //void onDestroy() override;
