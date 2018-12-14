@@ -3,15 +3,26 @@
 
 using namespace game;
 
-Modifier::Modifier(float duration, bool isPassive, bool isHidden)
+Modifier::Modifier(ModifierData& data)
 {
-  this->duration = duration;
-  this->isPassive = isPassive;
-  this->isHidden = isHidden;
+  this->modifierID = data.modifierID;
+  this->duration = data.duration;
+  this->isPassive = data.isPassive;
+  this->isHidden = data.isHidden;
+  this->isDebuff = data.isDebuff;
+  this->isStackable = data.isStackable;
+  this->maxStacks = data.maxStacks;
+  stackCount = 1;
+
   startTime = oak::Time::getTimeNow();
-  if (!isPassive)
+  if (!data.isPassive)
   {
-    endTime = startTime + duration;
+    endTime = startTime + data.duration;
+  }
+
+  for (auto it = data.properties.begin(); it != data.properties.end(); ++it)
+  {
+    properties.insert(std::pair<uchar, int>(it->first, it->second));
   }
 }
 
@@ -38,4 +49,9 @@ bool Modifier::getIsPassive()
 bool Modifier::getIsHidden()
 {
   return isHidden;
+}
+
+bool Modifier::getIsDebuff()
+{
+  return isDebuff;
 }

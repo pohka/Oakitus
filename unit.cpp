@@ -204,3 +204,30 @@ Inventory& Unit::getInventory()
 {
   return inventory;
 }
+
+void Unit::addModifier(ModifierData& data)
+{
+  if (data.isStackable)
+  {
+    modifiers.push_back(new Modifier(data));
+  }
+  //not stackable
+  else
+  {
+    //return if a modifer with maching id exists
+    for (uint i = 0; i < modifiers.size(); i++)
+    {
+      if (modifiers[i]->getModifierID() == data.modifierID)
+      {
+        //increment stack count
+        if (modifiers[i]->stackCount < modifiers[i]->maxStacks)
+        {
+          modifiers[i]->stackCount++;
+        }
+        return;
+      }
+    }
+    //else add modifier
+    modifiers.push_back(new Modifier(data));
+  }
+}

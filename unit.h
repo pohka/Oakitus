@@ -30,6 +30,7 @@ namespace game
     oak::Animator* animator;
     bool m_isOwnerBotPlayer = false;
     Inventory inventory;
+    std::vector<Modifier*> modifiers;
 
     public:
       Unit();
@@ -53,6 +54,9 @@ namespace game
       void setAnimation(uchar animType);
       uchar getAnimDirection() const;
       void setAnimDirection(uchar direction);
+
+      void addModifier(ModifierData& data);
+
       
       Inventory& getInventory();
 

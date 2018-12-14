@@ -35,8 +35,8 @@ namespace game
       //name string id
       uint nameSID;
 
-      //modifier to apply when equiped
-      Modifier modifier;
+      //modifiers
+      std::vector<ModifierData> modifiers;
 
       Item();
       ~Item();
