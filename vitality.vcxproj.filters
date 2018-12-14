@@ -467,8 +467,8 @@
     <ClInclude Include="systems\modifier.h">
       <Filter>game\systems</Filter>
     </ClInclude>
-    <ClInclude Include="systems\kv_array.h">
-      <Filter>game\systems</Filter>
+    <ClInclude Include="oak\core\kv_array.h">
+      <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

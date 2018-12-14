@@ -214,6 +214,7 @@
     <ClInclude Include="oak\core\command.h" />
     <ClInclude Include="oak\core\component.h" />
     <ClInclude Include="oak\core\entity.h" />
+    <ClInclude Include="oak\core\kv_array.h" />
     <ClInclude Include="oak\core\oakitus.h" />
     <ClInclude Include="oak\core\base_player.h" />
     <ClInclude Include="oak\core\player_resource.h" />
@@ -261,7 +262,6 @@
     <ClInclude Include="scenes\main_scene.h" />
     <ClInclude Include="scripts\ai_test.h" />
     <ClInclude Include="strings_def.h" />
-    <ClInclude Include="systems\kv_array.h" />
     <ClInclude Include="systems\item.h" />
     <ClInclude Include="systems\modifier.h" />
     <ClInclude Include="ui\action_panel.h" />

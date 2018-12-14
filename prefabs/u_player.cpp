@@ -89,6 +89,7 @@ UPlayer::UPlayer()
 
   //testing item
   Item* item = new Item();
+  item->slot = ITEM_SLOT_ARMOR;
   item->modifier.addProperty(MODIFIER_DAMAGE, 10);
   getInventory().addItem(item);
   

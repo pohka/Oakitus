@@ -19,24 +19,18 @@ void Inventory::addItem(Item* item)
 {
   items.push_back(item);
 
-  LOG << "inserting item to slots";
-  slots.insert(ITEM_SLOT_ARMOR, item);
- // slots.insert(ITEM_SLOT_WEAPON , item);
- // Item* armorItem = slots.at(ITEM_SLOT_ARMOR);
-  LOG << "armorItem:" << (slots[ITEM_SLOT_ARMOR] != nullptr);
+  equipItem(item);
+  //slots.insert(ITEM_SLOT_ARMOR, item);
+  //slots.insert(ITEM_SLOT_WEAPON, item);
 
-  //slots.remove(ITEM_SLOT_ARMOR);
-  LOG << "armorItem:" << (slots.at(ITEM_SLOT_ARMOR) != nullptr);
-  slots.insert(ITEM_SLOT_WEAPON, item);
-
-  LOG << "ITEMS::---------";
-  for (auto it = slots.begin(); slots.end(); slots.next())
-  {
-    LOG << "KV:" << it->node->key << ":" << it->node->value->price;
-  }
-
-
+  //LOG << "ITEMS::---------";
+  //for (auto it = slots.begin(); slots.end(); slots.next())
+  //{
+  //  LOG << "KV:" << it->node->key << ":" << it->node->value->price;
+  //}
 }
+
+
 
 Item* Inventory::getItem(uint itemID)
 {
@@ -53,12 +47,26 @@ Item* Inventory::getItem(uint itemID)
   return nullptr;
 }
 
-void Inventory::equipItem(uint itemID)
+void Inventory::equipItem(Item* item)
 {
-  //todo: add item modifier to unit
+  if(item->slot != ITEM_SLOT_NONE)
+  {
+    slots.insert(item->slot, item);
+  }
+  else
+  {
+    //consumable
+  }
+  
+  //todo: add item modifier to unit, e.g. onItemEquiped()
 }
 
-void Inventory::unEquipItem(uint itemID)
+void Inventory::unEquipItem(uchar slotID)
 {
-  //todo remove item modifer to unit
+  if (slotID != ITEM_SLOT_NONE)
+  {
+    slots.insert(slotID, nullptr);
+  }
+  //todo remove item modifer to unit, e.g. onItemUnEquiped()
+
 }

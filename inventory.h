@@ -3,7 +3,7 @@
 
 #include "systems/item.h"
 #include <vector>
-#include "systems/kv_array.h"
+#include <core/kv_array.h>
 
 namespace game
 {
@@ -12,16 +12,15 @@ namespace game
     //typedef std::pair<uchar, Item*> Slot;
 
     std::vector<Item*> items;
-    oak::kv_array<uchar, Item*, 4> slots;
-    //Slot slots[1];
+    oak::kv_array<uchar, Item*, 4> slots; //equiped slots
 
     public:
       Inventory();
       ~Inventory();
       void addItem(Item* item);
       Item* getItem(uint itemID);
-      void equipItem(uint itemID);
-      void unEquipItem(uint itemID);
+      void equipItem(Item* item);
+      void unEquipItem(uchar slotID);
   };
 }
 
