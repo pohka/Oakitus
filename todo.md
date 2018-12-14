@@ -15,7 +15,11 @@
 * ai
   * path finding
   * usage of abilitys
-
+* quest system, types of progression:
+  * go to location
+  * pick up item
+  * talk to npc
+  * kill enemy or a group of enemys
 
 
 * UI

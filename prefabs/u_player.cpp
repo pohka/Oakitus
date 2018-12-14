@@ -91,6 +91,7 @@ UPlayer::UPlayer()
   Item* item = new Item();
   item->modifier.addProperty(MODIFIER_DAMAGE, 10);
   getInventory().addItem(item);
+  
 }
 
 UPlayer::~UPlayer()

@@ -261,6 +261,7 @@
     <ClInclude Include="scenes\main_scene.h" />
     <ClInclude Include="scripts\ai_test.h" />
     <ClInclude Include="strings_def.h" />
+    <ClInclude Include="systems\kv_array.h" />
     <ClInclude Include="systems\item.h" />
     <ClInclude Include="systems\modifier.h" />
     <ClInclude Include="ui\action_panel.h" />
