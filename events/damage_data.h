@@ -8,9 +8,18 @@ namespace game
   //event data
   struct DamageData : public oak::IEventData
   {
-    int amount;
+    float amount; //raw damage
+    //used when applying damage, used for total damage after casters modifiers
+    float totalAmount; 
+
+    //element id
+    uchar element;
+
+    //id of the unit giving the damage
+    uint casterID;
+
+    //id of the unit recieving the damage
     uint victimID;
-    uint attackerID;
   };
 }
 

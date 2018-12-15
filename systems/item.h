@@ -3,7 +3,6 @@
 
 #include <core/types.h>
 #include "../game_def.h"
-#include <unordered_map>
 #include "modifier.h"
 #include "../strings_def.h"
 

@@ -246,6 +246,9 @@
     <ClCompile Include="items\item_test.cpp">
       <Filter>game\items</Filter>
     </ClCompile>
+    <ClCompile Include="damage.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -392,9 +395,6 @@
     <ClInclude Include="events\e_damage_taken.h">
       <Filter>game\events</Filter>
     </ClInclude>
-    <ClInclude Include="global_funcs.h">
-      <Filter>game</Filter>
-    </ClInclude>
     <ClInclude Include="oak\ui\ui_def.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
@@ -487,6 +487,9 @@
     </ClInclude>
     <ClInclude Include="items\item_test.h">
       <Filter>game\items</Filter>
+    </ClInclude>
+    <ClInclude Include="damage.h">
+      <Filter>game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

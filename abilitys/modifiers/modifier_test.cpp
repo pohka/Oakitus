@@ -5,8 +5,9 @@ using namespace game;
 
 ModifierTest::ModifierTest()
 {
-  duration = 3.0f;
-  addProperty(MODIFIER_NORMAL_DAMAGE, 10);
+  isPassive = true;
+  setProp(MODIFIER_PROP_NORMAL_DAMAGE, 10);
+  setProp(MODIFIER_PROP_RESIST_NORMAL, 50);
 }
 
 void ModifierTest::onCreated()

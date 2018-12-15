@@ -9,17 +9,13 @@
 #include <core/player_resource.h>
 #include <ui/ui_canvas.h>
 #include "ui/action_panel.h"
+#include "damage.h"
 
 using namespace game;
 
-const float Unit::BASE_MOVE_SPEED = 400.0f;
-
 Unit::Unit()
 {
-  moveSpeed = BASE_MOVE_SPEED;
   collisionLayer = oak::CollisionLayer::UNIT;
-  faction = FACTION_NONE;
-  health = 100;
   animator = nullptr;
 }
 
@@ -30,8 +26,6 @@ Unit::~Unit()
     delete abilitys[0];
     abilitys.erase(abilitys.begin());
   }
-
- // inventory = Inventory();
 
   LOG << "deallocated unit: " << name;
 }
@@ -144,7 +138,7 @@ void Unit::onDamageTaken(DamageData& data)
 {
   if (isAlive() && data.victimID == getID())
   {
-    this->health -= data.amount;
+    this->health -= Damage::calcAfterReductions(this, data);
 
     //update the UI if a local players health has changed
     if (hasOwner() && oak::PlayerResource::isLocalPlayerID(getOwner()->getPlayerID()))
@@ -161,7 +155,7 @@ void Unit::onDamageTaken(DamageData& data)
       health = 0;
 
       DeathData deathData;
-      deathData.killerID = data.attackerID;
+      deathData.killerID = data.casterID;
       deathData.victimID = this->getID();
       oak::EventManager::getEvent(EVENT_ON_DEATH)->fire(deathData);
     }
@@ -231,4 +225,18 @@ void Unit::addModifier(uint casterID, Modifier* modifier)
 std::vector<Modifier*>& Unit::getAllModifiers()
 {
   return modifiers;
+}
+
+int Unit::getResist(uchar element)
+{
+  return resist[element];
+}
+int Unit::getAmplify(uchar element)
+{
+  return amplify[element];
+}
+
+Unit* Unit::findUnit(uint entityID)
+{
+  return static_cast<Unit*>(oak::Entity::findEntityByID(entityID));
 }

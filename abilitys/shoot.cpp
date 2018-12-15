@@ -26,8 +26,9 @@ void Shoot::onCast()
 void Shoot::onAbilityStart()
 {
   DamageData damage;
-  damage.amount = 20;
-  damage.attackerID = caster->getID();
+  damage.amount = 20.0f;
+  damage.element = ELEMENT_NORMAL;
+  damage.casterID = caster->getID();
   damage.victimID = 0;
 
   prefab::Projectile* proj = new prefab::ProjectileLinear(

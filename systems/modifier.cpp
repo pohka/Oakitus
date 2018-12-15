@@ -3,9 +3,9 @@
 
 using namespace game;
 
-void Modifier::addProperty(uchar propertyID, int value)
+void Modifier::setProp(uchar propertyID, int value)
 {
-  properties.insert(std::pair<uchar, int>(propertyID, value));
+  props.insert(std::pair<uchar, int>(propertyID, value));
 }
 
 uint Modifier::getModifierID()

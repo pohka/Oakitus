@@ -20,14 +20,17 @@ namespace game
 
   class Unit : public oak::Entity, public DamageTakenListener, public DeathListener
   {
-
-   // oak::BasePlayer* owner;
     uint ownerID;
     bool m_hasOwner = false;
-    float moveSpeed;
-    static const float BASE_MOVE_SPEED;
     
-    int health;
+    //stats
+    int health = 100;
+    float moveSpeed = 100.0f;
+    int damage = 10;
+    int mana = 100;
+    int resist[ELEMENT_COUNT] = {};
+    int amplify[ELEMENT_COUNT] = {};
+    
     oak::Animator* animator;
     bool m_isOwnerBotPlayer = false;
     
@@ -56,7 +59,9 @@ namespace game
       void setAnimation(uchar animType);
       uchar getAnimDirection() const;
       void setAnimDirection(uchar direction);
-
+      int getResist(uchar element);
+      int getAmplify(uchar element);
+      
 
       void addModifier(uint casterID, Modifier* modifier);
       std::vector<Modifier*>& getAllModifiers();
@@ -65,6 +70,8 @@ namespace game
       //void onDestroy() override;
       //void onDraw() override;
       void onUpdate();
+
+      static Unit* findUnit(uint unitID);
 
     protected:
       uchar faction;

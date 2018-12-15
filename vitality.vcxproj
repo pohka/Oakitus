@@ -134,6 +134,7 @@
     <ClCompile Include="abilitys\sword_attack.cpp" />
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />
+    <ClCompile Include="damage.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="inventory.cpp" />
     <ClCompile Include="items\item_test.cpp" />
@@ -196,11 +197,11 @@
     <ClInclude Include="abilitys\sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
+    <ClInclude Include="damage.h" />
     <ClInclude Include="events\damage_data.h" />
     <ClInclude Include="events\e_damage_taken.h" />
     <ClInclude Include="events\e_death.h" />
     <ClInclude Include="game_def.h" />
-    <ClInclude Include="global_funcs.h" />
     <ClInclude Include="inventory.h" />
     <ClInclude Include="items\item_test.h" />
     <ClInclude Include="oak\collision\base_collision_shape.h" />

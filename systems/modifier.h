@@ -17,10 +17,10 @@ namespace game
     uchar maxStacks = 1;
     float duration = 0.0f;
 
-    std::unordered_map<uchar, int> properties;
+    std::unordered_map<uchar, int> props;
     uint casterID;
 
-    void addProperty(uchar propertyID, int value);
+    void setProp(uchar propertyID, int value);
     uint getModifierID();
     void refresh();
 
