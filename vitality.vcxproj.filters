@@ -58,6 +58,12 @@
     <Filter Include="game\systems">
       <UniqueIdentifier>{1e4f06ae-0f6c-44bf-b47e-217f33e3d821}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\abilitys\modifiers">
+      <UniqueIdentifier>{47991687-f42a-4fa8-8806-79b74259b515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\items">
+      <UniqueIdentifier>{f7abebd6-0cc9-4b0f-bbe6-4fd0710ebb8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -233,6 +239,12 @@
     </ClCompile>
     <ClCompile Include="systems\modifier.cpp">
       <Filter>game\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="abilitys\modifiers\modifier_test.cpp">
+      <Filter>game\abilitys\modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="items\item_test.cpp">
+      <Filter>game\items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -469,6 +481,12 @@
     </ClInclude>
     <ClInclude Include="oak\core\kv_array.h">
       <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitys\modifiers\modifier_test.h">
+      <Filter>game\abilitys\modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="items\item_test.h">
+      <Filter>game\items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

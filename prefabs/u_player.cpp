@@ -5,6 +5,8 @@
 #include "../oak/components/sprite_animation.h"
 #include "../oak/components/animator.h"
 #include "../oak/components/rigid_body_2d.h"
+//#include "../abilitys/modifiers/modifier_test.h"
+#include "../items/item_test.h"
 
 using namespace game::prefab;
 using namespace oak;
@@ -87,13 +89,9 @@ UPlayer::UPlayer()
   setMoveSpeed(200.0f);
   this->rigidBody->mass = 10.0f;
 
+
   //testing item
-  Item* item = new Item();
-  item->slot = ITEM_SLOT_ARMOR;
-  ModifierData modData;
-  modData.addProperty(MODIFIER_DAMAGE, 10);
-  item->modifiers.push_back(modData);
-  getInventory().addItem(item);
+  inventory.addItem(new ItemTest());
   
 }
 

@@ -200,34 +200,30 @@ void Unit::setAnimDirection(uchar direction)
   animator->setDirection(direction);
 }
 
-Inventory& Unit::getInventory()
+void Unit::addModifier(uint casterID, Modifier* modifier)
 {
-  return inventory;
-}
-
-void Unit::addModifier(ModifierData& data)
-{
-  if (data.isStackable)
+  //check if has modifier
+  for (uint i = 0; i < modifiers.size(); i++)
   {
-    modifiers.push_back(new Modifier(data));
-  }
-  //not stackable
-  else
-  {
-    //return if a modifer with maching id exists
-    for (uint i = 0; i < modifiers.size(); i++)
+    if (modifiers[i]->getModifierID() == modifier->getModifierID())
     {
-      if (modifiers[i]->getModifierID() == data.modifierID)
+      //if stackable, increment stack count
+      if (modifier->isStackable && modifiers[i]->stackCount < modifiers[i]->maxStacks)
       {
-        //increment stack count
-        if (modifiers[i]->stackCount < modifiers[i]->maxStacks)
-        {
-          modifiers[i]->stackCount++;
-        }
-        return;
+        modifiers[i]->stackCount++;
       }
+      //refresh
+      else if (!modifier->isStackable)
+      {
+        modifiers[i]->refresh();
+      }
+      delete modifier;
+      return;
     }
-    //else add modifier
-    modifiers.push_back(new Modifier(data));
   }
+
+  modifier->casterID = casterID;
+  modifier->refresh(); //set start and end time
+  modifiers.push_back(modifier);
+  modifier->onCreated();
 }

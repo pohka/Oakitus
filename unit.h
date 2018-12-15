@@ -9,6 +9,7 @@
 #include "events/e_damage_taken.h"
 #include "events/e_death.h"
 #include "inventory.h"
+#include "systems/modifier.h"
 
 class oak::Entity;
 
@@ -25,11 +26,12 @@ namespace game
     bool m_hasOwner = false;
     float moveSpeed;
     static const float BASE_MOVE_SPEED;
-    std::vector<Ability*> abilitys;
+    
     int health;
     oak::Animator* animator;
     bool m_isOwnerBotPlayer = false;
-    Inventory inventory;
+    
+    //modifiers currently applied to this unit
     std::vector<Modifier*> modifiers;
 
     public:
@@ -55,10 +57,8 @@ namespace game
       uchar getAnimDirection() const;
       void setAnimDirection(uchar direction);
 
-      void addModifier(ModifierData& data);
 
-      
-      Inventory& getInventory();
+      void addModifier(uint casterID, Modifier* modifier);
 
       void onStart() override;
       //void onDestroy() override;
@@ -70,6 +70,10 @@ namespace game
       
       void onDamageTaken(DamageData& data) override;
       void onDeath(DeathData& data) override;
+
+      Inventory inventory = Inventory(getID());
+      std::vector<Ability*> abilitys;
+
     private:
       
       

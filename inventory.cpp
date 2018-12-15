@@ -3,10 +3,10 @@
 
 using namespace game;
 
-Inventory::Inventory()
+Inventory::Inventory(uint ownerID)
 {
   LOG << "inventroy constructor";
-
+  this->ownerID = ownerID;
   
 }
 
@@ -19,6 +19,8 @@ void Inventory::addItem(Item* item)
 {
   items.push_back(item);
 
+  LOG << "added item to inventory";
+  //temp for testing
   equipItem(item);
   //slots.insert(ITEM_SLOT_ARMOR, item);
   //slots.insert(ITEM_SLOT_WEAPON, item);
@@ -51,7 +53,15 @@ void Inventory::equipItem(Item* item)
 {
   if(item->slot != ITEM_SLOT_NONE)
   {
+    //unequip existing
+    if (slots[item->slot] != nullptr)
+    {
+      slots[item->slot]->onUnEquip();
+    }
+
     slots.insert(item->slot, item);
+    item->ownerID = ownerID;
+    item->onEquip();
   }
   else
   {
@@ -65,6 +75,10 @@ void Inventory::unEquipItem(uchar slotID)
 {
   if (slotID != ITEM_SLOT_NONE)
   {
+    if (slots[slotID] != nullptr)
+    {
+      slots[slotID]->onUnEquip();
+    }
     slots.insert(slotID, nullptr);
   }
   //todo remove item modifer to unit, e.g. onItemUnEquiped()

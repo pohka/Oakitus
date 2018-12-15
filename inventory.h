@@ -13,9 +13,10 @@ namespace game
 
     std::vector<Item*> items;
     oak::kv_array<uchar, Item*, 4> slots; //equiped slots
+    uint ownerID;
 
     public:
-      Inventory();
+      Inventory(uint ownerID);
       ~Inventory();
       void addItem(Item* item);
       Item* getItem(uint itemID);

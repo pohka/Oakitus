@@ -129,12 +129,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ability.cpp" />
+    <ClCompile Include="abilitys\modifiers\modifier_test.cpp" />
     <ClCompile Include="abilitys\shoot.cpp" />
     <ClCompile Include="abilitys\sword_attack.cpp" />
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="inventory.cpp" />
+    <ClCompile Include="items\item_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="oak\collision\base_collision_shape.cpp" />
     <ClCompile Include="oak\collision\collision.cpp" />
@@ -189,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ability.h" />
+    <ClInclude Include="abilitys\modifiers\modifier_test.h" />
     <ClInclude Include="abilitys\shoot.h" />
     <ClInclude Include="abilitys\sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="game_def.h" />
     <ClInclude Include="global_funcs.h" />
     <ClInclude Include="inventory.h" />
+    <ClInclude Include="items\item_test.h" />
     <ClInclude Include="oak\collision\base_collision_shape.h" />
     <ClInclude Include="oak\collision\collision.h" />
     <ClInclude Include="oak\collision\collision_circle.h" />
