@@ -15,6 +15,8 @@ namespace game
     bool isDebuff = true;
     uchar stackCount = 1;
     uchar maxStacks = 1;
+    float duration = 0.0f;
+
     std::unordered_map<uchar, int> properties;
     uint casterID;
 
@@ -29,7 +31,7 @@ namespace game
     uint modifierID;
     float startTime;
     float endTime;
-    float duration = 0.0f;
+    
   };
 }
 

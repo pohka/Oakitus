@@ -227,3 +227,8 @@ void Unit::addModifier(uint casterID, Modifier* modifier)
   modifiers.push_back(modifier);
   modifier->onCreated();
 }
+
+std::vector<Modifier*>& Unit::getAllModifiers()
+{
+  return modifiers;
+}

@@ -59,6 +59,7 @@ namespace game
 
 
       void addModifier(uint casterID, Modifier* modifier);
+      std::vector<Modifier*>& getAllModifiers();
 
       void onStart() override;
       //void onDestroy() override;

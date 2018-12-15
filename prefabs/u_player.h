@@ -12,6 +12,8 @@ namespace game
       public:
         UPlayer();
         ~UPlayer();
+
+        void onStart();
     };
   }
 }

@@ -90,12 +90,17 @@ UPlayer::UPlayer()
   this->rigidBody->mass = 10.0f;
 
 
-  //testing item
-  inventory.addItem(new ItemTest());
   
 }
 
 UPlayer::~UPlayer()
 {
 
+}
+
+void UPlayer::onStart() 
+{
+  Unit::onStart();
+  //testing item
+  inventory.addItem(new ItemTest());
 }

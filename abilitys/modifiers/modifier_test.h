@@ -7,7 +7,7 @@ namespace game
 {
   struct ModifierTest : public Modifier
   {
-
+    ModifierTest();
     void onCreated() override;
   };
 }
