@@ -113,6 +113,20 @@ void Unit::onUpdate()
       abil->setCastState(CAST_STATE_NONE);
     }
   }
+
+  for (uint i=0; i<modifiers.size(); i++)
+  {
+    modifiers[i]->onUpdate();
+
+    if (modifiers[i]->destroyOnExpire && now >= modifiers[i]->getEndTime())
+    {
+      modifiers[i]->onDestroy();
+      Modifier* tmp = modifiers[i];
+      delete tmp;
+      modifiers.erase(modifiers.begin() + i);
+      i--;
+    }
+  }
 }
 
 uchar Unit::getFaction() const
@@ -164,10 +178,18 @@ void Unit::onDamageTaken(DamageData& data)
 
 void Unit::onDeath(DeathData& data)
 {
+  
+
   if (data.victimID == getID())
   {
     LOG << "onDeath()";
+    for (Modifier* modifier : modifiers)
+    {
+      modifier->onDeath();
+    }
+
     destroy();
+
   }
   //notify components
   //then do something
@@ -194,7 +216,7 @@ void Unit::setAnimDirection(uchar direction)
   animator->setDirection(direction);
 }
 
-void Unit::addModifier(uint casterID, Modifier* modifier)
+void Unit::addModifier(uint attackerID, Modifier* modifier)
 {
   //check if has modifier
   for (uint i = 0; i < modifiers.size(); i++)
@@ -216,8 +238,7 @@ void Unit::addModifier(uint casterID, Modifier* modifier)
     }
   }
 
-  modifier->casterID = casterID;
-  modifier->refresh(); //set start and end time
+  modifier->init(this, attackerID);
   modifiers.push_back(modifier);
   modifier->onCreated();
 }

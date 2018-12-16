@@ -9,6 +9,9 @@ namespace game
   {
     mod_Example();
     void onCreated() override;
+    void onDestroy() override;
+    void onDeath() override;
+    void onRefresh() override;
   };
 }
 

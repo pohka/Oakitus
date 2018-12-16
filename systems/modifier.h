@@ -3,15 +3,20 @@
 
 #include "../game_def.h"
 #include <unordered_map>
+
 #include "../abilitys/modifiers/modifier_def.h"
 
 namespace game
 {
+  class Unit;
+
   //instance
   struct Modifier
   {
     Modifier(ushort id);
-    bool isPassive = false; //if true, duration is ignored
+    void init(Unit* owner, uint attackerID);
+
+    bool destroyOnExpire = true;
     bool isHidden = false; //shows in the modifier ui
     bool isStackable = false;
     bool isDebuff = true;
@@ -20,22 +25,29 @@ namespace game
     float duration = 0.0f;
 
     std::unordered_map<uchar, int> props;
-    uint casterID;
+    uint attackerID;
 
     void setProp(uchar propertyID, int value);
     uint getModifierID();
     void refresh();
+    
 
     //events
     virtual void onCreated() = 0;
+    void onUpdate();
+    virtual void onDestroy() = 0;
+    virtual void onDeath() = 0;
+    virtual void onRefresh() = 0;
+    float getEndTime();
 
-    //protected:
-      
+    protected:
+      Unit* owner;
 
     private:
       ushort modifierID;
       float startTime;
       float endTime;
+      
     
   };
 }

@@ -63,7 +63,7 @@ namespace game
       int getAmplify(uchar element);
       
 
-      void addModifier(uint casterID, Modifier* modifier);
+      void addModifier(uint attackerID, Modifier* modifier);
       std::vector<Modifier*>& getAllModifiers();
 
       void onStart() override;

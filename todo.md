@@ -4,8 +4,6 @@ items and modifiers:
 * UI for inventory (to unequip items)
 * expire modifiers after duration
 * modifier events
-  * onDestroyed
-  * OnDeath
   * OnIntervalThink (incremental damage/heal per sec)
 * modifier states
   * stunned (cant make any actions)
