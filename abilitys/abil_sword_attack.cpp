@@ -1,33 +1,33 @@
-#include "sword_attack.h"
+#include "abil_sword_attack.h"
 #include <debug.h>
 
 using namespace game;
 
-SwordAttack::SwordAttack()
+abil_SwordAttack::abil_SwordAttack()
 {
   targetType = TARGET_TYPE_NO_TARGET;
   preCastTime = 0.0f;
   castTime = 0.5f;
 }
 
-SwordAttack::~SwordAttack()
+abil_SwordAttack::~abil_SwordAttack()
 {
 
 }
 
 
-void SwordAttack::onCast()
+void abil_SwordAttack::onCast()
 {
   LOG << "onCast sword attack";
   caster->setAnimation(ANIM_TYPE_ABILITY_2);
 }
 
-void SwordAttack::onAbilityStart()
+void abil_SwordAttack::onAbilityStart()
 {
 
 }
 
-void SwordAttack::onAbilityEnd()
+void abil_SwordAttack::onAbilityEnd()
 {
 
 }

@@ -2,7 +2,7 @@
 #include <debug.h>
 #include <oak.h>
 #include "../unit.h"
-#include "../abilitys/modifiers/modifier_test.h"
+#include "../abilitys/modifiers/mod_example.h"
 
 using namespace game;
 
@@ -17,7 +17,7 @@ void ItemTest::onEquip()
   Unit* owner = static_cast<Unit*>(oak::Entity::findEntityByID(ownerID));
   if (owner != nullptr)
   {
-    owner->addModifier(ownerID, new ModifierTest());
+    owner->addModifier(ownerID, new mod_Example());
   }
   else
   {

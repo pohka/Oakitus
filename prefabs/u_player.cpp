@@ -1,16 +1,15 @@
 #include "u_player.h"
 #include <oak.h>
-#include "../abilitys/shoot.h"
-#include "../abilitys/sword_attack.h"
+#include "../abilitys/abil_shoot.h"
+#include "../abilitys/abil_sword_attack.h"
 #include "../oak/components/sprite_animation.h"
 #include "../oak/components/animator.h"
 #include "../oak/components/rigid_body_2d.h"
-//#include "../abilitys/modifiers/modifier_test.h"
 #include "../items/item_test.h"
 
 using namespace game::prefab;
 using namespace oak;
-using namespace game::ability;
+using namespace game;
 
 UPlayer::UPlayer()
 {
@@ -80,8 +79,8 @@ UPlayer::UPlayer()
  
   addAnimator(animator);
 
-  addAbility(new Shoot());
-  addAbility(new SwordAttack());
+  addAbility(new abil_Shoot());
+  addAbility(new abil_SwordAttack());
   //addCollision(new CollisionRect(-20.0f, -10.0f, 40.0f, 60.0f));
   addCollision(new CollisionCircle(20.0f, 0.0f, 00.0f));
   addRigidBody(new RigidBody2D(false));

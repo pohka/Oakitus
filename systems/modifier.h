@@ -3,12 +3,14 @@
 
 #include "../game_def.h"
 #include <unordered_map>
+#include "../abilitys/modifiers/modifier_def.h"
 
 namespace game
 {
   //instance
   struct Modifier
   {
+    Modifier(ushort id);
     bool isPassive = false; //if true, duration is ignored
     bool isHidden = false; //shows in the modifier ui
     bool isStackable = false;
@@ -27,10 +29,13 @@ namespace game
     //events
     virtual void onCreated() = 0;
 
-  private:
-    uint modifierID;
-    float startTime;
-    float endTime;
+    //protected:
+      
+
+    private:
+      ushort modifierID;
+      float startTime;
+      float endTime;
     
   };
 }

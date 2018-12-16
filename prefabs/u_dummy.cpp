@@ -2,7 +2,7 @@
 #include <oak.h>
 #include <debug.h>
 #include "../scripts/ai_test.h"
-#include "../abilitys/modifiers/modifier_test.h"
+#include "../abilitys/modifiers/mod_example.h"
 
 using namespace game::prefab;
 using namespace oak;
@@ -45,5 +45,5 @@ UDummy::~UDummy()
 void UDummy::onStart()
 {
   Unit::onStart();
-  addModifier(getID(), new ModifierTest());
+  addModifier(getID(), new mod_Example());
 }

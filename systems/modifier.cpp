@@ -3,6 +3,11 @@
 
 using namespace game;
 
+Modifier::Modifier(ushort id)
+{
+  modifierID = id;
+}
+
 void Modifier::setProp(uchar propertyID, int value)
 {
   props.insert(std::pair<uchar, int>(propertyID, value));

@@ -1,13 +1,39 @@
 # todo
 
-* inventory and items
-* modifiers (buffs and debuffs)
-* item drops
+items and modifiers:
+* UI for inventory (to unequip items)
+* expire modifiers after duration
+* modifier events
+  * onDestroyed
+  * OnDeath
+  * OnIntervalThink (incremental damage/heal per sec)
+* modifier states
+  * stunned (cant make any actions)
+  * silenced (cant use spells)
+  * disarmed (cant use basic weapon or attack)
+* modifier props
+  * health, mana, movespeed
+  * heal
+  * health regen
+  * mana regen
+ * ability
+   * use() drains mana
+   * OnOwnerDied
+* item drops from enemy death
+* item examples:
+  * healing poition
+  * damage boost potion
+* ability example:
+  * stuns enemy for 1sec
+  * does 5 fire dps for 5secs
+* unit.findModifierByName()
+* modifier.particle  (fire effect)
 * chest (player collecting of items)
-* unit.findAllModifiersByName() and unit.findModifierByName()
-* modifier.getCasterID()
-* modifier.getAbilityID()
-* modifier.particle  ( fire effect)
+* delete memory leaks
+* tidy up location of files in project
+
+---
+
 
 * asset streaming: automatically deciding which textures need to be loaded
   * deleting texture (fonts too)
@@ -20,6 +46,7 @@
   * pick up item
   * talk to npc
   * kill enemy or a group of enemys
+* dialog system
 
 
 * UI

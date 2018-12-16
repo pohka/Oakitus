@@ -1,29 +1,29 @@
-#include "shoot.h"
+#include "abil_shoot.h"
 #include <debug.h>
 #include "../prefabs/projectile_linear.h"
 #include "../oak/components/sprite.h"
 
-using namespace game::ability;
+using namespace game;
 
-Shoot::Shoot()
+abil_Shoot::abil_Shoot()
 {
   targetType = TARGET_TYPE_POINT;
   preCastTime = 0.0f;
   castTime = 0.5f;
 }
 
-Shoot::~Shoot()
+abil_Shoot::~abil_Shoot()
 {
   LOG << "Delocated shoot ability";
 }
 
-void Shoot::onCast()
+void abil_Shoot::onCast()
 {
   //LOG << "onCast()";
   caster->setAnimation(ANIM_TYPE_ABILITY_1);
 }
 
-void Shoot::onAbilityStart()
+void abil_Shoot::onAbilityStart()
 {
   DamageData damage;
   damage.amount = 20.0f;
@@ -59,7 +59,7 @@ void Shoot::onAbilityStart()
   proj->instantiate(caster->position.x, caster->position.y);
 }
 
-void Shoot::onAbilityEnd()
+void abil_Shoot::onAbilityEnd()
 {
 
 }

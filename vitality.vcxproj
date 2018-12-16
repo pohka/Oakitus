@@ -129,9 +129,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ability.cpp" />
-    <ClCompile Include="abilitys\modifiers\modifier_test.cpp" />
-    <ClCompile Include="abilitys\shoot.cpp" />
-    <ClCompile Include="abilitys\sword_attack.cpp" />
+    <ClCompile Include="abilitys\modifiers\mod_example.cpp" />
+    <ClCompile Include="abilitys\abil_shoot.cpp" />
+    <ClCompile Include="abilitys\abil_sword_attack.cpp" />
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />
     <ClCompile Include="damage.cpp" />
@@ -192,9 +192,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ability.h" />
-    <ClInclude Include="abilitys\modifiers\modifier_test.h" />
-    <ClInclude Include="abilitys\shoot.h" />
-    <ClInclude Include="abilitys\sword_attack.h" />
+    <ClInclude Include="abilitys\modifiers\modifier_def.h" />
+    <ClInclude Include="abilitys\modifiers\mod_example.h" />
+    <ClInclude Include="abilitys\abil_shoot.h" />
+    <ClInclude Include="abilitys\abil_sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
     <ClInclude Include="damage.h" />

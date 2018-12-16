@@ -1,15 +1,15 @@
-#ifndef SWORD_ATTACK_H
-#define SWORD_ATTACK_H
+#ifndef ABIL_SWORD_ATTACK_H
+#define ABIL_SWORD_ATTACK_H
 
 #include "../ability.h"
 
 namespace game
 {
-  class SwordAttack : public Ability
+  class abil_SwordAttack : public Ability
   {
     public:
-      SwordAttack();
-      ~SwordAttack();
+      abil_SwordAttack();
+      ~abil_SwordAttack();
 
 
       void onCast() override;
