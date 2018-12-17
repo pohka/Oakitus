@@ -60,6 +60,8 @@ cnum ELEMENT_COUNT = 7;
 cnum MODIFIER_PROP_HEALTH = 0;
 cnum MODIFIER_PROP_MANA = 1;
 cnum MODIFIER_PROP_MOVESPEED = 2;
+cnum MODIFIER_PROP_HEALTH_REGEN = 3;
+cnum MODIFIER_PROP_MANA_REGEN = 4;
 //element resists
 //note: must be in same order element types
 cnum MODIFIER_PROP_RESIST_NORMAL = 5;

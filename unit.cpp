@@ -70,7 +70,19 @@ bool Unit::hasOwner() const
 
 float Unit::getMoveSpeed() const
 {
-  return moveSpeed;
+  int totalMoveSpeed = moveSpeed;
+  for (Modifier* modifier : modifiers)
+  {
+    for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
+    {
+      if (it->first == MODIFIER_PROP_MOVESPEED)
+      {
+        totalMoveSpeed += it->second;
+        break;
+      }
+    }
+  }
+  return totalMoveSpeed;
 }
 
 void Unit::setMoveSpeed(float moveSpeed)

@@ -30,6 +30,8 @@ namespace game
     int mana = 100;
     int resist[ELEMENT_COUNT] = {};
     int amplify[ELEMENT_COUNT] = {};
+    int healthRegen = 0;
+    int manaRegen = 0;
     
     oak::Animator* animator;
     bool m_isOwnerBotPlayer = false;

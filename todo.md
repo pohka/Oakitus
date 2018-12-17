@@ -19,7 +19,6 @@ items and modifiers:
   * damage boost potion
 * ability example:
   * stuns enemy for 1sec
-  * does 5 fire dps for 5secs
 * unit.findModifierByName()
 * modifier.particle  (fire effect)
 * chest (player collecting of items)

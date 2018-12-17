@@ -12,6 +12,7 @@ mod_Example::mod_Example() : Modifier(MODIFIER_EXAMPLE)
   setProp(MODIFIER_PROP_NORMAL_DAMAGE, 10);
   setProp(MODIFIER_PROP_AMP_NORMAL, 50);
   setProp(MODIFIER_PROP_RESIST_NORMAL, 50);
+  setProp(MODIFIER_PROP_MOVESPEED, 450);
   
   startTicker(1.55f);
 }
