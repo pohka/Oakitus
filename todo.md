@@ -2,7 +2,6 @@
 
 items and modifiers:
 * UI for inventory (to unequip items)
-* expire modifiers after duration
 * modifier states
   * stunned (cant make any actions)
   * silenced (cant use spells)
@@ -13,7 +12,6 @@ items and modifiers:
   * health regen
   * mana regen
  * ability
-   * use() drains mana
    * OnOwnerDied
 * item drops from enemy death
 * item examples:

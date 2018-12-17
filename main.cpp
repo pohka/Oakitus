@@ -27,6 +27,7 @@ void Oakitus::load()
 {
   //load localized strings
   ui::Localization::addString(STRING_HEALTH, "health:");
+  ui::Localization::addString(STRING_MANA, "mana:");
 
   IEvent* damageEvent = new DamageTakenEvent(EVENT_ON_DAMAGE_TAKEN, game::onDamageTakenFire);
   EventManager::addEvent(damageEvent);

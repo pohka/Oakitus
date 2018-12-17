@@ -37,6 +37,12 @@ void Ability::castNoTarget()
 
 void Ability::beginCasting()
 {
+  //not enough mana
+  if (caster->getMana() < manaCost)
+  {
+    return;
+  }
+
   float now = oak::Time::getTimeNow();
   startTime = now + preCastTime;
   endTime = startTime + castTime;
@@ -84,3 +90,8 @@ void Ability::onAbilityStart()
 void Ability::onAbilityEnd() 
 {
 } 
+
+int Ability::getManaCost()
+{
+  return manaCost;
+}

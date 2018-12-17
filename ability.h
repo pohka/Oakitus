@@ -44,6 +44,8 @@ namespace game
 
       void setCastState(uchar state);
 
+      int getManaCost();
+
     protected:
       Target target;
       float preCastTime = 0.0f; //wind up before casting
@@ -51,6 +53,7 @@ namespace game
       uchar castState = 0;
       uchar targetType = 0;
       uchar targetTeam = 0;
+      int manaCost = 0;
       
     private:
       void beginCasting();

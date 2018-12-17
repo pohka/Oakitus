@@ -27,6 +27,13 @@ ActionPanel::ActionPanel()
   label->offset.y = 60.0f;
   label->text = Localization::strings[STRING_HEALTH] + std::to_string(prop_hp);
   nodes.push_back(label);
+
+  label2 = UILabel::createLabel("", 20, 400, 20);
+  label2->color = { 0.9f, 0.9f, 0.9f };
+  label2->offset.x = 150.0f;
+  label2->offset.y = 60.0f;
+  label2->text = Localization::strings[STRING_MANA] + std::to_string(prop_hp);
+  nodes.push_back(label2);
 }
 
 ActionPanel::~ActionPanel()
@@ -39,4 +46,11 @@ void ActionPanel::setHP(int hp)
   LOG << "setting hp";
   prop_hp = hp;
   label->text = Localization::strings[STRING_HEALTH] + std::to_string(prop_hp);
+}
+
+void ActionPanel::setMana(int mana)
+{
+  LOG << "setting hp";
+  prop_mana = mana;
+  label2->text = Localization::strings[STRING_MANA] + std::to_string(prop_mana);
 }

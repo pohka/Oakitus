@@ -21,7 +21,7 @@ namespace game
   struct Modifier
   {
     Modifier(ushort id);
-    void init(Unit* owner, uint attackerID);
+    void init(Unit* owner, uint casterID);
 
     bool destroyOnExpire = true;
     bool isHidden = false; //shows in the modifier ui
@@ -33,11 +33,14 @@ namespace game
     
 
     std::unordered_map<uchar, int> props;
-    uint attackerID;
+    uint casterID;
 
     void setProp(uchar propertyID, int value);
     uint getModifierID();
     void refresh();
+
+    //call onDestroy() and remove this modifier from its owner
+    void destroy();
     
 
     //events

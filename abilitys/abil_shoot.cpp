@@ -10,6 +10,7 @@ abil_Shoot::abil_Shoot()
   targetType = TARGET_TYPE_POINT;
   preCastTime = 0.0f;
   castTime = 0.5f;
+  manaCost = 1;
 }
 
 abil_Shoot::~abil_Shoot()

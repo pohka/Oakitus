@@ -104,6 +104,7 @@ void Unit::onUpdate()
   {
     if (abil->getCastState() == CAST_STATE_PRECAST && now >= abil->getStartTime())
     {
+      useMana(abil->getManaCost());
       abil->onAbilityStart();
       abil->setCastState(CAST_STATE_CASTING);
     }
@@ -121,8 +122,7 @@ void Unit::onUpdate()
     if (modifiers[i]->destroyOnExpire && now >= modifiers[i]->getEndTime())
     {
       modifiers[i]->onDestroy();
-      Modifier* tmp = modifiers[i];
-      delete tmp;
+      delete modifiers[i];
       modifiers.erase(modifiers.begin() + i);
       i--;
     }
@@ -216,7 +216,7 @@ void Unit::setAnimDirection(uchar direction)
   animator->setDirection(direction);
 }
 
-void Unit::addModifier(uint attackerID, Modifier* modifier)
+void Unit::addModifier(uint casterID, Modifier* modifier)
 {
   //check if has modifier
   for (uint i = 0; i < modifiers.size(); i++)
@@ -238,9 +238,22 @@ void Unit::addModifier(uint attackerID, Modifier* modifier)
     }
   }
 
-  modifier->init(this, attackerID);
+  modifier->init(this, casterID);
   modifiers.push_back(modifier);
   modifier->onCreated();
+}
+
+void Unit::removeModifier(ushort modifierID, uint casterID)
+{
+  for (uint i = 0; i < modifiers.size(); i++)
+  {
+    if (modifiers[i]->getModifierID() == modifierID && modifiers[i]->casterID == casterID)
+    {
+      delete modifiers[i];
+      modifiers.erase(modifiers.begin() + i);
+      return;
+    }
+  }
 }
 
 std::vector<Modifier*>& Unit::getAllModifiers()
@@ -260,4 +273,30 @@ int Unit::getAmplify(uchar element)
 Unit* Unit::findUnit(uint entityID)
 {
   return static_cast<Unit*>(oak::Entity::findEntityByID(entityID));
+}
+
+int Unit::getMana()
+{
+  return mana;
+}
+
+void Unit::useMana(int amount)
+{
+  if (amount != 0)
+  {
+    mana -= amount;
+    if (mana < 0.0f)
+    {
+      mana = 0.0f;
+    }
+
+    //update the UI if a local players health has changed
+    if (hasOwner() && oak::PlayerResource::isLocalPlayerID(getOwner()->getPlayerID()))
+    {
+      //LOG << "has owner and is local player";
+      auto* comp = oak::ui::UICanvas::getComponent(UI_COMPONENT_ACTION_PANEL);
+      ui::ActionPanel* actionPanel = static_cast<ui::ActionPanel*>(comp);
+      actionPanel->setMana(mana);
+    }
+  }
 }

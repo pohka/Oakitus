@@ -1,5 +1,6 @@
 #include "modifier.h"
 #include <core/time.h>
+#include "../unit.h"
 
 using namespace game;
 
@@ -9,10 +10,10 @@ Modifier::Modifier(ushort id)
   startTime = oak::Time::getTimeNow();
 }
 
-void Modifier::init(Unit* owner, uint attackerID)
+void Modifier::init(Unit* owner, uint casterID)
 {
   this->owner = owner;
-  this->attackerID = attackerID;
+  this->casterID = casterID;
   endTime = startTime + duration;
 }
 
@@ -64,4 +65,10 @@ void Modifier::startTicker(float interval)
 void Modifier::onIntervalTick()
 {
 
+}
+
+void Modifier::destroy()
+{
+  onDestroy();
+  owner->removeModifier(modifierID, casterID);
 }

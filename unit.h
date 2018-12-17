@@ -61,9 +61,13 @@ namespace game
       void setAnimDirection(uchar direction);
       int getResist(uchar element);
       int getAmplify(uchar element);
+      int getMana();
+      void useMana(int amount);
       
 
-      void addModifier(uint attackerID, Modifier* modifier);
+      void addModifier(uint casterID, Modifier* modifier);
+      //if this unit has a matching modifier, removes it note:does not call onDestroy()
+      void removeModifier(ushort modifierID, uint casterID); 
       std::vector<Modifier*>& getAllModifiers();
 
       void onStart() override;
