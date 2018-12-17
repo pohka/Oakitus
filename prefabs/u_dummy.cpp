@@ -45,5 +45,5 @@ UDummy::~UDummy()
 void UDummy::onStart()
 {
   Unit::onStart();
-  addModifier(getID(), new mod_Example());
+  //ddModifier(getID(), new mod_Example());
 }

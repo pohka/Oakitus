@@ -10,6 +10,13 @@ namespace game
 {
   class Unit;
 
+  struct ModifierTicker
+  {
+    float interval;
+    float nextTickTime;
+    bool isTicking = false;
+  };
+
   //instance
   struct Modifier
   {
@@ -23,6 +30,7 @@ namespace game
     uchar stackCount = 1;
     uchar maxStacks = 1;
     float duration = 0.0f;
+    
 
     std::unordered_map<uchar, int> props;
     uint attackerID;
@@ -38,17 +46,18 @@ namespace game
     virtual void onDestroy() = 0;
     virtual void onDeath() = 0;
     virtual void onRefresh() = 0;
+    virtual void onIntervalTick();
     float getEndTime();
 
     protected:
       Unit* owner;
+      void startTicker(float interval);
 
     private:
       ushort modifierID;
       float startTime;
       float endTime;
-      
-    
+      ModifierTicker ticker;
   };
 }
 

@@ -16,6 +16,8 @@ namespace game
 
     //apply damage to a unit with damage data
     static void apply(game::DamageData& rawDamage);
+
+    static void apply(float amount, uchar element, uint casterID, uint victimID);
   };
 }
 

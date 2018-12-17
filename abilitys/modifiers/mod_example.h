@@ -12,6 +12,7 @@ namespace game
     void onDestroy() override;
     void onDeath() override;
     void onRefresh() override;
+    void onIntervalTick() override;
   };
 }
 

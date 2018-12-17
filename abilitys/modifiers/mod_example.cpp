@@ -1,6 +1,7 @@
 #include "mod_example.h"
 #include "../unit.h"
 #include <debug.h>
+#include "../../damage.h"
 
 using namespace game;
 
@@ -11,6 +12,8 @@ mod_Example::mod_Example() : Modifier(MODIFIER_EXAMPLE)
   setProp(MODIFIER_PROP_NORMAL_DAMAGE, 10);
   setProp(MODIFIER_PROP_AMP_NORMAL, 50);
   setProp(MODIFIER_PROP_RESIST_NORMAL, 50);
+  
+  startTicker(1.55f);
 }
 
 void mod_Example::onCreated()
@@ -31,4 +34,15 @@ void mod_Example::onDeath()
 void mod_Example::onRefresh()
 {
 
+}
+
+void mod_Example::onIntervalTick()
+{
+  LOG << "TICKING";
+  DamageData damage;
+  damage.amount = 10.0f;
+  damage.element = ELEMENT_FIRE;
+  damage.casterID = owner->getID();
+  damage.victimID = owner->getID();
+  Damage::apply(damage);
 }

@@ -43,6 +43,25 @@ float Modifier::getEndTime()
 
 void Modifier::onUpdate()
 {
-  //add ticking here
+  if (
+    ticker.isTicking && 
+    ticker.nextTickTime <= oak::Time::getTimeNow() && 
+    ticker.nextTickTime < endTime
+  )
+  {
+    onIntervalTick();
+    ticker.nextTickTime += ticker.interval;
+  }
 }
 
+void Modifier::startTicker(float interval)
+{
+  ticker.isTicking = true;
+  ticker.interval = interval;
+  ticker.nextTickTime = interval + oak::Time::getTimeNow();
+}
+
+void Modifier::onIntervalTick()
+{
+
+}

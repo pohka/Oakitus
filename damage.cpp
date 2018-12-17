@@ -69,3 +69,13 @@ void Damage::apply(game::DamageData& rawDamage)
   oak::IEvent* event = oak::EventManager::getEvent(EVENT_ON_DAMAGE_TAKEN);
   event->fire(rawDamage);
 }
+
+void Damage::apply(float amount, uchar element, uint casterID, uint victimID)
+{
+  game::DamageData damage;
+  damage.amount = amount;
+  damage.element = element;
+  damage.casterID = casterID;
+  damage.victimID = victimID;
+  apply(damage);
+}
