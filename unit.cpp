@@ -67,7 +67,7 @@ bool Unit::hasOwner() const
   return m_hasOwner;
 }
 
-float Unit::getMoveSpeed() const
+int Unit::getMoveSpeed() const
 {
   int totalMoveSpeed = moveSpeed;
   for (Modifier* modifier : modifiers)
@@ -153,7 +153,20 @@ uchar Unit::getFaction() const
 
 int Unit::getHealth() const
 {
-  return health;
+  int totalHealth = health;
+  for (Modifier* modifier : modifiers)
+  {
+    for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
+    {
+      if (it->first == MODIFIER_PROP_HEALTH)
+      {
+        totalHealth += it->second;
+        break;
+      }
+    }
+  }
+
+  return totalHealth;
 }
 void Unit::setHealth(int hp)
 {
@@ -186,8 +199,6 @@ void Unit::onDamageTaken(DamageData& data)
 
 void Unit::onDeath(DeathData& data)
 {
-  
-
   if (data.victimID == getID())
   {
     LOG << "onDeath()";
@@ -285,7 +296,20 @@ Unit* Unit::findUnit(uint entityID)
 
 int Unit::getMana()
 {
-  return mana;
+  int totalMana = mana;
+  for (Modifier* modifier : modifiers)
+  {
+    for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
+    {
+      if (it->first == MODIFIER_PROP_MANA)
+      {
+        totalMana += it->second;
+        break;
+      }
+    }
+  }
+
+  return totalMana;
 }
 
 void Unit::useMana(int amount)
@@ -293,9 +317,9 @@ void Unit::useMana(int amount)
   if (amount != 0)
   {
     mana -= amount;
-    if (mana < 0.0f)
+    if (mana < 0)
     {
-      mana = 0.0f;
+      mana = 0;
     }
   }
 }

@@ -7,7 +7,6 @@ items and modifiers:
   * silenced (cant use spells)
   * disarmed (cant use basic weapon or attack)
 * modifier props
-  * health, mana, movespeed
   * heal
   * health regen
   * mana regen

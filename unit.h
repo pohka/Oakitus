@@ -25,7 +25,7 @@ namespace game
     
     //stats
     int health = 100;
-    float moveSpeed = 100.0f;
+    int moveSpeed = 100;
     int damage = 10;
     int mana = 100;
     int resist[ELEMENT_COUNT] = {};
@@ -47,7 +47,7 @@ namespace game
       bool hasOwner() const;
       void setOwner(uint playerID);
       void removeOwner();
-      float getMoveSpeed() const;
+      int getMoveSpeed() const;
       void setMoveSpeed(float moveSpeed);
       void addAbility(Ability* ability);
       Ability* getAbilityByIndex(uint index) const;
