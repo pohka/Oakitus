@@ -50,10 +50,10 @@ void ActionPanel::onBeforeRender()
   Unit* unit = player->getAssignedUnit();
   if (unit != nullptr)
   {
-    prop_hp = unit->getHealth();
-    label->text = Localization::strings[STRING_HEALTH] + std::to_string(prop_hp) + "/" + std::to_string(unit->getMaxHealth());
+    prop_hp = (int)unit->getHealth();
+    label->text = Localization::strings[STRING_HEALTH] + std::to_string(prop_hp) + "/" + std::to_string((int)unit->getMaxHealth());
 
-    prop_mana = unit->getMana();
-    label2->text = Localization::strings[STRING_MANA] + std::to_string(prop_mana) + "/" + std::to_string(unit->getMaxMana());
+    prop_mana = (int)unit->getMana();
+    label2->text = Localization::strings[STRING_MANA] + std::to_string(prop_mana) + "/" + std::to_string((int)unit->getMaxMana());
   }
 }

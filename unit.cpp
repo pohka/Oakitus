@@ -158,15 +158,15 @@ void Unit::onUpdate()
   }
 
   //limit health and mana
-  int maxHealth = getMaxHealth();
-  if (getHealth() > maxHealth)
+  float max = getMaxHealth();
+  if (getHealth() > max)
   {
-    health = (float)maxHealth;
+    health = max;
   }
-  int maxMana = getMaxMana();
-  if (getMana() > maxMana)
+  max = getMaxMana();
+  if (getMana() > max)
   {
-    mana = (float)maxMana;
+    mana = max;
   }
 }
 
@@ -175,13 +175,19 @@ uchar Unit::getFaction() const
   return faction;
 }
 
-int Unit::getHealth() const
+float Unit::getHealth() const
 {
-  return (int)ceil(health);
+  return ceil(health);
 }
-void Unit::setHealth(int hp)
+
+void Unit::setHealth(float hp)
 {
-  health = (float)hp;
+  health = hp;
+  float max = getMaxHealth();
+  if (health > max)
+  {
+    health = max;
+  }
 }
 
 bool Unit::isAlive() const
@@ -305,9 +311,9 @@ Unit* Unit::findUnit(uint entityID)
   return static_cast<Unit*>(oak::Entity::findEntityByID(entityID));
 }
 
-int Unit::getMana()
+float Unit::getMana()
 {
-  return (int)ceil(mana);
+  return ceil(mana);
 }
 
 void Unit::useMana(int amount)
@@ -322,9 +328,9 @@ void Unit::useMana(int amount)
   }
 }
 
-int Unit::getMaxHealth()
+float Unit::getMaxHealth()
 {
-  int totalMaxHealth = maxHealth;
+  int totalMaxHealth = (int)maxHealth;
   for (Modifier* modifier : modifiers)
   {
     for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
@@ -340,16 +346,16 @@ int Unit::getMaxHealth()
   return totalMaxHealth;
 }
 
-int Unit::getMaxMana()
+float Unit::getMaxMana()
 {
-  int totalMaxMana = maxMana;
+  float totalMaxMana = maxMana;
   for (Modifier* modifier : modifiers)
   {
     for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
     {
       if (it->first == MODIFIER_PROP_MANA)
       {
-        totalMaxMana += it->second;
+        totalMaxMana += (float)it->second;
         break;
       }
     }
@@ -405,7 +411,7 @@ float Unit::getHealthRegen()
 void Unit::heal(int amount)
 {
   health += amount;
-  int maxHP = getMaxHealth();
+  float maxHP = getMaxHealth();
   if (getHealth() > maxHP)
   {
     health = (float)maxHP;

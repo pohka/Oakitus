@@ -32,8 +32,8 @@ namespace game
     int amplify[ELEMENT_COUNT] = {};
     float healthRegen = 0;
     float manaRegen = 0;
-    int maxHealth = 100;
-    int maxMana = 100;
+    float maxHealth = 100.0f;
+    float maxMana = 100.0f;
     
     oak::Animator* animator;
     bool m_isOwnerBotPlayer = false;
@@ -54,8 +54,8 @@ namespace game
       void addAbility(Ability* ability);
       Ability* getAbilityByIndex(uint index) const;
       uchar getFaction() const;
-      int getHealth() const;
-      void setHealth(int hp);
+      float  getHealth() const;
+      void setHealth(float hp);
       bool isAlive() const;
       bool isOwnerBotPlayer() const;
       
@@ -65,10 +65,10 @@ namespace game
       void setAnimDirection(uchar direction);
       int getResist(uchar element);
       int getAmplify(uchar element);
-      int getMana();
+      float getMana();
       void useMana(int amount);
-      int getMaxHealth();
-      int getMaxMana();
+      float getMaxHealth();
+      float getMaxMana();
       void setManaRegen(float manaPerSecond);
       void setHealthRegen(float healthPerSecond);
       float getManaRegen();
