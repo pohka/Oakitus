@@ -8,10 +8,8 @@ items and modifiers:
   * disarmed (cant use basic weapon or attack)
 * modifier props
   * heal
-  * health regen
-  * mana regen
- * ability
-   * OnOwnerDied
+* ability
+  * OnOwnerDied
 * item drops from enemy death
 * item examples:
   * healing poition

@@ -24,14 +24,16 @@ namespace game
     bool m_hasOwner = false;
     
     //stats
-    int health = 100;
+    float health = 100.0f;
+    float mana = 100.0f;
     int moveSpeed = 100;
     int damage = 10;
-    int mana = 100;
     int resist[ELEMENT_COUNT] = {};
     int amplify[ELEMENT_COUNT] = {};
-    int healthRegen = 0;
-    int manaRegen = 0;
+    float healthRegen = 0;
+    float manaRegen = 0;
+    int maxHealth = 100;
+    int maxMana = 100;
     
     oak::Animator* animator;
     bool m_isOwnerBotPlayer = false;
@@ -48,7 +50,7 @@ namespace game
       void setOwner(uint playerID);
       void removeOwner();
       int getMoveSpeed() const;
-      void setMoveSpeed(float moveSpeed);
+      void setMoveSpeed(int moveSpeed);
       void addAbility(Ability* ability);
       Ability* getAbilityByIndex(uint index) const;
       uchar getFaction() const;
@@ -65,6 +67,12 @@ namespace game
       int getAmplify(uchar element);
       int getMana();
       void useMana(int amount);
+      int getMaxHealth();
+      int getMaxMana();
+      void setManaRegen(float manaPerSecond);
+      void setHealthRegen(float healthPerSecond);
+      float getManaRegen();
+      float getHealthRegen();
       
 
       void addModifier(uint casterID, Modifier* modifier);

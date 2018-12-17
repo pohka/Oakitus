@@ -9,6 +9,7 @@
 #include <core/player_resource.h>
 #include <ui/ui_canvas.h>
 #include "damage.h"
+#include <cmath>
 
 using namespace game;
 
@@ -90,7 +91,7 @@ int Unit::getMoveSpeed() const
   return totalMoveSpeed;
 }
 
-void Unit::setMoveSpeed(float moveSpeed)
+void Unit::setMoveSpeed(int moveSpeed)
 {
   this->moveSpeed = moveSpeed;
 }
@@ -116,6 +117,16 @@ void Unit::onUpdate()
   Entity::onUpdate();
   float now = oak::Time::getTimeNow();
 
+  //apply health and mana regen
+  if (getHealth() < getMaxHealth())
+  {
+    health += getHealthRegen() * oak::Time::deltaTime();
+  }
+  if (getMana() < getMaxMana())
+  {
+    mana += getManaRegen() * oak::Time::deltaTime();
+  }
+
   //update ability casting states
   for (Ability* abil : abilitys)
   {
@@ -132,6 +143,7 @@ void Unit::onUpdate()
     }
   }
 
+  //update modifiers
   for (uint i=0; i<modifiers.size(); i++)
   {
     modifiers[i]->onUpdate();
@@ -144,6 +156,18 @@ void Unit::onUpdate()
       i--;
     }
   }
+
+  //limit health and mana
+  int maxHealth = getMaxHealth();
+  if (getHealth() > maxHealth)
+  {
+    health = maxHealth;
+  }
+  int maxMana = getMaxMana();
+  if (getMana() > maxMana)
+  {
+    mana = maxMana;
+  }
 }
 
 uchar Unit::getFaction() const
@@ -153,41 +177,28 @@ uchar Unit::getFaction() const
 
 int Unit::getHealth() const
 {
-  int totalHealth = health;
-  for (Modifier* modifier : modifiers)
-  {
-    for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
-    {
-      if (it->first == MODIFIER_PROP_HEALTH)
-      {
-        totalHealth += it->second;
-        break;
-      }
-    }
-  }
-
-  return totalHealth;
+  return (int)ceil(health);
 }
 void Unit::setHealth(int hp)
 {
-  health = hp;
+  health = (float)hp;
 }
 
 bool Unit::isAlive() const
 {
-  return health > 0;
+  return health > 0.0f;
 }
 
 void Unit::onDamageTaken(DamageData& data)
 {
   if (isAlive() && data.victimID == getID())
   {
-    this->health -= Damage::calcAfterReductions(this, data);
+    this->health -= (float)Damage::calcAfterReductions(this, data);
 
     LOG << "health :" << health;
-    if (health <= 0)
+    if (health <= 0.0f)
     {
-      health = 0;
+      health = 0.0f;
 
       DeathData deathData;
       deathData.killerID = data.casterID;
@@ -296,30 +307,97 @@ Unit* Unit::findUnit(uint entityID)
 
 int Unit::getMana()
 {
-  int totalMana = mana;
+  return (int)ceil(mana);
+}
+
+void Unit::useMana(int amount)
+{
+  if (amount != 0.0f)
+  {
+    mana -= (float)amount;
+    if (mana < 0.0f)
+    {
+      mana = 0.0f;
+    }
+  }
+}
+
+int Unit::getMaxHealth()
+{
+  int totalMaxHealth = maxHealth;
+  for (Modifier* modifier : modifiers)
+  {
+    for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
+    {
+      if (it->first == MODIFIER_PROP_HEALTH)
+      {
+        totalMaxHealth += it->second;
+        break;
+      }
+    }
+  }
+
+  return totalMaxHealth;
+}
+
+int Unit::getMaxMana()
+{
+  int totalMaxMana = maxMana;
   for (Modifier* modifier : modifiers)
   {
     for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
     {
       if (it->first == MODIFIER_PROP_MANA)
       {
-        totalMana += it->second;
+        totalMaxMana += it->second;
         break;
       }
     }
   }
 
-  return totalMana;
+  return totalMaxMana;
 }
 
-void Unit::useMana(int amount)
+void Unit::setManaRegen(float manaPerSecond)
 {
-  if (amount != 0)
+  manaRegen = manaPerSecond;
+}
+
+void Unit::setHealthRegen(float healthPerSecond)
+{
+  healthRegen = healthPerSecond;
+}
+
+float Unit::getManaRegen()
+{
+  float total = manaRegen;
+  for (Modifier* modifier : modifiers)
   {
-    mana -= amount;
-    if (mana < 0)
+    for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
     {
-      mana = 0;
+      if (it->first == MODIFIER_PROP_MANA_REGEN)
+      {
+        total += (float)it->second;
+        break;
+      }
     }
   }
+  return total;
+}
+
+float Unit::getHealthRegen()
+{
+  float total = healthRegen;
+  for (Modifier* modifier : modifiers)
+  {
+    for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
+    {
+      if (it->first == MODIFIER_PROP_HEALTH_REGEN)
+      {
+        total += (float)it->second;
+        break;
+      }
+    }
+  }
+  return total;
 }
