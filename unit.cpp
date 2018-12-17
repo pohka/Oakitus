@@ -161,12 +161,12 @@ void Unit::onUpdate()
   int maxHealth = getMaxHealth();
   if (getHealth() > maxHealth)
   {
-    health = maxHealth;
+    health = (float)maxHealth;
   }
   int maxMana = getMaxMana();
   if (getMana() > maxMana)
   {
-    mana = maxMana;
+    mana = (float)maxMana;
   }
 }
 
@@ -400,4 +400,14 @@ float Unit::getHealthRegen()
     }
   }
   return total;
+}
+
+void Unit::heal(int amount)
+{
+  health += amount;
+  int maxHP = getMaxHealth();
+  if (getHealth() > maxHP)
+  {
+    health = (float)maxHP;
+  }
 }

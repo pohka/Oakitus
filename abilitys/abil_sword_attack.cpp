@@ -24,7 +24,7 @@ void abil_SwordAttack::onCast()
 
 void abil_SwordAttack::onAbilityStart()
 {
-
+  caster->heal(5);
 }
 
 void abil_SwordAttack::onAbilityEnd()

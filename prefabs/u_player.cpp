@@ -87,8 +87,8 @@ UPlayer::UPlayer()
   faction = FACTION_PLAYER;
   setMoveSpeed(200);
   this->rigidBody->mass = 10.0f;
-  setHealthRegen(2.0f);
-  setManaRegen(0.0f);
+  //setHealthRegen(2.0f);
+  //setManaRegen(0.0f);
 }
 
 UPlayer::~UPlayer()

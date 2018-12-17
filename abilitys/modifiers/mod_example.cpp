@@ -14,7 +14,7 @@ mod_Example::mod_Example() : Modifier(MODIFIER_EXAMPLE)
   setProp(MODIFIER_PROP_RESIST_NORMAL, 50);
   setProp(MODIFIER_PROP_HEALTH, 450);
   setProp(MODIFIER_PROP_MANA, 450);
-  setProp(MODIFIER_PROP_HEALTH_REGEN, 35);
+ // setProp(MODIFIER_PROP_HEALTH_REGEN, 35);
   setProp(MODIFIER_PROP_MANA_REGEN, 15);
   
   startTicker(1.55f);
