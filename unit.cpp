@@ -8,7 +8,6 @@
 #include <event/event.h>
 #include <core/player_resource.h>
 #include <ui/ui_canvas.h>
-#include "ui/action_panel.h"
 #include "damage.h"
 
 using namespace game;
@@ -82,6 +81,12 @@ float Unit::getMoveSpeed() const
       }
     }
   }
+
+  if (totalMoveSpeed < 0)
+  {
+    totalMoveSpeed = 0;
+  }
+
   return totalMoveSpeed;
 }
 
@@ -165,15 +170,6 @@ void Unit::onDamageTaken(DamageData& data)
   if (isAlive() && data.victimID == getID())
   {
     this->health -= Damage::calcAfterReductions(this, data);
-
-    //update the UI if a local players health has changed
-    if (hasOwner() && oak::PlayerResource::isLocalPlayerID(getOwner()->getPlayerID()))
-    {
-      LOG << "has owner and is local player";
-      auto* comp = oak::ui::UICanvas::getComponent(UI_COMPONENT_ACTION_PANEL);
-      ui::ActionPanel* actionPanel = static_cast<ui::ActionPanel*>(comp);
-      actionPanel->setHP(health);
-    }
 
     LOG << "health :" << health;
     if (health <= 0)
@@ -300,15 +296,6 @@ void Unit::useMana(int amount)
     if (mana < 0.0f)
     {
       mana = 0.0f;
-    }
-
-    //update the UI if a local players health has changed
-    if (hasOwner() && oak::PlayerResource::isLocalPlayerID(getOwner()->getPlayerID()))
-    {
-      //LOG << "has owner and is local player";
-      auto* comp = oak::ui::UICanvas::getComponent(UI_COMPONENT_ACTION_PANEL);
-      ui::ActionPanel* actionPanel = static_cast<ui::ActionPanel*>(comp);
-      actionPanel->setMana(mana);
     }
   }
 }

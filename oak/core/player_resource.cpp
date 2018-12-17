@@ -7,6 +7,7 @@ using namespace oak;
 
 unsigned int PlayerResource::playerCount = 0;
 BasePlayer* PlayerResource::players[4];
+uint localPlayerID = 0;
 
 void PlayerResource::addPlayer(BasePlayer& player)
 {
@@ -63,4 +64,19 @@ bool PlayerResource::isLocalPlayerID(uint id)
 {
   //for future multiplayer feature
   return true;
+}
+
+BasePlayer* PlayerResource::getLocalPlayer()
+{
+  //for future multiplayer feature
+  return players[0];
+
+  //for future multiplayer feature
+  //for (uint i = 0; i < MAX_PLAYER_COUNT; i++)
+  //{
+  //  if (players[i]->getPlayerID() == localPlayerID)
+  //  {
+  //    return players[i];
+  //  }
+  //}
 }

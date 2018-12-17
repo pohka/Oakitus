@@ -3,6 +3,8 @@
 #include <ui/ui_label.h>
 #include "../strings_def.h"
 #include <debug.h>
+#include <core/player_resource.h>
+#include "../player.h"
 
 using namespace game::ui;
 using namespace oak::ui;
@@ -20,6 +22,7 @@ ActionPanel::ActionPanel()
   img->offset.x = 220.0f;
   img->offset.y = 45.0f;
   nodes.push_back(img);
+
 
   label = UILabel::createLabel("", 20, 400, 20);
   label->color = { 0.9f, 0.9f, 0.9f };
@@ -41,16 +44,16 @@ ActionPanel::~ActionPanel()
 
 }
 
-void ActionPanel::setHP(int hp)
+void ActionPanel::onBeforeRender()
 {
-  LOG << "setting hp";
-  prop_hp = hp;
-  label->text = Localization::strings[STRING_HEALTH] + std::to_string(prop_hp);
-}
+  Player* player = static_cast<Player*>(oak::PlayerResource::getLocalPlayer());
+  Unit* unit = player->getAssignedUnit();
+  if (unit != nullptr)
+  {
+    prop_hp = unit->getHealth();
+    label->text = Localization::strings[STRING_HEALTH] + std::to_string(prop_hp);
 
-void ActionPanel::setMana(int mana)
-{
-  LOG << "setting hp";
-  prop_mana = mana;
-  label2->text = Localization::strings[STRING_MANA] + std::to_string(prop_mana);
+    prop_mana = unit->getMana();
+    label2->text = Localization::strings[STRING_MANA] + std::to_string(prop_mana);
+  }
 }

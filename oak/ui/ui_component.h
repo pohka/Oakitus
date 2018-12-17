@@ -20,6 +20,7 @@ namespace oak
         UI_ALIGN_VERT_TOP 
       };
       Point offset = { 0,0 };
+      virtual void onBeforeRender() = 0;
     };
   }
 }

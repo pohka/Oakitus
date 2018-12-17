@@ -20,9 +20,8 @@ namespace game
         ActionPanel();
         ~ActionPanel();
       
-       //updating ui prop for HP
-       void setHP(int hp);
-       void setMana(int mana);
+        //update the props before rendering
+        void onBeforeRender() override;
     };
   }
 }

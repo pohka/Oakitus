@@ -19,6 +19,12 @@ std::map<uint, std::string> strings;
 
 void UICanvas::render()
 {
+  for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
+  {
+    it->second->onBeforeRender();
+  }
+  
+
   //get projection from font size to viewport to window coords
   glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
   float worldToVP = Window::worldToViewportCoords(1.0f);
