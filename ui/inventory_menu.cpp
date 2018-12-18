@@ -12,7 +12,8 @@ InventoryMenu::InventoryMenu()
   align.y = UI_ALIGN_VERT_MIDDLE;
 
   background = new UIImage("inventory_bg.png", 700, 400);
-  nodes.push_back(background);
+
+  addNode(background);
 }
 
 InventoryMenu::~InventoryMenu()

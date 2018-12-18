@@ -21,8 +21,10 @@ namespace oak
       uint VAO, VBO;
       Color color;
       uchar fontID;
+
+      void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
       ///renders a label
-      void render(float parentX, float parentY);
+      void render();
     };
   }
 }

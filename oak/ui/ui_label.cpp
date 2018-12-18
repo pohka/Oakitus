@@ -5,6 +5,7 @@
 #include "ui_character.h"
 #include <core/window.h>
 #include "ui_canvas.h"
+#include <debug.h>
 
 using namespace oak::ui;
 using namespace oak;
@@ -29,7 +30,7 @@ UILabel::UILabel(std::string src, ushort fontSize, ushort w, ushort h) : UINode(
   glBindVertexArray(0);
 }
 
-void UILabel::render(float parentX, float parentY)
+void UILabel::render()
 {
   Shader& shader = Resources::getShaderByName("text");
   // Activate corresponding render state	
@@ -52,14 +53,17 @@ void UILabel::render(float parentX, float parentY)
 
   Font& font = Resources::getFontByID(fontID);
 
+  Point parentPos = getParentAbsolutePos();
+  LOG << "parentPOS:" << parentPos.x << ","<< parentPos.y;
+
   for (c = text.begin(); c != text.end(); c++)
   {
     Character ch = *font.getCharacter(c);
 
     float bearingX = ch.bearing.x * scale;
     float bearingY = (ch.size.y - ch.bearing.y) * scale;
-    GLfloat xpos = (parentX * oak::Window::getAspectRatio()) +(x + projection.x * bearingX);
-    GLfloat ypos = parentY + (y - (projection.y * bearingY));
+    GLfloat xpos = (parentPos.x * oak::Window::getAspectRatio()) +(x + projection.x * bearingX);
+    GLfloat ypos = parentPos.y + (y - (projection.y * bearingY));
 
     GLfloat ww = ch.size.x * scale;
     GLfloat hh = ch.size.y * scale;
@@ -93,4 +97,11 @@ void UILabel::render(float parentX, float parentY)
 
   glBindVertexArray(0);
   glBindTexture(GL_TEXTURE_2D, 0);
+
+  UINode::render();
+}
+
+void UILabel::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
+{
+
 }

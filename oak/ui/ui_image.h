@@ -13,18 +13,15 @@ namespace oak
     struct UIImage : public UINode
     {
       UIImage(std::string src, ushort w, ushort h);
+      ~UIImage();
       std::string src;
       uint VAO, VBO;
       uint textureID;
-      
-      void setImageBuffer(
-        float windowToVPRatioX,
-        float windowToVPRatioY
-      );
+
+
+      void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
       ///renders a UI image
-      void render(float parentX, float parentY);
-      ///deletes a ui image buffers
-      void remove();
+      void render();
     };
   }
 }

@@ -4,23 +4,44 @@
 #include "../core/types.h"
 #include "ui_def.h"
 #include <core/point.h>
+#include <vector>
 
 namespace oak
 {
   namespace ui
   {
+    struct UIComponent;
+
     ///a ui node which
     struct UINode
     {
-      UINode(const uchar nodeType)
-      {
-        this->nodeType = nodeType;
-      }
-      uchar nodeType;
+      UINode(const uchar nodeType);
+      ~UINode();
+
       Point offset = { 0,0 };
       ushort w;
       ushort h;
-      UINode* parent;
+      Point absolutePos = { 0,0 };
+
+      virtual void render();
+      virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
+
+      void setComponent(UIComponent* component);
+      void addChild(UINode* node);
+      UINode* getParent();
+      uchar getType();
+      bool getIsRootNode();
+      Point& getParentAbsolutePos();
+      
+
+    protected:
+      std::vector<UINode*> children;
+      UINode* parent = nullptr;
+      uchar nodeType;
+      UIComponent* component;
+
+    private:
+      bool isRootNode = true;
     };
   }
 }

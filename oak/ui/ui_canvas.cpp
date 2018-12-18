@@ -31,28 +31,30 @@ void UICanvas::render()
   projection.x = windowToVPRatio.x * worldToVP;
   projection.y = windowToVPRatio.y * worldToVP;
 
-  Point compPos;
+  //Point compPos;
 
-  UIComponent* comp;
+  //UIComponent* comp;
   for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
   {
-    comp = it->second;
-    compPos.x = (comp->offset.x * projection.x) + comp->align.x;
-    compPos.y = (comp->offset.y * projection.y) + comp->align.y;
+    //comp = it->second;
+    //compPos.x = (comp->offset.x * projection.x) + comp->align.x;
+    //compPos.y = (comp->offset.y * projection.y) + comp->align.y;
 
-    for (UINode* node : comp->nodes)
+    it->second->render(projection);
+
+    /*for (UINode* node : comp->nodes)
     {
-      if (node->nodeType == UI_NODE_IMAGE)
+      if (node->getType() == UI_NODE_IMAGE)
       {
         UIImage* image = static_cast<UIImage*>(node);
-        image->render(compPos.x, compPos.y);
+        image->render();
       }
-      else if (node->nodeType == UI_NODE_LABEL)
+      else if (node->getType() == UI_NODE_LABEL)
       {
         UILabel* label = static_cast<UILabel*>(node);
-        label->render(compPos.x, compPos.y);
+        label->render();
       }
-    }
+    }*/
   }
 }
 
@@ -69,18 +71,9 @@ UIComponent* UICanvas::getComponent(ushort id)
 void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 {
   //resize all the image nodes
-  for (uint i = 0; i < components.size(); i++)
+  for (auto comp : components)
   {
-    for (UINode* node : components[i]->nodes)
-    {
-      if (node->nodeType == UI_NODE_IMAGE)
-      {
-        static_cast<UIImage*>(node)->setImageBuffer(
-          windowToVPRatioX,
-          windowToVPRatioY
-        );
-      }
-    }
+    comp.second->onWindowResize(windowToVPRatioX, windowToVPRatioY);
   }
 }
 

@@ -25,7 +25,7 @@ UIImage::UIImage(std::string src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)
   glBindVertexArray(VAO);
 
   glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
-  setImageBuffer(windowToVPRatio.x, windowToVPRatio.y);
+  onWindowResize(windowToVPRatio.x, windowToVPRatio.y);
 
   const int POS_COORDS = 2;
   const int TEX_COORDS = 2;
@@ -41,11 +41,43 @@ UIImage::UIImage(std::string src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)
   glEnableVertexAttribArray(1);
 }
 
-void UIImage::setImageBuffer(
-  float windowToVPRatioX,
-  float windowToVPRatioY
-)
+UIImage::~UIImage()
 {
+  glDeleteVertexArrays(1, &VAO);
+  glDeleteBuffers(1, &VBO);
+}
+
+void UIImage::render()
+{
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, textureID);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glBindVertexArray(VAO);
+
+  glm::mat4 model = glm::mat4(1.0);
+
+  const Point& projection = UICanvas::getProjection();
+  Point parentPos = getParentAbsolutePos();
+
+  glm::vec3 pos(
+    (parentPos.x * Window::getAspectRatio()) + (projection.x * (float)offset.x),
+    parentPos.y + (projection.y * (float)offset.y),
+    0.0f
+  );
+  model = glm::translate(model, pos);
+
+  Shader& shader = Resources::getDefaultShader();
+  shader.use();
+  shader.setMat4("model", model);
+
+  glDrawArrays(GL_TRIANGLES, 0, 6);
+
+  UINode::render();
+}
+
+void UIImage::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
+{
+  //set the image buffers
   float xx = (windowToVPRatioX * Window::worldToViewportCoords((float)w)) * 0.5f;
   float yy = (windowToVPRatioY * Window::worldToViewportCoords((float)h)) * 0.5f;
   float xMin = 0.0f;
@@ -66,35 +98,4 @@ void UIImage::setImageBuffer(
 
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
-}
-
-void UIImage::render(float parentX, float parentY)
-{
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, textureID);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-  glBindVertexArray(VAO);
-
-  glm::mat4 model = glm::mat4(1.0);
-
-  const Point& projection = UICanvas::getProjection();
-
-  glm::vec3 pos(
-    (parentX * Window::getAspectRatio()) + (projection.x * (float)offset.x),
-    parentY + (projection.y * (float)offset.y),
-    0.0f
-  );
-  model = glm::translate(model, pos);
-
-  Shader& shader = Resources::getDefaultShader();
-  shader.use();
-  shader.setMat4("model", model);
-
-  glDrawArrays(GL_TRIANGLES, 0, 6);
-}
-
-void UIImage::remove()
-{
-  glDeleteVertexArrays(1, &VAO);
-  glDeleteBuffers(1, &VBO);
 }
