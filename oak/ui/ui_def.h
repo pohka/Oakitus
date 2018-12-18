@@ -7,8 +7,6 @@
 cnum UI_NODE_LABEL = 0;
 cnum UI_NODE_IMAGE = 1;
 
-//component ids
-const ushort UI_COMPONENT_ACTION_PANEL = 0;
 
 //alignment values
 const float UI_ALIGN_HORZ_LEFT = -1.0f;

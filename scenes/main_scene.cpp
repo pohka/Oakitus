@@ -11,6 +11,7 @@
 #include "../ui/action_panel.h"
 #include "../oak/components/rigid_body_2d.h"
 #include "../prefabs/wall_test.h"
+#include "../ui/inventory_menu.h"
 
 using namespace game;
 using namespace oak;
@@ -27,6 +28,16 @@ void MainScene::onLoad()
   Resources::addTexture("wolf_sheet.png");
   Resources::addTexture("action_panel.png");
   Resources::addTexture("anim_arrow.png");
+  Resources::addTexture("inventory_bg.png");
+
+  //ui
+  auto* comp = new game::ui::ActionPanel();
+  comp->offset.x = 10.0f;
+  UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
+
+  auto* inv = new game::ui::InventoryMenu();
+  UICanvas::addComponent(UI_COMPONENT_INVENTORY_MENU, inv);
+
   
 
   Camera::position = glm::vec3(0, 0, 0);
@@ -35,6 +46,7 @@ void MainScene::onLoad()
   Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, "default");
   ground->addComponent(groundSprite);
   ground->create();
+
 
   
 
@@ -77,9 +89,8 @@ void MainScene::onLoad()
   camController->followTarget(playerUnit->getID());
   camController->create();
 
-  auto* comp = new game::ui::ActionPanel();
-  comp->offset.x = 10.0f;
-  UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
+ 
+
 
   auto* wall1 = new WallTest(50.0f, 200.0f);
   wall1->create(100.0f, 0.0f);

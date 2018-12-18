@@ -104,4 +104,9 @@ cnum ITEM_SLOT_WEAPON = 2;
 cnum ITEM_SLOT_BOOTS = 3;
 
 
+//component ids
+const ushort UI_COMPONENT_ACTION_PANEL = 0;
+const ushort UI_COMPONENT_INVENTORY_MENU = 1;
+
+
 #endif

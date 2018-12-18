@@ -14,21 +14,15 @@ namespace oak
     ///a label has data that will display text
     struct UILabel : public UINode
     {
-      UILabel()
-      {
-        nodeType = UI_NODE_LABEL;
-      }
+      UILabel(std::string src, ushort fontSize, ushort w, ushort h);
 
       std::string text;
       float scale = 1.0f; //font scale
       uint VAO, VBO;
       Color color;
       uchar fontID;
-
-      ///creates and returns a new label
-      static UILabel* createLabel(std::string src, ushort fontSize, ushort w, ushort h);
       ///renders a label
-      static void renderLabel(UILabel* label, float parentX, float parentY);
+      void render(float parentX, float parentY);
     };
   }
 }

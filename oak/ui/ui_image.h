@@ -12,25 +12,19 @@ namespace oak
     ///an image UI node
     struct UIImage : public UINode
     {
-      UIImage()
-      {
-        nodeType = UI_NODE_IMAGE;
-      }
+      UIImage(std::string src, ushort w, ushort h);
       std::string src;
       uint VAO, VBO;
       uint textureID;
-
-      ///creates and returns a new UIImage node
-      static UIImage* createImage(std::string src, ushort w, ushort h);
-      static void setImageBuffer(
-        UIImage* img,
+      
+      void setImageBuffer(
         float windowToVPRatioX,
         float windowToVPRatioY
       );
       ///renders a UI image
-      static void renderImage(UIImage* img, float parentX, float parentY);
+      void render(float parentX, float parentY);
       ///deletes a ui image buffers
-      static void removeImage(UIImage* img);
+      void remove();
     };
   }
 }

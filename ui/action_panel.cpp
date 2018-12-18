@@ -18,20 +18,20 @@ ActionPanel::ActionPanel()
   align.x = UI_ALIGN_HORZ_LEFT;
   align.y = UI_ALIGN_VERT_BOTTOM;
   
-  UINode* img = UIImage::createImage("action_panel.png", 440, 64);
+  UINode* img = new UIImage("action_panel.png", 440, 64);
   img->offset.x = 220.0f;
   img->offset.y = 45.0f;
   nodes.push_back(img);
 
 
-  label = UILabel::createLabel("", 20, 400, 20);
+  label = new UILabel("", 20, 400, 20);
   label->color = { 0.9f, 0.9f, 0.9f };
   label->offset.x = 30.0f;
   label->offset.y = 70.0f;
  // label->text = Localization::strings[STRING_HEALTH] + std::to_string(prop_hp);
   nodes.push_back(label);
 
-  label2 = UILabel::createLabel("", 20, 400, 20);
+  label2 = new UILabel("", 20, 400, 20);
   label2->color = { 0.9f, 0.9f, 0.9f };
   label2->offset.x = 30.0f;
   label2->offset.y = 50.0f;

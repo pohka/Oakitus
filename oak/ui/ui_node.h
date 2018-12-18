@@ -12,10 +12,15 @@ namespace oak
     ///a ui node which
     struct UINode
     {
+      UINode(const uchar nodeType)
+      {
+        this->nodeType = nodeType;
+      }
       uchar nodeType;
       Point offset = { 0,0 };
       ushort w;
       ushort h;
+      UINode* parent;
     };
   }
 }

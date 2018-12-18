@@ -249,6 +249,9 @@
     <ClCompile Include="abilitys\abil_sword_attack.cpp">
       <Filter>game\abilitys</Filter>
     </ClCompile>
+    <ClCompile Include="ui\inventory_menu.cpp">
+      <Filter>game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -493,6 +496,9 @@
     </ClInclude>
     <ClInclude Include="abilitys\abil_sword_attack.h">
       <Filter>game\abilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\inventory_menu.h">
+      <Filter>game\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -45,12 +45,12 @@ void UICanvas::render()
       if (node->nodeType == UI_NODE_IMAGE)
       {
         UIImage* image = static_cast<UIImage*>(node);
-        UIImage::renderImage(image, compPos.x, compPos.y);
+        image->render(compPos.x, compPos.y);
       }
       else if (node->nodeType == UI_NODE_LABEL)
       {
         UILabel* label = static_cast<UILabel*>(node);
-        UILabel::renderLabel(label, compPos.x, compPos.y);
+        label->render(compPos.x, compPos.y);
       }
     }
   }
@@ -75,8 +75,7 @@ void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
     {
       if (node->nodeType == UI_NODE_IMAGE)
       {
-        UIImage::setImageBuffer(
-          static_cast<UIImage*>(node),
+        static_cast<UIImage*>(node)->setImageBuffer(
           windowToVPRatioX,
           windowToVPRatioY
         );
