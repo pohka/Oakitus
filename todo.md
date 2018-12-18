@@ -6,8 +6,6 @@ items and modifiers:
   * stunned (cant make any actions)
   * silenced (cant use spells)
   * disarmed (cant use basic weapon or attack)
-* modifier props
-  * heal
 * ability
   * OnOwnerDied
 * item drops from enemy death

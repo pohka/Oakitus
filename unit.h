@@ -81,7 +81,7 @@ namespace game
       void removeModifier(ushort modifierID, uint casterID); 
       std::vector<Modifier*>& getAllModifiers();
 
-      void onStart() override;
+      void onCreate() override;
       //void onDestroy() override;
       //void onDraw() override;
       void onUpdate();

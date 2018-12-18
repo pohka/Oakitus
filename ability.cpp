@@ -12,7 +12,17 @@ Ability::Ability()
   endTime = 0;
 }
 
-uint Ability::getID() const
+void Ability::init(Unit* owner)
+{
+  this->owner = owner;
+}
+
+Unit* Ability::getOwner()
+{
+  return owner;
+}
+
+uint Ability::getAbilityID() const
 {
   return id;
 }
@@ -38,7 +48,7 @@ void Ability::castNoTarget()
 void Ability::beginCasting()
 {
   //not enough mana
-  if (caster->getMana() < manaCost)
+  if (owner->getMana() < manaCost)
   {
     return;
   }
@@ -94,4 +104,9 @@ void Ability::onAbilityEnd()
 int Ability::getManaCost()
 {
   return manaCost;
+}
+
+void Ability::onOwnerDeath()
+{
+  
 }

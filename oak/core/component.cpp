@@ -9,7 +9,7 @@ Component::Component()
 
 Component::~Component() {}
 
-void Component::onStart() {}
+void Component::onCreate() {}
 
 void Component::onUpdate() {}
 

@@ -21,7 +21,7 @@ abil_Shoot::~abil_Shoot()
 void abil_Shoot::onCast()
 {
   //LOG << "onCast()";
-  caster->setAnimation(ANIM_TYPE_ABILITY_1);
+  owner->setAnimation(ANIM_TYPE_ABILITY_1);
 }
 
 void abil_Shoot::onAbilityStart()
@@ -29,13 +29,13 @@ void abil_Shoot::onAbilityStart()
   DamageData damage;
   damage.amount = 20.0f;
   damage.element = ELEMENT_NORMAL;
-  damage.casterID = caster->getID();
+  damage.casterID = owner->getID();
   damage.victimID = 0;
 
   prefab::Projectile* proj = new prefab::ProjectileLinear(
     target.point, 
-    *caster, 
-    getID(),
+    *owner, 
+    getAbilityID(),
     damage,
     150.0f,
     15.0f
@@ -57,7 +57,7 @@ void abil_Shoot::onAbilityStart()
   );
   proj->addComponent(animator);
 
-  proj->instantiate(caster->position.x, caster->position.y);
+  proj->create(owner->position.x, owner->position.y);
 }
 
 void abil_Shoot::onAbilityEnd()

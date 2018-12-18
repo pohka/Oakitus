@@ -24,7 +24,7 @@ namespace oak
        //EVENTS
       //---------------------------------------
       ///<summary>Called once when the Entity is added to the world</summary>
-      virtual void onStart();
+      virtual void onCreate();
 
       ///<summary>Do logic, called once each frame</summary>
       virtual void onUpdate();

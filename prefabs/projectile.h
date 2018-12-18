@@ -25,7 +25,7 @@ namespace game
         );
         ~Projectile();
 
-        virtual void onStart() = 0;
+        virtual void onCreate() = 0;
         virtual void onUpdate() = 0;
         void onCollisionHit(oak::Entity& hit);
         virtual void onProjectileHit(Unit& unitHit);

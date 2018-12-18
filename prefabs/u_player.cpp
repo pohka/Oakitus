@@ -96,9 +96,9 @@ UPlayer::~UPlayer()
 
 }
 
-void UPlayer::onStart() 
+void UPlayer::onCreate() 
 {
-  Unit::onStart();
+  Unit::onCreate();
   //testing item
   inventory.addItem(new ItemTest());
 }

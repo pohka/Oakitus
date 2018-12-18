@@ -30,7 +30,7 @@ Unit::~Unit()
   LOG << "deallocated unit: " << name;
 }
 
-void Unit::onStart()
+void Unit::onCreate()
 {
   if (animator == nullptr)
   {
@@ -98,7 +98,7 @@ void Unit::setMoveSpeed(int moveSpeed)
 
 void Unit::addAbility(Ability* ability)
 {
-  ability->caster = this;
+  ability->init(this);
   abilitys.push_back(ability);
 }
 
@@ -219,6 +219,10 @@ void Unit::onDeath(DeathData& data)
   if (data.victimID == getID())
   {
     LOG << "onDeath()";
+    for (Ability* abil : abilitys)
+    {
+      abil->onOwnerDeath();
+    }
     for (Modifier* modifier : modifiers)
     {
       modifier->onDeath();
@@ -330,14 +334,14 @@ void Unit::useMana(int amount)
 
 float Unit::getMaxHealth()
 {
-  int totalMaxHealth = (int)maxHealth;
+  float totalMaxHealth = maxHealth;
   for (Modifier* modifier : modifiers)
   {
     for (auto it = modifier->props.begin(); it != modifier->props.end(); ++it)
     {
       if (it->first == MODIFIER_PROP_HEALTH)
       {
-        totalMaxHealth += it->second;
+        totalMaxHealth += (float)it->second;
         break;
       }
     }

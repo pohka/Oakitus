@@ -14,7 +14,7 @@ BaseRigidBody::BaseRigidBody(bool isStatic)
   desiredNextPos = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
-void BaseRigidBody::onStart()
+void BaseRigidBody::onCreate()
 {
   lastPos = entity->position;
 }

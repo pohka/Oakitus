@@ -19,12 +19,12 @@ abil_SwordAttack::~abil_SwordAttack()
 void abil_SwordAttack::onCast()
 {
   LOG << "onCast sword attack";
-  caster->setAnimation(ANIM_TYPE_ABILITY_2);
+  owner->setAnimation(ANIM_TYPE_ABILITY_2);
 }
 
 void abil_SwordAttack::onAbilityStart()
 {
-  caster->heal(5);
+  owner->heal(5);
 }
 
 void abil_SwordAttack::onAbilityEnd()

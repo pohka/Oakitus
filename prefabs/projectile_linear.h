@@ -21,7 +21,7 @@ namespace game
           bool destroyOnHit = true,
           uchar targetTeam = TARGET_TEAM_ENEMY
         );
-        void onStart();
+        void onCreate();
         void onUpdate();
 
       protected:

@@ -102,10 +102,10 @@ namespace oak
       void addRigidBody(BaseRigidBody* rigidBody);
 
       ///<summary>Adds this Entity to the world</summary>
-      void instantiate();
+      void create();
 
       ///<summary>Adds this Entity to the world at the given position</summary>
-      void instantiate(float x, float y);
+      void create(float x, float y);
 
       ///<summary>Destroys this Entity</summary>
 	    void destroy();
@@ -127,7 +127,7 @@ namespace oak
       //EVENTS
       //-------------------------------------------------------------
       ///<summary>Called once when this Entity is added to the world</summary>
-      virtual void onStart();
+      virtual void onCreate();
 
       ///<summary>Called once each frame</summary>
       virtual void onUpdate();
