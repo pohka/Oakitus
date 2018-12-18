@@ -31,30 +31,9 @@ void UICanvas::render()
   projection.x = windowToVPRatio.x * worldToVP;
   projection.y = windowToVPRatio.y * worldToVP;
 
-  //Point compPos;
-
-  //UIComponent* comp;
   for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
   {
-    //comp = it->second;
-    //compPos.x = (comp->offset.x * projection.x) + comp->align.x;
-    //compPos.y = (comp->offset.y * projection.y) + comp->align.y;
-
     it->second->render(projection);
-
-    /*for (UINode* node : comp->nodes)
-    {
-      if (node->getType() == UI_NODE_IMAGE)
-      {
-        UIImage* image = static_cast<UIImage*>(node);
-        image->render();
-      }
-      else if (node->getType() == UI_NODE_LABEL)
-      {
-        UILabel* label = static_cast<UILabel*>(node);
-        label->render();
-      }
-    }*/
   }
 }
 

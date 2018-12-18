@@ -6,6 +6,7 @@
 #include "ui_node.h"
 #include <core/point.h>
 #include "localization.h"
+#include <core/window.h>
 
 namespace oak
 {
@@ -25,8 +26,11 @@ namespace oak
 
       void render(oak::Point& projection)
       {
-        absolutePos.x = (offset.x * projection.x) + align.x;
-        absolutePos.y = (offset.y * projection.y) + align.y;
+        glm::vec2 windowUnit = Window::getWindowUnitToPixel();
+
+        absolutePos.x = offset.x + (align.x * windowUnit.x);
+        absolutePos.y = offset.y + (align.y * windowUnit.y);
+
         for (UINode* node : nodes)
         {
           node->render();

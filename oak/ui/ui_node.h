@@ -40,6 +40,8 @@ namespace oak
       uchar nodeType;
       UIComponent* component;
 
+      void updateAbsolutePos();
+
     private:
       bool isRootNode = true;
     };

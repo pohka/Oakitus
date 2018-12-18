@@ -62,13 +62,15 @@ Point& UINode::getParentAbsolutePos()
 
 void UINode::render()
 {
-  const Point& projection = UICanvas::getProjection();
-  Point& parentPos = getParentAbsolutePos();
-  absolutePos.x = parentPos.x + (offset.x * projection.x);
-  absolutePos.y = parentPos.y + (offset.y * projection.y);
-
   for (auto node : children)
   {
     node->render();
   }
+}
+
+void UINode::updateAbsolutePos()
+{
+  Point parentPos = getParentAbsolutePos();
+  absolutePos.x = parentPos.x + offset.x;
+  absolutePos.y = parentPos.y + offset.y;
 }

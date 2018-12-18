@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "ui_canvas.h"
+#include <debug.h>
 
 using namespace oak::ui;
 using namespace oak;
@@ -57,13 +58,14 @@ void UIImage::render()
   glm::mat4 model = glm::mat4(1.0);
 
   const Point& projection = UICanvas::getProjection();
-  Point parentPos = getParentAbsolutePos();
+  updateAbsolutePos();
 
   glm::vec3 pos(
-    (parentPos.x * Window::getAspectRatio()) + (projection.x * (float)offset.x),
-    parentPos.y + (projection.y * (float)offset.y),
+    absolutePos.x * projection.x,
+    absolutePos.y * projection.y,
     0.0f
   );
+
   model = glm::translate(model, pos);
 
   Shader& shader = Resources::getDefaultShader();
@@ -78,8 +80,8 @@ void UIImage::render()
 void UIImage::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 {
   //set the image buffers
-  float xx = (windowToVPRatioX * Window::worldToViewportCoords((float)w)) * 0.5f;
-  float yy = (windowToVPRatioY * Window::worldToViewportCoords((float)h)) * 0.5f;
+  float xx = (windowToVPRatioX * Window::worldToViewportCoords((float)w));
+  float yy = -(windowToVPRatioY * Window::worldToViewportCoords((float)h));
   float xMin = 0.0f;
   float xMax = 1.0f;
   float yMin = 0.0f;
@@ -87,13 +89,13 @@ void UIImage::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 
   float vertices[] = {
     // positions    // texture coords
-    -xx, -yy,       xMin, yMax, //bottom left
-     xx, -yy,       xMax, yMax, //bottom right
-     xx,  yy,       xMax, yMin, //top right
+    0, yy,       xMin, yMax, //bottom left
+    xx, yy,       xMax, yMax, //bottom right
+    xx,  0,       xMax, yMin, //top right
 
-     xx,  yy,       xMax, yMin, //top right
-    -xx,  yy,       xMin, yMin, //top left
-    -xx, -yy,       xMin, yMax //botom left
+    xx,  0,       xMax, yMin, //top right
+    0,  0,       xMin, yMin, //top left
+    0, yy,       xMin, yMax //botom left
   };
 
   glBindBuffer(GL_ARRAY_BUFFER, VBO);

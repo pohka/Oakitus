@@ -174,3 +174,11 @@ glm::mat4& Window::getProjectionMatrix()
 {
   return projectionMatrix;
 }
+
+glm::vec2 Window::getWindowUnitToPixel()
+{
+  return glm::vec2(
+    windowW * 0.5f,
+    windowH * 0.5f
+  );
+}

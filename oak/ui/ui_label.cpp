@@ -47,14 +47,14 @@ void UILabel::render()
   std::string::const_iterator c;
 
   const Point& projection = UICanvas::getProjection();
+  Point parentPos = getParentAbsolutePos();
+  updateAbsolutePos();
 
-  float x = offset.x * projection.x;
-  float y = (offset.y - (scale * FONT_LOADED_SIZE))* projection.y;
+  //character cursor position
+  float chCursorX = offset.x;
+  float chCursorY = (offset.y - (scale * FONT_LOADED_SIZE));
 
   Font& font = Resources::getFontByID(fontID);
-
-  Point parentPos = getParentAbsolutePos();
-  LOG << "parentPOS:" << parentPos.x << ","<< parentPos.y;
 
   for (c = text.begin(); c != text.end(); c++)
   {
@@ -62,8 +62,10 @@ void UILabel::render()
 
     float bearingX = ch.bearing.x * scale;
     float bearingY = (ch.size.y - ch.bearing.y) * scale;
-    GLfloat xpos = (parentPos.x * oak::Window::getAspectRatio()) +(x + projection.x * bearingX);
-    GLfloat ypos = parentPos.y + (y - (projection.y * bearingY));
+    GLfloat xpos = (parentPos.x + chCursorX + bearingX) * projection.x;
+    GLfloat ypos = (parentPos.y + chCursorY - bearingY) * projection.y;
+
+    LOG << "pos:" << xpos << "," << ypos;
 
     GLfloat ww = ch.size.x * scale;
     GLfloat hh = ch.size.y * scale;
@@ -92,7 +94,7 @@ void UILabel::render()
     glDrawArrays(GL_TRIANGLES, 0, 6);
     // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
     float advance = (ch.advance >> 6) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
-    x += projection.x * advance;
+    chCursorX += advance;
   }
 
   glBindVertexArray(0);

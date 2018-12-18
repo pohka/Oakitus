@@ -56,7 +56,7 @@ namespace oak
       ///<summary>Returns the width of the viewport in pixels</summary>
       static uint getWidth();
 
-      ///<summary>Converts world to normalized vireport coordinates</summary>
+      ///<summary>Converts world to normalized viewport coordinates</summary>
       static float worldToViewportCoords(float pixels);
 
       ///<summary>returns the projection matrix for the viewport</summary>
@@ -64,7 +64,8 @@ namespace oak
 
       static glm::vec2 getWindowToVPRatio();
 
-      //static glm::vec2 getWindowSize();
+      ///returns ratio of normalized window to pixel size window unit
+      static glm::vec2 getWindowUnitToPixel();
       
     protected:
       ///<summary>Initialized the window</summary>

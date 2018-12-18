@@ -19,23 +19,21 @@ ActionPanel::ActionPanel()
   align.y = UI_ALIGN_VERT_BOTTOM;
   
   UINode* img = new UIImage("action_panel.png", 440, 64);
-  img->offset.x = 220.0f;
-  img->offset.y = 45.0f;
+  img->offset.x = 10.0f;
+  img->offset.y = 80.0f;
   addNode(img);
-
 
   label = new UILabel("", 20, 400, 20);
   label->color = { 0.9f, 0.9f, 0.9f };
- // label->offset.x = 30.0f;
- // label->offset.y = 70.0f;
+  label->offset.x = 10.0f;
+  label->offset.y = -5.0f;
   img->addChild(label);
- // addNode(label);
 
   label2 = new UILabel("", 20, 400, 20);
   label2->color = { 0.9f, 0.9f, 0.9f };
-  label2->offset.x = 30.0f;
-  label2->offset.y = 50.0f;
-  addNode(label2);
+  label2->offset.x = 10.0f;
+  label2->offset.y = -25.0f;
+  img->addChild(label2);
 }
 
 ActionPanel::~ActionPanel()
