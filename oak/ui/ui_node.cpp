@@ -74,3 +74,8 @@ void UINode::updateAbsolutePos()
   absolutePos.x = parentPos.x + offset.x;
   absolutePos.y = parentPos.y + offset.y;
 }
+
+uint UINode::childCount()
+{
+  return children.size();
+}

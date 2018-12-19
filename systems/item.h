@@ -38,6 +38,8 @@ namespace game
 
     uint ownerID;
 
+    std::string name;
+
     virtual void onEquip() = 0;
     virtual void onUnEquip() = 0;
 

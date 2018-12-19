@@ -421,3 +421,8 @@ void Unit::heal(int amount)
     health = (float)maxHP;
   }
 }
+
+Inventory& Unit::getInventory()
+{
+  return inventory;
+}

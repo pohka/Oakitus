@@ -32,10 +32,12 @@ namespace oak
       uchar getType();
       bool getIsRootNode();
       Point& getParentAbsolutePos();
+      uint childCount();
       
+      std::vector<UINode*> children;
 
     protected:
-      std::vector<UINode*> children;
+      
       UINode* parent = nullptr;
       uchar nodeType;
       UIComponent* component;

@@ -101,4 +101,5 @@ void UPlayer::onCreate()
   Unit::onCreate();
   //testing item
   inventory.addItem(new ItemTest());
+  inventory.addItem(new ItemTest());
 }

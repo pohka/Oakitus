@@ -23,6 +23,8 @@ void ItemTest::onEquip()
   {
     LOG << "OWNER NOT FOUND";
   }
+
+  name = "test item";
 }
 
 void ItemTest::onUnEquip()

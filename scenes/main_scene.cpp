@@ -35,9 +35,9 @@ void MainScene::onLoad()
   //comp->offset.x = 10.0f;
   UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
 
- /* auto* inv = new game::ui::InventoryMenu();
+  auto* inv = new game::ui::InventoryMenu();
   UICanvas::addComponent(UI_COMPONENT_INVENTORY_MENU, inv);
-*/
+
   
 
   Camera::position = glm::vec3(0, 0, 0);

@@ -84,3 +84,8 @@ void Inventory::unEquipItem(uchar slotID)
   //todo remove item modifer to unit, e.g. onItemUnEquiped()
 
 }
+
+std::vector<Item*>& Inventory::getAllItems()
+{
+  return items;
+}

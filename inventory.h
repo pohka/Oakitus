@@ -22,6 +22,7 @@ namespace game
       Item* getItem(uint itemID);
       void equipItem(Item* item);
       void unEquipItem(uchar slotID);
+      std::vector<Item*>& getAllItems();
   };
 }
 

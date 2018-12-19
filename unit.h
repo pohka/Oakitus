@@ -74,6 +74,7 @@ namespace game
       float getManaRegen();
       float getHealthRegen();
       void heal(int amount);
+      Inventory& getInventory();
       
 
       void addModifier(uint casterID, Modifier* modifier);
