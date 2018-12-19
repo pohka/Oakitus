@@ -258,6 +258,9 @@
     <ClCompile Include="oak\ui\ui_div.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
+    <ClCompile Include="ui\ui_templates.cpp">
+      <Filter>game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -508,6 +511,9 @@
     </ClInclude>
     <ClInclude Include="oak\ui\ui_div.h">
       <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\ui_templates.h">
+      <Filter>game\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
