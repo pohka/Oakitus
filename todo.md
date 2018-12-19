@@ -2,6 +2,8 @@
 
 items and modifiers:
 * UI for inventory (to unequip items)
+  * click node
+  * hover node
 * modifier states
   * stunned (cant make any actions)
   * silenced (cant use spells)

@@ -27,19 +27,19 @@ void Movement::execute()
   float axisX = 0.0f;
   float axisY = 0.0f;
 
-  if (Input::isKeyPressed(KeyCode::W))
+  if (Input::isKeyPressed(KEYCODE_W))
   {
     axisY += 1.0f;
   }
-  if (Input::isKeyPressed(KeyCode::S))
+  if (Input::isKeyPressed(KEYCODE_S))
   {
     axisY -= 1.0f;
   }
-  if (Input::isKeyPressed(KeyCode::A))
+  if (Input::isKeyPressed(KEYCODE_A))
   {
     axisX -= 1.0f;
   }
-  if (Input::isKeyPressed(KeyCode::D))
+  if (Input::isKeyPressed(KEYCODE_D))
   {
     axisX += 1.0f;
   }

@@ -14,6 +14,16 @@ namespace oak
   {
     struct UIComponent;
 
+    struct UIRect
+    {
+      ushort x, y, w, h;
+
+      bool containsPt(ushort ptX, ushort ptY)
+      {
+        return (ptX <= x + w && ptX >= x && ptY <= y && ptY >= y + h);
+      }
+    };
+
     ///a ui node which
     struct UINode
     {
@@ -40,6 +50,9 @@ namespace oak
       uchar getType();
       bool getIsRootNode();
       Point& getParentPos();
+
+      void(*onClick)() = nullptr;
+      void(*onFocus)() = nullptr;
       
       std::vector<UINode*> children;
 

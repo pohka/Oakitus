@@ -7,6 +7,7 @@
 #include "ui_label.h"
 #include <map>
 #include <ui/ui_def.h>
+#include <core/input.h>
 
 #include <debug.h>
 
@@ -19,10 +20,25 @@ std::map<uint, std::string> strings;
 
 void UICanvas::render()
 {
+  ushort ptX = (ushort)Input::mousePos.x;
+  ushort ptY = (ushort)Input::mousePos.y;
+
+  if (Input::hasMouseMoved())
+  {
+    //check if the mouse position is within a UINode listening to this event
+    for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
+    {
+      //todo
+    }
+  }
+
   for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
   {
+   // it->second->events();
     it->second->onBeforeRender();
   }
+
+
   
 
   //get projection from font size to viewport to window coords

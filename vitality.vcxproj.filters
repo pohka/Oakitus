@@ -278,9 +278,6 @@
     <ClInclude Include="oak\core\input.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="oak\core\key_code.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="oak\core\ray.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -514,6 +511,9 @@
     </ClInclude>
     <ClInclude Include="ui\tmp_inventory_item.h">
       <Filter>game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\key_codes.h">
+      <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

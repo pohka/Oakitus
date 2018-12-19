@@ -10,6 +10,7 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
   label->margin.x = 30.0f;
   label->margin.y = 10.0f;
   addChild(label);
+  //label->onFocus = &this->onItemFocus;
 
   UIImage* equipedIcon = new UIImage("default.png", 16, 16);
   equipedIcon->offset.y += (float)(label->getTotalH() - ((label->getTotalH() - equipedIcon->h)/2));
@@ -29,3 +30,10 @@ void tmp_InventoryItem::update(Item* item)
   }
   label->text = item->name;
 }
+
+void tmp_InventoryItem::onItemFocus()
+{
+  UILabel* label = static_cast<UILabel*>(children[0]);
+  label->color = COLOR_RED;
+}
+

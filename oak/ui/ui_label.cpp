@@ -54,7 +54,7 @@ void UILabel::render(Point& nodeCursor)
   float chCursorX = 0.0f;
   float chCursorY = (scale * FONT_LOADED_SIZE);
 
-  this->h = chCursorY;
+  this->h = (ushort)chCursorY;
 
   Font& font = Resources::getFontByID(fontID);
   //Character* firstCh = font.getCharacter(65);

@@ -2,6 +2,7 @@
 #define UI_DEF_H
 
 #include "../core/types.h"
+#include "color.h"
 
 
 cnum UI_NODE_LABEL = 0;
@@ -23,5 +24,8 @@ const uint FONT_LOADED_SIZE = 64;
 
 cnum UI_POSITION_RELATIVE = 0;
 cnum UI_POSITION_ABSOLUTE = 1;
+
+const static oak::ui::Color COLOR_RED = { 1.0f, 0.0f, 0.0f, 1.0f };
+const static oak::ui::Color COLOR_BLUE = { 0.0f, 0.0f, 1.0f, 1.0f };
 
 #endif

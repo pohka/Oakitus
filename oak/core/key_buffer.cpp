@@ -2,7 +2,7 @@
 
 using namespace oak;
 
-KeyBuffer::KeyBuffer(KeyCode code)
+KeyBuffer::KeyBuffer(ushort code)
 {
   this->code = code;
   this->isDown = false;
@@ -11,7 +11,7 @@ KeyBuffer::KeyBuffer(KeyCode code)
 
 KeyBuffer::~KeyBuffer() {}
 
-KeyCode KeyBuffer::getCode() const
+ushort KeyBuffer::getCode() const
 {
   return this->code;
 }

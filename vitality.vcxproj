@@ -233,7 +233,7 @@
     <ClInclude Include="oak\core\id_generator.h" />
     <ClInclude Include="oak\core\input.h" />
     <ClInclude Include="oak\core\key_buffer.h" />
-    <ClInclude Include="oak\core\key_code.h" />
+    <ClInclude Include="oak\core\key_codes.h" />
     <ClInclude Include="oak\core\ray.h" />
     <ClInclude Include="oak\core\resources.h" />
     <ClInclude Include="oak\core\scene.h" />

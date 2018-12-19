@@ -10,6 +10,7 @@ namespace game
   {
     tmp_InventoryItem(Item* item);
     void update(Item* item);
+    void onItemFocus();
   };
 }
 
