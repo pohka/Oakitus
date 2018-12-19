@@ -21,12 +21,14 @@ namespace oak
       ~UINode();
 
       Point offset = { 0,0 };
-      ushort w;
-      ushort h;
+      ushort w = 0;
+      ushort h = 0;
       Point pos = { 0,0 };
       Point margin = { 0,0 };
       Point padding = { 0,0 };
      // Color bgColor = { 0.0f, 0.0f, 0.0f, 0.0f };
+      bool isAutoH = true;
+      bool isAutoW = true;
 
       virtual void render(Point& nodeCursor) = 0;
       virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
@@ -47,6 +49,7 @@ namespace oak
 
       void renderBegin(Point& nodeCursor);
       void renderEnd(Point& nodeCursor);
+
 
     private:
       bool isRootNode = true;

@@ -16,6 +16,10 @@ UIDiv::~UIDiv()
 void UIDiv::render(oak::Point& nodeCursor)
 {
   UINode::renderBegin(nodeCursor);
+  if (isAutoH)
+  {
+    h = 0;
+  }
   UINode::renderEnd(nodeCursor);
 }
 

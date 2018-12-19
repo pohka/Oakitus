@@ -62,10 +62,30 @@ Point& UINode::getParentPos()
 
 void UINode::renderEnd(Point& nodeCursor)
 {
-  for (auto node : children)
+  Point childCursor = { nodeCursor.x, nodeCursor.y };
+
+  //calculate total height if automatic height
+  if (isAutoH)
   {
-    node->render(nodeCursor);
+    //margin and padding
+    h += (ushort)(margin.y + padding.y) * 2;
+
+    for (auto node : children)
+    {
+      node->render(childCursor);
+      childCursor.y -= node->h;
+      h += node->h; //height of each child node
+    }
   }
+  else
+  {
+    for (auto node : children)
+    {
+      node->render(childCursor);
+      childCursor.y -= node->h;
+    }
+  }
+
   nodeCursor.x -= offset.x + padding.x + margin.x;
   nodeCursor.y -= offset.y - padding.y - margin.y;
 }

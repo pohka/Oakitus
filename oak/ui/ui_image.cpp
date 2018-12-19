@@ -18,6 +18,8 @@ UIImage::UIImage(std::string src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)
   this->textureID = Resources::getTextureIDBySrc(src);
   this->w = w;
   this->h = h;
+  isAutoH = false;
+  isAutoW = false;
   // img->offsetx = 0.0f;
    //img->offset.y = 0.0f;
 

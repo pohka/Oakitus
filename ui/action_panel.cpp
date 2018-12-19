@@ -24,13 +24,13 @@ ActionPanel::ActionPanel()
   img->margin.x = 40.0f;
   addNode(img);
 
-  label = new UILabel("", 20, 400, 20);
+  label = new UILabel("", 20);
   label->color = { 0.9f, 0.9f, 0.9f };
   label->offset.x = 10.0f;
   label->offset.y = -5.0f;
   img->addChild(label);
 
-  label2 = new UILabel("", 20, 400, 20);
+  label2 = new UILabel("", 20);
   label2->color = { 0.9f, 0.9f, 0.9f };
   label2->offset.x = 10.0f;
   label2->offset.y = -25.0f;

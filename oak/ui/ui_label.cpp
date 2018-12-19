@@ -10,12 +10,9 @@
 using namespace oak::ui;
 using namespace oak;
 
-UILabel::UILabel(std::string src, ushort fontSize, ushort w, ushort h) : UINode(UI_NODE_LABEL)
+UILabel::UILabel(std::string src, ushort fontSize) : UINode(UI_NODE_LABEL)
 {
   this->text = text;
-  this->w = w;
-  this->h = h;
-
   this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
   this->fontID = Resources::getFontIDByName("arial.ttf");
 
@@ -52,9 +49,10 @@ void UILabel::render(Point& nodeCursor)
   Point parentPos = getParentPos();
 
   //character cursor position
-  //float chCursorX = offset.x;
   float chCursorX = 0.0f;
   float chCursorY = (scale * FONT_LOADED_SIZE);
+
+  this->h = (ushort)chCursorY;
 
   Font& font = Resources::getFontByID(fontID);
 
