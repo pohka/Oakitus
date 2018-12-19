@@ -29,6 +29,7 @@ namespace oak
      // Color bgColor = { 0.0f, 0.0f, 0.0f, 0.0f };
       bool isAutoH = true;
       bool isAutoW = true;
+      uchar positionType = UI_POSITION_RELATIVE;
 
       virtual void render(Point& nodeCursor) = 0;
       virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;

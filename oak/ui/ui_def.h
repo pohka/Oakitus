@@ -21,4 +21,7 @@ const float UI_ALIGN_VERT_BOTTOM = -1.0f;
 
 const uint FONT_LOADED_SIZE = 64;
 
+cnum UI_POSITION_RELATIVE = 0;
+cnum UI_POSITION_ABSOLUTE = 1;
+
 #endif

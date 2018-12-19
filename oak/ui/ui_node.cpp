@@ -68,13 +68,19 @@ void UINode::renderEnd(Point& nodeCursor)
   if (isAutoH)
   {
     //margin and padding
-    h += (ushort)(margin.y + padding.y) * 2;
+    if (this->positionType == UI_POSITION_RELATIVE)
+    {
+      h += (ushort)(margin.y + padding.y) * 2;
+    }
 
     for (auto node : children)
     {
       node->render(childCursor);
-      childCursor.y -= node->h;
-      h += node->h; //height of each child node
+      if (node->positionType == UI_POSITION_RELATIVE)
+      {
+        childCursor.y -= node->h;
+        h += node->h; //height of each child node
+      }
     }
   }
   else
@@ -82,7 +88,10 @@ void UINode::renderEnd(Point& nodeCursor)
     for (auto node : children)
     {
       node->render(childCursor);
-      childCursor.y -= node->h;
+      if (node->positionType == UI_POSITION_RELATIVE)
+      {
+        childCursor.y -= node->h;
+      }
     }
   }
 
