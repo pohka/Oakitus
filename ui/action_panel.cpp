@@ -21,6 +21,7 @@ ActionPanel::ActionPanel()
   UINode* img = new UIImage("action_panel.png", 440, 64);
   img->offset.x = 10.0f;
   img->offset.y = 80.0f;
+  img->margin.x = 40.0f;
   addNode(img);
 
   label = new UILabel("", 20, 400, 20);

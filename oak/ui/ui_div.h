@@ -12,7 +12,7 @@ namespace oak
       UIDiv();
       ~UIDiv();
 
-      void render();
+      void render(Point& nodeCursor);
       void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
     };
   }

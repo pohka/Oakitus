@@ -1,4 +1,5 @@
 #include "ui_div.h"
+//#include <core/point.h>
 
 using namespace oak::ui;
 
@@ -12,10 +13,10 @@ UIDiv::~UIDiv()
 
 }
 
-void UIDiv::render()
+void UIDiv::render(oak::Point& nodeCursor)
 {
-  UINode::updatePos();
-  UINode::render();
+  UINode::renderBegin(nodeCursor);
+  UINode::renderEnd(nodeCursor);
 }
 
 void UIDiv::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)

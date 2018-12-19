@@ -24,7 +24,7 @@ namespace oak
 
       void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
       ///renders a label
-      void render();
+      void render(Point& nodeCursor);
     };
   }
 }

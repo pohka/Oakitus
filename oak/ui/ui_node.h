@@ -5,6 +5,8 @@
 #include "ui_def.h"
 #include <core/point.h>
 #include <vector>
+#include <core/point.h>
+//#include "color.h"
 
 namespace oak
 {
@@ -24,9 +26,9 @@ namespace oak
       Point pos = { 0,0 };
       Point margin = { 0,0 };
       Point padding = { 0,0 };
+     // Color bgColor = { 0.0f, 0.0f, 0.0f, 0.0f };
 
-
-      virtual void render();
+      virtual void render(Point& nodeCursor) = 0;
       virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
 
       void setComponent(UIComponent* component);
@@ -35,17 +37,16 @@ namespace oak
       uchar getType();
       bool getIsRootNode();
       Point& getParentPos();
-      uint childCount();
       
       std::vector<UINode*> children;
 
     protected:
-      
       UINode* parent = nullptr;
       uchar nodeType;
       UIComponent* component;
 
-      void updatePos();
+      void renderBegin(Point& nodeCursor);
+      void renderEnd(Point& nodeCursor);
 
     private:
       bool isRootNode = true;

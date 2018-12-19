@@ -30,8 +30,10 @@ UILabel::UILabel(std::string src, ushort fontSize, ushort w, ushort h) : UINode(
   glBindVertexArray(0);
 }
 
-void UILabel::render()
+void UILabel::render(Point& nodeCursor)
 {
+  renderBegin(nodeCursor);
+
   Shader& shader = Resources::getShaderByName("text");
   // Activate corresponding render state	
   shader.use();
@@ -48,11 +50,11 @@ void UILabel::render()
 
   const Point& projection = UICanvas::getProjection();
   Point parentPos = getParentPos();
-  updatePos();
 
   //character cursor position
-  float chCursorX = offset.x;
-  float chCursorY = (offset.y - (scale * FONT_LOADED_SIZE));
+  //float chCursorX = offset.x;
+  float chCursorX = 0.0f;
+  float chCursorY = (scale * FONT_LOADED_SIZE);
 
   Font& font = Resources::getFontByID(fontID);
 
@@ -62,10 +64,8 @@ void UILabel::render()
 
     float bearingX = ch.bearing.x * scale;
     float bearingY = (ch.size.y - ch.bearing.y) * scale;
-    GLfloat xpos = (parentPos.x + chCursorX + bearingX) * projection.x;
-    GLfloat ypos = (parentPos.y + chCursorY - bearingY) * projection.y;
-
-    LOG << "pos:" << xpos << "," << ypos;
+    GLfloat xpos = (nodeCursor.x + chCursorX + bearingX) * projection.x;
+    GLfloat ypos = (nodeCursor.y - chCursorY - bearingY) * projection.y;
 
     GLfloat ww = ch.size.x * scale;
     GLfloat hh = ch.size.y * scale;
@@ -100,7 +100,7 @@ void UILabel::render()
   glBindVertexArray(0);
   glBindTexture(GL_TEXTURE_2D, 0);
 
-  UINode::render();
+  UINode::renderEnd(nodeCursor);
 }
 
 void UILabel::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)

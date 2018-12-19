@@ -60,22 +60,22 @@ Point& UINode::getParentPos()
   }
 }
 
-void UINode::render()
+void UINode::renderEnd(Point& nodeCursor)
 {
   for (auto node : children)
   {
-    node->render();
+    node->render(nodeCursor);
   }
+  nodeCursor.x -= offset.x + padding.x + margin.x;
+  nodeCursor.y -= offset.y - padding.y - margin.y;
 }
 
-void UINode::updatePos()
+void UINode::renderBegin(Point& nodeCursor)
 {
   Point parentPos = getParentPos();
   pos.x = parentPos.x + offset.x;
   pos.y = parentPos.y + offset.y;
-}
 
-uint UINode::childCount()
-{
-  return children.size();
+  nodeCursor.x += offset.x + padding.x + margin.x;
+  nodeCursor.y += offset.y - padding.y - margin.y;
 }

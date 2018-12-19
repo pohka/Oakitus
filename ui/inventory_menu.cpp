@@ -44,6 +44,8 @@ void InventoryMenu::onBeforeRender()
       {
         UILabel* label = new UILabel(items[i]->name, 20, 100, 24);
         label->offset.y = -(float)(label->h * i);
+        label->margin.x = 10.0f;
+        label->margin.y = 20.0f;
         itemList->addChild(label);
       }
       else

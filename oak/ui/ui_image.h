@@ -21,7 +21,7 @@ namespace oak
 
       void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
       ///renders a UI image
-      void render();
+      void render(Point& nodeCursor);
     };
   }
 }

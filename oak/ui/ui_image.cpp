@@ -48,8 +48,10 @@ UIImage::~UIImage()
   glDeleteBuffers(1, &VBO);
 }
 
-void UIImage::render()
+void UIImage::render(Point& nodeCursor)
 {
+  renderBegin(nodeCursor);
+
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, textureID);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -58,13 +60,15 @@ void UIImage::render()
   glm::mat4 model = glm::mat4(1.0);
 
   const Point& projection = UICanvas::getProjection();
-  updatePos();
+  
 
   glm::vec3 modelPos(
-    pos.x * projection.x,
-    pos.y * projection.y,
+    nodeCursor.x * projection.x,
+    nodeCursor.y * projection.y,
     0.0f
   );
+
+  
 
   model = glm::translate(model, modelPos);
 
@@ -74,7 +78,7 @@ void UIImage::render()
 
   glDrawArrays(GL_TRIANGLES, 0, 6);
 
-  UINode::render();
+  UINode::renderEnd(nodeCursor);
 }
 
 void UIImage::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)

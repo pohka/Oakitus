@@ -21,7 +21,10 @@ namespace oak
         UI_ALIGN_VERT_TOP 
       };
       Point offset = { 0,0 };
-      Point pos = {};
+      Point pos = { 0,0 };
+      Point margin = { 0,0 };
+      Point padding = { 0,0 };
+
       virtual void onBeforeRender() = 0;
 
       void render(oak::Point& projection)
@@ -31,9 +34,14 @@ namespace oak
         pos.x = offset.x + (align.x * windowUnit.x);
         pos.y = offset.y + (align.y * windowUnit.y);
 
+        Point nodeCursor = { 
+          pos.x + margin.x + padding.x,
+          pos.y + margin.y + padding.y 
+        };
+
         for (UINode* node : nodes)
         {
-          node->render();
+          node->render(nodeCursor);
         }
       }
 
