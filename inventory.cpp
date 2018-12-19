@@ -56,11 +56,13 @@ void Inventory::equipItem(Item* item)
     //unequip existing
     if (slots[item->slot] != nullptr)
     {
+      slots[item->slot]->isEquiped = false;
       slots[item->slot]->onUnEquip();
     }
 
     slots.insert(item->slot, item);
     item->ownerID = ownerID;
+    item->isEquiped = true;
     item->onEquip();
   }
   else
@@ -77,6 +79,7 @@ void Inventory::unEquipItem(uchar slotID)
   {
     if (slots[slotID] != nullptr)
     {
+      slots[slotID]->isEquiped = false;
       slots[slotID]->onUnEquip();
     }
     slots.insert(slotID, nullptr);

@@ -43,6 +43,8 @@ namespace oak
       
       std::vector<UINode*> children;
 
+      ushort getTotalH();
+
     protected:
       UINode* parent = nullptr;
       uchar nodeType;
@@ -50,6 +52,7 @@ namespace oak
 
       void renderBegin(Point& nodeCursor);
       void renderEnd(Point& nodeCursor);
+      
 
 
     private:

@@ -25,6 +25,8 @@ namespace game
     //stacks in inventroy UI, must be possible to have multiple instances of the same item in the inventory
     bool isStackable = false; 
 
+    
+
     //item slot
     uchar slot = ITEM_SLOT_NONE;
 
@@ -43,8 +45,11 @@ namespace game
     virtual void onEquip() = 0;
     virtual void onUnEquip() = 0;
 
+    bool isEquiped = false;
+
     private:
       uint itemID;
+      
   };
 }
 

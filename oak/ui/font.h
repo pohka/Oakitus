@@ -27,6 +27,7 @@ namespace oak
         uchar getID();
         std::string getName();
         Character* getCharacter(std::string::const_iterator& c);
+        Character* getCharacter(GLchar glChar);
 
     private:
       static void initChars(FT_Library& freetype, Font* font);

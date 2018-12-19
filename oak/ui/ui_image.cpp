@@ -107,3 +107,9 @@ void UIImage::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
+
+void UIImage::setTexture(std::string src)
+{
+  this->src = src;
+  textureID = Resources::getTextureIDBySrc(src);
+}

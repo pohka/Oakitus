@@ -106,3 +106,12 @@ void Font::initChars(FT_Library& ft, Font* font)
   FT_Done_Face(font->face);
   FT_Done_FreeType(ft);
 }
+
+Character* Font::getCharacter(GLchar glChar)
+{
+  if (characters.find(glChar) != characters.end())
+  {
+    return characters[glChar];
+  }
+  return nullptr;
+}

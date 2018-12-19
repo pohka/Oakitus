@@ -60,6 +60,11 @@ Point& UINode::getParentPos()
   }
 }
 
+ushort UINode::getTotalH()
+{
+  return (ushort)(margin.y * 2) + h;
+}
+
 void UINode::renderEnd(Point& nodeCursor)
 {
   Point childCursor = { nodeCursor.x, nodeCursor.y };
@@ -68,20 +73,19 @@ void UINode::renderEnd(Point& nodeCursor)
   if (isAutoH)
   {
     //margin and padding
-    if (this->positionType == UI_POSITION_RELATIVE)
-    {
-      h += (ushort)(margin.y + padding.y) * 2;
-    }
+    //h += (ushort)(margin.y + padding.y) * 2;
 
     for (auto node : children)
     {
       node->render(childCursor);
       if (node->positionType == UI_POSITION_RELATIVE)
       {
-        childCursor.y -= node->h;
-        h += node->h; //height of each child node
+        ushort childNodeH = node->getTotalH();
+        childCursor.y -= childNodeH;
+        h += childNodeH; //height of each child node
       }
     }
+    //h = totalH;
   }
   else
   {
@@ -90,7 +94,7 @@ void UINode::renderEnd(Point& nodeCursor)
       node->render(childCursor);
       if (node->positionType == UI_POSITION_RELATIVE)
       {
-        childCursor.y -= node->h;
+        childCursor.y -= node->getTotalH();
       }
     }
   }

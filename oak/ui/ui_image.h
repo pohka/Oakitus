@@ -18,6 +18,7 @@ namespace oak
       uint VAO, VBO;
       uint textureID;
 
+      void setTexture(std::string src);
 
       void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
       ///renders a UI image

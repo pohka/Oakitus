@@ -16,6 +16,8 @@ UILabel::UILabel(std::string src, ushort fontSize) : UINode(UI_NODE_LABEL)
   this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
   this->fontID = Resources::getFontIDByName("arial.ttf");
 
+  this->h = fontSize;
+
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
   glBindVertexArray(VAO);
@@ -52,9 +54,20 @@ void UILabel::render(Point& nodeCursor)
   float chCursorX = 0.0f;
   float chCursorY = (scale * FONT_LOADED_SIZE);
 
-  this->h = (ushort)chCursorY;
+  this->h = chCursorY;
 
   Font& font = Resources::getFontByID(fontID);
+  //Character* firstCh = font.getCharacter(65);
+
+  //if (firstCh == nullptr)
+  //{
+  //  LOG << "FIRST CHAR NOT FOUND";
+  //}
+  //else
+  //{
+  //  this->h = (ushort)firstCh->bearing.y * scale;
+  //  LOG << "CH size:" << h;
+  //}
 
   for (c = text.begin(); c != text.end(); c++)
   {
