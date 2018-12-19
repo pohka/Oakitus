@@ -12,6 +12,7 @@ namespace game
     class InventoryMenu : public oak::ui::UIComponent
     {
       oak::ui::UIImage* background;
+      oak::ui::UIDiv* itemList;
 
     public:
       InventoryMenu();

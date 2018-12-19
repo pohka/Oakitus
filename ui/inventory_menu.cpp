@@ -18,6 +18,10 @@ InventoryMenu::InventoryMenu()
   background->offset.y = (float)(background->h / 2);
 
   addNode(background);
+
+  itemList = new UIDiv();
+  background->addChild(itemList);
+
 }
 
 InventoryMenu::~InventoryMenu()
@@ -36,15 +40,15 @@ void InventoryMenu::onBeforeRender()
 
     for (uint i=0; i<items.size(); i++)
     {
-      if (i >= background->children.size())
+      if (i >= itemList->children.size())
       {
         UILabel* label = new UILabel(items[i]->name, 20, 100, 24);
         label->offset.y = -(float)(label->h * i);
-        background->addChild(label);
+        itemList->addChild(label);
       }
       else
       {
-        UILabel* label = static_cast<UILabel*>(background->children[i]);
+        UILabel* label = static_cast<UILabel*>(itemList->children[i]);
         label->text = items[i]->name;
         label->offset.y = -(float)(label->h * i);
       }

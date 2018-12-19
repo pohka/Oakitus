@@ -21,7 +21,10 @@ namespace oak
       Point offset = { 0,0 };
       ushort w;
       ushort h;
-      Point absolutePos = { 0,0 };
+      Point pos = { 0,0 };
+      Point margin = { 0,0 };
+      Point padding = { 0,0 };
+
 
       virtual void render();
       virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
@@ -31,7 +34,7 @@ namespace oak
       UINode* getParent();
       uchar getType();
       bool getIsRootNode();
-      Point& getParentAbsolutePos();
+      Point& getParentPos();
       uint childCount();
       
       std::vector<UINode*> children;
@@ -42,7 +45,7 @@ namespace oak
       uchar nodeType;
       UIComponent* component;
 
-      void updateAbsolutePos();
+      void updatePos();
 
     private:
       bool isRootNode = true;

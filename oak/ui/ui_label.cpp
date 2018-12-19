@@ -47,8 +47,8 @@ void UILabel::render()
   std::string::const_iterator c;
 
   const Point& projection = UICanvas::getProjection();
-  Point parentPos = getParentAbsolutePos();
-  updateAbsolutePos();
+  Point parentPos = getParentPos();
+  updatePos();
 
   //character cursor position
   float chCursorX = offset.x;

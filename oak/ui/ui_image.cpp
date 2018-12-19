@@ -58,15 +58,15 @@ void UIImage::render()
   glm::mat4 model = glm::mat4(1.0);
 
   const Point& projection = UICanvas::getProjection();
-  updateAbsolutePos();
+  updatePos();
 
-  glm::vec3 pos(
-    absolutePos.x * projection.x,
-    absolutePos.y * projection.y,
+  glm::vec3 modelPos(
+    pos.x * projection.x,
+    pos.y * projection.y,
     0.0f
   );
 
-  model = glm::translate(model, pos);
+  model = glm::translate(model, modelPos);
 
   Shader& shader = Resources::getDefaultShader();
   shader.use();

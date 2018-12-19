@@ -21,15 +21,15 @@ namespace oak
         UI_ALIGN_VERT_TOP 
       };
       Point offset = { 0,0 };
-      Point absolutePos = {};
+      Point pos = {};
       virtual void onBeforeRender() = 0;
 
       void render(oak::Point& projection)
       {
         glm::vec2 windowUnit = Window::getWindowUnitToPixel();
 
-        absolutePos.x = offset.x + (align.x * windowUnit.x);
-        absolutePos.y = offset.y + (align.y * windowUnit.y);
+        pos.x = offset.x + (align.x * windowUnit.x);
+        pos.y = offset.y + (align.y * windowUnit.y);
 
         for (UINode* node : nodes)
         {

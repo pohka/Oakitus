@@ -48,15 +48,15 @@ bool UINode::getIsRootNode()
   return isRootNode;
 }
 
-Point& UINode::getParentAbsolutePos()
+Point& UINode::getParentPos()
 {
   if (isRootNode)
   {
-    return component->absolutePos;
+    return component->pos;
   }
   else
   {
-    return parent->absolutePos;
+    return parent->pos;
   }
 }
 
@@ -68,11 +68,11 @@ void UINode::render()
   }
 }
 
-void UINode::updateAbsolutePos()
+void UINode::updatePos()
 {
-  Point parentPos = getParentAbsolutePos();
-  absolutePos.x = parentPos.x + offset.x;
-  absolutePos.y = parentPos.y + offset.y;
+  Point parentPos = getParentPos();
+  pos.x = parentPos.x + offset.x;
+  pos.y = parentPos.y + offset.y;
 }
 
 uint UINode::childCount()
