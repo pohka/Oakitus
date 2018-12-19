@@ -191,7 +191,7 @@
     <ClCompile Include="systems\modifier.cpp" />
     <ClCompile Include="ui\action_panel.cpp" />
     <ClCompile Include="ui\inventory_menu.cpp" />
-    <ClCompile Include="ui\ui_templates.cpp" />
+    <ClCompile Include="ui\tmp_inventory_item.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -277,7 +277,7 @@
     <ClInclude Include="systems\modifier.h" />
     <ClInclude Include="ui\action_panel.h" />
     <ClInclude Include="ui\inventory_menu.h" />
-    <ClInclude Include="ui\ui_templates.h" />
+    <ClInclude Include="ui\tmp_inventory_item.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>

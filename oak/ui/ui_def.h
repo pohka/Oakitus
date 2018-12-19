@@ -7,6 +7,7 @@
 cnum UI_NODE_LABEL = 0;
 cnum UI_NODE_IMAGE = 1;
 cnum UI_NODE_DIV = 2;
+cnum UI_NODE_TEMPLATE = 3;
 
 
 //alignment values

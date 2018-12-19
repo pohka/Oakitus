@@ -258,7 +258,7 @@
     <ClCompile Include="oak\ui\ui_div.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
-    <ClCompile Include="ui\ui_templates.cpp">
+    <ClCompile Include="ui\tmp_inventory_item.cpp">
       <Filter>game\ui</Filter>
     </ClCompile>
   </ItemGroup>
@@ -512,7 +512,7 @@
     <ClInclude Include="oak\ui\ui_div.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
-    <ClInclude Include="ui\ui_templates.h">
+    <ClInclude Include="ui\tmp_inventory_item.h">
       <Filter>game\ui</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,7 @@
 #include "inventory_menu.h"
 #include <core/player_resource.h>
 #include "../player.h"
-#include "ui_templates.h"
+#include "tmp_inventory_item.h"
 
 using namespace game::ui;
 using namespace game;
@@ -43,12 +43,13 @@ void InventoryMenu::onBeforeRender()
     {
       if (i >= itemList->children.size())
       {
-        UINode* node = UITemplates::newInventoryItem(items[i]);
+        UINode* node = new tmp_InventoryItem(items[i]);
         itemList->addChild(node);
       }
       else
       {
-        UITemplates::updateInventoryItem(itemList->children[i], items[i]);
+        tmp_InventoryItem* tmp_item = static_cast<tmp_InventoryItem*>(itemList->children[i]);
+        tmp_item->update(items[i]);
       }
     }
   }
