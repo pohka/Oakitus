@@ -6,6 +6,7 @@
 #include <core/point.h>
 #include <vector>
 #include <core/point.h>
+#include "style.h"
 //#include "color.h"
 
 namespace oak
@@ -36,6 +37,10 @@ namespace oak
       Point pos = { 0,0 };
       Point margin = { 0,0 };
       Point padding = { 0,0 };
+      
+      std::string id = "";
+      
+      
      // Color bgColor = { 0.0f, 0.0f, 0.0f, 0.0f };
       bool isAutoH = true;
       bool isAutoW = true;
@@ -52,6 +57,8 @@ namespace oak
       bool getIsRootNode();
       Point& getParentPos();
 
+      void addClass(Style* style);
+
       //void update();
 
       //void(*onClick)(UINode*) = nullptr;
@@ -65,6 +72,8 @@ namespace oak
       UINode* parent = nullptr;
       uchar nodeType;
       UIComponent* component;
+      std::vector<std::string> classList;
+      Style* computedStyle;
 
       void renderBegin(Point& nodeCursor);
       void renderEnd(Point& nodeCursor);
@@ -73,6 +82,7 @@ namespace oak
 
     private:
       bool isRootNode = true;
+
     };
   }
 }

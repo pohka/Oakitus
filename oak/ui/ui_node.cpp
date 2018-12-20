@@ -10,6 +10,9 @@ using namespace oak;
 UINode::UINode(const uchar nodeType)
 {
   this->nodeType = nodeType;
+  computedStyle = new Style("");
+  //default style
+  computedStyle->attrs[style::font_size] = 20.0f;
 }
 
 UINode::~UINode()
@@ -143,4 +146,29 @@ void UINode::renderBegin(Point& nodeCursor)
 
   nodeCursor.x += offset.x + padding.x + margin.x;
   nodeCursor.y += offset.y - padding.y - margin.y;
+}
+
+void UINode::addClass(Style* style)
+{
+  computedStyle->classList.push_back(style->classList[0]);
+
+  if (computedStyle->position < style->position)
+  {
+    computedStyle->position = style->position;
+  }
+
+  //color is not null
+  if (style->color.a >= 0.0f)
+  {
+    computedStyle->color = style->color;
+  }
+
+  for (uint i = 0; i < style->attrs.size(); i++)
+  {
+    //negative values are used
+    if (style->attrs[i] != Style::NULL_ATTR)
+    {
+      computedStyle->attrs[i] = style->attrs[i];
+    }
+  }
 }

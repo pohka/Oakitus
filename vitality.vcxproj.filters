@@ -264,6 +264,9 @@
     <ClCompile Include="oak\ui\ui_component.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
+    <ClCompile Include="oak\ui\style.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -517,6 +520,9 @@
     </ClInclude>
     <ClInclude Include="oak\core\key_codes.h">
       <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\style.h">
+      <Filter>oak\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

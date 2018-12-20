@@ -18,6 +18,7 @@
 #include "ui_node.h"
 #include "ui_component.h"
 #include <core/point.h>
+#include "style.h"
 
 
 
@@ -41,9 +42,12 @@ namespace oak
         ///returns a component by id
         static UIComponent* getComponent(ushort id);
 
+        static Style* findStyle(std::string cls);
+
     private:
         static oak::Point projection; //current projection
         static std::map<ushort, UIComponent*> components; //all if the existing components
+        static std::vector<Style*> styles;
     };
 
     

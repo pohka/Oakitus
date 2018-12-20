@@ -17,6 +17,7 @@ using namespace oak;
 std::map<ushort, UIComponent*> UICanvas::components;
 oak::Point UICanvas::projection = { 0,0 };
 std::map<uint, std::string> strings;
+std::vector<Style*> UICanvas::styles;
 
 void UICanvas::render()
 {
@@ -62,4 +63,20 @@ void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 const oak::Point& UICanvas::getProjection()
 {
   return projection;
+}
+
+
+Style* UICanvas::findStyle(std::string cls)
+{
+  for (Style* style : styles)
+  {
+    for (uint i = 0; i < style->classList.size(); i++)
+    {
+      if (style->classList[i] == cls)
+      {
+        return style;
+      }
+    }
+  }
+  return nullptr;
 }

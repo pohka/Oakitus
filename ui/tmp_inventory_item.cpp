@@ -8,12 +8,14 @@ using namespace oak::ui;
 
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
+  this->w = 200.0f;
+  this->onFocus = tmp_InventoryItem::onItemFocus;
+
   UILabel* label = new UILabel(item->name, 20);
   label->margin.x = 30.0f;
   label->margin.y = 10.0f;
-  label->w = 200.0f;
   addChild(label);
-  label->onFocus = tmp_InventoryItem::onItemFocus;
+  
 
   UIImage* equipedIcon = new UIImage("default.png", 16, 16);
   equipedIcon->offset.y += (float)(label->getTotalH() - ((label->getTotalH() - equipedIcon->h)/2));
@@ -37,7 +39,7 @@ void tmp_InventoryItem::update(Item* item)
 void tmp_InventoryItem::onItemFocus(UINode* node)
 {
   LOG << "focus:" << (int)node->getType();
-  UILabel* label = static_cast<UILabel*>(node);
+  UILabel* label = static_cast<UILabel*>(node->children[0]);
   label->color = COLOR_RED;
 }
 
