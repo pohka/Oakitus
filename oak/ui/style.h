@@ -55,6 +55,7 @@ namespace oak
       std::vector<float> attrs = std::vector<float>(oak::style::last_attr);
       
       static constexpr float NULL_ATTR = std::numeric_limits<float>::infinity();
+      static constexpr float DEFAULT_FONT_SIZE = 20.0f;
 
       void setPadding(float x, float y);
       void setMargin(float x, float y);

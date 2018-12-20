@@ -11,8 +11,11 @@ UINode::UINode(const uchar nodeType)
 {
   this->nodeType = nodeType;
   computedStyle = new Style("");
+  inlineStyle = new Style("self");
+
+  
   //default style
-  computedStyle->attrs[style::font_size] = 20.0f;
+  
 }
 
 UINode::~UINode()
@@ -64,35 +67,46 @@ Point& UINode::getParentPos()
   }
 }
 
-ushort UINode::getTotalH()
+float UINode::getTotalH()
 {
-  return (ushort)(margin.y * 2) + h;
+  return totalH;
 }
 
 void UINode::renderEnd(Point& nodeCursor)
 {
   Point childCursor = { nodeCursor.x, nodeCursor.y };
 
+  totalW = margin.x * 2.0f;
+  if (computedStyle->attrs[style::width] != Style::NULL_ATTR)
+  {
+    totalW += computedStyle->attrs[style::width];
+  }
+
+  totalH = margin.y * 2;
+
   //calculate total height if automatic height
-  if (isAutoH)
+  if (computedStyle->attrs[style::height] == Style::NULL_ATTR)
   {
     //margin and padding
     //h += (ushort)(margin.y + padding.y) * 2;
+    //computedStyle->attrs[style::height] = 0.0f;
 
     for (auto node : children)
     {
       node->render(childCursor);
       if (node->positionType == UI_POSITION_RELATIVE)
       {
-        ushort childNodeH = node->getTotalH();
+       float childNodeH = node->getTotalH();
         childCursor.y -= childNodeH;
-        h += childNodeH; //height of each child node
+        totalH += childNodeH; //height of each child node
       }
     }
     //h = totalH;
   }
   else
   {
+    totalH += computedStyle->attrs[style::height];
+
     for (auto node : children)
     {
       node->render(childCursor);
@@ -108,8 +122,8 @@ void UINode::renderEnd(Point& nodeCursor)
     glm::vec2 windowUnit = Window::getWindowUnitToPixel();
     rect.x = nodeCursor.x;// +windowUnit.x;
     rect.y = nodeCursor.y;
-    rect.w = (float)w + padding.x * 2.0f;
-    rect.h = (float)h + padding.y * 2.0f;
+    rect.w = computedStyle->attrs[style::width] + padding.x * 2.0f;
+    rect.h = computedStyle->attrs[style::height] + padding.y * 2.0f;
 
     float xx = (Input::mousePos.x - Window::getWidth() / 2.0f) / Window::getWindowToVPRatio().x;
     float yy = (Input::mousePos.y - Window::getHeight() / 2.0f) / Window::getWindowToVPRatio().y;
@@ -152,6 +166,47 @@ void UINode::addClass(Style* style)
 {
   computedStyle->classList.push_back(style->classList[0]);
 
+  //if (computedStyle->position < style->position)
+  //{
+  //  computedStyle->position = style->position;
+  //}
+
+  ////color is not null
+  //if (style->color.a >= 0.0f)
+  //{
+  //  computedStyle->color = style->color;
+  //}
+
+  //for (uint i = 0; i < style->attrs.size(); i++)
+  //{
+  //  //negative values are used
+  //  if (style->attrs[i] != Style::NULL_ATTR)
+  //  {
+  //    computedStyle->attrs[i] = style->attrs[i];
+  //  }
+  //}
+}
+
+void UINode::calcStyle()
+{
+  for (std::string cls : computedStyle->classList)
+  {
+    Style* style = UICanvas::findStyle(cls);
+    if (style != nullptr)
+    {
+      mutateComputedStyle(style);
+    }
+  }
+
+  mutateComputedStyle(inlineStyle);
+  if (computedStyle->attrs[style::font_size] == Style::NULL_ATTR)
+  {
+    computedStyle->attrs[style::font_size] = Style::DEFAULT_FONT_SIZE;
+  }
+}
+
+void UINode::mutateComputedStyle(Style* style)
+{
   if (computedStyle->position < style->position)
   {
     computedStyle->position = style->position;

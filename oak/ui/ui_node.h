@@ -32,8 +32,7 @@ namespace oak
       ~UINode();
 
       Point offset = { 0,0 };
-      ushort w = 0;
-      ushort h = 0;
+      
       Point pos = { 0,0 };
       Point margin = { 0,0 };
       Point padding = { 0,0 };
@@ -58,6 +57,7 @@ namespace oak
       Point& getParentPos();
 
       void addClass(Style* style);
+      void calcStyle();
 
       //void update();
 
@@ -66,7 +66,7 @@ namespace oak
       
       std::vector<UINode*> children;
 
-      ushort getTotalH();
+      float getTotalH();
 
     protected:
       UINode* parent = nullptr;
@@ -74,6 +74,7 @@ namespace oak
       UIComponent* component;
       std::vector<std::string> classList;
       Style* computedStyle;
+      Style* inlineStyle; //inline css
 
       void renderBegin(Point& nodeCursor);
       void renderEnd(Point& nodeCursor);
@@ -82,6 +83,9 @@ namespace oak
 
     private:
       bool isRootNode = true;
+      void mutateComputedStyle(Style* style);
+      float totalW = 0.0f;
+      float totalH = 0.0f;
 
     };
   }

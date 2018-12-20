@@ -5,7 +5,7 @@ using namespace oak::ui;
 
 UIDiv::UIDiv() : UINode(UI_NODE_DIV)
 {
-
+  calcStyle();
 }
 
 UIDiv::~UIDiv()
@@ -16,10 +16,6 @@ UIDiv::~UIDiv()
 void UIDiv::render(oak::Point& nodeCursor)
 {
   UINode::renderBegin(nodeCursor);
-  if (isAutoH)
-  {
-    h = 0;
-  }
   UINode::renderEnd(nodeCursor);
 }
 

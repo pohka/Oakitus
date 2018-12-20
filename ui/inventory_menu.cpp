@@ -15,8 +15,8 @@ InventoryMenu::InventoryMenu()
   align.y = UI_ALIGN_VERT_MIDDLE;
 
   background = new UIImage("inventory_bg.png", 700, 400);
-  background->offset.x = -(float)(background->w / 2);
-  background->offset.y = (float)(background->h / 2);
+  //background->offset.x = -(float)(background->w / 2);
+  //background->offset.y = (float)(background->h / 2);
 
   addNode(background);
 

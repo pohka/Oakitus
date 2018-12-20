@@ -1,5 +1,6 @@
 #include "tmp_inventory_item.h"
 #include <debug.h>
+//#include <ui/style.h>
 
 using namespace game;
 using namespace oak::ui;
@@ -8,7 +9,8 @@ using namespace oak::ui;
 
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
-  this->w = 200.0f;
+//  this->w = 200.0f;
+  inlineStyle->attrs[oak::style::width] = 200.0f;
   this->onFocus = tmp_InventoryItem::onItemFocus;
 
   UILabel* label = new UILabel(item->name, 20);
@@ -18,7 +20,8 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
   
 
   UIImage* equipedIcon = new UIImage("default.png", 16, 16);
-  equipedIcon->offset.y += (float)(label->getTotalH() - ((label->getTotalH() - equipedIcon->h)/2));
+  //todo: fix next line
+  //equipedIcon->offset.y += (float)(label->getTotalH() - ((label->getTotalH() - equipedIcon->h)/2));
   LOG << "offsetY:" << equipedIcon->offset.y;
   equipedIcon->offset.x = 10.0f;
   equipedIcon->positionType = UI_POSITION_ABSOLUTE;
