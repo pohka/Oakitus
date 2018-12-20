@@ -172,6 +172,7 @@
     <ClCompile Include="oak\ui\font.cpp" />
     <ClCompile Include="oak\ui\localization.cpp" />
     <ClCompile Include="oak\ui\ui_canvas.cpp" />
+    <ClCompile Include="oak\ui\ui_component.cpp" />
     <ClCompile Include="oak\ui\ui_image.cpp" />
     <ClCompile Include="oak\ui\ui_label.cpp" />
     <ClCompile Include="oak\ui\ui_div.cpp" />

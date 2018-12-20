@@ -1,16 +1,17 @@
 #include "ui_node.h"
 #include "ui_component.h"
 #include "ui_canvas.h"
+#include <core/input.h>
+#include <debug.h>
 
 using namespace oak::ui;
 using namespace oak;
-
-
 
 UINode::UINode(const uchar nodeType)
 {
   this->nodeType = nodeType;
 }
+
 UINode::~UINode()
 {
   for (uint i = 0; i < children.size(); i++)
@@ -95,6 +96,37 @@ void UINode::renderEnd(Point& nodeCursor)
       if (node->positionType == UI_POSITION_RELATIVE)
       {
         childCursor.y -= node->getTotalH();
+      }
+    }
+  }
+
+  if (Input::hasMouseMoved())
+  {
+    glm::vec2 windowUnit = Window::getWindowUnitToPixel();
+    rect.x = nodeCursor.x;// +windowUnit.x;
+    rect.y = nodeCursor.y;
+    rect.w = (float)w + padding.x * 2.0f;
+    rect.h = (float)h + padding.y * 2.0f;
+
+    float xx = (Input::mousePos.x - Window::getWidth() / 2.0f) / Window::getWindowToVPRatio().x;
+    float yy = (Input::mousePos.y - Window::getHeight() / 2.0f) / Window::getWindowToVPRatio().y;
+
+    if (onFocus != nullptr)
+    {
+     // LOG << "windowUnit:" << windowUnit.x << "," << windowUnit.y;
+      LOG << "rect:" << rect.x << "," << rect.y << "," << rect.w << "," << rect.h;
+      LOG << "mouse:" << xx << "," << yy;
+      //onFocus(this);
+    }
+
+    
+
+    if (rect.containsPt(xx, yy))
+    {
+      if (onFocus != nullptr)
+      {
+        LOG << "contains pt";
+        onFocus(this);
       }
     }
   }

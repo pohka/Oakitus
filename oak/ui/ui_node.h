@@ -16,11 +16,11 @@ namespace oak
 
     struct UIRect
     {
-      ushort x, y, w, h;
+      float x, y, w, h;
 
-      bool containsPt(ushort ptX, ushort ptY)
+      bool containsPt(float ptX, float ptY)
       {
-        return (ptX <= x + w && ptX >= x && ptY <= y && ptY >= y + h);
+        return (ptX >= x && ptX <= x + w  && ptY <= y && ptY >= y - h);
       }
     };
 
@@ -40,6 +40,7 @@ namespace oak
       bool isAutoH = true;
       bool isAutoW = true;
       uchar positionType = UI_POSITION_RELATIVE;
+      UIRect rect;
 
       virtual void render(Point& nodeCursor) = 0;
       virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
@@ -51,8 +52,10 @@ namespace oak
       bool getIsRootNode();
       Point& getParentPos();
 
-      void(*onClick)() = nullptr;
-      void(*onFocus)() = nullptr;
+      //void update();
+
+      //void(*onClick)(UINode*) = nullptr;
+      void (*onFocus)(UINode*) = nullptr;
       
       std::vector<UINode*> children;
 

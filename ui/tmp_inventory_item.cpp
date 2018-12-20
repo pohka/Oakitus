@@ -4,13 +4,16 @@
 using namespace game;
 using namespace oak::ui;
 
+
+
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
   UILabel* label = new UILabel(item->name, 20);
   label->margin.x = 30.0f;
   label->margin.y = 10.0f;
+  label->w = 200.0f;
   addChild(label);
-  //label->onFocus = &this->onItemFocus;
+  label->onFocus = tmp_InventoryItem::onItemFocus;
 
   UIImage* equipedIcon = new UIImage("default.png", 16, 16);
   equipedIcon->offset.y += (float)(label->getTotalH() - ((label->getTotalH() - equipedIcon->h)/2));
@@ -31,9 +34,10 @@ void tmp_InventoryItem::update(Item* item)
   label->text = item->name;
 }
 
-void tmp_InventoryItem::onItemFocus()
+void tmp_InventoryItem::onItemFocus(UINode* node)
 {
-  UILabel* label = static_cast<UILabel*>(children[0]);
+  LOG << "focus:" << (int)node->getType();
+  UILabel* label = static_cast<UILabel*>(node);
   label->color = COLOR_RED;
 }
 

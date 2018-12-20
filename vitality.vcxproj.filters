@@ -261,6 +261,9 @@
     <ClCompile Include="ui\tmp_inventory_item.cpp">
       <Filter>game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="oak\ui\ui_component.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">

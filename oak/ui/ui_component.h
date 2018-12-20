@@ -27,37 +27,11 @@ namespace oak
 
       virtual void onBeforeRender() = 0;
 
-      void render(oak::Point& projection)
-      {
-        glm::vec2 windowUnit = Window::getWindowUnitToPixel();
+      void render(oak::Point& projection);
 
-        pos.x = offset.x + (align.x * windowUnit.x);
-        pos.y = offset.y + (align.y * windowUnit.y);
+      void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
 
-        Point nodeCursor = { 
-          pos.x + margin.x + padding.x,
-          pos.y + margin.y + padding.y 
-        };
-
-        for (UINode* node : nodes)
-        {
-          node->render(nodeCursor);
-        }
-      }
-
-      void onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
-      {
-        for (UINode* node : nodes)
-        {
-          node->onWindowResize(windowToVPRatioX, windowToVPRatioY);
-        }
-      }
-
-      void addNode(UINode* node)
-      {
-        node->setComponent(this);
-        nodes.push_back(node);
-      }
+      void addNode(UINode* node);
 
       private:
         std::vector<UINode*> nodes;
