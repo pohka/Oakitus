@@ -15,6 +15,10 @@ namespace ion
   struct Style
   {
     Style(std::string className);
+    Style(
+      std::vector<std::string>& classList, 
+      std::unordered_map<std::string, std::string>& attrs
+    );
 
     //attributes
     std::vector<std::string> classList;
@@ -27,6 +31,10 @@ namespace ion
     void setMargin(float x, float y);
     float get(uchar key);
     void set(uchar key, float val);
+
+    void set(std::string key, std::string val);
+  private:
+    static float parseNumber(std::string val);
   };
 }
 

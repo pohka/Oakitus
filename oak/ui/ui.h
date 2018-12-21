@@ -5,3 +5,4 @@
 #include "color.h"
 #include "localization.h"
 #include "ui_div.h"
+#include "style_loader.h"
