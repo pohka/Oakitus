@@ -48,7 +48,7 @@ namespace oak
       bool getIsRootNode();
       Point& getParentPos();
 
-      void addClass(Style* style);
+      void addClass(std::string cssClass);
       void calcStyle();
       
 

@@ -10,9 +10,10 @@ using namespace oak::ui;
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
   style->set(STYLE_WIDTH, 200.0f);
+  this->addClass("test");
   this->onFocus = tmp_InventoryItem::onItemFocus;
 
-  UILabel* label = new UILabel(item->name, 20);
+  UILabel* label = new UILabel(item->name, 20.0f);
   label->style->setMargin(30.0f, 4.0f);
   addChild(label);
   

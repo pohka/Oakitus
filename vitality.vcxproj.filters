@@ -524,6 +524,9 @@
     <ClInclude Include="oak\ui\style.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
+    <ClInclude Include="oak\core\string_help.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\text.fs">

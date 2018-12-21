@@ -31,6 +31,19 @@ void MainScene::onLoad()
   Resources::addTexture("inventory_bg.png");
 
   //ui
+  //testing style classes
+  Style* testStyle = new Style("inv-item test");
+  testStyle->set(STYLE_HEIGHT, 200.0f);
+  UICanvas::addStyle(testStyle);
+  LOG << "--------";
+  LOG << "inv-item classList:";
+  for (uint i = 0; i < testStyle->classList.size(); i++)
+  {
+    LOG << testStyle->classList[i];
+  }
+  LOG << "--------";
+
+
   auto* comp = new game::ui::ActionPanel();
   //comp->offset.x = 10.0f;
   UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);

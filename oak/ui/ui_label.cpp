@@ -10,10 +10,10 @@
 using namespace oak::ui;
 using namespace oak;
 
-UILabel::UILabel(std::string src, ushort fontSize) : UINode(UI_NODE_LABEL)
+UILabel::UILabel(std::string src, float fontSize) : UINode(UI_NODE_LABEL)
 {
   this->text = text;
-  this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
+  //this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
   this->fontID = Resources::getFontIDByName("arial.ttf");
 
   style->set(STYLE_HEIGHT, fontSize);
@@ -33,6 +33,8 @@ UILabel::UILabel(std::string src, ushort fontSize) : UINode(UI_NODE_LABEL)
 void UILabel::render(Point& nodeCursor)
 {
   renderBegin(nodeCursor);
+
+  scale = cstyle->attrs[STYLE_FONT_SIZE] / (float)FONT_LOADED_SIZE;
 
   Shader& shader = Resources::getShaderByName("text");
   // Activate corresponding render state	

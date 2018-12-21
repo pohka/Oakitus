@@ -231,6 +231,7 @@
     <ClInclude Include="oak\core\base_player.h" />
     <ClInclude Include="oak\core\player_resource.h" />
     <ClInclude Include="oak\core\point.h" />
+    <ClInclude Include="oak\core\string_help.h" />
     <ClInclude Include="oak\core\window.h" />
     <ClInclude Include="oak\core\id_generator.h" />
     <ClInclude Include="oak\core\input.h" />

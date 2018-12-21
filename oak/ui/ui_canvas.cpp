@@ -29,6 +29,8 @@ void UICanvas::render()
     it->second->onBeforeRender();
   }
 
+  
+
   //get projection from font size to viewport to window coords
   glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
   float worldToVP = Window::worldToViewportCoords(1.0f);
@@ -79,4 +81,9 @@ Style* UICanvas::findStyle(std::string cls)
     }
   }
   return nullptr;
+}
+
+void UICanvas::addStyle(Style* style)
+{
+  styles.push_back(style);
 }

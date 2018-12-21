@@ -1,25 +1,12 @@
 #include "style.h"
 #include <limits>
+#include <core/string_help.h>
 
 using namespace oak::ui;
 
 Style::Style(std::string className)
 {
-  std::string delimiter = " ";
-  int pos = 0;
-  std::string token;
-  while ((pos = className.find(delimiter)) != std::string::npos) 
-  {
-    token = className.substr(0, pos);
-    classList.push_back(token);
-    className.erase(0, pos + delimiter.length());
-  }
-
-  /*for (uint i=0; i<attrs.size(); i++)
-  {
-    attrs[i] = NULL_ATTR;
-  }*/
-
+  StringHelp::split(className, classList, ' ');
   attrs.insert_or_assign(STYLE_WIDTH, STYLE_VAL_AUTO);
   attrs.insert_or_assign(STYLE_HEIGHT, STYLE_VAL_AUTO);
 }

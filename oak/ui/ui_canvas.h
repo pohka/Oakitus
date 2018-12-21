@@ -44,6 +44,8 @@ namespace oak
 
         static Style* findStyle(std::string cls);
 
+        static void addStyle(Style* style);
+
     private:
         static oak::Point projection; //current projection
         static std::map<ushort, UIComponent*> components; //all if the existing components

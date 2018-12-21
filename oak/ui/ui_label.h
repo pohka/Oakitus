@@ -14,7 +14,7 @@ namespace oak
     ///a label has data that will display text
     struct UILabel : public UINode
     {
-      UILabel(std::string src, ushort fontSize);
+      UILabel(std::string src, float fontSize);
 
       std::string text;
       float scale = 1.0f; //font scale

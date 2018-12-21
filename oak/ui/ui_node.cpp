@@ -128,13 +128,11 @@ void UINode::renderEnd(Point& nodeCursor)
     glm::vec2 windowUnit = Window::getWindowUnitToPixel();
     rect.x = nodeCursor.x;
     rect.y = nodeCursor.y;
-    rect.w = 200.0f; //todo auto width
-    //app(rect.w, STYLE_WIDTH);
-    //app(rect.w, STYLE_PADDING_LEFT);
-    //app(rect.w, STYLE_PADDING_RIGHT);
-    //  cstyle->attrs[style::width] +
-    //  cstyle->attrs[style::padding_left] +
-    //  cstyle->attrs[style::padding_right];
+    rect.w = 0.0f; //todo auto width
+    app(rect.w, STYLE_WIDTH);
+    app(rect.w, STYLE_PADDING_LEFT);
+    app(rect.w, STYLE_PADDING_RIGHT);
+
     rect.h = 0.0f;
     if (height == STYLE_VAL_AUTO)
     {
@@ -152,8 +150,8 @@ void UINode::renderEnd(Point& nodeCursor)
 
     if (onFocus != nullptr)
     {
-      LOG << "rect:" << rect.x << "," << rect.y << "," << rect.w << "," << rect.h;
-      LOG << "mouse:" << xx << "," << yy;
+     // LOG << "rect:" << rect.x << "," << rect.y << "," << rect.w << "," << rect.h;
+     // LOG << "mouse:" << xx << "," << yy;
     }
 
     
@@ -198,9 +196,13 @@ void UINode::renderBegin(Point& nodeCursor)
   nodeCursor.y += -padding.y - margin.y;
 }
 
-void UINode::addClass(Style* style)
+void UINode::addClass(std::string cssClass)
 {
-  cstyle->classList.push_back(style->classList[0]);
+ // Style* s = UICanvas::findStyle(cssClass);
+ // if (s != nullptr)
+//  {
+    cstyle->classList.push_back(cssClass);
+//  }
 }
 
 void UINode::calcStyle()
@@ -211,6 +213,10 @@ void UINode::calcStyle()
     if (style != nullptr)
     {
       mutateComputedStyle(style);
+    }
+    else
+    {
+      LOG << "style class not found:" << cls;
     }
   }
 
