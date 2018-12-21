@@ -9,21 +9,20 @@ using namespace oak::ui;
 
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
-//  this->w = 200.0f;
   inlineStyle->attrs[oak::style::width] = 200.0f;
   this->onFocus = tmp_InventoryItem::onItemFocus;
 
   UILabel* label = new UILabel(item->name, 20);
-  label->margin.x = 30.0f;
-  label->margin.y = 10.0f;
+  label->inlineStyle->setMargin(30.0f, 10.0f);
+  label->calcStyle();
   addChild(label);
   
 
   UIImage* equipedIcon = new UIImage("default.png", 16, 16);
   //todo: fix next line
   //equipedIcon->offset.y += (float)(label->getTotalH() - ((label->getTotalH() - equipedIcon->h)/2));
-  LOG << "offsetY:" << equipedIcon->offset.y;
-  equipedIcon->offset.x = 10.0f;
+ // LOG << "offsetY:" << equipedIcon->offset.y;
+ // equipedIcon->offset.x = 10.0f;
   equipedIcon->positionType = UI_POSITION_ABSOLUTE;
   addChild(equipedIcon);
 }

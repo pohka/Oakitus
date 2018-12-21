@@ -19,19 +19,24 @@ ActionPanel::ActionPanel()
   align.y = UI_ALIGN_VERT_BOTTOM;
   
   UINode* img = new UIImage("action_panel.png", 440, 64);
-  img->offset.x = 10.0f;
-  img->offset.y = 80.0f;
-  img->margin.x = 40.0f;
+  //img->offset.x = 10.0f;
+  //->offset.y = 80.0f;
+  img->inlineStyle->setMargin(40.0f, 0.0f);
+  img->inlineStyle->attrs[oak::style::margin_top] = -80.0f;
+
+  img->calcStyle();
   addNode(img);
 
   label = new UILabel("", 20);
   label->color = { 0.9f, 0.9f, 0.9f };
-  label->margin = { 10.0f, 4.0f };
+  label->inlineStyle->setMargin(10.0f, 4.0f);
+  label->calcStyle();
   img->addChild(label);
 
   label2 = new UILabel("", 20);
   label2->color = { 0.9f, 0.9f, 0.9f };
-  label2->margin = { 10.0f, 4.0f };
+  label2->inlineStyle->setMargin(10.0f, 4.0f);
+  label2->calcStyle();
   img->addChild(label2);
 }
 

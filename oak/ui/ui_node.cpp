@@ -76,13 +76,17 @@ void UINode::renderEnd(Point& nodeCursor)
 {
   Point childCursor = { nodeCursor.x, nodeCursor.y };
 
-  totalW = margin.x * 2.0f;
+  totalW = 
+    computedStyle->attrs[style::margin_left] +
+    computedStyle->attrs[style::margin_right];
   if (computedStyle->attrs[style::width] != Style::NULL_ATTR)
   {
     totalW += computedStyle->attrs[style::width];
   }
 
-  totalH = margin.y * 2;
+  totalH = 
+    computedStyle->attrs[style::margin_top] +
+    computedStyle->attrs[style::margin_bottom];
 
   //calculate total height if automatic height
   if (computedStyle->attrs[style::height] == Style::NULL_ATTR)
@@ -122,8 +126,14 @@ void UINode::renderEnd(Point& nodeCursor)
     glm::vec2 windowUnit = Window::getWindowUnitToPixel();
     rect.x = nodeCursor.x;// +windowUnit.x;
     rect.y = nodeCursor.y;
-    rect.w = computedStyle->attrs[style::width] + padding.x * 2.0f;
-    rect.h = computedStyle->attrs[style::height] + padding.y * 2.0f;
+    rect.w = 200.0f;
+    //  computedStyle->attrs[style::width] +
+    //  computedStyle->attrs[style::padding_left] +
+    //  computedStyle->attrs[style::padding_right];
+    rect.h = 40.0f;
+    //  computedStyle->attrs[style::height] + 
+    //  computedStyle->attrs[style::padding_top] + 
+    //  computedStyle->attrs[style::padding_bottom];
 
     float xx = (Input::mousePos.x - Window::getWidth() / 2.0f) / Window::getWindowToVPRatio().x;
     float yy = (Input::mousePos.y - Window::getHeight() / 2.0f) / Window::getWindowToVPRatio().y;
@@ -148,43 +158,64 @@ void UINode::renderEnd(Point& nodeCursor)
     }
   }
 
-  nodeCursor.x -= offset.x + padding.x + margin.x;
-  nodeCursor.y -= offset.y - padding.y - margin.y;
+  Point padding = {};
+  if (computedStyle->attrs[style::padding_left] != Style::NULL_ATTR)
+  {
+    padding.x = computedStyle->attrs[style::padding_left];
+  }
+  if (computedStyle->attrs[style::padding_top] != Style::NULL_ATTR)
+  {
+    padding.y = computedStyle->attrs[style::padding_top];
+  }
+
+  Point margin = {};
+  if (computedStyle->attrs[style::margin_left] != Style::NULL_ATTR)
+  {
+    margin.x = computedStyle->attrs[style::margin_left];
+  }
+  if (computedStyle->attrs[style::margin_top] != Style::NULL_ATTR)
+  {
+    margin.y = computedStyle->attrs[style::margin_top];
+  }
+
+  nodeCursor.x -= padding.x + margin.x;
+
+  nodeCursor.y -= padding.y - margin.y;
 }
 
 void UINode::renderBegin(Point& nodeCursor)
 {
   Point parentPos = getParentPos();
-  pos.x = parentPos.x + offset.x;
-  pos.y = parentPos.y + offset.y;
+  pos.x = parentPos.x;
+  pos.y = parentPos.y;
+  
+  Point padding = {};
+  if (computedStyle->attrs[style::padding_left] != Style::NULL_ATTR)
+  {
+    padding.x = computedStyle->attrs[style::padding_left];
+  }
+  if (computedStyle->attrs[style::padding_top] != Style::NULL_ATTR)
+  {
+    padding.y = computedStyle->attrs[style::padding_top];
+  }
 
-  nodeCursor.x += offset.x + padding.x + margin.x;
-  nodeCursor.y += offset.y - padding.y - margin.y;
+  Point margin = {};
+  if (computedStyle->attrs[style::margin_left] != Style::NULL_ATTR)
+  {
+    margin.x = computedStyle->attrs[style::margin_left];
+  }
+  if (computedStyle->attrs[style::margin_top] != Style::NULL_ATTR)
+  {
+    margin.y = computedStyle->attrs[style::margin_top];
+  }
+
+  nodeCursor.x += padding.x + margin.x;
+  nodeCursor.y += - padding.y - margin.y;
 }
 
 void UINode::addClass(Style* style)
 {
   computedStyle->classList.push_back(style->classList[0]);
-
-  //if (computedStyle->position < style->position)
-  //{
-  //  computedStyle->position = style->position;
-  //}
-
-  ////color is not null
-  //if (style->color.a >= 0.0f)
-  //{
-  //  computedStyle->color = style->color;
-  //}
-
-  //for (uint i = 0; i < style->attrs.size(); i++)
-  //{
-  //  //negative values are used
-  //  if (style->attrs[i] != Style::NULL_ATTR)
-  //  {
-  //    computedStyle->attrs[i] = style->attrs[i];
-  //  }
-  //}
 }
 
 void UINode::calcStyle()

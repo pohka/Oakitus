@@ -30,12 +30,8 @@ namespace oak
     {
       UINode(const uchar nodeType);
       ~UINode();
-
-      Point offset = { 0,0 };
       
       Point pos = { 0,0 };
-      Point margin = { 0,0 };
-      Point padding = { 0,0 };
       
       std::string id = "";
       
@@ -65,6 +61,7 @@ namespace oak
       void (*onFocus)(UINode*) = nullptr;
       
       std::vector<UINode*> children;
+      Style* inlineStyle; //inline css
 
       float getTotalH();
 
@@ -74,7 +71,7 @@ namespace oak
       UIComponent* component;
       std::vector<std::string> classList;
       Style* computedStyle;
-      Style* inlineStyle; //inline css
+      
 
       void renderBegin(Point& nodeCursor);
       void renderEnd(Point& nodeCursor);
