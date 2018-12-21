@@ -33,6 +33,7 @@ void UIComponent::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 
 void UIComponent::addNode(UINode* node)
 {
+  node->calcStyle();
   node->setComponent(this);
   nodes.push_back(node);
 }

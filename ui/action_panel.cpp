@@ -13,28 +13,22 @@ using namespace oak::ui;
 
 ActionPanel::ActionPanel()
 {
-  prop_hp = 100;
-
   align.x = UI_ALIGN_HORZ_LEFT;
   align.y = UI_ALIGN_VERT_BOTTOM;
   
   UINode* img = new UIImage("action_panel.png", 440, 64);
-  img->style->setMargin(40.0f, 0.0f);
+  img->style->setPadding(40.0f, 0.0f);
   img->style->set(STYLE_MARGIN_TOP, -80.0f);
-
-  img->calcStyle();
   addNode(img);
 
   label = new UILabel("", 20);
   label->style->color = { 0.9f, 0.9f, 0.9f, 1.0f };
   label->style->setMargin(10.0f, 4.0f);
-  label->calcStyle();
   img->addChild(label);
 
   label2 = new UILabel("", 20);
   label2->style->color = { 1.0f, 1.0f, 0.0f, 1.0f };
   label2->style->setMargin(10.0f, 4.0f);
-  label2->calcStyle();
   img->addChild(label2);
 }
 

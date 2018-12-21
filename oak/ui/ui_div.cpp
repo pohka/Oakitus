@@ -5,7 +5,7 @@ using namespace oak::ui;
 
 UIDiv::UIDiv() : UINode(UI_NODE_DIV)
 {
-  calcStyle();
+
 }
 
 UIDiv::~UIDiv()

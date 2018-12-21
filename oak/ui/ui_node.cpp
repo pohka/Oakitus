@@ -30,6 +30,7 @@ void UINode::setComponent(UIComponent* component)
 
 void UINode::addChild(UINode* node)
 {
+  node->calcStyle();
   node->parent = this;
   node->isRootNode = false;
   node->component = component;
@@ -71,6 +72,7 @@ float UINode::getTotalH()
 void UINode::renderEnd(Point& nodeCursor)
 {
   Point childCursor = { nodeCursor.x, nodeCursor.y };
+
 
   totalW = 0.0f;
   app(totalW, STYLE_MARGIN_LEFT);
@@ -155,7 +157,6 @@ void UINode::renderEnd(Point& nodeCursor)
     }
 
     
-
     if (rect.containsPt(xx, yy))
     {
       if (onFocus != nullptr)

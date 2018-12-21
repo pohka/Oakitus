@@ -18,7 +18,6 @@ UILabel::UILabel(std::string src, ushort fontSize) : UINode(UI_NODE_LABEL)
 
   style->set(STYLE_HEIGHT, fontSize);
   style->set(STYLE_FONT_SIZE, fontSize);
-  calcStyle();
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);

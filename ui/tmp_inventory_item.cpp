@@ -13,16 +13,12 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
   this->onFocus = tmp_InventoryItem::onItemFocus;
 
   UILabel* label = new UILabel(item->name, 20);
-  label->style->setMargin(30.0f, 10.0f);
-  label->calcStyle();
+  label->style->setMargin(30.0f, 4.0f);
   addChild(label);
   
 
   UIImage* equipedIcon = new UIImage("default.png", 16, 16);
-  //todo: fix next line
-  //equipedIcon->offset.y += (float)(label->getTotalH() - ((label->getTotalH() - equipedIcon->h)/2));
- // LOG << "offsetY:" << equipedIcon->offset.y;
- // equipedIcon->offset.x = 10.0f;
+  equipedIcon->style->set(STYLE_MARGIN_TOP, -20.0f);
   equipedIcon->positionType = UI_POSITION_ABSOLUTE;
   addChild(equipedIcon);
 }
