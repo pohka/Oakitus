@@ -28,13 +28,13 @@ ActionPanel::ActionPanel()
   addNode(img);
 
   label = new UILabel("", 20);
-  label->color = { 0.9f, 0.9f, 0.9f };
+  label->inlineStyle->color = { 0.9f, 0.9f, 0.9f, 1.0f };
   label->inlineStyle->setMargin(10.0f, 4.0f);
   label->calcStyle();
   img->addChild(label);
 
   label2 = new UILabel("", 20);
-  label2->color = { 0.9f, 0.9f, 0.9f };
+  label2->inlineStyle->color = { 1.0f, 1.0f, 0.0f, 1.0f };
   label2->inlineStyle->setMargin(10.0f, 4.0f);
   label2->calcStyle();
   img->addChild(label2);

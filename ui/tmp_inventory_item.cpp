@@ -42,6 +42,7 @@ void tmp_InventoryItem::onItemFocus(UINode* node)
 {
   LOG << "focus:" << (int)node->getType();
   UILabel* label = static_cast<UILabel*>(node->children[0]);
-  label->color = COLOR_RED;
+  label->inlineStyle->color = COLOR_RED;
+  label->calcStyle();
 }
 

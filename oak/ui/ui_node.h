@@ -37,8 +37,8 @@ namespace oak
       
       
      // Color bgColor = { 0.0f, 0.0f, 0.0f, 0.0f };
-      bool isAutoH = true;
-      bool isAutoW = true;
+      //bool isAutoH = true;
+      //bool isAutoW = true;
       uchar positionType = UI_POSITION_RELATIVE;
       UIRect rect;
 

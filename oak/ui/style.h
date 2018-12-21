@@ -49,7 +49,7 @@ namespace oak
    //   StyleBox padding;
     //  StyleBox margin;
       uchar position = UI_POSITION_RELATIVE;
-      Color color = COLOR_NULL;
+      Color color = COLOR_WHITE;
     //  float fontSize = 20.0f;
       
       std::vector<float> attrs = std::vector<float>(oak::style::last_attr);

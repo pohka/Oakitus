@@ -39,7 +39,10 @@ void UILabel::render(Point& nodeCursor)
   shader.use();
   glUniform4f(
     glGetUniformLocation(shader.getID(), "textColor"),
-    color.r, color.g, color.b, color.a
+    computedStyle->color.r,
+    computedStyle->color.g,
+    computedStyle->color.b,
+    computedStyle->color.a
   );
   glActiveTexture(GL_TEXTURE0);
   glBindVertexArray(VAO);
