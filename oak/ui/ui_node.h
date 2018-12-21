@@ -35,10 +35,6 @@ namespace oak
       
       std::string id = "";
       
-      
-     // Color bgColor = { 0.0f, 0.0f, 0.0f, 0.0f };
-      //bool isAutoH = true;
-      //bool isAutoW = true;
       uchar positionType = UI_POSITION_RELATIVE;
       UIRect rect;
 
@@ -54,6 +50,7 @@ namespace oak
 
       void addClass(Style* style);
       void calcStyle();
+      
 
       //void update();
 
@@ -61,7 +58,7 @@ namespace oak
       void (*onFocus)(UINode*) = nullptr;
       
       std::vector<UINode*> children;
-      Style* inlineStyle; //inline css
+      Style* style; //inline css
 
       float getTotalH();
 
@@ -70,7 +67,11 @@ namespace oak
       uchar nodeType;
       UIComponent* component;
       std::vector<std::string> classList;
-      Style* computedStyle;
+      Style* cstyle; //computed style
+
+      //if an attr with a matching key exists,
+      //then the attr value is appended to the val argument
+      void app(float& val, uchar key);
       
 
       void renderBegin(Point& nodeCursor);

@@ -2,7 +2,6 @@
 #include <limits>
 
 using namespace oak::ui;
-using namespace oak::style;
 
 Style::Style(std::string className)
 {
@@ -16,25 +15,43 @@ Style::Style(std::string className)
     className.erase(0, pos + delimiter.length());
   }
 
-  for (uint i=0; i<attrs.size(); i++)
+  /*for (uint i=0; i<attrs.size(); i++)
   {
     attrs[i] = NULL_ATTR;
-  }
+  }*/
+
+  attrs.insert_or_assign(STYLE_WIDTH, STYLE_VAL_AUTO);
+  attrs.insert_or_assign(STYLE_HEIGHT, STYLE_VAL_AUTO);
 }
 
 void Style::setPadding(float x, float y)
 {
-  attrs[padding_left] = x;
-  attrs[padding_right] = x;
-  attrs[padding_top] = y;
-  attrs[padding_bottom] = y;
+  attrs.insert_or_assign(STYLE_PADDING_LEFT, x);
+  attrs.insert_or_assign(STYLE_PADDING_RIGHT, x);
+  attrs.insert_or_assign(STYLE_PADDING_TOP, y);
+  attrs.insert_or_assign(STYLE_PADDING_BOTTOM, y);
 }
 
 void Style::setMargin(float x, float y)
 {
-  attrs[margin_left] = x;
-  attrs[margin_right] = x;
-  attrs[margin_top] = y;
-  attrs[margin_bottom] = y;
+  attrs.insert_or_assign(STYLE_MARGIN_LEFT, x);
+  attrs.insert_or_assign(STYLE_MARGIN_RIGHT, x);
+  attrs.insert_or_assign(STYLE_MARGIN_TOP, y);
+  attrs.insert_or_assign(STYLE_MARGIN_BOTTOM, y);
 }
 
+float Style::get(uchar key)
+{
+  auto it = attrs.find(key);
+  if (it != attrs.end())
+  {
+    return it->second;
+  }
+
+  return STYLE_VAL_AUTO;
+}
+
+void Style::set(uchar key, float val)
+{
+  attrs.insert_or_assign(key, val);
+}

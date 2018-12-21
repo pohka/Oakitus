@@ -16,8 +16,9 @@ UILabel::UILabel(std::string src, ushort fontSize) : UINode(UI_NODE_LABEL)
   this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
   this->fontID = Resources::getFontIDByName("arial.ttf");
 
-  this->inlineStyle->attrs[style::height] = fontSize;
-  this->calcStyle();
+  style->set(STYLE_HEIGHT, fontSize);
+  style->set(STYLE_FONT_SIZE, fontSize);
+  calcStyle();
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
@@ -39,10 +40,10 @@ void UILabel::render(Point& nodeCursor)
   shader.use();
   glUniform4f(
     glGetUniformLocation(shader.getID(), "textColor"),
-    computedStyle->color.r,
-    computedStyle->color.g,
-    computedStyle->color.b,
-    computedStyle->color.a
+    cstyle->color.r,
+    cstyle->color.g,
+    cstyle->color.b,
+    cstyle->color.a
   );
   glActiveTexture(GL_TEXTURE0);
   glBindVertexArray(VAO);
@@ -58,20 +59,7 @@ void UILabel::render(Point& nodeCursor)
   float chCursorX = 0.0f;
   float chCursorY = (scale * FONT_LOADED_SIZE);
 
-  //this->h = (ushort)chCursorY;
-
   Font& font = Resources::getFontByID(fontID);
-  //Character* firstCh = font.getCharacter(65);
-
-  //if (firstCh == nullptr)
-  //{
-  //  LOG << "FIRST CHAR NOT FOUND";
-  //}
-  //else
-  //{
-  //  this->h = (ushort)firstCh->bearing.y * scale;
-  //  LOG << "CH size:" << h;
-  //}
 
   for (c = text.begin(); c != text.end(); c++)
   {

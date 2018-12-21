@@ -16,16 +16,9 @@ UIImage::UIImage(std::string src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)
 {
   this->src = src;
   this->textureID = Resources::getTextureIDBySrc(src);
-  this->inlineStyle->attrs[style::width] = w;
-  this->inlineStyle->attrs[style::height] = h;
-  this->calcStyle();
-  
-  //this->w = w;
-  //this->h = h;
-  //isAutoH = false;
-  //isAutoW = false;
-  // img->offsetx = 0.0f;
-   //img->offset.y = 0.0f;
+  style->set(STYLE_WIDTH, w);
+  style->set(STYLE_HEIGHT, h);
+  calcStyle();
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
@@ -90,8 +83,8 @@ void UIImage::render(Point& nodeCursor)
 void UIImage::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 {
   //set the image buffers
-  float w = computedStyle->attrs[style::width];
-  float h = computedStyle->attrs[style::height];
+  float w = cstyle->get(STYLE_WIDTH);
+  float h = cstyle->get(STYLE_HEIGHT);
   float xx = (windowToVPRatioX * Window::worldToViewportCoords(w));
   float yy = -(windowToVPRatioY * Window::worldToViewportCoords(h));
   float xMin = 0.0f;

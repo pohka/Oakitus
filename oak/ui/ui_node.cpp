@@ -10,12 +10,8 @@ using namespace oak;
 UINode::UINode(const uchar nodeType)
 {
   this->nodeType = nodeType;
-  computedStyle = new Style("");
-  inlineStyle = new Style("self");
-
-  
-  //default style
-  
+  cstyle = new Style("");
+  style = new Style("self");
 }
 
 UINode::~UINode()
@@ -76,47 +72,51 @@ void UINode::renderEnd(Point& nodeCursor)
 {
   Point childCursor = { nodeCursor.x, nodeCursor.y };
 
-  totalW = 
-    computedStyle->attrs[style::margin_left] +
-    computedStyle->attrs[style::margin_right];
-  if (computedStyle->attrs[style::width] != Style::NULL_ATTR)
+  totalW = 0.0f;
+  app(totalW, STYLE_MARGIN_LEFT);
+  app(totalW, STYLE_MARGIN_RIGHT);
+
+  float width = cstyle->get(STYLE_WIDTH);
+  if (width != STYLE_VAL_AUTO)
   {
-    totalW += computedStyle->attrs[style::width];
+    totalW += width;
   }
 
-  totalH = 
-    computedStyle->attrs[style::margin_top] +
-    computedStyle->attrs[style::margin_bottom];
+  totalH = 0.0f;
+  app(totalH, STYLE_MARGIN_TOP);
+  app(totalH, STYLE_MARGIN_BOTTOM);
+
+  //total size of all the child nodes
+  Point childrenTotalSize = {};
 
   //calculate total height if automatic height
-  if (computedStyle->attrs[style::height] == Style::NULL_ATTR)
+  float height = cstyle->get(STYLE_HEIGHT);
+  if (height == STYLE_VAL_AUTO)
   {
-    //margin and padding
-    //h += (ushort)(margin.y + padding.y) * 2;
-    //computedStyle->attrs[style::height] = 0.0f;
-
     for (auto node : children)
     {
       node->render(childCursor);
       if (node->positionType == UI_POSITION_RELATIVE)
       {
-       float childNodeH = node->getTotalH();
+        float childNodeH = node->getTotalH();
         childCursor.y -= childNodeH;
-        totalH += childNodeH; //height of each child node
+        childrenTotalSize.y += childNodeH;
       }
     }
-    //h = totalH;
+    totalH += childrenTotalSize.y;
   }
   else
   {
-    totalH += computedStyle->attrs[style::height];
+    totalH += height;
 
     for (auto node : children)
     {
       node->render(childCursor);
       if (node->positionType == UI_POSITION_RELATIVE)
       {
-        childCursor.y -= node->getTotalH();
+        float childNodeH = node->getTotalH();
+        childCursor.y -= childNodeH;
+        childrenTotalSize.y += childNodeH;
       }
     }
   }
@@ -124,26 +124,34 @@ void UINode::renderEnd(Point& nodeCursor)
   if (Input::hasMouseMoved())
   {
     glm::vec2 windowUnit = Window::getWindowUnitToPixel();
-    rect.x = nodeCursor.x;// +windowUnit.x;
+    rect.x = nodeCursor.x;
     rect.y = nodeCursor.y;
-    rect.w = 200.0f;
-    //  computedStyle->attrs[style::width] +
-    //  computedStyle->attrs[style::padding_left] +
-    //  computedStyle->attrs[style::padding_right];
-    rect.h = 40.0f;
-    //  computedStyle->attrs[style::height] + 
-    //  computedStyle->attrs[style::padding_top] + 
-    //  computedStyle->attrs[style::padding_bottom];
+    rect.w = 200.0f; //todo auto width
+    //app(rect.w, STYLE_WIDTH);
+    //app(rect.w, STYLE_PADDING_LEFT);
+    //app(rect.w, STYLE_PADDING_RIGHT);
+    //  cstyle->attrs[style::width] +
+    //  cstyle->attrs[style::padding_left] +
+    //  cstyle->attrs[style::padding_right];
+    rect.h = 0.0f;
+    if (height == STYLE_VAL_AUTO)
+    {
+      rect.h = childrenTotalSize.y;
+    }
+    else
+    {
+      app(rect.h, STYLE_HEIGHT);
+    }
+    app(rect.h, STYLE_PADDING_TOP);
+    app(rect.h, STYLE_PADDING_BOTTOM);
 
     float xx = (Input::mousePos.x - Window::getWidth() / 2.0f) / Window::getWindowToVPRatio().x;
     float yy = (Input::mousePos.y - Window::getHeight() / 2.0f) / Window::getWindowToVPRatio().y;
 
     if (onFocus != nullptr)
     {
-     // LOG << "windowUnit:" << windowUnit.x << "," << windowUnit.y;
       LOG << "rect:" << rect.x << "," << rect.y << "," << rect.w << "," << rect.h;
       LOG << "mouse:" << xx << "," << yy;
-      //onFocus(this);
     }
 
     
@@ -159,28 +167,15 @@ void UINode::renderEnd(Point& nodeCursor)
   }
 
   Point padding = {};
-  if (computedStyle->attrs[style::padding_left] != Style::NULL_ATTR)
-  {
-    padding.x = computedStyle->attrs[style::padding_left];
-  }
-  if (computedStyle->attrs[style::padding_top] != Style::NULL_ATTR)
-  {
-    padding.y = computedStyle->attrs[style::padding_top];
-  }
+  app(padding.x, STYLE_PADDING_LEFT);
+  app(padding.y, STYLE_PADDING_TOP);
 
   Point margin = {};
-  if (computedStyle->attrs[style::margin_left] != Style::NULL_ATTR)
-  {
-    margin.x = computedStyle->attrs[style::margin_left];
-  }
-  if (computedStyle->attrs[style::margin_top] != Style::NULL_ATTR)
-  {
-    margin.y = computedStyle->attrs[style::margin_top];
-  }
+  app(margin.x, STYLE_MARGIN_LEFT);
+  app(margin.y, STYLE_MARGIN_TOP);
 
   nodeCursor.x -= padding.x + margin.x;
-
-  nodeCursor.y -= padding.y - margin.y;
+  nodeCursor.y -= -padding.y - margin.y;
 }
 
 void UINode::renderBegin(Point& nodeCursor)
@@ -188,39 +183,28 @@ void UINode::renderBegin(Point& nodeCursor)
   Point parentPos = getParentPos();
   pos.x = parentPos.x;
   pos.y = parentPos.y;
-  
+
   Point padding = {};
-  if (computedStyle->attrs[style::padding_left] != Style::NULL_ATTR)
-  {
-    padding.x = computedStyle->attrs[style::padding_left];
-  }
-  if (computedStyle->attrs[style::padding_top] != Style::NULL_ATTR)
-  {
-    padding.y = computedStyle->attrs[style::padding_top];
-  }
+  app(padding.x, STYLE_PADDING_LEFT);
+  app(padding.y, STYLE_PADDING_TOP);
+  
 
   Point margin = {};
-  if (computedStyle->attrs[style::margin_left] != Style::NULL_ATTR)
-  {
-    margin.x = computedStyle->attrs[style::margin_left];
-  }
-  if (computedStyle->attrs[style::margin_top] != Style::NULL_ATTR)
-  {
-    margin.y = computedStyle->attrs[style::margin_top];
-  }
+  app(margin.x, STYLE_MARGIN_LEFT);
+  app(margin.y, STYLE_MARGIN_TOP);
 
   nodeCursor.x += padding.x + margin.x;
-  nodeCursor.y += - padding.y - margin.y;
+  nodeCursor.y += -padding.y - margin.y;
 }
 
 void UINode::addClass(Style* style)
 {
-  computedStyle->classList.push_back(style->classList[0]);
+  cstyle->classList.push_back(style->classList[0]);
 }
 
 void UINode::calcStyle()
 {
-  for (std::string cls : computedStyle->classList)
+  for (std::string cls : cstyle->classList)
   {
     Style* style = UICanvas::findStyle(cls);
     if (style != nullptr)
@@ -229,32 +213,43 @@ void UINode::calcStyle()
     }
   }
 
-  mutateComputedStyle(inlineStyle);
-  if (computedStyle->attrs[style::font_size] == Style::NULL_ATTR)
+  mutateComputedStyle(style);
+  //set to default font size if font is auto
+  float fontSize = cstyle->get(STYLE_FONT_SIZE);
+  if (fontSize == STYLE_VAL_AUTO)
   {
-    computedStyle->attrs[style::font_size] = Style::DEFAULT_FONT_SIZE;
+    cstyle->set(STYLE_FONT_SIZE, STYLE_DEFAULT_FONT_SIZE);
   }
 }
 
 void UINode::mutateComputedStyle(Style* style)
 {
-  if (computedStyle->position < style->position)
+  if (cstyle->position < style->position)
   {
-    computedStyle->position = style->position;
+    cstyle->position = style->position;
   }
 
   //color is not null
   if (style->color.a >= 0.0f)
   {
-    computedStyle->color = style->color;
+    cstyle->color = style->color;
   }
 
   for (uint i = 0; i < style->attrs.size(); i++)
   {
     //negative values are used
-    if (style->attrs[i] != Style::NULL_ATTR)
+    if (style->attrs[i] != STYLE_VAL_AUTO)
     {
-      computedStyle->attrs[i] = style->attrs[i];
+      cstyle->attrs[i] = style->attrs[i];
     }
+  }
+}
+
+void UINode::app(float& val, uchar key)
+{
+  float cVal = cstyle->get(key);
+  if (cVal != STYLE_VAL_AUTO)
+  {
+    val += cVal;
   }
 }

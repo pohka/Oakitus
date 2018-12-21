@@ -9,11 +9,11 @@ using namespace oak::ui;
 
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
-  inlineStyle->attrs[oak::style::width] = 200.0f;
+  style->set(STYLE_WIDTH, 200.0f);
   this->onFocus = tmp_InventoryItem::onItemFocus;
 
   UILabel* label = new UILabel(item->name, 20);
-  label->inlineStyle->setMargin(30.0f, 10.0f);
+  label->style->setMargin(30.0f, 10.0f);
   label->calcStyle();
   addChild(label);
   
@@ -42,7 +42,7 @@ void tmp_InventoryItem::onItemFocus(UINode* node)
 {
   LOG << "focus:" << (int)node->getType();
   UILabel* label = static_cast<UILabel*>(node->children[0]);
-  label->inlineStyle->color = COLOR_RED;
+  label->style->color = COLOR_RED;
   label->calcStyle();
 }
 
