@@ -1,18 +1,18 @@
 #include "ui_component.h"
 #include <core/input.h>
 
-using namespace oak;
 using namespace ion;
+using namespace oak;
 
 
-void UIComponent::render(Point& projection)
+void UIComponent::render(UIPoint& projection)
 {
   glm::vec2 windowUnit = Window::getWindowUnitToPixel();
 
   pos.x = offset.x + (align.x * windowUnit.x);
   pos.y = offset.y + (align.y * windowUnit.y);
 
-  Point nodeCursor = {
+  UIPoint nodeCursor = {
     pos.x + margin.x + padding.x,
     pos.y + margin.y + padding.y
   };

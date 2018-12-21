@@ -12,17 +12,16 @@
 #include <debug.h>
 
 using namespace ion;
-using namespace oak;
 
 std::map<ushort, UIComponent*> UICanvas::components;
-oak::Point UICanvas::projection = { 0,0 };
+UIPoint UICanvas::projection = { 0,0 };
 std::map<uint, std::string> strings;
 std::vector<Style*> UICanvas::styles;
 
 void UICanvas::render()
 {
-  ushort ptX = (ushort)Input::mousePos.x;
-  ushort ptY = (ushort)Input::mousePos.y;
+  ushort ptX = (ushort)oak::Input::mousePos.x;
+  ushort ptY = (ushort)oak::Input::mousePos.y;
   for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
   {
    // it->second->events();
@@ -32,8 +31,8 @@ void UICanvas::render()
   
 
   //get projection from font size to viewport to window coords
-  glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
-  float worldToVP = Window::worldToViewportCoords(1.0f);
+  glm::vec2 windowToVPRatio = oak::Window::getWindowToVPRatio();
+  float worldToVP = oak::Window::worldToViewportCoords(1.0f);
   projection.x = windowToVPRatio.x * worldToVP;
   projection.y = windowToVPRatio.y * worldToVP;
 
@@ -62,7 +61,7 @@ void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
   }
 }
 
-const oak::Point& UICanvas::getProjection()
+const UIPoint& UICanvas::getProjection()
 {
   return projection;
 }

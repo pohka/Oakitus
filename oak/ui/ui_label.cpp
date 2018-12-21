@@ -30,7 +30,7 @@ UILabel::UILabel(std::string src, float fontSize) : UINode(UI_NODE_LABEL)
   glBindVertexArray(0);
 }
 
-void UILabel::render(Point& nodeCursor)
+void UILabel::render(UIPoint& nodeCursor)
 {
   renderBegin(nodeCursor);
 
@@ -53,8 +53,8 @@ void UILabel::render(Point& nodeCursor)
   // Iterate through all characters
   std::string::const_iterator c;
 
-  const Point& projection = UICanvas::getProjection();
-  Point parentPos = getParentPos();
+  const UIPoint& projection = UICanvas::getProjection();
+  UIPoint parentPos = getParentPos();
 
   //character cursor position
   float chCursorX = 0.0f;

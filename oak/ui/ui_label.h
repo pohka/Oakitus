@@ -22,7 +22,7 @@ namespace ion
 
     void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
     ///renders a label
-    void render(oak::Point& nodeCursor);
+    void render(UIPoint& nodeCursor);
   };
 }
 

@@ -47,7 +47,7 @@ UIImage::~UIImage()
   glDeleteBuffers(1, &VBO);
 }
 
-void UIImage::render(Point& nodeCursor)
+void UIImage::render(UIPoint& nodeCursor)
 {
   renderBegin(nodeCursor);
 
@@ -58,7 +58,7 @@ void UIImage::render(Point& nodeCursor)
 
   glm::mat4 model = glm::mat4(1.0);
 
-  const Point& projection = UICanvas::getProjection();
+  const UIPoint& projection = UICanvas::getProjection();
   
 
   glm::vec3 modelPos(

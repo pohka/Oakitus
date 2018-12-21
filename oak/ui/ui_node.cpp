@@ -5,7 +5,6 @@
 #include <debug.h>
 
 using namespace ion;
-using namespace oak;
 
 UINode::UINode(const uchar nodeType)
 {
@@ -52,7 +51,7 @@ bool UINode::getIsRootNode()
   return isRootNode;
 }
 
-Point& UINode::getParentPos()
+UIPoint& UINode::getParentPos()
 {
   if (isRootNode)
   {
@@ -69,9 +68,9 @@ float UINode::getTotalH()
   return totalH;
 }
 
-void UINode::renderEnd(Point& nodeCursor)
+void UINode::renderEnd(UIPoint& nodeCursor)
 {
-  Point childCursor = { nodeCursor.x, nodeCursor.y };
+  UIPoint childCursor = { nodeCursor.x, nodeCursor.y };
 
 
   totalW = 0.0f;
@@ -89,7 +88,7 @@ void UINode::renderEnd(Point& nodeCursor)
   app(totalH, STYLE_MARGIN_BOTTOM);
 
   //total size of all the child nodes
-  Point childrenTotalSize = {};
+  UIPoint childrenTotalSize = {};
 
   //calculate total height if automatic height
   float height = cstyle->get(STYLE_HEIGHT);
@@ -123,9 +122,9 @@ void UINode::renderEnd(Point& nodeCursor)
     }
   }
 
-  if (Input::hasMouseMoved())
+  if (oak::Input::hasMouseMoved())
   {
-    glm::vec2 windowUnit = Window::getWindowUnitToPixel();
+    glm::vec2 windowUnit = oak::Window::getWindowUnitToPixel();
     rect.x = nodeCursor.x;
     rect.y = nodeCursor.y;
     rect.w = 0.0f; //todo auto width
@@ -145,8 +144,8 @@ void UINode::renderEnd(Point& nodeCursor)
     app(rect.h, STYLE_PADDING_TOP);
     app(rect.h, STYLE_PADDING_BOTTOM);
 
-    float xx = (Input::mousePos.x - Window::getWidth() / 2.0f) / Window::getWindowToVPRatio().x;
-    float yy = (Input::mousePos.y - Window::getHeight() / 2.0f) / Window::getWindowToVPRatio().y;
+    float xx = (oak::Input::mousePos.x - oak::Window::getWidth() / 2.0f) / oak::Window::getWindowToVPRatio().x;
+    float yy = (oak::Input::mousePos.y - oak::Window::getHeight() / 2.0f) / oak::Window::getWindowToVPRatio().y;
 
     if (onFocus != nullptr)
     {
@@ -165,11 +164,11 @@ void UINode::renderEnd(Point& nodeCursor)
     }
   }
 
-  Point padding = {};
+  UIPoint padding = {};
   app(padding.x, STYLE_PADDING_LEFT);
   app(padding.y, STYLE_PADDING_TOP);
 
-  Point margin = {};
+  UIPoint margin = {};
   app(margin.x, STYLE_MARGIN_LEFT);
   app(margin.y, STYLE_MARGIN_TOP);
 
@@ -177,18 +176,18 @@ void UINode::renderEnd(Point& nodeCursor)
   nodeCursor.y -= -padding.y - margin.y;
 }
 
-void UINode::renderBegin(Point& nodeCursor)
+void UINode::renderBegin(UIPoint& nodeCursor)
 {
-  Point parentPos = getParentPos();
+  UIPoint parentPos = getParentPos();
   pos.x = parentPos.x;
   pos.y = parentPos.y;
 
-  Point padding = {};
+  UIPoint padding = {};
   app(padding.x, STYLE_PADDING_LEFT);
   app(padding.y, STYLE_PADDING_TOP);
   
 
-  Point margin = {};
+  UIPoint margin = {};
   app(margin.x, STYLE_MARGIN_LEFT);
   app(margin.y, STYLE_MARGIN_TOP);
 
@@ -198,11 +197,7 @@ void UINode::renderBegin(Point& nodeCursor)
 
 void UINode::addClass(std::string cssClass)
 {
- // Style* s = UICanvas::findStyle(cssClass);
- // if (s != nullptr)
-//  {
-    cstyle->classList.push_back(cssClass);
-//  }
+  cstyle->classList.push_back(cssClass);
 }
 
 void UINode::calcStyle()

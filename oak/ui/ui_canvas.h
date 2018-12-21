@@ -17,9 +17,8 @@
 #include "ui_character.h"
 #include "ui_node.h"
 #include "ui_component.h"
-#include <core/point.h>
 #include "style.h"
-
+#include "ui_point.h"
 
 namespace ion
 {
@@ -33,7 +32,7 @@ namespace ion
       ///renders all the components
       static void render();
       ///Projection from pixel units to viewport coords to window coords
-      static const oak::Point& getProjection(); 
+      static const UIPoint& getProjection();
       ///add a ui component
       static void addComponent(ushort id, UIComponent* component);
       ///returns a component by id
@@ -44,7 +43,7 @@ namespace ion
       static void addStyle(Style* style);
 
   private:
-      static oak::Point projection; //current projection
+      static UIPoint projection; //current projection
       static std::map<ushort, UIComponent*> components; //all if the existing components
       static std::vector<Style*> styles;
   };

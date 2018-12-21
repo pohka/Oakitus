@@ -265,6 +265,7 @@
     <ClInclude Include="oak\ui\ui_label.h" />
     <ClInclude Include="oak\ui\ui_div.h" />
     <ClInclude Include="oak\ui\ui_node.h" />
+    <ClInclude Include="oak\ui\ui_point.h" />
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />

@@ -20,7 +20,7 @@ namespace ion
 
     void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
     ///renders a UI image
-    void render(oak::Point& nodeCursor);
+    void render(UIPoint& nodeCursor);
   };
 }
 

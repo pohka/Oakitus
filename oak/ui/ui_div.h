@@ -10,7 +10,7 @@ namespace ion
     UIDiv();
     ~UIDiv();
 
-    void render(oak::Point& nodeCursor);
+    void render(UIPoint& nodeCursor);
     void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
   };
 }

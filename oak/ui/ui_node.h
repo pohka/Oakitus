@@ -5,9 +5,8 @@
 #include "ui_def.h"
 #include <core/point.h>
 #include <vector>
-#include <core/point.h>
+#include "ui_point.h"
 #include "style.h"
-//#include "color.h"
 
 namespace ion
 {
@@ -29,14 +28,14 @@ namespace ion
     UINode(const uchar nodeType);
     ~UINode();
       
-    oak::Point pos = { 0,0 };
+    UIPoint pos = { 0,0 };
       
     std::string id = "";
       
     uchar positionType = UI_POSITION_RELATIVE;
     UIRect rect;
 
-    virtual void render(oak::Point& nodeCursor) = 0;
+    virtual void render(UIPoint& nodeCursor) = 0;
     virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
 
     void setComponent(UIComponent* component);
@@ -44,7 +43,7 @@ namespace ion
     UINode* getParent();
     uchar getType();
     bool getIsRootNode();
-    oak::Point& getParentPos();
+    UIPoint& getParentPos();
 
     void addClass(std::string cssClass);
     void calcStyle();
@@ -72,8 +71,8 @@ namespace ion
     void app(float& val, uchar key);
       
 
-    void renderBegin(oak::Point& nodeCursor);
-    void renderEnd(oak::Point& nodeCursor);
+    void renderBegin(UIPoint& nodeCursor);
+    void renderEnd(UIPoint& nodeCursor);
       
 
 

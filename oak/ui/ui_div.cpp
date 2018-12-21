@@ -1,5 +1,4 @@
 #include "ui_div.h"
-//#include <core/point.h>
 
 using namespace ion;
 
@@ -13,7 +12,7 @@ UIDiv::~UIDiv()
 
 }
 
-void UIDiv::render(oak::Point& nodeCursor)
+void UIDiv::render(UIPoint& nodeCursor)
 {
   UINode::renderBegin(nodeCursor);
   UINode::renderEnd(nodeCursor);
