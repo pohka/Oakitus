@@ -7,7 +7,7 @@
 #include "ui_canvas.h"
 #include <debug.h>
 
-using namespace oak::ui;
+using namespace ion;
 using namespace oak;
 
 UILabel::UILabel(std::string src, float fontSize) : UINode(UI_NODE_LABEL)

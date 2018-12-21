@@ -15,7 +15,7 @@
 
 using namespace game;
 using namespace oak;
-using namespace oak::ui;
+using namespace ion;
 
 
 void MainScene::onLoad()
@@ -44,14 +44,13 @@ void MainScene::onLoad()
   LOG << "--------";
 
 
-  auto* comp = new game::ui::ActionPanel();
+  auto* comp = new ActionPanel();
   //comp->offset.x = 10.0f;
   UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
 
-  auto* inv = new game::ui::InventoryMenu();
+  auto* inv = new InventoryMenu();
   UICanvas::addComponent(UI_COMPONENT_INVENTORY_MENU, inv);
 
-  
 
   Camera::position = glm::vec3(0, 0, 0);
 
@@ -59,9 +58,6 @@ void MainScene::onLoad()
   Sprite* groundSprite = new Sprite("wall.jpg", 0, 0, 500, 500, 800.0f, 800.0f, "default");
   ground->addComponent(groundSprite);
   ground->create();
-
-
-  
 
   
   Player& player1 = static_cast<Player&>(PlayerResource::getPlayerByIndex(0));

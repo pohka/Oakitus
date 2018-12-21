@@ -6,9 +6,8 @@
 #include <core/player_resource.h>
 #include "../player.h"
 
-using namespace game::ui;
-using namespace oak::ui;
-
+using namespace game;
+using namespace ion;
 
 
 ActionPanel::ActionPanel()

@@ -7,26 +7,23 @@
 #include "color.h"
 #include "font.h"
 
-namespace oak
+namespace ion
 {
-  namespace ui
+  ///a label has data that will display text
+  struct UILabel : public UINode
   {
-    ///a label has data that will display text
-    struct UILabel : public UINode
-    {
-      UILabel(std::string src, float fontSize);
+    UILabel(std::string src, float fontSize);
 
-      std::string text;
-      float scale = 1.0f; //font scale
-      uint VAO, VBO;
-      Color color;
-      uchar fontID;
+    std::string text;
+    float scale = 1.0f; //font scale
+    uint VAO, VBO;
+    Color color;
+    uchar fontID;
 
-      void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
-      ///renders a label
-      void render(Point& nodeCursor);
-    };
-  }
+    void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
+    ///renders a label
+    void render(oak::Point& nodeCursor);
+  };
 }
 
 #endif

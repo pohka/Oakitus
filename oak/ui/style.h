@@ -10,27 +10,24 @@
 #include <unordered_map>
 
 
-namespace oak
+namespace ion
 {
-  namespace ui
+  struct Style
   {
-    struct Style
-    {
-      Style(std::string className);
+    Style(std::string className);
 
-      //attributes
-      std::vector<std::string> classList;
-      std::unordered_map<uchar, float> attrs;
-      uchar position = UI_POSITION_RELATIVE;
-      Color color = COLOR_WHITE;
+    //attributes
+    std::vector<std::string> classList;
+    std::unordered_map<uchar, float> attrs;
+    uchar position = UI_POSITION_RELATIVE;
+    Color color = COLOR_WHITE;
       
-      //getter and setter functions
-      void setPadding(float x, float y);
-      void setMargin(float x, float y);
-      float get(uchar key);
-      void set(uchar key, float val);
-    };
-  }
+    //getter and setter functions
+    void setPadding(float x, float y);
+    void setMargin(float x, float y);
+    float get(uchar key);
+    void set(uchar key, float val);
+  };
 }
 
 #endif

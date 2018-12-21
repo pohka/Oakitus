@@ -4,15 +4,14 @@
 //#include <ui/ui_component.h>
 #include <ui/ui.h>
 
+
 namespace game
 {
-  namespace ui
+  //example ui component
+  class InventoryMenu : public ion::UIComponent
   {
-    //example ui component
-    class InventoryMenu : public oak::ui::UIComponent
-    {
-      oak::ui::UIImage* background;
-      oak::ui::UIDiv* itemList;
+    ion::UIImage* background;
+    ion::UIDiv* itemList;
 
     public:
       InventoryMenu();
@@ -20,8 +19,7 @@ namespace game
 
       //update the props before rendering
       void onBeforeRender() override;
-    };
-  }
+  };
 }
 
 #endif

@@ -5,26 +5,23 @@
 #include "ui_node.h"
 #include "ui_def.h"
 
-namespace oak
+namespace ion
 {
-  namespace ui
+  ///an image UI node
+  struct UIImage : public UINode
   {
-    ///an image UI node
-    struct UIImage : public UINode
-    {
-      UIImage(std::string src, ushort w, ushort h);
-      ~UIImage();
-      std::string src;
-      uint VAO, VBO;
-      uint textureID;
+    UIImage(std::string src, ushort w, ushort h);
+    ~UIImage();
+    std::string src;
+    uint VAO, VBO;
+    uint textureID;
 
-      void setTexture(std::string src);
+    void setTexture(std::string src);
 
-      void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
-      ///renders a UI image
-      void render(Point& nodeCursor);
-    };
-  }
+    void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
+    ///renders a UI image
+    void render(oak::Point& nodeCursor);
+  };
 }
 
 #endif

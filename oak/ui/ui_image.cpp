@@ -9,7 +9,7 @@
 #include "ui_canvas.h"
 #include <debug.h>
 
-using namespace oak::ui;
+using namespace ion;
 using namespace oak;
 
 UIImage::UIImage(std::string src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)

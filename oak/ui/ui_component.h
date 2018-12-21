@@ -8,35 +8,32 @@
 #include "localization.h"
 #include <core/window.h>
 
-namespace oak
+namespace ion
 {
-  namespace ui
+  ///a container for UI nodes
+  struct UIComponent
   {
-    ///a container for UI nodes
-    struct UIComponent
-    {
       
-      Point align = { 
-        UI_ALIGN_HORZ_LEFT, 
-        UI_ALIGN_VERT_TOP 
-      };
-      Point offset = { 0,0 };
-      Point pos = { 0,0 };
-      Point margin = { 0,0 };
-      Point padding = { 0,0 };
-
-      virtual void onBeforeRender() = 0;
-
-      void render(oak::Point& projection);
-
-      void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
-
-      void addNode(UINode* node);
-
-      private:
-        std::vector<UINode*> nodes;
+    oak::Point align = { 
+      UI_ALIGN_HORZ_LEFT, 
+      UI_ALIGN_VERT_TOP 
     };
-  }
+    oak::Point offset = { 0,0 };
+    oak::Point pos = { 0,0 };
+    oak::Point margin = { 0,0 };
+    oak::Point padding = { 0,0 };
+
+    virtual void onBeforeRender() = 0;
+
+    void render(oak::Point& projection);
+
+    void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
+
+    void addNode(UINode* node);
+
+    private:
+      std::vector<UINode*> nodes;
+  };
 }
 
 #endif

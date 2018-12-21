@@ -3,10 +3,8 @@
 #include "../player.h"
 #include "tmp_inventory_item.h"
 
-using namespace game::ui;
 using namespace game;
-using namespace oak::ui;
-
+using namespace ion;
 
 
 InventoryMenu::InventoryMenu()

@@ -5,16 +5,13 @@
 #include <string>
 #include <core/types.h>
 
-namespace oak
+namespace ion
 {
-  namespace ui
+  struct Localization
   {
-    struct Localization
-    {
-      static std::map<uint, std::string> strings;
-      static void addString(const uint id, std::string value);
-    };
-  }
+    static std::map<uint, std::string> strings;
+    static void addString(const uint id, std::string value);
+  };
 }
 
 #endif

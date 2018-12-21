@@ -2,11 +2,11 @@
 #include <limits>
 #include <core/string_help.h>
 
-using namespace oak::ui;
+using namespace ion;
 
 Style::Style(std::string className)
 {
-  StringHelp::split(className, classList, ' ');
+  oak::StringHelp::split(className, classList, ' ');
   attrs.insert_or_assign(STYLE_WIDTH, STYLE_VAL_AUTO);
   attrs.insert_or_assign(STYLE_HEIGHT, STYLE_VAL_AUTO);
 }

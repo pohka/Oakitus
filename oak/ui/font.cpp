@@ -5,7 +5,7 @@
 #include "../oak_def.h"
 #include "ui_def.h"
 
-using namespace oak::ui;
+using namespace ion;
 
 uchar Font::idCounter = 0;
 

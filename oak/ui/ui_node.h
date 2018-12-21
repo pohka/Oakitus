@@ -9,84 +9,81 @@
 #include "style.h"
 //#include "color.h"
 
-namespace oak
+namespace ion
 {
-  namespace ui
+  struct UIComponent;
+
+  struct UIRect
   {
-    struct UIComponent;
+    float x, y, w, h;
 
-    struct UIRect
+    bool containsPt(float ptX, float ptY)
     {
-      float x, y, w, h;
+      return (ptX >= x && ptX <= x + w  && ptY <= y && ptY >= y - h);
+    }
+  };
 
-      bool containsPt(float ptX, float ptY)
-      {
-        return (ptX >= x && ptX <= x + w  && ptY <= y && ptY >= y - h);
-      }
-    };
-
-    ///a ui node which
-    struct UINode
-    {
-      UINode(const uchar nodeType);
-      ~UINode();
+  ///a ui node which
+  struct UINode
+  {
+    UINode(const uchar nodeType);
+    ~UINode();
       
-      Point pos = { 0,0 };
+    oak::Point pos = { 0,0 };
       
-      std::string id = "";
+    std::string id = "";
       
-      uchar positionType = UI_POSITION_RELATIVE;
-      UIRect rect;
+    uchar positionType = UI_POSITION_RELATIVE;
+    UIRect rect;
 
-      virtual void render(Point& nodeCursor) = 0;
-      virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
+    virtual void render(oak::Point& nodeCursor) = 0;
+    virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
 
-      void setComponent(UIComponent* component);
-      void addChild(UINode* node);
-      UINode* getParent();
-      uchar getType();
-      bool getIsRootNode();
-      Point& getParentPos();
+    void setComponent(UIComponent* component);
+    void addChild(UINode* node);
+    UINode* getParent();
+    uchar getType();
+    bool getIsRootNode();
+    oak::Point& getParentPos();
 
-      void addClass(std::string cssClass);
-      void calcStyle();
+    void addClass(std::string cssClass);
+    void calcStyle();
       
 
-      //void update();
+    //void update();
 
-      //void(*onClick)(UINode*) = nullptr;
-      void (*onFocus)(UINode*) = nullptr;
+    //void(*onClick)(UINode*) = nullptr;
+    void (*onFocus)(UINode*) = nullptr;
       
-      std::vector<UINode*> children;
-      Style* style; //inline css
+    std::vector<UINode*> children;
+    Style* style; //inline css
 
-      float getTotalH();
+    float getTotalH();
 
-    protected:
-      UINode* parent = nullptr;
-      uchar nodeType;
-      UIComponent* component;
-      std::vector<std::string> classList;
-      Style* cstyle; //computed style
+  protected:
+    UINode* parent = nullptr;
+    uchar nodeType;
+    UIComponent* component;
+    std::vector<std::string> classList;
+    Style* cstyle; //computed style
 
-      //if an attr with a matching key exists,
-      //then the attr value is appended to the val argument
-      void app(float& val, uchar key);
+    //if an attr with a matching key exists,
+    //then the attr value is appended to the val argument
+    void app(float& val, uchar key);
       
 
-      void renderBegin(Point& nodeCursor);
-      void renderEnd(Point& nodeCursor);
+    void renderBegin(oak::Point& nodeCursor);
+    void renderEnd(oak::Point& nodeCursor);
       
 
 
-    private:
-      bool isRootNode = true;
-      void mutateComputedStyle(Style* style);
-      float totalW = 0.0f;
-      float totalH = 0.0f;
+  private:
+    bool isRootNode = true;
+    void mutateComputedStyle(Style* style);
+    float totalW = 0.0f;
+    float totalH = 0.0f;
 
-    };
-  }
+  };
 }
 
 #endif

@@ -1,7 +1,7 @@
 #include "ui_div.h"
 //#include <core/point.h>
 
-using namespace oak::ui;
+using namespace ion;
 
 UIDiv::UIDiv() : UINode(UI_NODE_DIV)
 {

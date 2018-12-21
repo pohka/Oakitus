@@ -8,15 +8,12 @@
 
 namespace game
 {
-
-
-  struct tmp_InventoryItem : public oak::ui::UIDiv
+  struct tmp_InventoryItem : public ion::UIDiv
   {
     tmp_InventoryItem(Item* item);
     void update(Item* item);
     static void onItemFocus(UINode* node);
   };
-
 }
 
 #endif

@@ -1,10 +1,8 @@
 #include "tmp_inventory_item.h"
 #include <debug.h>
-//#include <ui/style.h>
 
 using namespace game;
-using namespace oak::ui;
-
+using namespace ion;
 
 
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()

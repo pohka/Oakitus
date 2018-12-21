@@ -25,12 +25,12 @@ const uint FONT_LOADED_SIZE = 64;
 cnum UI_POSITION_RELATIVE = 0;
 cnum UI_POSITION_ABSOLUTE = 1;
 
-const static oak::ui::Color COLOR_RED = { 1.0f, 0.0f, 0.0f, 1.0f };
-const static oak::ui::Color COLOR_GREEN = { 0.0f, 1.0f, 0.0f, 1.0f };
-const static oak::ui::Color COLOR_BLUE = { 0.0f, 0.0f, 1.0f, 1.0f };
-const static oak::ui::Color COLOR_BLACK = { 0.0f, 0.0f, 0.0f, 1.0f };
-const static oak::ui::Color COLOR_WHITE = { 1.0f, 1.0f, 1.0f, 1.0f };
-const static oak::ui::Color COLOR_NULL = { 0.0f, 0.0f, -0.0f, -1.0f };
+const static ion::Color COLOR_RED = { 1.0f, 0.0f, 0.0f, 1.0f };
+const static ion::Color COLOR_GREEN = { 0.0f, 1.0f, 0.0f, 1.0f };
+const static ion::Color COLOR_BLUE = { 0.0f, 0.0f, 1.0f, 1.0f };
+const static ion::Color COLOR_BLACK = { 0.0f, 0.0f, 0.0f, 1.0f };
+const static ion::Color COLOR_WHITE = { 1.0f, 1.0f, 1.0f, 1.0f };
+const static ion::Color COLOR_NULL = { 0.0f, 0.0f, -0.0f, -1.0f };
 
 cnum STYLE_WIDTH = 0;
 cnum STYLE_HEIGHT = 1;

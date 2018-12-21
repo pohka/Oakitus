@@ -76,7 +76,7 @@ int Oakitus::loop()
     Entity::lateUpdateInstances();
     Entity::drawInstances();
     Entity::debugDrawInstances();
-    ui::UICanvas::render();
+    ion::UICanvas::render();
 
 
     

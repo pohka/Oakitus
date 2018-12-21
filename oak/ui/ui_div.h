@@ -3,19 +3,16 @@
 
 #include "ui_node.h"
 
-namespace oak
+namespace ion
 {
-  namespace ui
+  struct UIDiv : public UINode
   {
-    struct UIDiv : public UINode
-    {
-      UIDiv();
-      ~UIDiv();
+    UIDiv();
+    ~UIDiv();
 
-      void render(Point& nodeCursor);
-      void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
-    };
-  }
+    void render(oak::Point& nodeCursor);
+    void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
+  };
 }
 
 #endif

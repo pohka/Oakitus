@@ -11,7 +11,7 @@
 
 #include <debug.h>
 
-using namespace oak::ui;
+using namespace ion;
 using namespace oak;
 
 std::map<ushort, UIComponent*> UICanvas::components;

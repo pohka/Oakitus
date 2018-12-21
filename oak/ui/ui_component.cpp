@@ -2,7 +2,7 @@
 #include <core/input.h>
 
 using namespace oak;
-using namespace oak::ui;
+using namespace ion;
 
 
 void UIComponent::render(Point& projection)

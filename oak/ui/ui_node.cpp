@@ -4,7 +4,7 @@
 #include <core/input.h>
 #include <debug.h>
 
-using namespace oak::ui;
+using namespace ion;
 using namespace oak;
 
 UINode::UINode(const uchar nodeType)

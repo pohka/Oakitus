@@ -9,7 +9,7 @@ using namespace oak;
 
 std::vector<Shader*> Resources::shaders;
 std::vector<Texture*> Resources::textures;
-std::vector<ui::Font*> Resources::fonts;
+std::vector<ion::Font*> Resources::fonts;
 
 FT_Library Resources::freeType;
 
@@ -61,10 +61,10 @@ void Resources::addTexture(Texture& texture)
 
 void Resources::addFont(std::string src)
 {
-  ui::Font* font = new ui::Font(src, freeType);
+  ion::Font* font = new ion::Font(src, freeType);
   fonts.push_back(font);
 }
-void Resources::addFont(ui::Font* font)
+void Resources::addFont(ion::Font* font)
 {
   fonts.push_back(font);
 }
@@ -83,7 +83,7 @@ uchar Resources::getFontIDByName(std::string fontName)
   return 0;
 }
 
-ui::Font& Resources::getFontByID(uchar id)
+ion::Font& Resources::getFontByID(uchar id)
 {
   for (uint i = 0; i < fonts.size(); i++)
   {

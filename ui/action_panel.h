@@ -6,24 +6,21 @@
 
 namespace game
 {
-  namespace ui
+  //example ui component
+  class ActionPanel: public ion::UIComponent
   {
-    //example ui component
-    class ActionPanel: public oak::ui::UIComponent
-    {
-      int prop_hp;
-      int prop_mana;
-      oak::ui::UILabel* label;
-      oak::ui::UILabel* label2;
+    int prop_hp;
+    int prop_mana;
+    ion::UILabel* label;
+    ion::UILabel* label2;
 
-      public:
-        ActionPanel();
-        ~ActionPanel();
+    public:
+      ActionPanel();
+      ~ActionPanel();
       
-        //update the props before rendering
-        void onBeforeRender() override;
-    };
-  }
+      //update the props before rendering
+      void onBeforeRender() override;
+  };
 }
 
 #endif
