@@ -31,7 +31,7 @@ namespace ion
 
     void addNode(UINode* node);
 
-    void recalcStyle();
+    void recomputeStyle();
 
     private:
       std::vector<UINode*> nodes;

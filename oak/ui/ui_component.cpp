@@ -33,15 +33,15 @@ void UIComponent::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 
 void UIComponent::addNode(UINode* node)
 {
-  node->calcStyle();
+  node->computeStyle();
   node->setComponent(this);
   nodes.push_back(node);
 }
 
-void UIComponent::recalcStyle()
+void UIComponent::recomputeStyle()
 {
   for (uint i = 0; i < nodes.size(); i++)
   {
-    nodes[i]->calcStyle();
+    nodes[i]->computeStyle();
   }
 }

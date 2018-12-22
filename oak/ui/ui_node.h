@@ -46,7 +46,7 @@ namespace ion
     UIPoint& getParentPos();
 
     void addClass(std::string cssClass);
-    void calcStyle();
+    void computeStyle();
       
 
     //void update();

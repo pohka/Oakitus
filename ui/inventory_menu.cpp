@@ -15,12 +15,12 @@ InventoryMenu::InventoryMenu()
   background = new UIImage("inventory_bg.png", 700, 400);
   background->style->set(STYLE_MARGIN_LEFT, -350.0f);
   background->style->set(STYLE_MARGIN_TOP, -200.0f);
-  background->calcStyle();
+  //background->computeStyle();
   addNode(background);
 
   itemList = new UIDiv();
   itemList->style->setMargin(40.0f, 40.0f);
-  itemList->calcStyle();
+  //itemList->computeStyle();
   background->addChild(itemList);
 
 }

@@ -18,7 +18,7 @@ UIImage::UIImage(std::string src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)
   this->textureID = Resources::getTextureIDBySrc(src);
   style->set(STYLE_WIDTH, w);
   style->set(STYLE_HEIGHT, h);
-  calcStyle();
+  computeStyle();
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);

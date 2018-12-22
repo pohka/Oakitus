@@ -29,7 +29,7 @@ void UINode::setComponent(UIComponent* component)
 
 void UINode::addChild(UINode* node)
 {
-  node->calcStyle();
+  node->computeStyle();
   node->parent = this;
   node->isRootNode = false;
   node->component = component;
@@ -200,7 +200,7 @@ void UINode::addClass(std::string cssClass)
   cstyle->classList.push_back(cssClass);
 }
 
-void UINode::calcStyle()
+void UINode::computeStyle()
 {
   for (std::string cls : cstyle->classList)
   {
@@ -226,7 +226,7 @@ void UINode::calcStyle()
   //recalculate child nodes
   for (uint i = 0; i < children.size(); i++)
   {
-    children[i]->calcStyle();
+    children[i]->computeStyle();
   }
 }
 
