@@ -27,10 +27,14 @@ namespace ion
       static bool parseAttr(
         std::string& line, 
         std::pair<std::string, std::string>& kv, 
-        unsigned int lineNum
+        unsigned int lineNum,
+        std::string& path
       );
 
       static std::vector<std::string> loadedFiles;
+
+      //returns true if valid css number
+      static bool isValidNumber(const std::string& s);
 
   };
 }

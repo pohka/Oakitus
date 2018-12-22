@@ -5,7 +5,7 @@ using namespace game;
 
 Inventory::Inventory(uint ownerID)
 {
-  LOG << "inventroy constructor";
+  //LOG << "inventroy constructor";
   this->ownerID = ownerID;
   
 }
@@ -19,7 +19,7 @@ void Inventory::addItem(Item* item)
 {
   items.push_back(item);
 
-  LOG << "added item to inventory";
+  //LOG << "added item to inventory";
   //temp for testing
   equipItem(item);
   //slots.insert(ITEM_SLOT_ARMOR, item);

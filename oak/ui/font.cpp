@@ -24,7 +24,6 @@ Font::Font(std::string name, FT_Library& freetype)
   }
   else
   {
-    LOG << "Font loaded";
     initChars(freetype, this);
   }
 }

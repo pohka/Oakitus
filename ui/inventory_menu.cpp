@@ -22,7 +22,6 @@ InventoryMenu::InventoryMenu()
   itemList->style->setMargin(40.0f, 40.0f);
   //itemList->computeStyle();
   background->addChild(itemList);
-
 }
 
 InventoryMenu::~InventoryMenu()

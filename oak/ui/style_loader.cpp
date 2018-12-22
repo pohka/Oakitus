@@ -23,11 +23,13 @@ void StyleLoader::reload()
   //delete existing styles
   UICanvas::deleteAllStyles();
 
+  LOG << "----- RELOADING STYLE -------";
   //reload css files
   for (auto it = loadedFiles.begin(); it != loadedFiles.end(); it++)
   {
     parse(*it);
   }
+  LOG << "-------------";
   
   //recompute styles
   for (auto it = UICanvas::components.begin(); it != UICanvas::components.end(); it++)
@@ -40,14 +42,13 @@ void StyleLoader::reload()
  
 void StyleLoader::parse(std::string path)
 {
-  cout << "----- LOADING STYLE -------" << endl;
   string line;
   ifstream file(path);
 
   char ch;
   uchar state = STATE_CLASSNAME;
   string text;
-  uint lineCount = 0;
+  uint lineNum = 1;
   vector<string> classList;
   unordered_map<string, string> attrs;
   pair<string, string> kv;
@@ -60,7 +61,7 @@ void StyleLoader::parse(std::string path)
     {
       if (ch == '\n')
       {
-        lineCount++;
+        lineNum++;
         if (state == STATE_ATTRIBUTES)
         {
           /*if (text.size() > 0)
@@ -75,7 +76,7 @@ void StyleLoader::parse(std::string path)
         {
           if (state != STATE_CLASSNAME)
           {
-            LOG_WARNING << "---CSS PARSING ERROR---| line:" << lineCount << " , invalid location for '{'";
+            LOG << "---CSS PARSING ERROR---| '" << path << "' line:" << lineNum << " , invalid location for '{'";
           }
           else
           {
@@ -83,7 +84,7 @@ void StyleLoader::parse(std::string path)
             bool success = parseClassNames(text, classList);
             if (!success)
             {
-              LOG_WARNING << "---CSS PARSING ERROR---| near line:" << lineCount << "no style class name was found";
+              LOG << "---CSS PARSING ERROR---| near line:" << lineNum << "no style class name was found";
             }
             text.clear();
           }
@@ -92,7 +93,7 @@ void StyleLoader::parse(std::string path)
         {
           if (state != STATE_ATTRIBUTES)
           {
-            LOG_WARNING << "---CSS PARSING ERROR---| line:" << lineCount << " , invalid location for '}'";
+            LOG << "---CSS PARSING ERROR---| line:" << lineNum << " , invalid location for '}'";
           }
           else
           {
@@ -106,11 +107,11 @@ void StyleLoader::parse(std::string path)
         {
           if (state != STATE_ATTRIBUTES)
           {
-            LOG_WARNING << "---CSS PARSING ERROR---| line:" << lineCount << " , unknown symbol ';'";
+            LOG << "---CSS PARSING ERROR---| line:" << lineNum << " , unknown symbol ';'";
           }
           else
           {
-            bool success = parseAttr(text, kv, lineCount);
+            bool success = parseAttr(text, kv, lineNum, path);
             if (success)
             {
               attrs.insert_or_assign(kv.first, kv.second);
@@ -124,8 +125,6 @@ void StyleLoader::parse(std::string path)
       }
     }
   }
-
-  cout << "-------------" << endl;
 }
 
 bool StyleLoader::parseClassNames(string& text, vector<string>& strs)
@@ -151,7 +150,8 @@ bool StyleLoader::parseClassNames(string& text, vector<string>& strs)
 bool StyleLoader::parseAttr(
   string& line, 
   pair<string, string>& kv, 
-  unsigned int lineNum
+  unsigned int lineNum,
+  std::string& path
 )
 {
   string key = "";
@@ -171,11 +171,17 @@ bool StyleLoader::parseAttr(
 
   if (key.size() == 0 || val.size() == 0)
   {
-    LOG_WARNING << "---CSS PARSING ERROR---| line:" << lineNum << " , invalid attribute";
+    LOG << "---CSS PARSING ERROR---| '" << path << "' line:" << lineNum << " , invalid attribute";
     return false;
   }
 
   kv.first = key;
   kv.second = val;
   return true;
+}
+
+bool StyleLoader::isValidNumber(const std::string & val)
+{
+  float num;
+  return Style::parseNumber(val, num);
 }

@@ -158,7 +158,7 @@ void UINode::renderEnd(UIPoint& nodeCursor)
     {
       if (onFocus != nullptr)
       {
-        LOG << "contains pt";
+        //LOG << "contains pt";
         onFocus(this);
       }
     }
@@ -204,14 +204,17 @@ void UINode::computeStyle()
 {
   for (std::string cls : cstyle->classList)
   {
-    Style* style = UICanvas::findStyle(cls);
-    if (style != nullptr)
+    if (cls.size() > 0)
     {
-      mutateComputedStyle(style);
-    }
-    else
-    {
-      LOG << "style class not found:" << cls;
+      Style* style = UICanvas::findStyle(cls);
+      if (style != nullptr)
+      {
+        mutateComputedStyle(style);
+      }
+      else
+      {
+        LOG << "style class not found:" << cls;
+      }
     }
   }
 

@@ -2,6 +2,7 @@
 #include <limits>
 #include <core/string_help.h>
 #include <debug.h>
+#include <cctype>
 
 using namespace ion;
 
@@ -61,38 +62,64 @@ void Style::set(uchar key, float val)
 
 void Style::set(std::string key, std::string val)
 {
+  float num;
+  bool isValidNumber = parseNumber(val, num);
+  if (!isValidNumber)
+  {
+    LOG << "---STYLE ERROR---| '." << classList[0] <<
+      "' invalid attribute: " << key << ":" << val << ";";
+    return;
+    
+  }
+  else
+  {
+
+  }
+
   if (key == "height")
   {
-    float num = parseNumber(val);
     attrs.insert_or_assign(STYLE_HEIGHT, num);
-    LOG << "added height," << classList[0] << ":" << num;
   }
 }
 
-float Style::parseNumber(std::string val)
+bool Style::parseNumber(std::string val, float& num)
 {
   if (val == "auto")
   {
-    return STYLE_VAL_AUTO;
+    num = STYLE_VAL_AUTO;
+    return true;
   }
+
 
   char c; 
   bool decimalPt = false;
   for (uint i = 0; i < val.size(); i++)
   {
     c = val[i];
-    if ((c < '0' || c > '9'))
+    //not a number character
+    if (c < '0' || c > '9')
     {
-      if (c == '.' && !decimalPt)
+      //exception for first decimal point
+      if (c == '.' && !decimalPt && i > 0)
       {
         decimalPt = true;
       }
       else
       {
         std::string numStr = val.substr(0, i);
-        return std::stof(numStr);
+        if (numStr.size() > 0)
+        {
+          num = std::stof(numStr);
+          return true;
+        }
+        else
+        {
+          return false;
+        }
       }
     }
   }
-  return std::stof(val);
+  //all characters are digits
+  num = std::stof(val);
+  return true;
 }

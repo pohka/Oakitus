@@ -6,7 +6,7 @@
 using namespace oak;
 
 Shader Fallback::shader = Shader("default", false);
-Texture Fallback::texture = Texture("fallback.png", false);
+Texture Fallback::texture = Texture("default.png", false);
 BasePlayer Fallback::basePlayer = BasePlayer();
 
 

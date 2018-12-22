@@ -33,8 +33,8 @@ namespace ion
     void set(uchar key, float val);
 
     void set(std::string key, std::string val);
-  private:
-    static float parseNumber(std::string val);
+    static bool parseNumber(std::string val, float& num);
+
   };
 }
 
