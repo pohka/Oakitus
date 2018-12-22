@@ -10,7 +10,35 @@
 using namespace ion;
 using namespace std;
 
+vector<string> StyleLoader::loadedFiles;
+
 void StyleLoader::load(string path)
+{
+  loadedFiles.push_back(path);
+  parse(path);
+}
+
+void StyleLoader::reload()
+{
+  //delete existing styles
+  UICanvas::deleteAllStyles();
+
+  //reload css files
+  for (auto it = loadedFiles.begin(); it != loadedFiles.end(); it++)
+  {
+    parse(*it);
+  }
+  
+  //recompute styles
+  for (auto it = UICanvas::components.begin(); it != UICanvas::components.end(); it++)
+  {
+    it->second->recalcStyle();
+  }
+}
+
+
+ 
+void StyleLoader::parse(std::string path)
 {
   cout << "----- LOADING STYLE -------" << endl;
   string line;

@@ -37,3 +37,11 @@ void UIComponent::addNode(UINode* node)
   node->setComponent(this);
   nodes.push_back(node);
 }
+
+void UIComponent::recalcStyle()
+{
+  for (uint i = 0; i < nodes.size(); i++)
+  {
+    nodes[i]->calcStyle();
+  }
+}

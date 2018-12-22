@@ -222,6 +222,12 @@ void UINode::calcStyle()
   {
     cstyle->set(STYLE_FONT_SIZE, STYLE_DEFAULT_FONT_SIZE);
   }
+
+  //recalculate child nodes
+  for (uint i = 0; i < children.size(); i++)
+  {
+    children[i]->calcStyle();
+  }
 }
 
 void UINode::mutateComputedStyle(Style* style)

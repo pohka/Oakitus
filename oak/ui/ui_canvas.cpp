@@ -86,3 +86,12 @@ void UICanvas::addStyle(Style* style)
 {
   styles.push_back(style);
 }
+
+void UICanvas::deleteAllStyles()
+{
+  for (auto it = styles.begin(); it != styles.end(); ++it)
+  {
+    delete (*it);
+  }
+  styles.clear();
+}

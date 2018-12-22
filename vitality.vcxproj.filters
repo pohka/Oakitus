@@ -270,6 +270,9 @@
     <ClCompile Include="oak\ui\style_loader.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
+    <ClCompile Include="oak\debug\debug_input.cpp">
+      <Filter>oak\debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -535,6 +538,9 @@
     </ClInclude>
     <ClInclude Include="oak\ui\style_loader.h">
       <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\debug\debug_input.h">
+      <Filter>oak\debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

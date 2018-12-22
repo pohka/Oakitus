@@ -165,6 +165,7 @@
     <ClCompile Include="oak\core\scene.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
+    <ClCompile Include="oak\debug\debug_input.cpp" />
     <ClCompile Include="oak\debug\logger.cpp" />
     <ClCompile Include="oak\event\event_manager.cpp" />
     <ClCompile Include="oak\fallback.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="oak\core\time.h" />
     <ClInclude Include="oak\core\types.h" />
     <ClInclude Include="oak\debug.h" />
+    <ClInclude Include="oak\debug\debug_input.h" />
     <ClInclude Include="oak\debug\logger.h" />
     <ClInclude Include="oak\event\event.h" />
     <ClInclude Include="oak\event\event_manager.h" />

@@ -8,7 +8,7 @@ using namespace ion;
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
   style->set(STYLE_WIDTH, 200.0f);
-  this->addClass("test");
+  this->addClass("inv-item");
   this->onFocus = tmp_InventoryItem::onItemFocus;
 
   UILabel* label = new UILabel(item->name, 20.0f);

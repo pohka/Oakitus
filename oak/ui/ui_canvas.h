@@ -26,6 +26,8 @@ namespace ion
   class UICanvas
   {
     public:
+      friend class StyleLoader;
+
       friend class oak::Window;
       ///called when the window is resized
       static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
@@ -42,7 +44,8 @@ namespace ion
 
       static void addStyle(Style* style);
 
-  private:
+    private:
+      static void deleteAllStyles();
       static UIPoint projection; //current projection
       static std::map<ushort, UIComponent*> components; //all if the existing components
       static std::vector<Style*> styles;
