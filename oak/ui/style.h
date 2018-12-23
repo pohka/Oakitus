@@ -36,6 +36,12 @@ namespace ion
     static bool parseNumber(const std::string& val, float& num);
     static void parseColor(std::string& val, std::vector<float>& rgba);
 
+    //convert hex string to decimal float, e.g. "ff" = 255.0f
+    static float hexToDecimal(std::string& str);
+
+    //convert hex char to decimal float, e.g. "f" = 15.0f
+    static float hexToDecimal(char ch);
+
   private :
     void setNum(const std::string& key, const std::string& val, cnum STYLE_KEY);
 

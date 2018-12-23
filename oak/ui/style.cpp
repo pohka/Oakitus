@@ -4,6 +4,7 @@
 #include <debug.h>
 #include <cctype>
 #include <core/fmath.h>
+#include <math.h>
 
 using namespace ion;
 
@@ -78,7 +79,6 @@ void Style::set(std::string key, std::string val)
   }
   else if (key == "color")
   {
-    LOG << "COLOR:" << key << ":" << val << ";";
     std::vector<float> rgba;
     parseColor(val, rgba);
     if (rgba.size() >= 3)
@@ -95,19 +95,10 @@ void Style::set(std::string key, std::string val)
         color.a = 1.0f;
       }
     }
-    LOG << "COLOR RES:" << color.r << "," << color.g << "," << color.b << "," << color.a;
-    //todo
-    //color: #ffaacc
-    //color: #ffaacc
-    //color: rbg(200,100,255)
-    //color: rbga(200,100,255, 0.5)
-
   }
   //padding shorthand
   else if (key == "padding")
   {
-    LOG << "PADDING:" << val;
-    
     oak::StringHelp::split(val, els, ' ');
   //padding:30px 30px 10px 15px;
     if (els.size() >= 4)
@@ -269,7 +260,10 @@ bool Style::parseNumber(const std::string& val, float& num)
   return true;
 }
 
-void Style::parseColor(std::string& val, std::vector<float>& rgba)
+void Style::parseColor(
+  std::string& val, 
+  std::vector<float>& rgba
+)
 {
   if (val.size() < 4)
   {
@@ -289,9 +283,59 @@ void Style::parseColor(std::string& val, std::vector<float>& rgba)
 
   if (val[0] == '#')
   {
-    type = val.size() - 1;
-    //todo
+    str = val.substr(1);
+    type = str.size();
+
+    //HEX rgb and rgba
+    if (type == HEX_COLOR_RGB || type == HEX_COLOR_RGBA)
+    {
+      for (uint i = 0; i < str.size() && i < HEX_COLOR_RGB; i++)
+      {
+        float r = hexToDecimal(str[i]) / 15.0f;
+        rgba.push_back(r);
+      }
+
+      //alpha
+      if (type == HEX_COLOR_RGBA)
+      {
+        std::string alphaHex = str.substr(HEX_COLOR_RGB);
+        float r = hexToDecimal(str[3]) / 15.0f;
+        rgba.push_back(r);
+      }
+      else
+      {
+        rgba.push_back(1.0f);
+      }
+    }
+    //HEX rrggbb and rrggbbaa
+    else if (type == HEX_COLOR_RRGGBB || type == HEX_COLOR_RRGGBBAA)
+    {
+      std::string col;
+      for (uint i = 0; i < str.size() && i < HEX_COLOR_RRGGBB; i+=2)
+      {
+        col = str.substr(i, 2);
+        float r = hexToDecimal(col) / 255.0f;
+        rgba.push_back(r);
+      }
+
+      if (type == HEX_COLOR_RRGGBBAA)
+      {
+        std::string alphaHex = str.substr(HEX_COLOR_RRGGBB);
+        float r = hexToDecimal(alphaHex) / 255.0f;
+        rgba.push_back(r);
+      }
+      else
+      {
+        rgba.push_back(1.0f);
+      }
+    }
+    //hex invalud number of characters
+    else
+    {
+      LOG << "---STYLE ERROR---| invalid color value: '" << val << "'";
+    }
   }
+  //rgb(...) and rgba(...)
   else if(val.substr(0,3) == "rgb")
   {
     //rgb(...)
@@ -315,6 +359,7 @@ void Style::parseColor(std::string& val, std::vector<float>& rgba)
       oak::FMath::clamp(v, 0.0f, 1.0f);
       rgba.push_back(v);
     }
+    //alpha
     if (els.size() > 3)
     {
       float alpha = std::stof(els[3]);
@@ -322,4 +367,50 @@ void Style::parseColor(std::string& val, std::vector<float>& rgba)
       rgba.push_back(alpha);
     }
   }
+}
+
+
+float Style::hexToDecimal(std::string& str)
+{
+  int count = 0;
+  float val = 0.0f;
+  char ch;
+  const std::string hex = "0123456789ABCDEF";
+
+  for (int i = str.size() - 1; i >= 0; i--)
+  {
+    ch = toupper(str[i]);
+    for (uint d = 0; d < hex.size(); d++)
+    {
+      if (ch == hex[d])
+      {
+        if (count == 0)
+        {
+          val += d;
+        }
+        else
+        {
+          val += (float)(d * pow(hex.size(), count));
+        }
+      }
+    }
+    count++;
+  }
+
+  return val;
+}
+
+float Style::hexToDecimal(char ch)
+{
+  const std::string hex = "0123456789ABCDEF";
+  ch = toupper(ch);
+  for (uint d = 0; d < hex.size(); d++)
+  {
+    if (ch == hex[d])
+    {
+      return (float)(d);
+    }
+  }
+
+  return 0.0f;
 }
