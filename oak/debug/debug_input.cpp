@@ -8,6 +8,13 @@ using namespace ion;
 
 void DebugInput::process()
 {
+  //close window
+  if (Input::isKeyDown(KEYCODE_F9))
+  {
+    Window::close();
+  }
+
+  //reload css
   if (Input::isKeyDown(KEYCODE_F8))
   {
     StyleLoader::reload();

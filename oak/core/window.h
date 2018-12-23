@@ -66,6 +66,8 @@ namespace oak
 
       ///returns ratio of normalized window to pixel size window unit
       static glm::vec2 getWindowUnitToPixel();
+
+      static void close();
       
     protected:
       ///<summary>Initialized the window</summary>

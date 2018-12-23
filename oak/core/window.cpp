@@ -182,3 +182,8 @@ glm::vec2 Window::getWindowUnitToPixel()
     windowH * 0.5f
   );
 }
+
+void Window::close()
+{
+  glfwSetWindowShouldClose(window, true);
+}

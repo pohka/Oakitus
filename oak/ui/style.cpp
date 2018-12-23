@@ -62,6 +62,133 @@ void Style::set(uchar key, float val)
 
 void Style::set(std::string key, std::string val)
 {
+  std::vector<std::string> els;
+
+  if (key == "position")
+  {
+    if (val == "absolute")
+    {
+      this->position = UI_POSITION_ABSOLUTE;
+    }
+    else
+    {
+      this->position = UI_POSITION_RELATIVE;
+    }
+  }
+  else if (key == "color")
+  {
+    //todo
+  }
+  //padding shorthand
+  else if (key == "padding")
+  {
+    LOG << "PADDING:" << val;
+    
+    oak::StringHelp::split(val, els, ' ');
+  //padding:30px 30px 10px 15px;
+    if (els.size() >= 4)
+    {
+      setNum(key, els[0], STYLE_PADDING_TOP);
+      setNum(key, els[1], STYLE_PADDING_RIGHT);
+      setNum(key, els[2], STYLE_PADDING_BOTTOM);
+      setNum(key, els[3], STYLE_PADDING_LEFT);
+    }
+  //padding:20px 30px;
+    else if (els.size() >= 2)
+    {
+      setNum(key, els[0], STYLE_PADDING_TOP);
+      setNum(key, els[0], STYLE_PADDING_BOTTOM);
+      setNum(key, els[1], STYLE_PADDING_LEFT);
+      setNum(key, els[1], STYLE_PADDING_RIGHT);
+    }
+    //padding:30px;
+    else if(els.size() == 1)
+    {
+      setNum(key, els[0], STYLE_PADDING_LEFT);
+      setNum(key, els[0], STYLE_PADDING_RIGHT);
+      setNum(key, els[0], STYLE_PADDING_TOP);
+      setNum(key, els[0], STYLE_PADDING_BOTTOM);
+    }
+  }
+  //margin shorthand
+  else if (key == "margin")
+  {
+    oak::StringHelp::split(val, els, ' ');
+    //margin:30px 30px 10px 15px;
+    if (els.size() >= 4)
+    {
+      setNum(key, els[0], STYLE_MARGIN_TOP);
+      setNum(key, els[1], STYLE_MARGIN_RIGHT);
+      setNum(key, els[2], STYLE_MARGIN_BOTTOM);
+      setNum(key, els[3], STYLE_MARGIN_LEFT);
+    }
+    //margin:20px 30px;
+    else if (els.size() >= 2)
+    {
+      setNum(key, els[0], STYLE_MARGIN_TOP);
+      setNum(key, els[0], STYLE_MARGIN_BOTTOM);
+      setNum(key, els[1], STYLE_MARGIN_LEFT);
+      setNum(key, els[1], STYLE_MARGIN_RIGHT);
+    }
+    //margin:30px;
+    else if (els.size() == 1)
+    {
+      setNum(key, els[0], STYLE_MARGIN_LEFT);
+      setNum(key, els[0], STYLE_MARGIN_RIGHT);
+      setNum(key, els[0], STYLE_MARGIN_TOP);
+      setNum(key, els[0], STYLE_MARGIN_BOTTOM);
+    }
+  }
+  //basic number key values
+  //--------------
+  else if (key == "width")
+  {
+    setNum(key, val, STYLE_WIDTH);
+  }
+  else if (key == "height")
+  {
+    setNum(key, val, STYLE_HEIGHT);
+  }
+  else if (key == "padding-left")
+  {
+    setNum(key, val, STYLE_PADDING_LEFT);
+  }
+  else if (key == "padding-right")
+  {
+    setNum(key, val, STYLE_PADDING_RIGHT);
+  }
+  else if (key == "padding-top")
+  {
+    setNum(key, val, STYLE_PADDING_TOP);
+  }
+  else if (key == "padding-bottom")
+  {
+    setNum(key, val, STYLE_PADDING_BOTTOM);
+  }
+  else if (key == "margin-left")
+  {
+    setNum(key, val, STYLE_MARGIN_LEFT);
+  }
+  else if (key == "margin-right")
+  {
+    setNum(key, val, STYLE_MARGIN_RIGHT);
+  }
+  else if (key == "margin-top")
+  {
+    setNum(key, val, STYLE_MARGIN_TOP);
+  }
+  else if (key == "margin-bottom")
+  {
+    setNum(key, val, STYLE_MARGIN_BOTTOM);
+  }
+  else if (key == "font-size")
+  {
+    setNum(key, val, STYLE_FONT_SIZE);
+  }
+}
+
+void Style::setNum(const std::string& key, const std::string& val, cnum STYLE_KEY)
+{
   float num;
   bool isValidNumber = parseNumber(val, num);
   if (!isValidNumber)
@@ -69,20 +196,14 @@ void Style::set(std::string key, std::string val)
     LOG << "---STYLE ERROR---| '." << classList[0] <<
       "' invalid attribute: " << key << ":" << val << ";";
     return;
-    
   }
   else
   {
-
-  }
-
-  if (key == "height")
-  {
-    attrs.insert_or_assign(STYLE_HEIGHT, num);
+    attrs.insert_or_assign(STYLE_KEY, num);
   }
 }
 
-bool Style::parseNumber(std::string val, float& num)
+bool Style::parseNumber(const std::string& val, float& num)
 {
   if (val == "auto")
   {
@@ -123,3 +244,5 @@ bool Style::parseNumber(std::string val, float& num)
   num = std::stof(val);
   return true;
 }
+
+

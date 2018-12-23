@@ -77,12 +77,6 @@ bool Input::isMouseButtonUp(uchar code)
 
 void Input::processInput(GLFWwindow* window)
 {
-  //close window
-  if (glfwGetKey(window, GLFW_KEY_F9) == GLFW_PRESS)
-  {
-    glfwSetWindowShouldClose(window, true);
-  }
-
   //keyboard keys
   for (uint i = 0; i < KEY_COUNT; i++)
   {

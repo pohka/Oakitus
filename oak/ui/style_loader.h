@@ -15,7 +15,8 @@ namespace ion
 
     private:
       static cnum STATE_CLASSNAME = 0;
-      static cnum STATE_ATTRIBUTES = 1;
+      static cnum STATE_ATTR_KEY = 1;
+      static cnum STATE_ATTR_VALUE = 2;
 
       static void parse(std::string path);
 
@@ -24,17 +25,8 @@ namespace ion
         std::vector<std::string>& strs
       );
 
-      static bool parseAttr(
-        std::string& line, 
-        std::pair<std::string, std::string>& kv, 
-        unsigned int lineNum,
-        std::string& path
-      );
-
       static std::vector<std::string> loadedFiles;
 
-      //returns true if valid css number
-      static bool isValidNumber(const std::string& s);
 
   };
 }
