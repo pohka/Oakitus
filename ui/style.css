@@ -3,3 +3,8 @@
   height:50px;
   margin:4px 20px;
 }
+
+.inv-item-text
+{
+  color: rgba(5,220,1,1);
+}

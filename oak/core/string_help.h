@@ -27,6 +27,13 @@ namespace oak
       // Add the last one
       strs.push_back(txt.substr(initialPos, std::min(pos, txt.size()) - initialPos + 1));
     }
+
+    //remove all occurances of a character in the string
+    static void removeChar(std::string& str, char c)
+    {
+      str.erase(remove(str.begin(), str.end(), c), str.end());
+    }
+
   };
 }
 

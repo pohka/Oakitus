@@ -13,6 +13,7 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 
   UILabel* label = new UILabel(item->name, 20.0f);
   label->style->setMargin(30.0f, 4.0f);
+  label->addClass("inv-item-text");
   addChild(label);
   
 

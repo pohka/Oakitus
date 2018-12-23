@@ -180,4 +180,3 @@ bool StyleLoader::parseClassNames(string& text, vector<string>& strs)
   
   return true;
 }
-

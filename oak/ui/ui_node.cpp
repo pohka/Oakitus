@@ -206,10 +206,10 @@ void UINode::computeStyle()
   {
     if (cls.size() > 0)
     {
-      Style* style = UICanvas::findStyle(cls);
-      if (style != nullptr)
+      Style* s = UICanvas::findStyle(cls);
+      if (s!= nullptr)
       {
-        mutateComputedStyle(style);
+        mutateComputedStyle(s);
       }
       else
       {
@@ -218,12 +218,18 @@ void UINode::computeStyle()
     }
   }
 
-  mutateComputedStyle(style);
+  mutateComputedStyle(style); //inline style
   //set to default font size if font is auto
   float fontSize = cstyle->get(STYLE_FONT_SIZE);
   if (fontSize == STYLE_VAL_AUTO)
   {
     cstyle->set(STYLE_FONT_SIZE, STYLE_DEFAULT_FONT_SIZE);
+  }
+
+  //use default font color if not set
+  if (cstyle->color == COLOR_NULL)
+  {
+    cstyle->color = COLOR_DEFAULT_FONT;
   }
 
   //recalculate child nodes
@@ -241,9 +247,12 @@ void UINode::mutateComputedStyle(Style* style)
   }
 
   //color is not null
-  if (style->color.a >= 0.0f)
+  if (style->color != COLOR_NULL)
   {
-    cstyle->color = style->color;
+    cstyle->color.r = style->color.r;
+    cstyle->color.g = style->color.g;
+    cstyle->color.b = style->color.b;
+    cstyle->color.a = style->color.a;
   }
 
   for (uint i = 0; i < style->attrs.size(); i++)

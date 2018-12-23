@@ -542,6 +542,9 @@
     <ClInclude Include="oak\debug\debug_input.h">
       <Filter>oak\debug</Filter>
     </ClInclude>
+    <ClInclude Include="oak\core\fmath.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\text.fs">

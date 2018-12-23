@@ -30,7 +30,8 @@ const static ion::Color COLOR_GREEN = { 0.0f, 1.0f, 0.0f, 1.0f };
 const static ion::Color COLOR_BLUE = { 0.0f, 0.0f, 1.0f, 1.0f };
 const static ion::Color COLOR_BLACK = { 0.0f, 0.0f, 0.0f, 1.0f };
 const static ion::Color COLOR_WHITE = { 1.0f, 1.0f, 1.0f, 1.0f };
-const static ion::Color COLOR_NULL = { 0.0f, 0.0f, -0.0f, -1.0f };
+const static ion::Color COLOR_NULL = { -1.0f, -1.0f, -1.0f, -1.0f };
+const static ion::Color COLOR_DEFAULT_FONT = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 cnum STYLE_WIDTH = 0;
 cnum STYLE_HEIGHT = 1;

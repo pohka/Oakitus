@@ -24,7 +24,7 @@ namespace ion
     std::vector<std::string> classList;
     std::unordered_map<uchar, float> attrs;
     uchar position = UI_POSITION_RELATIVE;
-    Color color = COLOR_WHITE;
+    Color color = COLOR_NULL;
       
     //getter and setter functions
     void setPadding(float x, float y);
@@ -34,6 +34,7 @@ namespace ion
 
     void set(std::string key, std::string val);
     static bool parseNumber(const std::string& val, float& num);
+    static void parseColor(std::string& val, std::vector<float>& rgba);
 
   private :
     void setNum(const std::string& key, const std::string& val, cnum STYLE_KEY);

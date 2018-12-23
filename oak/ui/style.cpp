@@ -3,6 +3,7 @@
 #include <core/string_help.h>
 #include <debug.h>
 #include <cctype>
+#include <core/fmath.h>
 
 using namespace ion;
 
@@ -77,7 +78,30 @@ void Style::set(std::string key, std::string val)
   }
   else if (key == "color")
   {
+    LOG << "COLOR:" << key << ":" << val << ";";
+    std::vector<float> rgba;
+    parseColor(val, rgba);
+    if (rgba.size() >= 3)
+    {
+      this->color.r = rgba[0];
+      this->color.g = rgba[1];
+      this->color.b = rgba[2];
+      if (rgba.size() >= 4)
+      {
+        color.a = rgba[3];
+      }
+      else
+      {
+        color.a = 1.0f;
+      }
+    }
+    LOG << "COLOR RES:" << color.r << "," << color.g << "," << color.b << "," << color.a;
     //todo
+    //color: #ffaacc
+    //color: #ffaacc
+    //color: rbg(200,100,255)
+    //color: rbga(200,100,255, 0.5)
+
   }
   //padding shorthand
   else if (key == "padding")
@@ -245,4 +269,57 @@ bool Style::parseNumber(const std::string& val, float& num)
   return true;
 }
 
+void Style::parseColor(std::string& val, std::vector<float>& rgba)
+{
+  if (val.size() < 4)
+  {
+    return;
+  }
 
+  //find the way the color is specified 
+  const char HEX_COLOR_RGB = 3;
+  const char HEX_COLOR_RGBA = 4;
+  const char HEX_COLOR_RRGGBB = 6;
+  const char HEX_COLOR_RRGGBBAA = 8;
+  uint type;
+
+  oak::StringHelp::removeChar(val, ' '); //remove all spaces
+  rgba.clear();
+  std::string str;
+
+  if (val[0] == '#')
+  {
+    type = val.size() - 1;
+    //todo
+  }
+  else if(val.substr(0,3) == "rgb")
+  {
+    //rgb(...)
+    if (val[3] != 'a')
+    {
+      str = val.substr(4);
+    }
+    //rgba(...)
+    else
+    {
+      str = val.substr(5);
+    }
+    str.pop_back(); 
+    //str e.g. "255,255,255" i.e. no spaces and no brackets
+    std::vector<std::string> els;
+    oak::StringHelp::split(str, els, ',');
+    //rgb
+    for (uint i = 0; i < els.size() && i < 3; i++)
+    {
+      float v = std::stof(els[i]) / 255.0f;
+      oak::FMath::clamp(v, 0.0f, 1.0f);
+      rgba.push_back(v);
+    }
+    if (els.size() > 3)
+    {
+      float alpha = std::stof(els[3]);
+      oak::FMath::clamp(alpha, 0.0f, 1.0f);
+      rgba.push_back(alpha);
+    }
+  }
+}

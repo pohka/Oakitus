@@ -228,6 +228,7 @@
     <ClInclude Include="oak\core\command.h" />
     <ClInclude Include="oak\core\component.h" />
     <ClInclude Include="oak\core\entity.h" />
+    <ClInclude Include="oak\core\fmath.h" />
     <ClInclude Include="oak\core\kv_array.h" />
     <ClInclude Include="oak\core\oakitus.h" />
     <ClInclude Include="oak\core\base_player.h" />
