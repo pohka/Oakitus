@@ -15,34 +15,37 @@ namespace ion
   struct Style
   {
     Style(std::string className);
+
+    //constructor that is used with StyleLoader
     Style(
       std::vector<std::string>& classList, 
       std::unordered_map<std::string, std::string>& attrs
     );
 
-    //attributes
+    //style attributes
     std::vector<std::string> classList;
     std::unordered_map<uchar, float> attrs;
     uchar position = UI_POSITION_RELATIVE;
     Color color = COLOR_NULL;
       
-    //getter and setter functions
+    //set padding shorthand
     void setPadding(float x, float y);
+
+    //set margins shorthand
     void setMargin(float x, float y);
+
+    //get an attribute
     float get(uchar key);
+
+    //set an attribute
     void set(uchar key, float val);
 
+    //set an attribute by string values
     void set(std::string key, std::string val);
-    static bool parseNumber(const std::string& val, float& num);
-    static void parseColor(std::string& val, std::vector<float>& rgba);
-
-    //convert hex string to decimal float, e.g. "ff" = 255.0f
-    static float hexToDecimal(std::string& str);
-
-    //convert hex char to decimal float, e.g. "f" = 15.0f
-    static float hexToDecimal(char ch);
+    
 
   private :
+    //converts css string key to cnum key
     void setNum(const std::string& key, const std::string& val, cnum STYLE_KEY);
 
   };
