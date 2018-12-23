@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <cctype>
 
 namespace oak
 {
@@ -34,6 +35,27 @@ namespace oak
       str.erase(remove(str.begin(), str.end(), c), str.end());
     }
 
+    //returns true if the string is valid a decimal number
+    static bool isNumber(std::string s)
+    {
+      bool decimalPt = false;
+      auto it = s.begin();
+      for(; it != s.end(); it++)
+      {
+        if (!std::isdigit(*it))
+        {
+          if (*it == '.' && !decimalPt)
+          {
+            decimalPt = true;
+          }
+          else
+          {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
   };
 }
 

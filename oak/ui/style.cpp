@@ -267,6 +267,7 @@ void Style::parseColor(
 {
   if (val.size() < 4)
   {
+    LOG << "---STYLE ERROR---| invalid color value: '" << val << "'";
     return;
   }
 
@@ -338,6 +339,10 @@ void Style::parseColor(
   //rgb(...) and rgba(...)
   else if(val.substr(0,3) == "rgb")
   {
+    if (val.size() < 10)
+    {
+      LOG << "---STYLE ERROR---| invalid color value: '" << val << "'";
+    }
     //rgb(...)
     if (val[3] != 'a')
     {
@@ -352,15 +357,28 @@ void Style::parseColor(
     //str e.g. "255,255,255" i.e. no spaces and no brackets
     std::vector<std::string> els;
     oak::StringHelp::split(str, els, ',');
+    if (els.size() < 3)
+    {
+      LOG << "---STYLE ERROR---| invalid color value: '" << val << "'";
+      return;
+    }
     //rgb
+    float v;
     for (uint i = 0; i < els.size() && i < 3; i++)
     {
-      float v = std::stof(els[i]) / 255.0f;
-      oak::FMath::clamp(v, 0.0f, 1.0f);
+      if (oak::StringHelp::isNumber(els[i]))
+      {
+        v = std::stof(els[i]) / 255.0f;
+        oak::FMath::clamp(v, 0.0f, 1.0f);
+      }
+      else
+      {
+        v = 0.0f;
+      }
       rgba.push_back(v);
     }
     //alpha
-    if (els.size() > 3)
+    if (els.size() > 3 && oak::StringHelp::isNumber(els[3]))
     {
       float alpha = std::stof(els[3]);
       oak::FMath::clamp(alpha, 0.0f, 1.0f);
