@@ -4,6 +4,11 @@ items and modifiers:
 * UI for inventory (to unequip items)
   * click node
   * hover node
+  * .myclass.active
+  * .myclass:hover
+  * inherting styles
+  * .myclass img
+  * UIComponent::findNodeByID()
 * modifier states
   * stunned (cant make any actions)
   * silenced (cant use spells)

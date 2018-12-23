@@ -8,8 +8,6 @@ namespace ion
 {
   struct StyleParser
   {
-
-
     //parses a string value into a float
     static bool parseNumber(const std::string& val, float& num);
 
