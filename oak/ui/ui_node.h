@@ -81,9 +81,6 @@ namespace ion
     void renderBegin(UIPoint& nodeCursor);
     void renderEnd(UIPoint& nodeCursor);
       
-    
-
-
   private:
     bool isRootNode = true;
     void mutateComputedStyle(Style* style);

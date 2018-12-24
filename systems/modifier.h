@@ -10,6 +10,7 @@ namespace game
 {
   class Unit;
 
+  //struct for tracking modifier ticks
   struct ModifierTicker
   {
     float interval;

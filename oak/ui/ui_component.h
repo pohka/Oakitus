@@ -23,6 +23,8 @@ namespace ion
     UIPoint margin;
     UIPoint padding;
 
+    ~UIComponent();
+
     virtual void onBeforeRender() = 0;
 
     void render(UIPoint& projection);

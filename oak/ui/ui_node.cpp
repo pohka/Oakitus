@@ -21,6 +21,9 @@ UINode::~UINode()
     delete children[i];
   }
   children.clear();
+
+  delete cstyle;
+  delete style;
 }
 
 void UINode::setComponent(UIComponent* component)

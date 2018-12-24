@@ -40,6 +40,7 @@ void MainScene::onLoad()
 
   //auto* inv = new InventoryMenu();
   //UICanvas::addComponent(UI_COMPONENT_INVENTORY_MENU, inv);
+  //delete inv;
 
 
   Camera::position = glm::vec3(0, 0, 0);

@@ -1,9 +1,19 @@
 #include "ui_component.h"
 #include <core/input.h>
+#include <debug.h>
 
 using namespace ion;
 using namespace oak;
 
+
+UIComponent::~UIComponent()
+{
+  for (uint i = 0; i < nodes.size(); i++)
+  {
+    delete nodes[i];
+  }
+  nodes.clear();
+}
 
 void UIComponent::render(UIPoint& projection)
 {

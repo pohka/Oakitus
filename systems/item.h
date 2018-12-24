@@ -33,8 +33,6 @@ namespace game
     //name string id
     uint nameSID;
 
-    //modifiers this item can use
-    //std::vector<Modifier*> modifiers;
 
     uint getItemID();
 
