@@ -4,24 +4,43 @@
 #include "ui_def.h"
 #include <vector>
 #include "ui_node.h"
-#include <core/point.h>
+#include "ui_point.h"
 #include "localization.h"
+#include <core/window.h>
 
-namespace oak
+namespace ion
 {
-  namespace ui
+  ///a container for UI nodes
+  struct UIComponent
   {
-    ///a container for UI nodes
-    struct UIComponent
-    {
-      std::vector<UINode*> nodes;
-      Point align = { 
-        UI_ALIGN_HORZ_LEFT, 
-        UI_ALIGN_VERT_TOP 
-      };
-      Point offset = { 0,0 };
+      
+    UIPoint align = {
+      UI_ALIGN_HORZ_LEFT, 
+      UI_ALIGN_VERT_TOP 
     };
-  }
+    UIPoint offset;
+    UIPoint pos;
+    UIPoint margin;
+    UIPoint padding;
+
+    ~UIComponent();
+
+    virtual void onBeforeRender() = 0;
+
+    void render(UIPoint& projection);
+
+    void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
+
+    void addNode(UINode* node);
+
+    void recomputeStyle();
+
+  protected:
+    UINode* findNodeByID(std::string id);
+
+    private:
+      std::vector<UINode*> nodes;
+  };
 }
 
 #endif

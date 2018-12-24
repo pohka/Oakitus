@@ -7,26 +7,25 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "ui_canvas.h"
+#include <debug.h>
 
-using namespace oak::ui;
+using namespace ion;
 using namespace oak;
 
-UIImage* UIImage::createImage(std::string src, ushort w, ushort h)
+UIImage::UIImage(std::string src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)
 {
-  UIImage* img = new UIImage();
-  img->src = src;
-  img->textureID = Resources::getTextureIDBySrc(src);
-  img->w = w;
-  img->h = h;
- // img->offsetx = 0.0f;
-  //img->offset.y = 0.0f;
+  this->src = src;
+  this->textureID = Resources::getTextureIDBySrc(src);
+  style.set(STYLE_WIDTH, w);
+  style.set(STYLE_HEIGHT, h);
+  computeStyle();
 
-  glGenVertexArrays(1, &img->VAO);
-  glGenBuffers(1, &img->VBO);
-  glBindVertexArray(img->VAO);
+  glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &VBO);
+  glBindVertexArray(VAO);
 
   glm::vec2 windowToVPRatio = Window::getWindowToVPRatio();
-  setImageBuffer(img, windowToVPRatio.x, windowToVPRatio.y);
+  onWindowResize(windowToVPRatio.x, windowToVPRatio.y);
 
   const int POS_COORDS = 2;
   const int TEX_COORDS = 2;
@@ -40,18 +39,54 @@ UIImage* UIImage::createImage(std::string src, ushort w, ushort h)
   // texture coord attribute
   glVertexAttribPointer(1, POS_COORDS, GL_FLOAT, GL_FALSE, TOTAL_SIZEOF, (void*)(POS_COORDS * sizeof(float)));
   glEnableVertexAttribArray(1);
-
-  return img;
 }
 
-void UIImage::setImageBuffer(
-  UIImage* img,
-  float windowToVPRatioX,
-  float windowToVPRatioY
-)
+UIImage::~UIImage()
 {
-  float xx = (windowToVPRatioX * Window::worldToViewportCoords((float)img->w)) * 0.5f;
-  float yy = (windowToVPRatioY * Window::worldToViewportCoords((float)img->h)) * 0.5f;
+  glDeleteVertexArrays(1, &VAO);
+  glDeleteBuffers(1, &VBO);
+}
+
+void UIImage::render(UIPoint& nodeCursor)
+{
+  renderBegin(nodeCursor);
+
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, textureID);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glBindVertexArray(VAO);
+
+  glm::mat4 model = glm::mat4(1.0);
+
+  const UIPoint& projection = UICanvas::getProjection();
+  
+
+  glm::vec3 modelPos(
+    nodeCursor.x * projection.x,
+    nodeCursor.y * projection.y,
+    0.0f
+  );
+
+  
+
+  model = glm::translate(model, modelPos);
+
+  Shader& shader = Resources::getDefaultShader();
+  shader.use();
+  shader.setMat4("model", model);
+
+  glDrawArrays(GL_TRIANGLES, 0, 6);
+
+  UINode::renderEnd(nodeCursor);
+}
+
+void UIImage::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
+{
+  //set the image buffers
+  float w = cstyle.get(STYLE_WIDTH);
+  float h = cstyle.get(STYLE_HEIGHT);
+  float xx = (windowToVPRatioX * Window::worldToViewportCoords(w));
+  float yy = -(windowToVPRatioY * Window::worldToViewportCoords(h));
   float xMin = 0.0f;
   float xMax = 1.0f;
   float yMin = 0.0f;
@@ -59,46 +94,21 @@ void UIImage::setImageBuffer(
 
   float vertices[] = {
     // positions    // texture coords
-    -xx, -yy,       xMin, yMax, //bottom left
-     xx, -yy,       xMax, yMax, //bottom right
-     xx,  yy,       xMax, yMin, //top right
+    0, yy,       xMin, yMax, //bottom left
+    xx, yy,       xMax, yMax, //bottom right
+    xx,  0,       xMax, yMin, //top right
 
-     xx,  yy,       xMax, yMin, //top right
-    -xx,  yy,       xMin, yMin, //top left
-    -xx, -yy,       xMin, yMax //botom left
+    xx,  0,       xMax, yMin, //top right
+    0,  0,       xMin, yMin, //top left
+    0, yy,       xMin, yMax //botom left
   };
 
-  glBindBuffer(GL_ARRAY_BUFFER, img->VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
 
-void UIImage::renderImage(UIImage* img, float parentX, float parentY)
+void UIImage::setTexture(std::string src)
 {
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, img->textureID);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-  glBindVertexArray(img->VAO);
-
-  glm::mat4 model = glm::mat4(1.0);
-
-  const Point& projection = UICanvas::getProjection();
-
-  glm::vec3 pos(
-    (parentX * Window::getAspectRatio()) + (projection.x * (float)img->offset.x),
-    parentY + (projection.y * (float)img->offset.y),
-    0.0f
-  );
-  model = glm::translate(model, pos);
-
-  Shader& shader = Resources::getDefaultShader();
-  shader.use();
-  shader.setMat4("model", model);
-
-  glDrawArrays(GL_TRIANGLES, 0, 6);
-}
-
-void UIImage::removeImage(UIImage* img)
-{
-  glDeleteVertexArrays(1, &img->VAO);
-  glDeleteBuffers(1, &img->VBO);
+  this->src = src;
+  textureID = Resources::getTextureIDBySrc(src);
 }

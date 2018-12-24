@@ -13,6 +13,7 @@ namespace game
         UDummy();
         ~UDummy();
 
+        void onCreate();
     };
   }
 }

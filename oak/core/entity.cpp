@@ -57,12 +57,12 @@ void Entity::addRigidBody(BaseRigidBody* rigidBody)
   this->components.push_back(rigidBody);
 }
 
-void Entity::instantiate()
+void Entity::create()
 {
   Entity::pendingEntityInstances.push(this);
 }
 
-void oak::Entity::instantiate(float x, float y)
+void oak::Entity::create(float x, float y)
 {
   this->position.x = x;
   this->position.y = y;
@@ -94,11 +94,11 @@ std::string Entity::getName() const
   return name;
 }
 
-void Entity::onStart()
+void Entity::onCreate()
 {
   for (Component* comp : components)
   {
-    comp->onStart();
+    comp->onCreate();
   }
 }
 
@@ -316,7 +316,7 @@ void Entity::instantiateQueuedEnts()
   //call onStart() for all the newly added instances
   while (!temp.empty())
   {
-    temp.front()->onStart();
+    temp.front()->onCreate();
     temp.pop();
   }
 }

@@ -58,6 +58,12 @@
     <Filter Include="game\systems">
       <UniqueIdentifier>{1e4f06ae-0f6c-44bf-b47e-217f33e3d821}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game\abilitys\modifiers">
+      <UniqueIdentifier>{47991687-f42a-4fa8-8806-79b74259b515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\items">
+      <UniqueIdentifier>{f7abebd6-0cc9-4b0f-bbe6-4fd0710ebb8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oak\core\camera.cpp">
@@ -138,9 +144,6 @@
     <ClCompile Include="scenes\main_scene.cpp">
       <Filter>game\scenes</Filter>
     </ClCompile>
-    <ClCompile Include="abilitys\shoot.cpp">
-      <Filter>game\abilitys</Filter>
-    </ClCompile>
     <ClCompile Include="commands\cast_abilitys.cpp">
       <Filter>game\commands</Filter>
     </ClCompile>
@@ -161,9 +164,6 @@
     </ClCompile>
     <ClCompile Include="oak\components\animator.cpp">
       <Filter>oak\components</Filter>
-    </ClCompile>
-    <ClCompile Include="abilitys\sword_attack.cpp">
-      <Filter>game\abilitys</Filter>
     </ClCompile>
     <ClCompile Include="oak\core\shader.cpp">
       <Filter>oak\core</Filter>
@@ -234,6 +234,48 @@
     <ClCompile Include="systems\modifier.cpp">
       <Filter>game\systems</Filter>
     </ClCompile>
+    <ClCompile Include="items\item_test.cpp">
+      <Filter>game\items</Filter>
+    </ClCompile>
+    <ClCompile Include="damage.cpp">
+      <Filter>game</Filter>
+    </ClCompile>
+    <ClCompile Include="abilitys\modifiers\mod_example.cpp">
+      <Filter>game\abilitys\modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="abilitys\abil_shoot.cpp">
+      <Filter>game\abilitys</Filter>
+    </ClCompile>
+    <ClCompile Include="abilitys\abil_sword_attack.cpp">
+      <Filter>game\abilitys</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\inventory_menu.cpp">
+      <Filter>game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_node.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_div.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\tmp_inventory_item.cpp">
+      <Filter>game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\ui_component.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\style.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\style_loader.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\debug\debug_input.cpp">
+      <Filter>oak\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="oak\ui\style_parser.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="oak\core\camera.h">
@@ -249,9 +291,6 @@
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\input.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="oak\core\key_code.h">
       <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="oak\core\ray.h">
@@ -329,9 +368,6 @@
     <ClInclude Include="ability.h">
       <Filter>game</Filter>
     </ClInclude>
-    <ClInclude Include="abilitys\shoot.h">
-      <Filter>game\abilitys</Filter>
-    </ClInclude>
     <ClInclude Include="commands\cast_abiltiys.h">
       <Filter>game\commands</Filter>
     </ClInclude>
@@ -352,9 +388,6 @@
     </ClInclude>
     <ClInclude Include="oak\components\animator.h">
       <Filter>oak\components</Filter>
-    </ClInclude>
-    <ClInclude Include="abilitys\sword_attack.h">
-      <Filter>game\abilitys</Filter>
     </ClInclude>
     <ClInclude Include="oak\oak_def.h">
       <Filter>oak</Filter>
@@ -379,9 +412,6 @@
     </ClInclude>
     <ClInclude Include="events\e_damage_taken.h">
       <Filter>game\events</Filter>
-    </ClInclude>
-    <ClInclude Include="global_funcs.h">
-      <Filter>game</Filter>
     </ClInclude>
     <ClInclude Include="oak\ui\ui_def.h">
       <Filter>oak\ui</Filter>
@@ -469,6 +499,57 @@
     </ClInclude>
     <ClInclude Include="oak\core\kv_array.h">
       <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="items\item_test.h">
+      <Filter>game\items</Filter>
+    </ClInclude>
+    <ClInclude Include="damage.h">
+      <Filter>game</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitys\modifiers\modifier_def.h">
+      <Filter>game\abilitys\modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitys\modifiers\mod_example.h">
+      <Filter>game\abilitys\modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitys\abil_shoot.h">
+      <Filter>game\abilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="abilitys\abil_sword_attack.h">
+      <Filter>game\abilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\inventory_menu.h">
+      <Filter>game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_div.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\tmp_inventory_item.h">
+      <Filter>game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\key_codes.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\style.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\string_help.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\ui_point.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\style_loader.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\debug\debug_input.h">
+      <Filter>oak\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\core\fmath.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="oak\ui\style_parser.h">
+      <Filter>oak\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

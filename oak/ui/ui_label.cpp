@@ -5,67 +5,74 @@
 #include "ui_character.h"
 #include <core/window.h>
 #include "ui_canvas.h"
+#include <debug.h>
 
-using namespace oak::ui;
+using namespace ion;
 using namespace oak;
 
-UILabel* UILabel::createLabel(std::string text, ushort fontSize, ushort w, ushort h)
+UILabel::UILabel(std::string src, float fontSize) : UINode(UI_NODE_LABEL)
 {
-  UILabel* label = new UILabel();
-  label->text = text;
-  label->w = w;
-  label->h = h;
+  this->text = text;
+  //this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
+  this->fontID = Resources::getFontIDByName("arial.ttf");
 
-  label->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
-  label->fontID = Resources::getFontIDByName("arial.ttf");
+  style.set(STYLE_HEIGHT, fontSize);
+  style.set(STYLE_FONT_SIZE, fontSize);
 
-  glGenVertexArrays(1, &label->VAO);
-  glGenBuffers(1, &label->VBO);
-  glBindVertexArray(label->VAO);
-  glBindBuffer(GL_ARRAY_BUFFER, label->VBO);
+  glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &VBO);
+  glBindVertexArray(VAO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
-
-  return label;
 }
 
-void UILabel::renderLabel(UILabel* label, float parentX, float parentY)
+void UILabel::render(UIPoint& nodeCursor)
 {
+  renderBegin(nodeCursor);
+
+  scale = cstyle.attrs[STYLE_FONT_SIZE] / (float)FONT_LOADED_SIZE;
+
   Shader& shader = Resources::getShaderByName("text");
   // Activate corresponding render state	
   shader.use();
   glUniform4f(
     glGetUniformLocation(shader.getID(), "textColor"),
-    label->color.r, label->color.g, label->color.b, label->color.a
+    cstyle.color.r,
+    cstyle.color.g,
+    cstyle.color.b,
+    cstyle.color.a
   );
   glActiveTexture(GL_TEXTURE0);
-  glBindVertexArray(label->VAO);
+  glBindVertexArray(VAO);
 
   
   // Iterate through all characters
   std::string::const_iterator c;
 
-  const Point& projection = UICanvas::getProjection();
+  const UIPoint& projection = UICanvas::getProjection();
+  UIPoint parentPos = getParentPos();
 
-  float x = label->offset.x * projection.x;
-  float y = (label->offset.y - (label->scale * FONT_LOADED_SIZE))* projection.y;
+  //character cursor position
+  float chCursorX = 0.0f;
+  float chCursorY = (scale * FONT_LOADED_SIZE);
 
-  Font& font = Resources::getFontByID(label->fontID);
+  Font& font = Resources::getFontByID(fontID);
 
-  for (c = label->text.begin(); c != label->text.end(); c++)
+  for (c = text.begin(); c != text.end(); c++)
   {
     Character ch = *font.getCharacter(c);
 
-    float bearingX = ch.bearing.x * label->scale;
-    float bearingY = (ch.size.y - ch.bearing.y) * label->scale;
-    GLfloat xpos = (parentX * oak::Window::getAspectRatio()) +(x + projection.x * bearingX);
-    GLfloat ypos = parentY + (y - (projection.y * bearingY));
+    float bearingX = ch.bearing.x * scale;
+    float bearingY = (ch.size.y - ch.bearing.y) * scale;
+    GLfloat xpos = (nodeCursor.x + chCursorX + bearingX) * projection.x;
+    GLfloat ypos = (nodeCursor.y - chCursorY - bearingY) * projection.y;
 
-    GLfloat ww = ch.size.x * label->scale;
-    GLfloat hh = ch.size.y * label->scale;
+    GLfloat ww = ch.size.x * scale;
+    GLfloat hh = ch.size.y * scale;
 
     float w = projection.x * ww;
     float h = projection.y * hh;
@@ -83,17 +90,24 @@ void UILabel::renderLabel(UILabel* label, float parentX, float parentY)
     // Render glyph texture over quad
     glBindTexture(GL_TEXTURE_2D, ch.textureID);
     // Update content of VBO memory
-    glBindBuffer(GL_ARRAY_BUFFER, label->VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // Be sure to use glBufferSubData and not glBufferData
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     // Render quad
     glDrawArrays(GL_TRIANGLES, 0, 6);
     // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-    float advance = (ch.advance >> 6) * label->scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
-    x += projection.x * advance;
+    float advance = (ch.advance >> 6) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+    chCursorX += advance;
   }
 
   glBindVertexArray(0);
   glBindTexture(GL_TEXTURE_2D, 0);
+
+  UINode::renderEnd(nodeCursor);
+}
+
+void UILabel::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
+{
+
 }

@@ -12,6 +12,7 @@ namespace oak
     const static uint MAX_PLAYER_COUNT = 4; ///<summary>Maximum number of players in the game</summary>
     static BasePlayer* players[MAX_PLAYER_COUNT]; ///<summary>Array of players in the game</summary>
     static uint playerCount; ///<summary>Current player count</summary>
+    static uint localPlayerID;
 
     public :
       ///<summary>Add a Player</summary>
@@ -22,6 +23,8 @@ namespace oak
 
       ///<summary>Get a Player by index</summary>
       static BasePlayer& getPlayerByIndex(uint index);
+
+      static BasePlayer* getLocalPlayer();
 
       ///<summary>Execute all Players input Commands</summary>
       static void executeAllCommands();

@@ -5,7 +5,7 @@
 #include "../oak_def.h"
 #include "ui_def.h"
 
-using namespace oak::ui;
+using namespace ion;
 
 uchar Font::idCounter = 0;
 
@@ -24,7 +24,6 @@ Font::Font(std::string name, FT_Library& freetype)
   }
   else
   {
-    LOG << "Font loaded";
     initChars(freetype, this);
   }
 }
@@ -105,4 +104,13 @@ void Font::initChars(FT_Library& ft, Font* font)
   // Destroy FreeType once we're finished
   FT_Done_Face(font->face);
   FT_Done_FreeType(ft);
+}
+
+Character* Font::getCharacter(GLchar glChar)
+{
+  if (characters.find(glChar) != characters.end())
+  {
+    return characters[glChar];
+  }
+  return nullptr;
 }

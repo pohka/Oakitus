@@ -17,37 +17,44 @@
 #include "ui_character.h"
 #include "ui_node.h"
 #include "ui_component.h"
-#include <core/point.h>
+#include "style.h"
+#include "ui_point.h"
 
-
-
-namespace oak
+namespace ion
 {
-  namespace ui
+  ///container for all of the ui
+  class UICanvas
   {
-    ///container for all of the ui
-    class UICanvas
-    {
-      public:
-        friend class oak::Window;
-        ///called when the window is resized
-        static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
-        ///renders all the components
-        static void render();
-        ///Projection from pixel units to viewport coords to window coords
-        static const oak::Point& getProjection(); 
-        ///add a ui component
-        static void addComponent(ushort id, UIComponent* component);
-        ///returns a component by id
-        static UIComponent* getComponent(ushort id);
+    public:
+      friend class StyleLoader;
+
+      friend class oak::Window;
+      ///called when the window is resized
+      static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
+      ///renders all the components
+      static void render();
+      ///Projection from pixel units to viewport coords to window coords
+      static const UIPoint& getProjection();
+      ///add a ui component
+      static void addComponent(ushort id, UIComponent* component);
+      ///returns a component by id
+      static UIComponent* getComponent(ushort id);
+
+      //find a style by selector, nullptr returned if not found
+      static Style* findStyle(std::string selector);
+
+      //add a style, note: state styles will be deleted if the selector is not parsed correctly
+      static void addStyle(Style* style);
+
+      static UINode* focusedNode;
 
     private:
-        static oak::Point projection; //current projection
-        static std::map<ushort, UIComponent*> components; //all if the existing components
-    };
-
-    
-  }
+      static void deleteAllStyles();
+      static UIPoint projection; //current projection
+      static std::map<ushort, UIComponent*> components; //all if the existing components
+      static std::vector<Style*> styles;
+      
+  };
 }
 
 #endif

@@ -27,22 +27,27 @@ namespace game
     public:
       Ability();
       virtual ~Ability() = default;
-      Unit* caster;
+      void init(Unit* owner);
+
       void castOnTarget(Unit& unit);
       void castOnPoint(glm::vec2 point);
       void castNoTarget();
+      Unit* getOwner();
 
       uchar getCastState() const;
       uchar getTargetType() const;
-      uint getID() const;
+      uint getAbilityID() const;
       float getStartTime() const;
       float getEndTime() const;
 
       virtual void onCast(); //when casting was successfully requested
       virtual void onAbilityStart(); //when the precast ends
       virtual void onAbilityEnd(); //when the cast time ends
+      virtual void onOwnerDeath();
 
       void setCastState(uchar state);
+
+      int getManaCost();
 
     protected:
       Target target;
@@ -51,6 +56,8 @@ namespace game
       uchar castState = 0;
       uchar targetType = 0;
       uchar targetTeam = 0;
+      int manaCost = 0;
+      Unit* owner;
       
     private:
       void beginCasting();

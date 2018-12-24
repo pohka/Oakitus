@@ -16,6 +16,7 @@
 #include "../oak_def.h"
 #include "../fallback.h"
 #include "../ui/ui_canvas.h"
+#include "../debug/debug_input.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -64,6 +65,7 @@ int Oakitus::loop()
   {
     Time::update();
     Input::processInput(window);
+    debug::DebugInput::process();
 
     glClearColor(0.1f, 0.25f, 0.45f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -76,7 +78,7 @@ int Oakitus::loop()
     Entity::lateUpdateInstances();
     Entity::drawInstances();
     Entity::debugDrawInstances();
-    ui::UICanvas::render();
+    ion::UICanvas::render();
 
 
     

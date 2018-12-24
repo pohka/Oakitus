@@ -1,6 +1,6 @@
 #include "localization.h"
 
-using namespace oak::ui;
+using namespace ion;
 
 std::map<uint, std::string> Localization::strings;
 

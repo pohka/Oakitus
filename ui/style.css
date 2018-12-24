@@ -1,0 +1,21 @@
+.inv-item
+{
+  height:30px;
+  margin:4px 20px;
+}
+
+.inv-item-text
+{
+  color: #0f0;
+  width: 200px;
+}
+
+.inv-item-text:hover
+{
+  color: #00f;
+}
+
+.inv-item-text:focus
+{
+  color: #fff;
+}

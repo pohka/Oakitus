@@ -3,44 +3,51 @@
 
 #include <core/types.h>
 #include "../game_def.h"
-#include <unordered_map>
 #include "modifier.h"
 #include "../strings_def.h"
 
 namespace game
 {
-  class Item
+  struct Item
   {
-    uint itemID;
+    //quality
+    uchar quality = ITEM_QUALITY_COMMON;
 
-    public:
-      //quality
-      uchar quality = ITEM_QUALITY_COMMON;
+    //price
+    int price = 0;
 
-      //price
-      int price = 0;
+    //player can sell the item
+    bool isSellable = true;
 
-      //player can sell the item
-      bool isSellable = true;
+    //player can destroy the item
+    bool isDestroyable = true;
 
-      //player can destroy the item
-      bool isDestroyable = true;
+    //stacks in inventroy UI, must be possible to have multiple instances of the same item in the inventory
+    bool isStackable = false; 
 
-      //stacks in inventroy UI, must be possible to have multiple instances of the same item in the inventory
-      bool isStackable = false; 
+    
 
-      //item slot
-      uchar slot = ITEM_SLOT_NONE;
+    //item slot
+    uchar slot = ITEM_SLOT_NONE;
 
-      //name string id
-      uint nameSID;
+    //name string id
+    uint nameSID;
 
-      //modifiers
-      std::vector<ModifierData> modifiers;
 
-      Item();
-      ~Item();
-      uint getItemID();
+    uint getItemID();
+
+    uint ownerID;
+
+    std::string name;
+
+    virtual void onEquip() = 0;
+    virtual void onUnEquip() = 0;
+
+    bool isEquiped = false;
+
+    private:
+      uint itemID;
+      
   };
 }
 

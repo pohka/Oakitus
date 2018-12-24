@@ -27,19 +27,19 @@ void Movement::execute()
   float axisX = 0.0f;
   float axisY = 0.0f;
 
-  if (Input::isKeyPressed(KeyCode::W))
+  if (Input::isKeyPressed(KEYCODE_W))
   {
     axisY += 1.0f;
   }
-  if (Input::isKeyPressed(KeyCode::S))
+  if (Input::isKeyPressed(KEYCODE_S))
   {
     axisY -= 1.0f;
   }
-  if (Input::isKeyPressed(KeyCode::A))
+  if (Input::isKeyPressed(KEYCODE_A))
   {
     axisX -= 1.0f;
   }
-  if (Input::isKeyPressed(KeyCode::D))
+  if (Input::isKeyPressed(KEYCODE_D))
   {
     axisX += 1.0f;
   }
@@ -58,12 +58,10 @@ void Movement::execute()
     if (axisX > 0.0f && unit->getAnimDirection() != ANIM_DIRECTION_RIGHT)
     {
       unit->setAnimDirection(ANIM_DIRECTION_RIGHT);
-      LOG << "DIRECTION RIGHT";
     }
     else if (axisX < 0.0f && unit->getAnimDirection() != ANIM_DIRECTION_LEFT)
     {
       unit->setAnimDirection(ANIM_DIRECTION_LEFT);
-      LOG << "DIRECTION LEFT";
     }
 
     unit->setAnimation(ANIM_TYPE_RUN);

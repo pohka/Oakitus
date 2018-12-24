@@ -149,7 +149,7 @@ void Window::framebuffer_size_callback(GLFWwindow* window, int width, int height
   //windowToVPRatioY = (float)Window::viewportH / (float)Window::windowH;
   // make sure the viewport matches the new window dimensions; note that width and 
   // height will be significantly larger than specified on retina displays.
-  ui::UICanvas::onWindowResize(windowToVPRatioX, windowToVPRatioY);
+  ion::UICanvas::onWindowResize(windowToVPRatioX, windowToVPRatioY);
 
 
   glViewport(0, 0, width, height);
@@ -173,4 +173,17 @@ void Window::updateWindowToVPRatio()
 glm::mat4& Window::getProjectionMatrix()
 {
   return projectionMatrix;
+}
+
+glm::vec2 Window::getWindowUnitToPixel()
+{
+  return glm::vec2(
+    windowW * 0.5f,
+    windowH * 0.5f
+  );
+}
+
+void Window::close()
+{
+  glfwSetWindowShouldClose(window, true);
 }

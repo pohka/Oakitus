@@ -4,53 +4,64 @@
 #include "../game_def.h"
 #include <unordered_map>
 
+#include "../abilitys/modifiers/modifier_def.h"
+
 namespace game
 {
-  //data
-  struct ModifierData
-  {
-    uint modifierID;
-    bool isPassive= true; //if true, duration is ignored
-    bool isHidden = true; //shows in the modifier ui
-    bool isDebuff = false;
-    bool isStackable = false;
-    uchar maxStacks = 1;
-    float duration = 0.0f;
-    std::unordered_map<uchar, int> properties;
+  class Unit;
 
-    void addProperty(uchar propertyID, int value)
-    {
-      properties.insert(std::pair<uchar, int>(propertyID, value));
-    }
+  //struct for tracking modifier ticks
+  struct ModifierTicker
+  {
+    float interval;
+    float nextTickTime;
+    bool isTicking = false;
   };
 
   //instance
-  class Modifier
+  struct Modifier
   {
-    uint modifierID;
-    float startTime;
-    float endTime;
-    float duration;
+    Modifier(ushort id);
+    void init(Unit* owner, uint casterID);
 
-    public:
-      bool isPassive; //if true, duration is ignored
-      bool isHidden; //shows in the modifier ui
-      bool isStackable;
-      bool isDebuff;
-      uchar stackCount;
-      uchar maxStacks;
+    bool destroyOnExpire = true;
+    bool isHidden = false; //shows in the modifier ui
+    bool isStackable = false;
+    bool isDebuff = true;
+    uchar stackCount = 1;
+    uchar maxStacks = 1;
+    float duration = 0.0f;
+    uchar elementType = ELEMENT_NORMAL;
 
-      std::unordered_map<uchar, int> properties;
-      
-      Modifier(ModifierData& data);
-      ~Modifier();
+    std::unordered_map<uchar, int> props;
+    uint casterID;
 
-      void addProperty(uchar propertyID, int value);
+    void setProp(uchar propertyID, int value);
+    uint getModifierID();
+    void refresh();
 
-      uint getModifierID();
-      bool getIsPassive();
-      bool getIsHidden();
-      bool getIsDebuff();
+    //call onDestroy() and remove this modifier from its owner
+    void destroy();
+    
+
+    //events
+    virtual void onCreated() = 0;
+    void onUpdate();
+    virtual void onDestroy() = 0;
+    virtual void onDeath() = 0;
+    virtual void onRefresh() = 0;
+    virtual void onIntervalTick();
+    float getEndTime();
+
+    protected:
+      Unit* owner;
+      void startTicker(float interval);
+
+    private:
+      ushort modifierID;
+      float startTime;
+      float endTime;
+      ModifierTicker ticker;
   };
 }
 

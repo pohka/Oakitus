@@ -129,12 +129,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ability.cpp" />
-    <ClCompile Include="abilitys\shoot.cpp" />
-    <ClCompile Include="abilitys\sword_attack.cpp" />
+    <ClCompile Include="abilitys\modifiers\mod_example.cpp" />
+    <ClCompile Include="abilitys\abil_shoot.cpp" />
+    <ClCompile Include="abilitys\abil_sword_attack.cpp" />
     <ClCompile Include="commands\cast_abilitys.cpp" />
     <ClCompile Include="commands\movement.cpp" />
+    <ClCompile Include="damage.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="inventory.cpp" />
+    <ClCompile Include="items\item_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="oak\collision\base_collision_shape.cpp" />
     <ClCompile Include="oak\collision\collision.cpp" />
@@ -162,15 +165,22 @@
     <ClCompile Include="oak\core\scene.cpp" />
     <ClCompile Include="oak\core\texture.cpp" />
     <ClCompile Include="oak\core\time.cpp" />
+    <ClCompile Include="oak\debug\debug_input.cpp" />
     <ClCompile Include="oak\debug\logger.cpp" />
     <ClCompile Include="oak\event\event_manager.cpp" />
     <ClCompile Include="oak\fallback.cpp" />
     <ClCompile Include="oak\oak_setup.h" />
     <ClCompile Include="oak\ui\font.cpp" />
     <ClCompile Include="oak\ui\localization.cpp" />
+    <ClCompile Include="oak\ui\style.cpp" />
+    <ClCompile Include="oak\ui\style_loader.cpp" />
+    <ClCompile Include="oak\ui\style_parser.cpp" />
     <ClCompile Include="oak\ui\ui_canvas.cpp" />
+    <ClCompile Include="oak\ui\ui_component.cpp" />
     <ClCompile Include="oak\ui\ui_image.cpp" />
     <ClCompile Include="oak\ui\ui_label.cpp" />
+    <ClCompile Include="oak\ui\ui_div.cpp" />
+    <ClCompile Include="oak\ui\ui_node.cpp" />
     <ClCompile Include="oak\xml\xml_node.cpp" />
     <ClCompile Include="oak\xml\xml_parser.cpp" />
     <ClCompile Include="player.cpp" />
@@ -185,20 +195,25 @@
     <ClCompile Include="systems\item.cpp" />
     <ClCompile Include="systems\modifier.cpp" />
     <ClCompile Include="ui\action_panel.cpp" />
+    <ClCompile Include="ui\inventory_menu.cpp" />
+    <ClCompile Include="ui\tmp_inventory_item.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ability.h" />
-    <ClInclude Include="abilitys\shoot.h" />
-    <ClInclude Include="abilitys\sword_attack.h" />
+    <ClInclude Include="abilitys\modifiers\modifier_def.h" />
+    <ClInclude Include="abilitys\modifiers\mod_example.h" />
+    <ClInclude Include="abilitys\abil_shoot.h" />
+    <ClInclude Include="abilitys\abil_sword_attack.h" />
     <ClInclude Include="commands\cast_abiltiys.h" />
     <ClInclude Include="commands\movement.h" />
+    <ClInclude Include="damage.h" />
     <ClInclude Include="events\damage_data.h" />
     <ClInclude Include="events\e_damage_taken.h" />
     <ClInclude Include="events\e_death.h" />
     <ClInclude Include="game_def.h" />
-    <ClInclude Include="global_funcs.h" />
     <ClInclude Include="inventory.h" />
+    <ClInclude Include="items\item_test.h" />
     <ClInclude Include="oak\collision\base_collision_shape.h" />
     <ClInclude Include="oak\collision\collision.h" />
     <ClInclude Include="oak\collision\collision_circle.h" />
@@ -214,16 +229,18 @@
     <ClInclude Include="oak\core\command.h" />
     <ClInclude Include="oak\core\component.h" />
     <ClInclude Include="oak\core\entity.h" />
+    <ClInclude Include="oak\core\fmath.h" />
     <ClInclude Include="oak\core\kv_array.h" />
     <ClInclude Include="oak\core\oakitus.h" />
     <ClInclude Include="oak\core\base_player.h" />
     <ClInclude Include="oak\core\player_resource.h" />
     <ClInclude Include="oak\core\point.h" />
+    <ClInclude Include="oak\core\string_help.h" />
     <ClInclude Include="oak\core\window.h" />
     <ClInclude Include="oak\core\id_generator.h" />
     <ClInclude Include="oak\core\input.h" />
     <ClInclude Include="oak\core\key_buffer.h" />
-    <ClInclude Include="oak\core\key_code.h" />
+    <ClInclude Include="oak\core\key_codes.h" />
     <ClInclude Include="oak\core\ray.h" />
     <ClInclude Include="oak\core\resources.h" />
     <ClInclude Include="oak\core\scene.h" />
@@ -233,6 +250,7 @@
     <ClInclude Include="oak\core\time.h" />
     <ClInclude Include="oak\core\types.h" />
     <ClInclude Include="oak\debug.h" />
+    <ClInclude Include="oak\debug\debug_input.h" />
     <ClInclude Include="oak\debug\logger.h" />
     <ClInclude Include="oak\event\event.h" />
     <ClInclude Include="oak\event\event_manager.h" />
@@ -242,6 +260,9 @@
     <ClInclude Include="oak\ui\color.h" />
     <ClInclude Include="oak\ui\font.h" />
     <ClInclude Include="oak\ui\localization.h" />
+    <ClInclude Include="oak\ui\style.h" />
+    <ClInclude Include="oak\ui\style_loader.h" />
+    <ClInclude Include="oak\ui\style_parser.h" />
     <ClInclude Include="oak\ui\ui.h" />
     <ClInclude Include="oak\ui\ui_canvas.h" />
     <ClInclude Include="oak\ui\ui_character.h" />
@@ -249,7 +270,9 @@
     <ClInclude Include="oak\ui\ui_def.h" />
     <ClInclude Include="oak\ui\ui_image.h" />
     <ClInclude Include="oak\ui\ui_label.h" />
+    <ClInclude Include="oak\ui\ui_div.h" />
     <ClInclude Include="oak\ui\ui_node.h" />
+    <ClInclude Include="oak\ui\ui_point.h" />
     <ClInclude Include="oak\xml\xml_node.h" />
     <ClInclude Include="oak\xml\xml_parser.h" />
     <ClInclude Include="player.h" />
@@ -265,6 +288,8 @@
     <ClInclude Include="systems\item.h" />
     <ClInclude Include="systems\modifier.h" />
     <ClInclude Include="ui\action_panel.h" />
+    <ClInclude Include="ui\inventory_menu.h" />
+    <ClInclude Include="ui\tmp_inventory_item.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>

@@ -31,9 +31,9 @@ ProjectileLinear::ProjectileLinear(glm::vec2 targetPos,
   this->maxDistance = maxDistance;
 }
 
-void ProjectileLinear::onStart()
+void ProjectileLinear::onCreate()
 {
-  Entity::onStart();
+  Entity::onCreate();
   spawnOrigin = glm::vec2(position.x, position.y);
   velocity = glm::normalize(targetPos - spawnOrigin) * speed;
 

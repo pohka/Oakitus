@@ -2,7 +2,7 @@
 #include <oak.h>
 #include "../ability.h"
 #include <debug.h>
-#include "../global_funcs.h"
+#include "../damage.h"
 
 
 using namespace game::prefab;
@@ -64,5 +64,5 @@ void Projectile::onCollisionHit(Entity& hit)
 void Projectile::onProjectileHit(Unit& unitHit)
 {
   damage.victimID = unitHit.getID();
-  applyDamage(damage);
+  Damage::apply(damage);
 }

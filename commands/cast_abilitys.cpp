@@ -22,21 +22,22 @@ CastAbilitys::~CastAbilitys()
 
 void CastAbilitys::execute()
 {
-  if (Input::isKeyDown(KeyCode::Q))
+  if (Input::isKeyDown(KEYCODE_Q))
+ // if(Input::isMouseButtonDown(MOUSE_BUTTON_LEFT))
   {
     beginCast(0);
   }
 
-  if (Input::isKeyDown(KeyCode::E))
+  if (Input::isKeyDown(KEYCODE_E))
   {
     beginCast(1);
   }
 
-  if (Input::isKeyDown(KeyCode::SPACE))
+  if (Input::isKeyDown(KEYCODE_SPACE))
   {
     beginCast(2);
   }
-  if (Input::isKeyDown(KeyCode::R))
+  if (Input::isKeyDown(KEYCODE_R))
   {
     beginCast(3);
   }
