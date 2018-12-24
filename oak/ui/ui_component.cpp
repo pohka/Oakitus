@@ -45,3 +45,23 @@ void UIComponent::recomputeStyle()
     nodes[i]->computeStyle();
   }
 }
+
+UINode* UIComponent::findNodeByID(std::string id)
+{
+  for (uint i = 0; i < nodes.size(); i++)
+  {
+    if (nodes[i]->id == id)
+    {
+      return nodes[i];
+    }
+    else
+    {
+      UINode* node = nodes[i]->findNodeByID(id);
+      if (node != nullptr)
+      {
+        return node;
+      }
+    }
+  }
+  return nullptr;
+}

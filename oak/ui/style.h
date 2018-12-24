@@ -18,12 +18,12 @@ namespace ion
 
     //constructor that is used with StyleLoader
     Style(
-      std::vector<std::string>& classList, 
+      std::vector<std::string>& selectors, 
       std::unordered_map<std::string, std::string>& attrs
     );
 
     //style attributes
-    std::vector<std::string> classList;
+    std::vector<std::string> selectors;
     std::unordered_map<uchar, float> attrs;
     uchar position = UI_POSITION_RELATIVE;
     Color color = COLOR_NULL;

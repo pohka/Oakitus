@@ -71,9 +71,9 @@ Style* UICanvas::findStyle(std::string cls)
 {
   for (Style* style : styles)
   {
-    for (uint i = 0; i < style->classList.size(); i++)
+    for (uint i = 0; i < style->selectors.size(); i++)
     {
-      if (style->classList[i] == cls)
+      if (style->selectors[i] == cls)
       {
         return style;
       }

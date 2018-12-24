@@ -215,12 +215,12 @@ void UINode::renderBegin(UIPoint& nodeCursor)
 
 void UINode::addClass(std::string cssClass)
 {
-  cstyle->classList.push_back(cssClass);
+  classList.push_back(cssClass);
 }
 
 void UINode::computeStyle()
 {
-  for (std::string cls : cstyle->classList)
+  for (std::string cls : classList)
   {
     if (cls.size() > 0)
     {
@@ -289,5 +289,37 @@ void UINode::app(float& val, uchar key)
   if (cVal != STYLE_VAL_AUTO)
   {
     val += cVal;
+  }
+}
+
+UINode* UINode::findNodeByID(std::string id)
+{
+  for (uint i = 0; i < children.size(); i++)
+  {
+    if (children[i]->id == id)
+    {
+      return children[i];
+    }
+    else
+    {
+      UINode* node = children[i]->findNodeByID(id);
+      if (node != nullptr)
+      {
+        return node;
+      }
+    }
+  }
+  return nullptr;
+}
+
+void UINode::removeClass(std::string cssClass)
+{;
+  for (uint i = 0; i < classList.size(); i++)
+  {
+    if (classList[i] == cssClass)
+    {
+      classList.erase(classList.begin() + i);
+      return;
+    }
   }
 }

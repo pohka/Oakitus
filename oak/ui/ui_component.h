@@ -33,6 +33,9 @@ namespace ion
 
     void recomputeStyle();
 
+  protected:
+    UINode* findNodeByID(std::string id);
+
     private:
       std::vector<UINode*> nodes;
   };

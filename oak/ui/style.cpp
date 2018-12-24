@@ -8,19 +8,19 @@ using namespace ion;
 
 Style::Style(std::string className)
 {
-  oak::StringHelp::split(className, classList, ' ');
+  oak::StringHelp::split(className, selectors, ' ');
   attrs.insert_or_assign(STYLE_WIDTH, STYLE_VAL_AUTO);
   attrs.insert_or_assign(STYLE_HEIGHT, STYLE_VAL_AUTO);
 }
 
 Style::Style(
-  std::vector<std::string>& classList,
+  std::vector<std::string>& selectors,
   std::unordered_map<std::string, std::string>& attrs
 )
 {
-  for (std::string cls : classList)
+  for (std::string cls : selectors)
   {
-    this->classList.push_back(cls);
+    this->selectors.push_back(cls);
   }
   for (auto it = attrs.begin(); it != attrs.end(); it++)
   {
@@ -206,7 +206,7 @@ void Style::setNum(const std::string& key, const std::string& val, cnum STYLE_KE
   bool isValidNumber = StyleParser::parseNumber(val, num);
   if (!isValidNumber)
   {
-    LOG << "---STYLE ERROR---| '." << classList[0] <<
+    LOG << "---STYLE ERROR---| '." << selectors[0] <<
       "' invalid attribute: " << key << ":" << val << ";";
     return;
   }

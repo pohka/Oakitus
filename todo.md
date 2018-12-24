@@ -2,8 +2,6 @@
 
 items and modifiers:
 * UI for inventory (to unequip items)
-  * click node
-  * hover node
   * .myclass.active
   * .myclass:hover
   * inherting styles

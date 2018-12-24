@@ -46,6 +46,7 @@ namespace ion
     UIPoint& getParentPos();
 
     void addClass(std::string cssClass);
+    void removeClass(std::string cssClass);
     void computeStyle();
      
     bool isFocused = false;
@@ -59,6 +60,8 @@ namespace ion
     Style* style; //inline css
 
     float getTotalH();
+
+    UINode* findNodeByID(std::string id);
 
   protected:
     UINode* parent = nullptr;
@@ -75,6 +78,7 @@ namespace ion
     void renderBegin(UIPoint& nodeCursor);
     void renderEnd(UIPoint& nodeCursor);
       
+    
 
 
   private:

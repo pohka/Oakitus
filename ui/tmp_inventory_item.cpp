@@ -16,6 +16,7 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
   UILabel* label = new UILabel(item->name, 20.0f);
   label->style->setMargin(30.0f, 4.0f);
   label->addClass("inv-item-text");
+  label->id = "inv-item-text";
   addChild(label);
   
 
@@ -38,17 +39,23 @@ void tmp_InventoryItem::update(Item* item)
 
 void tmp_InventoryItem::onItemFocus(UINode* node)
 {
-  UILabel* label = static_cast<UILabel*>(node->children[0]);
-  label->style->color = COLOR_RED;
-  label->computeStyle();
+  UINode* textNode = node->findNodeByID("inv-item-text");
+  if (textNode != nullptr)
+  {
+    textNode->addClass("inv-item-text-hover");
+    textNode->computeStyle();
+  }
 }
 
 
 void tmp_InventoryItem::onItemUnFocus(UINode* node)
 {
-  UILabel* label = static_cast<UILabel*>(node->children[0]);
-  label->style->color = COLOR_WHITE;
-  label->computeStyle();
+  UINode* textNode = node->findNodeByID("inv-item-text");
+  if (textNode != nullptr)
+  {
+    textNode->removeClass("inv-item-text-hover");
+    textNode->computeStyle();
+  }
 }
 
 void tmp_InventoryItem::onItemClick(UINode* node)
