@@ -14,6 +14,7 @@ namespace game
     void update(Item* item);
     static void onItemFocus(UINode* node);
     static void onItemUnFocus(UINode* node);
+    static void onItemClick(UINode* node);
   };
 }
 

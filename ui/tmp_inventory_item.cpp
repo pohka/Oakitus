@@ -11,6 +11,7 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
   this->addClass("inv-item");
   this->onFocus = tmp_InventoryItem::onItemFocus;
   this->onUnFocus = tmp_InventoryItem::onItemUnFocus;
+  this->onClick = tmp_InventoryItem::onItemClick;
 
   UILabel* label = new UILabel(item->name, 20.0f);
   label->style->setMargin(30.0f, 4.0f);
@@ -49,3 +50,11 @@ void tmp_InventoryItem::onItemUnFocus(UINode* node)
   label->style->color = COLOR_WHITE;
   label->computeStyle();
 }
+
+void tmp_InventoryItem::onItemClick(UINode* node)
+{
+  UILabel* label = static_cast<UILabel*>(node->children[0]);
+  label->style->color = COLOR_BLACK;
+  label->computeStyle();
+}
+

@@ -3,6 +3,7 @@
 #include "ui_canvas.h"
 #include <core/input.h>
 #include <debug.h>
+#include <core/key_codes.h>
 
 using namespace ion;
 
@@ -147,30 +148,37 @@ void UINode::renderEnd(UIPoint& nodeCursor)
 
     float xx = (oak::Input::mousePos.x - oak::Window::getWidth() / 2.0f) / oak::Window::getWindowToVPRatio().x;
     float yy = (oak::Input::mousePos.y - oak::Window::getHeight() / 2.0f) / oak::Window::getWindowToVPRatio().y;
-
-    if (onFocus != nullptr)
-    {
-     // LOG << "rect:" << rect.x << "," << rect.y << "," << rect.w << "," << rect.h;
-     // LOG << "mouse:" << xx << "," << yy;
-    }
-
     
+    //update isFocused state
     if (rect.containsPt(xx, yy))
     {
-      if (!isFocused && onFocus != nullptr)
+      if (!isFocused)
       {
-        onFocus(this);
+        if (onFocus != nullptr)
+        {
+          onFocus(this);
+        }
+        isFocused = true;
       }
-      isFocused = true;
     }
-    else
+    //if point is not in rect and was previously focused
+    else if (isFocused)
     {
-      if (isFocused && onUnFocus != nullptr)
+      if (onUnFocus != nullptr)
       {
         onUnFocus(this);
       }
       isFocused = false;
     }
+  }
+
+  if (
+    isFocused && 
+    onClick != nullptr &&
+    oak::Input::isMouseButtonDown(oak::MOUSE_BUTTON_LEFT) 
+    )
+  {
+    onClick(this);
   }
 
 

@@ -50,9 +50,8 @@ namespace ion
      
     bool isFocused = false;
 
-    //void update();
 
-    //void(*onClick)(UINode*) = nullptr;
+    void(*onClick)(UINode*) = nullptr;
     void (*onFocus)(UINode*) = nullptr;
     void (*onUnFocus)(UINode*) = nullptr;
       
