@@ -46,11 +46,14 @@ namespace ion
       //add a style, note: state styles will be deleted if the selector is not parsed correctly
       static void addStyle(Style* style);
 
+      static UINode* focusedNode;
+
     private:
       static void deleteAllStyles();
       static UIPoint projection; //current projection
       static std::map<ushort, UIComponent*> components; //all if the existing components
       static std::vector<Style*> styles;
+      
   };
 }
 

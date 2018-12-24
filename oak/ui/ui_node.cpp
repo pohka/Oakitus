@@ -177,11 +177,36 @@ void UINode::renderEnd(UIPoint& nodeCursor)
 
   if (
     state == STYLE_STATE_HOVER &&
-    onClick != nullptr &&
     oak::Input::isMouseButtonDown(oak::MOUSE_BUTTON_LEFT) 
     )
   {
-    onClick(this);
+    if (onClick != nullptr)
+    {
+      onClick(this);
+    }
+
+    if (isFocusable)
+    {
+      //focus out current focusedNode
+      if(UICanvas::focusedNode != nullptr)
+      {
+        UICanvas::focusedNode->state = STYLE_STATE_NONE;
+        if (UICanvas::focusedNode->onFocusOut != nullptr)
+        {
+          UICanvas::focusedNode->onFocusOut(UICanvas::focusedNode);
+        }
+        UICanvas::focusedNode->computeStyle();
+      }
+
+      //focus in this node
+      state = STYLE_STATE_FOCUS;
+      UICanvas::focusedNode = this;
+      if (onFocus != nullptr)
+      {
+        onFocus(this);
+      }
+      hasStateChanged = true;
+    }
   }
 
 

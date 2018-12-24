@@ -14,3 +14,8 @@
 {
   color: #f00;
 }
+
+.inv-item-text:focus
+{
+  color: #000;
+}

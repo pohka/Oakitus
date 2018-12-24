@@ -9,14 +9,17 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
   style->set(STYLE_WIDTH, 200.0f);
   this->addClass("inv-item");
-  this->onMouseOver = tmp_InventoryItem::onItemFocus;
-  this->onMouseLeave = tmp_InventoryItem::onItemUnFocus;
+  //this->onFocus = tmp_InventoryItem::onItemFocus;
+  //this->onFocusOut = tmp_InventoryItem::onItemUnFocus;
   this->onClick = tmp_InventoryItem::onItemClick;
 
   UILabel* label = new UILabel(item->name, 20.0f);
   label->style->setMargin(30.0f, 4.0f);
   label->addClass("inv-item-text");
   label->id = "inv-item-text";
+  label->isFocusable = true;
+  label->onFocus = tmp_InventoryItem::onItemFocus;
+  label->onFocusOut = tmp_InventoryItem::onItemUnFocus;
   addChild(label);
   
 
@@ -46,6 +49,7 @@ void tmp_InventoryItem::onItemFocus(UINode* node)
     //textNode->computeStyle();
     //textNode->computeStyle();
   }
+  LOG << "focus in";
 }
 
 
@@ -57,12 +61,14 @@ void tmp_InventoryItem::onItemUnFocus(UINode* node)
     //textNode->state = STYLE_STATE_NONE;
     //textNode->computeStyle();
   }
+  LOG << "focus out";
 }
 
 void tmp_InventoryItem::onItemClick(UINode* node)
 {
-  UILabel* label = static_cast<UILabel*>(node->children[0]);
-  label->style->color = COLOR_BLACK;
-  label->computeStyle();
+  LOG << "CLICKED";
+ //UILabel* label = static_cast<UILabel*>(node->children[0]);
+  //label->style->color = COLOR_BLACK;
+  //label->computeStyle();
 }
 

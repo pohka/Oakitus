@@ -18,6 +18,7 @@ std::map<ushort, UIComponent*> UICanvas::components;
 UIPoint UICanvas::projection = { 0,0 };
 std::map<uint, std::string> strings;
 std::vector<Style*> UICanvas::styles;
+UINode* UICanvas::focusedNode = nullptr;
 
 void UICanvas::render()
 {

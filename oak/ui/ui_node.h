@@ -51,10 +51,13 @@ namespace ion
      
 
     uchar state = STYLE_STATE_NONE;
+    bool isFocusable = false;
 
     void(*onClick)(UINode*) = nullptr;
     void (*onMouseOver)(UINode*) = nullptr;
     void (*onMouseLeave)(UINode*) = nullptr;
+    void (*onFocus)(UINode*) = nullptr;
+    void (*onFocusOut)(UINode*) = nullptr;
       
     std::vector<UINode*> children;
     Style* style; //inline css
