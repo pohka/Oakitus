@@ -7,14 +7,14 @@ using namespace ion;
 
 tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
-  style->set(STYLE_WIDTH, 200.0f);
+  style.set(STYLE_WIDTH, 200.0f);
   this->addClass("inv-item");
   //this->onFocus = tmp_InventoryItem::onItemFocus;
   //this->onFocusOut = tmp_InventoryItem::onItemUnFocus;
   this->onClick = tmp_InventoryItem::onItemClick;
 
   UILabel* label = new UILabel(item->name, 20.0f);
-  label->style->setMargin(30.0f, 4.0f);
+  label->style.setMargin(30.0f, 4.0f);
   label->addClass("inv-item-text");
   label->id = "inv-item-text";
   label->isFocusable = true;
@@ -24,7 +24,7 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
   
 
   UIImage* equipedIcon = new UIImage("default.png", 16, 16);
-  equipedIcon->style->set(STYLE_MARGIN_TOP, -20.0f);
+  equipedIcon->style.set(STYLE_MARGIN_TOP, -20.0f);
   equipedIcon->positionType = UI_POSITION_ABSOLUTE;
   addChild(equipedIcon);
 }

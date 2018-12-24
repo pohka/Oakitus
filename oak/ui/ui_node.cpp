@@ -10,8 +10,6 @@ using namespace ion;
 UINode::UINode(const uchar nodeType)
 {
   this->nodeType = nodeType;
-  cstyle = new Style("");
-  style = new Style("self");
 }
 
 UINode::~UINode()
@@ -21,9 +19,6 @@ UINode::~UINode()
     delete children[i];
   }
   children.clear();
-
-  delete cstyle;
-  delete style;
 }
 
 void UINode::setComponent(UIComponent* component)
@@ -82,7 +77,7 @@ void UINode::renderEnd(UIPoint& nodeCursor)
   app(totalW, STYLE_MARGIN_LEFT);
   app(totalW, STYLE_MARGIN_RIGHT);
 
-  float width = cstyle->get(STYLE_WIDTH);
+  float width = cstyle.get(STYLE_WIDTH);
   if (width != STYLE_VAL_AUTO)
   {
     totalW += width;
@@ -96,7 +91,7 @@ void UINode::renderEnd(UIPoint& nodeCursor)
   UIPoint childrenTotalSize = {};
 
   //calculate total height if automatic height
-  float height = cstyle->get(STYLE_HEIGHT);
+  float height = cstyle.get(STYLE_HEIGHT);
   if (height == STYLE_VAL_AUTO)
   {
     for (auto node : children)
@@ -282,18 +277,19 @@ void UINode::computeStyle()
     }
   }
 
-  mutateComputedStyle(style); //inline style
+  mutateComputedStyle(&style); //inline style
+
   //set to default font size if font is auto
-  float fontSize = cstyle->get(STYLE_FONT_SIZE);
+  float fontSize = cstyle.get(STYLE_FONT_SIZE);
   if (fontSize == STYLE_VAL_AUTO)
   {
-    cstyle->set(STYLE_FONT_SIZE, STYLE_DEFAULT_FONT_SIZE);
+    cstyle.set(STYLE_FONT_SIZE, STYLE_DEFAULT_FONT_SIZE);
   }
 
   //use default font color if not set
-  if (cstyle->color == COLOR_NULL)
+  if (cstyle.color == COLOR_NULL)
   {
-    cstyle->color = COLOR_DEFAULT_FONT;
+    cstyle.color = COLOR_DEFAULT_FONT;
   }
 
   //recalculate child nodes
@@ -305,18 +301,18 @@ void UINode::computeStyle()
 
 void UINode::mutateComputedStyle(Style* style)
 {
-  if (cstyle->position < style->position)
+  if (cstyle.position < style->position)
   {
-    cstyle->position = style->position;
+    cstyle.position = style->position;
   }
 
   //color is not null
   if (style->color != COLOR_NULL)
   {
-    cstyle->color.r = style->color.r;
-    cstyle->color.g = style->color.g;
-    cstyle->color.b = style->color.b;
-    cstyle->color.a = style->color.a;
+    cstyle.color.r = style->color.r;
+    cstyle.color.g = style->color.g;
+    cstyle.color.b = style->color.b;
+    cstyle.color.a = style->color.a;
   }
 
   for (uint i = 0; i < style->attrs.size(); i++)
@@ -324,14 +320,14 @@ void UINode::mutateComputedStyle(Style* style)
     //negative values are used
     if (style->attrs[i] != STYLE_VAL_AUTO)
     {
-      cstyle->attrs[i] = style->attrs[i];
+      cstyle.attrs[i] = style->attrs[i];
     }
   }
 }
 
 void UINode::app(float& val, uchar key)
 {
-  float cVal = cstyle->get(key);
+  float cVal = cstyle.get(key);
   if (cVal != STYLE_VAL_AUTO)
   {
     val += cVal;

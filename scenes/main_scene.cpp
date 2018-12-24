@@ -38,8 +38,8 @@ void MainScene::onLoad()
   auto* comp = new ActionPanel();
   UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
 
-  //auto* inv = new InventoryMenu();
-  //UICanvas::addComponent(UI_COMPONENT_INVENTORY_MENU, inv);
+  auto* inv = new InventoryMenu();
+  UICanvas::addComponent(UI_COMPONENT_INVENTORY_MENU, inv);
   //delete inv;
 
 

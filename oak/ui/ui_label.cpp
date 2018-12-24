@@ -16,8 +16,8 @@ UILabel::UILabel(std::string src, float fontSize) : UINode(UI_NODE_LABEL)
   //this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
   this->fontID = Resources::getFontIDByName("arial.ttf");
 
-  style->set(STYLE_HEIGHT, fontSize);
-  style->set(STYLE_FONT_SIZE, fontSize);
+  style.set(STYLE_HEIGHT, fontSize);
+  style.set(STYLE_FONT_SIZE, fontSize);
 
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
@@ -34,17 +34,17 @@ void UILabel::render(UIPoint& nodeCursor)
 {
   renderBegin(nodeCursor);
 
-  scale = cstyle->attrs[STYLE_FONT_SIZE] / (float)FONT_LOADED_SIZE;
+  scale = cstyle.attrs[STYLE_FONT_SIZE] / (float)FONT_LOADED_SIZE;
 
   Shader& shader = Resources::getShaderByName("text");
   // Activate corresponding render state	
   shader.use();
   glUniform4f(
     glGetUniformLocation(shader.getID(), "textColor"),
-    cstyle->color.r,
-    cstyle->color.g,
-    cstyle->color.b,
-    cstyle->color.a
+    cstyle.color.r,
+    cstyle.color.g,
+    cstyle.color.b,
+    cstyle.color.a
   );
   glActiveTexture(GL_TEXTURE0);
   glBindVertexArray(VAO);

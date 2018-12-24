@@ -60,7 +60,7 @@ namespace ion
     void (*onFocusOut)(UINode*) = nullptr;
       
     std::vector<UINode*> children;
-    Style* style; //inline css
+    Style style = Style("inline"); //inline css
 
     float getTotalH();
 
@@ -71,7 +71,7 @@ namespace ion
     uchar nodeType;
     UIComponent* component;
     std::vector<std::string> classList;
-    Style* cstyle; //computed style
+    Style cstyle = Style(""); //computed style
 
     //if an attr with a matching key exists,
     //then the attr value is appended to the val argument

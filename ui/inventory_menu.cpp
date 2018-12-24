@@ -13,13 +13,13 @@ InventoryMenu::InventoryMenu()
   align.y = UI_ALIGN_VERT_MIDDLE;
 
   background = new UIImage("inventory_bg.png", 700, 400);
-  background->style->set(STYLE_MARGIN_LEFT, -350.0f);
-  background->style->set(STYLE_MARGIN_TOP, -200.0f);
+  background->style.set(STYLE_MARGIN_LEFT, -350.0f);
+  background->style.set(STYLE_MARGIN_TOP, -200.0f);
   //background->computeStyle();
   addNode(background);
 
   itemList = new UIDiv();
-  itemList->style->setMargin(40.0f, 40.0f);
+  itemList->style.setMargin(40.0f, 40.0f);
   //itemList->computeStyle();
   background->addChild(itemList);
 }
