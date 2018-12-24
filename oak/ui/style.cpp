@@ -6,26 +6,32 @@
 
 using namespace ion;
 
-Style::Style(std::string className)
+Style::Style(std::string selector)
 {
-  oak::StringHelp::split(className, selectors, ' ');
+  this->selector = selector;
   attrs.insert_or_assign(STYLE_WIDTH, STYLE_VAL_AUTO);
   attrs.insert_or_assign(STYLE_HEIGHT, STYLE_VAL_AUTO);
 }
 
 Style::Style(
-  std::vector<std::string>& selectors,
+  std::string selector,
   std::unordered_map<std::string, std::string>& attrs
 )
 {
-  for (std::string cls : selectors)
-  {
-    this->selectors.push_back(cls);
-  }
+  this->selector = selector;
   for (auto it = attrs.begin(); it != attrs.end(); it++)
   {
     set(it->first, it->second);
   }
+}
+
+Style::~Style()
+{
+  for (auto it = stateStyles.begin(); it != stateStyles.end(); it++)
+  {
+    delete it->second;
+  }
+  stateStyles.clear();
 }
 
 void Style::setPadding(float x, float y)
@@ -206,7 +212,7 @@ void Style::setNum(const std::string& key, const std::string& val, cnum STYLE_KE
   bool isValidNumber = StyleParser::parseNumber(val, num);
   if (!isValidNumber)
   {
-    LOG << "---STYLE ERROR---| '." << selectors[0] <<
+    LOG << "---STYLE ERROR---| '." << selector <<
       "' invalid attribute: " << key << ":" << val << ";";
     return;
   }
@@ -214,4 +220,33 @@ void Style::setNum(const std::string& key, const std::string& val, cnum STYLE_KE
   {
     attrs.insert_or_assign(STYLE_KEY, num);
   }
+}
+
+bool Style::addStateStyle(uchar id, Style* style)
+{
+  auto it = stateStyles.find(id);
+  //if no style of this type exists then insert
+  if (it == stateStyles.end())
+  {
+    stateStyles.insert(std::pair<uchar, Style*>(id, style));
+  }
+  else
+  {
+    return false;
+  }
+  return true;
+}
+
+
+Style* Style::findStateStyle(uchar state)
+{
+  for (auto it = stateStyles.begin(); it != stateStyles.end(); it++)
+  {
+    if (it->first == state)
+    {
+      return it->second;
+    }
+  }
+
+  return nullptr;
 }

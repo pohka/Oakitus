@@ -9,8 +9,8 @@ tmp_InventoryItem::tmp_InventoryItem(Item* item) : UIDiv()
 {
   style->set(STYLE_WIDTH, 200.0f);
   this->addClass("inv-item");
-  this->onFocus = tmp_InventoryItem::onItemFocus;
-  this->onUnFocus = tmp_InventoryItem::onItemUnFocus;
+  this->onMouseOver = tmp_InventoryItem::onItemFocus;
+  this->onMouseLeave = tmp_InventoryItem::onItemUnFocus;
   this->onClick = tmp_InventoryItem::onItemClick;
 
   UILabel* label = new UILabel(item->name, 20.0f);
@@ -42,8 +42,9 @@ void tmp_InventoryItem::onItemFocus(UINode* node)
   UINode* textNode = node->findNodeByID("inv-item-text");
   if (textNode != nullptr)
   {
-    textNode->addClass("inv-item-text-hover");
-    textNode->computeStyle();
+    //textNode->state = STYLE_STATE_HOVER;
+    //textNode->computeStyle();
+    //textNode->computeStyle();
   }
 }
 
@@ -53,8 +54,8 @@ void tmp_InventoryItem::onItemUnFocus(UINode* node)
   UINode* textNode = node->findNodeByID("inv-item-text");
   if (textNode != nullptr)
   {
-    textNode->removeClass("inv-item-text-hover");
-    textNode->computeStyle();
+    //textNode->state = STYLE_STATE_NONE;
+    //textNode->computeStyle();
   }
 }
 

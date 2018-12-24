@@ -20,6 +20,8 @@ namespace ion
 
     //convert hex char to decimal float, e.g. "f" = 15.0f
     static float hexToDecimal(char ch);
+
+    static unsigned char parseStateID(std::string state);
   };
 }
 

@@ -8,6 +8,7 @@
 #include <map>
 #include <ui/ui_def.h>
 #include <core/input.h>
+#include <ui/style_parser.h>
 
 #include <debug.h>
 
@@ -67,24 +68,55 @@ const UIPoint& UICanvas::getProjection()
 }
 
 
-Style* UICanvas::findStyle(std::string cls)
+Style* UICanvas::findStyle(std::string selector)
 {
   for (Style* style : styles)
   {
-    for (uint i = 0; i < style->selectors.size(); i++)
+    if (style->selector == selector)
     {
-      if (style->selectors[i] == cls)
-      {
-        return style;
-      }
+      return style;
     }
   }
   return nullptr;
 }
 
+//note: state styles will be deleted if the selector is not parsed correctly
 void UICanvas::addStyle(Style* style)
 {
-  styles.push_back(style);
+  //check if state style (pseudo style), example: myclass:hover
+  bool isStateStyle = false;
+  for (uint i = 0; i < style->selector.size() && !isStateStyle; i++)
+  {
+    if (style->selector[i] == ':' && style->selector.size() >= i+1)
+    {
+      isStateStyle = true;
+      std::string stateName = style->selector.substr(i + 1);
+      uchar stateID = StyleParser::parseStateID(stateName);
+      if (stateID != STYLE_STATE_NONE)
+      {
+        std::string selectorName = style->selector.substr(0, i);
+        Style* s = findStyle(selectorName);
+        if (s != nullptr)
+        {
+          bool success = s->addStateStyle(stateID, style);
+          if (!success)
+          {
+            delete style;
+            LOG << "---STYLE ERROR---| '" << style->selector << "' state style not set as parent was not found";
+          }
+        }
+      }
+      else
+      {
+        delete style;
+        LOG << "---STYLE ERROR---| state id not found for '"<< stateName <<"'";
+      }
+    }
+  }
+  if (!isStateStyle)
+  {
+    styles.push_back(style);
+  }
 }
 
 void UICanvas::deleteAllStyles()

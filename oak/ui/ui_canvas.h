@@ -40,8 +40,10 @@ namespace ion
       ///returns a component by id
       static UIComponent* getComponent(ushort id);
 
-      static Style* findStyle(std::string cls);
+      //find a style by selector, nullptr returned if not found
+      static Style* findStyle(std::string selector);
 
+      //add a style, note: state styles will be deleted if the selector is not parsed correctly
       static void addStyle(Style* style);
 
     private:

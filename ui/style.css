@@ -7,9 +7,10 @@
 .inv-item-text
 {
   color: #0f0;
+  width: 200px;
 }
 
-.inv-item-text-hover
+.inv-item-text:hover
 {
   color: #f00;
 }

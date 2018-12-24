@@ -46,6 +46,11 @@ cnum STYLE_MARGIN_BOTTOM = 9;
 cnum STYLE_FONT_SIZE = 10;
 cnum STYLE_LAST_ATTR = 11;
 
+cnum STYLE_STATE_NONE = 0;
+cnum STYLE_STATE_ROOT = 1;
+cnum STYLE_STATE_HOVER = 2;
+cnum STYLE_STATE_FOCUS = 3;
+
 //const float STYLE_NULL_ATTR = std::numeric_limits<float>::infinity();
 const float STYLE_DEFAULT_FONT_SIZE = 20.0f;
 constexpr float STYLE_VAL_AUTO = std::numeric_limits<float>::infinity();

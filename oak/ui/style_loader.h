@@ -20,7 +20,7 @@ namespace ion
 
       static void parse(std::string path);
 
-      static bool parseClassNames(
+      static bool parseSelectors(
         std::string& text, 
         std::vector<std::string>& strs
       );

@@ -49,7 +49,7 @@ void StyleLoader::parse(std::string path)
   uchar state = STATE_CLASSNAME;
   string text, key, val;
   uint lineNum = 1;
-  vector<string> classList;
+  vector<string> selectors;
   unordered_map<string, string> attrs;
 
   //i fucked this up
@@ -82,7 +82,7 @@ void StyleLoader::parse(std::string path)
           }
           else
           {
-            bool success = parseClassNames(text, classList);
+            bool success = parseSelectors(text, selectors);
             if (!success)
             {
               LOG << "---CSS PARSING ERROR---| near line:" << lineNum << " | no style class name was found";
@@ -100,13 +100,16 @@ void StyleLoader::parse(std::string path)
           else
           {
             state = STATE_CLASSNAME;
-            Style* style = new Style(classList, attrs);
-            UICanvas::addStyle(style);
+            for (uint i = 0; i < selectors.size(); i++)
+            {
+              Style* style = new Style(selectors[i], attrs);
+              UICanvas::addStyle(style);
+            }
           }
           text.clear();
         }
         //end of key
-        else if (ch == ':')
+        else if (ch == ':' && state >= STATE_ATTR_KEY)
         {
           if (state == STATE_ATTR_KEY)
           {
@@ -161,7 +164,7 @@ void StyleLoader::parse(std::string path)
   }
 }
 
-bool StyleLoader::parseClassNames(string& text, vector<string>& strs)
+bool StyleLoader::parseSelectors(string& text, vector<string>& strs)
 {
   oak::StringHelp::split(text, strs, ',');
   if (strs.size() == 0)

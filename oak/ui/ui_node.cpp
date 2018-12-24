@@ -71,6 +71,7 @@ float UINode::getTotalH()
 
 void UINode::renderEnd(UIPoint& nodeCursor)
 {
+  bool hasStateChanged = false;
   UIPoint childCursor = { nodeCursor.x, nodeCursor.y };
 
 
@@ -152,28 +153,30 @@ void UINode::renderEnd(UIPoint& nodeCursor)
     //update isFocused state
     if (rect.containsPt(xx, yy))
     {
-      if (!isFocused)
+      if (state < STYLE_STATE_HOVER)
       {
-        if (onFocus != nullptr)
+        if (onMouseOver != nullptr)
         {
-          onFocus(this);
+          onMouseOver(this);
         }
-        isFocused = true;
+        state = STYLE_STATE_HOVER;
+        hasStateChanged = true;
       }
     }
     //if point is not in rect and was previously focused
-    else if (isFocused)
+    else if (state == STYLE_STATE_HOVER)
     {
-      if (onUnFocus != nullptr)
+      if (onMouseLeave != nullptr)
       {
-        onUnFocus(this);
+        onMouseLeave(this);
       }
-      isFocused = false;
+      state = STYLE_STATE_NONE;
+      hasStateChanged = true;
     }
   }
 
   if (
-    isFocused && 
+    state == STYLE_STATE_HOVER &&
     onClick != nullptr &&
     oak::Input::isMouseButtonDown(oak::MOUSE_BUTTON_LEFT) 
     )
@@ -192,6 +195,11 @@ void UINode::renderEnd(UIPoint& nodeCursor)
 
   nodeCursor.x -= padding.x + margin.x;
   nodeCursor.y -= -padding.y - margin.y;
+
+  if (hasStateChanged)
+  {
+    computeStyle();
+  }
 }
 
 void UINode::renderBegin(UIPoint& nodeCursor)
@@ -228,6 +236,16 @@ void UINode::computeStyle()
       if (s!= nullptr)
       {
         mutateComputedStyle(s);
+
+        //state style
+        if (state != STYLE_STATE_NONE)
+        {
+          Style* stateStyle = s->findStateStyle(state);
+          if (stateStyle != nullptr)
+          {
+            mutateComputedStyle(stateStyle);
+          }
+        }
       }
       else
       {

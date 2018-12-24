@@ -221,3 +221,20 @@ float StyleParser::hexToDecimal(char ch)
 
   return 0.0f;
 }
+
+unsigned char StyleParser::parseStateID(std::string state)
+{
+  if (state == "root")
+  {
+    return STYLE_STATE_ROOT;
+  }
+  else if (state == "hover")
+  {
+    return STYLE_STATE_HOVER;
+  }
+  else if (state == "focus")
+  {
+    return STYLE_STATE_FOCUS;
+  }
+  return STYLE_STATE_NONE;
+}

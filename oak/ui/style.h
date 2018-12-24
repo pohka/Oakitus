@@ -14,19 +14,24 @@ namespace ion
 {
   struct Style
   {
-    Style(std::string className);
+    Style(std::string selector);
 
     //constructor that is used with StyleLoader
     Style(
-      std::vector<std::string>& selectors, 
+      std::string selector, 
       std::unordered_map<std::string, std::string>& attrs
     );
 
+    ~Style();
+
     //style attributes
-    std::vector<std::string> selectors;
+    std::string selector = "";
     std::unordered_map<uchar, float> attrs;
     uchar position = UI_POSITION_RELATIVE;
     Color color = COLOR_NULL;
+    
+    //try add the pseudo style, if the id already exists it returns false
+    bool addStateStyle(uchar id, Style* style);
       
     //set padding shorthand
     void setPadding(float x, float y);
@@ -42,11 +47,14 @@ namespace ion
 
     //set an attribute by string values
     void set(std::string key, std::string val);
+
+    Style* findStateStyle(uchar state);
     
 
   private :
     //converts css string key to cnum key
     void setNum(const std::string& key, const std::string& val, cnum STYLE_KEY);
+    std::unordered_map<uchar, Style*> stateStyles;
 
   };
 }
