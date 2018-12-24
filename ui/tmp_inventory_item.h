@@ -13,6 +13,7 @@ namespace game
     tmp_InventoryItem(Item* item);
     void update(Item* item);
     static void onItemFocus(UINode* node);
+    static void onItemUnFocus(UINode* node);
   };
 }
 

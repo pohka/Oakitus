@@ -47,12 +47,14 @@ namespace ion
 
     void addClass(std::string cssClass);
     void computeStyle();
-      
+     
+    bool isFocused = false;
 
     //void update();
 
     //void(*onClick)(UINode*) = nullptr;
     void (*onFocus)(UINode*) = nullptr;
+    void (*onUnFocus)(UINode*) = nullptr;
       
     std::vector<UINode*> children;
     Style* style; //inline css

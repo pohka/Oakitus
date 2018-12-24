@@ -122,6 +122,7 @@ void UINode::renderEnd(UIPoint& nodeCursor)
     }
   }
 
+  //update focus events if the mouse has moved
   if (oak::Input::hasMouseMoved())
   {
     glm::vec2 windowUnit = oak::Window::getWindowUnitToPixel();
@@ -156,13 +157,22 @@ void UINode::renderEnd(UIPoint& nodeCursor)
     
     if (rect.containsPt(xx, yy))
     {
-      if (onFocus != nullptr)
+      if (!isFocused && onFocus != nullptr)
       {
-        //LOG << "contains pt";
         onFocus(this);
       }
+      isFocused = true;
+    }
+    else
+    {
+      if (isFocused && onUnFocus != nullptr)
+      {
+        onUnFocus(this);
+      }
+      isFocused = false;
     }
   }
+
 
   UIPoint padding = {};
   app(padding.x, STYLE_PADDING_LEFT);
