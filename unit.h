@@ -78,8 +78,19 @@ namespace game
       
 
       void addModifier(uint casterID, Modifier* modifier);
+
       //if this unit has a matching modifier, removes it note:does not call onDestroy()
       void removeModifier(ushort modifierID, uint casterID); 
+
+      //finds all modifiers with matching modifierID, and push them into mods vector
+      void findModifiersByID(snum modifierID, std::vector<Modifier*>& mods);
+
+      //finds all modifiers with matching modifierID and casterID, and push them into mods vector
+      void findModifiersByID(snum modifierID, uint casterID, std::vector<Modifier*>& mods);
+
+      //finds all modifiers with matching element type, and push them into mods vector
+      void findModifiersByElement(cnum elementType, std::vector<Modifier*>& mods);
+
       std::vector<Modifier*>& getAllModifiers();
 
       void onCreate() override;

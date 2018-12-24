@@ -45,7 +45,7 @@ void mod_Example::onIntervalTick()
   LOG << "TICKING";
   DamageData damage;
   damage.amount = 10.0f;
-  damage.element = ELEMENT_FIRE;
+  damage.element = this->elementType;
   damage.casterID = owner->getID();
   damage.victimID = owner->getID();
   Damage::apply(damage);

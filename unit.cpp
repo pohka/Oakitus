@@ -426,3 +426,39 @@ Inventory& Unit::getInventory()
 {
   return inventory;
 }
+
+void Unit::findModifiersByID(snum modifierID, std::vector<Modifier*>& mods)
+{
+  for (uint i = 0; i < modifiers.size(); i++)
+  {
+    if (modifiers[i]->getModifierID() == modifierID)
+    {
+      mods.push_back(modifiers[i]);
+    }
+  }
+}
+
+void Unit::findModifiersByID(snum modifierID, uint casterID, std::vector<Modifier*>& mods)
+{
+  for (uint i = 0; i < modifiers.size(); i++)
+  {
+    if (
+      modifiers[i]->getModifierID() == modifierID && 
+      modifiers[i]->casterID == casterID
+      )
+    {
+      mods.push_back(modifiers[i]);
+    }
+  }
+}
+
+void Unit::findModifiersByElement(cnum elementType, std::vector<Modifier*>& mods)
+{
+  for (uint i = 0; i < modifiers.size(); i++)
+  {
+    if (modifiers[i]->elementType == elementType)
+    {
+      mods.push_back(modifiers[i]);
+    }
+  }
+}

@@ -12,10 +12,10 @@
 
 .inv-item-text:hover
 {
-  color: #f00;
+  color: #00f;
 }
 
 .inv-item-text:focus
 {
-  color: #000;
+  color: #fff;
 }

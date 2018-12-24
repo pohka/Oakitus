@@ -2,11 +2,9 @@
 
 items and modifiers:
 * UI for inventory (to unequip items)
-  * .myclass.active
-  * .myclass:hover
   * inherting styles
+  * auto width
   * .myclass img
-  * UIComponent::findNodeByID()
 * modifier states
   * stunned (cant make any actions)
   * silenced (cant use spells)
@@ -17,7 +15,6 @@ items and modifiers:
   * damage boost potion
 * ability example:
   * stuns enemy for 1sec
-* unit.findModifierByName()
 * modifier.particle  (fire effect)
 * chest (player collecting of items)
 * delete memory leaks

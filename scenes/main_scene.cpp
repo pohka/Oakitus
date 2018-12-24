@@ -31,27 +31,15 @@ void MainScene::onLoad()
   Resources::addTexture("inventory_bg.png");
 
   //ui
-  //testing style classes
-  //Style* testStyle = new Style("inv-item test");
-  //testStyle->set(STYLE_HEIGHT, 200.0f);
-  //UICanvas::addStyle(testStyle);
-  //LOG << "--------";
-  //LOG << "inv-item classList:";
-  //for (uint i = 0; i < testStyle->classList.size(); i++)
-  //{
-  //  LOG << testStyle->classList[i];
-  //}
-  //LOG << "--------";
   StyleLoader::load("ui/style.css");
   
 
 
   auto* comp = new ActionPanel();
-  //comp->offset.x = 10.0f;
   UICanvas::addComponent(UI_COMPONENT_ACTION_PANEL, comp);
 
-  auto* inv = new InventoryMenu();
-  UICanvas::addComponent(UI_COMPONENT_INVENTORY_MENU, inv);
+  //auto* inv = new InventoryMenu();
+  //UICanvas::addComponent(UI_COMPONENT_INVENTORY_MENU, inv);
 
 
   Camera::position = glm::vec3(0, 0, 0);

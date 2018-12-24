@@ -30,7 +30,7 @@ namespace game
     uchar stackCount = 1;
     uchar maxStacks = 1;
     float duration = 0.0f;
-    
+    uchar elementType = ELEMENT_NORMAL;
 
     std::unordered_map<uchar, int> props;
     uint casterID;
