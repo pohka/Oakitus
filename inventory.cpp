@@ -12,7 +12,10 @@ Inventory::Inventory(uint ownerID)
 
 Inventory::~Inventory()
 {
-
+  for (uint i = 0; i < items.size(); i++)
+  {
+    delete items[i];
+  }
 }
 
 void Inventory::addItem(Item* item)

@@ -21,10 +21,14 @@ Unit::Unit()
 
 Unit::~Unit()
 {
-  while (!abilitys.empty())
+  for (uint i = 0; i < abilitys.size(); i++)
   {
-    delete abilitys[0];
-    abilitys.erase(abilitys.begin());
+    delete abilitys[i];
+  }
+
+  for (uint i = 0; i < modifiers.size(); i++)
+  {
+    delete modifiers[i];
   }
 
   LOG << "deallocated unit: " << name;
