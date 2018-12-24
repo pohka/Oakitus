@@ -1,10 +1,38 @@
-# todo
+# TODO
 
-items and modifiers:
+## Platformer
+* move rpg into seperate folder
+* create demo scene with hardcoded tiles
+* basic move left and right with collision
+* gravity + jump (8 direction) 
+* double jump (8 direction)
+* jump coin for extra jump
+* wall grab
+* camera
+* tiles loaded from editor
+* opengl instancing
+* pass throughable blocks
+* disappear block
+
+## Engine
+* tidy up location of files in project
+* debug logger
+  * add endl to repeat info msg
+  * more efficent logger
+  * should log if the message is different but the line of code is the same
+  * unit tests
+  * sound
+
+## Ion UI
+* text alignment (left, center, right)
+* inherting styles
+* auto width
+* .myclass img
+
+
+
+## RPG
 * UI for inventory (to unequip items)
-  * inherting styles
-  * auto width
-  * .myclass img
 * modifier states
   * stunned (cant make any actions)
   * silenced (cant use spells)
@@ -17,12 +45,8 @@ items and modifiers:
   * stuns enemy for 1sec
 * modifier.particle  (fire effect)
 * chest (player collecting of items)
-* delete memory leaks
-* tidy up location of files in project
-
----
-
-
+* sword ability
+* world (tiles)
 * asset streaming: automatically deciding which textures need to be loaded
   * deleting texture (fonts too)
 * enemy contact knockback
@@ -37,17 +61,5 @@ items and modifiers:
 * dialog system
 
 
-* UI
-  * text alignment (left, center, right)
-	
-* unit tests
-* sword ability
-* sound
-* world (tiles)
 
-
-* debug logger
-  * add endl to repeat info msg
-  * more efficent logger
-  * should log if the message is different but the line of code is the same
  
