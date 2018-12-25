@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\engine\oak\collision\base_collision_shape.h" />
+    <ClInclude Include="..\engine\oak\collision\collision.h" />
+    <ClInclude Include="..\engine\oak\collision\collision_circle.h" />
+    <ClInclude Include="..\engine\oak\collision\collision_layer.h" />
+    <ClInclude Include="..\engine\oak\collision\collision_rect.h" />
+    <ClInclude Include="..\engine\oak\components\animator.h" />
+    <ClInclude Include="..\engine\oak\components\base_rigid_body.h" />
+    <ClInclude Include="..\engine\oak\components\rigid_body_2d.h" />
+    <ClInclude Include="..\engine\oak\components\sprite.h" />
+    <ClInclude Include="..\engine\oak\components\sprite_animation.h" />
+    <ClInclude Include="..\engine\oak\core\base_player.h" />
+    <ClInclude Include="..\engine\oak\core\bounds.h" />
+    <ClInclude Include="..\engine\oak\core\camera.h" />
+    <ClInclude Include="..\engine\oak\core\command.h" />
+    <ClInclude Include="..\engine\oak\core\component.h" />
+    <ClInclude Include="..\engine\oak\core\entity.h" />
+    <ClInclude Include="..\engine\oak\core\fmath.h" />
+    <ClInclude Include="..\engine\oak\core\id_generator.h" />
+    <ClInclude Include="..\engine\oak\core\init.h" />
+    <ClInclude Include="..\engine\oak\core\input.h" />
+    <ClInclude Include="..\engine\oak\core\key_buffer.h" />
+    <ClInclude Include="..\engine\oak\core\key_codes.h" />
+    <ClInclude Include="..\engine\oak\core\kv_array.h" />
+    <ClInclude Include="..\engine\oak\core\oakitus.h" />
+    <ClInclude Include="..\engine\oak\core\player_resource.h" />
+    <ClInclude Include="..\engine\oak\core\point.h" />
+    <ClInclude Include="..\engine\oak\core\ray.h" />
+    <ClInclude Include="..\engine\oak\core\resources.h" />
+    <ClInclude Include="..\engine\oak\core\scene.h" />
+    <ClInclude Include="..\engine\oak\core\shader.h" />
+    <ClInclude Include="..\engine\oak\core\stb_image.h" />
+    <ClInclude Include="..\engine\oak\core\string_help.h" />
+    <ClInclude Include="..\engine\oak\core\texture.h" />
+    <ClInclude Include="..\engine\oak\core\time.h" />
+    <ClInclude Include="..\engine\oak\core\types.h" />
+    <ClInclude Include="..\engine\oak\core\window.h" />
+    <ClInclude Include="..\engine\oak\debug.h" />
+    <ClInclude Include="..\engine\oak\debug\debug_input.h" />
+    <ClInclude Include="..\engine\oak\debug\logger.h" />
+    <ClInclude Include="..\engine\oak\event\event.h" />
+    <ClInclude Include="..\engine\oak\event\event_manager.h" />
+    <ClInclude Include="..\engine\oak\fallback.h" />
+    <ClInclude Include="..\engine\oak\oak.h" />
+    <ClInclude Include="..\engine\oak\oak_def.h" />
+    <ClInclude Include="..\engine\oak\oak_setup.h" />
+    <ClInclude Include="..\engine\oak\ui\color.h" />
+    <ClInclude Include="..\engine\oak\ui\font.h" />
+    <ClInclude Include="..\engine\oak\ui\localization.h" />
+    <ClInclude Include="..\engine\oak\ui\style.h" />
+    <ClInclude Include="..\engine\oak\ui\style_loader.h" />
+    <ClInclude Include="..\engine\oak\ui\style_parser.h" />
+    <ClInclude Include="..\engine\oak\ui\ui.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_canvas.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_character.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_component.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_def.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_div.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_image.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_label.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_node.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_point.h" />
+    <ClInclude Include="..\engine\oak\xml\xml_node.h" />
+    <ClInclude Include="..\engine\oak\xml\xml_parser.h" />
+    <ClInclude Include="..\projects\rpg\ability.h" />
+    <ClInclude Include="..\projects\rpg\abilitys\abil_shoot.h" />
+    <ClInclude Include="..\projects\rpg\abilitys\abil_sword_attack.h" />
+    <ClInclude Include="..\projects\rpg\abilitys\modifiers\modifier_def.h" />
+    <ClInclude Include="..\projects\rpg\abilitys\modifiers\mod_example.h" />
+    <ClInclude Include="..\projects\rpg\commands\cast_abiltiys.h" />
+    <ClInclude Include="..\projects\rpg\commands\movement.h" />
+    <ClInclude Include="..\projects\rpg\damage.h" />
+    <ClInclude Include="..\projects\rpg\events\damage_data.h" />
+    <ClInclude Include="..\projects\rpg\events\e_damage_taken.h" />
+    <ClInclude Include="..\projects\rpg\events\e_death.h" />
+    <ClInclude Include="..\projects\rpg\game_def.h" />
+    <ClInclude Include="..\projects\rpg\inventory.h" />
+    <ClInclude Include="..\projects\rpg\items\item_test.h" />
+    <ClInclude Include="..\projects\rpg\player.h" />
+    <ClInclude Include="..\projects\rpg\prefabs\camera_controller.h" />
+    <ClInclude Include="..\projects\rpg\prefabs\projectile.h" />
+    <ClInclude Include="..\projects\rpg\prefabs\projectile_linear.h" />
+    <ClInclude Include="..\projects\rpg\prefabs\u_dummy.h" />
+    <ClInclude Include="..\projects\rpg\prefabs\u_player.h" />
+    <ClInclude Include="..\projects\rpg\prefabs\wall_test.h" />
+    <ClInclude Include="..\projects\rpg\scenes\main_scene.h" />
+    <ClInclude Include="..\projects\rpg\scripts\ai_test.h" />
+    <ClInclude Include="..\projects\rpg\strings_def.h" />
+    <ClInclude Include="..\projects\rpg\systems\item.h" />
+    <ClInclude Include="..\projects\rpg\systems\modifier.h" />
+    <ClInclude Include="..\projects\rpg\target.h" />
+    <ClInclude Include="..\projects\rpg\ui\action_panel.h" />
+    <ClInclude Include="..\projects\rpg\ui\inventory_menu.h" />
+    <ClInclude Include="..\projects\rpg\ui\tmp_inventory_item.h" />
+    <ClInclude Include="..\projects\rpg\unit.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp" />
+    <ClCompile Include="..\engine\oak\collision\collision.cpp" />
+    <ClCompile Include="..\engine\oak\collision\collision_circle.cpp" />
+    <ClCompile Include="..\engine\oak\collision\collision_rect.cpp" />
+    <ClCompile Include="..\engine\oak\components\animator.cpp" />
+    <ClCompile Include="..\engine\oak\components\base_rigid_body.cpp" />
+    <ClCompile Include="..\engine\oak\components\rigid_body_2d.cpp" />
+    <ClCompile Include="..\engine\oak\components\sprite.cpp" />
+    <ClCompile Include="..\engine\oak\components\sprite_animation.cpp" />
+    <ClCompile Include="..\engine\oak\core\base_player.cpp" />
+    <ClCompile Include="..\engine\oak\core\bounds.cpp" />
+    <ClCompile Include="..\engine\oak\core\camera.cpp" />
+    <ClCompile Include="..\engine\oak\core\component.cpp" />
+    <ClCompile Include="..\engine\oak\core\entity.cpp" />
+    <ClCompile Include="..\engine\oak\core\id_generator.cpp" />
+    <ClCompile Include="..\engine\oak\core\input.cpp" />
+    <ClCompile Include="..\engine\oak\core\key_buffer.cpp" />
+    <ClCompile Include="..\engine\oak\core\oakitus.cpp" />
+    <ClCompile Include="..\engine\oak\core\player_resource.cpp" />
+    <ClCompile Include="..\engine\oak\core\ray.cpp" />
+    <ClCompile Include="..\engine\oak\core\resources.cpp" />
+    <ClCompile Include="..\engine\oak\core\scene.cpp" />
+    <ClCompile Include="..\engine\oak\core\shader.cpp" />
+    <ClCompile Include="..\engine\oak\core\texture.cpp" />
+    <ClCompile Include="..\engine\oak\core\time.cpp" />
+    <ClCompile Include="..\engine\oak\core\window.cpp" />
+    <ClCompile Include="..\engine\oak\debug\debug_input.cpp" />
+    <ClCompile Include="..\engine\oak\debug\logger.cpp" />
+    <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
+    <ClCompile Include="..\engine\oak\fallback.cpp" />
+    <ClCompile Include="..\engine\oak\ui\font.cpp" />
+    <ClCompile Include="..\engine\oak\ui\localization.cpp" />
+    <ClCompile Include="..\engine\oak\ui\style.cpp" />
+    <ClCompile Include="..\engine\oak\ui\style_loader.cpp" />
+    <ClCompile Include="..\engine\oak\ui\style_parser.cpp" />
+    <ClCompile Include="..\engine\oak\ui\ui_canvas.cpp" />
+    <ClCompile Include="..\engine\oak\ui\ui_component.cpp" />
+    <ClCompile Include="..\engine\oak\ui\ui_div.cpp" />
+    <ClCompile Include="..\engine\oak\ui\ui_image.cpp" />
+    <ClCompile Include="..\engine\oak\ui\ui_label.cpp" />
+    <ClCompile Include="..\engine\oak\ui\ui_node.cpp" />
+    <ClCompile Include="..\engine\oak\xml\xml_node.cpp" />
+    <ClCompile Include="..\engine\oak\xml\xml_parser.cpp" />
+    <ClCompile Include="..\glad.c" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\projects\rpg\ability.cpp" />
+    <ClCompile Include="..\projects\rpg\abilitys\abil_shoot.cpp" />
+    <ClCompile Include="..\projects\rpg\abilitys\abil_sword_attack.cpp" />
+    <ClCompile Include="..\projects\rpg\abilitys\modifiers\mod_example.cpp" />
+    <ClCompile Include="..\projects\rpg\commands\cast_abilitys.cpp" />
+    <ClCompile Include="..\projects\rpg\commands\movement.cpp" />
+    <ClCompile Include="..\projects\rpg\damage.cpp" />
+    <ClCompile Include="..\projects\rpg\inventory.cpp" />
+    <ClCompile Include="..\projects\rpg\items\item_test.cpp" />
+    <ClCompile Include="..\projects\rpg\player.cpp" />
+    <ClCompile Include="..\projects\rpg\prefabs\camera_controller.cpp" />
+    <ClCompile Include="..\projects\rpg\prefabs\projectile.cpp" />
+    <ClCompile Include="..\projects\rpg\prefabs\projectile_linear.cpp" />
+    <ClCompile Include="..\projects\rpg\prefabs\u_dummy.cpp" />
+    <ClCompile Include="..\projects\rpg\prefabs\u_player.cpp" />
+    <ClCompile Include="..\projects\rpg\prefabs\wall_test.cpp" />
+    <ClCompile Include="..\projects\rpg\scenes\main_scene.cpp" />
+    <ClCompile Include="..\projects\rpg\scripts\ai_test.cpp" />
+    <ClCompile Include="..\projects\rpg\systems\item.cpp" />
+    <ClCompile Include="..\projects\rpg\systems\modifier.cpp" />
+    <ClCompile Include="..\projects\rpg\target.cpp" />
+    <ClCompile Include="..\projects\rpg\ui\action_panel.cpp" />
+    <ClCompile Include="..\projects\rpg\ui\inventory_menu.cpp" />
+    <ClCompile Include="..\projects\rpg\ui\tmp_inventory_item.cpp" />
+    <ClCompile Include="..\projects\rpg\unit.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\projects\rpg\ui\style.css" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{965C8EC7-A6E6-4525-9E54-88923AD2405A}</ProjectGuid>
+    <RootNamespace>oakitus</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Jeoff\Documents\oakitus\oakitus\library;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Users\Jeoff\Documents\oakitus\oakitus\library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

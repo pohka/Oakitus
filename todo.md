@@ -28,6 +28,7 @@
 * inherting styles
 * auto width
 * .myclass img
+* css variables for colors
 
 
 

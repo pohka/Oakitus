@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="oak">
+      <UniqueIdentifier>{e09b5763-12e2-4e09-aaf5-0aca78bb5ef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\collision">
+      <UniqueIdentifier>{81989cd5-c637-4fba-b054-f7ba9af73770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\components">
+      <UniqueIdentifier>{741ab040-e30f-44e6-803b-d2e65228b129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\core">
+      <UniqueIdentifier>{7d3be42c-6162-45fe-b815-74c94c35e59d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\debug">
+      <UniqueIdentifier>{c1330179-69d7-4c55-8b30-94291d911d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\event">
+      <UniqueIdentifier>{e520daa7-e197-4ade-bf1c-25e4d5d82ed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\ui">
+      <UniqueIdentifier>{0b4fc661-3a9c-483a-b90e-2d04ed8fe1dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\xml">
+      <UniqueIdentifier>{3b68cade-70c9-4822-bce9-520dc088195f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects">
+      <UniqueIdentifier>{765a8bfe-8b0d-41ab-bde5-2e104b810237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg">
+      <UniqueIdentifier>{c937bcde-afa9-4d32-8388-74b7a0262324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\abilitys">
+      <UniqueIdentifier>{8dafc7e4-9dbb-4752-861d-b43104691b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\commands">
+      <UniqueIdentifier>{994dda1b-f97c-4d45-be9c-efa6554004ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\events">
+      <UniqueIdentifier>{7272f928-be21-4430-b488-6972af203ee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\items">
+      <UniqueIdentifier>{f8bd5da4-34f5-4443-9200-3abf1cdd7d74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\prefabs">
+      <UniqueIdentifier>{1cec4206-06a8-4c99-b2c4-85b25aaba26d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\scenes">
+      <UniqueIdentifier>{65359087-73c2-4911-b0bb-eda6ae31223b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\scripts">
+      <UniqueIdentifier>{75e5f5ca-48ef-421b-bb72-122f88c56fc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\systems">
+      <UniqueIdentifier>{0781dc61-9368-43a2-a3ac-df57ea857301}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\ui">
+      <UniqueIdentifier>{44b31cdc-647c-41c9-a226-c26b6c23c48a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\rpg\abilitys\modifiers">
+      <UniqueIdentifier>{42be34cb-95ce-412e-927a-e697a9700074}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\engine\oak\debug.h">
+      <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\fallback.h">
+      <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\oak.h">
+      <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\oak_def.h">
+      <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\oak_setup.h">
+      <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\collision\base_collision_shape.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\collision\collision.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\collision\collision_circle.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\collision\collision_layer.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\collision\collision_rect.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\components\animator.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\components\base_rigid_body.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\components\rigid_body_2d.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\components\sprite.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\components\sprite_animation.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\base_player.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\bounds.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\camera.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\command.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\component.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\entity.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\fmath.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\id_generator.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\init.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\input.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\key_buffer.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\key_codes.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\kv_array.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\oakitus.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\player_resource.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\point.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\ray.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\resources.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\scene.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\shader.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\stb_image.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\string_help.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\texture.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\time.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\types.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\window.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\debug\debug_input.h">
+      <Filter>oak\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\debug\logger.h">
+      <Filter>oak\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\event\event.h">
+      <Filter>oak\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\event\event_manager.h">
+      <Filter>oak\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\color.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\font.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\localization.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\style.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\style_loader.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\style_parser.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_canvas.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_character.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_component.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_def.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_div.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_image.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_label.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_node.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_point.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\xml\xml_node.h">
+      <Filter>oak\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\xml\xml_parser.h">
+      <Filter>oak\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\inventory.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\player.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\strings_def.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\target.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\unit.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\ability.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\damage.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\game_def.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\abilitys\abil_shoot.h">
+      <Filter>projects\rpg\abilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\abilitys\abil_sword_attack.h">
+      <Filter>projects\rpg\abilitys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\abilitys\modifiers\mod_example.h">
+      <Filter>projects\rpg\abilitys\modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\abilitys\modifiers\modifier_def.h">
+      <Filter>projects\rpg\abilitys\modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\commands\cast_abiltiys.h">
+      <Filter>projects\rpg\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\commands\movement.h">
+      <Filter>projects\rpg\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\scenes\main_scene.h">
+      <Filter>projects\rpg\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\prefabs\camera_controller.h">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\prefabs\projectile.h">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\prefabs\projectile_linear.h">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\prefabs\u_dummy.h">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\prefabs\u_player.h">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\prefabs\wall_test.h">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\systems\modifier.h">
+      <Filter>projects\rpg\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\systems\item.h">
+      <Filter>projects\rpg\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\items\item_test.h">
+      <Filter>projects\rpg\items</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\events\damage_data.h">
+      <Filter>projects\rpg\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\events\e_damage_taken.h">
+      <Filter>projects\rpg\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\events\e_death.h">
+      <Filter>projects\rpg\events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\ui\action_panel.h">
+      <Filter>projects\rpg\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\ui\inventory_menu.h">
+      <Filter>projects\rpg\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\ui\tmp_inventory_item.h">
+      <Filter>projects\rpg\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\scripts\ai_test.h">
+      <Filter>projects\rpg\scripts</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\engine\oak\fallback.cpp">
+      <Filter>oak</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\collision\collision.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\collision\collision_circle.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\collision\collision_rect.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\animator.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\base_rigid_body.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\rigid_body_2d.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\sprite.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\sprite_animation.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\base_player.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\bounds.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\camera.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\component.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\entity.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\id_generator.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\input.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\key_buffer.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\oakitus.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\player_resource.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\ray.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\resources.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\scene.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\shader.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\texture.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\time.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\window.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\debug\debug_input.cpp">
+      <Filter>oak\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\debug\logger.cpp">
+      <Filter>oak\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\event\event_manager.cpp">
+      <Filter>oak\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\font.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\localization.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\style.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\style_loader.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\style_parser.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\ui_canvas.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\ui_component.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\ui_div.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\ui_image.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\ui_label.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\ui_node.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\xml\xml_node.cpp">
+      <Filter>oak\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\xml\xml_parser.cpp">
+      <Filter>oak\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\inventory.cpp">
+      <Filter>projects\rpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\player.cpp">
+      <Filter>projects\rpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\target.cpp">
+      <Filter>projects\rpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\unit.cpp">
+      <Filter>projects\rpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\ability.cpp">
+      <Filter>projects\rpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\damage.cpp">
+      <Filter>projects\rpg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\glad.c" />
+    <ClCompile Include="..\projects\rpg\abilitys\abil_shoot.cpp">
+      <Filter>projects\rpg\abilitys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\abilitys\abil_sword_attack.cpp">
+      <Filter>projects\rpg\abilitys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\abilitys\modifiers\mod_example.cpp">
+      <Filter>projects\rpg\abilitys\modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\commands\cast_abilitys.cpp">
+      <Filter>projects\rpg\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\commands\movement.cpp">
+      <Filter>projects\rpg\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\scenes\main_scene.cpp">
+      <Filter>projects\rpg\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\prefabs\camera_controller.cpp">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\prefabs\projectile.cpp">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\prefabs\projectile_linear.cpp">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\prefabs\u_dummy.cpp">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\prefabs\u_player.cpp">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\prefabs\wall_test.cpp">
+      <Filter>projects\rpg\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\systems\item.cpp">
+      <Filter>projects\rpg\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\systems\modifier.cpp">
+      <Filter>projects\rpg\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\items\item_test.cpp">
+      <Filter>projects\rpg\items</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\ui\action_panel.cpp">
+      <Filter>projects\rpg\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\ui\inventory_menu.cpp">
+      <Filter>projects\rpg\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\ui\tmp_inventory_item.cpp">
+      <Filter>projects\rpg\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\rpg\scripts\ai_test.cpp">
+      <Filter>projects\rpg\scripts</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\projects\rpg\ui\style.css">
+      <Filter>projects\rpg\ui</Filter>
+    </None>
+  </ItemGroup>
+</Project>

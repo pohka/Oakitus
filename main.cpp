@@ -1,10 +1,10 @@
-#include <oak_setup.h>
-#include "scenes/main_scene.h"
-#include <core/player_resource.h>
-#include "player.h"
-#include "events/e_damage_taken.h"
-#include "strings_def.h"
-#include <ui/ui.h>
+#include <oak/oak_setup.h>
+#include "projects/rpg/scenes/main_scene.h"
+#include <oak/core/player_resource.h>
+#include "projects/rpg/player.h"
+#include "projects/rpg/events/e_damage_taken.h"
+#include "projects/rpg/strings_def.h"
+#include <oak/ui/ui.h>
 
 using namespace oak;
 using namespace game;
