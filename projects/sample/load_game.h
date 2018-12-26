@@ -12,7 +12,7 @@ void oak::Oakitus::load()
   Scene* scene = new Scene();
   Scene::loadFirstScene(*scene);
 
-  Resources::rootPath = "../projects/rpg/resources/";
+  Resources::rootPath = "../projects/sample/resources/";
   Resources::addTexture("face.png");
   Entity* ent = new Entity();
   ent->addComponent(new Sprite("face.png", 60.0f, 60.0f));

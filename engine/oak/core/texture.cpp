@@ -24,6 +24,8 @@ void Texture::load()
 {
   std::string fullPath = path + src;
 
+  LOG << "loading tex:" << fullPath;
+
   //load the texture
   glGenTextures(1, &this->id);
   glBindTexture(GL_TEXTURE_2D, this->id);
@@ -53,7 +55,7 @@ void Texture::load()
   {
     std::cout << "Failed load image: " << src << std::endl;
     stbi_image_free(data);
-    unsigned char *data = stbi_load("res/default.png", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("../resources/default.png", &width, &height, &nrChannels, 0);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
   }
 
