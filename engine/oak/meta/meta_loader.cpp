@@ -199,3 +199,8 @@ void MetaLoader::parseContent(const std::string& fileName, std::string& content,
     }
   }
 }
+
+std::string MetaLoader::getConfigVal(const std::string& key)
+{
+  return config.get(key);
+}

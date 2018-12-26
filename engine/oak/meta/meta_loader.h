@@ -9,7 +9,7 @@ namespace oak
 {
   struct MetaKV
   {
-    std::string key;
+    const std::string key;
     std::string val;
   };
 
@@ -96,6 +96,7 @@ namespace oak
   {
     static void load();
     static MetaDataList globalMetaList;
+    static std::string getConfigVal(const std::string& key);
 
   private:
     static void parseFiles(std::unordered_map<std::string, std::string>& files);
