@@ -61,6 +61,8 @@
     <ClInclude Include="..\engine\oak\event\event.h" />
     <ClInclude Include="..\engine\oak\event\event_manager.h" />
     <ClInclude Include="..\engine\oak\fallback.h" />
+    <ClInclude Include="..\engine\oak\meta\meta_loader.h" />
+    <ClInclude Include="..\engine\oak\meta\meta_parser.h" />
     <ClInclude Include="..\engine\oak\oak.h" />
     <ClInclude Include="..\engine\oak\oak_def.h" />
     <ClInclude Include="..\engine\oak\oak_setup.h" />
@@ -145,6 +147,8 @@
     <ClCompile Include="..\engine\oak\debug\logger.cpp" />
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
     <ClCompile Include="..\engine\oak\fallback.cpp" />
+    <ClCompile Include="..\engine\oak\meta\meta_loader.cpp" />
+    <ClCompile Include="..\engine\oak\meta\meta_parser.cpp" />
     <ClCompile Include="..\engine\oak\ui\font.cpp" />
     <ClCompile Include="..\engine\oak\ui\localization.cpp" />
     <ClCompile Include="..\engine\oak\ui\style.cpp" />
@@ -251,6 +255,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\Jeoff\Documents\oakitus\oakitus\library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

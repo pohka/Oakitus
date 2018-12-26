@@ -5,6 +5,7 @@
 #include "projects/rpg/events/e_damage_taken.h"
 #include "projects/rpg/strings_def.h"
 #include <oak/ui/ui.h>
+#include <oak/meta/meta_loader.h>
 
 using namespace oak;
 using namespace game;
@@ -17,6 +18,8 @@ int main()
 
   uint viewportW = 736;
   uint viewportH = 414;
+
+  MetaLoader::load();
 
   Oakitus::init(viewportW, viewportH, windowW, windowH, false);
   return 0;

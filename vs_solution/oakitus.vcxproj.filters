@@ -61,6 +61,9 @@
     <Filter Include="projects\rpg\abilitys\modifiers">
       <UniqueIdentifier>{42be34cb-95ce-412e-927a-e697a9700074}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\meta">
+      <UniqueIdentifier>{30fe0a4d-da9e-4022-981f-220656161127}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -345,6 +348,12 @@
     <ClInclude Include="..\projects\rpg\scripts\ai_test.h">
       <Filter>projects\rpg\scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\meta_parser.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\meta_loader.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\fallback.cpp">
@@ -552,6 +561,12 @@
     </ClCompile>
     <ClCompile Include="..\projects\rpg\scripts\ai_test.cpp">
       <Filter>projects\rpg\scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\meta_parser.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\meta_loader.cpp">
+      <Filter>oak\meta</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
