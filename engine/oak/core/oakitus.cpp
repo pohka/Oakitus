@@ -16,6 +16,7 @@
 #include "../oak_def.h"
 #include "../ui/ui_canvas.h"
 #include "../debug/debug_input.h"
+#include "../meta/meta.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -32,6 +33,7 @@ void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, b
   Time::init();
   Input::init();
   
+  Meta::load();
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position

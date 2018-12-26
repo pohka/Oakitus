@@ -1,15 +1,16 @@
-#include "meta_loader.h"
+#include "meta.h"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <cctype>
+#include <oak/core/resources.h>
 
 using namespace oak;
 
-MetaDataList MetaLoader::globalMetaList;
-MetaData MetaLoader::config;
+MetaDataList Meta::globalMetaList;
+MetaData Meta::config;
 
-void MetaLoader::loadConfig()
+void Meta::loadConfig()
 {
   //parse config.m
   std::ifstream ifs("../config.m");
@@ -22,11 +23,11 @@ void MetaLoader::loadConfig()
   list.find("config")->copy(config);
 }
 
-void MetaLoader::load()
+void Meta::load()
 {
   loadConfig();
-  
 
+  
   std::cout << "----META----" << std::endl;
 
   std::string fullPath, path;
@@ -37,6 +38,8 @@ void MetaLoader::load()
     std::cout << "CONFIG ERROR" << std::endl;
     return;
   }
+
+  Resources::rootPath = "../projects/" + config.get("project") + "/resources/";
 
   std::string root = std::filesystem::current_path().parent_path().generic_string() + "/projects/" + config.get("project") + "/";
   std::cout << "root path: " << root << std::endl;
@@ -83,7 +86,7 @@ void MetaLoader::load()
 
 }
 
-void MetaLoader::parseFiles(std::unordered_map<std::string, std::string>& files)
+void Meta::parseFiles(std::unordered_map<std::string, std::string>& files)
 {
   for (auto it = files.begin(); it != files.end(); it++)
   {
@@ -92,7 +95,7 @@ void MetaLoader::parseFiles(std::unordered_map<std::string, std::string>& files)
 }
 
 
-void MetaLoader::parseContent(const std::string& fileName, std::string& content, MetaDataList& out)
+void Meta::parseContent(const std::string& fileName, std::string& content, MetaDataList& out)
 {
   //std::cout << "content: " << std::endl << content << std::endl;
 
@@ -200,7 +203,7 @@ void MetaLoader::parseContent(const std::string& fileName, std::string& content,
   }
 }
 
-std::string MetaLoader::getConfigVal(const std::string& key)
+std::string Meta::getConfigVal(const std::string& key)
 {
   return config.get(key);
 }
