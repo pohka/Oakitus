@@ -348,9 +348,6 @@
     <ClInclude Include="..\projects\rpg\scripts\ai_test.h">
       <Filter>projects\rpg\scripts</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta_parser.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\meta\meta_loader.h">
       <Filter>oak\meta</Filter>
     </ClInclude>
@@ -564,9 +561,6 @@
     </ClCompile>
     <ClCompile Include="..\projects\rpg\scripts\ai_test.cpp">
       <Filter>projects\rpg\scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\meta_parser.cpp">
-      <Filter>oak\meta</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\meta\meta_loader.cpp">
       <Filter>oak\meta</Filter>

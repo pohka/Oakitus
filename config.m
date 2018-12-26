@@ -1,12 +1,6 @@
 config
 {
   project : "sample"
-  inital_scene : "scenes/test"
-  damage : "10 20 30"
+  inital_scene : "scene_test"
 }
 
-another
-{
-	test:"value"
-	other: "123"
-}

@@ -17,6 +17,29 @@ namespace oak
   {
     std::string selector;
     std::vector<MetaKV> kvs;
+
+    std::string get(const std::string& key)
+    {
+      for (unsigned int i = 0; i < kvs.size(); i++)
+      {
+        if (kvs[i].key == key)
+        {
+          return kvs[i].val;
+        }
+      }
+
+      return "";
+    }
+
+    void copy(MetaData& rhs)
+    {
+      rhs.selector = selector;
+      rhs.kvs.clear();
+      for (unsigned int i = 0; i < kvs.size(); i++)
+      {
+        rhs.kvs.push_back({ kvs[i].key, kvs[i].val });
+      }
+    }
   };
 
   struct MetaDataList
@@ -32,6 +55,17 @@ namespace oak
         
       }
       return nullptr;
+    }
+
+    std::string get(const std::string& selector, const std::string& key)
+    {
+      MetaData* md = find(selector);
+      if (md != nullptr)
+      {
+        return md->get(key);
+      }
+
+      return "";
     }
 
     void add(MetaData* md)
@@ -61,11 +95,14 @@ namespace oak
   struct MetaLoader
   {
     static void load();
-    static MetaDataList metaDataList;
+    static MetaDataList globalMetaList;
 
   private:
     static void parseFiles(std::unordered_map<std::string, std::string>& files);
-    static void parseContent(const std::string& fileName, std::string& content);
+    static void parseContent(const std::string& fileName, std::string& content, MetaDataList& out);
+    static void loadConfig();
+
+    static MetaData config;
     
 
     static const char STATE_BEFORE_SELECTOR = 0;

@@ -6,16 +6,39 @@
 
 using namespace oak;
 
-MetaDataList MetaLoader::metaDataList;
+MetaDataList MetaLoader::globalMetaList;
+MetaData MetaLoader::config;
+
+void MetaLoader::loadConfig()
+{
+  //parse config.m
+  std::ifstream ifs("../config.m");
+  std::string content(
+    (std::istreambuf_iterator<char>(ifs)),
+    (std::istreambuf_iterator<char>())
+  );
+  MetaDataList list;
+  parseContent("config.m", content, list);
+  list.find("config")->copy(config);
+}
 
 void MetaLoader::load()
 {
+  loadConfig();
+  
+
   std::cout << "----META----" << std::endl;
 
   std::string fullPath, path;
 
 
-  std::string root = std::filesystem::current_path().parent_path().generic_string();
+  if (config.get("project").size() == 0)
+  {
+    std::cout << "CONFIG ERROR" << std::endl;
+    return;
+  }
+
+  std::string root = std::filesystem::current_path().parent_path().generic_string() + "/projects/" + config.get("project") + "/";
   std::cout << "root path: " << root << std::endl;
 
   std::unordered_map<std::string, std::string> files;
@@ -28,7 +51,7 @@ void MetaLoader::load()
       std::cout << "found:" << entry.path().filename() << std::endl;
       fullPath = entry.path().generic_string();
 
-      path = fullPath.substr(root.size() + 1);
+      path = fullPath.substr(root.size());
 
       std::cout << "path:" << path << std::endl;
 
@@ -47,7 +70,7 @@ void MetaLoader::load()
   parseFiles(files);
 
   std::cout << std::endl << "results:" << std::endl;
-  std::vector<MetaData>& list = metaDataList.getList();
+  std::vector<MetaData>& list = globalMetaList.getList();
   for (unsigned int i = 0; i < list.size(); i++)
   {
     std::cout << "selector:" << list[i].selector << std::endl;
@@ -64,12 +87,12 @@ void MetaLoader::parseFiles(std::unordered_map<std::string, std::string>& files)
 {
   for (auto it = files.begin(); it != files.end(); it++)
   {
-    parseContent(it->first, it->second);
+    parseContent(it->first, it->second, globalMetaList);
   }
 }
 
 
-void MetaLoader::parseContent(const std::string& fileName, std::string& content)
+void MetaLoader::parseContent(const std::string& fileName, std::string& content, MetaDataList& out)
 {
   //std::cout << "content: " << std::endl << content << std::endl;
 
@@ -135,7 +158,7 @@ void MetaLoader::parseContent(const std::string& fileName, std::string& content)
     {
       if (ch == '}')
       {
-        metaDataList.add(metaData);
+        out.add(metaData);
         state = STATE_BEFORE_SELECTOR;
       }
       else if (!isSpace)
@@ -167,7 +190,6 @@ void MetaLoader::parseContent(const std::string& fileName, std::string& content)
     {
       if (ch == '"')
       {
-        //metaData->kvs.push_back({ key, val });
         state = STATE_BEFORE_KEY;
       }
       else
