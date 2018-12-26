@@ -84,6 +84,7 @@
     <ClInclude Include="..\engine\oak\ui\ui_point.h" />
     <ClInclude Include="..\engine\oak\xml\xml_node.h" />
     <ClInclude Include="..\engine\oak\xml\xml_parser.h" />
+    <ClInclude Include="..\projects\puzzle\load_game.h" />
     <ClInclude Include="..\projects\rpg\ability.h" />
     <ClInclude Include="..\projects\rpg\abilitys\abil_shoot.h" />
     <ClInclude Include="..\projects\rpg\abilitys\abil_sword_attack.h" />
@@ -98,6 +99,7 @@
     <ClInclude Include="..\projects\rpg\game_def.h" />
     <ClInclude Include="..\projects\rpg\inventory.h" />
     <ClInclude Include="..\projects\rpg\items\item_test.h" />
+    <ClInclude Include="..\projects\rpg\load_rpg_game.h" />
     <ClInclude Include="..\projects\rpg\player.h" />
     <ClInclude Include="..\projects\rpg\prefabs\camera_controller.h" />
     <ClInclude Include="..\projects\rpg\prefabs\projectile.h" />

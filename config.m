@@ -1,6 +1,6 @@
 config
 {
-  project : "rpg"
+  project : "sample"
   inital_scene : "scenes/test"
   damage : "10 20 30"
 }

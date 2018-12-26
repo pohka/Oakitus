@@ -64,6 +64,9 @@
     <Filter Include="oak\meta">
       <UniqueIdentifier>{30fe0a4d-da9e-4022-981f-220656161127}</UniqueIdentifier>
     </Filter>
+    <Filter Include="projects\puzzle">
+      <UniqueIdentifier>{e6718199-c87f-4e52-a53d-704e8a6b2a74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -353,6 +356,12 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\meta\meta_loader.h">
       <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\rpg\load_rpg_game.h">
+      <Filter>projects\rpg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\puzzle\load_game.h">
+      <Filter>projects\puzzle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -214,6 +214,11 @@ void Collision::checkEntEntTrigger(Entity* entA, Entity* entB)
 //check triggers
 void Collision::resolveCollisions()
 {
+  if (Entity::entitys.size() <= 1)
+  {
+    return;
+  }
+
   //pointers to increase readablity of loops
   Entity* ent;
   BaseRigidBody* rb;
