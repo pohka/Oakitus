@@ -37,7 +37,7 @@ namespace oak
       static void addShader(Shader& shader);
       static void addTexture(std::string src, const std::string& path = rootPath);
       static void addTexture(Texture& texture);
-      static void addFont(std::string src);
+      static void addFont(std::string src, const std::string& path = rootPath);
       static void addFont(ion::Font* font);
       static Shader& getShaderByID(uint id);
       static Shader& getShaderByName(std::string name);

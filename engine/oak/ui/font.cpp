@@ -9,14 +9,14 @@ using namespace ion;
 
 uchar Font::idCounter = 0;
 
-Font::Font(std::string name, FT_Library& freetype)
+Font::Font(std::string name, const std::string& resourcesPath, FT_Library& freetype)
 {
   this->name = name;
   id = idCounter;
   idCounter++;
 
-  std::string path = RESOURCES_ROOT_PATH;
-  path += "fonts/";
+  std::string path = resourcesPath + "fonts/";
+
   std::string facePath = path + name;
   if (FT_New_Face(freetype, facePath.c_str(), 0, &face))
   {

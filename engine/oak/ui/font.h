@@ -20,7 +20,7 @@ namespace ion
     std::map<GLchar, Character*> characters;
 
     public:
-      Font(std::string name, FT_Library& freetype);
+      Font(std::string name, const std::string& resourcesPath, FT_Library& freetype);
       ~Font();
       uchar getID();
       std::string getName();

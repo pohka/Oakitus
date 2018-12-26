@@ -38,7 +38,7 @@ void Resources::init()
     LOG << "--LOADED--| FreeType";
   }
 
-  addFont("arial.ttf");
+  addFont("arial.ttf", ENGINE_RESOURCES_ROOT_PATH);
 }
 
 void Resources::addShader(std::string shaderName, const std::string& path)
@@ -67,11 +67,12 @@ void Resources::addTexture(Texture& texture)
   textures.push_back(&texture);
 }
 
-void Resources::addFont(std::string src)
+void Resources::addFont(std::string src, const std::string& path)
 {
-  ion::Font* font = new ion::Font(src, freeType);
+  ion::Font* font = new ion::Font(src, path, freeType);
   fonts.push_back(font);
 }
+
 void Resources::addFont(ion::Font* font)
 {
   fonts.push_back(font);
