@@ -13,8 +13,7 @@ cnum COLLISION_SHAPE_RECT = 0;
 cnum COLLISION_SHAPE_CIRCLE = 1;
 
 
-
-
-const char RESOURCES_ROOT_PATH [] = "../projects/rpg/resources/";
+const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
+const char RESOURCES_ROOT_PATH [] = "../resources/";
 
 #endif

@@ -14,7 +14,6 @@
 #include "player_resource.h"
 #include "../collision/collision.h"
 #include "../oak_def.h"
-#include "../fallback.h"
 #include "../ui/ui_canvas.h"
 #include "../debug/debug_input.h"
 
@@ -45,7 +44,6 @@ void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, b
   Window::init(viewportW, viewportH, windowW, windowH, "Oakitus", isFullscreen);
   GLFWwindow* window = Window::getGLFWWindow();
   
-  Fallback::init();
   Resources::init();
 
   //Shader *collisionShader = new Shader("collision");

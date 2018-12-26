@@ -7,6 +7,7 @@
 
 namespace oak
 {
+
   ///<summary>Texture</summary>
   class Texture
   {
@@ -14,9 +15,10 @@ namespace oak
     int width;
     int height;
     std::string src;
+    std::string path;
 
     public:
-      Texture(std::string src, bool isOnHeap = true);
+      Texture(std::string src, std::string path, bool isOnHeap = true);
       ~Texture();
       int getHeight() const;
       uint getID() const;

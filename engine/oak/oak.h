@@ -29,5 +29,6 @@
 #include "collision/collision_rect.h"
 #include "collision/collision_circle.h"
 #include "components/rigid_body_2d.h"
+#include "core/player_resource.h"
 
 #endif

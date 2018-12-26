@@ -10,9 +10,10 @@
 
 using namespace oak;
 
-Texture::Texture(std::string src, bool isOnHeap)
+Texture::Texture(std::string src,std::string path, bool isOnHeap)
 {
   this->src = src;
+  this->path = path;
   if (isOnHeap)
   {
     load();
@@ -21,7 +22,6 @@ Texture::Texture(std::string src, bool isOnHeap)
 
 void Texture::load()
 {
-  std::string path = RESOURCES_ROOT_PATH;
   std::string fullPath = path + src;
 
   //load the texture

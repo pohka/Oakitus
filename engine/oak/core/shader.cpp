@@ -8,7 +8,7 @@
 
 using namespace oak;
 
-Shader::Shader(std::string name, bool isOnHeap, const char* geometryPath)
+Shader::Shader(std::string name, std::string path, bool isOnHeap, const char* geometryPath)
 {
   this->name = name;
   this->geometryPath = geometryPath;

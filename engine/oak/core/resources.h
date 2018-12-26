@@ -7,8 +7,8 @@
 #include <queue>
 #include <string>
 #include "../ui/font.h"
-
-#include "../fallback.h"
+#include <oak/core/texture.h>
+#include <oak/core/shader.h>
 
 namespace oak
 {
@@ -27,11 +27,15 @@ namespace oak
     static std::vector<ion::Font*> fonts;
     static FT_Library freeType;
 
+    static Texture* defaultTexture;
+    static Shader* defaultShader;
 
     public:
-      static void addShader(std::string shaderName);
+      static std::string rootPath;
+
+      static void addShader(std::string shaderName, const std::string& path = rootPath);
       static void addShader(Shader& shader);
-      static void addTexture(std::string src);
+      static void addTexture(std::string src, const std::string& path = rootPath);
       static void addTexture(Texture& texture);
       static void addFont(std::string src);
       static void addFont(ion::Font* font);

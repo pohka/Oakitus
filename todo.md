@@ -1,5 +1,11 @@
 # TODO
 
+## meta programming
+- resources path
+- default resouces for engine
+- load textures from meta file
+
+
 ## Platformer
 * move rpg into seperate folder
 * create demo scene with hardcoded tiles

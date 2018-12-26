@@ -16,7 +16,7 @@ namespace oak
 
       // constructor generates the shader on the fly
       // ------------------------------------------------------------------------
-      Shader(std::string name, bool isOnHeap = true, const char* geometryPath = nullptr);
+      Shader(std::string name, std::string path, bool isOnHeap = true, const char* geometryPath = nullptr);
 
       void load();
 

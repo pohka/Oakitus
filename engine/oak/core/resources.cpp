@@ -5,22 +5,30 @@
 
 using namespace oak;
 
-
-
 std::vector<Shader*> Resources::shaders;
 std::vector<Texture*> Resources::textures;
 std::vector<ion::Font*> Resources::fonts;
+Texture* Resources::defaultTexture = nullptr;
+Shader* Resources::defaultShader = nullptr;
 
 FT_Library Resources::freeType;
+
+std::string Resources::rootPath = "";
 
 void Resources::init()
 {
   //collision shape textures
-  addTexture("box.png");
-  addTexture("circle.png");
+  addTexture("box.png", ENGINE_RESOURCES_ROOT_PATH);
+  addTexture("circle.png", ENGINE_RESOURCES_ROOT_PATH);
+  defaultTexture = new Texture("default.png", ENGINE_RESOURCES_ROOT_PATH);
+  addTexture(*defaultTexture);
+
+  defaultShader = new Shader("default", ENGINE_RESOURCES_ROOT_PATH);
+  addShader(*defaultShader);
 
   //default font
-  addShader("text");
+  addShader("text", ENGINE_RESOURCES_ROOT_PATH);
+
   if (FT_Init_FreeType(&freeType))
   {
     LOG_WARNING << "ERROR::FREETYPE: Could not init FreeType Library";
@@ -33,11 +41,11 @@ void Resources::init()
   addFont("arial.ttf");
 }
 
-void Resources::addShader(std::string shaderName)
+void Resources::addShader(std::string shaderName, const std::string& path)
 {
   if (!isShaderLoaded(shaderName))
   {
-    shaders.push_back(new Shader(shaderName));
+    shaders.push_back(new Shader(shaderName, path));
   }
 }
 
@@ -46,11 +54,11 @@ void Resources::addShader(Shader& shader)
   shaders.push_back(&shader);
 }
 
-void Resources::addTexture(std::string src)
+void Resources::addTexture(std::string src, const std::string& path)
 {
   if (!isTextureLoaded(src))
   {
-    textures.push_back(new Texture(src));
+    textures.push_back(new Texture(src, path));
   }
 }
 
@@ -131,11 +139,11 @@ Shader& Resources::getShaderByID(uint id)
       return *shaders[i];
     }
   }
-  if (id != Fallback::shader.getID())
+  if (id != defaultShader->getID())
   {
     LOG_WARNING << "FALLBACK | Shader id '" << id << "' was not found";
   }
-  return Fallback::shader;
+  return *defaultShader;
 }
 
 
@@ -148,11 +156,11 @@ Shader& Resources::getShaderByName(std::string name)
       return *shaders[i];
     }
   }
-  if (name != Fallback::shader.getName())
+  if (name != defaultShader->getName())
   {
     LOG_WARNING << "FALLBACK | Shader name '" << name << "' was not found";
   }
-  return Fallback::shader;
+  return *defaultShader;
 }
 
 Texture& Resources::getTextureByID(uint textureID)
@@ -164,11 +172,11 @@ Texture& Resources::getTextureByID(uint textureID)
       return *textures[i];
     }
   }
-  if (textureID != Fallback::texture.getID())
+  if (textureID != defaultTexture->getID())
   {
     LOG_WARNING << "FALLBACK | Texture ID '" << textureID << "' was not found";
   }
-  return Fallback::texture;
+  return *defaultTexture;
 }
 
 Texture& Resources::getTextureBySrc(std::string src)
@@ -180,21 +188,21 @@ Texture& Resources::getTextureBySrc(std::string src)
       return *textures[i];
     }
   }
-  if (src != Fallback::texture.getSrc())
+  if (src != defaultTexture->getSrc())
   {
     LOG_WARNING << "FALLBACK | Texture src '" << src << "' was not found";
   }
-  return Fallback::texture;
+  return *defaultTexture;
 }
 
 Shader& Resources::getDefaultShader()
 {
-  return Fallback::shader;
+  return *defaultShader;
 }
 
 Texture& Resources::getDefaultTexture()
 {
-  return Fallback::texture;
+  return *defaultTexture;
 }
 
 uint Resources::getTextureIDBySrc(std::string src)

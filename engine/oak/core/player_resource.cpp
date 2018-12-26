@@ -1,6 +1,5 @@
 #include "player_resource.h"
 #include "types.h"
-#include "../fallback.h"
 #include <oak/debug.h>
 
 using namespace oak;
@@ -8,6 +7,7 @@ using namespace oak;
 unsigned int PlayerResource::playerCount = 0;
 BasePlayer* PlayerResource::players[4];
 uint localPlayerID = 0;
+BasePlayer PlayerResource::defaultPlayer = BasePlayer();
 
 void PlayerResource::addPlayer(BasePlayer& player)
 {
@@ -36,7 +36,7 @@ BasePlayer& PlayerResource::getPlayer(uint playerID)
   }
 
   LOG_WARNING << "FALLBACK | BasePlayer not found with ID: " << playerID;
-  return Fallback::basePlayer;
+  return defaultPlayer;
 }
 
 BasePlayer& PlayerResource::getPlayerByIndex(uint index)
@@ -44,7 +44,7 @@ BasePlayer& PlayerResource::getPlayerByIndex(uint index)
   if (index >= MAX_PLAYER_COUNT || players[index] == nullptr)
   {
     LOG_WARNING << "FALLBACK | BasePlayer not found at index: " << index;
-    return Fallback::basePlayer;
+    return defaultPlayer;
   }
   return *players[index];
 }

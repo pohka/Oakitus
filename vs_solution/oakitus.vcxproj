@@ -60,7 +60,6 @@
     <ClInclude Include="..\engine\oak\debug\logger.h" />
     <ClInclude Include="..\engine\oak\event\event.h" />
     <ClInclude Include="..\engine\oak\event\event_manager.h" />
-    <ClInclude Include="..\engine\oak\fallback.h" />
     <ClInclude Include="..\engine\oak\meta\meta_loader.h" />
     <ClInclude Include="..\engine\oak\meta\meta_parser.h" />
     <ClInclude Include="..\engine\oak\oak.h" />
@@ -84,7 +83,6 @@
     <ClInclude Include="..\engine\oak\ui\ui_point.h" />
     <ClInclude Include="..\engine\oak\xml\xml_node.h" />
     <ClInclude Include="..\engine\oak\xml\xml_parser.h" />
-    <ClInclude Include="..\projects\puzzle\load_game.h" />
     <ClInclude Include="..\projects\rpg\ability.h" />
     <ClInclude Include="..\projects\rpg\abilitys\abil_shoot.h" />
     <ClInclude Include="..\projects\rpg\abilitys\abil_sword_attack.h" />
@@ -117,6 +115,7 @@
     <ClInclude Include="..\projects\rpg\ui\inventory_menu.h" />
     <ClInclude Include="..\projects\rpg\ui\tmp_inventory_item.h" />
     <ClInclude Include="..\projects\rpg\unit.h" />
+    <ClInclude Include="..\projects\sample\load_game.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp" />
@@ -148,7 +147,6 @@
     <ClCompile Include="..\engine\oak\debug\debug_input.cpp" />
     <ClCompile Include="..\engine\oak\debug\logger.cpp" />
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
-    <ClCompile Include="..\engine\oak\fallback.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta_loader.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta_parser.cpp" />
     <ClCompile Include="..\engine\oak\ui\font.cpp" />

@@ -64,15 +64,12 @@
     <Filter Include="oak\meta">
       <UniqueIdentifier>{30fe0a4d-da9e-4022-981f-220656161127}</UniqueIdentifier>
     </Filter>
-    <Filter Include="projects\puzzle">
+    <Filter Include="projects\sample">
       <UniqueIdentifier>{e6718199-c87f-4e52-a53d-704e8a6b2a74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
-      <Filter>oak</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\fallback.h">
       <Filter>oak</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\oak.h">
@@ -360,14 +357,11 @@
     <ClInclude Include="..\projects\rpg\load_rpg_game.h">
       <Filter>projects\rpg</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\puzzle\load_game.h">
-      <Filter>projects\puzzle</Filter>
+    <ClInclude Include="..\projects\sample\load_game.h">
+      <Filter>projects\sample</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\engine\oak\fallback.cpp">
-      <Filter>oak</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
       <Filter>oak\collision</Filter>
     </ClCompile>

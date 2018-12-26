@@ -14,6 +14,8 @@ namespace oak
     static uint playerCount; ///<summary>Current player count</summary>
     static uint localPlayerID;
 
+    static BasePlayer defaultPlayer;
+
     public :
       ///<summary>Add a Player</summary>
       static void addPlayer(BasePlayer& player);
