@@ -1,6 +1,6 @@
 #include "entity.h"
 #include "component.h"
-#include "../collision/base_collision_shape.h"
+#include <oak/collision/base_collision_shape.h>
 #include <oak/debug.h>
 
 using namespace oak;

@@ -1,16 +1,16 @@
 #include "sprite.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "../core/stb_image.h"
+#include <oak/core/stb_image.h>
 
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "../core/camera.h"
-#include "../core/window.h"
-#include "../core/resources.h"
+#include <oak/core/camera.h>
+#include <oak/core/window.h>
+#include <oak/core/resources.h>
 
 using namespace oak;
 

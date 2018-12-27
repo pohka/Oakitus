@@ -6,7 +6,7 @@
 #include <vector>
 #include <queue>
 #include <string>
-#include "../ui/font.h"
+#include <oak/ui/font.h>
 #include <oak/core/texture.h>
 #include <oak/core/shader.h>
 

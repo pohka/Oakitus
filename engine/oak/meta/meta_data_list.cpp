@@ -23,7 +23,7 @@ const Var* MetaDataList::getVar(const std::string& selector, const std::string& 
     return md->findVar(key);
   }
 
-  return &MetaData::VAR_NULL;
+  return nullptr;// &MetaData::VAR_NULL;
 }
 
 void MetaDataList::add(MetaData* md)

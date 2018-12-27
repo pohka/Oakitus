@@ -19,8 +19,8 @@ void oak::Oakitus::load()
   EventManager::addEvent(deathEvent);
 
   BasePlayer* player1 = new game::Player();
-  PlayerResource::addPlayer(*player1);
+  PlayerResource::addPlayer(player1);
 
   Scene* mainScene = new game::MainScene();
-  Scene::loadFirstScene(*mainScene);
+  Scene::loadFirstScene(mainScene);
 }

@@ -9,8 +9,8 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <queue>
-#include "../collision/collision_layer.h"
-#include "../components/base_rigid_body.h"
+#include <oak/collision/collision_layer.h>
+#include <oak/components/base_rigid_body.h>
 
 namespace oak
 {

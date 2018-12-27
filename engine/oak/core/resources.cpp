@@ -1,5 +1,5 @@
 #include "resources.h"
-#include "../oak_def.h"
+#include <oak/oak_def.h>
 #include <oak/debug.h>
 
 

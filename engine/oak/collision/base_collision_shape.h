@@ -1,7 +1,7 @@
 #ifndef BASE_COLLISION_SHAPE_H
 #define BASE_COLLISION_SHAPE_H
 
-#include <oak/core/types.h>
+#include "../core/types.h"
 #include <glm/glm.hpp>
 
 ///<summary>The base collision shape</summary>

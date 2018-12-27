@@ -1,7 +1,7 @@
 #ifndef BASE_RIGID_BODY_H
 #define BASE_RIGID_BODY_H
 
-#include "../core/component.h"
+#include <oak/core/component.h>
 #include <glm/glm.hpp>
 
 namespace oak

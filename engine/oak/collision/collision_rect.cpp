@@ -1,12 +1,12 @@
-#include <oak/debug.h>
+#include "../debug.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <cstdlib>
-#include <oak/core/window.h>
-#include <oak/core/resources.h>
+#include "../core/window.h"
+#include "../core/resources.h"
 #include "collision.h"
-#include <oak/oak_def.h>
+#include "../oak_def.h"
 
 using namespace oak;
 

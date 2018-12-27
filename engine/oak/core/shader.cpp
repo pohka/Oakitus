@@ -1,5 +1,5 @@
 #include "shader.h"
-#include "../oak_def.h"
+#include <oak/oak_def.h>
 #include <string.h>
 #include <oak/core/window.h>
 #include <fstream>

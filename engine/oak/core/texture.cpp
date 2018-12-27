@@ -5,7 +5,7 @@
 #include "stb_image.h"
 
 #include "texture.h"
-#include "../oak_def.h"
+#include <oak/oak_def.h>
 #include <oak/debug.h>
 
 using namespace oak;

@@ -1,7 +1,7 @@
 #ifndef UI_NODE_H
 #define UI_NODE_H
 
-#include "../core/types.h"
+#include <oak/core/types.h>
 #include "ui_def.h"
 #include <oak/core/point.h>
 #include <vector>

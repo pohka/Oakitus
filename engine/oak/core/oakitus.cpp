@@ -5,18 +5,18 @@
 #include "camera.h"
 #include "entity.h"
 #include <glm/glm.hpp>
-#include "../debug.h"
+#include <oak/debug.h>
 #include "window.h"
 #include "shader.h"
 #include "resources.h"
 #include "scene.h"
 #include "texture.h"
 #include "player_resource.h"
-#include "../collision/collision.h"
-#include "../oak_def.h"
-#include "../ui/ui_canvas.h"
-#include "../debug/debug_input.h"
-#include "../meta/meta.h"
+#include <oak/collision/collision.h>
+#include <oak/oak_def.h>
+#include <oak/ui/ui_canvas.h>
+#include <oak/debug/debug_input.h>
+#include <oak/meta/meta.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"

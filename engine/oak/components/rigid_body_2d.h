@@ -1,7 +1,7 @@
 #ifndef RIGID_BODY_2D_H
 #define RIGID_BODY_2D_H
 
-#include "../components/base_rigid_body.h"
+#include <oak/components/base_rigid_body.h>
 
 namespace oak
 {

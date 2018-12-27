@@ -2,7 +2,7 @@
 #include <oak/debug.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "../oak_def.h"
+#include <oak/oak_def.h>
 #include "ui_def.h"
 
 using namespace ion;

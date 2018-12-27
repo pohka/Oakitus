@@ -1,7 +1,7 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include "../core/types.h"
+#include <oak/core/types.h>
 #include <vector>
 #include <oak/debug.h>
 

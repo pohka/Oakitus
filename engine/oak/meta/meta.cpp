@@ -48,6 +48,12 @@ void Meta::load()
   std::string root = std::filesystem::current_path().parent_path().generic_string() + "/projects/" + projectName + "/";
   std::cout << "root path: " << root << std::endl;
 
+  bool loadOtherMetaFiles = false;
+  if (!loadOtherMetaFiles)
+  {
+    return;
+  }
+
   std::unordered_map<std::string, std::string> files;
 
   for (const auto & entry : std::filesystem::recursive_directory_iterator(root))

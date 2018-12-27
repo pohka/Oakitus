@@ -1,7 +1,7 @@
 #ifndef UI_DEF_H
 #define UI_DEF_H
 
-#include "../core/types.h"
+#include <oak/core/types.h>
 #include "color.h"
 #include <limits>
 
