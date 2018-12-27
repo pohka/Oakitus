@@ -3,18 +3,15 @@
 //#include <oak/ui/ui.h>
 #include <oak/debug.h>
 #include <oak/oak.h>
+#include "scenes/scenes.h"
+
+using namespace puz;
 
 void oak::Oakitus::load()
 {
   BasePlayer* player1 = new BasePlayer();
   PlayerResource::addPlayer(*player1);
 
-  Scene* scene = new Scene();
+  Scene* scene = new DemoScene();
   Scene::loadFirstScene(*scene);
-
-  
-  Resources::addTexture("face.png");
-  Entity* ent = new Entity();
-  ent->addComponent(new Sprite("face.png", 60.0f, 60.0f));
-  ent->create(0.0f, 0.0f);
 }

@@ -49,8 +49,9 @@ namespace oak
     //get var by key, if not found then an empty string is returned
     Var* findVar(const std::string& key);
 
-    //makes a deep copy and outputs to rhs
-    void copy(MetaData& rhs);
+    //makes a deep copy and outputs to lhs
+    void copy(MetaData& lhs);
+
 
   private:
     std::vector<MetaKV*> kvs;

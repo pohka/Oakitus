@@ -67,6 +67,9 @@
     <Filter Include="projects\sample">
       <UniqueIdentifier>{e6718199-c87f-4e52-a53d-704e8a6b2a74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="projects\sample\scenes">
+      <UniqueIdentifier>{d487e144-1f71-451f-962c-7da054ea9bd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -369,6 +372,12 @@
     <ClInclude Include="..\engine\oak\meta\meta_def.h">
       <Filter>oak\meta</Filter>
     </ClInclude>
+    <ClInclude Include="..\projects\sample\scenes\demo_scene.h">
+      <Filter>projects\sample\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\sample\scenes\scenes.h">
+      <Filter>projects\sample\scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -585,6 +594,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\meta\meta_var.cpp">
       <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp">
+      <Filter>projects\sample\scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

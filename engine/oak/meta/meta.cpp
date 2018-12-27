@@ -27,16 +27,13 @@ void Meta::load()
 {
   loadConfig();
 
-  
   std::cout << "----META----" << std::endl;
 
   std::string fullPath, path;
 
   std::string projectName = VarString::get(config.findVar("project"));
-  Var* var = config.findVar("damage");
-  std::cout << "is var nullptr:" << (var == nullptr) << std::endl;
-  float damage = VarNumber::get(var);
-  std::cout << "damage from copy:" << damage << std::endl;
+  //float damage = VarNumber::get(config.findVar("damage"));
+  //std::cout << "damage from copy:" << damage << std::endl;
 
 
 
