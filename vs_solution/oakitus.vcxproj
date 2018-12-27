@@ -63,6 +63,8 @@
     <ClInclude Include="..\engine\oak\meta\meta.h" />
     <ClInclude Include="..\engine\oak\meta\meta_data.h" />
     <ClInclude Include="..\engine\oak\meta\meta_data_list.h" />
+    <ClInclude Include="..\engine\oak\meta\meta_def.h" />
+    <ClInclude Include="..\engine\oak\meta\meta_vars.h" />
     <ClInclude Include="..\engine\oak\oak.h" />
     <ClInclude Include="..\engine\oak\oak_def.h" />
     <ClInclude Include="..\engine\oak\oak_setup.h" />
@@ -151,6 +153,7 @@
     <ClCompile Include="..\engine\oak\meta\meta.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta_data.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta_data_list.cpp" />
+    <ClCompile Include="..\engine\oak\meta\meta_var.cpp" />
     <ClCompile Include="..\engine\oak\ui\font.cpp" />
     <ClCompile Include="..\engine\oak\ui\localization.cpp" />
     <ClCompile Include="..\engine\oak\ui\style.cpp" />

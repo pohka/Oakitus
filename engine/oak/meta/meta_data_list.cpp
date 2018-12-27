@@ -20,7 +20,7 @@ const Var* MetaDataList::getVar(const std::string& selector, const std::string& 
   MetaData* md = findMetaData(selector);
   if (md != nullptr)
   {
-    return md->getKV(key);
+    return md->findVar(key);
   }
 
   return &MetaData::VAR_NULL;

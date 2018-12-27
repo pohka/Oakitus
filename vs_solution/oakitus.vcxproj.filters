@@ -363,6 +363,12 @@
     <ClInclude Include="..\engine\oak\meta\meta_data_list.h">
       <Filter>oak\meta</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\meta_vars.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\meta_def.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -575,6 +581,9 @@
       <Filter>oak\meta</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\meta\meta_data_list.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\meta_var.cpp">
       <Filter>oak\meta</Filter>
     </ClCompile>
   </ItemGroup>

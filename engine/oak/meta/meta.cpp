@@ -32,7 +32,13 @@ void Meta::load()
 
   std::string fullPath, path;
 
-  std::string projectName = VarString::toString(config.getKV("project"));
+  std::string projectName = VarString::get(config.findVar("project"));
+  Var* var = config.findVar("damage");
+  std::cout << "is var nullptr:" << (var == nullptr) << std::endl;
+  float damage = VarNumber::get(var);
+  std::cout << "damage from copy:" << damage << std::endl;
+
+
 
   if (projectName.size() == 0)
   {
@@ -98,7 +104,7 @@ void Meta::parseFiles(std::unordered_map<std::string, std::string>& files)
 
 void Meta::parseContent(const std::string& fileName, std::string& content, MetaDataList& out)
 {
-  std::cout << "content: " << std::endl << content << std::endl;
+  //std::cout << "content: " << std::endl << content << std::endl;
 
   MetaData* metaData = nullptr;
   char state = STATE_BEFORE_SELECTOR;
@@ -107,23 +113,41 @@ void Meta::parseContent(const std::string& fileName, std::string& content, MetaD
   std::string key, val;
   unsigned int lineNum = 1;
 
+  unsigned char varType = VAR_TYPE_STRING;
+
   for (char& ch : content) 
   {
     if (ch == '\n')
     {
       if (state == STATE_BEFORE_KEY && key.size() && key.size() > 0)
       {
-        //std::cout << "kv:" << key << ":" << val << std::endl;
-        metaData->addKV(key, val, VAR_TYPE_STRING);
-        //VarString* var = new VarString(val);
-        //MetaKV kv = MetaKV(key, var);
-        //metaData->kvs.push_back({ key, var });
+        if (varType == VAR_TYPE_STRING)
+        {
+          Var* var = new VarString(val);
+          metaData->addKV(new MetaKV(key, var));
+        }
+        else if(varType == VAR_TYPE_NUMBER)
+        {
+          float num = std::stof(val);
+          Var* var = new VarNumber(num);
+          metaData->addKV(new MetaKV(key, var));
+        }
       }
-
-      if (state > STATE_BEFORE_KEY)
+      else if (state == STATE_VAL && varType == VAR_TYPE_NUMBER && val.size() > 0)
       {
+        float num = std::stof(val);
+        Var* var = new VarNumber(num);
+        metaData->addKV(new MetaKV(key, var));
+      }
+      else if (state > STATE_BEFORE_KEY)
+      {
+        if (
+          !(state == STATE_VAL && varType == VAR_TYPE_NUMBER && val.size() > 0)
+          )
+        {
+          std::cout << "'" << fileName << "' parsing error line:" << lineNum << std::endl;
+        }
         state = STATE_BEFORE_KEY;
-        std::cout << "'" << fileName << "' parsing error line:" << lineNum << std::endl;
       }
 
       key.clear();
@@ -188,21 +212,42 @@ void Meta::parseContent(const std::string& fileName, std::string& content, MetaD
     }
     else if (state == STATE_BEFORE_VAL)
     {
-      if (ch == '"')
+      if (!isSpace)
       {
         state = STATE_VAL;
         val = "";
+
+        if (ch == '"')
+        {
+          varType = VAR_TYPE_STRING;
+        }
+        else if(ch <= '9' && ch >= '0')
+        {
+          varType = VAR_TYPE_NUMBER;
+          val += ch;
+        }
       }
     }
     else if (state == STATE_VAL)
     {
-      if (ch == '"')
+      //if value ended
+      if (
+        (ch == '"' && varType == VAR_TYPE_STRING) ||
+        (isSpace && varType == VAR_TYPE_NUMBER)
+        )
       {
         state = STATE_BEFORE_KEY;
       }
       else
       {
-        val += ch;
+        if (varType == VAR_TYPE_STRING)
+        {
+          val += ch;
+        }
+        else if (varType == VAR_TYPE_NUMBER)
+        {
+          val += ch;
+        }
       }
     }
   }

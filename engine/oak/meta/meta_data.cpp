@@ -1,4 +1,6 @@
 #include "meta_data.h"
+#include "meta_vars.h"
+#include <iostream>
 
 using namespace oak;
 
@@ -17,7 +19,7 @@ MetaData::~MetaData()
   }
 }
 
-Var* MetaData::getKV(const std::string& key)
+Var* MetaData::findVar(const std::string& key)
 {
   for (unsigned int i = 0; i < kvs.size(); i++)
   {
@@ -33,13 +35,14 @@ Var* MetaData::getKV(const std::string& key)
 
 void MetaData::copy(MetaData& lhs)
 {
-  for (MetaKV* kv : lhs.kvs)
+  for (MetaKV* lhsKV : lhs.kvs)
   {
-    delete kv;
+    delete lhsKV;
   }
   lhs.kvs.clear();
 
   lhs.selector = selector;
+
   for (MetaKV* kv : kvs)
   {
     unsigned char type = kv->var->getType();
@@ -47,17 +50,21 @@ void MetaData::copy(MetaData& lhs)
     if (type == VAR_TYPE_STRING)
     {
       std::string val = static_cast<VarString*>(kv->var)->val;
-      lhs.addKV(kv->getKey(), val, VAR_TYPE_STRING);
+      VarString* var = new VarString(val);
+      MetaKV* a = new MetaKV(kv->getKey(), var);
+      lhs.addKV(a);
+    }
+    else if (type == VAR_TYPE_NUMBER)
+    {
+      float val = static_cast<VarNumber*>(kv->var)->val;
+      VarNumber* var = new VarNumber(val);
+      MetaKV* a = new MetaKV(kv->getKey(), var);
+      lhs.addKV(a);
     }
   }
 }
 
-void MetaData::addKV(const std::string& key, const std::string& val, unsigned char type)
+void MetaData::addKV(MetaKV* kv)
 {
-  if (type == VAR_TYPE_STRING)
-  {
-    VarString* var = new VarString(val);
-    MetaKV* kv = new MetaKV(key, var);
-    kvs.push_back(kv);
-  }
+  kvs.push_back(kv);
 }
