@@ -20,7 +20,7 @@ void Meta::loadConfig()
   );
   MetaDataList list;
   parseContent("config.m", content, list);
-  list.find("config")->copy(config);
+  list.findMetaData("config")->copy(config);
 }
 
 void Meta::load()
@@ -32,16 +32,17 @@ void Meta::load()
 
   std::string fullPath, path;
 
+  std::string projectName = VarString::toString(config.getKV("project"));
 
-  if (config.get("project").size() == 0)
+  if (projectName.size() == 0)
   {
     std::cout << "CONFIG ERROR" << std::endl;
     return;
   }
 
-  Resources::rootPath = "../projects/" + config.get("project") + "/resources/";
+  Resources::rootPath = "../projects/" + projectName + "/resources/";
 
-  std::string root = std::filesystem::current_path().parent_path().generic_string() + "/projects/" + config.get("project") + "/";
+  std::string root = std::filesystem::current_path().parent_path().generic_string() + "/projects/" + projectName + "/";
   std::cout << "root path: " << root << std::endl;
 
   std::unordered_map<std::string, std::string> files;
@@ -58,7 +59,7 @@ void Meta::load()
 
       std::cout << "path:" << path << std::endl;
 
-      std::ifstream ifs("../" + path);
+      std::ifstream ifs(root + path);
       std::string content(
         (std::istreambuf_iterator<char>(ifs)),
         (std::istreambuf_iterator<char>())
@@ -72,17 +73,17 @@ void Meta::load()
 
   parseFiles(files);
 
-  std::cout << std::endl << "results:" << std::endl;
-  std::vector<MetaData>& list = globalMetaList.getList();
-  for (unsigned int i = 0; i < list.size(); i++)
-  {
-    std::cout << "selector:" << list[i].selector << std::endl;
-    for (MetaKV kv : list[i].kvs)
-    {
-      std::cout << kv.key << ":" << kv.val << std::endl;
-    }
-    std::cout << "==========" << std::endl;
-  }
+  //std::cout << std::endl << "results:" << std::endl;
+  //std::vector<MetaData>& list = globalMetaList.getList();
+  //for (unsigned int i = 0; i < list.size(); i++)
+  //{
+  //  std::cout << "selector:" << list[i].selector << std::endl;
+  //  for (MetaKV kv : list[i].kvs)
+  //  {
+  //    std::cout << kv.key << ":" << kv.val << std::endl;
+  //  }
+  //  std::cout << "==========" << std::endl;
+  //}
 
 }
 
@@ -97,7 +98,7 @@ void Meta::parseFiles(std::unordered_map<std::string, std::string>& files)
 
 void Meta::parseContent(const std::string& fileName, std::string& content, MetaDataList& out)
 {
-  //std::cout << "content: " << std::endl << content << std::endl;
+  std::cout << "content: " << std::endl << content << std::endl;
 
   MetaData* metaData = nullptr;
   char state = STATE_BEFORE_SELECTOR;
@@ -112,7 +113,11 @@ void Meta::parseContent(const std::string& fileName, std::string& content, MetaD
     {
       if (state == STATE_BEFORE_KEY && key.size() && key.size() > 0)
       {
-        metaData->kvs.push_back({ key, val });
+        //std::cout << "kv:" << key << ":" << val << std::endl;
+        metaData->addKV(key, val, VAR_TYPE_STRING);
+        //VarString* var = new VarString(val);
+        //MetaKV kv = MetaKV(key, var);
+        //metaData->kvs.push_back({ key, var });
       }
 
       if (state > STATE_BEFORE_KEY)
@@ -205,5 +210,5 @@ void Meta::parseContent(const std::string& fileName, std::string& content, MetaD
 
 std::string Meta::getConfigVal(const std::string& key)
 {
-  return config.get(key);
+  return "";// todo: config.getKV(key);
 }

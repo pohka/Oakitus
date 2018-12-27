@@ -8,10 +8,10 @@ namespace oak
   struct MetaDataList
   {
     //find the meta data by selector, if not found returns a nullptr
-    MetaData* find(const std::string& selector);
+    MetaData* findMetaData(const std::string& selector);
 
     //find the value by selector and key, if not found an empty string is returned
-    std::string get(const std::string& selector, const std::string& key);
+    const Var* getVar(const std::string& selector, const std::string& key);
 
     //add meta data to the list
     void add(MetaData* md);

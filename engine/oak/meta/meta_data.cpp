@@ -2,27 +2,62 @@
 
 using namespace oak;
 
+const Var MetaData::VAR_NULL = Var();
 
-std::string MetaData::get(const std::string& key)
+MetaData::MetaData()
+{
+
+}
+
+MetaData::~MetaData()
 {
   for (unsigned int i = 0; i < kvs.size(); i++)
   {
-    if (kvs[i].key == key)
+    delete kvs[i];
+  }
+}
+
+Var* MetaData::getKV(const std::string& key)
+{
+  for (unsigned int i = 0; i < kvs.size(); i++)
+  {
+    if (kvs[i]->getKey() == key)
     {
-      return kvs[i].val;
+      return kvs[i]->var;
     }
   }
 
-  return "";
+  return nullptr;
 }
 
 
-void MetaData::copy(MetaData& rhs)
+void MetaData::copy(MetaData& lhs)
 {
-  rhs.selector = selector;
-  rhs.kvs.clear();
-  for (unsigned int i = 0; i < kvs.size(); i++)
+  for (MetaKV* kv : lhs.kvs)
   {
-    rhs.kvs.push_back({ kvs[i].key, kvs[i].val });
+    delete kv;
+  }
+  lhs.kvs.clear();
+
+  lhs.selector = selector;
+  for (MetaKV* kv : kvs)
+  {
+    unsigned char type = kv->var->getType();
+
+    if (type == VAR_TYPE_STRING)
+    {
+      std::string val = static_cast<VarString*>(kv->var)->val;
+      lhs.addKV(kv->getKey(), val, VAR_TYPE_STRING);
+    }
+  }
+}
+
+void MetaData::addKV(const std::string& key, const std::string& val, unsigned char type)
+{
+  if (type == VAR_TYPE_STRING)
+  {
+    VarString* var = new VarString(val);
+    MetaKV* kv = new MetaKV(key, var);
+    kvs.push_back(kv);
   }
 }

@@ -2,7 +2,7 @@
 
 using namespace oak;
 
-MetaData* MetaDataList::find(const std::string& selector)
+MetaData* MetaDataList::findMetaData(const std::string& selector)
 {
   for (auto it = list.begin(); it != list.end(); it++)
   {
@@ -15,15 +15,15 @@ MetaData* MetaDataList::find(const std::string& selector)
   return nullptr;
 }
 
-std::string MetaDataList::get(const std::string& selector, const std::string& key)
+const Var* MetaDataList::getVar(const std::string& selector, const std::string& key)
 {
-  MetaData* md = find(selector);
+  MetaData* md = findMetaData(selector);
   if (md != nullptr)
   {
-    return md->get(key);
+    return md->getKV(key);
   }
 
-  return "";
+  return &MetaData::VAR_NULL;
 }
 
 void MetaDataList::add(MetaData* md)
