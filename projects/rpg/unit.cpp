@@ -3,7 +3,6 @@
 #include <oak/core/time.h>
 #include "player.h"
 #include "ability.h"
-#include <oak/fallback.h>
 #include <oak/event/event_manager.h>
 #include <oak/event/event.h>
 #include <oak/core/player_resource.h>
@@ -48,7 +47,7 @@ oak::BasePlayer* Unit::getOwner() const
   {
     LOG_WARNING << "Unit '" << name << "' does not have an owner";
   }
-  return &oak::PlayerResource::getPlayer(ownerID);
+  return oak::PlayerResource::getPlayer(ownerID);
 }
 
 bool Unit::isOwnerBotPlayer() const

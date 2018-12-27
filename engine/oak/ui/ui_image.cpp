@@ -71,9 +71,9 @@ void UIImage::render(UIPoint& nodeCursor)
 
   model = glm::translate(model, modelPos);
 
-  Shader& shader = Resources::getDefaultShader();
-  shader.use();
-  shader.setMat4("model", model);
+  Shader* shader = Resources::getDefaultShader();
+  shader->use();
+  shader->setMat4("model", model);
 
   glDrawArrays(GL_TRIANGLES, 0, 6);
 

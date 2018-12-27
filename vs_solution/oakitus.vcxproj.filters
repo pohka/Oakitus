@@ -375,7 +375,7 @@
     <ClInclude Include="..\projects\sample\scenes\demo_scene.h">
       <Filter>projects\sample\scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\sample\scenes\scenes.h">
+    <ClInclude Include="..\projects\sample\scenes\game_scenes.h">
       <Filter>projects\sample\scenes</Filter>
     </ClInclude>
   </ItemGroup>

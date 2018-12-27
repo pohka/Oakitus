@@ -26,9 +26,9 @@ SpriteAnimation::SpriteAnimation(
   bool isOnHeap
 )
 {
-  Texture& texture = Resources::getTextureBySrc(src);
-  this->textureID = texture.getID();
-  this->shaderID = Resources::getShaderByName(shaderName).getID();
+  Texture* texture = Resources::getTextureBySrc(src);
+  this->textureID = texture->getID();
+  this->shaderID = Resources::getShaderByName(shaderName)->getID();
   this->frameW = frameW;
   this->frameH = frameH;
   this->displayH = displayH;
@@ -44,8 +44,8 @@ SpriteAnimation::SpriteAnimation(
   this->curFrameX = 0;
   this->curFrameY = startFrameY;
 
-  maxFramesX = texture.getWidth() / frameW;
-  maxFramesY = texture.getHeight() / frameH;
+  maxFramesX = texture->getWidth() / frameW;
+  maxFramesY = texture->getHeight() / frameH;
 
   if (isOnHeap)
   {
@@ -175,16 +175,16 @@ void SpriteAnimation::onDraw(float positionX, float positionY) const
   model = glm::rotate(model, rotation, glm::vec3(0.0, 0.0, 1.0f));
 
 
-  Shader& shader = Resources::getShaderByID(this->shaderID);
-  shader.use();
-  shader.setMat4("model", model);
+  Shader* shader = Resources::getShaderByID(this->shaderID);
+  shader->use();
+  shader->setMat4("model", model);
 
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 void SpriteAnimation::setFrame(uchar direction)
 {
-  Texture& texture = Resources::getTextureByID(textureID);
+  Texture* texture = Resources::getTextureByID(textureID);
   
   float xx = Window::worldToViewportCoords((float)displayW) * 0.5f;
   float yy = Window::worldToViewportCoords((float)displayH) * 0.5f;
@@ -193,8 +193,8 @@ void SpriteAnimation::setFrame(uchar direction)
 
   
 
-  float xMin = (float)(curFrameX * frameW)/ texture.getWidth();
-  float xMax = (float)((curFrameX+1) * frameW) / texture.getWidth();
+  float xMin = (float)(curFrameX * frameW)/ texture->getWidth();
+  float xMax = (float)((curFrameX+1) * frameW) / texture->getWidth();
 
   //flip x
   if (direction == ANIM_DIRECTION_LEFT)
@@ -204,8 +204,8 @@ void SpriteAnimation::setFrame(uchar direction)
     xMax = tmp;
   }
 
-  float yMin = (float)(curFrameY * frameH) / texture.getHeight();
-  float yMax = (float)((curFrameY + 1) * frameH) / texture.getHeight();
+  float yMin = (float)(curFrameY * frameH) / texture->getHeight();
+  float yMax = (float)((curFrameY + 1) * frameH) / texture->getHeight();
 
 
   float vertices[] = {

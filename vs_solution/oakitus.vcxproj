@@ -120,7 +120,7 @@
     <ClInclude Include="..\projects\rpg\unit.h" />
     <ClInclude Include="..\projects\sample\load_game.h" />
     <ClInclude Include="..\projects\sample\scenes\demo_scene.h" />
-    <ClInclude Include="..\projects\sample\scenes\scenes.h" />
+    <ClInclude Include="..\projects\sample\scenes\game_scenes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp" />

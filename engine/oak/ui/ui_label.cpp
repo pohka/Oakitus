@@ -36,11 +36,11 @@ void UILabel::render(UIPoint& nodeCursor)
 
   scale = cstyle.attrs[STYLE_FONT_SIZE] / (float)FONT_LOADED_SIZE;
 
-  Shader& shader = Resources::getShaderByName("text");
+  Shader* shader = Resources::getShaderByName("text");
   // Activate corresponding render state	
-  shader.use();
+  shader->use();
   glUniform4f(
-    glGetUniformLocation(shader.getID(), "textColor"),
+    glGetUniformLocation(shader->getID(), "textColor"),
     cstyle.color.r,
     cstyle.color.g,
     cstyle.color.b,
@@ -60,11 +60,11 @@ void UILabel::render(UIPoint& nodeCursor)
   float chCursorX = 0.0f;
   float chCursorY = (scale * FONT_LOADED_SIZE);
 
-  Font& font = Resources::getFontByID(fontID);
+  Font* font = Resources::getFontByID(fontID);
 
   for (c = text.begin(); c != text.end(); c++)
   {
-    Character ch = *font.getCharacter(c);
+    Character ch = *font->getCharacter(c);
 
     float bearingX = ch.bearing.x * scale;
     float bearingY = (ch.size.y - ch.bearing.y) * scale;

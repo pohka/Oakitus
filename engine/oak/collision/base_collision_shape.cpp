@@ -67,7 +67,7 @@ void BaseCollisionShape::onDebugDraw() const
   model = glm::translate(model, pos);
 
 
-  Shader* shader = &Resources::getDefaultShader();
+  Shader* shader = Resources::getDefaultShader();
   shader->use();
   shader->setMat4("model", model);
 

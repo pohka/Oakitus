@@ -21,10 +21,10 @@ void Resources::init()
   addTexture("box.png", ENGINE_RESOURCES_ROOT_PATH);
   addTexture("circle.png", ENGINE_RESOURCES_ROOT_PATH);
   defaultTexture = new Texture("default.png", ENGINE_RESOURCES_ROOT_PATH);
-  addTexture(*defaultTexture);
+  addTexture(defaultTexture);
 
   defaultShader = new Shader("default", ENGINE_RESOURCES_ROOT_PATH);
-  addShader(*defaultShader);
+  addShader(defaultShader);
 
   //default font
   addShader("text", ENGINE_RESOURCES_ROOT_PATH);
@@ -49,9 +49,9 @@ void Resources::addShader(std::string shaderName, const std::string& path)
   }
 }
 
-void Resources::addShader(Shader& shader)
+void Resources::addShader(Shader* shader)
 {
-  shaders.push_back(&shader);
+  shaders.push_back(shader);
 }
 
 void Resources::addTexture(std::string src, const std::string& path)
@@ -62,9 +62,9 @@ void Resources::addTexture(std::string src, const std::string& path)
   }
 }
 
-void Resources::addTexture(Texture& texture)
+void Resources::addTexture(Texture* texture)
 {
-  textures.push_back(&texture);
+  textures.push_back(texture);
 }
 
 void Resources::addFont(std::string src, const std::string& path)
@@ -92,19 +92,19 @@ uchar Resources::getFontIDByName(std::string fontName)
   return 0;
 }
 
-ion::Font& Resources::getFontByID(uchar id)
+ion::Font* Resources::getFontByID(uchar id)
 {
   for (uint i = 0; i < fonts.size(); i++)
   {
     if (fonts[i]->getID() == id)
     {
-      return *fonts[i];
+      return fonts[i];
     }
   }
 
   LOG_WARNING << "FALLBACK | Font id '" << id << "' was not found";
 
-  return *fonts[0];
+  return fonts[0];
 }
 
 bool Resources::isTextureLoaded(std::string src)
@@ -131,82 +131,82 @@ bool Resources::isShaderLoaded(std::string name)
   return false;
 }
 
-Shader& Resources::getShaderByID(uint id)
+Shader* Resources::getShaderByID(uint id)
 {
   for (uint i = 0; i < shaders.size(); i++)
   {
     if (shaders[i]->getID() == id)
     {
-      return *shaders[i];
+      return shaders[i];
     }
   }
   if (id != defaultShader->getID())
   {
     LOG_WARNING << "FALLBACK | Shader id '" << id << "' was not found";
   }
-  return *defaultShader;
+  return defaultShader;
 }
 
 
-Shader& Resources::getShaderByName(std::string name)
+Shader* Resources::getShaderByName(std::string name)
 {
   for (uint i = 0; i < shaders.size(); i++)
   {
     if (shaders[i]->getName().compare(name) == 0)
     {
-      return *shaders[i];
+      return shaders[i];
     }
   }
   if (name != defaultShader->getName())
   {
     LOG_WARNING << "FALLBACK | Shader name '" << name << "' was not found";
   }
-  return *defaultShader;
+  return defaultShader;
 }
 
-Texture& Resources::getTextureByID(uint textureID)
+Texture* Resources::getTextureByID(uint textureID)
 {
   for (uint i = 0; i < textures.size(); i++)
   {
     if (textures[i]->getID() == textureID)
     {
-      return *textures[i];
+      return textures[i];
     }
   }
   if (textureID != defaultTexture->getID())
   {
     LOG_WARNING << "FALLBACK | Texture ID '" << textureID << "' was not found";
   }
-  return *defaultTexture;
+  return defaultTexture;
 }
 
-Texture& Resources::getTextureBySrc(std::string src)
+Texture* Resources::getTextureBySrc(std::string src)
 {
   for (uint i = 0; i < textures.size(); i++)
   {
     if (textures[i]->getSrc().compare(src) == 0)
     {
-      return *textures[i];
+      return textures[i];
     }
   }
   if (src != defaultTexture->getSrc())
   {
     LOG_WARNING << "FALLBACK | Texture src '" << src << "' was not found";
   }
-  return *defaultTexture;
+  return defaultTexture;
 }
 
-Shader& Resources::getDefaultShader()
+Shader* Resources::getDefaultShader()
 {
-  return *defaultShader;
+  return defaultShader;
 }
 
-Texture& Resources::getDefaultTexture()
+Texture* Resources::getDefaultTexture()
 {
-  return *defaultTexture;
+  return defaultTexture;
 }
 
 uint Resources::getTextureIDBySrc(std::string src)
 {
-  return Resources::getTextureBySrc(src).getID();
+  return Resources::getTextureBySrc(src)->getID();
 }

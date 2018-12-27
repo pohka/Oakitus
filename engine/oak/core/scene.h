@@ -24,7 +24,7 @@ namespace oak
       static bool isNextSceneSet();
 
       ///<summary>Should be called once to load the first scene in Oakitus::load()</summary>
-      static void loadFirstScene(Scene& scene);
+      static void loadFirstScene(Scene* scene);
 
       ///<summary>Sets and swaps out the next scene</summary>
       static void setNextScene(Scene& scene);

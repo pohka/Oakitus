@@ -51,10 +51,10 @@ void MainScene::onLoad()
   ground->create();
 
   
-  Player& player1 = static_cast<Player&>(PlayerResource::getPlayerByIndex(0));
+  Player* player1 = static_cast<Player*>(PlayerResource::getPlayerByIndex(0));
   Unit* playerUnit = new prefab::UPlayer();
   playerUnit->create();
-  player1.setAssignedUnit(*playerUnit);
+  player1->setAssignedUnit(*playerUnit);
   
 
   prefab::UDummy* dummy = new prefab::UDummy();

@@ -33,9 +33,9 @@ Sprite::Sprite(
   this->w = displayW;
   this->h = displayH;
   
-  shaderID = Resources::getShaderByName(shaderName).getID();
+  shaderID = Resources::getShaderByName(shaderName)->getID();
 
-  Texture* texture = &Resources::getTextureBySrc(src);
+  Texture* texture = Resources::getTextureBySrc(src);
   this->textureID = texture->getID();
   float xMin = ((float)srcX / texture->getWidth());
   float yMin = ((float)srcY / texture->getHeight());
@@ -53,7 +53,7 @@ Sprite::Sprite(
 {
   this->w = displayW;
   this->h = displayH;
-  this->shaderID = Resources::getDefaultShader().getID();
+  this->shaderID = Resources::getDefaultShader()->getID();
   this->textureID = Resources::getTextureIDBySrc(src);
   construct(0.0f, 1.0f, 0.0f, 1.0f);
 }
@@ -127,7 +127,7 @@ void Sprite::onDraw() const
   float rotation = entity->rotation.z;
   model = glm::rotate(model, rotation, glm::vec3(0.0, 0.0, 1.0f));
 
-  Shader* shader = &Resources::getShaderByID(this->shaderID);
+  Shader* shader = Resources::getShaderByID(this->shaderID);
   shader->use();
   shader->setMat4("model", model);
 

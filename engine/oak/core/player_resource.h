@@ -18,13 +18,13 @@ namespace oak
 
     public :
       ///<summary>Add a Player</summary>
-      static void addPlayer(BasePlayer& player);
+      static void addPlayer(BasePlayer* player);
 
       ///<summary>Get a Player by ID</summary>
-      static BasePlayer& getPlayer(uint playerID);
+      static BasePlayer* getPlayer(uint playerID);
 
       ///<summary>Get a Player by index</summary>
-      static BasePlayer& getPlayerByIndex(uint index);
+      static BasePlayer* getPlayerByIndex(uint index);
 
       static BasePlayer* getLocalPlayer();
 

@@ -34,20 +34,20 @@ namespace oak
       static std::string rootPath;
 
       static void addShader(std::string shaderName, const std::string& path = rootPath);
-      static void addShader(Shader& shader);
+      static void addShader(Shader* shader);
       static void addTexture(std::string src, const std::string& path = rootPath);
-      static void addTexture(Texture& texture);
+      static void addTexture(Texture* texture);
       static void addFont(std::string src, const std::string& path = rootPath);
       static void addFont(ion::Font* font);
-      static Shader& getShaderByID(uint id);
-      static Shader& getShaderByName(std::string name);
-      static Texture& getTextureByID(uint textureID);
-      static Texture& getTextureBySrc(std::string src);
-      static Shader& getDefaultShader();
-      static Texture& getDefaultTexture();
+      static Shader* getShaderByID(uint id);
+      static Shader* getShaderByName(std::string name);
+      static Texture* getTextureByID(uint textureID);
+      static Texture* getTextureBySrc(std::string src);
+      static Shader* getDefaultShader();
+      static Texture* getDefaultTexture();
       static uint getTextureIDBySrc(std::string src);
       static uchar getFontIDByName(std::string fontName);
-      static ion::Font& getFontByID(uchar id);
+      static ion::Font* getFontByID(uchar id);
 
       ///<summary>Returns true if a Texture is already loaded</summary>
       static bool isTextureLoaded(std::string src);

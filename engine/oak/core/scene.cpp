@@ -37,9 +37,9 @@ bool Scene::isNextSceneSet()
   return (nextScene != nullptr);
 }
 
-void Scene::loadFirstScene(Scene& scene)
+void Scene::loadFirstScene(Scene* scene)
 {
-  curScene = &scene;
+  curScene = scene;
   curScene->onLoad();
 }
 

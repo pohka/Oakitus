@@ -9,13 +9,13 @@ BasePlayer* PlayerResource::players[4];
 uint localPlayerID = 0;
 BasePlayer PlayerResource::defaultPlayer = BasePlayer();
 
-void PlayerResource::addPlayer(BasePlayer& player)
+void PlayerResource::addPlayer(BasePlayer* player)
 {
 
   //if enough player slots
   if (playerCount + 1 < MAX_PLAYER_COUNT)
   {
-    PlayerResource::players[playerCount] = &player;
+    PlayerResource::players[playerCount] = player;
     playerCount++;
   }
   else
@@ -25,28 +25,28 @@ void PlayerResource::addPlayer(BasePlayer& player)
   
 }
 
-BasePlayer& PlayerResource::getPlayer(uint playerID)
+BasePlayer* PlayerResource::getPlayer(uint playerID)
 {
   for (uint i = 0; i < MAX_PLAYER_COUNT; i++)
   {
     if (players[i]->getPlayerID() == playerID)
     {
-      return *players[i];
+      return players[i];
     }
   }
 
   LOG_WARNING << "FALLBACK | BasePlayer not found with ID: " << playerID;
-  return defaultPlayer;
+  return &defaultPlayer;
 }
 
-BasePlayer& PlayerResource::getPlayerByIndex(uint index)
+BasePlayer* PlayerResource::getPlayerByIndex(uint index)
 {
   if (index >= MAX_PLAYER_COUNT || players[index] == nullptr)
   {
     LOG_WARNING << "FALLBACK | BasePlayer not found at index: " << index;
-    return defaultPlayer;
+    return &defaultPlayer;
   }
-  return *players[index];
+  return players[index];
 }
 
 void PlayerResource::executeAllCommands()
