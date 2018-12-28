@@ -6,9 +6,6 @@
 
 using namespace oak;
 
-
-
-
 Entity::Entity() 
 {
   //set default values
@@ -69,7 +66,6 @@ void Entity::destroy()
 }
 
 
-
 uint Entity::getID() const
 {
   return this->entityID;
@@ -95,7 +91,10 @@ void Entity::onCreate()
 
 void Entity::onDestroy()
 {
- 
+  for (Component* comp : components)
+  {
+    comp->onDestroy();
+  }
 }
 
 void Entity::onDraw() const
@@ -129,10 +128,6 @@ void Entity::onTick(const uchar TICK_GROUP)
     }
   }
 }
-
-
-
-
 
 void Entity::onCollisionHit(Entity& hit)
 {

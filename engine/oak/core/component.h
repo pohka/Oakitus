@@ -38,6 +38,8 @@ namespace oak
       ///<summary>Draw for debuging, called once each frame</summary>
       virtual void onDebugDraw() const;
 
+      virtual void onDestroy();
+
       ///<summary>Called when the owner has entered a collision</summary>
       virtual void onCollisionHit(Entity& hit);
       //---------------------------------------

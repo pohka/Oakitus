@@ -28,4 +28,7 @@ void Component::onDraw() const {}
 
 void Component::onDebugDraw() const {}
 
+
+void Component::onDestroy() {}
+
 void Component::onCollisionHit(Entity& hit) {}

@@ -54,7 +54,7 @@ namespace oak
 
       void addRigidBody(BaseRigidBody* rigidBody);
 
-      ///<summary>Adds this Entity to the world</summary>
+      ///<summary>Adds this Entity to the world at zero zero</summary>
       void create();
 
       ///<summary>Adds this Entity to the world at the given position</summary>
