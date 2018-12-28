@@ -2,7 +2,7 @@
 #define COMPONENT_H
 
 #include "types.h"
-//#include "entity.h"
+#include <oak/oak_def.h>
 
 namespace oak
 {
@@ -15,8 +15,11 @@ namespace oak
 	  uint componentID; ///<summary>An ID that is unique for the owner Entity</summary>
 
     public:
-	    Component();
+	    Component(uchar tickGroup = TICK_GROUP_DEFAULT);
 	    virtual ~Component();
+
+      uchar getTickGroup() const;
+      uint getComponentID() const;
      
     protected:
 	    oak::Entity* entity; ///<summary>The owner Entity</summary>
@@ -26,10 +29,11 @@ namespace oak
       ///<summary>Called once when the Entity is added to the world</summary>
       virtual void onCreate();
 
+      
+
       ///<summary>Do logic, called once each frame</summary>
       virtual void onTick();
 
-      virtual void onLateTick();
 
       ///<summary>Draw, called once each frame</summary>
       virtual void onDraw() const;
@@ -40,6 +44,9 @@ namespace oak
       ///<summary>Called when the owner has entered a collision</summary>
       virtual void onCollisionHit(Entity& hit);
       //---------------------------------------
+
+    private:
+      uchar tickGroup = TICK_GROUP_DEFAULT;
   };
 }
 

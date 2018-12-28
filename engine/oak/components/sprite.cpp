@@ -24,7 +24,7 @@ Sprite::Sprite(
   float displayW,
   float displayH,
   std::string shaderName
-)
+) : Component()
 {
   this->srcX = srcX;
   this->srcY = srcY;

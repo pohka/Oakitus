@@ -124,19 +124,14 @@ void Entity::onDebugDraw() const
   }
 }
 
-void Entity::onTick()
+void Entity::onTick(const uchar TICK_GROUP)
 {
-  for (uint i = 0; i < components.size(); i++)
+  for (Component* comp : components)
   {
-    components[i]->onTick();
-  }
-}
-
-void Entity::onLateTick()
-{
-  for (uint i = 0; i < components.size(); i++)
-  {
-    components[i]->onLateTick();
+    if (comp->getTickGroup() == TICK_GROUP)
+    {
+      comp->onTick();
+    }
   }
 }
 
@@ -182,19 +177,14 @@ std::vector<Entity*> Entity::getGlobalEntitys()
   return list;
 }
 
-void Entity::updateInstances()
+void Entity::tickInstances(const uchar TICK_GROUP)
 {
   for (Entity* ent : Entity::entitys)
   {
-    ent->onTick();
-  }
-}
-
-void Entity::lateUpdateInstances()
-{
-  for (Entity* ent : Entity::entitys)
-  {
-    ent->onLateTick();
+    if (ent->isTickingEnable)
+    {
+      ent->onTick(TICK_GROUP);
+    }
   }
 }
 
@@ -324,4 +314,14 @@ void Entity::onCollisionHit(Entity& hit)
   {
     comp->onCollisionHit(hit);
   }
+}
+
+bool Entity::getIsTickingEnabled() const
+{
+  return isTickingEnable;
+}
+
+void Entity::setIsTickingEnabled(bool isEnabled)
+{
+  isTickingEnable = isEnabled;
 }

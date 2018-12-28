@@ -5,7 +5,7 @@
 
 using namespace oak;
 
-BaseRigidBody::BaseRigidBody(bool isStatic)
+BaseRigidBody::BaseRigidBody(bool isStatic) : Component()
 {
   this->isStatic = isStatic;
   lastPos = glm::vec3(0.0f, 0.0f, 0.0f);

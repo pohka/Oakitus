@@ -72,9 +72,9 @@ int Oakitus::loop()
 
     Entity::instantiateQueuedEnts();
     PlayerResource::executeAllCommands();
-    Entity::updateInstances();
+    Entity::tickInstances(TICK_GROUP_DEFAULT);
     Collision::resolveCollisions();
-    Entity::lateUpdateInstances();
+    Entity::tickInstances(TICK_GROUP_AFTER_PHYSICS);
     Entity::drawInstances();
     Entity::debugDrawInstances();
     ion::UICanvas::render();

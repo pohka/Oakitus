@@ -4,7 +4,7 @@
 
 using namespace oak;
 
-Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation)
+Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation) : Component()
 {
   this->baseAnim = baseAnimType;
   anims[baseAnimType] = baseAnimation;

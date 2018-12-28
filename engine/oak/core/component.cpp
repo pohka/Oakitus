@@ -2,9 +2,20 @@
 
 using namespace oak;
 
-Component::Component() 
+Component::Component(uchar tickGroup)
 {
-  
+  this->tickGroup = tickGroup;
+}
+
+uchar Component::getTickGroup() const
+{
+  return tickGroup;
+}
+
+
+uint Component::getComponentID() const
+{
+  return componentID;
 }
 
 Component::~Component() {}
@@ -12,8 +23,6 @@ Component::~Component() {}
 void Component::onCreate() {}
 
 void Component::onTick() {}
-
-void Component::onLateTick() {}
 
 void Component::onDraw() const {}
 

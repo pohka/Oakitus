@@ -35,9 +35,7 @@ namespace oak
     static IDGenerator entityIDGen; ///<summary>Entity ID generator</summary>
 
     ///<summary>Calls onUpdate() for all Entitys in the world</summary>
-    static void updateInstances(); 
-
-    static void lateUpdateInstances();
+    static void tickInstances(const uchar TICK_GROUP);
 
     ///<summary>Calls onDraw() for all the Entitys in the world</summary>
     static void drawInstances(); 
@@ -64,7 +62,7 @@ namespace oak
 	  std::vector<Component*> components; ///<summary>All of the Components added to this Entity</summary>
     std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
 	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
-    
+    bool isTickingEnable = true;
     
 
     public:
@@ -118,6 +116,9 @@ namespace oak
       ///<summary>Returns the name of this Entity</summary>
       std::string getName() const;
 
+      bool getIsTickingEnabled() const;
+      void setIsTickingEnabled(bool isEnabled);
+
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
       CollisionLayer collisionLayer;
@@ -129,7 +130,7 @@ namespace oak
       void onCreate();
 
       ///<summary>Called once each frame</summary>
-      void onTick();
+      void onTick(const uchar TICK_GROUP);
 
       void onLateTick();
 
