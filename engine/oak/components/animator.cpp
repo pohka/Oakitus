@@ -28,11 +28,11 @@ void Animator::addAnim(const uchar animType, SpriteAnimation* animation)
   animation->animator = this;
 }
 
-void Animator::onUpdate()
+void Animator::onTick()
 {
   if (curAnim > 0)
   {
-    bool hasEnded = anims.at(curAnim)->onUpdate(direction, hasChangedDirection);
+    bool hasEnded = anims.at(curAnim)->onTick(direction, hasChangedDirection);
     if (hasEnded && curAnim != baseAnim)
     {
       setAnim(baseAnim, true);

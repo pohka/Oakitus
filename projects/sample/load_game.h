@@ -4,7 +4,7 @@
 #include <oak/oak.h>
 #include "scenes/game_scenes.h"
 
-using namespace puz;
+using namespace sample;
 
 void oak::Oakitus::load()
 {

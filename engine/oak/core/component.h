@@ -27,9 +27,9 @@ namespace oak
       virtual void onCreate();
 
       ///<summary>Do logic, called once each frame</summary>
-      virtual void onUpdate();
+      virtual void onTick();
 
-      virtual void onLateUpdate();
+      virtual void onLateTick();
 
       ///<summary>Draw, called once each frame</summary>
       virtual void onDraw() const;

@@ -45,7 +45,7 @@ namespace oak
 
     protected:
       ///<summary>Updates the current animation</summary>
-      void onUpdate() override;
+      void onTick() override;
 
       ///<summary>calls onDraw() for the the current animation</summary>
       void onDraw() const override;

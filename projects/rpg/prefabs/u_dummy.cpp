@@ -42,8 +42,8 @@ UDummy::~UDummy()
 
 }
 
-void UDummy::onCreate()
-{
-  Unit::onCreate();
-  //ddModifier(getID(), new mod_Example());
-}
+//void UDummy::onCreate()
+//{
+//  Unit::onCreate();
+//  //ddModifier(getID(), new mod_Example());
+//}

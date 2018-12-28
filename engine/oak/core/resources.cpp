@@ -10,6 +10,7 @@ std::vector<Texture*> Resources::textures;
 std::vector<ion::Font*> Resources::fonts;
 Texture* Resources::defaultTexture = nullptr;
 Shader* Resources::defaultShader = nullptr;
+ion::Font* Resources::defaultFont = nullptr;
 
 FT_Library Resources::freeType;
 
@@ -18,16 +19,16 @@ std::string Resources::rootPath = "";
 void Resources::init()
 {
   //collision shape textures
-  addTexture("box.png", ENGINE_RESOURCES_ROOT_PATH);
-  addTexture("circle.png", ENGINE_RESOURCES_ROOT_PATH);
-  defaultTexture = new Texture("default.png", ENGINE_RESOURCES_ROOT_PATH);
-  addTexture(defaultTexture);
+  addTexture("box.png", true);
+  addTexture("circle.png", true);
+  uint defaultTexID = addTexture("default.png", true);
+  defaultTexture = getTextureByID(defaultTexID);
 
-  defaultShader = new Shader("default", ENGINE_RESOURCES_ROOT_PATH);
-  addShader(defaultShader);
+  uint defaultShaderID = addShader("default", true);
+  defaultShader = Resources::getShaderByID(defaultShaderID);
 
   //default font
-  addShader("text", ENGINE_RESOURCES_ROOT_PATH);
+  addShader("text", true);
 
   if (FT_Init_FreeType(&freeType))
   {
@@ -38,47 +39,46 @@ void Resources::init()
     LOG << "--LOADED--| FreeType";
   }
 
-  addFont("arial.ttf", ENGINE_RESOURCES_ROOT_PATH);
+  uint defaultFontID = addFont("arial.ttf", ENGINE_RESOURCES_ROOT_PATH);
+  defaultFont = getFontByID(defaultFontID);
 }
 
-void Resources::addShader(std::string shaderName, const std::string& path)
+uint Resources::addShader(std::string shaderName, bool isEngineAsset)
 {
-  if (!isShaderLoaded(shaderName))
+  if (isEngineAsset || !isShaderLoaded(shaderName))
   {
-    shaders.push_back(new Shader(shaderName, path));
+    Shader* s = new Shader(shaderName, isEngineAsset);
+    shaders.push_back(s);
+    return s->getID();
   }
+  return defaultShader->getID();
 }
 
-void Resources::addShader(Shader* shader)
+uint Resources::addTexture(std::string src, bool isEngineAsset)
 {
-  shaders.push_back(shader);
-}
-
-void Resources::addTexture(std::string src, const std::string& path)
-{
-  if (!isTextureLoaded(src))
+  if (isEngineAsset || !isTextureLoaded(src))
   {
-    textures.push_back(new Texture(src, path));
+    Texture* t = new Texture(src, isEngineAsset);
+    textures.push_back(t);
+    return t->getID();
   }
+  return defaultTexture->getID();
 }
 
-void Resources::addTexture(Texture* texture)
+uint Resources::addFont(std::string src, bool isEngineAsset)
 {
-  textures.push_back(texture);
+  if (isEngineAsset || !isFontLoaded(src))
+  {
+    ion::Font* font = new ion::Font(src, isEngineAsset, freeType);
+    fonts.push_back(font);
+    return font->getID();
+  }
+
+  return defaultFont->getID();
 }
 
-void Resources::addFont(std::string src, const std::string& path)
-{
-  ion::Font* font = new ion::Font(src, path, freeType);
-  fonts.push_back(font);
-}
 
-void Resources::addFont(ion::Font* font)
-{
-  fonts.push_back(font);
-}
-
-uchar Resources::getFontIDByName(std::string fontName)
+uint Resources::getFontIDByName(std::string fontName)
 {
   for (uint i = 0; i < fonts.size(); i++)
   {
@@ -92,7 +92,7 @@ uchar Resources::getFontIDByName(std::string fontName)
   return 0;
 }
 
-ion::Font* Resources::getFontByID(uchar id)
+ion::Font* Resources::getFontByID(uint id)
 {
   for (uint i = 0; i < fonts.size(); i++)
   {
@@ -107,11 +107,11 @@ ion::Font* Resources::getFontByID(uchar id)
   return fonts[0];
 }
 
-bool Resources::isTextureLoaded(std::string src)
+bool Resources::isTextureLoaded(std::string name)
 {
   for (uint i = 0; i < textures.size(); i++)
   {
-    if (textures[i]->getSrc() == src)
+    if (!textures[i]->getIsEngineAsset() && textures[i]->getName() == name)
     {
       return true;
     }
@@ -123,7 +123,19 @@ bool Resources::isShaderLoaded(std::string name)
 {
   for (uint i = 0; i < shaders.size(); i++)
   {
-    if (shaders[i]->getName() == name)
+    if (!shaders[i]->getIsEngineAsset() && shaders[i]->getName() == name)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool Resources::isFontLoaded(std::string name)
+{
+  for (uint i = 0; i < fonts.size(); i++)
+  {
+    if (!fonts[i]->getIsEngineAsset() && fonts[i]->getName() == name)
     {
       return true;
     }
@@ -184,12 +196,12 @@ Texture* Resources::getTextureBySrc(std::string src)
 {
   for (uint i = 0; i < textures.size(); i++)
   {
-    if (textures[i]->getSrc().compare(src) == 0)
+    if (textures[i]->getName().compare(src) == 0)
     {
       return textures[i];
     }
   }
-  if (src != defaultTexture->getSrc())
+  if (src != defaultTexture->getName())
   {
     LOG_WARNING << "FALLBACK | Texture src '" << src << "' was not found";
   }

@@ -1,7 +1,7 @@
 #include "demo_scene.h"
 #include <oak/oak.h>
 
-using namespace puz;
+using namespace sample;
 using namespace oak;
 
 

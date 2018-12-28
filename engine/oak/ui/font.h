@@ -8,28 +8,25 @@
 #include "ui_character.h"
 #include <map>
 #include <oak/core/types.h>
+#include <oak/core/asset.h>
 
 namespace ion
 {
   ///font class
-  class Font
+  class Font : public oak::Asset
   {
-    std::string name;
     FT_Face face;
-    uchar id;
     std::map<GLchar, Character*> characters;
 
     public:
-      Font(std::string name, const std::string& resourcesPath, FT_Library& freetype);
+      Font(std::string name, bool isEngineAsset, FT_Library& freetype);
       ~Font();
-      uchar getID();
-      std::string getName();
       Character* getCharacter(std::string::const_iterator& c);
       Character* getCharacter(GLchar glChar);
 
   private:
     static void initChars(FT_Library& freetype, Font* font);
-    static uchar idCounter;
+    static uint idCounter;
       
   };
 }

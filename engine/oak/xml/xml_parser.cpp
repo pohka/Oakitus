@@ -22,7 +22,7 @@ static void printNodes(XMLNode* node, unsigned int depth)
 XMLNode XMLParser::load(string file)
 {
   string line;
-  ifstream myfile(RESOURCES_ROOT_PATH + file);
+  ifstream myfile(ENGINE_RESOURCES_ROOT_PATH + file);
 
   XMLNode* root = new XMLNode("root", nullptr);
 

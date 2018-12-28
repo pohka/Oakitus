@@ -14,6 +14,5 @@ cnum COLLISION_SHAPE_CIRCLE = 1;
 
 
 const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
-const char RESOURCES_ROOT_PATH [] = "../resources/";
 
 #endif

@@ -4,23 +4,32 @@
 #include <GLFW/glfw3.h>
 #include <oak/oak_def.h>
 #include "ui_def.h"
+#include <oak/core/resources.h>
 
 using namespace ion;
 
-uchar Font::idCounter = 0;
+uint Font::idCounter = 0;
 
-Font::Font(std::string name, const std::string& resourcesPath, FT_Library& freetype)
+Font::Font(std::string name, bool isEngineAsset, FT_Library& freetype) : Asset(name, isEngineAsset)
 {
-  this->name = name;
   id = idCounter;
   idCounter++;
 
-  std::string path = resourcesPath + "fonts/";
+  std::string fullPath = "";
 
-  std::string facePath = path + name;
-  if (FT_New_Face(freetype, facePath.c_str(), 0, &face))
+  if (isEngineAsset)
   {
-    LOG_WARNING << "FREETYPE: Failed to load font:" << facePath;
+    fullPath += ENGINE_RESOURCES_ROOT_PATH;
+  }
+  else
+  {
+    fullPath += oak::Resources::rootPath;
+  }
+
+  fullPath += "fonts/" + name;
+  if (FT_New_Face(freetype, fullPath.c_str(), 0, &face))
+  {
+    LOG_WARNING << "FREETYPE: Failed to load font:" << fullPath;
   }
   else
   {
@@ -35,16 +44,6 @@ Font::~Font()
     delete it->second;
   }
   characters.clear();
-}
-
-uchar Font::getID()
-{
-  return id;
-}
-
-std::string Font::getName()
-{
-  return name;
 }
 
 Character* Font::getCharacter(std::string::const_iterator& c)

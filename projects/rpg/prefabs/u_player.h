@@ -13,7 +13,7 @@ namespace game
         UPlayer();
         ~UPlayer();
 
-        void onCreate();
+        //void onCreate();
     };
   }
 }

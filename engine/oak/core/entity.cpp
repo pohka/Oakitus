@@ -11,9 +11,8 @@ IDGenerator Entity::entityIDGen = IDGenerator();
 std::queue<Entity*> Entity::pendingEntityInstances;
 
 
-Entity::Entity(bool isFallback) 
+Entity::Entity() 
 {
-  m_isFallback = isFallback;
   //set default values
   componentIDGen = IDGenerator();
   this->entityID = entityIDGen.nextID();
@@ -27,12 +26,9 @@ Entity::Entity(bool isFallback)
 
 Entity::~Entity()
 {
-  if (!m_isFallback)
+  for (Component* c : components)
   {
-    for (Component* c : components)
-    {
-      delete c;
-    }
+    delete c;
   }
 }
 
@@ -104,7 +100,7 @@ void Entity::onCreate()
 
 void Entity::onDestroy()
 {
-  
+ 
 }
 
 void Entity::onDraw() const
@@ -128,19 +124,19 @@ void Entity::onDebugDraw() const
   }
 }
 
-void Entity::onUpdate()
+void Entity::onTick()
 {
   for (uint i = 0; i < components.size(); i++)
   {
-    components[i]->onUpdate();
+    components[i]->onTick();
   }
 }
 
-void Entity::onLateUpdate()
+void Entity::onLateTick()
 {
   for (uint i = 0; i < components.size(); i++)
   {
-    components[i]->onLateUpdate();
+    components[i]->onLateTick();
   }
 }
 
@@ -188,17 +184,17 @@ std::vector<Entity*> Entity::getGlobalEntitys()
 
 void Entity::updateInstances()
 {
-  for (uint i = 0; i < Entity::entitys.size(); i++)
+  for (Entity* ent : Entity::entitys)
   {
-    Entity::entitys[i]->onUpdate();
+    ent->onTick();
   }
 }
 
 void Entity::lateUpdateInstances()
 {
-  for (uint i = 0; i < Entity::entitys.size(); i++)
+  for (Entity* ent : Entity::entitys)
   {
-    Entity::entitys[i]->onLateUpdate();
+    ent->onLateTick();
   }
 }
 

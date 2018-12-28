@@ -55,7 +55,7 @@ namespace oak
 
       void load();
       void reset();
-      bool onUpdate(uchar direction, bool hasChangedDirection);
+      bool onTick(uchar direction, bool hasChangedDirection);
       void onDraw(float positionX, float positionY) const;
       float getTotalAnimDuration() const;
       uchar getPriority() const;

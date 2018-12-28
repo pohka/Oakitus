@@ -3,27 +3,22 @@
 
 
 #include "types.h"
-#include <string>
+#include "asset.h"
 
 namespace oak
 {
 
   ///<summary>Texture</summary>
-  class Texture
+  class Texture : public Asset
   {
-    uint id;
     int width;
     int height;
-    std::string src;
-    std::string path;
 
     public:
-      Texture(std::string src, std::string path, bool isOnHeap = true);
+      Texture(std::string src, bool isEngineAsset);
       ~Texture();
       int getHeight() const;
-      uint getID() const;
       int getWidth() const;
-      std::string getSrc() const;
 
       void load();
   };

@@ -9,6 +9,7 @@
 #include <oak/ui/font.h>
 #include <oak/core/texture.h>
 #include <oak/core/shader.h>
+#include <oak/core/asset.h>
 
 namespace oak
 {
@@ -29,16 +30,16 @@ namespace oak
 
     static Texture* defaultTexture;
     static Shader* defaultShader;
+    static ion::Font* defaultFont;
 
     public:
       static std::string rootPath;
 
-      static void addShader(std::string shaderName, const std::string& path = rootPath);
-      static void addShader(Shader* shader);
-      static void addTexture(std::string src, const std::string& path = rootPath);
-      static void addTexture(Texture* texture);
-      static void addFont(std::string src, const std::string& path = rootPath);
-      static void addFont(ion::Font* font);
+      //returns the id
+      static uint addShader(std::string shaderName, bool isEngineAsset = false);
+      static uint addTexture(std::string src, bool isEngineAsset = false);
+      static uint addFont(std::string src, bool isEngineAsset = false);
+
       static Shader* getShaderByID(uint id);
       static Shader* getShaderByName(std::string name);
       static Texture* getTextureByID(uint textureID);
@@ -46,14 +47,16 @@ namespace oak
       static Shader* getDefaultShader();
       static Texture* getDefaultTexture();
       static uint getTextureIDBySrc(std::string src);
-      static uchar getFontIDByName(std::string fontName);
-      static ion::Font* getFontByID(uchar id);
+      static uint getFontIDByName(std::string fontName);
+      static ion::Font* getFontByID(uint id);
 
       ///<summary>Returns true if a Texture is already loaded</summary>
-      static bool isTextureLoaded(std::string src);
+      static bool isTextureLoaded(std::string name);
 
       ///<summary>Returns true if a Shader is already loaded</summary>
       static bool isShaderLoaded(std::string name);
+
+      static bool isFontLoaded(std::string name);
 
   private:
     static void init();

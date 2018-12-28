@@ -6,17 +6,18 @@
 
 #include <string>
 #include "types.h"
+#include <oak/core/asset.h>
 
 namespace oak
 {
   ///<summary>Loads and manages a vertex and fragement shader for OpenGL</summary>
-  class Shader
+  class Shader : public Asset
   {
     public:
 
       // constructor generates the shader on the fly
       // ------------------------------------------------------------------------
-      Shader(std::string name, std::string path, bool isOnHeap = true, const char* geometryPath = nullptr);
+      Shader(std::string name, bool isEngineAsset, const char* geometryPath = nullptr);
 
       void load();
 
@@ -39,12 +40,8 @@ namespace oak
       void setMat3(const std::string &name, const glm::mat3 &mat) const;
       void setMat4(const std::string &name, const glm::mat4 &mat) const;
 
-      uint getID() const;
-      std::string getName() const;
 
     private:
-      uint ID;
-      std::string name;
       const char* geometryPath;
       // utility function for checking shader compilation/linking errors.
       // ------------------------------------------------------------------------

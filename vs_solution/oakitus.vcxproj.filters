@@ -28,39 +28,6 @@
     <Filter Include="projects">
       <UniqueIdentifier>{765a8bfe-8b0d-41ab-bde5-2e104b810237}</UniqueIdentifier>
     </Filter>
-    <Filter Include="projects\rpg">
-      <UniqueIdentifier>{c937bcde-afa9-4d32-8388-74b7a0262324}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\abilitys">
-      <UniqueIdentifier>{8dafc7e4-9dbb-4752-861d-b43104691b51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\commands">
-      <UniqueIdentifier>{994dda1b-f97c-4d45-be9c-efa6554004ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\events">
-      <UniqueIdentifier>{7272f928-be21-4430-b488-6972af203ee0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\items">
-      <UniqueIdentifier>{f8bd5da4-34f5-4443-9200-3abf1cdd7d74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\prefabs">
-      <UniqueIdentifier>{1cec4206-06a8-4c99-b2c4-85b25aaba26d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\scenes">
-      <UniqueIdentifier>{65359087-73c2-4911-b0bb-eda6ae31223b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\scripts">
-      <UniqueIdentifier>{75e5f5ca-48ef-421b-bb72-122f88c56fc3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\systems">
-      <UniqueIdentifier>{0781dc61-9368-43a2-a3ac-df57ea857301}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\ui">
-      <UniqueIdentifier>{44b31cdc-647c-41c9-a226-c26b6c23c48a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\rpg\abilitys\modifiers">
-      <UniqueIdentifier>{42be34cb-95ce-412e-927a-e697a9700074}</UniqueIdentifier>
-    </Filter>
     <Filter Include="oak\meta">
       <UniqueIdentifier>{30fe0a4d-da9e-4022-981f-220656161127}</UniqueIdentifier>
     </Filter>
@@ -258,102 +225,6 @@
     <ClInclude Include="..\engine\oak\xml\xml_parser.h">
       <Filter>oak\xml</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\rpg\inventory.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\player.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\strings_def.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\target.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\unit.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\ability.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\damage.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\game_def.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\abilitys\abil_shoot.h">
-      <Filter>projects\rpg\abilitys</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\abilitys\abil_sword_attack.h">
-      <Filter>projects\rpg\abilitys</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\abilitys\modifiers\mod_example.h">
-      <Filter>projects\rpg\abilitys\modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\abilitys\modifiers\modifier_def.h">
-      <Filter>projects\rpg\abilitys\modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\commands\cast_abiltiys.h">
-      <Filter>projects\rpg\commands</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\commands\movement.h">
-      <Filter>projects\rpg\commands</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\scenes\main_scene.h">
-      <Filter>projects\rpg\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\prefabs\camera_controller.h">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\prefabs\projectile.h">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\prefabs\projectile_linear.h">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\prefabs\u_dummy.h">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\prefabs\u_player.h">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\prefabs\wall_test.h">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\systems\modifier.h">
-      <Filter>projects\rpg\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\systems\item.h">
-      <Filter>projects\rpg\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\items\item_test.h">
-      <Filter>projects\rpg\items</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\events\damage_data.h">
-      <Filter>projects\rpg\events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\events\e_damage_taken.h">
-      <Filter>projects\rpg\events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\events\e_death.h">
-      <Filter>projects\rpg\events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\ui\action_panel.h">
-      <Filter>projects\rpg\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\ui\inventory_menu.h">
-      <Filter>projects\rpg\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\ui\tmp_inventory_item.h">
-      <Filter>projects\rpg\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\scripts\ai_test.h">
-      <Filter>projects\rpg\scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\rpg\load_rpg_game.h">
-      <Filter>projects\rpg</Filter>
-    </ClInclude>
     <ClInclude Include="..\projects\sample\load_game.h">
       <Filter>projects\sample</Filter>
     </ClInclude>
@@ -377,6 +248,9 @@
     </ClInclude>
     <ClInclude Include="..\projects\sample\scenes\game_scenes.h">
       <Filter>projects\sample\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\asset.h">
+      <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -506,83 +380,8 @@
     <ClCompile Include="..\engine\oak\xml\xml_parser.cpp">
       <Filter>oak\xml</Filter>
     </ClCompile>
-    <ClCompile Include="..\projects\rpg\inventory.cpp">
-      <Filter>projects\rpg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\player.cpp">
-      <Filter>projects\rpg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\target.cpp">
-      <Filter>projects\rpg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\unit.cpp">
-      <Filter>projects\rpg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\ability.cpp">
-      <Filter>projects\rpg</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\damage.cpp">
-      <Filter>projects\rpg</Filter>
-    </ClCompile>
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\glad.c" />
-    <ClCompile Include="..\projects\rpg\abilitys\abil_shoot.cpp">
-      <Filter>projects\rpg\abilitys</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\abilitys\abil_sword_attack.cpp">
-      <Filter>projects\rpg\abilitys</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\abilitys\modifiers\mod_example.cpp">
-      <Filter>projects\rpg\abilitys\modifiers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\commands\cast_abilitys.cpp">
-      <Filter>projects\rpg\commands</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\commands\movement.cpp">
-      <Filter>projects\rpg\commands</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\scenes\main_scene.cpp">
-      <Filter>projects\rpg\scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\prefabs\camera_controller.cpp">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\prefabs\projectile.cpp">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\prefabs\projectile_linear.cpp">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\prefabs\u_dummy.cpp">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\prefabs\u_player.cpp">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\prefabs\wall_test.cpp">
-      <Filter>projects\rpg\prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\systems\item.cpp">
-      <Filter>projects\rpg\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\systems\modifier.cpp">
-      <Filter>projects\rpg\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\items\item_test.cpp">
-      <Filter>projects\rpg\items</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\ui\action_panel.cpp">
-      <Filter>projects\rpg\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\ui\inventory_menu.cpp">
-      <Filter>projects\rpg\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\ui\tmp_inventory_item.cpp">
-      <Filter>projects\rpg\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\rpg\scripts\ai_test.cpp">
-      <Filter>projects\rpg\scripts</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\meta\meta.cpp">
       <Filter>oak\meta</Filter>
     </ClCompile>
@@ -598,10 +397,8 @@
     <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp">
       <Filter>projects\sample\scenes</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\projects\rpg\ui\style.css">
-      <Filter>projects\rpg\ui</Filter>
-    </None>
+    <ClCompile Include="..\engine\oak\core\asset.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

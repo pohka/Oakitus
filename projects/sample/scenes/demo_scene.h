@@ -3,7 +3,7 @@
 
 #include <oak/core/scene.h>
 
-namespace puz
+namespace sample
 {
   struct DemoScene : public oak::Scene
   {

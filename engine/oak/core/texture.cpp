@@ -7,22 +7,28 @@
 #include "texture.h"
 #include <oak/oak_def.h>
 #include <oak/debug.h>
+#include <oak/core/resources.h>
 
 using namespace oak;
 
-Texture::Texture(std::string src,std::string path, bool isOnHeap)
+Texture::Texture(std::string src, bool isEngineAsset) : Asset(src, isEngineAsset)
 {
-  this->src = src;
-  this->path = path;
-  if (isOnHeap)
-  {
-    load();
-  }
+  load();
 }
 
 void Texture::load()
 {
-  std::string fullPath = path + src;
+  std::string fullPath;
+
+  if (isEngineAsset)
+  {
+    fullPath += ENGINE_RESOURCES_ROOT_PATH;
+  }
+  else
+  {
+    fullPath += Resources::rootPath;
+  }
+  fullPath += name;
 
   LOG << "loading tex:" << fullPath;
 
@@ -53,7 +59,7 @@ void Texture::load()
   }
   else
   {
-    std::cout << "Failed load image: " << src << std::endl;
+    std::cout << "Failed load image: " << name << std::endl;
     stbi_image_free(data);
     unsigned char *data = stbi_load("../resources/default.png", &width, &height, &nrChannels, 0);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -70,16 +76,6 @@ Texture::~Texture()
 int Texture::getHeight() const
 {
   return height;
-}
-
-uint Texture::getID() const
-{
-  return this->id;
-}
-
-std::string Texture::getSrc() const
-{
-  return src;
 }
 
 int Texture::getWidth() const

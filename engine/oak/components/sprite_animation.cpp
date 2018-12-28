@@ -96,7 +96,7 @@ void SpriteAnimation::reset()
   lastFrameTime = Time::getTimeNow();
 }
 
-bool SpriteAnimation::onUpdate(uchar direction, bool hasChangedDirection)
+bool SpriteAnimation::onTick(uchar direction, bool hasChangedDirection)
 {
   bool hasAnimEnded = false;
 

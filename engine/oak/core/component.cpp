@@ -11,9 +11,9 @@ Component::~Component() {}
 
 void Component::onCreate() {}
 
-void Component::onUpdate() {}
+void Component::onTick() {}
 
-void Component::onLateUpdate() {}
+void Component::onLateTick() {}
 
 void Component::onDraw() const {}
 

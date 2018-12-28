@@ -88,9 +88,8 @@ namespace oak
       int layerID; ///<summary>Drawing layerID</summary>
       bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
       std::string name; ///<summary>Name of this Entity</summary>
-      bool m_isFallback;
 
-	    Entity(bool isFallback = false);
+	    Entity();
 	    virtual ~Entity();
       
       ///<summary>Adds a Component to this Entity</summary>
@@ -127,23 +126,23 @@ namespace oak
       //EVENTS
       //-------------------------------------------------------------
       ///<summary>Called once when this Entity is added to the world</summary>
-      virtual void onCreate();
+      void onCreate();
 
       ///<summary>Called once each frame</summary>
-      virtual void onUpdate();
+      void onTick();
 
-      virtual void onLateUpdate();
+      void onLateTick();
 
       ///<summary>Draws all renderable components each frame</summary>
-      virtual void onDraw() const;
+      void onDraw() const;
 
-      virtual void onDebugDraw() const;
+      void onDebugDraw() const;
 
       ///<summary>Called once just before this Entity is removed from the world and deallocated</summary>
-	    virtual void onDestroy();
+	    void onDestroy();
 
       ///<summary>Called when a collision occured</summary>
-      virtual void onCollisionHit(Entity& hit);
+      void onCollisionHit(Entity& hit);
       //-------------------------------------------------------------
 
       
