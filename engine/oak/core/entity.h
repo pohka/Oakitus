@@ -24,39 +24,8 @@ namespace oak
   class Entity
   {
     friend class Oakitus;
+    friend struct EntityManager;
     friend class Collision;
-
-    //STATIC
-    //-------------------------------------------------------------
-
-    static std::queue<uint> queuedDestroyEntityIDs; ///<summary>Queued Entitys to be removed from the world</summary>
-    static std::queue<Entity*> pendingEntityInstances; ///<summary>Queued Entitys to be added to the world</summary>
-    static std::vector<Entity*> entitys; ///<summary>All existing Entitys in the world</summary>
-    static IDGenerator entityIDGen; ///<summary>Entity ID generator</summary>
-
-    ///<summary>Calls onUpdate() for all Entitys in the world</summary>
-    static void tickInstances(const uchar TICK_GROUP);
-
-    ///<summary>Calls onDraw() for all the Entitys in the world</summary>
-    static void drawInstances(); 
-
-    ///<summary>Call onDebugDraw() for all the Entitys in the world</summary>
-    static void debugDrawInstances(); 
-
-    ///<summary>Destroys all the Entitys that are queued to be destroyed</summary>
-    static void destroyQueuedInstances(); 
-
-    ///<summary>Deletes all the Entitys in the world</summary>
-    static void deleteAllEnts(bool isGlobalExempt = true); 
-
-    ///<summary>Adds all the queued Entitys to the world</summary>
-    static void instantiateQueuedEnts(); 
-
-    ///<summary>Clears and deallocates all the existing queues</summary>
-    static void clearQueues(); 
-
-    //-------------------------------------------------------------
-
 
 	  uint entityID; ///<summary>Unique ID of this Entity</summary>
 	  std::vector<Component*> components; ///<summary>All of the Components added to this Entity</summary>
@@ -67,19 +36,6 @@ namespace oak
 
     public:
       friend class Scene;
-
-      //STATIC
-      //-------------------------------------------------------------
-      ///<summary>Returns an Entity with a matching ID if it exists in the world</summary>
-      static Entity* findEntityByID(uint id);
-      ///<summary>Returns an Entity with a matching name if it exists in the world</summary>
-      static Entity* findEntityByName(std::string name);
-      ///<summary></summary>
-      static std::vector<Entity*> getGlobalEntitys(); 
-      ///<summary>Destroys the Entity with a matching ID if it exists</summary>
-      static void destroyEntityByID(uint id);
-      //-------------------------------------------------------------
-      
 
       glm::vec3 position; ///<summary>World position of this Entity</summary>
       glm::vec3 rotation;
@@ -131,8 +87,6 @@ namespace oak
 
       ///<summary>Called once each frame</summary>
       void onTick(const uchar TICK_GROUP);
-
-      void onLateTick();
 
       ///<summary>Draws all renderable components each frame</summary>
       void onDraw() const;

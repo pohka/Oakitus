@@ -252,6 +252,9 @@
     <ClInclude Include="..\engine\oak\core\asset.h">
       <Filter>oak\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\core\entity_manager.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -398,6 +401,9 @@
       <Filter>projects\sample\scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\asset.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\entity_manager.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
   </ItemGroup>

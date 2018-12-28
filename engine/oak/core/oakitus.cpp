@@ -17,6 +17,7 @@
 #include <oak/ui/ui_canvas.h>
 #include <oak/debug/debug_input.h>
 #include <oak/meta/meta.h>
+#include <oak/core/entity_manager.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -70,13 +71,13 @@ int Oakitus::loop()
     glClearColor(0.1f, 0.25f, 0.45f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    Entity::instantiateQueuedEnts();
+    EntityManager::instantiateQueuedEnts();
     PlayerResource::executeAllCommands();
-    Entity::tickInstances(TICK_GROUP_DEFAULT);
+    EntityManager::tickInstances(TICK_GROUP_DEFAULT);
     Collision::resolveCollisions();
-    Entity::tickInstances(TICK_GROUP_AFTER_PHYSICS);
-    Entity::drawInstances();
-    Entity::debugDrawInstances();
+    EntityManager::tickInstances(TICK_GROUP_AFTER_PHYSICS);
+    EntityManager::drawInstances();
+    EntityManager::debugDrawInstances();
     ion::UICanvas::render();
 
     if (Scene::isNextSceneSet())
@@ -85,7 +86,7 @@ int Oakitus::loop()
     }
     else
     {
-      Entity::destroyQueuedInstances();
+      EntityManager::destroyQueuedInstances();
     }
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

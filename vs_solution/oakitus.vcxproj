@@ -36,6 +36,7 @@
     <ClInclude Include="..\engine\oak\core\command.h" />
     <ClInclude Include="..\engine\oak\core\component.h" />
     <ClInclude Include="..\engine\oak\core\entity.h" />
+    <ClInclude Include="..\engine\oak\core\entity_manager.h" />
     <ClInclude Include="..\engine\oak\core\fmath.h" />
     <ClInclude Include="..\engine\oak\core\id_generator.h" />
     <ClInclude Include="..\engine\oak\core\init.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="..\engine\oak\core\camera.cpp" />
     <ClCompile Include="..\engine\oak\core\component.cpp" />
     <ClCompile Include="..\engine\oak\core\entity.cpp" />
+    <ClCompile Include="..\engine\oak\core\entity_manager.cpp" />
     <ClCompile Include="..\engine\oak\core\id_generator.cpp" />
     <ClCompile Include="..\engine\oak\core\input.cpp" />
     <ClCompile Include="..\engine\oak\core\key_buffer.cpp" />

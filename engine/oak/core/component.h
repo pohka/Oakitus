@@ -29,11 +29,8 @@ namespace oak
       ///<summary>Called once when the Entity is added to the world</summary>
       virtual void onCreate();
 
-      
-
       ///<summary>Do logic, called once each frame</summary>
       virtual void onTick();
-
 
       ///<summary>Draw, called once each frame</summary>
       virtual void onDraw() const;

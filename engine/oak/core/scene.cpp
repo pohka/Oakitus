@@ -1,6 +1,7 @@
 #include "scene.h"
 #include "oakitus.h"
 #include "entity.h"
+#include "entity_manager.h"
 
 using namespace oak;
 
@@ -21,7 +22,7 @@ void Scene::onLoad()
 
 void Scene::onUnload()
 {
-  Entity::deleteAllEnts(true);
+  EntityManager::deleteAllEnts(true);
 }
 
 //static functions

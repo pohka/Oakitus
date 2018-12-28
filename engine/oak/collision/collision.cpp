@@ -5,7 +5,7 @@
 #include "../core/entity.h"
 #include "collision_layer.h"
 #include "../oak_def.h"
-
+#include <oak/core/entity_manager.h>
 
 using namespace oak;
 
@@ -214,7 +214,7 @@ void Collision::checkEntEntTrigger(Entity* entA, Entity* entB)
 //check triggers
 void Collision::resolveCollisions()
 {
-  if (Entity::entitys.size() <= 1)
+  if (EntityManager::entitys.size() <= 1)
   {
     return;
   }
@@ -224,9 +224,9 @@ void Collision::resolveCollisions()
   BaseRigidBody* rb;
   
   //set the rigidbody variables based on the current entity position
-  for (uint i = 0; i < Entity::entitys.size(); i++)
+  for (uint i = 0; i < EntityManager::entitys.size(); i++)
   {
-    ent = Entity::entitys[i];
+    ent = EntityManager::entitys[i];
     rb = ent->rigidBody;
 
     if (rb != nullptr && rb->isStatic == false)
@@ -238,33 +238,33 @@ void Collision::resolveCollisions()
   }
 
   //resolve 
-  for (uint a = 0; a < Entity::entitys.size() - 1; a++)
+  for (uint a = 0; a < EntityManager::entitys.size() - 1; a++)
   {
-    for (uint b = a + 1; b < Entity::entitys.size(); b++)
+    for (uint b = a + 1; b < EntityManager::entitys.size(); b++)
     {
-      solve1(Entity::entitys[a], Entity::entitys[b]);
+      solve1(EntityManager::entitys[a], EntityManager::entitys[b]);
     }
   }
 
   //update the resolved positions
-  for (uint i = 0; i < Entity::entitys.size(); i++)
+  for (uint i = 0; i < EntityManager::entitys.size(); i++)
   {
-     ent = Entity::entitys[i];
+     ent = EntityManager::entitys[i];
      rb = ent->rigidBody;
 
     if (rb != nullptr && rb->isStatic == false)
     {
-      rb->lastPos = Entity::entitys[i]->rigidBody->nextPos;
-      ent->position = Entity::entitys[i]->rigidBody->nextPos;
+      rb->lastPos = EntityManager::entitys[i]->rigidBody->nextPos;
+      ent->position = EntityManager::entitys[i]->rigidBody->nextPos;
     }
   }
 
   //check triggers
-  for (uint a = 0; a < Entity::entitys.size() - 1; a++)
+  for (uint a = 0; a < EntityManager::entitys.size() - 1; a++)
   {
-    for (uint b = a + 1; b < Entity::entitys.size(); b++)
+    for (uint b = a + 1; b < EntityManager::entitys.size(); b++)
     {
-      checkEntEntTrigger(Entity::entitys[a], Entity::entitys[b]);
+      checkEntEntTrigger(EntityManager::entitys[a], EntityManager::entitys[b]);
     }
   }
 }
