@@ -36,17 +36,17 @@ namespace oak
       static std::string rootPath;
 
       //returns the id
-      static uint addShader(std::string shaderName, bool isEngineAsset = false);
-      static uint addTexture(std::string src, bool isEngineAsset = false);
-      static uint addFont(std::string src, bool isEngineAsset = false);
+      static uint addShader(std::string name, bool isEngineAsset = false);
+      static uint addTexture(std::string name, bool isEngineAsset = false);
+      static uint addFont(std::string name, bool isEngineAsset = false);
 
       static Shader* getShaderByID(uint id);
       static Shader* getShaderByName(std::string name);
       static Texture* getTextureByID(uint textureID);
-      static Texture* getTextureBySrc(std::string src);
+      static Texture* getTextureByName(std::string name);
       static Shader* getDefaultShader();
       static Texture* getDefaultTexture();
-      static uint getTextureIDBySrc(std::string src);
+      static uint getTextureIDByName(std::string name);
       static uint getFontIDByName(std::string fontName);
       static ion::Font* getFontByID(uint id);
 

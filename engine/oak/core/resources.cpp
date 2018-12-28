@@ -43,53 +43,62 @@ void Resources::init()
   defaultFont = getFontByID(defaultFontID);
 }
 
-uint Resources::addShader(std::string shaderName, bool isEngineAsset)
+uint Resources::addShader(std::string name, bool isEngineAsset)
 {
-  if (isEngineAsset || !isShaderLoaded(shaderName))
+  if (isEngineAsset || !isShaderLoaded(name))
   {
-    Shader* s = new Shader(shaderName, isEngineAsset);
+    Shader* s = new Shader(name, isEngineAsset);
     shaders.push_back(s);
     return s->getID();
   }
+
+  LOG_WARNING << "Shader already loaded: '" << name << "'";
+
   return defaultShader->getID();
 }
 
-uint Resources::addTexture(std::string src, bool isEngineAsset)
+uint Resources::addTexture(std::string name, bool isEngineAsset)
 {
-  if (isEngineAsset || !isTextureLoaded(src))
+  if (isEngineAsset || !isTextureLoaded(name))
   {
-    Texture* t = new Texture(src, isEngineAsset);
+    Texture* t = new Texture(name, isEngineAsset);
     textures.push_back(t);
     return t->getID();
   }
+
+  LOG_WARNING << "Texture already loaded: '" << name << "'";
+
   return defaultTexture->getID();
 }
 
-uint Resources::addFont(std::string src, bool isEngineAsset)
+uint Resources::addFont(std::string name, bool isEngineAsset)
 {
-  if (isEngineAsset || !isFontLoaded(src))
+  if (isEngineAsset || !isFontLoaded(name))
   {
-    ion::Font* font = new ion::Font(src, isEngineAsset, freeType);
+    ion::Font* font = new ion::Font(name, isEngineAsset, freeType);
     fonts.push_back(font);
     return font->getID();
   }
+
+  LOG_WARNING << "Font already loaded: '" << name << "'";
 
   return defaultFont->getID();
 }
 
 
-uint Resources::getFontIDByName(std::string fontName)
+uint Resources::getFontIDByName(std::string name)
 {
   for (uint i = 0; i < fonts.size(); i++)
   {
-    if (fonts[i]->getName() == fontName)
+    if (fonts[i]->getName() == name)
     {
       return fonts[i]->getID();
     }
   }
-  LOG_WARNING << "Font not found with name: '" << fontName << "'";
 
-  return 0;
+  LOG_WARNING << "Font not found with name: '" << name << "'";
+
+  return defaultFont->getID();
 }
 
 ion::Font* Resources::getFontByID(uint id)
@@ -104,7 +113,7 @@ ion::Font* Resources::getFontByID(uint id)
 
   LOG_WARNING << "FALLBACK | Font id '" << id << "' was not found";
 
-  return fonts[0];
+  return defaultFont;
 }
 
 bool Resources::isTextureLoaded(std::string name)
@@ -152,10 +161,9 @@ Shader* Resources::getShaderByID(uint id)
       return shaders[i];
     }
   }
-  if (id != defaultShader->getID())
-  {
-    LOG_WARNING << "FALLBACK | Shader id '" << id << "' was not found";
-  }
+
+  LOG_WARNING << "FALLBACK | Shader id '" << id << "' was not found";
+
   return defaultShader;
 }
 
@@ -169,10 +177,9 @@ Shader* Resources::getShaderByName(std::string name)
       return shaders[i];
     }
   }
-  if (name != defaultShader->getName())
-  {
-    LOG_WARNING << "FALLBACK | Shader name '" << name << "' was not found";
-  }
+
+  LOG_WARNING << "FALLBACK | Shader name '" << name << "' was not found";
+
   return defaultShader;
 }
 
@@ -185,14 +192,13 @@ Texture* Resources::getTextureByID(uint textureID)
       return textures[i];
     }
   }
-  if (textureID != defaultTexture->getID())
-  {
-    LOG_WARNING << "FALLBACK | Texture ID '" << textureID << "' was not found";
-  }
+
+  LOG_WARNING << "FALLBACK | Texture ID '" << textureID << "' was not found";
+
   return defaultTexture;
 }
 
-Texture* Resources::getTextureBySrc(std::string src)
+Texture* Resources::getTextureByName(std::string src)
 {
   for (uint i = 0; i < textures.size(); i++)
   {
@@ -201,10 +207,9 @@ Texture* Resources::getTextureBySrc(std::string src)
       return textures[i];
     }
   }
-  if (src != defaultTexture->getName())
-  {
-    LOG_WARNING << "FALLBACK | Texture src '" << src << "' was not found";
-  }
+
+  LOG_WARNING << "FALLBACK | Texture src '" << src << "' was not found";
+
   return defaultTexture;
 }
 
@@ -218,7 +223,7 @@ Texture* Resources::getDefaultTexture()
   return defaultTexture;
 }
 
-uint Resources::getTextureIDBySrc(std::string src)
+uint Resources::getTextureIDByName(std::string name)
 {
-  return Resources::getTextureBySrc(src)->getID();
+  return Resources::getTextureByName(name)->getID();
 }

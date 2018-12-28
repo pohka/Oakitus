@@ -18,7 +18,7 @@ CollisionRect::CollisionRect(float offsetX, float offsetY, float width, float he
   this->h = height;
   type = COLLISION_SHAPE_RECT;
 
-  textureID = Resources::getTextureIDBySrc("box.png");
+  textureID = Resources::getTextureIDByName("box.png");
   initVAO(w, h);
 }
 

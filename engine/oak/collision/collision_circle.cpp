@@ -11,7 +11,7 @@ CollisionCircle::CollisionCircle(float radius, float offsetX, float offsetY)
   m_offsetY = offsetY;
   type = COLLISION_SHAPE_CIRCLE;
 
-  textureID = Resources::getTextureIDBySrc("circle.png");
+  textureID = Resources::getTextureIDByName("circle.png");
 
   float d = radius * 2.0f;
   initVAO(d, d);

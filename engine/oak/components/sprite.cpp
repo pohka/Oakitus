@@ -35,7 +35,7 @@ Sprite::Sprite(
   
   shaderID = Resources::getShaderByName(shaderName)->getID();
 
-  Texture* texture = Resources::getTextureBySrc(src);
+  Texture* texture = Resources::getTextureByName(src);
   this->textureID = texture->getID();
   float xMin = ((float)srcX / texture->getWidth());
   float yMin = ((float)srcY / texture->getHeight());
@@ -54,7 +54,7 @@ Sprite::Sprite(
   this->w = displayW;
   this->h = displayH;
   this->shaderID = Resources::getDefaultShader()->getID();
-  this->textureID = Resources::getTextureIDBySrc(src);
+  this->textureID = Resources::getTextureIDByName(src);
   construct(0.0f, 1.0f, 0.0f, 1.0f);
 }
 

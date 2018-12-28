@@ -26,7 +26,7 @@ SpriteAnimation::SpriteAnimation(
   bool isOnHeap
 )
 {
-  Texture* texture = Resources::getTextureBySrc(src);
+  Texture* texture = Resources::getTextureByName(src);
   this->textureID = texture->getID();
   this->shaderID = Resources::getShaderByName(shaderName)->getID();
   this->frameW = frameW;
