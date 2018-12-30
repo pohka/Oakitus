@@ -21,9 +21,12 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-  for (Component* c : components)
+  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
-    delete c;
+    for (Component* comp : componentGroups[i])
+    {
+      delete comp;
+    }
   }
 }
 
@@ -32,7 +35,10 @@ void Entity::addComponent(Component* component)
   //give the component a unique ID and tell it who its owner entity is
   component->entity = this;
   component->componentID = componentIDGen.nextID();
-  this->components.push_back(component);
+
+  //add to tick group
+  uchar tickGroup = component->getTickGroup();
+  componentGroups[tickGroup].push_back(component);
 }
 
 void Entity::addCollision(BaseCollisionShape* shape)
@@ -45,7 +51,8 @@ void Entity::addRigidBody(BaseRigidBody* rigidBody)
 {
   rigidBody->entity = this;
   this->rigidBody = rigidBody;
-  this->components.push_back(rigidBody);
+  uchar tickGroup = rigidBody->getTickGroup();
+  componentGroups[tickGroup].push_back(rigidBody);
 }
 
 void Entity::create()
@@ -83,33 +90,45 @@ std::string Entity::getName() const
 
 void Entity::onCreate()
 {
-  for (Component* comp : components)
+  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
-    comp->onCreate();
+    for (Component* comp : componentGroups[i])
+    {
+      comp->onCreate();
+    }
   }
 }
 
 void Entity::onDestroy()
 {
-  for (Component* comp : components)
+  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
-    comp->onDestroy();
+    for (Component* comp : componentGroups[i])
+    {
+      comp->onDestroy();
+    }
   }
 }
 
 void Entity::onDraw() const
 {
-  for (uint i = 0; i < components.size(); i++) 
+  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
-    components[i]->onDraw();
+    for (Component* comp : componentGroups[i])
+    {
+      comp->onDraw();
+    }
   }
 }
 
 void Entity::onDebugDraw() const
 {
-  for(Component* comp : components)
+  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
-    comp->onDebugDraw();
+    for (Component* comp : componentGroups[i])
+    {
+      comp->onDebugDraw();
+    }
   }
 
   for (BaseCollisionShape* shape : collisionShapes)
@@ -120,20 +139,20 @@ void Entity::onDebugDraw() const
 
 void Entity::onTick(const uchar TICK_GROUP)
 {
-  for (Component* comp : components)
+  for (Component* comp : componentGroups[TICK_GROUP])
   {
-    if (comp->getTickGroup() == TICK_GROUP)
-    {
-      comp->onTick();
-    }
+    comp->onTick();
   }
 }
 
 void Entity::onCollisionHit(Entity& hit)
 {
-  for (Component* comp : components)
+  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
-    comp->onCollisionHit(hit);
+    for (Component* comp : componentGroups[i])
+    {
+      comp->onCollisionHit(hit);
+    }
   }
 }
 

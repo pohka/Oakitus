@@ -12,6 +12,8 @@
 #include <oak/collision/collision_layer.h>
 #include <oak/components/base_rigid_body.h>
 
+#include <unordered_map>
+
 namespace oak
 {
   class Script;
@@ -28,7 +30,14 @@ namespace oak
     friend class Collision;
 
 	  uint entityID; ///<summary>Unique ID of this Entity</summary>
-	  std::vector<Component*> components; ///<summary>All of the Components added to this Entity</summary>
+    //std::unordered_map <uchar, std::vector<Component*>>  componentGroups = 
+    //{
+    //  { TICK_GROUP_DEFAULT, {} },
+    //  { TICK_GROUP_AFTER_PHYSICS, {} }
+    //};
+
+    std::vector<Component*> componentGroups[TICK_GROUP_MAX];
+
     std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
 	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
     bool isTickingEnable = true;

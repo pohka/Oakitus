@@ -14,6 +14,7 @@ cnum COLLISION_SHAPE_CIRCLE = 1;
 
 cnum TICK_GROUP_DEFAULT = 0;
 cnum TICK_GROUP_AFTER_PHYSICS = 1;
+cnum TICK_GROUP_MAX = 2;
 
 
 const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
