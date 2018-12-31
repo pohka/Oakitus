@@ -26,9 +26,9 @@ namespace oak
       uint getComponentID() const;
       bool getIsRenderable() const;
 
-      bool isTickable();
-      bool isUsingIntervalTicking();
-      float getTickingInterval();
+      bool isTickable() const;
+      bool isUsingIntervalTicking() const;
+      float getTickingInterval() const;
       
 
       

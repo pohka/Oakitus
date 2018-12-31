@@ -9,6 +9,7 @@
 #include <oak/oak_def.h>
 #include <oak/core/window.h>
 
+
 using namespace oak;
 
 SpriteAnimation::SpriteAnimation(
@@ -19,16 +20,15 @@ SpriteAnimation::SpriteAnimation(
   uint displayW,
   uint displayH,
   float frameDuration,
-  std::string shaderName,
+  uint shaderName,
   uint totalFrameCount,
   uint startFrameY,
-  bool isLooping,
-  bool isOnHeap
+  bool isLooping
 )
 {
   Texture* texture = Resources::getTextureByName(src);
   this->textureID = texture->getID();
-  this->shaderID = Resources::getShaderByName(shaderName)->getID();
+  this->shaderID = shaderID;
   this->frameW = frameW;
   this->frameH = frameH;
   this->displayH = displayH;
@@ -36,8 +36,6 @@ SpriteAnimation::SpriteAnimation(
   this->frameDuration = frameDuration;
   this->startFrameY = startFrameY;
   this->totalFrameCount = totalFrameCount;
-  this->curFrameCount = 0;
-  this->totalAnimDuration = totalFrameCount * frameDuration;
   this->isLooping = isLooping;
   this->priority = priority;
 
@@ -47,10 +45,7 @@ SpriteAnimation::SpriteAnimation(
   maxFramesX = texture->getWidth() / frameW;
   maxFramesY = texture->getHeight() / frameH;
 
-  if (isOnHeap)
-  {
-    load();
-  }
+  load();
 }
 
 void SpriteAnimation::load()
@@ -58,10 +53,8 @@ void SpriteAnimation::load()
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
   glBindVertexArray(VAO);
-  setFrame(ANIM_DIRECTION_RIGHT);
+  setFrame(0, ANIM_DIRECTION_RIGHT);
   setVertexAttrs();
-
-  lastFrameTime = Time::getTimeNow();
 }
 
 //setup of vertex attributes layout
@@ -91,67 +84,67 @@ void SpriteAnimation::reset()
 {
   curFrameX = 0;
   curFrameY = startFrameY;
-  curFrameCount = 0;
-  setFrame(ANIM_DIRECTION_RIGHT);
-  lastFrameTime = Time::getTimeNow();
+  //curFrameCount = 0;
+  setFrame(0, ANIM_DIRECTION_RIGHT);
+  //lastFrameTime = Time::getTimeNow();
 }
 
-bool SpriteAnimation::onTick(uchar direction, bool hasChangedDirection)
-{
-  bool hasAnimEnded = false;
-
-  float now = Time::getTimeNow();
-  if (now - lastFrameTime > frameDuration)
-  {
-    curFrameCount++;
-    if (curFrameCount == totalFrameCount)
-    {
-      curFrameX = 0;
-      curFrameY = startFrameY;
-      curFrameCount = 0;
-      hasAnimEnded = true;
-    }
-    else
-    {
-      if (curFrameX + 1 < maxFramesX)
-      {
-        curFrameX++;
-      }
-      else
-      {
-        curFrameX = 0;
-        if (curFrameY <= maxFramesY)
-        {
-          curFrameY += 1;
-        }
-        else
-        {
-          curFrameY = 0;
-        }
-      }
-    }
-    
-    //LOG << "here";
-    //LOG << "new frame: " << curFrameX << ", " << curFrameY;
-
-    setFrame(direction);
-    lastFrameTime = Time::getTimeNow();
-
-    
-  }
-  //if on same frame but the direction has changed
-  else if (hasChangedDirection)
-  {
-    setFrame(direction);
-  }
-
-  if (isLooping)
-  {
-    return false;
-  }
-
-  return hasAnimEnded;
-}
+//bool SpriteAnimation::onTick(uchar direction, bool hasChangedDirection)
+//{
+//  bool hasAnimEnded = false;
+//
+//  float now = Time::getTimeNow();
+//  if (now - lastFrameTime > frameDuration)
+//  {
+//    curFrameCount++;
+//    if (curFrameCount == totalFrameCount)
+//    {
+//      curFrameX = 0;
+//      curFrameY = startFrameY;
+//      curFrameCount = 0;
+//      hasAnimEnded = true;
+//    }
+//    else
+//    {
+//      if (curFrameX + 1 < maxFramesX)
+//      {
+//        curFrameX++;
+//      }
+//      else
+//      {
+//        curFrameX = 0;
+//        if (curFrameY <= maxFramesY)
+//        {
+//          curFrameY += 1;
+//        }
+//        else
+//        {
+//          curFrameY = 0;
+//        }
+//      }
+//    }
+//    
+//    //LOG << "here";
+//    //LOG << "new frame: " << curFrameX << ", " << curFrameY;
+//
+//    setFrame(direction);
+//    lastFrameTime = Time::getTimeNow();
+//
+//    
+//  }
+//  //if on same frame but the direction has changed
+//  else if (hasChangedDirection)
+//  {
+//    setFrame(direction);
+//  }
+//
+//  if (isLooping)
+//  {
+//    return false;
+//  }
+//
+//  return hasAnimEnded;
+//}
 
 void SpriteAnimation::onRender(float positionX, float positionY) const
 {
@@ -182,16 +175,15 @@ void SpriteAnimation::onRender(float positionX, float positionY) const
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void SpriteAnimation::setFrame(uchar direction)
+void SpriteAnimation::setFrame(uint frameIndex, uchar direction)
 {
+  curFrameX = frameIndex % maxFramesX;
+  curFrameY = startFrameY + (frameIndex / maxFramesX);
+
   Texture* texture = Resources::getTextureByID(textureID);
   
   float xx = Window::worldToViewportCoords((float)displayW) * 0.5f;
   float yy = Window::worldToViewportCoords((float)displayH) * 0.5f;
-
-  
-
-  
 
   float xMin = (float)(curFrameX * frameW)/ texture->getWidth();
   float xMax = (float)((curFrameX+1) * frameW) / texture->getWidth();
@@ -223,12 +215,23 @@ void SpriteAnimation::setFrame(uchar direction)
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
 
-float SpriteAnimation::getTotalAnimDuration() const
-{
-  return totalAnimDuration;
-}
 
 uchar SpriteAnimation::getPriority() const
 {
   return priority;
+}
+
+float SpriteAnimation::getFrameDuration() const
+{
+  return frameDuration;
+}
+
+uint SpriteAnimation::getFrameCount() const
+{
+  return totalFrameCount;
+}
+
+bool SpriteAnimation::getIsLooping() const
+{
+  return isLooping;
 }

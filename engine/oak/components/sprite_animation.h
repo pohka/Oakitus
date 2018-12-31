@@ -20,7 +20,6 @@ namespace oak
     uint displayW;
     uint displayH;
     float frameDuration;
-    float lastFrameTime;
 
     uint VAO;
     uint VBO;
@@ -30,10 +29,10 @@ namespace oak
     uint curFrameX;
     uint curFrameY;
     uint totalFrameCount;
-    uint curFrameCount;
-    float totalAnimDuration;
     bool isLooping;
     uchar priority;
+
+    uint lastFrameIndex = 0;
     
 
     public:
@@ -45,24 +44,26 @@ namespace oak
         uint displayW,
         uint displayH,
         float frameDuration,
-        std::string shaderName,
+        uint shaderID,
         uint totalFrameCount,
         uint startFrameY,
-        bool isLooping,
-        bool isOnHeap = true
+        bool isLooping
       );
       ~SpriteAnimation();
 
       void load();
       void reset();
-      bool onTick(uchar direction, bool hasChangedDirection);
+      //bool onTick(uchar direction, bool hasChangedDirection);
       void onRender(float positionX, float positionY) const;
-      float getTotalAnimDuration() const;
       uchar getPriority() const;
       Animator* animator;
+      float getFrameDuration() const;
+      uint getFrameCount() const;
+      bool getIsLooping() const;
+      void setFrame(uint frameIndex, uchar direction);
 
     private:
-      void setFrame(uchar direction);
+      
       void setVertexAttrs() const;
   };
 }

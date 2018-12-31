@@ -18,23 +18,25 @@ namespace oak
     friend class SpriteAnimation;
 
     std::unordered_map<uchar, SpriteAnimation*> anims; ///<summary>Map of the animatons available</summary>
-    uchar curAnim; ///<summary>Current animation key</summary>
-    uchar baseAnim; ///<summary>Base animation key</summary>
+    uchar curAnimID; ///<summary>Current animation key</summary>
+    uchar initialAnimID; ///<summary>Base animation key</summary>
     uchar direction; ///<summary>Direction of the current animation</summary>
     bool hasChangedDirection = false; ///<summary>True if the direction of the animation has changed this frame</summary>
+    static cnum ANIM_INVALID = 255;
+    uint frameIndex = 0;
 
     public:
-      Animator(uchar baseAnimType, SpriteAnimation* baseAnimation);
+      Animator(uchar initialAnimID, SpriteAnimation* initialAnimation);
       ~Animator();
 
       ///<summary>Add an animation with a key</summary>
-      void addAnim(uchar animType, SpriteAnimation* animation);
+      void addAnim(uchar animID, SpriteAnimation* animation);
 
       ///<summary>Sets the current animation, if ignorePrioirty is true it will ignore the prioity checks</summary>
-      void setAnim(uchar animType, const bool ignorePriority = false);
+      void setAnim(uchar animID, const bool ignorePriority = false);
 
       ///<summary>Returns the current animation type</summary>
-      uchar getCurAnimType() const;
+      uchar getCurAnimID() const;
 
       ///<summary>Returns the current direction of the animation</summary>
       uchar getDirection() const;
@@ -50,6 +52,7 @@ namespace oak
       ///<summary>calls onDraw() for the the current animation</summary>
       void onRender() const override;
 
+      //void setFrameIndex(uint index);
   };
 }
 

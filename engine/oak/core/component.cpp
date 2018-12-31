@@ -1,4 +1,5 @@
 #include "component.h"
+#include <oak/debug.h>
 
 using namespace oak;
 
@@ -48,23 +49,24 @@ bool Component::canTickThisFrame()
   {
     case TICK_TYPE_NOT_TICKABLE :   res = false;            break;
     case TICK_TYPE_TICKABLE :       res = true;             break;
-    case TICK_TYPE_INTERVAL_TICK  : res = ticker.onTick();  break;
+    case TICK_TYPE_INTERVAL_TICK:   res = ticker.onTick();  break;
   }
+
 
   return res;
 }
 
-bool Component::isTickable()
+bool Component::isTickable() const
 {
   return (tickingType != TICK_TYPE_NOT_TICKABLE);
 }
 
-bool Component::isUsingIntervalTicking()
+bool Component::isUsingIntervalTicking() const
 {
   return (tickingType == TICK_TYPE_INTERVAL_TICK);
 }
 
-float Component::getTickingInterval()
+float Component::getTickingInterval() const
 {
   return ticker.interval;
 }

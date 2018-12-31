@@ -1,85 +1,105 @@
 #include "animator.h"
 #include <oak/oak_def.h>
 #include <oak/core/entity.h>
+#include <oak/debug.h>
 
 using namespace oak;
 
-Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation) : Component(TICK_GROUP_DEFAULT, TICK_TYPE_TICKABLE, true)
+Animator::Animator(uchar initialAnimID, SpriteAnimation* initialAnimation) : Component(TICK_GROUP_DEFAULT, TICK_TYPE_INTERVAL_TICK, true)
 {
-  this->baseAnim = baseAnimType;
-  anims[baseAnimType] = baseAnimation;
-  this->curAnim = baseAnimType;
+  this->initialAnimID = initialAnimID;
+  anims[initialAnimID] = initialAnimation;
+  this->curAnimID = initialAnimID;
   this->direction = ANIM_DIRECTION_RIGHT;
-  baseAnimation->animator = this;
+  initialAnimation->animator = this;
+
+  ticker.interval = initialAnimation->getFrameDuration();
 }
 
 Animator::~Animator()
 {
-  for (auto itr = anims.begin(); itr != anims.end(); itr++)
+  for (auto it : anims)
   {
-    delete (itr->second);
+    delete it.second;
   }
   anims.clear();
 }
 
-void Animator::addAnim(const uchar animType, SpriteAnimation* animation)
+void Animator::addAnim(const uchar animID, SpriteAnimation* animation)
 {
-  anims[animType] = animation;
+  anims[animID] = animation;
   animation->animator = this;
 }
 
 void Animator::onTick()
 {
-  if (curAnim > 0)
+  if (curAnimID != ANIM_INVALID)
   {
-    bool hasEnded = anims.at(curAnim)->onTick(direction, hasChangedDirection);
-    if (hasEnded && curAnim != baseAnim)
+    frameIndex++;
+    SpriteAnimation* curAnim = anims[curAnimID];
+    if (frameIndex >= curAnim->getFrameCount())
     {
-      setAnim(baseAnim, true);
+      if (curAnim->getIsLooping() == false)
+      {
+        setAnim(initialAnimID, true);
+      }
+      frameIndex = 0;
     }
+
+    curAnim->setFrame(frameIndex, ANIM_DIRECTION_RIGHT);
+
+    //bool hasEnded = anims.at(curAnimID)->onTick(direction, hasChangedDirection);
+    //if (hasEnded && curAnimID != initialAnimID)
+    //{
+    //  setAnim(initialAnimID, true);
+    //}
   }
-  hasChangedDirection = false;
+  //hasChangedDirection = false;
 }
 
 void Animator::onRender() const
 {
-  if (curAnim > 0)
+  if (curAnimID != ANIM_INVALID)
   {
-    anims.at(curAnim)->onRender(entity->position.x, entity->position.y);
+    anims.at(curAnimID)->onRender(entity->position.x, entity->position.y);
   }
 }
 
-void Animator::setAnim(const uchar animType, const bool ignorePriority)
+void Animator::setAnim(const uchar animID, const bool ignorePriority)
 {
-  if (curAnim == animType)
+  if (curAnimID == animID)
   {
     return;
   }
 
+  //this is a fallback to is to display nothing, which make it obvious there is a visual problem with the animation
   //if animation type doesn't exist
-  if (anims.find(animType) == anims.end())
+
+  auto nextAnimIt = anims.find(animID);
+  if (nextAnimIt == anims.end())
   {
-    //this is a fallback to is to display nothing, which make it obvious there is a visual problem with the animation
-    curAnim = 0; 
+    curAnimID = ANIM_INVALID;
   }
   //if animation exists
   //only set the animation if the priority is equal or greater than the current animation's prioirty
   //ignorePrioirty can force an animation change regardless of the priority
   else
   {
-    SpriteAnimation* curAnimPtr = anims.at(curAnim);
+    SpriteAnimation* curAnim = anims[curAnimID];
+    SpriteAnimation* nextAnim = nextAnimIt->second;
     
-    if (ignorePriority || curAnimPtr->getPriority() <= anims.at(animType)->getPriority())
+    if (ignorePriority || curAnim->getPriority() <= nextAnim->getPriority())
     {
-      curAnim = animType;
-      curAnimPtr->reset();
+      curAnimID = animID;
+      curAnim->reset();
+      frameIndex = 0;
     }
   }
 }
 
-uchar Animator::getCurAnimType() const
+uchar Animator::getCurAnimID() const
 {
-  return curAnim;
+  return curAnimID;
 }
 
 
@@ -96,3 +116,18 @@ void Animator::setDirection(uchar direction)
     this->direction = direction;
   }
 }
+
+//void Animator::setFrameIndex(uint index)
+//{
+//  SpriteAnimation* curAnim = anims[curAnimID];
+//  if (index < curAnim->getFrameCount())
+//  {
+//    frameIndex = index;
+//  }
+//  else
+//  {
+//    frameIndex = 0;
+//  }
+//
+//  curAnim->setFrame(frameIndex, ANIM_DIRECTION_RIGHT);
+//}

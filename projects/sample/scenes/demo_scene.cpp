@@ -37,7 +37,7 @@ void DemoScene::onLoad()
       192, 192,
       100, 100,
       0.04f,
-      "default",
+      Resources::getDefaultShader()->getID(),
       14,
       0,
       true
