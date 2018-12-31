@@ -182,3 +182,37 @@ bool Entity::getIsRenderable() const
 {
   return isRenderable;
 }
+
+//template <typename COMP>
+//void Entity::findComponentsByClass(Entity* ent)
+//{
+ //// T* casted;
+ // for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+ // {
+ //   for (Component* comp : componentGroups[i])
+ //   {
+ //    // casted = ;
+ //     if (dynamic_cast<const T*>(comp) != nullptr)
+ //     {
+ //       out.push_back(comp);
+ //     }
+ //   }
+ // }
+//}
+
+//template <typename T>
+//void Entity::findComponents(std::vector<T*>& out)
+//{
+//  T* casted;
+//  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+//  {
+//    for (Component* comp : componentGroups[i])
+//    {
+//      casted = dynamic_cast<T*>(comp);
+//      if (casted != nullptr)
+//      {
+//        out.push_back(casted);
+//      }
+//    }
+//  }
+//}

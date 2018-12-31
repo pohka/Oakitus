@@ -1,9 +1,26 @@
 #include "demo_scene.h"
 #include <oak/oak.h>
 #include "../movement_cmd.h"
+#include <oak/debug.h>
 
 using namespace sample;
 using namespace oak;
+
+//template <typename T>
+//void findComp(Entity* ent, std::vector<T*>& out)
+//{
+//   for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+// {
+////   for (Component* comp : ent->componentGroups[i])
+////   {
+////    // casted = ;
+////     if (dynamic_cast<const T*>(comp) != nullptr)
+////     {
+//////       out.push_back(comp);
+////     }
+////   }
+// }
+//}
 
 
 void DemoScene::onLoad()
@@ -40,6 +57,7 @@ void DemoScene::onLoad()
   Command* movement = new MovementCMD();
   player->addCommand(movement);
   
-
-  //ent->setIsTickingEnabled(false);
+  std::vector<Sprite*> ss;
+  ent->findComponents<Sprite>(ss);
+  LOG << "SS:" << ss.size();
 }

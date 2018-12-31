@@ -83,6 +83,24 @@ namespace oak
       void setIsVisible(bool isVisible);
       bool getIsRenderable() const;
 
+      //find component by type
+      template <typename T>
+      void findComponents(std::vector<T*>& out)
+      {
+        T* casted;
+         for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+         {
+           for (Component* comp : componentGroups[i])
+           {
+             casted = dynamic_cast<T*>(comp);
+             if(casted != nullptr)
+             {
+               out.push_back(casted);
+             }
+           }
+         }
+      }
+
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
       CollisionLayer collisionLayer;
