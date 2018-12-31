@@ -258,6 +258,9 @@
     <ClInclude Include="..\engine\oak\core\player.h">
       <Filter>oak\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\projects\sample\movement_cmd.h">
+      <Filter>projects\sample</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -408,6 +411,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\player.cpp">
       <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\sample\movement_cmd.cpp">
+      <Filter>projects\sample</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

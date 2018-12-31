@@ -6,14 +6,23 @@
 
 namespace oak
 {
-  class BasePlayer;
+  class Player;
 
   ///<summary>Input Command</summary>
   class Command
   {
     public:
+      //Command(Player* player)
+      //{
+      //  this->player = player;
+      //}
+      friend class Player;
+
       ///<summary>Called once each frame before the update stage</summary>
       virtual void execute() = 0;
+
+    protected:
+      Player* player;
   };
 }
 

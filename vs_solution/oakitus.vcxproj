@@ -90,6 +90,7 @@
     <ClInclude Include="..\engine\oak\xml\xml_node.h" />
     <ClInclude Include="..\engine\oak\xml\xml_parser.h" />
     <ClInclude Include="..\projects\sample\load_game.h" />
+    <ClInclude Include="..\projects\sample\movement_cmd.h" />
     <ClInclude Include="..\projects\sample\scenes\demo_scene.h" />
     <ClInclude Include="..\projects\sample\scenes\game_scenes.h" />
   </ItemGroup>
@@ -144,6 +145,7 @@
     <ClCompile Include="..\engine\oak\xml\xml_parser.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\projects\sample\movement_cmd.cpp" />
     <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

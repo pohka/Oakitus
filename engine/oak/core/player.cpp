@@ -29,9 +29,10 @@ void Player::executeCommands()
   }
 }
 
-void Player::addCommand(Command& command)
+void Player::addCommand(Command* command)
 {
-  commands.push_back(&command);
+  command->player = this;
+  commands.push_back(command);
 }
 
 

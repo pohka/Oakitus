@@ -1,5 +1,6 @@
 #include "demo_scene.h"
 #include <oak/oak.h>
+#include "../movement_cmd.h"
 
 using namespace sample;
 using namespace oak;
@@ -35,6 +36,9 @@ void DemoScene::onLoad()
   unit->create();
   Player* player = PlayerResource::getLocalPlayer();
   player->assignActor(unit);
+
+  Command* movement = new MovementCMD();
+  player->addCommand(movement);
   
 
   //ent->setIsTickingEnabled(false);

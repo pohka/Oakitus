@@ -32,7 +32,7 @@ namespace oak
       void executeCommands();
 
       ///<summary>Adds an input Command to this Player</summary>
-      void addCommand(Command& command);
+      void addCommand(Command* command);
 
       void assignActor(Actor* actor);
       Actor* getAssignedActor();
