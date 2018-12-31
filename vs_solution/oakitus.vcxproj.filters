@@ -299,9 +299,6 @@
     <ClCompile Include="..\engine\oak\core\entity.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\core\id_generator.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\core\input.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>

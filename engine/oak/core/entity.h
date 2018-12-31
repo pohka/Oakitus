@@ -18,7 +18,7 @@ namespace oak
 {
   class Script;
   class Component;
-  class IDGenerator;
+  struct IDGenerator;
   class BaseCollisionShape;
 
 
@@ -30,11 +30,6 @@ namespace oak
     friend class Collision;
 
 	  uint entityID; ///<summary>Unique ID of this Entity</summary>
-    //std::unordered_map <uchar, std::vector<Component*>>  componentGroups = 
-    //{
-    //  { TICK_GROUP_DEFAULT, {} },
-    //  { TICK_GROUP_AFTER_PHYSICS, {} }
-    //};
 
     std::vector<Component*> componentGroups[TICK_GROUP_MAX];
 

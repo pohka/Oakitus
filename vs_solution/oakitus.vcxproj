@@ -111,7 +111,6 @@
     <ClCompile Include="..\engine\oak\core\component.cpp" />
     <ClCompile Include="..\engine\oak\core\entity.cpp" />
     <ClCompile Include="..\engine\oak\core\entity_manager.cpp" />
-    <ClCompile Include="..\engine\oak\core\id_generator.cpp" />
     <ClCompile Include="..\engine\oak\core\input.cpp" />
     <ClCompile Include="..\engine\oak\core\key_buffer.cpp" />
     <ClCompile Include="..\engine\oak\core\oakitus.cpp" />

@@ -4,6 +4,7 @@
 #include <queue>
 #include <vector>
 #include <oak/core/entity.h>
+#include "id_generator.h"
 
 namespace oak
 {
@@ -42,10 +43,8 @@ namespace oak
     ///<summary>Clears and deallocates all the existing queues</summary>
     static void clearQueues();
 
-    static uint nextEntityID();
-
   private:
-    static uint entityIDCounter;
+    static IDGenerator entityIDGen;
     static std::queue<uint> queuedDestroyEntityIDs; ///<summary>Queued Entitys to be removed from the world</summary>
     static std::queue<Entity*> pendingEntityInstances; ///<summary>Queued Entitys to be added to the world</summary>
     static std::vector<Entity*> entitys; ///<summary>All existing Entitys in the world</summary>

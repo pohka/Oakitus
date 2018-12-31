@@ -5,10 +5,12 @@
 
 namespace oak
 {
-  struct Actor : public Entity
+  class Actor : public Entity
   {
-    Actor();
-    ~Actor();
+
+    public:
+      Actor();
+      ~Actor();
   };
 }
 

@@ -2,14 +2,13 @@
 
 using namespace oak;
 
-IDGenerator Player::idGen = IDGenerator();
+IDGenerator Player::idGen;
 std::vector<Command> commands;
 
 
 Player::Player()
 {
   playerID = idGen.nextID();
- 
 }
 
 Player::~Player()

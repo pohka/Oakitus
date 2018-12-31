@@ -4,14 +4,8 @@ using namespace oak;
 
 std::vector<Entity*> EntityManager::entitys;
 std::queue<uint> EntityManager::queuedDestroyEntityIDs;
-uint EntityManager::entityIDCounter = 0;
+IDGenerator EntityManager::entityIDGen;
 std::queue<Entity*> EntityManager::pendingEntityInstances;
-
-uint EntityManager::nextEntityID()
-{
-  entityIDCounter++;
-  return entityIDCounter;
-}
 
 
 Entity* EntityManager::findEntityByID(uint id)

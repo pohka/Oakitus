@@ -6,14 +6,16 @@
 namespace oak
 {
   ///<summary>ID generator using an auto incrementer uint</summary>
-  class IDGenerator
+  struct IDGenerator
   {
-    uint count;
+    uint nextID()
+    {
+      count++;
+      return count;
+    }
 
-    public:
-      IDGenerator();
-      ~IDGenerator();
-      uint nextID();
+    private:
+      uint count = 0;
   };
 }
 #endif

@@ -11,9 +11,7 @@ Entity::Entity(bool isEverRendered)
   this->isEverRendered = isEverRendered;
   this->isRenderable = isEverRendered;
 
-  //set default values
-  componentIDGen = IDGenerator();
-  this->entityID = EntityManager::nextEntityID();
+  this->entityID = EntityManager::entityIDGen.nextID();
   this->position = glm::vec3(0, 0, 0);
   this->rotation = glm::vec3(0, 0, 0);
   layerID = 0;
