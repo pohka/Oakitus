@@ -49,7 +49,7 @@ Sprite::Sprite(
   std::string src,
   float displayW,
   float displayH
-)
+) : Component(TICK_GROUP_DEFAULT, true)
 {
   this->w = displayW;
   this->h = displayH;
@@ -106,7 +106,7 @@ unsigned int Sprite::getVAO() const
   return this->VAO;
 }
 
-void Sprite::onDraw() const
+void Sprite::onRender() const
 {
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, this->textureID);

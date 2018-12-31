@@ -153,7 +153,7 @@ bool SpriteAnimation::onTick(uchar direction, bool hasChangedDirection)
   return hasAnimEnded;
 }
 
-void SpriteAnimation::onDraw(float positionX, float positionY) const
+void SpriteAnimation::onRender(float positionX, float positionY) const
 {
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, textureID);

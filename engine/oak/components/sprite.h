@@ -57,7 +57,7 @@ namespace oak
       uint getVAO() const;
 
     protected:
-      void onDraw() const override;
+      void onRender() const override;
     
     private:
       void construct(float xMin, float xMax, float yMin, float yMax);

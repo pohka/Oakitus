@@ -15,11 +15,14 @@ namespace oak
 	  uint componentID; ///<summary>An ID that is unique for the owner Entity</summary>
 
     public:
-	    Component(uchar tickGroup = TICK_GROUP_DEFAULT);
+	    Component(uchar tickGroup = TICK_GROUP_DEFAULT, bool isEverRender = false);
 	    virtual ~Component();
 
       uchar getTickGroup() const;
       uint getComponentID() const;
+      bool getIsRenderable() const;
+
+      
      
     protected:
 	    oak::Entity* entity; ///<summary>The owner Entity</summary>
@@ -33,7 +36,7 @@ namespace oak
       virtual void onTick();
 
       ///<summary>Draw, called once each frame</summary>
-      virtual void onDraw() const;
+      virtual void onRender() const;
 
       ///<summary>Draw for debuging, called once each frame</summary>
       virtual void onDebugDraw() const;
@@ -44,8 +47,12 @@ namespace oak
       virtual void onCollisionHit(Entity& hit);
       //---------------------------------------
 
+      
     private:
       uchar tickGroup = TICK_GROUP_DEFAULT;
+      bool isEverRendered;
+      bool isRenderable;
+      
   };
 }
 

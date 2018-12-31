@@ -48,7 +48,7 @@ namespace oak
       void onTick() override;
 
       ///<summary>calls onDraw() for the the current animation</summary>
-      void onDraw() const override;
+      void onRender() const override;
 
   };
 }

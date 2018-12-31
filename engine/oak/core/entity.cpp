@@ -6,8 +6,11 @@
 
 using namespace oak;
 
-Entity::Entity() 
+Entity::Entity(bool isEverRendered)
 {
+  this->isEverRendered = isEverRendered;
+  this->isRenderable = isEverRendered;
+
   //set default values
   componentIDGen = IDGenerator();
   this->entityID = EntityManager::nextEntityID();
@@ -110,13 +113,16 @@ void Entity::onDestroy()
   }
 }
 
-void Entity::onDraw() const
+void Entity::onRender() const
 {
   for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
     for (Component* comp : componentGroups[i])
     {
-      comp->onDraw();
+      if (comp->getIsRenderable())
+      {
+        comp->onRender();
+      }
     }
   }
 }
@@ -164,4 +170,17 @@ bool Entity::getIsTickingEnabled() const
 void Entity::setIsTickingEnabled(bool isEnabled)
 {
   isTickingEnable = isEnabled;
+}
+
+void Entity::setIsVisible(bool isVisible)
+{
+  if (isEverRendered)
+  {
+    isRenderable = isVisible;
+  }
+}
+
+bool Entity::getIsRenderable() const
+{
+  return isRenderable;
 }

@@ -26,7 +26,6 @@ void DemoScene::onLoad()
     )
   );
   ent->addComponent(animator);
-
   ent->create(0.0f, 0.0f);
   //ent->setIsTickingEnabled(false);
 }

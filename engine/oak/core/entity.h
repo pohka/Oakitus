@@ -51,8 +51,9 @@ namespace oak
       int layerID; ///<summary>Drawing layerID</summary>
       bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
       std::string name; ///<summary>Name of this Entity</summary>
+      
 
-	    Entity();
+	    Entity(bool isEverRendered = true);
 	    virtual ~Entity();
       
       ///<summary>Adds a Component to this Entity</summary>
@@ -84,6 +85,9 @@ namespace oak
       bool getIsTickingEnabled() const;
       void setIsTickingEnabled(bool isEnabled);
 
+      void setIsVisible(bool isVisible);
+      bool getIsRenderable() const;
+
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
       CollisionLayer collisionLayer;
@@ -98,7 +102,7 @@ namespace oak
       void onTick(const uchar TICK_GROUP);
 
       ///<summary>Draws all renderable components each frame</summary>
-      void onDraw() const;
+      void onRender() const;
 
       void onDebugDraw() const;
 
@@ -109,7 +113,9 @@ namespace oak
       void onCollisionHit(Entity& hit);
       //-------------------------------------------------------------
 
-      
+    private:
+       bool isEverRendered;
+       bool isRenderable;
   };
 }
 

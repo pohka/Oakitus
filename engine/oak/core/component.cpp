@@ -2,9 +2,11 @@
 
 using namespace oak;
 
-Component::Component(uchar tickGroup)
+Component::Component(uchar tickGroup, bool isEverRendered)
 {
   this->tickGroup = tickGroup;
+  this->isEverRendered = isEverRendered;
+  this->isRenderable = isEverRendered;
 }
 
 uchar Component::getTickGroup() const
@@ -18,13 +20,18 @@ uint Component::getComponentID() const
   return componentID;
 }
 
+bool Component::getIsRenderable() const
+{
+  return isRenderable;
+}
+
 Component::~Component() {}
 
 void Component::onCreate() {}
 
 void Component::onTick() {}
 
-void Component::onDraw() const {}
+void Component::onRender() const {}
 
 void Component::onDebugDraw() const {}
 

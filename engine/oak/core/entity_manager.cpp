@@ -80,9 +80,12 @@ void EntityManager::drawInstances()
 {
   std::sort(entitys.begin(), EntityManager::entitys.end(), EntityLayerCompare());
 
-  for (uint i = 0; i < EntityManager::entitys.size(); i++)
+  for (Entity* ent : EntityManager::entitys)
   {
-    entitys[i]->onDraw();
+    if (ent->getIsRenderable())
+    {
+      ent->onRender();
+    }
   }
 }
 

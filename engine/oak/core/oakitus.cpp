@@ -76,6 +76,7 @@ int Oakitus::loop()
     EntityManager::tickInstances(TICK_GROUP_DEFAULT);
     Collision::resolveCollisions();
     EntityManager::tickInstances(TICK_GROUP_AFTER_PHYSICS);
+    EntityManager::tickInstances(TICK_GROUP_LAST);
     EntityManager::drawInstances();
     EntityManager::debugDrawInstances();
     ion::UICanvas::render();

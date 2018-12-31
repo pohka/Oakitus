@@ -4,7 +4,7 @@
 
 using namespace oak;
 
-Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation) : Component()
+Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation) : Component(TICK_GROUP_DEFAULT, true)
 {
   this->baseAnim = baseAnimType;
   anims[baseAnimType] = baseAnimation;
@@ -41,11 +41,11 @@ void Animator::onTick()
   hasChangedDirection = false;
 }
 
-void Animator::onDraw() const
+void Animator::onRender() const
 {
   if (curAnim > 0)
   {
-    anims.at(curAnim)->onDraw(entity->position.x, entity->position.y);
+    anims.at(curAnim)->onRender(entity->position.x, entity->position.y);
   }
 }
 
