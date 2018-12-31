@@ -33,3 +33,24 @@ void Player::addCommand(Command& command)
 {
   commands.push_back(&command);
 }
+
+
+void Player::assignActor(Actor* actor)
+{
+  actor->owner = this;
+  this->assignedActor = actor;
+}
+
+void Player::unAssignActor()
+{
+  if (this->assignedActor != nullptr)
+  {
+    this->assignedActor->owner = nullptr;
+    this->assignedActor = nullptr;
+  }
+}
+
+Actor* Player::getAssignedActor()
+{
+  return assignedActor;
+}

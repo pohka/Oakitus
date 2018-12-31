@@ -27,5 +27,15 @@ void DemoScene::onLoad()
   );
   ent->addComponent(animator);
   ent->create(0.0f, 0.0f);
+
+
+  Actor* unit = new Actor();
+  unit->addComponent(new Sprite("face.png", 30.0f, 30.0f));
+  unit->position.x = 100.0f;
+  unit->create();
+  Player* player = PlayerResource::getLocalPlayer();
+  player->assignActor(unit);
+  
+
   //ent->setIsTickingEnabled(false);
 }

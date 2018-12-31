@@ -5,10 +5,12 @@
 #include "types.h"
 #include <vector>
 #include "command.h"
+#include "actor.h"
 
 namespace oak
 {
   class Command;
+  class Actor;
 
   ///<summary>BasePlayer class for player input and can be extended for more functionality</summary>
   //Preferrably Player instances should be added to the PlayerResource class as
@@ -17,7 +19,7 @@ namespace oak
   {
     static oak::IDGenerator idGen; ///<summary>Player Unique ID generator</summary>
     uint playerID; ///<summary>Player Unique ID</summary>
-    
+    Actor* assignedActor;
     
     public :
       Player();
@@ -32,6 +34,9 @@ namespace oak
       ///<summary>Adds an input Command to this Player</summary>
       void addCommand(Command& command);
 
+      void assignActor(Actor* actor);
+      Actor* getAssignedActor();
+      void unAssignActor();
 
     protected:
       ///<summary>All of the commands for this Player</summary>

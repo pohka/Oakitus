@@ -11,3 +11,8 @@ Actor::~Actor()
 {
 
 }
+
+Player* Actor::getOwner()
+{
+  return owner;
+}

@@ -52,7 +52,7 @@ void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, b
   //Shader *collisionShader = new Shader("collision");
   //Resources::addShader(*collisionShader);
 
-
+  PlayerResource::addPlayer(new Player());
   Oakitus::load();
   loop();
 }
