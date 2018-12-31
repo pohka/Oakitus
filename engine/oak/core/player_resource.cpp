@@ -5,11 +5,11 @@
 using namespace oak;
 
 unsigned int PlayerResource::playerCount = 0;
-BasePlayer* PlayerResource::players[4];
+Player* PlayerResource::players[MAX_PLAYER_COUNT];
 uint localPlayerID = 0;
-BasePlayer PlayerResource::defaultPlayer = BasePlayer();
+Player PlayerResource::defaultPlayer = Player();
 
-void PlayerResource::addPlayer(BasePlayer* player)
+void PlayerResource::addPlayer(Player* player)
 {
 
   //if enough player slots
@@ -25,7 +25,7 @@ void PlayerResource::addPlayer(BasePlayer* player)
   
 }
 
-BasePlayer* PlayerResource::getPlayer(uint playerID)
+Player* PlayerResource::getPlayer(uint playerID)
 {
   for (uint i = 0; i < MAX_PLAYER_COUNT; i++)
   {
@@ -39,7 +39,7 @@ BasePlayer* PlayerResource::getPlayer(uint playerID)
   return &defaultPlayer;
 }
 
-BasePlayer* PlayerResource::getPlayerByIndex(uint index)
+Player* PlayerResource::getPlayerByIndex(uint index)
 {
   if (index >= MAX_PLAYER_COUNT || players[index] == nullptr)
   {
@@ -66,7 +66,7 @@ bool PlayerResource::isLocalPlayerID(uint id)
   return true;
 }
 
-BasePlayer* PlayerResource::getLocalPlayer()
+Player* PlayerResource::getLocalPlayer()
 {
   //for future multiplayer feature
   return players[0];

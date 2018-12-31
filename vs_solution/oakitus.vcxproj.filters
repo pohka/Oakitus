@@ -81,9 +81,6 @@
     <ClInclude Include="..\engine\oak\components\sprite_animation.h">
       <Filter>oak\components</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\core\base_player.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\core\bounds.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -255,6 +252,12 @@
     <ClInclude Include="..\engine\oak\core\entity_manager.h">
       <Filter>oak\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\core\actor.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\player.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -283,9 +286,6 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\components\sprite_animation.cpp">
       <Filter>oak\components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\base_player.cpp">
-      <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\bounds.cpp">
       <Filter>oak\core</Filter>
@@ -404,6 +404,12 @@
       <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\entity_manager.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\actor.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\player.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
   </ItemGroup>

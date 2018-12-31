@@ -8,7 +8,7 @@ using namespace sample;
 
 void oak::Oakitus::load()
 {
-  BasePlayer* player1 = new BasePlayer();
+  Player* player1 = new Player();
   PlayerResource::addPlayer(player1);
 
   Scene* scene = new DemoScene();

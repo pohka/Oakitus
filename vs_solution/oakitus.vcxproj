@@ -29,8 +29,9 @@
     <ClInclude Include="..\engine\oak\components\rigid_body_2d.h" />
     <ClInclude Include="..\engine\oak\components\sprite.h" />
     <ClInclude Include="..\engine\oak\components\sprite_animation.h" />
+    <ClInclude Include="..\engine\oak\core\actor.h" />
     <ClInclude Include="..\engine\oak\core\asset.h" />
-    <ClInclude Include="..\engine\oak\core\base_player.h" />
+    <ClInclude Include="..\engine\oak\core\player.h" />
     <ClInclude Include="..\engine\oak\core\bounds.h" />
     <ClInclude Include="..\engine\oak\core\camera.h" />
     <ClInclude Include="..\engine\oak\core\command.h" />
@@ -102,8 +103,9 @@
     <ClCompile Include="..\engine\oak\components\rigid_body_2d.cpp" />
     <ClCompile Include="..\engine\oak\components\sprite.cpp" />
     <ClCompile Include="..\engine\oak\components\sprite_animation.cpp" />
+    <ClCompile Include="..\engine\oak\core\actor.cpp" />
     <ClCompile Include="..\engine\oak\core\asset.cpp" />
-    <ClCompile Include="..\engine\oak\core\base_player.cpp" />
+    <ClCompile Include="..\engine\oak\core\player.cpp" />
     <ClCompile Include="..\engine\oak\core\bounds.cpp" />
     <ClCompile Include="..\engine\oak\core\camera.cpp" />
     <ClCompile Include="..\engine\oak\core\component.cpp" />

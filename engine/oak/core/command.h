@@ -2,7 +2,7 @@
 #define COMMAND_H
 
 #include <oak/core/input.h>
-#include <oak/core/base_player.h>
+#include <oak/core/player.h>
 
 namespace oak
 {

@@ -1,5 +1,5 @@
-#ifndef BASE_PLAYER_H
-#define BASE_PLAYER_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "id_generator.h"
 #include "types.h"
@@ -13,15 +13,15 @@ namespace oak
   ///<summary>BasePlayer class for player input and can be extended for more functionality</summary>
   //Preferrably Player instances should be added to the PlayerResource class as
   //they can be easily accessed and managed through the PlayerResource class
-  class BasePlayer
+  class Player
   {
     static oak::IDGenerator idGen; ///<summary>Player Unique ID generator</summary>
     uint playerID; ///<summary>Player Unique ID</summary>
     
     
     public :
-      BasePlayer();
-      virtual ~BasePlayer();
+      Player();
+      virtual ~Player();
 
       ///<summary>Returns the playerID</summary>
       uint getPlayerID() const;

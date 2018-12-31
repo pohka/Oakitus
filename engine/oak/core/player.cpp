@@ -1,28 +1,28 @@
-#include "base_player.h"
+#include "player.h"
 
 using namespace oak;
 
-IDGenerator BasePlayer::idGen = IDGenerator();
+IDGenerator Player::idGen = IDGenerator();
 std::vector<Command> commands;
 
 
-BasePlayer::BasePlayer()
+Player::Player()
 {
   playerID = idGen.nextID();
  
 }
 
-BasePlayer::~BasePlayer()
+Player::~Player()
 {
 
 }
 
-uint BasePlayer::getPlayerID() const
+uint Player::getPlayerID() const
 {
   return playerID;
 }
 
-void BasePlayer::executeCommands()
+void Player::executeCommands()
 {
   for (uint i = 0; i < commands.size(); i++)
   {
@@ -30,7 +30,7 @@ void BasePlayer::executeCommands()
   }
 }
 
-void BasePlayer::addCommand(Command& command)
+void Player::addCommand(Command& command)
 {
   commands.push_back(&command);
 }
