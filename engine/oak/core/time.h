@@ -17,6 +17,7 @@ namespace oak
     static int maxFPS;
     static float minDeltaTime;
     static float m_deltaTime; 
+    static float frameStartTime; 
 
     public:
       static float timeScale; ///<summary>Scale time to speed up or slow down gameplay</summary>
@@ -29,6 +30,7 @@ namespace oak
       static float getMinDeltaTime();
       static float getTimeNow();
       static void setMaxFPS(int max);
+      static float getFrameStartTime();
       
   protected:
     static void init();

@@ -55,6 +55,7 @@
     <ClInclude Include="..\engine\oak\core\stb_image.h" />
     <ClInclude Include="..\engine\oak\core\string_help.h" />
     <ClInclude Include="..\engine\oak\core\texture.h" />
+    <ClInclude Include="..\engine\oak\core\interval_ticker.h" />
     <ClInclude Include="..\engine\oak\core\time.h" />
     <ClInclude Include="..\engine\oak\core\types.h" />
     <ClInclude Include="..\engine\oak\core\window.h" />
@@ -121,6 +122,7 @@
     <ClCompile Include="..\engine\oak\core\scene.cpp" />
     <ClCompile Include="..\engine\oak\core\shader.cpp" />
     <ClCompile Include="..\engine\oak\core\texture.cpp" />
+    <ClCompile Include="..\engine\oak\core\interval_ticker.cpp" />
     <ClCompile Include="..\engine\oak\core\time.cpp" />
     <ClCompile Include="..\engine\oak\core\window.cpp" />
     <ClCompile Include="..\engine\oak\debug\debug_input.cpp" />

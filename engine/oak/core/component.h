@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include <oak/oak_def.h>
+#include "interval_ticker.h"
 
 namespace oak
 {
@@ -12,15 +13,23 @@ namespace oak
   class Component
   {
 	  friend class Entity;
+
+    
+
 	  uint componentID; ///<summary>An ID that is unique for the owner Entity</summary>
 
     public:
-	    Component(uchar tickGroup = TICK_GROUP_DEFAULT, bool isEverRender = false);
+	    Component(cnum tickGroup = TICK_GROUP_DEFAULT, cnum tickingType = TICK_TYPE_TICKABLE, const bool isEverRender = false);
 	    virtual ~Component();
 
       uchar getTickGroup() const;
       uint getComponentID() const;
       bool getIsRenderable() const;
+
+      bool isTickable();
+      bool isUsingIntervalTicking();
+      float getTickingInterval();
+      
 
       
      
@@ -48,11 +57,16 @@ namespace oak
       //---------------------------------------
 
       
+
+      uchar tickingType;
+      IntervalTicker ticker;
+      
     private:
-      uchar tickGroup = TICK_GROUP_DEFAULT;
+      uchar tickGroup;
       bool isEverRendered;
       bool isRenderable;
-      
+
+      bool canTickThisFrame();
   };
 }
 

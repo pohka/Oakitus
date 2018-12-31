@@ -85,7 +85,7 @@ namespace oak
 
       //find component by type
       template <typename T>
-      void findComponents(std::vector<T*>& out)
+      void getComponents(std::vector<T*>& out)
       {
         T* casted;
          for (uchar i = 0; i < TICK_GROUP_MAX; i++)
@@ -99,6 +99,24 @@ namespace oak
              }
            }
          }
+      }
+
+      template <typename T>
+      T* getComponent()
+      {
+        T* casted;
+        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        {
+          for (Component* comp : componentGroups[i])
+          {
+            casted = dynamic_cast<T*>(comp);
+            if (casted != nullptr)
+            {
+              return casted;
+            }
+          }
+        }
+        return nullptr;
       }
 
     protected:

@@ -10,11 +10,14 @@ float Time::lastFPSCheck = (float)glfwGetTime();
 int Time::fps = 0;
 int Time::maxFPS = 60;
 float Time::minDeltaTime = 1.0f / maxFPS;
+float Time::frameStartTime = 0.0f;
 
 void Time::update()
 {
   //calculate delta time
   float currentFrame = (float)glfwGetTime();
+  frameStartTime = currentFrame;
+
   m_deltaTime = currentFrame - lastFrame;
   lastFrame = currentFrame;
  // m_deltaTime = (float)(1.0f * m_deltaTime);
@@ -65,4 +68,9 @@ void Time::setMaxFPS(int max)
 float Time::getTimeNow()
 {
   return (float)glfwGetTime();
+}
+
+float Time::getFrameStartTime()
+{
+  return frameStartTime;
 }

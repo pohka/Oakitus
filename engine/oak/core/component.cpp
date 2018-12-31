@@ -2,9 +2,10 @@
 
 using namespace oak;
 
-Component::Component(uchar tickGroup, bool isEverRendered)
+Component::Component(cnum tickGroup, cnum tickingType, const bool isEverRendered)
 {
   this->tickGroup = tickGroup;
+  this->tickingType = tickingType;
   this->isEverRendered = isEverRendered;
   this->isRenderable = isEverRendered;
 }
@@ -39,3 +40,31 @@ void Component::onDebugDraw() const {}
 void Component::onDestroy() {}
 
 void Component::onCollisionHit(Entity& hit) {}
+
+bool Component::canTickThisFrame()
+{
+  bool res = false;
+  switch (tickingType)
+  {
+    case TICK_TYPE_NOT_TICKABLE :   res = false;            break;
+    case TICK_TYPE_TICKABLE :       res = true;             break;
+    case TICK_TYPE_INTERVAL_TICK  : res = ticker.onTick();  break;
+  }
+
+  return res;
+}
+
+bool Component::isTickable()
+{
+  return (tickingType != TICK_TYPE_NOT_TICKABLE);
+}
+
+bool Component::isUsingIntervalTicking()
+{
+  return (tickingType == TICK_TYPE_INTERVAL_TICK);
+}
+
+float Component::getTickingInterval()
+{
+  return ticker.interval;
+}

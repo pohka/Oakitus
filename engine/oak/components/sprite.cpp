@@ -49,7 +49,7 @@ Sprite::Sprite(
   std::string src,
   float displayW,
   float displayH
-) : Component(TICK_GROUP_DEFAULT, true)
+) : Component(TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true)
 {
   this->w = displayW;
   this->h = displayH;

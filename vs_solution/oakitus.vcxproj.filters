@@ -261,6 +261,9 @@
     <ClInclude Include="..\projects\sample\movement_cmd.h">
       <Filter>projects\sample</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\core\interval_ticker.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -414,6 +417,9 @@
     </ClCompile>
     <ClCompile Include="..\projects\sample\movement_cmd.cpp">
       <Filter>projects\sample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\interval_ticker.cpp">
+      <Filter>oak\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

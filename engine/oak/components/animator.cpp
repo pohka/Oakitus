@@ -4,7 +4,7 @@
 
 using namespace oak;
 
-Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation) : Component(TICK_GROUP_DEFAULT, true)
+Animator::Animator(uchar baseAnimType, SpriteAnimation* baseAnimation) : Component(TICK_GROUP_DEFAULT, TICK_TYPE_TICKABLE, true)
 {
   this->baseAnim = baseAnimType;
   anims[baseAnimType] = baseAnimation;

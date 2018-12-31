@@ -18,6 +18,12 @@ cnum TICK_GROUP_AFTER_PHYSICS = 2;
 cnum TICK_GROUP_LAST = 3;
 cnum TICK_GROUP_MAX = 4;
 
+cnum TICK_TYPE_NOT_TICKABLE = 0;
+cnum TICK_TYPE_TICKABLE = 1;
+cnum TICK_TYPE_INTERVAL_TICK = 2;
+cnum TICK_TYPE_LAST = 3;
+
+
 
 const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
 

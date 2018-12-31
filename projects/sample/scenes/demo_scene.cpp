@@ -58,6 +58,14 @@ void DemoScene::onLoad()
   player->addCommand(movement);
   
   std::vector<Sprite*> ss;
-  ent->findComponents<Sprite>(ss);
+  ent->getComponents<Sprite>(ss);
   LOG << "SS:" << ss.size();
+
+  Sprite* s = ent->getComponent<Sprite>();
+  if (s != nullptr)
+  {
+    LOG << "FOUND:" << s->isTickable() << ":" << s->getTickingInterval();
+  }
+
+
 }
