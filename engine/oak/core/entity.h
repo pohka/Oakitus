@@ -35,7 +35,7 @@ namespace oak
 
     std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
 	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
-    bool isTickingEnable = true;
+    
     
 
     public:
@@ -82,6 +82,10 @@ namespace oak
 
       void setIsVisible(bool isVisible);
       bool getIsRenderable() const;
+
+      bool getCanTickWhenPaused() const;
+
+      bool canTickThisFrame() const;
 
       //find component by type
       template <typename T>
@@ -144,9 +148,12 @@ namespace oak
       void onCollisionHit(Entity& hit);
       //-------------------------------------------------------------
 
+      bool canTickWhenPaused = false;
+
     private:
        bool isEverRendered;
        bool isRenderable;
+       bool isTickingEnable = true;
   };
 }
 

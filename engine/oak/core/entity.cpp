@@ -185,3 +185,20 @@ bool Entity::getIsRenderable() const
 {
   return isRenderable;
 }
+
+bool Entity::getCanTickWhenPaused() const
+{
+  return canTickWhenPaused;
+}
+
+bool Entity::canTickThisFrame() const
+{
+  bool isPaused = Time::getIsPaused();
+  if (isTickingEnable && 
+    ((isPaused && canTickWhenPaused) || !isPaused))
+  {
+    return true;
+  }
+
+  return false;
+}

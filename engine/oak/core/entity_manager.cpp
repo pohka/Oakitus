@@ -51,7 +51,7 @@ void EntityManager::tickInstances(const uchar TICK_GROUP)
 {
   for (Entity* ent : EntityManager::entitys)
   {
-    if (ent->getIsTickingEnabled())
+    if (ent->canTickThisFrame())
     {
       ent->onTick(TICK_GROUP);
     }

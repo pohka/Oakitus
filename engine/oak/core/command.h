@@ -23,6 +23,7 @@ namespace oak
 
     protected:
       Player* player;
+      bool canExecuteWhenPaused = false;
   };
 }
 

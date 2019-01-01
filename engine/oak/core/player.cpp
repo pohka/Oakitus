@@ -1,9 +1,9 @@
 #include "player.h"
+#include "time.h"
 
 using namespace oak;
 
 IDGenerator Player::idGen;
-std::vector<Command> commands;
 
 
 Player::Player()
@@ -23,9 +23,13 @@ uint Player::getPlayerID() const
 
 void Player::executeCommands()
 {
-  for (uint i = 0; i < commands.size(); i++)
+  bool isPaused = Time::getIsPaused();
+  for (Command* command : commands)
   {
-    commands[i]->execute();
+    if (!isPaused || (isPaused && command->canExecuteWhenPaused))
+    {
+      command->execute();
+    }
   }
 }
 
