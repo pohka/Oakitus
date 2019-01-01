@@ -80,72 +80,6 @@ SpriteAnimation::~SpriteAnimation()
   glDeleteBuffers(1, &VBO);
 }
 
-void SpriteAnimation::reset()
-{
-  curFrameX = 0;
-  curFrameY = startFrameY;
-  //curFrameCount = 0;
-  setFrame(0, ANIM_DIRECTION_RIGHT);
-  //lastFrameTime = Time::getTimeNow();
-}
-
-//bool SpriteAnimation::onTick(uchar direction, bool hasChangedDirection)
-//{
-//  bool hasAnimEnded = false;
-//
-//  float now = Time::getTimeNow();
-//  if (now - lastFrameTime > frameDuration)
-//  {
-//    curFrameCount++;
-//    if (curFrameCount == totalFrameCount)
-//    {
-//      curFrameX = 0;
-//      curFrameY = startFrameY;
-//      curFrameCount = 0;
-//      hasAnimEnded = true;
-//    }
-//    else
-//    {
-//      if (curFrameX + 1 < maxFramesX)
-//      {
-//        curFrameX++;
-//      }
-//      else
-//      {
-//        curFrameX = 0;
-//        if (curFrameY <= maxFramesY)
-//        {
-//          curFrameY += 1;
-//        }
-//        else
-//        {
-//          curFrameY = 0;
-//        }
-//      }
-//    }
-//    
-//    //LOG << "here";
-//    //LOG << "new frame: " << curFrameX << ", " << curFrameY;
-//
-//    setFrame(direction);
-//    lastFrameTime = Time::getTimeNow();
-//
-//    
-//  }
-//  //if on same frame but the direction has changed
-//  else if (hasChangedDirection)
-//  {
-//    setFrame(direction);
-//  }
-//
-//  if (isLooping)
-//  {
-//    return false;
-//  }
-//
-//  return hasAnimEnded;
-//}
-
 void SpriteAnimation::onRender(float positionX, float positionY) const
 {
   glActiveTexture(GL_TEXTURE0);
@@ -174,7 +108,7 @@ void SpriteAnimation::onRender(float positionX, float positionY) const
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void SpriteAnimation::setFrame(uint frameIndex, uchar direction)
+void SpriteAnimation::setFrame(const uint frameIndex, const uchar direction)
 {
   curFrameX = frameIndex % maxFramesX;
   curFrameY = startFrameY + (frameIndex / maxFramesX);

@@ -12,7 +12,6 @@ Animator::Animator(uchar initialAnimID, SpriteAnimation* initialAnimation) : Com
   this->curAnimID = initialAnimID;
   this->direction = ANIM_DIRECTION_RIGHT;
   initialAnimation->animator = this;
-
   ticker.interval = initialAnimation->getFrameDuration();
 }
 
@@ -37,17 +36,24 @@ void Animator::onTick()
   {
     frameIndex++;
     SpriteAnimation* curAnim = anims[curAnimID];
+    bool hasAnimEnded = false;
+
+    //if reached end of the last frame
     if (frameIndex >= curAnim->getFrameCount())
     {
+      //animation doesn't loop
       if (curAnimID != initialAnimID && curAnim->getIsLooping() == false)
       {
         setAnim(initialAnimID, true);
-        curAnim = anims[curAnimID];
+        hasAnimEnded = true;
       }
       frameIndex = 0;
     }
 
-    curAnim->setFrame(frameIndex, direction);
+    if (!hasAnimEnded)
+    {
+      curAnim->setFrame(frameIndex, direction);
+    }
   }
 }
 

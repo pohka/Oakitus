@@ -49,19 +49,32 @@ namespace oak
       );
       ~SpriteAnimation();
 
+      //load the texcture
       void load();
-      void reset();
-      //bool onTick(uchar direction, bool hasChangedDirection);
+
+      //render at world position
       void onRender(float positionX, float positionY) const;
+
+      //returns the priority of the animation
       uchar getPriority() const;
+
+      //returns a pointer to the animator which owns this animation
       Animator* animator;
+
+      //returns the duration of a frame in the current animation
       float getFrameDuration() const;
+
+      //returns the number of frames in the current animation
       uint getFrameCount() const;
+
+      //returns true if the current animation is a looping animation
       bool getIsLooping() const;
-      void setFrame(uint frameIndex, uchar direction);
+
+      //generates and binds the VBO for the specified frame
+      void setFrame(const uint frameIndex, const uchar direction);
 
     private:
-      
+      //setup of vertex attributes layout
       void setVertexAttrs() const;
   };
 }

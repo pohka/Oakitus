@@ -17,19 +17,19 @@ void MovementCMD::execute()
   //directional input
   if (Input::isKeyPressed(KEYCODE_W))
   {
-    axisY = 1.0f;
+    axisY += 1.0f;
   }
   if (Input::isKeyPressed(KEYCODE_S))
   {
-    axisY = -1.0f;
+    axisY -= 1.0f;
   }
   if (Input::isKeyPressed(KEYCODE_A))
   {
-    axisX = -1.0f;
+    axisX -= 1.0f;
   }
   if (Input::isKeyPressed(KEYCODE_D))
   {
-    axisX = 1.0f;
+    axisX += 1.0f;
   }
 
   bool hasMoved = (axisX != 0.0f || axisY != 0.0f);

@@ -23,7 +23,7 @@ namespace oak
     uchar direction; ///<summary>Direction of the current animation</summary>
     bool hasChangedDirection = false; ///<summary>True if the direction of the animation has changed this frame</summary>
     static cnum ANIM_INVALID = 255;
-    uint frameIndex = 0;
+    uint frameIndex = 0; //current frame index
 
     public:
       Animator(uchar initialAnimID, SpriteAnimation* initialAnimation);
@@ -35,7 +35,7 @@ namespace oak
       ///<summary>Sets the current animation, if ignorePrioirty is true it will ignore the prioity checks</summary>
       void setAnim(uchar animID, const bool ignorePriority = false);
 
-      ///<summary>Returns the current animation type</summary>
+      ///<summary>Returns the current animation id</summary>
       uchar getCurAnimID() const;
 
       ///<summary>Returns the current direction of the animation</summary>
@@ -52,7 +52,6 @@ namespace oak
       ///<summary>calls onDraw() for the the current animation</summary>
       void onRender() const override;
 
-      //void setFrameIndex(uint index);
   };
 }
 
