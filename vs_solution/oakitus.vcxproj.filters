@@ -267,6 +267,9 @@
     <ClInclude Include="..\projects\sample\sample_constants.h">
       <Filter>projects\sample</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\core\fps_limiter.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -422,6 +425,9 @@
       <Filter>projects\sample</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\interval_ticker.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\fps_limiter.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
   </ItemGroup>

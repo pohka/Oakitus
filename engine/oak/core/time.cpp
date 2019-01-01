@@ -1,70 +1,75 @@
 #include "time.h"
+//#include "fps_limiter.h"
 
 using namespace oak;
 
 float Time::timeScale = 1.0f;
-float Time::m_deltaTime = 0;
-float Time::lastFrame = 0;
-int Time::numFrames = 0;
-float Time::lastFPSCheck = (float)glfwGetTime();
-int Time::fps = 0;
-int Time::maxFPS = 60;
-float Time::minDeltaTime = 1.0f / maxFPS;
-float Time::now = 0.0f;
 
-void Time::update()
+FPSLimiter Time::fpslimiter = FPSLimiter();
+
+bool Time::isPaused = false;
+Time::Timer Time::gameTimer;
+Time::Timer Time::systemTimer;
+float Time::lastFrameTime = 0.0f;
+
+void Time::onTick()
 {
-  
-  now = (float)glfwGetTime();
+  systemTimer.now = (float)glfwGetTime();
+  systemTimer.deltaTime = systemTimer.now - lastFrameTime;
+  lastFrameTime = systemTimer.now;
 
-  //calculate delta time
-  m_deltaTime = now - lastFrame;
-  lastFrame = now;
-  
-  //track fps
-  if (now - lastFPSCheck >= 1.0f)
+  if (!isPaused)
   {
-    float diffTime = now - lastFPSCheck;
-    //divide by 2 because of double buffer
-    fps = (int)((numFrames/2) / diffTime); 
-    numFrames = 0;
-    lastFPSCheck = now;
+    gameTimer.now += systemTimer.deltaTime;
+    gameTimer.deltaTime = systemTimer.deltaTime * timeScale;
   }
-  numFrames++;
+  else
+  {
+    gameTimer.deltaTime = 0.0f;
+  }
+  
+  fpslimiter.onTick();
 }
 
 float Time::deltaTime()
 {
-  return m_deltaTime;
+  return gameTimer.deltaTime;
 }
 
-int Time::getFPS()
+float Time::systemDeltaTime()
 {
-  return fps;
+  return systemTimer.deltaTime;
 }
 
-int Time::getMaxFPS()
-{
-  return maxFPS;
-}
 
-float Time::getMinDeltaTime()
-{
-  return minDeltaTime;
-}
 
 void Time::init()
 {
-  lastFrame = (float)glfwGetTime();
+  lastFrameTime = (float)glfwGetTime();
 }
 
-void Time::setMaxFPS(int max)
+float Time::getGameTime()
 {
-  Time::maxFPS = max;
-  Time::minDeltaTime = 1.0f / maxFPS;
+  return gameTimer.now;
 }
 
-float Time::getTimeNow()
+float Time::getSystemTime()
 {
-  return now;
+  return systemTimer.now;
 }
+
+void Time::setIsPaused(const bool isPaused)
+{
+  Time::isPaused = isPaused;
+}
+
+bool Time::getIsPaused()
+{
+  return isPaused;
+}
+
+const FPSLimiter& Time::getFPSLimiter()
+{
+  return fpslimiter;
+}
+

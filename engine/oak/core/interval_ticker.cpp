@@ -14,13 +14,13 @@ IntervalTicker::IntervalTicker(float interval, bool tickonCreate)
   }
   else
   {
-    lastTickTime = Time::getTimeNow();
+    lastTickTime = Time::getGameTime();
   }
 }
 
 bool IntervalTicker::onTick()
 {
-  float now = Time::getTimeNow();
+  float now = Time::getGameTime();
   if (now >= lastTickTime + interval)
   {
     lastTickTime += interval;
@@ -38,6 +38,6 @@ void IntervalTicker::reset(float interval, bool tickonCreate)
   }
   else
   {
-    lastTickTime = Time::getTimeNow();
+    lastTickTime = Time::getGameTime();
   }
 }

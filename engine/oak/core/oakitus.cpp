@@ -64,7 +64,7 @@ int Oakitus::loop()
   // -----------
   while (!glfwWindowShouldClose(window))
   {
-    Time::update();
+    Time::onTick();
     Input::processInput(window);
     debug::DebugInput::process();
 
@@ -94,13 +94,7 @@ int Oakitus::loop()
     glfwSwapBuffers(window);
     glfwPollEvents();
 
-    //sleep to limit fps
-    float minDelta = Time::getMinDeltaTime();
-    if (Time::deltaTime() < minDelta)
-    {
-      int sleepTime = (int)((minDelta - Time::deltaTime()) * 1000.f);
-      std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
-    }
+    Time::fpslimiter.sleep();
   }
   glfwTerminate();
   return 0;
