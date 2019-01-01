@@ -46,7 +46,6 @@ void Meta::load()
   Resources::rootPath = "../projects/" + projectName + "/resources/";
 
   std::string root = std::filesystem::current_path().parent_path().generic_string() + "/projects/" + projectName + "/";
-  std::cout << "root path: " << root << std::endl;
 
   bool loadOtherMetaFiles = false;
   if (!loadOtherMetaFiles)

@@ -50,6 +50,8 @@ namespace oak
       static uint getFontIDByName(std::string fontName);
       static ion::Font* getFontByID(uint id);
 
+      static uint getDefaultShaderID();
+
       ///<summary>Returns true if a Texture is already loaded</summary>
       static bool isTextureLoaded(std::string name);
 

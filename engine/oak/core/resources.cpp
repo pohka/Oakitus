@@ -24,6 +24,7 @@ void Resources::init()
   uint defaultTexID = addTexture("default.png", true);
   defaultTexture = getTextureByID(defaultTexID);
 
+
   uint defaultShaderID = addShader("default", true);
   defaultShader = Resources::getShaderByID(defaultShaderID);
 
@@ -156,8 +157,11 @@ Shader* Resources::getShaderByID(uint id)
 {
   for (uint i = 0; i < shaders.size(); i++)
   {
+    //LOG << "---";
+    //LOG << "id:" << shaders[i]->getID();
     if (shaders[i]->getID() == id)
     {
+      
       return shaders[i];
     }
   }
@@ -226,4 +230,9 @@ Texture* Resources::getDefaultTexture()
 uint Resources::getTextureIDByName(std::string name)
 {
   return Resources::getTextureByName(name)->getID();
+}
+
+uint Resources::getDefaultShaderID()
+{
+  return defaultShader->getID();
 }

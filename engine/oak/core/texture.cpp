@@ -30,8 +30,6 @@ void Texture::load()
   }
   fullPath += name;
 
-  LOG << "loading tex:" << fullPath;
-
   //load the texture
   glGenTextures(1, &this->id);
   glBindTexture(GL_TEXTURE_2D, this->id);

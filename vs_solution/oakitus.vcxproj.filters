@@ -264,6 +264,9 @@
     <ClInclude Include="..\engine\oak\core\interval_ticker.h">
       <Filter>oak\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\projects\sample\sample_constants.h">
+      <Filter>projects\sample</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">

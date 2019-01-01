@@ -2,6 +2,7 @@
 #include <oak/oak.h>
 #include "../movement_cmd.h"
 #include <oak/debug.h>
+#include "../sample_constants.h"
 
 using namespace sample;
 using namespace oak;
@@ -29,43 +30,46 @@ void DemoScene::onLoad()
   Resources::addTexture("anim_test2.png");
   Entity* ent = new Entity();
   ent->addComponent(new Sprite("face.png", 60.0f, 60.0f));
+  
+  ent->create(0.0f, 0.0f);
+
+  Actor* unit = new Actor();
   Animator* animator = new Animator(
-    1,
+    ANIM_ACT_IDLE,
     new SpriteAnimation(
       "anim_test2.png",
       0,
       192, 192,
       100, 100,
       0.04f,
-      Resources::getDefaultShader()->getID(),
+      Resources::getDefaultShaderID(),
       14,
       0,
       true
     )
   );
-  ent->addComponent(animator);
-  ent->create(0.0f, 0.0f);
 
+  animator->addAnim(
+    ANIM_ACT_RUN,
+    new SpriteAnimation(
+      "anim_test2.png",
+      ANIM_PRIORITY_LOWEST,
+      192, 192,
+      100, 100,
+      0.04f,
+      Resources::getDefaultShaderID(),
+      12,
+      2,
+      true
+    )
+  );
 
-  Actor* unit = new Actor();
-  unit->addComponent(new Sprite("face.png", 30.0f, 30.0f));
-  unit->position.x = 100.0f;
+  unit->addComponent(animator);
+  //unit->position.x = 100.0f;
   unit->create();
   Player* player = PlayerResource::getLocalPlayer();
   player->assignActor(unit);
 
   Command* movement = new MovementCMD();
   player->addCommand(movement);
-  
-  std::vector<Sprite*> ss;
-  ent->getComponents<Sprite>(ss);
-  LOG << "SS:" << ss.size();
-
-  Sprite* s = ent->getComponent<Sprite>();
-  if (s != nullptr)
-  {
-    LOG << "FOUND:" << s->isTickable() << ":" << s->getTickingInterval();
-  }
-
-
 }

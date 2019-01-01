@@ -31,8 +31,6 @@ namespace oak
     uint totalFrameCount;
     bool isLooping;
     uchar priority;
-
-    uint lastFrameIndex = 0;
     
 
     public:

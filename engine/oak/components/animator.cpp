@@ -39,22 +39,16 @@ void Animator::onTick()
     SpriteAnimation* curAnim = anims[curAnimID];
     if (frameIndex >= curAnim->getFrameCount())
     {
-      if (curAnim->getIsLooping() == false)
+      if (curAnimID != initialAnimID && curAnim->getIsLooping() == false)
       {
         setAnim(initialAnimID, true);
+        curAnim = anims[curAnimID];
       }
       frameIndex = 0;
     }
 
-    curAnim->setFrame(frameIndex, ANIM_DIRECTION_RIGHT);
-
-    //bool hasEnded = anims.at(curAnimID)->onTick(direction, hasChangedDirection);
-    //if (hasEnded && curAnimID != initialAnimID)
-    //{
-    //  setAnim(initialAnimID, true);
-    //}
+    curAnim->setFrame(frameIndex, direction);
   }
-  //hasChangedDirection = false;
 }
 
 void Animator::onRender() const
@@ -69,6 +63,14 @@ void Animator::setAnim(const uchar animID, const bool ignorePriority)
 {
   if (curAnimID == animID)
   {
+    if (hasChangedDirection)
+    {
+      hasChangedDirection = false;
+      frameIndex = 0;
+      auto curAnim = anims[curAnimID];
+      curAnim->setFrame(frameIndex, direction);
+      ticker.reset(curAnim->getFrameDuration());
+    }
     return;
   }
 
@@ -90,9 +92,11 @@ void Animator::setAnim(const uchar animID, const bool ignorePriority)
     
     if (ignorePriority || curAnim->getPriority() <= nextAnim->getPriority())
     {
+      hasChangedDirection = false;
       curAnimID = animID;
-      curAnim->reset();
       frameIndex = 0;
+      nextAnim->setFrame(frameIndex, direction);
+      ticker.reset(nextAnim->getFrameDuration());
     }
   }
 }
@@ -101,7 +105,6 @@ uchar Animator::getCurAnimID() const
 {
   return curAnimID;
 }
-
 
 uchar Animator::getDirection() const
 {
@@ -114,20 +117,6 @@ void Animator::setDirection(uchar direction)
   {
     hasChangedDirection = true;
     this->direction = direction;
+    setAnim(curAnimID);
   }
 }
-
-//void Animator::setFrameIndex(uint index)
-//{
-//  SpriteAnimation* curAnim = anims[curAnimID];
-//  if (index < curAnim->getFrameCount())
-//  {
-//    frameIndex = index;
-//  }
-//  else
-//  {
-//    frameIndex = 0;
-//  }
-//
-//  curAnim->setFrame(frameIndex, ANIM_DIRECTION_RIGHT);
-//}
