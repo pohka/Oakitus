@@ -10,5 +10,5 @@ using namespace oak;
 void Oakitus::load()
 {
   Scene* scene = new DemoScene();
-  Scene::loadFirstScene(scene);
+  SceneManager::loadFirstScene(scene);
 }

@@ -21,7 +21,7 @@
 #include "core/input.h"
 #include "core/time.h"
 #include "core/ray.h"
-#include "core/scene.h"
+#include "core/scene_manager.h"
 #include "core/texture.h"
 #include "core/time.h"
 #include "core/types.h"

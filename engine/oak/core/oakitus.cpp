@@ -9,7 +9,7 @@
 #include "window.h"
 #include "shader.h"
 #include "resources.h"
-#include "scene.h"
+#include "scene_manager.h"
 #include "texture.h"
 #include "player_resource.h"
 #include <oak/collision/collision.h>
@@ -89,9 +89,9 @@ int Oakitus::loop()
     EntityManager::debugDrawInstances();
     ion::UICanvas::render();
 
-    if (Scene::isNextSceneSet())
+    if (SceneManager::isNextSceneSet())
     {
-      Scene::swapScene();
+      SceneManager::swapScene();
     }
     else
     {
