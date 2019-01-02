@@ -22,12 +22,6 @@ void DebugInput::process()
     StyleLoader::reload();
   }
 
-  //reload css
-  if (Input::isKeyDown(KEYCODE_F8))
-  {
-    StyleLoader::reload();
-  }
-
   //log fps
   if (Input::isKeyDown(KEYCODE_F12))
   {
