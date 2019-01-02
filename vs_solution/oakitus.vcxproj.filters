@@ -273,6 +273,12 @@
     <ClInclude Include="..\engine\oak\meta\var_object.h">
       <Filter>oak\meta</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\event\alt_event.h">
+      <Filter>oak\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\sample\sample_game_events.h">
+      <Filter>projects\sample</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -429,6 +435,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\meta\var_object.cpp">
       <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\event\alt_event.cpp">
+      <Filter>oak\event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

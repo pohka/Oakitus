@@ -3,13 +3,17 @@
 #include "../movement_cmd.h"
 #include <oak/debug.h>
 #include "../sample_constants.h"
+#include "../sample_game_events.h"
 
 using namespace sample;
 using namespace oak;
 
 
+
 void DemoScene::onLoad()
 {
+  addGameEvents();
+
   Resources::addTexture("face.png");
   Resources::addTexture("anim_test2.png");
   Entity* ent = new Entity();

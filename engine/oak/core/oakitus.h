@@ -11,7 +11,7 @@ namespace oak
     
     public:
       ///<summary>Initalize the engine</summary>
-      static void init(uint viewportW, uint viewportH,  uint windowW, uint windowH, bool isFullscreen);
+      static void init();
       
     private:
       ///<summary>Called before the game loop to load the game</summary>

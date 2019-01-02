@@ -16,8 +16,6 @@ void Meta::load(const char* filepath)
   std::string root = dir();
   std::string path = root + "\\..\\" + filepath;
 
-  std::cout << "loading path:" << path << std::endl;
-
   //read file
   std::ifstream ifs(path);
 

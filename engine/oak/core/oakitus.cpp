@@ -29,7 +29,7 @@
 using namespace oak;
 
 
-void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, bool isFullscreen)
+void Oakitus::init()
 {
   Time::init();
   Input::init();
@@ -48,7 +48,14 @@ void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, b
   );
 
 
-  Window::init(viewportW, viewportH, windowW, windowH, "Oakitus", isFullscreen);
+  Window::init(
+    config->getVar("viewport_w")->toInt(),
+    config->getVar("viewport_h")->toInt(),
+    config->getVar("window_w")->toInt(),
+    config->getVar("window_h")->toInt(),
+    config->getVar("title")->toString().c_str(),
+    config->getVar("isFullscreen")->toBool()
+  );
   GLFWwindow* window = Window::getGLFWWindow();
   
   Resources::init();
