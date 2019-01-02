@@ -9,9 +9,10 @@ namespace sample
   cnum ANIM_ACT_IDLE = 0;
   cnum ANIM_ACT_RUN = 1;
 
-
   cnum ANIM_PRIORITY_LOWEST = 0;
   cnum ANIM_PRIORITY_HIGH = 1;
+
+  snum EVENT_DAMAGE = 0;
 }
 
-#endif // ! SAMPLE_CONSTANTS
+#endif

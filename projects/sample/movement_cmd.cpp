@@ -1,9 +1,9 @@
 #include "movement_cmd.h"
 #include <oak/core/time.h>
 #include <oak/components/animator.h>
-#include "sample_constants.h"
-#include <oak/event/alt_event.h>
-#include "sample_game_events.h"
+#include "sample_def.h"
+#include <oak/event/event_manager.h>
+#include "events/event_damage.h"
 
 using namespace oak;
 using namespace sample;
@@ -36,8 +36,8 @@ void MovementCMD::execute()
 
   if (Input::isKeyDown(KEYCODE_B))
   {
-    DamageEventData data = { 10 };
-    AltEventManager::triggerEvent<DamageEventData>(0, data);
+    DamageEventData data = { 10, 0, 1 };
+    EventManager::triggerEvent<DamageEventData>(0, data);
   }
 
   bool hasMoved = (axisX != 0.0f || axisY != 0.0f);

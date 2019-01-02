@@ -5,8 +5,9 @@
 #include "scenes/game_scenes.h"
 
 using namespace sample;
+using namespace oak;
 
-void oak::Oakitus::load()
+void Oakitus::load()
 {
   Scene* scene = new DemoScene();
   Scene::loadFirstScene(scene);

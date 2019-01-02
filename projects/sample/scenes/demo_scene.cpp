@@ -2,8 +2,8 @@
 #include <oak/oak.h>
 #include "../movement_cmd.h"
 #include <oak/debug.h>
-#include "../sample_constants.h"
-#include "../sample_game_events.h"
+#include "../sample_def.h"
+#include "../sample_gamemode.h"
 
 using namespace sample;
 using namespace oak;
@@ -12,7 +12,7 @@ using namespace oak;
 
 void DemoScene::onLoad()
 {
-  addGameEvents();
+  SampleGameMode::addEvents();
 
   Resources::addTexture("face.png");
   Resources::addTexture("anim_test2.png");
@@ -60,4 +60,10 @@ void DemoScene::onLoad()
 
   Command* movement = new MovementCMD();
   player->addCommand(movement);
+}
+
+void DemoScene::onUnload()
+{
+  Scene::onUnload();
+  EventManager::removeAllEvents();
 }
