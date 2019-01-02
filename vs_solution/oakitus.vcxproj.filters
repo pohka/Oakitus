@@ -37,6 +37,9 @@
     <Filter Include="projects\sample\scenes">
       <UniqueIdentifier>{d487e144-1f71-451f-962c-7da054ea9bd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="projects\sample\events">
+      <UniqueIdentifier>{04f7d994-7790-4100-81d3-9d6de87f1fd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -162,12 +165,6 @@
     <ClInclude Include="..\engine\oak\debug\logger.h">
       <Filter>oak\debug</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\event\event.h">
-      <Filter>oak\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\event\event_manager.h">
-      <Filter>oak\event</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\ui\color.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
@@ -249,9 +246,6 @@
     <ClInclude Include="..\engine\oak\core\interval_ticker.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\sample\sample_constants.h">
-      <Filter>projects\sample</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\core\fps_limiter.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -273,11 +267,20 @@
     <ClInclude Include="..\engine\oak\meta\var_object.h">
       <Filter>oak\meta</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\event\alt_event.h">
+    <ClInclude Include="..\engine\oak\event\event.h">
       <Filter>oak\event</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\sample\sample_game_events.h">
+    <ClInclude Include="..\engine\oak\event\event_manager.h">
+      <Filter>oak\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\sample\sample_gamemode.h">
       <Filter>projects\sample</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\sample\sample_def.h">
+      <Filter>projects\sample</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\sample\events\event_damage.h">
+      <Filter>projects\sample\events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -359,9 +362,6 @@
     <ClCompile Include="..\engine\oak\debug\logger.cpp">
       <Filter>oak\debug</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\event\event_manager.cpp">
-      <Filter>oak\event</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\ui\font.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
@@ -436,8 +436,14 @@
     <ClCompile Include="..\engine\oak\meta\var_object.cpp">
       <Filter>oak\meta</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\event\alt_event.cpp">
+    <ClCompile Include="..\engine\oak\event\event_manager.cpp">
       <Filter>oak\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\sample\sample_gamemode.cpp">
+      <Filter>projects\sample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\sample\events\event_damage.cpp">
+      <Filter>projects\sample\events</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

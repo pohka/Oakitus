@@ -10,4 +10,5 @@ typedef unsigned short ushort; //unsigned short shorthand
 typedef const unsigned char cnum; //used for char enums
 typedef const unsigned short snum; //used for short enums
 
+
 #endif

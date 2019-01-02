@@ -37,7 +37,7 @@ void MovementCMD::execute()
   if (Input::isKeyDown(KEYCODE_B))
   {
     DamageEventData data = { 10, 0, 1 };
-    EventManager::triggerEvent<DamageEventData>(0, data);
+    EventManager::triggerEvent<DamageEventData>(EVENT_DAMAGE, data);
   }
 
   bool hasMoved = (axisX != 0.0f || axisY != 0.0f);

@@ -31,5 +31,6 @@
 #include "components/rigid_body_2d.h"
 #include "core/player_resource.h"
 #include "components/animator.h"
+#include "event/event_manager.h"
 
 #endif

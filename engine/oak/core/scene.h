@@ -36,7 +36,7 @@ namespace oak
       virtual void onLoad();
 
       ///<summary>Unloads this scene</summary>
-      void onUnload();
+      virtual void onUnload();
 
     private:
       ///<summary>swaps out the next scene</summary>
