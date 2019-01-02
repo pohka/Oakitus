@@ -3,14 +3,14 @@
 
 #include "player.h"
 #include <oak/core/types.h>
+#include <vector>
 
 namespace oak
 {
   ///<summary>Accessing and management of Players</summary>
   class PlayerResource
   {
-    const static uint MAX_PLAYER_COUNT = 4; ///<summary>Maximum number of players in the game</summary>
-    static Player* players[MAX_PLAYER_COUNT]; ///<summary>Array of players in the game</summary>
+    static std::vector<Player*> players;
     static uint playerCount; ///<summary>Current player count</summary>
     static uint localPlayerID;
 
@@ -22,9 +22,6 @@ namespace oak
 
       ///<summary>Get a Player by ID</summary>
       static Player* getPlayer(uint playerID);
-
-      ///<summary>Get a Player by index</summary>
-      static Player* getPlayerByIndex(uint index);
 
       static Player* getLocalPlayer();
 
