@@ -2,6 +2,8 @@
 #include "oakitus.h"
 #include "entity.h"
 #include "entity_manager.h"
+#include "resources.h"
+#include "../oak_def.h"
 
 using namespace oak;
 
@@ -10,15 +12,9 @@ Scene* Scene::nextScene = nullptr;
 
 Scene::Scene()
 {
-  
 }
 
 Scene::~Scene() {}
-
-void Scene::onLoad()
-{
-
-}
 
 void Scene::onUnload()
 {
@@ -40,6 +36,21 @@ bool Scene::isNextSceneSet()
 
 void Scene::loadFirstScene(Scene* scene)
 {
+  const Precache& precache = scene->getPrecache();
+
+  for (std::string tex : precache.textures)
+  {
+    Resources::addTexture(tex);
+  }
+  for (std::string shader : precache.shaders)
+  {
+    Resources::addShader(shader);
+  }
+  for (std::string font : precache.fonts)
+  {
+    Resources::addFont(font);
+  }
+
   curScene = scene;
   curScene->onLoad();
 }
@@ -74,4 +85,9 @@ void Scene::reloadScene()
 void Scene::setNextScene(Scene& scene)
 {
   nextScene = &scene;
+}
+
+const Precache& Scene::getPrecache()
+{
+  return precache;
 }

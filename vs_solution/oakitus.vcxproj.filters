@@ -282,6 +282,9 @@
     <ClInclude Include="..\projects\sample\events\event_damage.h">
       <Filter>projects\sample\events</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\core\precache.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">

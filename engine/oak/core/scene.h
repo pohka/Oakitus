@@ -1,6 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "precache.h"
 
 namespace oak
 {
@@ -32,11 +33,18 @@ namespace oak
       Scene();
       ~Scene();
 
+      //virtual void setPrecache() = 0;
+
       ///<summary>Loads the this scene</summary>
-      virtual void onLoad();
+      virtual void onLoad() = 0;
 
       ///<summary>Unloads this scene</summary>
       virtual void onUnload();
+
+      const Precache& getPrecache();
+
+    protected:
+      Precache precache;
 
     private:
       ///<summary>swaps out the next scene</summary>

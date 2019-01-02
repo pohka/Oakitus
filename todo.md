@@ -1,8 +1,6 @@
 # TODO
 
 ## meta programming
-- resources path
-- default resouces for engine
 - load textures from meta file
 
 

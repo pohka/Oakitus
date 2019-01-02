@@ -49,6 +49,7 @@
     <ClInclude Include="..\engine\oak\core\oakitus.h" />
     <ClInclude Include="..\engine\oak\core\player_resource.h" />
     <ClInclude Include="..\engine\oak\core\point.h" />
+    <ClInclude Include="..\engine\oak\core\precache.h" />
     <ClInclude Include="..\engine\oak\core\ray.h" />
     <ClInclude Include="..\engine\oak\core\resources.h" />
     <ClInclude Include="..\engine\oak\core\scene.h" />

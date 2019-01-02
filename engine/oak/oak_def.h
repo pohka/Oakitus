@@ -24,6 +24,11 @@ cnum TICK_TYPE_INTERVAL_TICK = 2;
 cnum TICK_TYPE_LAST = 3;
 
 
+cnum PRECACHE_TEX = 0;
+cnum PRECACHE_SHADER = 1;
+cnum PRECACHE_FONT = 2;
+cnum PRECACHE_MAX = 3;
+
 
 const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
 

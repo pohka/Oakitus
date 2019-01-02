@@ -7,6 +7,7 @@ namespace sample
 {
   struct DemoScene : public oak::Scene
   {
+    DemoScene();
     void onLoad() override;
     void onUnload() override;
   };

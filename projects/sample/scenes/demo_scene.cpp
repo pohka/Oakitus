@@ -8,14 +8,16 @@
 using namespace sample;
 using namespace oak;
 
-
+DemoScene::DemoScene()
+{
+  precache.textures.push_back("face.png");
+  precache.textures.push_back("anim_test2.png");
+}
 
 void DemoScene::onLoad()
 {
   SampleGameMode::addEvents();
 
-  Resources::addTexture("face.png");
-  Resources::addTexture("anim_test2.png");
   Entity* ent = new Entity();
   ent->addComponent(new Sprite("face.png", 60.0f, 60.0f));
   
