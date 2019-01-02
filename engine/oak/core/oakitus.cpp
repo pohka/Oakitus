@@ -34,7 +34,10 @@ void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, b
   Time::init();
   Input::init();
   
-  Meta::load();
+  Meta::load("config.m");
+
+  var_object* config = Meta::objs["config"];
+  Resources::rootPath = "../projects/" + config->getVar("project")->toString() + "/resources/";
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position
@@ -44,13 +47,11 @@ void Oakitus::init(uint viewportW, uint viewportH, uint windowW, uint windowH, b
     true
   );
 
+
   Window::init(viewportW, viewportH, windowW, windowH, "Oakitus", isFullscreen);
   GLFWwindow* window = Window::getGLFWWindow();
   
   Resources::init();
-
-  //Shader *collisionShader = new Shader("collision");
-  //Resources::addShader(*collisionShader);
 
   PlayerResource::addPlayer(new Player());
   Oakitus::load();

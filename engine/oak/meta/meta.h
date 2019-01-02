@@ -1,42 +1,39 @@
-#ifndef META_LOADER_H
-#define META_LOADER_H
+#ifndef META_H
+#define META_H
 
-#include <unordered_map>
-#include "meta_data_list.h"
+#include <string>
+#include "kvmap.h"
+#include "meta_def.h"
+#include "var_object.h"
 
 namespace oak
 {
+  //meta data, loading and accessing
   struct Meta
   {
-    //load the config file and all the meta data for the current project
-    static void load();
+    //load a meta file
+    static void load(const char* filepath);
 
-    //once load, this list contains all the meta data loaded for this project
-    static MetaDataList globalMetaList;
-
-    //get a value from the config by key
-    static std::string getConfigVal(const std::string& key);
+    //var_object loaded from meta files
+    static kvmap<std::string, var_object*> objs;
 
   private:
-    //parses the all the files contents i.e. <fileName, contents>
-    static void parseFiles(std::unordered_map<std::string, std::string>& files);
+    //get directory of executable
+    static std::string dir();
 
-    //parse the content and output to out
-    static void parseContent(const std::string& fileName, std::string& content, MetaDataList& out);
+    //parse the content of a meta file
+    static void parse(std::string& content, unsigned int& index);
 
-    //load the config.m file
-    static void loadConfig();
-
-    //config meta data
-    static MetaData config;
-    
-    //states when parsing meta data files
-    static const char STATE_BEFORE_SELECTOR = 0;
-    static const char STATE_SELECTOR = 1;
-    static const char STATE_BEFORE_KEY = 3;
-    static const char STATE_KEY = 4;
-    static const char STATE_BEFORE_VAL = 5;
-    static const char STATE_VAL = 6;
+    //parsing states
+    static cnum STATE_BEFORE_OBJ = 0;
+    static cnum STATE_OBJ = 1;
+    static cnum STATE_AFTER_OBJ = 2;
+    static cnum STATE_BEFORE_KEY = 3;
+    static cnum STATE_KEY = 4;
+    static cnum STATE_AFTER_KEY = 5;
+    static cnum STATE_BEFORE_VAL = 6;
+    static cnum STATE_VAL = 7;
+    static cnum STATE_AFTER_VAL = 8;
   };
 }
 

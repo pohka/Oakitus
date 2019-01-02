@@ -1,7 +1,10 @@
-config
-{
+config : {
   project : "sample"
-  inital_scene : "scene_test"
-  damage : 110.4
+  inital_scene : "demo_scene"
+  title : "sample game"
+  viewport_w : 736
+  viewport_h : 414
+  window_w : 1066
+  window_h : 600
+  isFullscreen : false
 }
-

@@ -1,261 +1,221 @@
 #include "meta.h"
-#include <filesystem>
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <cctype>
-#include <oak/core/resources.h>
+#include <windows.h>
+#include "var.h"
 
 using namespace oak;
 
-MetaDataList Meta::globalMetaList;
-MetaData Meta::config;
+kvmap<std::string, var_object*> Meta::objs;
 
-void Meta::loadConfig()
+
+void Meta::load(const char* filepath)
 {
-  //parse config.m
-  std::ifstream ifs("../config.m");
+  //get full path to file
+  std::string root = dir();
+  std::string path = root + "\\..\\" + filepath;
+
+  std::cout << "loading path:" << path << std::endl;
+
+  //read file
+  std::ifstream ifs(path);
+
+  //output to content string
   std::string content(
     (std::istreambuf_iterator<char>(ifs)),
     (std::istreambuf_iterator<char>())
   );
-  MetaDataList list;
-  parseContent("config.m", content, list);
-  list.findMetaData("config")->copy(config);
+
+  //parse
+  unsigned int i = 0;
+  parse(content, i);
 }
 
-void Meta::load()
-{
-  loadConfig();
-
-  std::cout << "----META----" << std::endl;
-
-  std::string fullPath, path;
-
-  std::string projectName = VarString::get(config.findVar("project"));
-  //float damage = VarNumber::get(config.findVar("damage"));
-  //std::cout << "damage from copy:" << damage << std::endl;
-
-
-
-  if (projectName.size() == 0)
-  {
-    std::cout << "CONFIG ERROR" << std::endl;
-    return;
-  }
-
-  Resources::rootPath = "../projects/" + projectName + "/resources/";
-
-  std::string root = std::filesystem::current_path().parent_path().generic_string() + "/projects/" + projectName + "/";
-
-  bool loadOtherMetaFiles = false;
-  if (!loadOtherMetaFiles)
-  {
-    return;
-  }
-
-  std::unordered_map<std::string, std::string> files;
-
-  for (const auto & entry : std::filesystem::recursive_directory_iterator(root))
-  {
-
-    if (".m" == entry.path().extension())
-    {
-      std::cout << "found:" << entry.path().filename() << std::endl;
-      fullPath = entry.path().generic_string();
-
-      path = fullPath.substr(root.size());
-
-      std::cout << "path:" << path << std::endl;
-
-      std::ifstream ifs(root + path);
-      std::string content(
-        (std::istreambuf_iterator<char>(ifs)),
-        (std::istreambuf_iterator<char>())
-      );
-
-      files.insert_or_assign(path, content);
-    }
-  }
-
-  std::cout << "------------" << std::endl;
-
-  parseFiles(files);
-
-  //std::cout << std::endl << "results:" << std::endl;
-  //std::vector<MetaData>& list = globalMetaList.getList();
-  //for (unsigned int i = 0; i < list.size(); i++)
-  //{
-  //  std::cout << "selector:" << list[i].selector << std::endl;
-  //  for (MetaKV kv : list[i].kvs)
-  //  {
-  //    std::cout << kv.key << ":" << kv.val << std::endl;
-  //  }
-  //  std::cout << "==========" << std::endl;
-  //}
-
+//returns the directory (NOTE: windows only)
+std::string Meta::dir() {
+  char buffer[MAX_PATH];
+  GetModuleFileName(NULL, buffer, MAX_PATH);
+  std::string::size_type pos = std::string(buffer).find_last_of("\\/");
+  return std::string(buffer).substr(0, pos);
 }
 
-void Meta::parseFiles(std::unordered_map<std::string, std::string>& files)
+//how parsing works
+//-----------------
+//iterates through each character
+//certain characters can change the state
+//the char is handled seperatly by each state, except for '\n'
+void Meta::parse(std::string& content, unsigned int& index)
 {
-  for (auto it = files.begin(); it != files.end(); it++)
+  bool isSpace;
+  unsigned char state = STATE_BEFORE_OBJ;
+  unsigned char varType = VAR_NULL;
+  std::string key = "", val= "";
+  int lineNum = 1;
+
+  var_object* obj = nullptr;
+  char ch;
+  while (index<content.size())
   {
-    parseContent(it->first, it->second, globalMetaList);
-  }
-}
+    ch = content[index];
+    isSpace = std::isspace(ch);
 
-
-void Meta::parseContent(const std::string& fileName, std::string& content, MetaDataList& out)
-{
-  //std::cout << "content: " << std::endl << content << std::endl;
-
-  MetaData* metaData = nullptr;
-  char state = STATE_BEFORE_SELECTOR;
-
-  bool isSpace = false;
-  std::string key, val;
-  unsigned int lineNum = 1;
-
-  unsigned char varType = VAR_TYPE_STRING;
-
-  for (char& ch : content) 
-  {
+    //new line
     if (ch == '\n')
     {
-      if (state == STATE_BEFORE_KEY && key.size() && key.size() > 0)
+      if (state > STATE_AFTER_OBJ)
       {
-        if (varType == VAR_TYPE_STRING)
+        //check if there was a parsing error in the key value states
+        if (state < STATE_VAL)
         {
-          Var* var = new VarString(val);
-          metaData->addKV(new MetaKV(key, var));
-        }
-        else if(varType == VAR_TYPE_NUMBER)
-        {
-          float num = std::stof(val);
-          Var* var = new VarNumber(num);
-          metaData->addKV(new MetaKV(key, var));
-        }
-      }
-      else if (state == STATE_VAL && varType == VAR_TYPE_NUMBER && val.size() > 0)
-      {
-        float num = std::stof(val);
-        Var* var = new VarNumber(num);
-        metaData->addKV(new MetaKV(key, var));
-      }
-      else if (state > STATE_BEFORE_KEY)
-      {
-        if (
-          !(state == STATE_VAL && varType == VAR_TYPE_NUMBER && val.size() > 0)
-          )
-        {
-          std::cout << "'" << fileName << "' parsing error line:" << lineNum << std::endl;
-        }
-        state = STATE_BEFORE_KEY;
-      }
-
-      key.clear();
-      val.clear();
-
-      lineNum++;
-    }
-
-    isSpace = isspace(ch);
-
-    if (state == STATE_BEFORE_SELECTOR)
-    {
-      if (!isSpace)
-      {
-        state = STATE_SELECTOR;
-        metaData = new MetaData();
-        metaData->selector = ch;
-      }
-    }
-    else if (state == STATE_SELECTOR)
-    {
-      if (!isSpace)
-      {
-        if (ch == '{')
-        {
-          if (metaData->selector.size() == 0)
+          if (key.size() > 0)
           {
-            std::cout << "'" << fileName << "' parsing error line:" << lineNum << "| selector has no name" << std::endl;
+            std::cout << "--PARSRING ERROR--| line:" << lineNum << " state:" << std::to_string(state) << std::endl;
           }
-          state = STATE_BEFORE_KEY;
-          key = "";
         }
         else
         {
-          metaData->selector += ch;
+          //successfully parsed, add var to object
+          if (val.size() > 0 || (val.size() == 0 && varType == VAR_STRING))
+          {
+            var* v = new var(val, varType);
+            obj->kvs.add(key, v);
+          }
+          else
+          {
+            std::cout << "--PARSRING ERROR--| line:" << lineNum << " val is empty" << std::endl;
+          }
         }
-      }
-    }
-    else if (state == STATE_BEFORE_KEY)
-    {
-      if (ch == '}')
-      {
-        out.add(metaData);
-        state = STATE_BEFORE_SELECTOR;
-      }
-      else if (!isSpace)
-      {
-        key = ch;
-        state = STATE_KEY;
-      }
-    }
-    else if (state == STATE_KEY)
-    {
-      if (ch == ':')
-      {
-        state = STATE_BEFORE_VAL;
-      }
-      else if (!isSpace)
-      {
-        key += ch;
-      }
-    }
-    else if (state == STATE_BEFORE_VAL)
-    {
-      if (!isSpace)
-      {
-        state = STATE_VAL;
-        val = "";
 
-        if (ch == '"')
-        {
-          varType = VAR_TYPE_STRING;
-        }
-        else if(ch <= '9' && ch >= '0')
-        {
-          varType = VAR_TYPE_NUMBER;
-          val += ch;
-        }
-      }
-    }
-    else if (state == STATE_VAL)
-    {
-      //if value ended
-      if (
-        (ch == '"' && varType == VAR_TYPE_STRING) ||
-        (isSpace && varType == VAR_TYPE_NUMBER)
-        )
-      {
+        //reset parsing variables
+        varType = VAR_NULL;
+        key.clear();
+        val.clear();
         state = STATE_BEFORE_KEY;
       }
-      else
-      {
-        if (varType == VAR_TYPE_STRING)
-        {
-          val += ch;
-        }
-        else if (varType == VAR_TYPE_NUMBER)
-        {
-          val += ch;
-        }
-      }
+      lineNum++;
     }
+
+    //handle char based on the state
+    switch (state)
+    {
+      case STATE_BEFORE_OBJ :
+        if (!isSpace)
+        {
+          state = STATE_OBJ;
+          key = ch;
+        }
+        break;
+      case STATE_OBJ :
+        if (isSpace || ch == ':')
+        {
+          state = STATE_AFTER_OBJ;
+        }
+        else
+        {
+          key += ch;
+        }
+        break;
+      case STATE_AFTER_OBJ :
+        if (ch == '{')
+        {
+          obj = new var_object();
+          objs.add(key, obj);
+          key.clear();
+          varType = VAR_NULL;
+          state = STATE_BEFORE_KEY;
+        }
+        break;
+      case STATE_BEFORE_KEY :
+        if (!isSpace)
+        {
+          if (ch == '}')
+          {
+            state = STATE_BEFORE_OBJ;
+          }
+          else
+          {
+            state = STATE_KEY;
+            key += ch;
+          }
+        }
+        break;
+      case STATE_KEY :
+        if (isSpace)
+        {
+          state = STATE_AFTER_KEY;
+        }
+        else if (ch == ':')
+        {
+          state = STATE_BEFORE_VAL;
+        }
+        else
+        {
+          key += ch;
+        }
+        break;
+      case STATE_AFTER_KEY :
+        if (ch == ':')
+        {
+          state = STATE_BEFORE_VAL;
+        }
+        break;
+      case STATE_BEFORE_VAL :
+        if (!isSpace)
+        {
+          state = STATE_VAL;
+
+          if (ch == '"')
+          {
+            varType = VAR_STRING;
+          }
+          else if (ch <= '9' && ch >= '0')
+          {
+            varType = VAR_NUMBER;
+            val += ch;
+          }
+          else if (ch == 't' || ch == 'f' || ch == 'T' || ch == 'F')
+          {
+            varType = VAR_BOOL;
+            val += ch;
+          }
+          else if (ch == '{')
+          {
+            varType = VAR_OBJECT;
+          }
+        }
+        break;
+      case STATE_VAL :
+        if (varType == VAR_STRING)
+        {
+          if (ch == '"')
+          {
+            state = STATE_AFTER_VAL;
+          }
+          else
+          {
+            val += ch;
+          }
+        }
+        else if (varType == VAR_NUMBER)
+        {
+          if ((ch <= '9' && ch >= '0') || ch == '.')
+          {
+            val += ch;
+          }
+          else
+          {
+            state = STATE_AFTER_VAL;
+          }
+        }
+        else if (varType == VAR_BOOL && isSpace)
+        {
+          state = STATE_AFTER_VAL;
+        }
+        break;
+    }
+
+    index++;
   }
 }
 
-std::string Meta::getConfigVal(const std::string& key)
-{
-  return "";// todo: config.getKV(key);
-}

@@ -225,21 +225,6 @@
     <ClInclude Include="..\projects\sample\load_game.h">
       <Filter>projects\sample</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta_data.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta_data_list.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta_vars.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta_def.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
     <ClInclude Include="..\projects\sample\scenes\demo_scene.h">
       <Filter>projects\sample\scenes</Filter>
     </ClInclude>
@@ -269,6 +254,24 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\core\fps_limiter.h">
       <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\kvmap.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\meta.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\meta_def.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\var.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\var_base.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\var_object.h">
+      <Filter>oak\meta</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -394,18 +397,6 @@
     </ClCompile>
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\glad.c" />
-    <ClCompile Include="..\engine\oak\meta\meta.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\meta_data.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\meta_data_list.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\meta_var.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
     <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp">
       <Filter>projects\sample\scenes</Filter>
     </ClCompile>
@@ -429,6 +420,15 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\fps_limiter.cpp">
       <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\meta.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\var.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\var_object.cpp">
+      <Filter>oak\meta</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

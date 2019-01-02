@@ -65,11 +65,12 @@
     <ClInclude Include="..\engine\oak\debug\logger.h" />
     <ClInclude Include="..\engine\oak\event\event.h" />
     <ClInclude Include="..\engine\oak\event\event_manager.h" />
+    <ClInclude Include="..\engine\oak\meta\kvmap.h" />
     <ClInclude Include="..\engine\oak\meta\meta.h" />
-    <ClInclude Include="..\engine\oak\meta\meta_data.h" />
-    <ClInclude Include="..\engine\oak\meta\meta_data_list.h" />
     <ClInclude Include="..\engine\oak\meta\meta_def.h" />
-    <ClInclude Include="..\engine\oak\meta\meta_vars.h" />
+    <ClInclude Include="..\engine\oak\meta\var.h" />
+    <ClInclude Include="..\engine\oak\meta\var_base.h" />
+    <ClInclude Include="..\engine\oak\meta\var_object.h" />
     <ClInclude Include="..\engine\oak\oak.h" />
     <ClInclude Include="..\engine\oak\oak_def.h" />
     <ClInclude Include="..\engine\oak\oak_setup.h" />
@@ -132,9 +133,8 @@
     <ClCompile Include="..\engine\oak\debug\logger.cpp" />
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta.cpp" />
-    <ClCompile Include="..\engine\oak\meta\meta_data.cpp" />
-    <ClCompile Include="..\engine\oak\meta\meta_data_list.cpp" />
-    <ClCompile Include="..\engine\oak\meta\meta_var.cpp" />
+    <ClCompile Include="..\engine\oak\meta\var.cpp" />
+    <ClCompile Include="..\engine\oak\meta\var_object.cpp" />
     <ClCompile Include="..\engine\oak\ui\font.cpp" />
     <ClCompile Include="..\engine\oak\ui\localization.cpp" />
     <ClCompile Include="..\engine\oak\ui\style.cpp" />
@@ -215,7 +215,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>
+      </LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\Jeoff\Documents\oakitus\oakitus\library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

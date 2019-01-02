@@ -3,10 +3,13 @@
 
 namespace oak
 {
-  const unsigned char VAR_TYPE_NULL = 0;
-  const unsigned char VAR_TYPE_STRING = 1;
-  const unsigned char VAR_TYPE_NUMBER = 2;
-  const unsigned char VAR_TYPE_ARRAY = 3;
+  typedef const unsigned char cnum;
+
+  cnum VAR_NULL = 0;
+  cnum VAR_STRING = 1;
+  cnum VAR_NUMBER = 2;
+  cnum VAR_BOOL = 3;
+  cnum VAR_OBJECT = 4;
 }
 
 #endif
