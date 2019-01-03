@@ -289,24 +289,24 @@ void Resources::cache(Precache precache)
   unsigned int a = 0;
   while(a < textures.size())
   {
-    unsigned int index = precache.getIndex(precache.textures, textures[a]->getName());
-    //texture is already loaded
-    if (index != Precache::NULL_INDEX)
+    if (textures[a]->getIsEngineAsset())
     {
-      precache.textures.erase(precache.textures.begin() + index);
       a++;
     }
-    //texture is not defined in precache, so delete it
     else 
     {
-      if (textures[a]->getIsEngineAsset() == false)
+      unsigned int index = precache.getIndex(precache.textures, textures[a]->getName());
+      //texture is already loaded
+      if (index != Precache::NULL_INDEX)
+      {
+        precache.textures.erase(precache.textures.begin() + index);
+        a++;
+      }
+      //texture is not defined in precache, so delete it
+      else
       {
         delete textures[a];
         textures.erase(textures.begin() + a);
-      }
-      else
-      {
-        a++;
       }
     }
   }
@@ -323,24 +323,24 @@ void Resources::cache(Precache precache)
   a = 0;
   while (a < shaders.size())
   {
-    unsigned int index = precache.getIndex(precache.shaders, shaders[a]->getName());
-    //texture is already loaded
-    if (index != Precache::NULL_INDEX)
+    if (shaders[a]->getIsEngineAsset())
     {
-      precache.shaders.erase(precache.shaders.begin() + index);
       a++;
     }
-    //shader is not defined in precache, so delete it
     else
     {
-      if (shaders[a]->getIsEngineAsset() == false)
+      unsigned int index = precache.getIndex(precache.shaders, shaders[a]->getName());
+      //texture is already loaded
+      if (index != Precache::NULL_INDEX)
+      {
+        precache.shaders.erase(precache.shaders.begin() + index);
+        a++;
+      }
+      //shader is not defined in precache, so delete it
+      else
       {
         delete shaders[a];
         shaders.erase(shaders.begin() + a);
-      }
-      else
-      {
-        a++;
       }
     }
   }
@@ -358,24 +358,24 @@ void Resources::cache(Precache precache)
   a = 0;
   while (a < fonts.size())
   {
-    unsigned int index = precache.getIndex(precache.fonts, fonts[a]->getName());
-    //texture is already loaded
-    if (index != Precache::NULL_INDEX)
+    if (fonts[a]->getIsEngineAsset())
     {
-      precache.fonts.erase(precache.fonts.begin() + index);
       a++;
     }
-    //shader is not defined in precache, so delete it
     else
     {
-      if (fonts[a]->getIsEngineAsset() == false)
+      unsigned int index = precache.getIndex(precache.fonts, fonts[a]->getName());
+      //texture is already loaded
+      if (index != Precache::NULL_INDEX)
+      {
+        precache.fonts.erase(precache.fonts.begin() + index);
+        a++;
+      }
+      //shader is not defined in precache, so delete it
+      else
       {
         delete shaders[a];
         fonts.erase(fonts.begin() + a);
-      }
-      else
-      {
-        a++;
       }
     }
   }

@@ -57,7 +57,7 @@ void DemoScene::onLoad()
   );
 
   unit->addComponent(animator);
-  //unit->position.x = 100.0f;
+  unit->position.x = 100.0f;
   unit->create();
   Player* player = PlayerResource::getLocalPlayer();
   player->assignActor(unit);

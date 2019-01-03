@@ -70,20 +70,3 @@ void SceneManager::setNextScene(Scene* scene)
 {
   nextScene = scene;
 }
-
-//void SceneManager::diffCache(Scene* scene)
-//{
-//  const Precache& cur = curScene->getPrecache();
-//  const Precache& next = scene->getPrecache();
-//
-//
-//  for (const std::string& tex : next.textures)
-//  {
-//    if (Resources::isTextureLoaded(tex) == false)
-//    {
-//      Resources::addTexture(tex);
-//    }
-//  }
-//  
-//  //Resources::
-//}

@@ -31,8 +31,8 @@ void Texture::load()
   fullPath += name;
 
   //load the texture
-  glGenTextures(1, &this->id);
-  glBindTexture(GL_TEXTURE_2D, this->id);
+  glGenTextures(1, &id);
+  glBindTexture(GL_TEXTURE_2D, id);
   // set the texture wrapping parameters
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);  // set texture wrapping to GL_REPEAT (default wrapping method)
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -68,7 +68,7 @@ void Texture::load()
 
 Texture::~Texture() 
 {
-
+  glDeleteTextures(1, &id);
 }
 
 int Texture::getHeight() const

@@ -92,8 +92,8 @@ void Sprite::construct(float xMin, float xMax, float yMin, float yMax)
 
 Sprite::~Sprite()
 {
-  glDeleteVertexArrays(1, &this->VAO);
-  glDeleteBuffers(1, &this->VBO);
+  glDeleteVertexArrays(1, &VAO);
+  glDeleteBuffers(1, &VBO);
 }
 
 std::string Sprite::getSrc() const
