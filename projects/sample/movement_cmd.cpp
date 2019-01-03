@@ -4,6 +4,7 @@
 #include "sample_def.h"
 #include <oak/event/event_manager.h>
 #include "events/event_damage.h"
+#include "scenes/game_scenes.h"
 
 using namespace oak;
 using namespace sample;
@@ -38,6 +39,15 @@ void MovementCMD::execute()
   {
     DamageEventData data = { 10, 0, 1 };
     EventManager::triggerEvent<DamageEventData>(EVENT_DAMAGE, data);
+  }
+
+  if (Input::isKeyDown(KEYCODE_P))
+  {
+    SceneManager::setNextScene(new DemoScene());
+  }
+  else if (Input::isKeyDown(KEYCODE_O))
+  {
+    SceneManager::setNextScene(new DemoScene2());
   }
 
   bool hasMoved = (axisX != 0.0f || axisY != 0.0f);

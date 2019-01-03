@@ -100,6 +100,7 @@
     <ClInclude Include="..\projects\sample\sample_def.h" />
     <ClInclude Include="..\projects\sample\sample_gamemode.h" />
     <ClInclude Include="..\projects\sample\scenes\demo_scene.h" />
+    <ClInclude Include="..\projects\sample\scenes\demo_scene2.h" />
     <ClInclude Include="..\projects\sample\scenes\game_scenes.h" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClCompile Include="..\projects\sample\movement_cmd.cpp" />
     <ClCompile Include="..\projects\sample\sample_gamemode.cpp" />
     <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp" />
+    <ClCompile Include="..\projects\sample\scenes\demo_scene2.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

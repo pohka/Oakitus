@@ -9,6 +9,6 @@ using namespace oak;
 
 void Oakitus::load()
 {
-  Scene* scene = new DemoScene();
+  Scene* scene = new DemoScene2();
   SceneManager::loadFirstScene(scene);
 }

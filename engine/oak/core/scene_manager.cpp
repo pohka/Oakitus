@@ -21,15 +21,15 @@ void SceneManager::loadFirstScene(Scene* scene)
 {
   const Precache& precache = scene->getPrecache();
 
-  for (std::string tex : precache.textures)
+  for (const std::string& tex : precache.textures)
   {
     Resources::addTexture(tex);
   }
-  for (std::string shader : precache.shaders)
+  for (const std::string& shader : precache.shaders)
   {
     Resources::addShader(shader);
   }
-  for (std::string font : precache.fonts)
+  for (const std::string& font : precache.fonts)
   {
     Resources::addFont(font);
   }
@@ -50,6 +50,7 @@ void SceneManager::swapScene()
 {
   //unload and delete current scene
   curScene->onUnload();
+  Resources::cache(nextScene->getPrecache());
   //Scene* tmp = curScene;
   delete curScene;
 
@@ -70,7 +71,19 @@ void SceneManager::setNextScene(Scene* scene)
   nextScene = scene;
 }
 
-void SceneManager::diffCache()
-{
-
-}
+//void SceneManager::diffCache(Scene* scene)
+//{
+//  const Precache& cur = curScene->getPrecache();
+//  const Precache& next = scene->getPrecache();
+//
+//
+//  for (const std::string& tex : next.textures)
+//  {
+//    if (Resources::isTextureLoaded(tex) == false)
+//    {
+//      Resources::addTexture(tex);
+//    }
+//  }
+//  
+//  //Resources::
+//}

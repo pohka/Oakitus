@@ -10,6 +10,7 @@
 #include <oak/core/texture.h>
 #include <oak/core/shader.h>
 #include <oak/core/asset.h>
+#include "precache.h"
 
 namespace oak
 {
@@ -59,6 +60,13 @@ namespace oak
       static bool isShaderLoaded(std::string name);
 
       static bool isFontLoaded(std::string name);
+
+      //remove a resource by name, returns true if resource was found and removed
+      static bool removeShader(std::string name);
+      static bool removeTexture(std::string name);
+      static bool removeFont(std::string name);
+
+      static void cache(Precache precache);
 
   private:
     static void init();

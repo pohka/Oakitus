@@ -1,4 +1,4 @@
-#include "demo_scene.h"
+#include "demo_scene2.h"
 #include <oak/oak.h>
 #include "../movement_cmd.h"
 #include <oak/debug.h>
@@ -8,21 +8,21 @@
 using namespace sample;
 using namespace oak;
 
-DemoScene::DemoScene()
+DemoScene2::DemoScene2()
 {
   precache.textures = {
-    "face.png",
+    "dummy.png",
     "anim_test2.png"
   };
 }
 
-void DemoScene::onLoad()
+void DemoScene2::onLoad()
 {
   SampleGameMode::addEvents();
 
   Entity* ent = new Entity();
-  ent->addComponent(new Sprite("face.png", 60.0f, 60.0f));
-  
+  ent->addComponent(new Sprite("dummy.png", 160.0f, 160.0f));
+
   ent->create(0.0f, 0.0f);
 
   Actor* unit = new Actor();
@@ -57,7 +57,7 @@ void DemoScene::onLoad()
   );
 
   unit->addComponent(animator);
-  //unit->position.x = 100.0f;
+  unit->position.x = 100.0f;
   unit->create();
   Player* player = PlayerResource::getLocalPlayer();
   player->assignActor(unit);
@@ -66,7 +66,7 @@ void DemoScene::onLoad()
   player->addCommand(movement);
 }
 
-void DemoScene::onUnload()
+void DemoScene2::onUnload()
 {
   Scene::onUnload();
   EventManager::removeAllEvents();

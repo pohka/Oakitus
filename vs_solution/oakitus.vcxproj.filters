@@ -288,6 +288,9 @@
     <ClInclude Include="..\engine\oak\core\scene_manager.h">
       <Filter>oak\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\projects\sample\scenes\demo_scene2.h">
+      <Filter>projects\sample\scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -453,6 +456,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\scene_manager.cpp">
       <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\sample\scenes\demo_scene2.cpp">
+      <Filter>projects\sample\scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
