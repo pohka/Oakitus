@@ -1,5 +1,5 @@
 #include "base_rigid_body.h"
-#include <oak/core/entity.h>
+#include <oak/ecs/entity.h>
 #include <oak/debug.h>
 
 

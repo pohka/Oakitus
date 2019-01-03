@@ -1,13 +1,13 @@
 #include "sprite_animation.h"
-#include <oak/core/texture.h>
-#include <oak/core/shader.h>
+#include <oak/assets/texture.h>
+#include <oak/assets/shader.h>
 #include <oak/core/resources.h>
-#include <oak/core/camera.h>
-#include <oak/core/time.h>
+#include <oak/scene/camera.h>
+#include <oak/time/time.h>
 #include <oak/debug.h>
 #include "animator.h"
 #include <oak/oak_def.h>
-#include <oak/core/window.h>
+#include <oak/window/window.h>
 
 
 using namespace oak;

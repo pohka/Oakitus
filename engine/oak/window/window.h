@@ -3,7 +3,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "types.h"
+#include <oak/core/types.h>
 #include <glm/glm.hpp>
 
 namespace oak

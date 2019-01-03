@@ -1,7 +1,7 @@
 #include "camera.h"
-#include "input.h"
-#include "ray.h"
-#include "window.h"
+#include <oak/input/input.h>
+#include <oak/old/ray.h>
+#include <oak/window/window.h>
 
 using namespace glm;
 using namespace oak;

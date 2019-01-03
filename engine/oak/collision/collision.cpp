@@ -1,11 +1,11 @@
 #include "collision.h"
 #include <cmath>
 #include <cstdlib>
-#include "../debug.h"
-#include "../core/entity.h"
+#include <oak/debug.h>
+#include <oak/ecs/entity.h>
 #include "collision_layer.h"
-#include "../oak_def.h"
-#include <oak/core/entity_manager.h>
+#include <oak/oak_def.h>
+#include <oak/ecs/entity_manager.h>
 
 using namespace oak;
 

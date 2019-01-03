@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <oak/core/resources.h>
 #include "ui_character.h"
-#include <oak/core/window.h>
+#include <oak/window/window.h>
 #include "ui_canvas.h"
 #include <oak/debug.h>
 

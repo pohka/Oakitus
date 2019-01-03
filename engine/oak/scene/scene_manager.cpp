@@ -1,5 +1,5 @@
 #include "scene_manager.h"
-#include "resources.h"
+#include <oak/core/resources.h>
 
 using namespace oak;
 

@@ -1,11 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "id_generator.h"
-#include "types.h"
+#include <oak/ecs/id_generator.h>
+#include <oak/core/types.h>
 #include <vector>
 #include "command.h"
-#include "actor.h"
+#include <oak/ecs/actor.h>
 
 namespace oak
 {

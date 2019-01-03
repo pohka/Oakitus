@@ -5,8 +5,8 @@
 #include <glm/glm.hpp>
 
 #include <string>
-#include "types.h"
-#include <oak/core/asset.h>
+#include <oak/core/types.h>
+#include "asset.h"
 
 namespace oak
 {

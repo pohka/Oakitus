@@ -3,15 +3,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "../core/window.h"
-#include "../core/camera.h"
-#include "../core/shader.h"
-#include "../core/resources.h"
+#include <oak/window/window.h>
+#include <oak/scene/camera.h>
+#include <oak/assets/shader.h>
+#include <oak/core/resources.h>
 
-#include "../core/entity.h"
+#include <oak/ecs/entity.h>
 #include "collision_rect.h"
 #include "collision_circle.h"
-#include "../oak_def.h"
+#include <oak/oak_def.h>
 
 using namespace oak;
 

@@ -1,26 +1,26 @@
 
 #include "oakitus.h"
 #include "time.h"
-#include "input.h"
-#include "camera.h"
-#include "entity.h"
+#include <oak/input/input.h>
+#include <oak/scene/camera.h>
+#include <oak/ecs/entity.h>
 #include <glm/glm.hpp>
 #include <oak/debug.h>
-#include "window.h"
-#include "shader.h"
+#include <oak/window/window.h>
+#include <oak/assets/shader.h>
 #include "resources.h"
-#include "scene_manager.h"
-#include "texture.h"
-#include "player_resource.h"
+#include <oak/scene/scene_manager.h>
+#include <oak/assets/texture.h>
+#include <oak/player/player_resource.h>
 #include <oak/collision/collision.h>
 #include <oak/oak_def.h>
 #include <oak/ui/ui_canvas.h>
 #include <oak/debug/debug_input.h>
 #include <oak/meta/meta.h>
-#include <oak/core/entity_manager.h>
+#include <oak/ecs/entity_manager.h>
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include <oak/assets/stb_image.h>
 
 #include <thread> 
 #include <chrono> 

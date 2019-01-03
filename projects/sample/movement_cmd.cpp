@@ -1,8 +1,5 @@
 #include "movement_cmd.h"
-#include <oak/core/time.h>
-#include <oak/components/animator.h>
 #include "sample_def.h"
-#include <oak/event/event_manager.h>
 #include "events/event_damage.h"
 #include "scenes/game_scenes.h"
 

@@ -1,5 +1,5 @@
 #include "ui_component.h"
-#include <oak/core/input.h>
+#include <oak/input/input.h>
 #include <oak/debug.h>
 
 using namespace ion;

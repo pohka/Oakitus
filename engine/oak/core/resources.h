@@ -1,16 +1,16 @@
 #ifndef RESOURCES_H
 #define RESOURCES_H
 
-#include "entity.h"
+#include <oak/ecs/entity.h>
 
 #include <vector>
 #include <queue>
 #include <string>
 #include <oak/ui/font.h>
-#include <oak/core/texture.h>
-#include <oak/core/shader.h>
-#include <oak/core/asset.h>
-#include "precache.h"
+#include <oak/assets/texture.h>
+#include <oak/assets/shader.h>
+#include <oak/assets/asset.h>
+#include <oak/scene/precache.h>
 
 namespace oak
 {

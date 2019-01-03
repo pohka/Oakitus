@@ -1,5 +1,6 @@
 #include "player.h"
-#include "time.h"
+#include <oak/time/time.h>
+#include <oak/ecs/id_generator.h>
 
 using namespace oak;
 

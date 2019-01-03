@@ -1,7 +1,7 @@
 #include "debug_input.h"
-#include <oak/core/input.h>
+#include <oak/input/input.h>
 #include <oak/ui/ui.h>
-#include <oak/core/time.h>
+#include <oak/time/time.h>
 #include <oak/debug.h>
 #include "windows.h"
 #include "psapi.h"

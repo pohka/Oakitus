@@ -1,7 +1,7 @@
 #ifndef ANIMATOR_H
 #define ANIMATOR_H
 
-#include <oak/core/component.h>
+#include <oak/ecs/component.h>
 #include "sprite_animation.h"
 #include <unordered_map>
 #include <oak/core/types.h>

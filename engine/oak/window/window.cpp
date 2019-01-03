@@ -1,6 +1,6 @@
 #include "window.h"
 #include <iostream>
-#include "input.h"
+#include <oak/input/input.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <oak/ui/ui_canvas.h>

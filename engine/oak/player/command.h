@@ -1,8 +1,8 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include <oak/core/input.h>
-#include <oak/core/player.h>
+#include <oak/input/input.h>
+#include <oak/player/player.h>
 
 namespace oak
 {

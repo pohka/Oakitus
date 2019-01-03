@@ -1,9 +1,9 @@
 #include "scene.h"
-#include "oakitus.h"
-#include "entity.h"
-#include "entity_manager.h"
+#include <oak/core/oakitus.h>
+#include <oak/ecs/entity.h>
+#include <oak/ecs/entity_manager.h>
 #include <oak/event/event_manager.h>
-#include "player_resource.h"
+#include <oak/player/player_resource.h>
 
 
 using namespace oak;

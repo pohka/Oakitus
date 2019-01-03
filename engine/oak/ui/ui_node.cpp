@@ -1,9 +1,9 @@
 #include "ui_node.h"
 #include "ui_component.h"
 #include "ui_canvas.h"
-#include <oak/core/input.h>
+#include <oak/input/input.h>
 #include <oak/debug.h>
-#include <oak/core/key_codes.h>
+#include <oak/input/key_codes.h>
 
 using namespace ion;
 

@@ -1,9 +1,9 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "types.h"
+#include <oak/core/types.h>
 #include <oak/oak_def.h>
-#include "interval_ticker.h"
+#include <oak/time/interval_ticker.h>
 
 namespace oak
 {

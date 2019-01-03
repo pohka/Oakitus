@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <fstream>
-#include "../core/resources.h"
-#include "../oak_def.h"
+#include <oak/core/resources.h>
+#include <oak/oak_def.h>
 
 using namespace std;
 

@@ -3,7 +3,6 @@
 
 #include <oak/core/types.h>
 #include "ui_def.h"
-#include <oak/core/point.h>
 #include <vector>
 #include "ui_point.h"
 #include "style.h"

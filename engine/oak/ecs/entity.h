@@ -2,7 +2,7 @@
 #define ENTITY_H
 
 #include <vector>
-#include "types.h"
+#include <oak/core/types.h>
 #include "id_generator.h"
 
 #include <map>

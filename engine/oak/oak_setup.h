@@ -4,6 +4,6 @@
 //include in main.cpp to setup project
 
 #include "core/oakitus.h"
-#include "core/scene.h"
+#include "scene/scene.h"
 
 #endif

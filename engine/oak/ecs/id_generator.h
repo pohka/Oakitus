@@ -1,7 +1,7 @@
 #ifndef ID_GENERATOR_H
 #define ID_GENERATOR_H
 
-#include "types.h"
+#include <oak/core/types.h>
 
 namespace oak
 {

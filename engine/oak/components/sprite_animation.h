@@ -1,7 +1,7 @@
 #ifndef SPRITE_ANIMATION_H
 #define SPRITE_ANIMATION_H
 
-#include <oak/core/component.h>
+#include <oak/ecs/component.h>
 #include <string>
 #include <oak/core/types.h>
 

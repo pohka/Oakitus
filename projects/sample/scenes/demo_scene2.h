@@ -1,7 +1,7 @@
 #ifndef DEMO_SCENE2_H
 #define DEMO_SCENE2_H
 
-#include <oak/core/scene.h>
+#include <oak/oak.h>
 
 namespace sample
 {

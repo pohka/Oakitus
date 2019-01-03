@@ -1,7 +1,7 @@
 #ifndef BOUNDS_H
 #define BOUNDS_H
 
-#include "point.h"
+#include <oak/input/point.h>
 
 namespace oak
 {

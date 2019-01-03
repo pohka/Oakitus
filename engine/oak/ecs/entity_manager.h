@@ -3,7 +3,7 @@
 
 #include <queue>
 #include <vector>
-#include <oak/core/entity.h>
+#include <oak/ecs/entity.h>
 #include "id_generator.h"
 
 namespace oak

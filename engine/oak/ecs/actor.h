@@ -1,8 +1,8 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
-#include "entity.h"
-#include "player.h"
+#include <oak/ecs/entity.h>
+#include <oak/player/player_resource.h>
 
 namespace oak
 {

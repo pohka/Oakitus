@@ -40,6 +40,30 @@
     <Filter Include="projects\sample\events">
       <UniqueIdentifier>{04f7d994-7790-4100-81d3-9d6de87f1fd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\assets">
+      <UniqueIdentifier>{fb350887-a66e-4ed1-87fa-9a946097fbbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\ecs">
+      <UniqueIdentifier>{385d3150-6d1c-468b-b7bd-13540d15ad45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\input">
+      <UniqueIdentifier>{19f88e4b-e5a9-47aa-8098-2df502415d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\old">
+      <UniqueIdentifier>{46a9c111-1a89-46ea-863e-c7ceaa12d406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\player">
+      <UniqueIdentifier>{0c82bb26-a252-43fb-bd9d-c9685f44729b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\scene">
+      <UniqueIdentifier>{cadaa787-f56c-4696-af09-1a8ca251aaf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\time">
+      <UniqueIdentifier>{10d100e9-5957-4631-8408-c4d3ba9566dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\window">
+      <UniqueIdentifier>{205b23a6-fcac-4e07-b628-0225ed35d8a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -83,81 +107,6 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\components\sprite_animation.h">
       <Filter>oak\components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\bounds.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\camera.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\command.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\component.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\entity.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\fmath.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\id_generator.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\init.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\input.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\key_buffer.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\key_codes.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\kv_array.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\oakitus.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\player_resource.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\point.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\ray.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\resources.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\scene.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\shader.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\stb_image.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\string_help.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\texture.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\time.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\types.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\window.h">
-      <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\debug\debug_input.h">
       <Filter>oak\debug</Filter>
@@ -228,26 +177,8 @@
     <ClInclude Include="..\projects\sample\scenes\game_scenes.h">
       <Filter>projects\sample\scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\core\asset.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\entity_manager.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\actor.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\player.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\projects\sample\movement_cmd.h">
       <Filter>projects\sample</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\interval_ticker.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\fps_limiter.h">
-      <Filter>oak\core</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\meta\kvmap.h">
       <Filter>oak\meta</Filter>
@@ -282,14 +213,104 @@
     <ClInclude Include="..\projects\sample\events\event_damage.h">
       <Filter>projects\sample\events</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\core\precache.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\core\scene_manager.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\projects\sample\scenes\demo_scene2.h">
       <Filter>projects\sample\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\assets\asset.h">
+      <Filter>oak\assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\assets\shader.h">
+      <Filter>oak\assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\assets\stb_image.h">
+      <Filter>oak\assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\assets\texture.h">
+      <Filter>oak\assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ecs\actor.h">
+      <Filter>oak\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ecs\component.h">
+      <Filter>oak\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ecs\entity.h">
+      <Filter>oak\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ecs\entity_manager.h">
+      <Filter>oak\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ecs\id_generator.h">
+      <Filter>oak\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\input\input.h">
+      <Filter>oak\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\input\key_buffer.h">
+      <Filter>oak\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\input\key_codes.h">
+      <Filter>oak\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\old\bounds.h">
+      <Filter>oak\old</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\old\ray.h">
+      <Filter>oak\old</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\player\command.h">
+      <Filter>oak\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\player\player.h">
+      <Filter>oak\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\player\player_resource.h">
+      <Filter>oak\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\scene\camera.h">
+      <Filter>oak\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\scene\precache.h">
+      <Filter>oak\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\scene\scene.h">
+      <Filter>oak\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\scene\scene_manager.h">
+      <Filter>oak\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\time\fps_limiter.h">
+      <Filter>oak\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\time\interval_ticker.h">
+      <Filter>oak\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\time\time.h">
+      <Filter>oak\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\window\window.h">
+      <Filter>oak\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\fmath.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\init.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\oakitus.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\resources.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\string_help.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\types.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\input\point.h">
+      <Filter>oak\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -319,51 +340,6 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\components\sprite_animation.cpp">
       <Filter>oak\components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\bounds.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\camera.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\component.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\entity.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\input.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\key_buffer.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\oakitus.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\player_resource.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\ray.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\resources.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\scene.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\shader.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\texture.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\time.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\window.cpp">
-      <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\debug\debug_input.cpp">
       <Filter>oak\debug</Filter>
@@ -415,26 +391,8 @@
     <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp">
       <Filter>projects\sample\scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\core\asset.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\entity_manager.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\actor.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\player.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\projects\sample\movement_cmd.cpp">
       <Filter>projects\sample</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\interval_ticker.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\core\fps_limiter.cpp">
-      <Filter>oak\core</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\meta\meta.cpp">
       <Filter>oak\meta</Filter>
@@ -454,11 +412,74 @@
     <ClCompile Include="..\projects\sample\events\event_damage.cpp">
       <Filter>projects\sample\events</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\core\scene_manager.cpp">
-      <Filter>oak\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\projects\sample\scenes\demo_scene2.cpp">
       <Filter>projects\sample\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\assets\asset.cpp">
+      <Filter>oak\assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\assets\shader.cpp">
+      <Filter>oak\assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\assets\texture.cpp">
+      <Filter>oak\assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ecs\actor.cpp">
+      <Filter>oak\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ecs\component.cpp">
+      <Filter>oak\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ecs\entity.cpp">
+      <Filter>oak\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ecs\entity_manager.cpp">
+      <Filter>oak\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\input\input.cpp">
+      <Filter>oak\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\input\key_buffer.cpp">
+      <Filter>oak\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\old\bounds.cpp">
+      <Filter>oak\old</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\old\ray.cpp">
+      <Filter>oak\old</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\player\player.cpp">
+      <Filter>oak\player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\player\player_resource.cpp">
+      <Filter>oak\player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\scene\camera.cpp">
+      <Filter>oak\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\scene\scene.cpp">
+      <Filter>oak\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\scene\scene_manager.cpp">
+      <Filter>oak\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\time\fps_limiter.cpp">
+      <Filter>oak\time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\time\interval_ticker.cpp">
+      <Filter>oak\time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\time\time.cpp">
+      <Filter>oak\time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\window\window.cpp">
+      <Filter>oak\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\oakitus.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\core\resources.cpp">
+      <Filter>oak\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

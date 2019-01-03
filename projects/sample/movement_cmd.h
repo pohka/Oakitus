@@ -1,7 +1,7 @@
 #ifndef MOVEMENT_CMD_H
 #define MOVEMENT_CMD_H
 
-#include <oak/core/command.h>
+#include <oak/oak.h>
 
 namespace sample
 {

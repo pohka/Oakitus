@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 #include "key_codes.h"
 #include "point.h"
-#include "types.h"
+#include <oak/core/types.h>
 
 namespace oak
 {

@@ -8,7 +8,7 @@
 #include "ui_character.h"
 #include <map>
 #include <oak/core/types.h>
-#include <oak/core/asset.h>
+#include <oak/assets/asset.h>
 
 namespace ion
 {

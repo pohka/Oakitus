@@ -2,7 +2,6 @@
 #define KEYCODES_H
 
 #include <oak/core/types.h>
-#include <oak/core/kv_array.h>
 
 namespace oak
 {

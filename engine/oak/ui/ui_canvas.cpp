@@ -7,7 +7,7 @@
 #include "ui_label.h"
 #include <map>
 #include <oak/ui/ui_def.h>
-#include <oak/core/input.h>
+#include <oak/input/input.h>
 #include <oak/ui/style_parser.h>
 
 #include <oak/debug.h>

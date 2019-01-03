@@ -2,7 +2,7 @@
 #define TEXTURE_H
 
 
-#include "types.h"
+#include <oak/core/types.h>
 #include "asset.h"
 
 namespace oak

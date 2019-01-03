@@ -1,6 +1,6 @@
 #include "animator.h"
 #include <oak/oak_def.h>
-#include <oak/core/entity.h>
+#include <oak/ecs/entity.h>
 #include <oak/debug.h>
 
 using namespace oak;
