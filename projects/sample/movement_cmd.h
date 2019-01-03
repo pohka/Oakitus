@@ -7,6 +7,7 @@ namespace sample
 {
   struct MovementCMD : oak::Command
   {
+    MovementCMD();
     void execute() override;
   };
 }

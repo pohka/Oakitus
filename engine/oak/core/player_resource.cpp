@@ -8,8 +8,6 @@ unsigned int PlayerResource::playerCount = 0;
 std::vector<Player*> PlayerResource::players;
 uint PlayerResource::localPlayerID = 0;
 
-Player PlayerResource::defaultPlayer = Player();
-
 void PlayerResource::addPlayer(Player* player)
 {
   players.push_back(player);

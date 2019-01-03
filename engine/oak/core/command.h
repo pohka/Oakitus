@@ -12,6 +12,7 @@ namespace oak
   class Command
   {
     public:
+      Command(const unsigned short commandID) : commandID(commandID) {};
       //Command(Player* player)
       //{
       //  this->player = player;
@@ -20,6 +21,8 @@ namespace oak
 
       ///<summary>Called once each frame before the update stage</summary>
       virtual void execute() = 0;
+
+      const unsigned short commandID;
 
     protected:
       Player* player;

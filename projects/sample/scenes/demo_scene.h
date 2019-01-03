@@ -9,7 +9,6 @@ namespace sample
   {
     DemoScene();
     void onLoad() override;
-    void onUnload() override;
   };
 }
 

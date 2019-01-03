@@ -62,12 +62,9 @@ void DemoScene::onLoad()
   Player* player = PlayerResource::getLocalPlayer();
   player->assignActor(unit);
 
-  Command* movement = new MovementCMD();
-  player->addCommand(movement);
-}
-
-void DemoScene::onUnload()
-{
-  Scene::onUnload();
-  EventManager::removeAllEvents();
+  if (player->hasCommand(COMMAND_MOVEMENT) == false)
+  {
+    Command* movement = new MovementCMD();
+    player->addCommand(movement);
+  }
 }

@@ -13,6 +13,8 @@ namespace sample
   cnum ANIM_PRIORITY_HIGH = 1;
 
   snum EVENT_DAMAGE = 0;
+
+  snum COMMAND_MOVEMENT = 1;
 }
 
 #endif

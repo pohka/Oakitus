@@ -33,6 +33,8 @@ namespace oak
 
       ///<summary>Adds an input Command to this Player</summary>
       void addCommand(Command* command);
+      void removeCommand(const ushort commandID);
+      bool hasCommand(const ushort commandID) const;
 
       void assignActor(Actor* actor);
       Actor* getAssignedActor();

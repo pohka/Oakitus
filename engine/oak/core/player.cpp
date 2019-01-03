@@ -59,3 +59,29 @@ Actor* Player::getAssignedActor()
 {
   return assignedActor;
 }
+
+
+void Player::removeCommand(const ushort commandID)
+{
+  for (unsigned int i=0; i<commands.size(); i++)
+  {
+    if (commands[i]->commandID == commandID)
+    {
+      delete commands[i];
+      commands.erase(commands.begin() + i);
+      return;
+    }
+  }
+}
+
+bool Player::hasCommand(const ushort commandID) const
+{
+  for (unsigned int i = 0; i < commands.size(); i++)
+  {
+    if (commands[i]->commandID == commandID)
+    {
+      return true;
+    }
+  }
+  return false;
+}
