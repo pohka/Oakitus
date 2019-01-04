@@ -1,17 +1,23 @@
 #include "chunk.h"
 #include "world.h"
 #include <oak/debug.h>
+#include <oak/core/resources.h>
+#include <oak/window/window.h>
 
 using namespace tile;
 
 Chunk::Chunk(const uint CHUNK_SIZE) : Component(TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true)
 {
+  //create rows
   table.resize(CHUNK_SIZE);
-  for (std::vector<uint>& row : table)
+
+  //fill rows
+  for (uint i=0; i<CHUNK_SIZE; i++)
   {
-    row.resize(CHUNK_SIZE);
+    table[i].resize(CHUNK_SIZE);
   }
 }
+
 
 Chunk::~Chunk()
 {
@@ -20,22 +26,27 @@ Chunk::~Chunk()
 
 void Chunk::onRender() const
 {
-  uint tileID;
+  oak::Shader* shader = oak::Resources::getDefaultShader();
+  uint id;
+  Tile* tile;
+  shader->use();
+
+  float vpTileSize = oak::Window::worldToViewportCoords(world->TILE_SIZE);
+
   for (uint y = 0; y < table.size(); y++)
   {
     for (uint x = 0; x < table[y].size(); x++)
     {
-      tileID = table[y][x];
-      
-      if (tileID != 0)
+      id = table[y][x];
+      if (id != 0)
       {
-        Tile* tile = world->getTileByID(tileID);
+        tile = world->getTileByID(id);
         if (tile != nullptr)
         {
-          LOG << "rendering";
           tile->onRender(
-            x * world->TILE_SIZE, 
-            y * world->TILE_SIZE
+            (float)(x * vpTileSize),
+            -(float)(y * vpTileSize),
+            shader
           );
         }
       }

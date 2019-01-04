@@ -79,6 +79,12 @@
     <Filter Include="oak\tiles">
       <UniqueIdentifier>{b9c38b75-ae2b-438a-96ff-c35638496c32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{69af7d94-7ee8-4683-bacc-ebdd5106eefc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources\shaders">
+      <UniqueIdentifier>{c846c93e-c448-4e9c-8e9b-6003246354f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -377,9 +383,6 @@
     <ClCompile Include="..\engine\oak\components\rigid_body_2d.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\components\sprite.cpp">
-      <Filter>oak\components</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\components\sprite_animation.cpp">
       <Filter>oak\components</Filter>
     </ClCompile>
@@ -544,5 +547,28 @@
     <ClCompile Include="..\engine\oak\tiles\world.cpp">
       <Filter>oak\tiles</Filter>
     </ClCompile>
+    <ClCompile Include="..\engine\oak\components\sprite.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resources\shaders\collision.fs">
+      <Filter>resources\shaders</Filter>
+    </None>
+    <None Include="..\resources\shaders\collision.vs">
+      <Filter>resources\shaders</Filter>
+    </None>
+    <None Include="..\resources\shaders\default.fs">
+      <Filter>resources\shaders</Filter>
+    </None>
+    <None Include="..\resources\shaders\default.vs">
+      <Filter>resources\shaders</Filter>
+    </None>
+    <None Include="..\resources\shaders\text.fs">
+      <Filter>resources\shaders</Filter>
+    </None>
+    <None Include="..\resources\shaders\text.vs">
+      <Filter>resources\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

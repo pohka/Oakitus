@@ -177,6 +177,14 @@
     <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp" />
     <ClCompile Include="..\projects\sample\scenes\demo_scene2.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resources\shaders\collision.fs" />
+    <None Include="..\resources\shaders\collision.vs" />
+    <None Include="..\resources\shaders\default.fs" />
+    <None Include="..\resources\shaders\default.vs" />
+    <None Include="..\resources\shaders\text.fs" />
+    <None Include="..\resources\shaders\text.vs" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{965C8EC7-A6E6-4525-9E54-88923AD2405A}</ProjectGuid>

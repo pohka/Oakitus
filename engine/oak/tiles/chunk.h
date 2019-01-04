@@ -4,7 +4,6 @@
 #include <oak/core/types.h>
 #include <vector>
 #include <oak/ecs/component.h>
-//#include "world.h"
 
 namespace tile
 {

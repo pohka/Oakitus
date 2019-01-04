@@ -23,21 +23,26 @@ TestingScene::~TestingScene()
 
 void TestingScene::onLoad()
 {
-  World* world = new World(8, 32);
-
-  Texture* tex = Resources::getTextureByName("test_tilemap.png");
-  uint shaderID = Resources::getDefaultShaderID();
+  const uint CHUNK_SIZE = 32;
+  const uint TILE_SIZE = 16;
+  World* world = new World(TILE_SIZE, CHUNK_SIZE);
 
   //hardcoded loading of tiles
+  Texture* tex = Resources::getTextureByName("test_tilemap.png");
   for (unsigned int i = 0; i < 4; i++)
   {
-    Tile* tile = new Tile(i+1, tex, i%2, i/2, shaderID, world->TILE_SIZE);
+    Tile* tile = new Tile(i+1, tex, i%2, i/2, world->TILE_SIZE, 1);
     world->addTile(tile);
   }
 
   Chunk* chunk = world->addChunk();
-  chunk->table[0][0] = 1;
-
+  for (uint i = 0; i < CHUNK_SIZE; i++)
+  {
+    chunk->table[i][0] = 1;
+    chunk->table[0][i] = 1;
+    chunk->table[i][CHUNK_SIZE-1] = 1;
+    chunk->table[CHUNK_SIZE-1][i] = 1;
+  }
   world->create(0.0f, 0.0f);
 
   LOG << "Loading scene";

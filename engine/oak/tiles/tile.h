@@ -3,6 +3,7 @@
 
 #include <oak/core/types.h>
 #include <oak/assets/texture.h>
+#include <oak/assets/shader.h>
 
 namespace tile
 {
@@ -10,22 +11,25 @@ namespace tile
   {
     const uint tileID;
     const uint textureID;
-    const uint shaderID;
-    uint VAO;
-    uint VBO;
+    
 
     Tile(
       const uint tileID,
       const oak::Texture* texture,
       const uint TEX_COORD_X,
       const uint TEX_COORD_Y,
-      const uint shaderID,
-      const uint TILE_SIZE
+      const uint TILE_SIZE,
+      const uint spacing
     );
+
 
     ~Tile();
 
-    void onRender(const float x, const float y) const;
+    void onRender(const float vpX, const float vpY, oak::Shader* shader) const;
+
+  private:
+    uint VAO;
+    uint VBO;
   };
 }
 
