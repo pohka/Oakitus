@@ -4,7 +4,6 @@
 #include <oak/core/resources.h>
 #include <oak/scene/camera.h>
 #include <oak/time/time.h>
-#include <oak/debug.h>
 #include "animator.h"
 #include <oak/oak_def.h>
 #include <oak/window/window.h>

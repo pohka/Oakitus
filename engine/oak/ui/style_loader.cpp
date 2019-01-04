@@ -1,8 +1,12 @@
 #include "style_loader.h"
 #include "style.h"
-#include <iostream>
 #include <fstream>
+
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
 #include <oak/debug.h>
+#endif
+
 #include <oak/core/string_help.h>
 #include <unordered_map>
 #include <oak/ui/ui_canvas.h>
@@ -23,6 +27,7 @@ void StyleLoader::reload()
   //delete existing styles
   UICanvas::deleteAllStyles();
 
+#ifdef DEBUG_MODE
   LOG << "----- RELOADING STYLE -------";
   //reload css files
   for (auto it = loadedFiles.begin(); it != loadedFiles.end(); it++)
@@ -30,6 +35,7 @@ void StyleLoader::reload()
     parse(*it);
   }
   LOG << "-------------";
+#endif
   
   //recompute styles
   for (auto it = UICanvas::components.begin(); it != UICanvas::components.end(); it++)
@@ -64,7 +70,9 @@ void StyleLoader::parse(std::string path)
         {
           if (text.size() > 0)
           {
+#ifdef DEBUG_MODE
             LOG << "---CSS PARSING ERROR---| '" << path << "' line:" << lineNum << " | missing ';' at end of line";
+#endif
           }
           state = STATE_ATTR_KEY;
           text.clear();
@@ -78,14 +86,18 @@ void StyleLoader::parse(std::string path)
         {
           if (state != STATE_CLASSNAME)
           {
+#ifdef DEBUG_MODE
             LOG << "---CSS PARSING ERROR---| '" << path << "' line:" << lineNum << " | invalid location for '{'";
+#endif
           }
           else
           {
             bool success = parseSelectors(text, selectors);
             if (!success)
             {
+#ifdef DEBUG_MODE
               LOG << "---CSS PARSING ERROR---| near line:" << lineNum << " | no style class name was found";
+#endif
             }
             state = STATE_ATTR_KEY;
             text.clear();
@@ -95,7 +107,9 @@ void StyleLoader::parse(std::string path)
         {
           if (state != STATE_ATTR_KEY)
           {
+#ifdef DEBUG_MODE
             LOG << "---CSS PARSING ERROR---| line:" << lineNum << " | invalid location for '}'";
+#endif
           }
           else
           {
@@ -119,7 +133,9 @@ void StyleLoader::parse(std::string path)
           }
           else
           {
+#ifdef DEBUG_MODE
             LOG << "---CSS PARSING ERROR---| line:" << lineNum << " | invalid location for ':'";
+#endif
           }
         }
         //end of kv
@@ -128,7 +144,9 @@ void StyleLoader::parse(std::string path)
           //if no value
           if (state != STATE_ATTR_VALUE)
           {
+#ifdef DEBUG_MODE
             LOG << "---CSS PARSING ERROR---| line:" << lineNum << " | unknown symbol ';'";
+#endif
           }
           //has a value and a key
           else

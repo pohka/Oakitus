@@ -5,7 +5,6 @@
 #include "ui_character.h"
 #include <oak/window/window.h>
 #include "ui_canvas.h"
-#include <oak/debug.h>
 
 using namespace ion;
 using namespace oak;

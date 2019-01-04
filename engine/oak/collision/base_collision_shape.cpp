@@ -1,8 +1,5 @@
 #include "base_collision_shape.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include <oak/window/window.h>
 #include <oak/scene/camera.h>
 #include <oak/assets/shader.h>

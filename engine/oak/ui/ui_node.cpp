@@ -2,8 +2,13 @@
 #include "ui_component.h"
 #include "ui_canvas.h"
 #include <oak/input/input.h>
-#include <oak/debug.h>
 #include <oak/input/key_codes.h>
+
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
+  #include <oak/debug.h>
+#endif
+
 
 using namespace ion;
 
@@ -272,7 +277,9 @@ void UINode::computeStyle()
       }
       else
       {
+#ifdef DEBUG_MODE
         LOG << "style class not found:" << cls;
+#endif
       }
     }
   }

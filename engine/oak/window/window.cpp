@@ -1,5 +1,10 @@
 #include "window.h"
+
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
 #include <iostream>
+#endif
+
 #include <oak/input/input.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -71,7 +76,9 @@ void Window::init(
   Window::window = glfwCreateWindow(windowW, windowH, title, monitor, NULL);
   if (Window::window == NULL)
   {
+#ifdef DEBUG_MODE
     std::cout << "Failed to create GLFW window" << std::endl;
+#endif
     glfwTerminate();
   }
 
@@ -94,7 +101,9 @@ void Window::init(
   // ---------------------------------------
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
   {
+#ifdef DEBUG_MODE
     std::cout << "Failed to initialize GLAD" << std::endl;
+#endif
   }
 
   glEnable(GL_BLEND);

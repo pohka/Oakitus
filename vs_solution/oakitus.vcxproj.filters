@@ -312,6 +312,9 @@
     <ClInclude Include="..\engine\oak\input\point.h">
       <Filter>oak\input</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\build_def.h">
+      <Filter>oak</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">

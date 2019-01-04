@@ -6,7 +6,6 @@
 #include <oak/core/types.h>
 
 
-
 namespace oak
 {
   class Animator;

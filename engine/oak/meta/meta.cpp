@@ -1,9 +1,16 @@
 #include "meta.h"
-#include <iostream>
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
+  #include <iostream>
+#endif
 #include <fstream>
 #include <cctype>
-#include <windows.h>
 #include "var.h"
+
+#include <oak/build_def.h>
+#ifdef PLATFORM_WINDOWS
+  #include <windows.h>
+#endif
 
 using namespace oak;
 
@@ -31,11 +38,17 @@ void Meta::load(const char* filepath)
 }
 
 //returns the directory (NOTE: windows only)
-std::string Meta::dir() {
-  char buffer[MAX_PATH];
-  GetModuleFileName(NULL, buffer, MAX_PATH);
-  std::string::size_type pos = std::string(buffer).find_last_of("\\/");
-  return std::string(buffer).substr(0, pos);
+std::string Meta::dir() 
+{
+  #ifdef PLATFORM_WINDOWS
+    char buffer[MAX_PATH];
+    GetModuleFileName(NULL, buffer, MAX_PATH);
+    std::string::size_type pos = std::string(buffer).find_last_of("\\/");
+    return std::string(buffer).substr(0, pos);
+  #else
+    #error Target platform not set
+    return "";
+  #endif
 }
 
 //how parsing works
@@ -68,7 +81,9 @@ void Meta::parse(std::string& content, unsigned int& index)
         {
           if (key.size() > 0)
           {
+#ifdef DEBUG_MODE
             std::cout << "--PARSRING ERROR--| line:" << lineNum << " state:" << std::to_string(state) << std::endl;
+#endif
           }
         }
         else
@@ -81,7 +96,9 @@ void Meta::parse(std::string& content, unsigned int& index)
           }
           else
           {
+#ifdef DEBUG_MODE
             std::cout << "--PARSRING ERROR--| line:" << lineNum << " val is empty" << std::endl;
+#endif
           }
         }
 

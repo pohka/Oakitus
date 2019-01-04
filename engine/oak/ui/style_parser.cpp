@@ -1,6 +1,11 @@
 #include "style_parser.h"
 #include <oak/core/string_help.h>
-#include <oak/debug.h>
+
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
+  #include <oak/debug.h>
+#endif
+
 #include <cctype>
 #include <oak/core/fmath.h>
 #include <math.h>
@@ -57,7 +62,9 @@ void StyleParser::parseColor(
 {
   if (val.size() < 4)
   {
+#ifdef DEBUG_MODE
     LOG << "---STYLE ERROR---| invalid color value: '" << val << "'";
+#endif
     return;
   }
 
@@ -123,7 +130,9 @@ void StyleParser::parseColor(
     //hex invalud number of characters
     else
     {
+#ifdef DEBUG_MODE
       LOG << "---STYLE ERROR---| invalid color value: '" << val << "'";
+#endif
     }
   }
   //rgb(...) and rgba(...)
@@ -131,7 +140,9 @@ void StyleParser::parseColor(
   {
     if (val.size() < 10)
     {
+#ifdef DEBUG_MODE
       LOG << "---STYLE ERROR---| invalid color value: '" << val << "'";
+#endif
     }
     //rgb(...)
     if (val[3] != 'a')
@@ -149,7 +160,9 @@ void StyleParser::parseColor(
     oak::StringHelp::split(str, els, ',');
     if (els.size() < 3)
     {
+#ifdef DEBUG_MODE
       LOG << "---STYLE ERROR---| invalid color value: '" << val << "'";
+#endif
       return;
     }
     //rgb

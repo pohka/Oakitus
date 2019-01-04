@@ -1,8 +1,6 @@
 #ifndef UI_CANVAS_H
 #define UI_CANVAS_H
 
-
-
 #include <map>
 #include <oak/core/types.h>
 

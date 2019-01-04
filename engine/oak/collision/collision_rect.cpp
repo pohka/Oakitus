@@ -1,7 +1,3 @@
-#include "../debug.h"
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include <cstdlib>
 #include <oak/window/window.h>
 #include <oak/core/resources.h>

@@ -1,8 +1,13 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+#include <oak/build_def.h>
+
+
 #include <string>
-#include <iostream>
+#ifdef DEBUG_MODE
+  #include <iostream>
+#endif
 #include <vector>
 #include <iomanip>
 #include <oak/time/time.h>
@@ -58,10 +63,12 @@ namespace debug
       template <class T>
       Logger &operator<<(const T &v)
       {
+#ifdef DEBUG_MODE
         if (!hasReachedMaxRepeats)
         {
           std::cout << v;
         }
+#endif
         return *this;
       }
   private:
@@ -80,7 +87,5 @@ namespace debug
 #define LOG debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_MSG)
 #define LOG_WARNING debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_WARNING)
 #define LOG_ERROR debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_ERROR)
-
-
 
 #endif

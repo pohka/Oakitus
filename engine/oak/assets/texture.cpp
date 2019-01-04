@@ -6,7 +6,10 @@
 
 #include "texture.h"
 #include <oak/oak_def.h>
-#include <oak/debug.h>
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
+  #include <oak/debug.h>
+#endif
 #include <oak/core/resources.h>
 
 using namespace oak;
@@ -57,7 +60,9 @@ void Texture::load()
   }
   else
   {
+#ifdef DEBUG_MODE
     std::cout << "Failed load image: " << name << std::endl;
+#endif
     stbi_image_free(data);
     unsigned char *data = stbi_load("../resources/default.png", &width, &height, &nrChannels, 0);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);

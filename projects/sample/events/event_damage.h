@@ -2,7 +2,6 @@
 #define SAMPLE_DAMAGE_EVENT_H
 
 #include <oak/oak.h>
-#include <iostream>
 
 namespace sample
 {

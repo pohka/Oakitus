@@ -1,8 +1,11 @@
 #include "style.h"
 #include <limits>
 #include <oak/core/string_help.h>
-#include <oak/debug.h>
 #include "style_parser.h"
+
+#ifdef DEBUG_MODE
+  #include <oak/debug.h>
+#endif
 
 using namespace ion;
 
@@ -212,8 +215,10 @@ void Style::setNum(const std::string& key, const std::string& val, cnum STYLE_KE
   bool isValidNumber = StyleParser::parseNumber(val, num);
   if (!isValidNumber)
   {
+#ifdef DEBUG_MODE
     LOG << "---STYLE ERROR---| '." << selector <<
       "' invalid attribute: " << key << ":" << val << ";";
+#endif
     return;
   }
   else

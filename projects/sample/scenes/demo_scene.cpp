@@ -1,6 +1,5 @@
 #include "demo_scene.h"
 #include "../movement_cmd.h"
-#include <oak/debug.h>
 #include "../sample_def.h"
 #include "../sample_gamemode.h"
 

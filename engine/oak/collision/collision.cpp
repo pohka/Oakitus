@@ -1,7 +1,6 @@
 #include "collision.h"
 #include <cmath>
 #include <cstdlib>
-#include <oak/debug.h>
 #include <oak/ecs/entity.h>
 #include "collision_layer.h"
 #include <oak/oak_def.h>

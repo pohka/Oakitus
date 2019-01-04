@@ -23,6 +23,7 @@
     <ClInclude Include="..\engine\oak\assets\shader.h" />
     <ClInclude Include="..\engine\oak\assets\stb_image.h" />
     <ClInclude Include="..\engine\oak\assets\texture.h" />
+    <ClInclude Include="..\engine\oak\build_def.h" />
     <ClInclude Include="..\engine\oak\collision\base_collision_shape.h" />
     <ClInclude Include="..\engine\oak\collision\collision.h" />
     <ClInclude Include="..\engine\oak\collision\collision_circle.h" />
@@ -216,6 +217,11 @@
     <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Jeoff\Documents\oakitus\oakitus\library;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Jeoff\Documents\oakitus\oakitus\library;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -247,10 +253,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>NotSet</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

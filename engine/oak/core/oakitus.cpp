@@ -5,7 +5,6 @@
 #include <oak/scene/camera.h>
 #include <oak/ecs/entity.h>
 #include <glm/glm.hpp>
-#include <oak/debug.h>
 #include <oak/window/window.h>
 #include <oak/assets/shader.h>
 #include "resources.h"
@@ -18,6 +17,7 @@
 #include <oak/debug/debug_input.h>
 #include <oak/meta/meta.h>
 #include <oak/ecs/entity_manager.h>
+#include <oak/time/time.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
@@ -74,7 +74,10 @@ int Oakitus::loop()
   {
     Time::onTick();
     Input::processInput(window);
+
+#ifdef DEBUG_MODE
     debug::DebugInput::process();
+#endif
 
     glClearColor(0.1f, 0.25f, 0.45f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

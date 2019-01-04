@@ -1,6 +1,5 @@
 #include "base_rigid_body.h"
 #include <oak/ecs/entity.h>
-#include <oak/debug.h>
 
 
 using namespace oak;

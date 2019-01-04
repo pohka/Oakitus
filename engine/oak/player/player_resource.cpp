@@ -1,6 +1,5 @@
 #include "player_resource.h"
 #include <oak/core/types.h>
-#include <oak/debug.h>
 
 using namespace oak;
 

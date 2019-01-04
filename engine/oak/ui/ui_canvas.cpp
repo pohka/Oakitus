@@ -10,7 +10,10 @@
 #include <oak/input/input.h>
 #include <oak/ui/style_parser.h>
 
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
 #include <oak/debug.h>
+#endif
 
 using namespace ion;
 
@@ -103,14 +106,18 @@ void UICanvas::addStyle(Style* style)
           if (!success)
           {
             delete style;
+#ifdef DEBUG_MODE
             LOG << "---STYLE ERROR---| '" << style->selector << "' state style not set as parent was not found";
+#endif
           }
         }
       }
       else
       {
         delete style;
+#ifdef DEBUG_MODE
         LOG << "---STYLE ERROR---| state id not found for '"<< stateName <<"'";
+#endif
       }
     }
   }

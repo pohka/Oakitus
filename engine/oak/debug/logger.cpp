@@ -14,6 +14,7 @@ Logger::Logger(
   uchar logType
 )
 {
+#ifdef DEBUG_MODE
   if (isRepeatedLog(funcName, file, line, logType))
   {
     if (logRepeatCount < MAX_REPEATED_LOGS)
@@ -66,10 +67,12 @@ Logger::Logger(
     lastLog.line = line;
     lastLog.logType = logType;
   }
+#endif;
 }
 
 Logger::~Logger()
 {
+#ifdef DEBUG_MODE
   if (!hasReachedMaxRepeats)
   {
     std::cout << std::endl;
@@ -79,20 +82,24 @@ Logger::~Logger()
       system("Pause");
     }
   }
+#endif
 }
 
 void Logger::startTimer(std::string name, std::string msg)
 {
+#ifdef DEBUG_MODE
   Timer t;
   t.name = name;
   t.startTime = oak::Time::getGameTime();
   t.msg = msg;
 
   timers.push_back(t);
+#endif
 }
 
 void Logger::endTimer(std::string name)
 {
+#ifdef DEBUG_MODE
   for (unsigned int i = 0; i < timers.size(); i++)
   {
     if (timers[i].name == name)
@@ -102,6 +109,7 @@ void Logger::endTimer(std::string name)
       timers.erase(timers.begin() + i);
     }
   }
+#endif
 }
 
 bool Logger::isRepeatedLog(

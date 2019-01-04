@@ -5,5 +5,6 @@
 
 #include "core/oakitus.h"
 #include "scene/scene.h"
+#include "build_def.h"
 
 #endif

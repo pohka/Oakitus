@@ -1,6 +1,9 @@
 #include "xml_parser.h"
 
-#include <iostream>
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
+  #include <iostream>
+#endif
 #include <fstream>
 #include <oak/core/resources.h>
 #include <oak/oak_def.h>
@@ -10,11 +13,13 @@ using namespace std;
 //used for debugging
 static void printNodes(XMLNode* node, unsigned int depth)
 {
+#ifdef DEBUG_MODE
   std::cout << "node (" << depth << "):" << node->name << ":" << node->content << ";" << std::endl;
   for (unsigned int i = 0; i < node->getChildNodes().size(); i++)
   {
     printNodes(node->getChildNodes()[i], depth+1);
   }
+#endif
 }
 
 ///<summary>Fast and simple XML parser</summary>

@@ -1,6 +1,10 @@
 #include "resources.h"
 #include <oak/oak_def.h>
-#include <oak/debug.h>
+
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
+  #include <oak/debug.h>
+#endif
 
 
 using namespace oak;
@@ -31,6 +35,7 @@ void Resources::init()
   //default font
   addShader("text", true);
 
+#ifdef DEBUG_MODE
   if (FT_Init_FreeType(&freeType))
   {
     LOG_WARNING << "ERROR::FREETYPE: Could not init FreeType Library";
@@ -39,6 +44,7 @@ void Resources::init()
   {
     LOG << "--LOADED--| FreeType";
   }
+#endif
 
   uint defaultFontID = addFont("arial.ttf", ENGINE_RESOURCES_ROOT_PATH);
   defaultFont = getFontByID(defaultFontID);
@@ -52,8 +58,9 @@ uint Resources::addShader(std::string name, bool isEngineAsset)
     shaders.push_back(s);
     return s->getID();
   }
-
+#ifdef DEBUG_MODE
   LOG_WARNING << "Shader already loaded: '" << name << "'";
+#endif
 
   return defaultShader->getID();
 }
@@ -67,7 +74,9 @@ uint Resources::addTexture(std::string name, bool isEngineAsset)
     return t->getID();
   }
 
+#ifdef DEBUG_MODE
   LOG_WARNING << "Texture already loaded: '" << name << "'";
+#endif
 
   return defaultTexture->getID();
 }
@@ -81,7 +90,9 @@ uint Resources::addFont(std::string name, bool isEngineAsset)
     return font->getID();
   }
 
+#ifdef DEBUG_MODE
   LOG_WARNING << "Font already loaded: '" << name << "'";
+#endif
 
   return defaultFont->getID();
 }
@@ -97,7 +108,9 @@ uint Resources::getFontIDByName(std::string name)
     }
   }
 
+#ifdef DEBUG_MODE
   LOG_WARNING << "Font not found with name: '" << name << "'";
+#endif
 
   return defaultFont->getID();
 }
@@ -112,7 +125,9 @@ ion::Font* Resources::getFontByID(uint id)
     }
   }
 
+#ifdef DEBUG_MODE
   LOG_WARNING << "FALLBACK | Font id '" << id << "' was not found";
+#endif
 
   return defaultFont;
 }
@@ -166,7 +181,9 @@ Shader* Resources::getShaderByID(uint id)
     }
   }
 
+#ifdef DEBUG_MODE
   LOG_WARNING << "FALLBACK | Shader id '" << id << "' was not found";
+#endif
 
   return defaultShader;
 }
@@ -182,7 +199,9 @@ Shader* Resources::getShaderByName(std::string name)
     }
   }
 
+#ifdef DEBUG_MODE
   LOG_WARNING << "FALLBACK | Shader name '" << name << "' was not found";
+#endif
 
   return defaultShader;
 }
@@ -197,7 +216,9 @@ Texture* Resources::getTextureByID(uint textureID)
     }
   }
 
+#ifdef DEBUG_MODE
   LOG_WARNING << "FALLBACK | Texture ID '" << textureID << "' was not found";
+#endif
 
   return defaultTexture;
 }
@@ -212,7 +233,9 @@ Texture* Resources::getTextureByName(std::string src)
     }
   }
 
+#ifdef DEBUG_MODE
   LOG_WARNING << "FALLBACK | Texture src '" << src << "' was not found";
+#endif
 
   return defaultTexture;
 }

@@ -13,6 +13,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "build_def.h"
 #include "oak_def.h"
 #include "assets/shader.h"
 #include "scene/camera.h"
@@ -32,5 +33,9 @@
 #include "player/player_resource.h"
 #include "components/animator.h"
 #include "event/event_manager.h"
+
+#ifdef DEBUG_MODE
+  #include "debug.h"
+#endif
 
 #endif

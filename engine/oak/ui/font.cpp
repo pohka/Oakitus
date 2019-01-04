@@ -1,5 +1,10 @@
 #include "font.h"
-#include <oak/debug.h>
+
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
+  #include <oak/debug.h>
+#endif
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <oak/oak_def.h>
@@ -29,7 +34,9 @@ Font::Font(std::string name, bool isEngineAsset, FT_Library& freetype) : Asset(n
   fullPath += "fonts/" + name;
   if (FT_New_Face(freetype, fullPath.c_str(), 0, &face))
   {
+#ifdef DEBUG_MODE
     LOG_WARNING << "FREETYPE: Failed to load font:" << fullPath;
+#endif
   }
   else
   {
@@ -65,7 +72,9 @@ void Font::initChars(FT_Library& ft, Font* font)
     // Load character glyph 
     if (FT_Load_Char(font->face, c, FT_LOAD_RENDER))
     {
+#ifdef DEBUG_MODE
       std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
+#endif
       continue;
     }
     // Generate texture

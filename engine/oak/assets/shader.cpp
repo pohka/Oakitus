@@ -4,7 +4,11 @@
 #include <oak/window/window.h>
 #include <fstream>
 #include <sstream>
-#include <iostream>
+
+#include <oak/build_def.h>
+#ifdef DEBUG_MODE
+  #include <iostream>
+#endif
 
 using namespace oak;
 
@@ -67,7 +71,9 @@ void Shader::load()
   }
   catch (std::ifstream::failure e)
   {
+#ifdef DEBUG_MODE
     std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+#endif
   }
   const char* vShaderCode = vertexCode.c_str();
   const char * fShaderCode = fragmentCode.c_str();
@@ -189,7 +195,9 @@ void Shader::checkCompileErrors(GLuint shader, std::string type)
     if (!success)
     {
       glGetShaderInfoLog(shader, 1024, NULL, infoLog);
+#ifdef DEBUG_MODE
       std::cout << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+#endif
     }
   }
   else
@@ -198,7 +206,9 @@ void Shader::checkCompileErrors(GLuint shader, std::string type)
     if (!success)
     {
       glGetProgramInfoLog(shader, 1024, NULL, infoLog);
+#ifdef DEBUG_MODE
       std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+#endif
     }
   }
 }
