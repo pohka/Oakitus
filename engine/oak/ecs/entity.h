@@ -126,7 +126,7 @@ namespace oak
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
       CollisionLayer collisionLayer;
-      BaseRigidBody* rigidBody;
+      BaseRigidBody* rigidBody = nullptr;
 
       //EVENTS
       //-------------------------------------------------------------

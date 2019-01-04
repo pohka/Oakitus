@@ -76,6 +76,9 @@
     <Filter Include="projects\platformer\commands">
       <UniqueIdentifier>{86b7e644-07e1-4814-b89c-213f8bd1374d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\tiles">
+      <UniqueIdentifier>{b9c38b75-ae2b-438a-96ff-c35638496c32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -342,6 +345,15 @@
     <ClInclude Include="..\projects\platformer\commands\plat_movement_cmd.h">
       <Filter>projects\platformer\commands</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\tiles\chunk.h">
+      <Filter>oak\tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\tiles\tile.h">
+      <Filter>oak\tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\tiles\world.h">
+      <Filter>oak\tiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -522,6 +534,15 @@
     </ClCompile>
     <ClCompile Include="..\projects\platformer\commands\plat_movement_cmd.cpp">
       <Filter>projects\platformer\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\tiles\chunk.cpp">
+      <Filter>oak\tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\tiles\tile.cpp">
+      <Filter>oak\tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\tiles\world.cpp">
+      <Filter>oak\tiles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
