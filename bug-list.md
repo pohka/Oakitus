@@ -17,3 +17,8 @@
 * UIImage dont resize when padding is added, instead it acts like margin pushing it
 * UILabel doesnt have an auto height, the height should be calculated from the height a character with the font
 * auto width doesnt work for any UINodes
+
+# engine
+* shaders dont have destructor
+* font characters dont delete from glbuffers
+* loading new scene leaks memory, probably to do with glbuffers with textures

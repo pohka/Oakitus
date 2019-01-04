@@ -1,44 +1,27 @@
-#include <oak_setup.h>
-#include "scenes/main_scene.h"
-#include <core/player_resource.h>
-#include "player.h"
-#include "events/e_damage_taken.h"
-#include "strings_def.h"
-#include <ui/ui.h>
+#include <oak/oak_setup.h>
+
+//#include "projects/rpg/load_rpg_game.h"
+#include "projects/sample/load_game.h"
 
 using namespace oak;
-using namespace game;
+
+#ifdef DEBUG_MODE
+  #include <iostream>
 
 
 int main()
 {
-  uint windowW = 1066;
-  uint windowH = 600;
+  std::cout << "----- DEBUG MODE ENABLED -----" << std::endl;
 
-  uint viewportW = 736;
-  uint viewportH = 414;
-
-  Oakitus::init(viewportW, viewportH, windowW, windowH, false);
+  Oakitus::init();
   return 0;
 }
-
-
-void Oakitus::load()
-{
-  //load localized strings
-  ion::Localization::addString(STRING_HEALTH, "health:");
-  ion::Localization::addString(STRING_MANA, "mana:");
-
-  IEvent* damageEvent = new DamageTakenEvent(EVENT_ON_DAMAGE_TAKEN, game::onDamageTakenFire);
-  EventManager::addEvent(damageEvent);
-  IEvent* deathEvent = new DeathEvent(EVENT_ON_DEATH, game::onDeathFire);
-  EventManager::addEvent(deathEvent);
-
-  BasePlayer* player1 = new Player();
-  PlayerResource::addPlayer(*player1);
-
-  Scene* mainScene = new MainScene();
-  Scene::loadFirstScene(*mainScene);
-}
-
-
+#else
+  #ifdef PLATFORM_WINDOWS
+  INT WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)
+  {
+    Oakitus::init();
+    return 0;
+  }
+  #endif
+#endif
