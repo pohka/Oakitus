@@ -4,7 +4,7 @@
 //include in main.cpp to setup project
 
 #include "core/oakitus.h"
-#include "scene/scene.h"
+#include "scene/scene_manager.h"
 #include "build_def.h"
 
 #endif

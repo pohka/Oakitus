@@ -64,6 +64,18 @@
     <Filter Include="oak\window">
       <UniqueIdentifier>{205b23a6-fcac-4e07-b628-0225ed35d8a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="projects\platformer">
+      <UniqueIdentifier>{e634876e-5d05-461a-82ae-1e4c3d00cd22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\platformer\scenes">
+      <UniqueIdentifier>{69cd349d-9c7b-48e3-b249-d0a5c049d983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\platformer\prefabs">
+      <UniqueIdentifier>{cd9a2b06-8d69-420d-94c7-664ebcaf3242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\platformer\commands">
+      <UniqueIdentifier>{86b7e644-07e1-4814-b89c-213f8bd1374d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -204,9 +216,6 @@
     <ClInclude Include="..\projects\sample\sample_gamemode.h">
       <Filter>projects\sample</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\sample\sample_def.h">
-      <Filter>projects\sample</Filter>
-    </ClInclude>
     <ClInclude Include="..\projects\sample\events\event_damage.h">
       <Filter>projects\sample\events</Filter>
     </ClInclude>
@@ -314,6 +323,24 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\core\kvmap.h">
       <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\platformer\scenes\testing_scene.h">
+      <Filter>projects\platformer\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\platformer\scenes\game_scenes.h">
+      <Filter>projects\platformer\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\platformer\prefabs\a_player.h">
+      <Filter>projects\platformer\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\sample\sample_def.h">
+      <Filter>projects\sample</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\platformer\plat_consts.h">
+      <Filter>projects\platformer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\platformer\commands\plat_movement_cmd.h">
+      <Filter>projects\platformer\commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -483,6 +510,18 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\resources.cpp">
       <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\platformer\load_game.cpp">
+      <Filter>projects\platformer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\platformer\scenes\testing_scene.cpp">
+      <Filter>projects\platformer\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\platformer\prefabs\a_player.cpp">
+      <Filter>projects\platformer\prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\platformer\commands\plat_movement_cmd.cpp">
+      <Filter>projects\platformer\commands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

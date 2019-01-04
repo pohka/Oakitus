@@ -15,7 +15,6 @@ namespace oak
     public:
       friend class Player;
       Actor();
-      ~Actor();
       Player* getOwner();
   };
 }

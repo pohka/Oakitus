@@ -14,6 +14,7 @@ namespace oak
     static uint playerCount; ///<summary>Current player count</summary>
     static uint localPlayerID;
 
+
     public :
       ///<summary>Add a Player</summary>
       static void addPlayer(Player* player);
@@ -27,6 +28,8 @@ namespace oak
       static void executeAllCommands();
 
       static bool isLocalPlayerID(uint playerID);
+
+      static Player* getLocalPlayerBySlot(unsigned int slotIndex);
   };
 }
 

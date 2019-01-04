@@ -43,3 +43,20 @@ Player* PlayerResource::getLocalPlayer()
   //for future multiplayer feature
   return players[localPlayerID];
 }
+
+Player* PlayerResource::getLocalPlayerBySlot(unsigned int slotIndex)
+{
+  unsigned int slotCount = 0;
+  for (Player* player : players)
+  {
+    if (isLocalPlayerID(player->getPlayerID()))
+    {
+      slotCount++;
+      if (slotCount == slotIndex)
+      {
+        return player;
+      }
+    }
+  }
+  return nullptr;
+}

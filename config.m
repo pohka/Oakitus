@@ -1,7 +1,7 @@
 config : {
-  project : "sample"
+  project : "platformer"
   inital_scene : "demo_scene"
-  title : "sample game"
+  title : "platformer"
   viewport_w : 736
   viewport_h : 414
   window_w : 1066
