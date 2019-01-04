@@ -6,6 +6,7 @@
 #include <fstream>
 #include <cctype>
 #include "var.h"
+#include <oak/core/kvmap.h>
 
 #include <oak/build_def.h>
 #ifdef PLATFORM_WINDOWS

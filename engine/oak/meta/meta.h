@@ -2,7 +2,7 @@
 #define META_H
 
 #include <string>
-#include "kvmap.h"
+#include <oak/core/kvmap.h>
 #include "meta_def.h"
 #include "var_object.h"
 

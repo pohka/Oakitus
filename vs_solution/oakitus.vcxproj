@@ -36,6 +36,7 @@
     <ClInclude Include="..\engine\oak\components\sprite_animation.h" />
     <ClInclude Include="..\engine\oak\core\fmath.h" />
     <ClInclude Include="..\engine\oak\core\init.h" />
+    <ClInclude Include="..\engine\oak\core\kvmap.h" />
     <ClInclude Include="..\engine\oak\core\oakitus.h" />
     <ClInclude Include="..\engine\oak\core\resources.h" />
     <ClInclude Include="..\engine\oak\core\string_help.h" />
@@ -54,7 +55,6 @@
     <ClInclude Include="..\engine\oak\input\key_buffer.h" />
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
-    <ClInclude Include="..\engine\oak\meta\kvmap.h" />
     <ClInclude Include="..\engine\oak\meta\meta.h" />
     <ClInclude Include="..\engine\oak\meta\meta_def.h" />
     <ClInclude Include="..\engine\oak\meta\var.h" />

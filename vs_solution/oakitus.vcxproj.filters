@@ -180,9 +180,6 @@
     <ClInclude Include="..\projects\sample\movement_cmd.h">
       <Filter>projects\sample</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\kvmap.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\meta\meta.h">
       <Filter>oak\meta</Filter>
     </ClInclude>
@@ -314,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\build_def.h">
       <Filter>oak</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\kvmap.h">
+      <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

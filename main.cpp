@@ -11,7 +11,7 @@ using namespace oak;
 
 int main()
 {
-  std::cout << "----- DEBUG MODE -----" << std::endl;
+  std::cout << "----- DEBUG MODE ENABLED -----" << std::endl;
 
   Oakitus::init();
   return 0;
