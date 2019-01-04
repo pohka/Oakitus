@@ -1,6 +1,3 @@
-//enables debug mode in release builds
-#define DEBUG_MODE_ENABLED
-
 #include <oak/oak_setup.h>
 
 //#include "projects/rpg/load_rpg_game.h"
@@ -14,11 +11,7 @@ using namespace oak;
 
 int main()
 {
-#ifdef DEBUG_MODE
-  std::cout << "in debug" << std::endl;
-#else
-  //std::cout << "not in debug" << std::endl;
-#endif
+  std::cout << "----- DEBUG MODE -----" << std::endl;
 
   Oakitus::init();
   return 0;

@@ -19,5 +19,6 @@
 * auto width doesnt work for any UINodes
 
 # engine
-shaders dont have destructor
-font characters dont delete from glbuffers
+* shaders dont have destructor
+* font characters dont delete from glbuffers
+* loading new scene leaks memory, probably to do with glbuffers with textures
