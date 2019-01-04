@@ -172,7 +172,7 @@ void StyleParser::parseColor(
       if (oak::StringHelp::isNumber(els[i]))
       {
         v = std::stof(els[i]) / 255.0f;
-        oak::FMath::clamp(v, 0.0f, 1.0f);
+        v = oak::FMath::clamp(v, 0.0f, 1.0f);
       }
       else
       {
@@ -184,7 +184,7 @@ void StyleParser::parseColor(
     if (els.size() > 3 && oak::StringHelp::isNumber(els[3]))
     {
       float alpha = std::stof(els[3]);
-      oak::FMath::clamp(alpha, 0.0f, 1.0f);
+      v = oak::FMath::clamp(alpha, 0.0f, 1.0f);
       rgba.push_back(alpha);
     }
   }
