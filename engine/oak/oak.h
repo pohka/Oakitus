@@ -33,6 +33,7 @@
 #include "player/player_resource.h"
 #include "components/animator.h"
 #include "event/event_manager.h"
+#include "ecs/entity_manager.h"
 
 #ifdef DEBUG_MODE
   #include "debug.h"

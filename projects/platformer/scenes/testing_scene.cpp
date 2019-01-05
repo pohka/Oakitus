@@ -4,6 +4,7 @@
 #include "../commands/plat_movement_cmd.h"
 #include "../plat_consts.h"
 #include <oak/tiles/world.h>
+#include "../prefabs/camera_ent.h"
 
 using namespace plat;
 using namespace oak;
@@ -47,8 +48,17 @@ void TestingScene::onLoad()
 
   LOG << "Loading scene";
 
+  //create camera
+  Entity* cameraEnt = new CameraEnt();
+  cameraEnt->create();
+
+  //create player actor
   APlayer* playerActor = new APlayer();
   playerActor->create(0.0f, 0.0f);
+
+  //set follow target
+  auto follow = cameraEnt->getComponent<CameraFollow>();
+  follow->setTarget(playerActor);
 
   Player* player = PlayerResource::getLocalPlayerBySlot(1);
   if (player != nullptr)

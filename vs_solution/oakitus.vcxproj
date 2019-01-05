@@ -100,8 +100,10 @@
     <ClInclude Include="..\projects\platformer\commands\plat_movement_cmd.h" />
     <ClInclude Include="..\projects\platformer\plat_consts.h" />
     <ClInclude Include="..\projects\platformer\prefabs\a_player.h" />
+    <ClInclude Include="..\projects\platformer\prefabs\camera_ent.h" />
     <ClInclude Include="..\projects\platformer\scenes\game_scenes.h" />
     <ClInclude Include="..\projects\platformer\scenes\testing_scene.h" />
+    <ClInclude Include="..\projects\platformer\scripts\camera_follow.h" />
     <ClInclude Include="..\projects\sample\events\event_damage.h" />
     <ClInclude Include="..\projects\sample\load_game.h" />
     <ClInclude Include="..\projects\sample\movement_cmd.h" />
@@ -171,6 +173,7 @@
     <ClCompile Include="..\projects\platformer\load_game.cpp" />
     <ClCompile Include="..\projects\platformer\prefabs\a_player.cpp" />
     <ClCompile Include="..\projects\platformer\scenes\testing_scene.cpp" />
+    <ClCompile Include="..\projects\platformer\scripts\camera_follow.cpp" />
     <ClCompile Include="..\projects\sample\events\event_damage.cpp" />
     <ClCompile Include="..\projects\sample\movement_cmd.cpp" />
     <ClCompile Include="..\projects\sample\sample_gamemode.cpp" />

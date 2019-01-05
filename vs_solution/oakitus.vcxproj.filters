@@ -85,6 +85,9 @@
     <Filter Include="resources\shaders">
       <UniqueIdentifier>{c846c93e-c448-4e9c-8e9b-6003246354f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="projects\platformer\scripts">
+      <UniqueIdentifier>{6b372f55-144f-4275-a178-0b37346ea293}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -360,6 +363,12 @@
     <ClInclude Include="..\engine\oak\tiles\world.h">
       <Filter>oak\tiles</Filter>
     </ClInclude>
+    <ClInclude Include="..\projects\platformer\scripts\camera_follow.h">
+      <Filter>projects\platformer\scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\platformer\prefabs\camera_ent.h">
+      <Filter>projects\platformer\prefabs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -549,6 +558,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\components\sprite.cpp">
       <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\platformer\scripts\camera_follow.cpp">
+      <Filter>projects\platformer\scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

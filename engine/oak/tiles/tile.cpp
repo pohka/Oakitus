@@ -86,8 +86,6 @@ void Tile::onRender(const float vpX, const float vpY, Shader* shader) const
     0.0f
   );
 
-  LOG << "pos:" << pos.x << pos.y;
-
   model = glm::translate(model, pos);
   //shader->use();
   shader->setMat4("model", model);

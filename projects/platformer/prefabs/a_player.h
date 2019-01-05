@@ -8,6 +8,8 @@ namespace plat
   struct APlayer : public oak::Actor
   {
     APlayer();
+
+   // void onCreate() override;
   };
 }
 
