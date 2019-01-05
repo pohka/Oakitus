@@ -1,4 +1,6 @@
 #include "world.h"
+#include <oak/tiles/chunk_script.h>
+//#include <oak/collision/collision_rect.h>
 
 using namespace tile;
 
@@ -15,13 +17,36 @@ World::World(
   }
 }
 
-Chunk* World::addChunk()
+ChunkScript* World::addChunk()
 {
-  Chunk* chunk = new Chunk(CHUNK_SIZE);
-  chunk->world = this;
-  chunks.push_back(chunk);
+  ChunkScript* chunk = new ChunkScript(this);
   addComponent(chunk);
+  chunks.push_back(chunk);
   return chunk;
+}
+
+void World::gen()
+{
+  float halfTile = (float)(TILE_SIZE / 2);
+
+  for (uint y = 0; y < CHUNK_SIZE; y++)
+  {
+    for (uint x = 0; x < CHUNK_SIZE; x++)
+    {
+      uint tileID = chunks[0]->table[y][x];
+      if (tileID > 0)
+      {
+        addCollision(
+          new oak::CollisionRect(
+            (float)(x * TILE_SIZE) + halfTile,
+            -(float)(y * TILE_SIZE) - halfTile,
+            (float)TILE_SIZE,
+            (float)TILE_SIZE
+          )
+        );
+      }
+    }
+  }
 }
 
 void World::addTile(Tile* tile)

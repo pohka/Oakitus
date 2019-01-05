@@ -32,8 +32,7 @@ namespace oak
 	  uint entityID; ///<summary>Unique ID of this Entity</summary>
 
     std::vector<Component*> componentGroups[TICK_GROUP_MAX];
-
-    std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
+    
 	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
     
     
@@ -123,6 +122,8 @@ namespace oak
         return nullptr;
       }
 
+      virtual std::vector<BaseCollisionShape*>& getCollisionShapes();
+
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
       CollisionLayer collisionLayer;
@@ -148,7 +149,12 @@ namespace oak
       void onCollisionHit(Entity& hit);
       //-------------------------------------------------------------
 
+      std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
+
       bool canTickWhenPaused = false;
+
+      //std::vector<Entity*> children;
+      //Entity* parent;
 
     private:
        bool isEverRendered;

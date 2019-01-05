@@ -10,8 +10,6 @@ plat::MovementCMD::MovementCMD() : Command(COMMAND_MOVEMENT)
 
 void plat::MovementCMD::execute()
 {
- 
-  const float speed = 100.0f;
 
   float axisX = 0.0f;
   float axisY = 0.0f;
@@ -49,6 +47,11 @@ void plat::MovementCMD::execute()
 
       actor->position.x += move.x * Time::deltaTime();
       actor->position.y += move.y * Time::deltaTime();
+    }
+
+    if (state == STATE_AIR)
+    {
+      actor->position.y -= gravity * Time::deltaTime();
     }
 
     Animator* animator = actor->getComponent<Animator>();

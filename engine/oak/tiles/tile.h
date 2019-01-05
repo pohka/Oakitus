@@ -4,6 +4,7 @@
 #include <oak/core/types.h>
 #include <oak/assets/texture.h>
 #include <oak/assets/shader.h>
+#include <oak/collision/collision_rect.h>
 
 namespace tile
 {
@@ -11,7 +12,7 @@ namespace tile
   {
     const uint tileID;
     const uint textureID;
-    
+    oak::CollisionRect collisionRect;
 
     Tile(
       const uint tileID,

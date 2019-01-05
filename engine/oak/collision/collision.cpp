@@ -168,12 +168,15 @@ bool Collision::sideCheckRectCircle(
 //todo: is this even being used?
 bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
 {
-  for (uint a = 0; a < entA->collisionShapes.size(); a++)
+  std::vector<BaseCollisionShape*>& entAShapes = entA->getCollisionShapes();
+  std::vector<BaseCollisionShape*>& entBShapes = entB->getCollisionShapes();
+
+  for (uint a = 0; a < entAShapes.size(); a++)
   {
-    BaseCollisionShape* colA = entA->collisionShapes[a];
-    for (uint b = 0; b < entB->collisionShapes.size(); b++)
+    BaseCollisionShape* colA = entAShapes[a];
+    for (uint b = 0; b < entBShapes.size(); b++)
     {
-      BaseCollisionShape* colB = entB->collisionShapes[b];
+      BaseCollisionShape* colB = entBShapes[b];
       if (colA->intersects(*colB))
       {
         // LOG << "HAS COLLISION";
@@ -188,12 +191,15 @@ bool Collision::checkEntEntCollision(Entity* entA, Entity* entB)
 
 void Collision::checkEntEntTrigger(Entity* entA, Entity* entB)
 {
-  for (uint a = 0; a < entA->collisionShapes.size(); a++)
+  std::vector<BaseCollisionShape*>& entAShapes = entA->getCollisionShapes();
+  std::vector<BaseCollisionShape*>& entBShapes = entB->getCollisionShapes();
+
+  for (uint a = 0; a < entAShapes.size(); a++)
   {
-    BaseCollisionShape* colA = entA->collisionShapes[a];
-    for (uint b = 0; b < entB->collisionShapes.size(); b++)
+    BaseCollisionShape* colA = entAShapes[a];
+    for (uint b = 0; b < entBShapes.size(); b++)
     {
-      BaseCollisionShape* colB = entB->collisionShapes[b];
+      BaseCollisionShape* colB = entBShapes[b];
       //overlap fround
       if (colA->intersects(*colB))
       {
@@ -299,15 +305,18 @@ glm::vec3 Collision::colliderDesiredPos(Entity* ent, BaseCollisionShape* shape)
 
 void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
 {
-  for (uint a = 0; a < staticEnt->collisionShapes.size(); a++)
+  std::vector<BaseCollisionShape*>& staticEntShapes = staticEnt->getCollisionShapes();
+  std::vector<BaseCollisionShape*>& dynamicEntShapes = dynamicEnt->getCollisionShapes();
+
+  for (uint a = 0; a < staticEntShapes.size(); a++)
   {
-    BaseCollisionShape* staticCol = staticEnt->collisionShapes[a];
+    BaseCollisionShape* staticCol = staticEntShapes[a];
 
     if(staticCol->isTrigger == false)
     {
-      for (uint b = 0; b < dynamicEnt->collisionShapes.size(); b++)
+      for (uint b = 0; b < dynamicEntShapes.size(); b++)
       {
-        BaseCollisionShape* dynamicCol = dynamicEnt->collisionShapes[b];
+        BaseCollisionShape* dynamicCol = dynamicEntShapes[b];
         
         //both are physical and have collision
         if (dynamicCol->isTrigger == false && dynamicCol->intersects(*staticCol))
@@ -708,15 +717,17 @@ void Collision::solveStaticRectDynamicCircle(
 
 void Collision::solveDynamicDynamic(Entity* entA, Entity* entB)
 {
-  for (uint a = 0; a < entA->collisionShapes.size(); a++)
+  std::vector<BaseCollisionShape*>& entAShapes = entA->getCollisionShapes();
+  std::vector<BaseCollisionShape*>& entBShapes = entB->getCollisionShapes();
+  for (uint a = 0; a < entAShapes.size(); a++)
   {
-    BaseCollisionShape* colA = entA->collisionShapes[a];
+    BaseCollisionShape* colA = entAShapes[a];
 
     if (colA->isTrigger == false)
     {
-      for (uint b = 0; b < entB->collisionShapes.size(); b++)
+      for (uint b = 0; b < entBShapes.size(); b++)
       {
-        BaseCollisionShape* colB = entB->collisionShapes[b];
+        BaseCollisionShape* colB = entBShapes[b];
 
         //both are physical and have collision
         if (colB->isTrigger == false && colA->intersects(*colB))

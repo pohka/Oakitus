@@ -354,9 +354,6 @@
     <ClInclude Include="..\projects\platformer\commands\plat_movement_cmd.h">
       <Filter>projects\platformer\commands</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\tiles\chunk.h">
-      <Filter>oak\tiles</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\tiles\tile.h">
       <Filter>oak\tiles</Filter>
     </ClInclude>
@@ -368,6 +365,9 @@
     </ClInclude>
     <ClInclude Include="..\projects\platformer\prefabs\camera_ent.h">
       <Filter>projects\platformer\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\tiles\chunk_script.h">
+      <Filter>oak\tiles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -547,9 +547,6 @@
     <ClCompile Include="..\projects\platformer\commands\plat_movement_cmd.cpp">
       <Filter>projects\platformer\commands</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\tiles\chunk.cpp">
-      <Filter>oak\tiles</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\tiles\tile.cpp">
       <Filter>oak\tiles</Filter>
     </ClCompile>
@@ -561,6 +558,9 @@
     </ClCompile>
     <ClCompile Include="..\projects\platformer\scripts\camera_follow.cpp">
       <Filter>projects\platformer\scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\tiles\chunk_script.cpp">
+      <Filter>oak\tiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,8 @@ Tile::Tile(
   const uint spacing
 ) :
   tileID(tileID),
-  textureID(texture->getID())
+  textureID(texture->getID()),
+  collisionRect(oak::CollisionRect(0.0f, 0.0f, (float)TILE_SIZE, (float)TILE_SIZE))
 {
   //texture coords
   const uint totalSize = (TILE_SIZE + spacing * 2);

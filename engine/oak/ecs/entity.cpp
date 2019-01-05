@@ -202,3 +202,8 @@ bool Entity::canTickThisFrame() const
 
   return false;
 }
+
+std::vector<BaseCollisionShape*>& Entity::getCollisionShapes()
+{
+  return collisionShapes;
+}

@@ -72,7 +72,7 @@
     <ClInclude Include="..\engine\oak\scene\precache.h" />
     <ClInclude Include="..\engine\oak\scene\scene.h" />
     <ClInclude Include="..\engine\oak\scene\scene_manager.h" />
-    <ClInclude Include="..\engine\oak\tiles\chunk.h" />
+    <ClInclude Include="..\engine\oak\tiles\chunk_script.h" />
     <ClInclude Include="..\engine\oak\tiles\tile.h" />
     <ClInclude Include="..\engine\oak\tiles\world.h" />
     <ClInclude Include="..\engine\oak\time\fps_limiter.h" />
@@ -147,7 +147,7 @@
     <ClCompile Include="..\engine\oak\scene\camera.cpp" />
     <ClCompile Include="..\engine\oak\scene\scene.cpp" />
     <ClCompile Include="..\engine\oak\scene\scene_manager.cpp" />
-    <ClCompile Include="..\engine\oak\tiles\chunk.cpp" />
+    <ClCompile Include="..\engine\oak\tiles\chunk_script.cpp" />
     <ClCompile Include="..\engine\oak\tiles\tile.cpp" />
     <ClCompile Include="..\engine\oak\tiles\world.cpp" />
     <ClCompile Include="..\engine\oak\time\fps_limiter.cpp" />
