@@ -14,6 +14,7 @@ namespace tile
   {
     const uint CHUNK_SIZE;
     const uint TILE_SIZE;
+    const int TOTAL_CHUNK_SIZE;
 
     World(
       const uint TILE_SIZE,
@@ -21,7 +22,7 @@ namespace tile
     );
     ~World();
 
-    ChunkScript* addChunk();
+    ChunkScript* addChunk(const int chunkX, const int chunkY);
 
     void addTile(Tile* tile);
 

@@ -38,7 +38,7 @@ void TestingScene::onLoad()
   }
   world->create(0.0f, 0.0f);
  
-  ChunkScript* chunk = world->addChunk();
+  ChunkScript* chunk = world->addChunk(0,0);
   for (uint i = 0; i < CHUNK_SIZE; i++)
   {
     chunk->table[i][0] = 1;
@@ -56,7 +56,7 @@ void TestingScene::onLoad()
 
   //create player actor
   APlayer* playerActor = new APlayer();
-  playerActor->create(110.0f, -110.0f);
+  playerActor->create(110.0f, -410.0f);
 
   //set follow target
   auto follow = cameraEnt->getComponent<CameraFollow>();

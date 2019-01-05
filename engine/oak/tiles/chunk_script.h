@@ -10,7 +10,15 @@ namespace tile
   {
     friend struct World;
 
-    ChunkScript(World* world);
+    //chunk offset in viewport coords
+    const float VP_OFFSET_X;
+    const float VP_OFFSET_Y;
+
+    //chunk offset in world coords
+    const float WORLD_OFFSET_X;
+    const float WORLD_OFFSET_Y;
+
+    ChunkScript(World* world, const int x, const int y);
 
     void onCreate() override;
     void onRender() const override;

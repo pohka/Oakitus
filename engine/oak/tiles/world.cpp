@@ -9,7 +9,8 @@ World::World(
   const uint CHUNK_SIZE
 ) : 
   TILE_SIZE(TILE_SIZE),
-  CHUNK_SIZE(CHUNK_SIZE)
+  CHUNK_SIZE(CHUNK_SIZE),
+  TOTAL_CHUNK_SIZE(TILE_SIZE * CHUNK_SIZE)
 {
   for (Tile* tile : tiles)
   {
@@ -17,9 +18,9 @@ World::World(
   }
 }
 
-ChunkScript* World::addChunk()
+ChunkScript* World::addChunk(const int chunkX, const int chunkY)
 {
-  ChunkScript* chunk = new ChunkScript(this);
+  ChunkScript* chunk = new ChunkScript(this, chunkX, chunkY);
   addComponent(chunk);
   chunks.push_back(chunk);
   return chunk;
@@ -38,8 +39,8 @@ void World::gen()
       {
         addCollision(
           new oak::CollisionRect(
-            (float)(x * TILE_SIZE) + halfTile,
-            -(float)(y * TILE_SIZE) - halfTile,
+            chunks[0]->WORLD_OFFSET_X + (float)(x * TILE_SIZE) + halfTile,
+            chunks[0]->WORLD_OFFSET_Y - (float)(y * TILE_SIZE) - halfTile,
             (float)TILE_SIZE,
             (float)TILE_SIZE
           )

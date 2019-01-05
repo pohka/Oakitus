@@ -8,7 +8,16 @@
 using namespace tile;
 using namespace oak;
 
-ChunkScript::ChunkScript(World* world) : Component(TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true)
+ChunkScript::ChunkScript(World* world, const int x, const int y) :
+  Component(TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true),
+  WORLD_OFFSET_X((float)(x * world->TOTAL_CHUNK_SIZE)),
+  WORLD_OFFSET_Y((float)(y * world->TOTAL_CHUNK_SIZE)),
+  VP_OFFSET_X(
+    Window::worldToViewportCoords((float)(x * world->TOTAL_CHUNK_SIZE))
+  ),
+  VP_OFFSET_Y(
+    Window::worldToViewportCoords((float)(y * world->TOTAL_CHUNK_SIZE))
+  )
 {
   this->world = world;
 
@@ -47,8 +56,8 @@ void ChunkScript::onRender() const
         if (tile != nullptr)
         {
           tile->onRender(
-            (float)(x * vpTileSize),
-            -(float)(y * vpTileSize),
+            VP_OFFSET_X + (float)(x * vpTileSize),
+            VP_OFFSET_Y - (float)(y * vpTileSize),
             shader
           );
         }
