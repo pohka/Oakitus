@@ -369,6 +369,9 @@
     <ClInclude Include="..\engine\oak\tiles\chunk_script.h">
       <Filter>oak\tiles</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\components\transform.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -561,6 +564,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\tiles\chunk_script.cpp">
       <Filter>oak\tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\transform.cpp">
+      <Filter>oak\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

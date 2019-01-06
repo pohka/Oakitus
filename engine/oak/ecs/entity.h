@@ -11,6 +11,7 @@
 #include <queue>
 #include <oak/collision/collision_layer.h>
 #include <oak/components/base_rigid_body.h>
+#include <oak/components/transform.h>
 
 #include <unordered_map>
 
@@ -28,6 +29,7 @@ namespace oak
     friend class Oakitus;
     friend struct EntityManager;
     friend class Collision;
+    friend class Transform;
 
 	  uint entityID; ///<summary>Unique ID of this Entity</summary>
 
@@ -40,8 +42,7 @@ namespace oak
     public:
       friend class Scene;
 
-      glm::vec3 position; ///<summary>World position of this Entity</summary>
-      glm::vec3 rotation;
+      Transform* transform;
       int layerID; ///<summary>Drawing layerID</summary>
       bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
       std::string name; ///<summary>Name of this Entity</summary>
@@ -129,6 +130,7 @@ namespace oak
 
       Entity* findChildByName(std::string name);
       Entity* findChildByID(uint id);
+      const std::vector<Entity*>& getChildren() const;
 
       virtual std::vector<BaseCollisionShape*>& getCollisionShapes();
 

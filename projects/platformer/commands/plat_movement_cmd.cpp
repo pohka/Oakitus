@@ -36,22 +36,26 @@ void plat::MovementCMD::execute()
   bool hasMoved = (axisX != 0.0f || axisY != 0.0f);
 
   Actor* actor = player->getAssignedActor();
+  LOG << "children:" << actor->getChildren().size();
 
   if (actor != nullptr)
   {
+    glm::vec3 translate = glm::vec3(0.0f, 0.0f, 0.0f);
+
     if (hasMoved)
     {
       //calculate the movement vector, so the actor moves at the same speed in all directions
       glm::vec2 move = glm::vec2(axisX, axisY);
       move = glm::normalize(move) * speed;
 
-      actor->position.x += move.x * Time::deltaTime();
-      actor->position.y += move.y * Time::deltaTime();
+      translate.x += move.x * Time::deltaTime();
+      translate.y += move.y * Time::deltaTime();
     }
 
     if (state == STATE_AIR)
     {
-      actor->position.y -= gravity * Time::deltaTime();
+      translate.y -= gravity * Time::deltaTime();
+      //actor->position.y -= gravity * Time::deltaTime();
     }
 
     Animator* animator = actor->getComponent<Animator>();
@@ -76,5 +80,8 @@ void plat::MovementCMD::execute()
         animator->setAnim(ANIM_ACT_IDLE);
       }
     }
+
+    //apply change in position
+    actor->transform->moveBy(translate);
   }
 }

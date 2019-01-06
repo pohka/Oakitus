@@ -30,22 +30,22 @@ bool CollisionRect::intersectsCircle(const CollisionCircle &shape) const
 
 float CollisionRect::minX() const
 {
-  return this->entity->position.x + m_offsetX - (w * 0.5f);
+  return this->entity->transform->position().x + m_offsetX - (w * 0.5f);
 }
 
 float CollisionRect::minY() const
 {
-  return this->entity->position.y + m_offsetY - (h * 0.5f);
+  return this->entity->transform->position().y + m_offsetY - (h * 0.5f);
 }
 
 float CollisionRect::maxX() const
 {
-  return this->entity->position.x + m_offsetX + (w * 0.5f);
+  return this->entity->transform->position().x + m_offsetX + (w * 0.5f);
 }
 
 float CollisionRect::maxY() const
 {
-  return this->entity->position.y + m_offsetY + (h * 0.5f);
+  return this->entity->transform->position().y + m_offsetY + (h * 0.5f);
 }
 
 float CollisionRect::width() const

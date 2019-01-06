@@ -113,14 +113,16 @@ void Sprite::onRender() const
 
   glm::vec3 camNPos = Camera::getNormalizedPos();
 
+  glm::vec3 position = entity->transform->position();
+
   glm::vec3 pos(
-    Window::worldToViewportCoords(entity->position.x) - camNPos.x,
-    Window::worldToViewportCoords(entity->position.y) - camNPos.y,
+    Window::worldToViewportCoords(position.x) - camNPos.x,
+    Window::worldToViewportCoords(position.y) - camNPos.y,
     0.0f
   );
   model = glm::translate(model, pos);
 
-  float rotation = entity->rotation.z;
+  float rotation = entity->transform->rotation().z;
   model = glm::rotate(model, rotation, glm::vec3(0.0, 0.0, 1.0f));
 
   Shader* shader = Resources::getShaderByID(this->shaderID);

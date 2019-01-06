@@ -97,7 +97,7 @@ void SpriteAnimation::onRender(float positionX, float positionY) const
   );
   model = glm::translate(model, pos);
 
-  float rotation = this->animator->entity->rotation.z;
+  float rotation = this->animator->entity->transform->rotation().z;
   model = glm::rotate(model, rotation, glm::vec3(0.0, 0.0, 1.0f));
 
   Shader* shader = Resources::getShaderByID(this->shaderID);

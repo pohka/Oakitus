@@ -18,7 +18,7 @@ void CameraFollow::onTick()
   Entity* target = EntityManager::findEntityByID(targetID);
   if (target != nullptr)
   {
-    Camera::position.x = target->position.x;
-    Camera::position.y = target->position.y;
+    Camera::position.x = target->transform->position().x;
+    Camera::position.y = target->transform->position().y;
   }
 }

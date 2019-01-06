@@ -15,5 +15,5 @@ BaseRigidBody::BaseRigidBody(bool isStatic) : Component()
 
 void BaseRigidBody::onCreate()
 {
-  lastPos = entity->position;
+  lastPos = entity->transform->position();
 }

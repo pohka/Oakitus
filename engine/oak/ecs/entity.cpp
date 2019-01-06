@@ -12,12 +12,12 @@ Entity::Entity(bool isEverRendered)
   this->isRenderable = isEverRendered;
 
   this->entityID = EntityManager::entityIDGen.nextID();
-  this->position = glm::vec3(0, 0, 0);
-  this->rotation = glm::vec3(0, 0, 0);
   layerID = 0;
   isGlobal = false;
   this->name = "ent_" + std::to_string(entityID);
   collisionLayer = CollisionLayer::NONE;
+  transform = new Transform();
+  addComponent(transform);
 }
 
 Entity::~Entity()
@@ -82,8 +82,7 @@ void oak::Entity::create(float x, float y)
 {
   if (createState == STATE_NOT_CREATED)
   {
-    this->position.x = x;
-    this->position.y = y;
+    transform->moveTo(x, y, 0.0f);
     EntityManager::pendingEntityInstances.push(this);
     createState = STATE_QUEUED;
   }
@@ -112,6 +111,8 @@ std::string Entity::getName() const
 
 void Entity::onCreate()
 {
+  //children will call onCreate for themselves
+
   createState = STATE_CREATED;
 
   //onCreate components
@@ -121,12 +122,6 @@ void Entity::onCreate()
     {
       comp->onCreate();
     }
-  }
-
-  //onCreate children
-  for (Entity* child : children)
-  {
-    child->onCreate();
   }
 
   //notify parent
@@ -344,4 +339,9 @@ void Entity::onChildDestroyed(uint entID)
 void Entity::onChildCreated(Entity* child)
 {
   children.push_back(child);
+}
+
+const std::vector<Entity*>& Entity::getChildren() const
+{
+  return children;
 }

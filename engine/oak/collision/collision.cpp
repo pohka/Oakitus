@@ -236,7 +236,7 @@ void Collision::resolveCollisions()
 
     if (rb != nullptr && rb->isStatic == false)
     {
-      rb->desiredNextPos = ent->position;
+      rb->desiredNextPos = ent->transform->position();
       rb->nextPos = rb->desiredNextPos;
       rb->velocity = rb->desiredNextPos - rb->lastPos;
     }
@@ -260,7 +260,7 @@ void Collision::resolveCollisions()
     if (rb != nullptr && rb->isStatic == false)
     {
       rb->lastPos = EntityManager::entitys[i]->rigidBody->nextPos;
-      ent->position = EntityManager::entitys[i]->rigidBody->nextPos;
+      ent->transform->moveTo(EntityManager::entitys[i]->rigidBody->nextPos);
     }
   }
 
@@ -589,7 +589,7 @@ void Collision::solveStaticCricleDynamicCircle(
 {
   glm::vec3 direction = glm::normalize((dynamicEnt->rigidBody->nextPos + dynamicCircle->offset()) - glm::vec3(staticCircle->originX(), staticCircle->originY(), 0.0f));
   float minDist = staticCircle->getRadius() + dynamicCircle->getRadius();
-  dynamicEnt->rigidBody->nextPos = staticEnt->position + staticCircle->offset() - dynamicCircle->offset() + (direction * minDist);
+  dynamicEnt->rigidBody->nextPos = staticEnt->transform->position() + staticCircle->offset() - dynamicCircle->offset() + (direction * minDist);
 }
 
 void Collision::solveStaticRectDynamicCircle(
