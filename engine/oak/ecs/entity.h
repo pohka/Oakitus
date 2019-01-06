@@ -64,6 +64,8 @@ namespace oak
       ///<summary>Adds this Entity to the world at the given position</summary>
       void create(float x, float y);
 
+     // void createAsChild(Entity* child);
+
       ///<summary>Destroys this Entity</summary>
 	    void destroy();
 
@@ -79,7 +81,7 @@ namespace oak
       bool getIsTickingEnabled() const;
       void setIsTickingEnabled(bool isEnabled);
 
-      void setIsVisible(bool isVisible);
+      void setIsRenderable(bool isRenderable);
       bool getIsRenderable() const;
 
       bool getCanTickWhenPaused() const;
@@ -122,6 +124,12 @@ namespace oak
         return nullptr;
       }
 
+      //child should already be created
+      void addChild(Entity* child);
+
+      Entity* findChildByName(std::string name);
+      Entity* findChildByID(uint id);
+
       virtual std::vector<BaseCollisionShape*>& getCollisionShapes();
 
     protected:
@@ -147,19 +155,29 @@ namespace oak
 
       ///<summary>Called when a collision occured</summary>
       void onCollisionHit(Entity& hit);
+
+      void onChildDestroyed(uint entID);
+
       //-------------------------------------------------------------
 
       std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
 
       bool canTickWhenPaused = false;
 
-      //std::vector<Entity*> children;
-      //Entity* parent;
+      std::vector<Entity*> children;
+      Entity* parent = nullptr;
 
     private:
+      void onChildCreated(Entity* ent);
+
        bool isEverRendered;
        bool isRenderable;
        bool isTickingEnable = true;
+
+       static cnum STATE_NOT_CREATED = 0;
+       static cnum STATE_QUEUED = 1;
+       static cnum STATE_CREATED = 2;
+       uchar createState = STATE_NOT_CREATED;
   };
 }
 
