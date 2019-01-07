@@ -14,10 +14,12 @@ void Transform::onParentSet(const Transform* parent)
   if (parent == nullptr)
   {
     m_localPosition += entity->parent->transform->position();
+    m_localRotation += entity->parent->transform->rotation();
   }
   else
   {
     m_localPosition = position() - parent->position();
+    m_localRotation = rotation() - parent->rotation();
   }
   
 }

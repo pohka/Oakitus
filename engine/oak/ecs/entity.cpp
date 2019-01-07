@@ -283,18 +283,20 @@ std::vector<BaseCollisionShape*>& Entity::getCollisionShapes()
 
 void Entity::addChild(Entity* child)
 {
+  //parent already set to this
   if (child->parent == this)
   {
     return;
   }
 
-
+  //queue to be created if not created yet
   if (child->createState == STATE_NOT_CREATED)
   {
     child->parent = this;
     EntityManager::pendingEntityInstances.push(child);
     child->createState = STATE_QUEUED;
   }
+  //attach a entity that is already created
   else if(child->createState == STATE_CREATED)
   {
     child->transform->onParentSet(transform);
@@ -333,7 +335,10 @@ void Entity::detach()
 {
   if (parent != nullptr)
   {
+    //set transform to world coords
     transform->onParentSet(nullptr);
+
+    //erase this entity from children vector in parent
     for (uint i = 0; i < parent->children.size(); i++)
     {
       if (parent->children[i]->entityID == entityID)
