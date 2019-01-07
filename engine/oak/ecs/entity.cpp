@@ -12,16 +12,23 @@ Entity::Entity(bool isEverRendered)
   this->isRenderable = isEverRendered;
 
   this->entityID = EntityManager::entityIDGen.nextID();
-  this->position = glm::vec3(0, 0, 0);
-  this->rotation = glm::vec3(0, 0, 0);
   layerID = 0;
   isGlobal = false;
   this->name = "ent_" + std::to_string(entityID);
   collisionLayer = CollisionLayer::NONE;
+  transform = new Transform();
+  addComponent(transform);
 }
 
 Entity::~Entity()
 {
+  //destruct child entities
+  for (Entity* child : children)
+  {
+    delete child;
+  }
+
+  //destruct components
   for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
     for (Component* comp : componentGroups[i])
@@ -29,7 +36,11 @@ Entity::~Entity()
       delete comp;
     }
   }
+
+  detach();
 }
+
+
 
 void Entity::addComponent(Component* component)
 {
@@ -58,14 +69,21 @@ void Entity::addRigidBody(BaseRigidBody* rigidBody)
 
 void Entity::create()
 {
-  EntityManager::pendingEntityInstances.push(this);
+  if (createState == STATE_NOT_CREATED)
+  {
+    EntityManager::pendingEntityInstances.push(this);
+    createState = STATE_QUEUED;
+  }
 }
 
 void oak::Entity::create(float x, float y)
 {
-  this->position.x = x;
-  this->position.y = y;
-  EntityManager::pendingEntityInstances.push(this);
+  if (createState == STATE_NOT_CREATED)
+  {
+    transform->moveTo(x, y, 0.0f);
+    EntityManager::pendingEntityInstances.push(this);
+    createState = STATE_QUEUED;
+  }
 }
 
 void Entity::destroy()
@@ -91,6 +109,11 @@ std::string Entity::getName() const
 
 void Entity::onCreate()
 {
+  //children will call onCreate for themselves
+
+  createState = STATE_CREATED;
+
+  //onCreate components
   for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
     for (Component* comp : componentGroups[i])
@@ -98,10 +121,23 @@ void Entity::onCreate()
       comp->onCreate();
     }
   }
+
+  //notify parent
+  if (parent != nullptr)
+  {
+    parent->children.push_back(this);
+  }
 }
 
 void Entity::onDestroy()
 {
+  //onDestroy children
+  for (Entity* child : children)
+  {
+    child->onDestroy();
+  }
+
+  //onDestroy components
   for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
     for (Component* comp : componentGroups[i])
@@ -113,6 +149,7 @@ void Entity::onDestroy()
 
 void Entity::onRender() const
 {
+  //render components
   for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
     for (Component* comp : componentGroups[i])
@@ -123,10 +160,17 @@ void Entity::onRender() const
       }
     }
   }
+
+  //render children
+  for (Entity* child : children)
+  {
+    child->onRender();
+  }
 }
 
 void Entity::onDebugDraw() const
 {
+  //components
   for (uchar i = 0; i < TICK_GROUP_MAX; i++)
   {
     for (Component* comp : componentGroups[i])
@@ -135,20 +179,34 @@ void Entity::onDebugDraw() const
     }
   }
 
+  //collision
   for (BaseCollisionShape* shape : collisionShapes)
   {
     shape->onDebugDraw();
+  }
+
+  //children
+  for (Entity* child : children)
+  {
+    child->onDebugDraw();
   }
 }
 
 void Entity::onTick(const uchar TICK_GROUP)
 {
+  //components
   for (Component* comp : componentGroups[TICK_GROUP])
   {
     if (comp->canTickThisFrame())
     {
       comp->onTick();
     }
+  }
+
+  //children
+  for (Entity* child : children)
+  {
+    child->onTick(TICK_GROUP);
   }
 }
 
@@ -165,6 +223,11 @@ void Entity::onCollisionHit(Entity& hit)
 
 bool Entity::getIsTickingEnabled() const
 {
+  //if parent can't tick then override self
+  if (parent != nullptr && parent->getIsTickingEnabled() == false)
+  {
+    return false;
+  }
   return isTickingEnable;
 }
 
@@ -173,21 +236,31 @@ void Entity::setIsTickingEnabled(bool isEnabled)
   isTickingEnable = isEnabled;
 }
 
-void Entity::setIsVisible(bool isVisible)
+void Entity::setIsRenderable(bool isRenderable)
 {
   if (isEverRendered)
   {
-    isRenderable = isVisible;
+    this->isRenderable = isRenderable;
   }
 }
 
 bool Entity::getIsRenderable() const
 {
+  //if parent is not renderable then override self
+  if (parent != nullptr && parent->getIsRenderable() == false)
+  {
+    return false;
+  }
   return isRenderable;
 }
 
 bool Entity::getCanTickWhenPaused() const
 {
+  //if parent is not  tickable when pased then override self
+  if (parent != nullptr && parent->canTickThisFrame() == false)
+  {
+    return false;
+  }
   return canTickWhenPaused;
 }
 
@@ -206,4 +279,79 @@ bool Entity::canTickThisFrame() const
 std::vector<BaseCollisionShape*>& Entity::getCollisionShapes()
 {
   return collisionShapes;
+}
+
+void Entity::addChild(Entity* child)
+{
+  if (child->parent == this)
+  {
+    return;
+  }
+
+
+  if (child->createState == STATE_NOT_CREATED)
+  {
+    child->parent = this;
+    EntityManager::pendingEntityInstances.push(child);
+    child->createState = STATE_QUEUED;
+  }
+  else if(child->createState == STATE_CREATED)
+  {
+    child->transform->onParentSet(transform);
+    child->parent = this;
+    children.push_back(child);
+  }
+}
+
+Entity* Entity::findChildByName(std::string name)
+{
+  for (Entity* ent : children)
+  {
+    if (ent->name == name)
+    {
+      return ent;
+    }
+  }
+
+  return nullptr;
+}
+
+Entity* Entity::findChildByID(uint id)
+{
+  for (Entity* ent : children)
+  {
+    if (ent->entityID == id)
+    {
+      return ent;
+    }
+  }
+
+  return nullptr;
+}
+
+void Entity::detach()
+{
+  if (parent != nullptr)
+  {
+    transform->onParentSet(nullptr);
+    for (uint i = 0; i < parent->children.size(); i++)
+    {
+      if (parent->children[i]->entityID == entityID)
+      {
+        parent->children.erase(parent->children.begin() + i);
+        break;
+      }
+    }
+    parent = nullptr;
+  }
+}
+
+const std::vector<Entity*>& Entity::getChildren() const
+{
+  return children;
+}
+
+const Entity* Entity::getParent() const
+{
+  return parent;
 }

@@ -60,14 +60,18 @@ void MovementCMD::execute()
 
     if (animator != nullptr)
     {
+      glm::vec3 translate = glm::vec3(0.0f, 0.0f, 0.0f);
+
       if (hasMoved)
       {
         //calculate the movement vector, so the actor moves at the same speed in all directions
         glm::vec2 move = glm::vec2(axisX, axisY);
         move = glm::normalize(move) * speed;
 
-        actor->position.x += move.x * Time::deltaTime();
-        actor->position.y += move.y * Time::deltaTime();
+        translate.x += move.x * Time::deltaTime();
+        translate.y += move.y * Time::deltaTime();
+        //actor->position.x += move.x * Time::deltaTime();
+        //actor->position.y += move.y * Time::deltaTime();
 
         if (axisX > 0.0f)
         {
@@ -84,6 +88,10 @@ void MovementCMD::execute()
       {
         animator->setAnim(ANIM_ACT_IDLE);
       }
+
+      //translate.x *= Time::deltaTime();
+      //translate.y *= Time::deltaTime();
+      actor->transform->moveBy(translate);
     }
   }
 }

@@ -23,12 +23,12 @@ BaseCollisionShape::~BaseCollisionShape()
 
 float BaseCollisionShape::originX() const
 {
-  return this->entity->position.x + m_offsetX;
+  return this->entity->transform->position().x + m_offsetX;
 }
 
 float BaseCollisionShape::originY() const
 {
-  return this->entity->position.y + m_offsetY;
+  return this->entity->transform->position().y + m_offsetY;
 }
 
 float BaseCollisionShape::offsetX() const
@@ -57,8 +57,8 @@ void BaseCollisionShape::onDebugDraw() const
   glm::vec3 camNPos = Camera::getNormalizedPos();
 
   glm::vec3 pos(
-    Window::worldToViewportCoords(entity->position.x + m_offsetX) - camNPos.x,
-    Window::worldToViewportCoords(entity->position.y + m_offsetY) - camNPos.y,
+    Window::worldToViewportCoords(entity->transform->position().x + m_offsetX) - camNPos.x,
+    Window::worldToViewportCoords(entity->transform->position().y + m_offsetY) - camNPos.y,
     0.0f
   );
   model = glm::translate(model, pos);

@@ -60,7 +60,8 @@ void Animator::onRender() const
 {
   if (curAnimID != ANIM_INVALID)
   {
-    anims.at(curAnimID)->onRender(entity->position.x, entity->position.y);
+    glm::vec3 pos = entity->transform->position();
+    anims.at(curAnimID)->onRender(pos.x, pos.y);
   }
 }
 

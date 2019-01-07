@@ -34,6 +34,7 @@
     <ClInclude Include="..\engine\oak\components\rigid_body_2d.h" />
     <ClInclude Include="..\engine\oak\components\sprite.h" />
     <ClInclude Include="..\engine\oak\components\sprite_animation.h" />
+    <ClInclude Include="..\engine\oak\components\transform.h" />
     <ClInclude Include="..\engine\oak\core\fmath.h" />
     <ClInclude Include="..\engine\oak\core\init.h" />
     <ClInclude Include="..\engine\oak\core\kvmap.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="..\engine\oak\components\rigid_body_2d.cpp" />
     <ClCompile Include="..\engine\oak\components\sprite.cpp" />
     <ClCompile Include="..\engine\oak\components\sprite_animation.cpp" />
+    <ClCompile Include="..\engine\oak\components\transform.cpp" />
     <ClCompile Include="..\engine\oak\core\oakitus.cpp" />
     <ClCompile Include="..\engine\oak\core\resources.cpp" />
     <ClCompile Include="..\engine\oak\debug\debug_input.cpp" />
