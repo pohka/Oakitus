@@ -125,11 +125,14 @@ namespace oak
         return nullptr;
       }
 
-      //child should already be created
+      //
       void addChild(Entity* child);
+      void detach();
 
       Entity* findChildByName(std::string name);
       Entity* findChildByID(uint id);
+
+      const Entity* getParent() const;
       const std::vector<Entity*>& getChildren() const;
 
       virtual std::vector<BaseCollisionShape*>& getCollisionShapes();
@@ -158,7 +161,7 @@ namespace oak
       ///<summary>Called when a collision occured</summary>
       void onCollisionHit(Entity& hit);
 
-      void onChildDestroyed(uint entID);
+      
 
       //-------------------------------------------------------------
 
@@ -170,7 +173,9 @@ namespace oak
       Entity* parent = nullptr;
 
     private:
-      void onChildCreated(Entity* ent);
+     // void onChildAttached(Entity* ent);
+     // void onChildDetached(uint entID);
+
 
        bool isEverRendered;
        bool isRenderable;

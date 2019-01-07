@@ -37,12 +37,10 @@ Entity::~Entity()
     }
   }
 
-  //notify parent of destruction
-  if (parent != nullptr)
-  {
-    parent->onChildDestroyed(entityID);
-  }
+  detach();
 }
+
+
 
 void Entity::addComponent(Component* component)
 {
@@ -127,7 +125,7 @@ void Entity::onCreate()
   //notify parent
   if (parent != nullptr)
   {
-    parent->onChildCreated(this);
+    parent->children.push_back(this);
   }
 }
 
@@ -285,15 +283,22 @@ std::vector<BaseCollisionShape*>& Entity::getCollisionShapes()
 
 void Entity::addChild(Entity* child)
 {
-  child->parent = this;
+  if (child->parent == this)
+  {
+    return;
+  }
+
 
   if (child->createState == STATE_NOT_CREATED)
   {
+    child->parent = this;
     EntityManager::pendingEntityInstances.push(child);
     child->createState = STATE_QUEUED;
   }
   else if(child->createState == STATE_CREATED)
   {
+    child->transform->onParentSet(transform);
+    child->parent = this;
     children.push_back(child);
   }
 }
@@ -324,24 +329,29 @@ Entity* Entity::findChildByID(uint id)
   return nullptr;
 }
 
-void Entity::onChildDestroyed(uint entID)
+void Entity::detach()
 {
-  for (uint i = 0; i < children.size(); i++)
+  if (parent != nullptr)
   {
-    if (children[i]->entityID == entID)
+    transform->onParentSet(nullptr);
+    for (uint i = 0; i < parent->children.size(); i++)
     {
-      children.erase(children.begin() + i);
-      return;
+      if (parent->children[i]->entityID == entityID)
+      {
+        parent->children.erase(parent->children.begin() + i);
+        break;
+      }
     }
+    parent = nullptr;
   }
-}
-
-void Entity::onChildCreated(Entity* child)
-{
-  children.push_back(child);
 }
 
 const std::vector<Entity*>& Entity::getChildren() const
 {
   return children;
+}
+
+const Entity* Entity::getParent() const
+{
+  return parent;
 }

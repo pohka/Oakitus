@@ -8,120 +8,122 @@ Transform::Transform() : Component(TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, f
 
 }
 
+void Transform::onParentSet(const Transform* parent)
+{
+  //no parent, move to world coords
+  if (parent == nullptr)
+  {
+    m_localPosition += entity->parent->transform->position();
+  }
+  else
+  {
+    m_localPosition = position() - parent->position();
+  }
+  
+}
+
 //position
 //-----------------------------------
 
-const glm::vec3& Transform::position() const
+const glm::vec3 Transform::position() const
 {
-  return m_position;
+  glm::vec3 pos = m_localPosition;
+  if (entity->parent != nullptr)
+  {
+    pos += entity->parent->transform->position();
+  }
+
+  return pos;
+}
+
+const glm::vec3& Transform::localPosition() const
+{
+  return m_localPosition;
+}
+
+const glm::vec3 Transform::inversePosition(const glm::vec3& pos) const
+{
+  if (entity->parent == nullptr)
+  {
+    return pos;
+  }
+  return pos - entity->parent->transform->position();
 }
 
 void Transform::moveBy(float x, float y, float z)
 {
-  glm::vec3 amount = glm::vec3(x, y, z);
-  m_position += amount;
-
-
-  for (Entity* child : this->entity->children)
-  {
-    child->transform->moveBy(amount);
-  }
+  m_localPosition += glm::vec3(x, y, z);
 }
 
 void Transform::moveBy(glm::vec3 amount)
 {
-  m_position += amount;
-  for (Entity* child : this->entity->children)
-  {
-    child->transform->moveBy(amount);
-  }
+  m_localPosition += amount;
 }
 
 void Transform::moveTo(float x, float y, float z)
 {
-  glm::vec3 diff = glm::vec3(
-    x - m_position.x,
-    y - m_position.y,
-    z - m_position.z
+  m_localPosition = glm::vec3(
+    x - m_localPosition.x,
+    y - m_localPosition.y,
+    z - m_localPosition.z
   );
-
-  m_position.x = x;
-  m_position.y = y;
-  m_position.z = z;
-
-  for (Entity* child : this->entity->children)
-  {
-    child->transform->moveBy(diff);
-  }
 }
 
 void Transform::moveTo(glm::vec3 pos)
 {
-  glm::vec3 diff = pos - m_position;
-  m_position = pos;
-
-  for (Entity* child : this->entity->children)
-  {
-    child->transform->moveBy(diff);
-  }
+  glm::vec3 diff = pos - m_localPosition;
+  m_localPosition = pos;
 }
 
 
 //rotation
 //---------------------------------
 
-const glm::vec3& Transform::rotation() const
+const glm::vec3 Transform::rotation() const
 {
-  return m_rotation;
+  glm::vec3 rot = m_localRotation;
+  if (entity->parent != nullptr)
+  {
+    rot += entity->parent->transform->rotation();
+  }
+
+  return rot;
+}
+
+const glm::vec3& Transform::localRotation() const
+{
+  return m_localRotation;
+}
+
+const glm::vec3 Transform::inverseRotation(const glm::vec3& rot) const
+{
+  if (entity->parent == nullptr)
+  {
+    return rot;
+  }
+  return rot - entity->parent->transform->position();
 }
 
 void Transform::rotateBy(float x, float y, float z)
 {
-  glm::vec3 amount = glm::vec3(x, y, z);
-  m_rotation += amount;
-
-
-  for (Entity* child : this->entity->children)
-  {
-    child->transform->rotateBy(amount);
-  }
+  m_localRotation += glm::vec3(x, y, z);
 }
 
 void Transform::rotateBy(glm::vec3 amount)
 {
-  m_rotation += amount;
-  for (Entity* child : this->entity->children)
-  {
-    child->transform->rotateBy(amount);
-  }
+  m_localRotation += amount;
 }
 
 void Transform::rotateTo(float x, float y, float z)
 {
-  glm::vec3 diff = glm::vec3(
-    x - m_rotation.x,
-    y - m_rotation.y,
-    z - m_rotation.z
+  m_localRotation = glm::vec3(
+    x - m_localRotation.x,
+    y - m_localRotation.y,
+    z - m_localRotation.z
   );
-
-  m_rotation.x = x;
-  m_rotation.y = y;
-  m_rotation.z = z;
-
-  for (Entity* child : this->entity->children)
-  {
-    child->transform->rotateBy(diff);
-  }
 }
 
 void Transform::rotateTo(glm::vec3 rot)
 {
-  glm::vec3 diff = rot - m_rotation;
-
-  m_rotation = rot;
-
-  for (Entity* child : this->entity->children)
-  {
-    child->transform->rotateBy(diff);
-  }
+  m_localRotation = rot;
 }

@@ -33,6 +33,7 @@ void plat::MovementCMD::execute()
     axisX += 1.0f;
   }
 
+
   bool hasMoved = (axisX != 0.0f || axisY != 0.0f);
 
   Actor* actor = player->getAssignedActor();
@@ -40,6 +41,23 @@ void plat::MovementCMD::execute()
 
   if (actor != nullptr)
   {
+    if (Input::isKeyDown(KEYCODE_B))
+    {
+      Entity* ent = EntityManager::findEntityByName("thing");
+      if (ent != nullptr)
+      {
+        LOG << "FOUND THING";
+        if (ent->getParent() != nullptr)
+        {
+          ent->detach();
+        }
+        else
+        {
+          actor->addChild(ent);
+        }
+      }
+    }
+
     glm::vec3 translate = glm::vec3(0.0f, 0.0f, 0.0f);
 
     if (hasMoved)
