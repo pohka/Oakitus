@@ -5,13 +5,13 @@
 #include <vector>
 #include <oak/tiles/tile.h>
 #include <oak/collision/base_collision_shape.h>
+#include "chunk.h"
 
 namespace tile
 {
-  struct ChunkScript;
-
-  struct World : public oak::Entity
+  class World : public oak::Entity
   {
+  public:
     const uint CHUNK_SIZE;
     const uint TILE_SIZE;
     const int TOTAL_CHUNK_SIZE;
@@ -22,16 +22,13 @@ namespace tile
     );
     ~World();
 
-    ChunkScript* addChunk(const int chunkX, const int chunkY);
+    Chunk* addChunk(const int chunkX, const int chunkY);
 
     void addTile(Tile* tile);
 
     Tile* getTileByID(const uint tileID);
-    
-    void gen();
 
   private:
-    std::vector<ChunkScript*> chunks;
     std::vector<Tile*> tiles;
   };
 }

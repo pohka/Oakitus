@@ -125,16 +125,25 @@ namespace oak
         return nullptr;
       }
 
-      //
+      //attachs a child to this entity, the child is created if it is not already created
       void addChild(Entity* child);
+
+      //detached this entity from it's parent
       void detach();
 
+      //find child with matching name, returns nullptr if not found
       Entity* findChildByName(std::string name);
+
+      //find child with matching id, returns nullptr if not found
       Entity* findChildByID(uint id);
 
+      //returns the parent entity, returns nullptr if no parent is set
       const Entity* getParent() const;
+
+      //get all the child entities
       const std::vector<Entity*>& getChildren() const;
 
+      //get the collision shapes
       virtual std::vector<BaseCollisionShape*>& getCollisionShapes();
 
     protected:
@@ -169,22 +178,18 @@ namespace oak
 
       bool canTickWhenPaused = false;
 
-      std::vector<Entity*> children;
-      Entity* parent = nullptr;
+      std::vector<Entity*> children; //child entities
+      Entity* parent = nullptr; //parent entity
 
     private:
-     // void onChildAttached(Entity* ent);
-     // void onChildDetached(uint entID);
-
-
        bool isEverRendered;
        bool isRenderable;
        bool isTickingEnable = true;
 
-       static cnum STATE_NOT_CREATED = 0;
-       static cnum STATE_QUEUED = 1;
-       static cnum STATE_CREATED = 2;
-       uchar createState = STATE_NOT_CREATED;
+       static cnum STATE_NOT_CREATED = 0; //not queued or created
+       static cnum STATE_QUEUED = 1; //in queue to be created at the end of the frame
+       static cnum STATE_CREATED = 2; //created
+       uchar createState = STATE_NOT_CREATED; //current creation state
   };
 }
 

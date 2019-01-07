@@ -5,7 +5,7 @@
 #include "../plat_consts.h"
 #include <oak/tiles/world.h>
 #include "../prefabs/camera_ent.h"
-#include <oak/tiles/chunk_script.h>
+#include <oak/tiles/chunk.h>
 
 using namespace plat;
 using namespace oak;
@@ -38,7 +38,7 @@ void TestingScene::onLoad()
   }
   world->create(0.0f, 0.0f);
  
-  ChunkScript* chunk = world->addChunk(0,0);
+  Chunk* chunk = world->addChunk(0,0);
   for (uint i = 0; i < CHUNK_SIZE; i++)
   {
     chunk->table[i][0] = 1;
@@ -46,7 +46,7 @@ void TestingScene::onLoad()
     chunk->table[i][CHUNK_SIZE-1] = 1;
     chunk->table[CHUNK_SIZE-1][i] = 1;
   }
-  world->gen();
+  chunk->genCollision();
 
   LOG << "Loading scene";
 
