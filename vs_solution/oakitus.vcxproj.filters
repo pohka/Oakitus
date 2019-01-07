@@ -366,11 +366,14 @@
     <ClInclude Include="..\projects\platformer\prefabs\camera_ent.h">
       <Filter>projects\platformer\prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\tiles\chunk_script.h">
-      <Filter>oak\tiles</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\components\transform.h">
       <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\tiles\chunk.h">
+      <Filter>oak\tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\tiles\chunk_renderer.h">
+      <Filter>oak\tiles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -562,11 +565,14 @@
     <ClCompile Include="..\projects\platformer\scripts\camera_follow.cpp">
       <Filter>projects\platformer\scripts</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\tiles\chunk_script.cpp">
-      <Filter>oak\tiles</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\components\transform.cpp">
       <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\tiles\chunk.cpp">
+      <Filter>oak\tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\tiles\chunk_renderer.cpp">
+      <Filter>oak\tiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

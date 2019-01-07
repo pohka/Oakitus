@@ -18,6 +18,7 @@ void Transform::onParentSet(const Transform* parent)
   }
   else
   {
+    //equivalnt to: current world transform - parent world transform
     m_localPosition = position() - parent->position();
     m_localRotation = rotation() - parent->rotation();
   }
