@@ -29,6 +29,7 @@
     <ClInclude Include="..\engine\oak\collision\collision_circle.h" />
     <ClInclude Include="..\engine\oak\collision\collision_layer.h" />
     <ClInclude Include="..\engine\oak\collision\collision_rect.h" />
+    <ClInclude Include="..\engine\oak\collision\physics.h" />
     <ClInclude Include="..\engine\oak\components\animator.h" />
     <ClInclude Include="..\engine\oak\components\base_rigid_body.h" />
     <ClInclude Include="..\engine\oak\components\rigid_body_2d.h" />

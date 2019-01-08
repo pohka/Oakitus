@@ -375,6 +375,9 @@
     <ClInclude Include="..\engine\oak\tiles\chunk_renderer.h">
       <Filter>oak\tiles</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\collision\physics.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">

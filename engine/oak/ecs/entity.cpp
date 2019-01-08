@@ -11,11 +11,10 @@ Entity::Entity(bool isEverRendered)
   this->isEverRendered = isEverRendered;
   this->isRenderable = isEverRendered;
 
-  this->entityID = EntityManager::entityIDGen.nextID();
+  this->entityID = EntityManager::nextEntityID();
   layerID = 0;
   isGlobal = false;
   this->name = "ent_" + std::to_string(entityID);
-  collisionLayer = CollisionLayer::NONE;
   transform = new Transform();
   addComponent(transform);
 }
@@ -69,26 +68,18 @@ void Entity::addRigidBody(BaseRigidBody* rigidBody)
 
 void Entity::create()
 {
-  if (createState == STATE_NOT_CREATED)
-  {
-    EntityManager::pendingEntityInstances.push(this);
-    createState = STATE_QUEUED;
-  }
+  EntityManager::queueEntityCreate(this);
 }
 
 void oak::Entity::create(float x, float y)
 {
-  if (createState == STATE_NOT_CREATED)
-  {
-    transform->moveTo(x, y, 0.0f);
-    EntityManager::pendingEntityInstances.push(this);
-    createState = STATE_QUEUED;
-  }
+  transform->moveTo(x, y, 0.0f);
+  EntityManager::queueEntityCreate(this);
 }
 
 void Entity::destroy()
 {
-  EntityManager::queuedDestroyEntityIDs.push(entityID);
+  EntityManager::queueEntityDestroy(this);
 }
 
 
@@ -97,7 +88,7 @@ uint Entity::getID() const
   return this->entityID;
 }
 
-CollisionLayer Entity::getCollisionLayer() const
+const uint Entity::getCollisionLayer() const
 {
   return collisionLayer;
 }
@@ -110,8 +101,6 @@ std::string Entity::getName() const
 void Entity::onCreate()
 {
   //children will call onCreate for themselves
-
-  createState = STATE_CREATED;
 
   //onCreate components
   for (uchar i = 0; i < TICK_GROUP_MAX; i++)
@@ -290,14 +279,13 @@ void Entity::addChild(Entity* child)
   }
 
   //queue to be created if not created yet
-  if (child->createState == STATE_NOT_CREATED)
+  if (child->creationState == CREATION_STATE_NULL)
   {
     child->parent = this;
-    EntityManager::pendingEntityInstances.push(child);
-    child->createState = STATE_QUEUED;
+    EntityManager::queueEntityCreate(child);
   }
   //attach a entity that is already created
-  else if(child->createState == STATE_CREATED)
+  else if(child->creationState == CREATION_STATE_CREATED)
   {
     child->transform->onParentSet(transform);
     child->parent = this;
@@ -359,4 +347,19 @@ const std::vector<Entity*>& Entity::getChildren() const
 const Entity* Entity::getParent() const
 {
   return parent;
+}
+
+BaseRigidBody* Entity::getRigidBody() const
+{
+  return rigidBody;
+}
+
+void Entity::setCreationState(const uchar state)
+{
+  creationState = state;
+}
+
+const uchar Entity::getCreationState() const
+{
+  return creationState;
 }

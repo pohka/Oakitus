@@ -219,7 +219,8 @@ void Collision::checkEntEntTrigger(Entity* entA, Entity* entB)
 //check triggers
 void Collision::resolveCollisions()
 {
-  if (EntityManager::entitys.size() <= 1)
+  const std::vector<Entity*> entitys = EntityManager::getAllEntitys();
+  if (entitys.size() <= 1)
   {
     return;
   }
@@ -229,10 +230,10 @@ void Collision::resolveCollisions()
   BaseRigidBody* rb;
   
   //set the rigidbody variables based on the current entity position
-  for (uint i = 0; i < EntityManager::entitys.size(); i++)
+  for (uint i = 0; i < entitys.size(); i++)
   {
-    ent = EntityManager::entitys[i];
-    rb = ent->rigidBody;
+    ent = entitys[i];
+    rb = ent->getRigidBody();
 
     if (rb != nullptr && rb->isStatic == false)
     {
@@ -243,33 +244,33 @@ void Collision::resolveCollisions()
   }
 
   //resolve 
-  for (uint a = 0; a < EntityManager::entitys.size() - 1; a++)
+  for (uint a = 0; a < entitys.size() - 1; a++)
   {
-    for (uint b = a + 1; b < EntityManager::entitys.size(); b++)
+    for (uint b = a + 1; b < entitys.size(); b++)
     {
-      solve1(EntityManager::entitys[a], EntityManager::entitys[b]);
+      solve1(entitys[a], entitys[b]);
     }
   }
 
   //update the resolved positions
-  for (uint i = 0; i < EntityManager::entitys.size(); i++)
+  for (uint i = 0; i < entitys.size(); i++)
   {
-     ent = EntityManager::entitys[i];
-     rb = ent->rigidBody;
+     ent = entitys[i];
+     rb = ent->getRigidBody();
 
     if (rb != nullptr && rb->isStatic == false)
     {
-      rb->lastPos = EntityManager::entitys[i]->rigidBody->nextPos;
-      ent->transform->moveTo(EntityManager::entitys[i]->rigidBody->nextPos);
+      rb->lastPos = entitys[i]->getRigidBody()->nextPos;
+      ent->transform->moveTo(entitys[i]->getRigidBody()->nextPos);
     }
   }
 
   //check triggers
-  for (uint a = 0; a < EntityManager::entitys.size() - 1; a++)
+  for (uint a = 0; a < entitys.size() - 1; a++)
   {
-    for (uint b = a + 1; b < EntityManager::entitys.size(); b++)
+    for (uint b = a + 1; b < entitys.size(); b++)
     {
-      checkEntEntTrigger(EntityManager::entitys[a], EntityManager::entitys[b]);
+      checkEntEntTrigger(entitys[a], entitys[b]);
     }
   }
 }
@@ -277,21 +278,21 @@ void Collision::resolveCollisions()
 void Collision::solve1(Entity* entA, Entity* entB)
 {
   //static x dynamic
-  if (entA->rigidBody != nullptr && entB->rigidBody != nullptr)
+  if (entA->getRigidBody() != nullptr && entB->getRigidBody() != nullptr)
   {
     //static x dynamic
-    if (entA->rigidBody->isStatic == true && entB->rigidBody->isStatic == false)
+    if (entA->getRigidBody()->isStatic == true && entB->getRigidBody()->isStatic == false)
     {
       solveStaticDynamic(entA, entB);
     }
     //dynamic x static
-    else if (entA->rigidBody->isStatic == false && entB->rigidBody->isStatic == true)
+    else if (entA->getRigidBody()->isStatic == false && entB->getRigidBody()->isStatic == true)
     {
       solveStaticDynamic(entB, entA);
     }
 
     //dynamic x dynamic
-    else if (entA->rigidBody->isStatic == false && entB->rigidBody->isStatic == false)
+    else if (entA->getRigidBody()->isStatic == false && entB->getRigidBody()->isStatic == false)
     {
       solveDynamicDynamic(entA, entB);
     }
@@ -300,7 +301,7 @@ void Collision::solve1(Entity* entA, Entity* entB)
 
 glm::vec3 Collision::colliderDesiredPos(Entity* ent, BaseCollisionShape* shape)
 {
-  return ent->rigidBody->desiredNextPos + shape->offset();
+  return ent->getRigidBody()->desiredNextPos + shape->offset();
 }
 
 void Collision::solveStaticDynamic(Entity* staticEnt, Entity* dynamicEnt)
@@ -393,7 +394,7 @@ void Collision::solveStaticRectDynamicRect(
   CollisionRect* dynamicRect
 )
 {
-  glm::vec3 dynamicRectOrigin = dynamicEnt->rigidBody->nextPos + dynamicRect->offset();
+  glm::vec3 dynamicRectOrigin = dynamicEnt->getRigidBody()->nextPos + dynamicRect->offset();
 
 
   //first check the direction the dynamic rect is in relation to the static rect
@@ -433,22 +434,22 @@ void Collision::solveStaticRectDynamicRect(
   {
     if (isLeft)
     {
-      dynamicEnt->rigidBody->nextPos.x -= depthX;
+      dynamicEnt->getRigidBody()->nextPos.x -= depthX;
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.x += depthX;
+      dynamicEnt->getRigidBody()->nextPos.x += depthX;
     }
   }
   else
   {
     if (isUp)
     {
-      dynamicEnt->rigidBody->nextPos.y += depthY;
+      dynamicEnt->getRigidBody()->nextPos.y += depthY;
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.y -= depthY;
+      dynamicEnt->getRigidBody()->nextPos.y -= depthY;
     }
   }
 }
@@ -465,11 +466,11 @@ void Collision::solveStaticCircleDynamicRect(
   CollisionRect* dynamicRect
 )
 {
-  glm::vec3 dynamicRectOrigin = dynamicEnt->rigidBody->nextPos + dynamicRect->offset();
+  glm::vec3 dynamicRectOrigin = dynamicEnt->getRigidBody()->nextPos + dynamicRect->offset();
 
   //first check the direction the dynamic rect is in relation to the static rect
-  bool isLastLeft = dynamicEnt->rigidBody->lastPos.x + dynamicRect->offsetX() < staticCircle->originX();
-  bool isLastUp = dynamicEnt->rigidBody->lastPos.y + dynamicRect->offsetY() > staticCircle->originY();
+  bool isLastLeft = dynamicEnt->getRigidBody()->lastPos.x + dynamicRect->offsetX() < staticCircle->originX();
+  bool isLastUp = dynamicEnt->getRigidBody()->lastPos.y + dynamicRect->offsetY() > staticCircle->originY();
 
   
   //half rect size
@@ -491,11 +492,11 @@ void Collision::solveStaticCircleDynamicRect(
   {
     if (isLastUp)
     {
-      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() + staticCircle->getRadius() + rectHalfH - dynamicRect->offsetY();
+      dynamicEnt->getRigidBody()->nextPos.y = staticCircle->originY() + staticCircle->getRadius() + rectHalfH - dynamicRect->offsetY();
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.y = staticCircle->originY() - staticCircle->getRadius() - rectHalfH - dynamicRect->offsetY();
+      dynamicEnt->getRigidBody()->nextPos.y = staticCircle->originY() - staticCircle->getRadius() - rectHalfH - dynamicRect->offsetY();
     }
   }
   //SIDE CASE: on left or right of circle
@@ -503,19 +504,19 @@ void Collision::solveStaticCircleDynamicRect(
   {
     if (isLastLeft)
     {
-      dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() - staticCircle->getRadius() - rectHalfW - dynamicRect->offsetX();
+      dynamicEnt->getRigidBody()->nextPos.x = staticCircle->originX() - staticCircle->getRadius() - rectHalfW - dynamicRect->offsetX();
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.x = staticCircle->originX() + staticCircle->getRadius() + rectHalfW - dynamicRect->offsetX();
+      dynamicEnt->getRigidBody()->nextPos.x = staticCircle->originX() + staticCircle->getRadius() + rectHalfW - dynamicRect->offsetX();
     }
   }
   //CORNER CASE
   else
   {
     //rect side for next pos
-    bool isNextLeft = dynamicEnt->rigidBody->nextPos.x + dynamicRect->offsetX() < staticCircle->originX();
-    bool isNextUp = dynamicEnt->rigidBody->nextPos.y + dynamicRect->offsetY() > staticCircle->originY();
+    bool isNextLeft = dynamicEnt->getRigidBody()->nextPos.x + dynamicRect->offsetX() < staticCircle->originX();
+    bool isNextUp = dynamicEnt->getRigidBody()->nextPos.y + dynamicRect->offsetY() > staticCircle->originY();
 
     //difference bewteen rect side and origin of circle, for each axis
     float rectX, rectY;
@@ -559,22 +560,22 @@ void Collision::solveStaticCircleDynamicRect(
     {
       if (isNextLeft)
       {
-        dynamicEnt->rigidBody->nextPos.x -= depthX;
+        dynamicEnt->getRigidBody()->nextPos.x -= depthX;
       }
       else
       {
-        dynamicEnt->rigidBody->nextPos.x += depthX;
+        dynamicEnt->getRigidBody()->nextPos.x += depthX;
       }
     }
     else
     {
       if (isNextUp)
       {
-        dynamicEnt->rigidBody->nextPos.y += depthY;
+        dynamicEnt->getRigidBody()->nextPos.y += depthY;
       }
       else
       {
-        dynamicEnt->rigidBody->nextPos.y -= depthY;
+        dynamicEnt->getRigidBody()->nextPos.y -= depthY;
       }
     }
   }
@@ -587,9 +588,9 @@ void Collision::solveStaticCricleDynamicCircle(
   CollisionCircle* dynamicCircle
 )
 {
-  glm::vec3 direction = glm::normalize((dynamicEnt->rigidBody->nextPos + dynamicCircle->offset()) - glm::vec3(staticCircle->originX(), staticCircle->originY(), 0.0f));
+  glm::vec3 direction = glm::normalize((dynamicEnt->getRigidBody()->nextPos + dynamicCircle->offset()) - glm::vec3(staticCircle->originX(), staticCircle->originY(), 0.0f));
   float minDist = staticCircle->getRadius() + dynamicCircle->getRadius();
-  dynamicEnt->rigidBody->nextPos = staticEnt->transform->position() + staticCircle->offset() - dynamicCircle->offset() + (direction * minDist);
+  dynamicEnt->getRigidBody()->nextPos = staticEnt->transform->position() + staticCircle->offset() - dynamicCircle->offset() + (direction * minDist);
 }
 
 void Collision::solveStaticRectDynamicCircle(
@@ -599,11 +600,11 @@ void Collision::solveStaticRectDynamicCircle(
   CollisionCircle* dynamicCircle
 )
 {
-  glm::vec3 dynamicCircleOrigin = dynamicEnt->rigidBody->nextPos + dynamicCircle->offset();
+  glm::vec3 dynamicCircleOrigin = dynamicEnt->getRigidBody()->nextPos + dynamicCircle->offset();
 
   //first check the direction the dynamic circle is in relation to the static rect
-  bool isLastLeft = dynamicEnt->rigidBody->lastPos.x + dynamicCircle->offsetX() < staticRect->originX();
-  bool isLastUp = dynamicEnt->rigidBody->lastPos.y + dynamicCircle->offsetY() > staticRect->originY();
+  bool isLastLeft = dynamicEnt->getRigidBody()->lastPos.x + dynamicCircle->offsetX() < staticRect->originX();
+  bool isLastUp = dynamicEnt->getRigidBody()->lastPos.y + dynamicCircle->offsetY() > staticRect->originY();
 
 
   //half rect size
@@ -625,11 +626,11 @@ void Collision::solveStaticRectDynamicCircle(
   {
     if (isLastUp)
     {
-      dynamicEnt->rigidBody->nextPos.y = staticRect->originY() + rectHalfH + dynamicCircle->getRadius() - dynamicCircle->offsetY();
+      dynamicEnt->getRigidBody()->nextPos.y = staticRect->originY() + rectHalfH + dynamicCircle->getRadius() - dynamicCircle->offsetY();
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.y = staticRect->originY() - rectHalfH - dynamicCircle->getRadius() - dynamicCircle->offsetY();
+      dynamicEnt->getRigidBody()->nextPos.y = staticRect->originY() - rectHalfH - dynamicCircle->getRadius() - dynamicCircle->offsetY();
     }
   }
   //SIDE CASE: circle on left or right side of rect
@@ -637,11 +638,11 @@ void Collision::solveStaticRectDynamicCircle(
   {
     if (isLastLeft)
     {
-      dynamicEnt->rigidBody->nextPos.x = staticRect->originX() - rectHalfW - dynamicCircle->getRadius() - dynamicCircle->offsetX();
+      dynamicEnt->getRigidBody()->nextPos.x = staticRect->originX() - rectHalfW - dynamicCircle->getRadius() - dynamicCircle->offsetX();
     }
     else
     {
-      dynamicEnt->rigidBody->nextPos.x = staticRect->originX() + rectHalfW + dynamicCircle->getRadius() - dynamicCircle->offsetX();
+      dynamicEnt->getRigidBody()->nextPos.x = staticRect->originX() + rectHalfW + dynamicCircle->getRadius() - dynamicCircle->offsetX();
     }
   }
 
@@ -649,8 +650,8 @@ void Collision::solveStaticRectDynamicCircle(
   else
   {
     //circle side for next position
-    bool isNextLeft = dynamicEnt->rigidBody->nextPos.x + dynamicCircle->offsetX() < staticRect->originX();
-    bool isNextUp = dynamicEnt->rigidBody->nextPos.y + dynamicCircle->offsetY() > staticRect->originY();
+    bool isNextLeft = dynamicEnt->getRigidBody()->nextPos.x + dynamicCircle->offsetX() < staticRect->originX();
+    bool isNextUp = dynamicEnt->getRigidBody()->nextPos.y + dynamicCircle->offsetY() > staticRect->originY();
 
     //difference bewteen rect side and origin of circle, for each axis
     float rectX, rectY;
@@ -694,22 +695,22 @@ void Collision::solveStaticRectDynamicCircle(
     {
       if (isNextLeft)
       {
-        dynamicEnt->rigidBody->nextPos.x -= depthX;
+        dynamicEnt->getRigidBody()->nextPos.x -= depthX;
       }
       else
       {
-        dynamicEnt->rigidBody->nextPos.x += depthX;
+        dynamicEnt->getRigidBody()->nextPos.x += depthX;
       }
     }
     else
     {
       if (isNextUp)
       {
-        dynamicEnt->rigidBody->nextPos.y += depthY;
+        dynamicEnt->getRigidBody()->nextPos.y += depthY;
       }
       else
       {
-        dynamicEnt->rigidBody->nextPos.y -= depthY;
+        dynamicEnt->getRigidBody()->nextPos.y -= depthY;
       }
     }
   }
@@ -780,14 +781,14 @@ void Collision::solveDynamicCircleDynamicCircle(
 )
 {
   //velocity of each rigidbody
-  glm::vec3 velA = entA->rigidBody->velocity;
-  glm::vec3 velB = entB->rigidBody->velocity;
+  glm::vec3 velA = entA->getRigidBody()->velocity;
+  glm::vec3 velB = entB->getRigidBody()->velocity;
 
-  float massA = entA->rigidBody->mass;
-  float massB = entB->rigidBody->mass;
+  float massA = entA->getRigidBody()->mass;
+  float massB = entB->getRigidBody()->mass;
 
   //difference of next position direction
-  glm::vec3 diffDir = glm::normalize(entB->rigidBody->nextPos - entA->rigidBody->nextPos);
+  glm::vec3 diffDir = glm::normalize(entB->getRigidBody()->nextPos - entA->getRigidBody()->nextPos);
 
   //resulting change vector of impact, in relation to entA
   glm::vec3 resultForce = glm::vec3(
@@ -802,28 +803,28 @@ void Collision::solveDynamicCircleDynamicCircle(
   //which ever entity has the highest mass use that for setting the result force
   if (massA > massB)
   {
-    entA->rigidBody->nextPos = entA->rigidBody->lastPos + resultForce;
+    entA->getRigidBody()->nextPos = entA->getRigidBody()->lastPos + resultForce;
 
     //find direction vector between 2 next positions
-    glm::vec3 diff = (entB->rigidBody->lastPos + circleB->offset()) - (entA->rigidBody->nextPos + circleA->offset());
+    glm::vec3 diff = (entB->getRigidBody()->lastPos + circleB->offset()) - (entA->getRigidBody()->nextPos + circleA->offset());
     glm::vec3 dir = glm::normalize(diff);
 
     //set next position and update velocity
-    entA->rigidBody->velocity = entA->rigidBody->nextPos - entA->rigidBody->lastPos;
-    entB->rigidBody->nextPos = entA->rigidBody->nextPos + (dir * minDiff * 1.0f);
-    entB->rigidBody->velocity = entB->rigidBody->nextPos - entB->rigidBody->lastPos;
+    entA->getRigidBody()->velocity = entA->getRigidBody()->nextPos - entA->getRigidBody()->lastPos;
+    entB->getRigidBody()->nextPos = entA->getRigidBody()->nextPos + (dir * minDiff * 1.0f);
+    entB->getRigidBody()->velocity = entB->getRigidBody()->nextPos - entB->getRigidBody()->lastPos;
   }
   else
   {
-    entB->rigidBody->nextPos = entB->rigidBody->lastPos + resultForce;
+    entB->getRigidBody()->nextPos = entB->getRigidBody()->lastPos + resultForce;
 
     //find direction vector between 2 next positions
-    glm::vec3 diff = (entA->rigidBody->lastPos + circleA->offset()) - (entB->rigidBody->nextPos + circleB->offset());
+    glm::vec3 diff = (entA->getRigidBody()->lastPos + circleA->offset()) - (entB->getRigidBody()->nextPos + circleB->offset());
     glm::vec3 dir = glm::normalize(diff);
 
     //set next position and update velocity
-    entB->rigidBody->velocity = entB->rigidBody->nextPos - entB->rigidBody->lastPos;
-    entA->rigidBody->nextPos = entB->rigidBody->nextPos + (dir * minDiff * 1.0f);
-    entA->rigidBody->velocity = entA->rigidBody->nextPos - entA->rigidBody->lastPos;
+    entB->getRigidBody()->velocity = entB->getRigidBody()->nextPos - entB->getRigidBody()->lastPos;
+    entA->getRigidBody()->nextPos = entB->getRigidBody()->nextPos + (dir * minDiff * 1.0f);
+    entA->getRigidBody()->velocity = entA->getRigidBody()->nextPos - entA->getRigidBody()->lastPos;
   }
 }

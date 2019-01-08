@@ -10,8 +10,8 @@ namespace oak
 {
   struct EntityManager
   {
-    friend class Collision;
-    friend class Entity;
+    //friend class Collision;
+    //friend class Entity;
 
 ///<summary>Returns an Entity with a matching ID if it exists in the world</summary>
     static Entity* findEntityByID(uint id);
@@ -42,6 +42,13 @@ namespace oak
 
     ///<summary>Clears and deallocates all the existing queues</summary>
     static void clearQueues();
+
+    static std::vector<Entity*>& getAllEntitys();
+
+    static void queueEntityCreate(Entity* ent);
+    static void queueEntityDestroy(Entity* ent);
+
+    static const uint nextEntityID();
 
   private:
     static IDGenerator entityIDGen;

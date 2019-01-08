@@ -13,8 +13,8 @@ void Transform::onParentSet(const Transform* parent)
   //no parent, move to world coords
   if (parent == nullptr)
   {
-    m_localPosition += entity->parent->transform->position();
-    m_localRotation += entity->parent->transform->rotation();
+    m_localPosition += entity->getParent()->transform->position();
+    m_localRotation += entity->getParent()->transform->rotation();
   }
   else
   {
@@ -31,9 +31,9 @@ void Transform::onParentSet(const Transform* parent)
 const glm::vec3 Transform::position() const
 {
   glm::vec3 pos = m_localPosition;
-  if (entity->parent != nullptr)
+  if (entity->getParent() != nullptr)
   {
-    pos += entity->parent->transform->position();
+    pos += entity->getParent()->transform->position();
   }
 
   return pos;
@@ -46,11 +46,11 @@ const glm::vec3& Transform::localPosition() const
 
 const glm::vec3 Transform::inversePosition(const glm::vec3& pos) const
 {
-  if (entity->parent == nullptr)
+  if (entity->getParent() == nullptr)
   {
     return pos;
   }
-  return pos - entity->parent->transform->position();
+  return pos - entity->getParent()->transform->position();
 }
 
 void Transform::moveBy(float x, float y, float z)
@@ -85,9 +85,9 @@ void Transform::moveTo(glm::vec3 pos)
 const glm::vec3 Transform::rotation() const
 {
   glm::vec3 rot = m_localRotation;
-  if (entity->parent != nullptr)
+  if (entity->getParent() != nullptr)
   {
-    rot += entity->parent->transform->rotation();
+    rot += entity->getParent()->transform->rotation();
   }
 
   return rot;
@@ -100,11 +100,11 @@ const glm::vec3& Transform::localRotation() const
 
 const glm::vec3 Transform::inverseRotation(const glm::vec3& rot) const
 {
-  if (entity->parent == nullptr)
+  if (entity->getParent() == nullptr)
   {
     return rot;
   }
-  return rot - entity->parent->transform->position();
+  return rot - entity->getParent()->transform->position();
 }
 
 void Transform::rotateBy(float x, float y, float z)

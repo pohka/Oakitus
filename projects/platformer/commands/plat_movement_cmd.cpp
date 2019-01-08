@@ -1,5 +1,6 @@
 #include "plat_movement_cmd.h"
 #include "../plat_consts.h"
+#include "../prefabs/a_player.h"
 
 using namespace oak;
 using namespace plat;
@@ -34,72 +35,43 @@ void plat::MovementCMD::execute()
   }
 
 
-  bool hasMoved = (axisX != 0.0f || axisY != 0.0f);
+  APlayer* actor = static_cast<APlayer*>(player->getAssignedActor());
+  
+  glm::vec3 translate = glm::vec3(0.0f, 0.0f, 0.0f);
 
-  Actor* actor = player->getAssignedActor();
-  LOG << "children:" << actor->getChildren().size();
+  translate.x += axisX * speed * Time::deltaTime();
 
-  if (actor != nullptr)
+  if (actor->state == APlayer::STATE_AIR)
   {
-    if (Input::isKeyDown(KEYCODE_B))
-    {
-      Entity* ent = EntityManager::findEntityByName("thing");
-      if (ent != nullptr)
-      {
-        LOG << "FOUND THING";
-        if (ent->getParent() != nullptr)
-        {
-          ent->detach();
-        }
-        else
-        {
-          actor->addChild(ent);
-        }
-      }
-    }
+    translate.y -= gravity * Time::deltaTime();
+  }
 
-    glm::vec3 translate = glm::vec3(0.0f, 0.0f, 0.0f);
+  bool hasMoved = true;
 
+  //update animation
+  Animator* animator = actor->getComponent<Animator>();
+
+  if (animator != nullptr)
+  {
     if (hasMoved)
     {
-      //calculate the movement vector, so the actor moves at the same speed in all directions
-      glm::vec2 move = glm::vec2(axisX, axisY);
-      move = glm::normalize(move) * speed;
-
-      translate.x += move.x * Time::deltaTime();
-      translate.y += move.y * Time::deltaTime();
-    }
-
-    if (state == STATE_AIR)
-    {
-      translate.y -= gravity * Time::deltaTime();
-      //actor->position.y -= gravity * Time::deltaTime();
-    }
-
-    Animator* animator = actor->getComponent<Animator>();
-
-    if (animator != nullptr)
-    {
-      if (hasMoved)
+      if (axisX > 0.0f)
       {
-        if (axisX > 0.0f)
-        {
-          animator->setDirection(ANIM_DIRECTION_RIGHT);
-        }
-        else if (axisX < 0.0f)
-        {
-          animator->setDirection(ANIM_DIRECTION_LEFT);
-        }
-
-        animator->setAnim(ANIM_ACT_RUN);
+        animator->setDirection(ANIM_DIRECTION_RIGHT);
       }
-      else
+      else if (axisX < 0.0f)
       {
-        animator->setAnim(ANIM_ACT_IDLE);
+        animator->setDirection(ANIM_DIRECTION_LEFT);
       }
-    }
 
-    //apply change in position
-    actor->transform->moveBy(translate);
+      animator->setAnim(ANIM_ACT_RUN);
+    }
+    else
+    {
+      animator->setAnim(ANIM_ACT_IDLE);
+    }
   }
+
+  //apply change in position
+  actor->transform->moveBy(translate);
 }

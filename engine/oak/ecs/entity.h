@@ -26,10 +26,7 @@ namespace oak
   ///<summary>An Object in the world</summary>
   class Entity
   {
-    friend class Oakitus;
     friend struct EntityManager;
-    friend class Collision;
-    friend class Transform;
 
 	  uint entityID; ///<summary>Unique ID of this Entity</summary>
 
@@ -74,7 +71,7 @@ namespace oak
 	    uint getID() const;
 
       ///<summary>Returns the CollisionLayer of this Entity</summary>
-      CollisionLayer getCollisionLayer() const;
+      const uint getCollisionLayer() const;
 
       ///<summary>Returns the name of this Entity</summary>
       std::string getName() const;
@@ -144,11 +141,19 @@ namespace oak
       const std::vector<Entity*>& getChildren() const;
 
       //get the collision shapes
-      virtual std::vector<BaseCollisionShape*>& getCollisionShapes();
+      std::vector<BaseCollisionShape*>& getCollisionShapes();
+
+      ///<summary>Called when a collision occured</summary>
+      void onCollisionHit(Entity& hit);
+
+      BaseRigidBody* getRigidBody() const;
+
+      void setCreationState(const uchar state);
+      const uchar getCreationState() const;
 
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
-      CollisionLayer collisionLayer;
+      uint collisionLayer = COLLISION_LAYER_DEFAULT;
       BaseRigidBody* rigidBody = nullptr;
 
       //EVENTS
@@ -167,8 +172,7 @@ namespace oak
       ///<summary>Called once just before this Entity is removed from the world and deallocated</summary>
 	    void onDestroy();
 
-      ///<summary>Called when a collision occured</summary>
-      void onCollisionHit(Entity& hit);
+      
 
       
 
@@ -186,10 +190,8 @@ namespace oak
        bool isRenderable;
        bool isTickingEnable = true;
 
-       static cnum STATE_NOT_CREATED = 0; //not queued or created
-       static cnum STATE_QUEUED = 1; //in queue to be created at the end of the frame
-       static cnum STATE_CREATED = 2; //created
-       uchar createState = STATE_NOT_CREATED; //current creation state
+       
+       uchar creationState = CREATION_STATE_NULL; //current creation state
   };
 }
 

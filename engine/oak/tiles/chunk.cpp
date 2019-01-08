@@ -11,6 +11,8 @@ Chunk::Chunk(const int x, const int y, const World* world) :
   CHUNK_X(x),
   CHUNK_Y(y)
 {
+  collisionLayer = oak::COLLISION_LAYER_WORLD;
+
   transform->moveTo(
     (float)(x * world->TOTAL_CHUNK_SIZE),
     (float)(y * world->TOTAL_CHUNK_SIZE),
@@ -57,4 +59,6 @@ void Chunk::genCollision()
       }
     }
   }
+
+  
 }

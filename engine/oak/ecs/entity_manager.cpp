@@ -172,6 +172,7 @@ void EntityManager::instantiateQueuedEnts()
   while (!EntityManager::pendingEntityInstances.empty())
   {
     Entity* ent = pendingEntityInstances.front();
+    ent->setCreationState(CREATION_STATE_CREATED);
     entitys.push_back(ent);
     temp.push(ent);
     pendingEntityInstances.pop();
@@ -183,4 +184,32 @@ void EntityManager::instantiateQueuedEnts()
     temp.front()->onCreate();
     temp.pop();
   }
+}
+
+std::vector<Entity*>& EntityManager::getAllEntitys()
+{
+  return entitys;
+}
+
+void EntityManager::queueEntityCreate(Entity* ent)
+{
+  if (ent->creationState == CREATION_STATE_NULL)
+  {
+    ent->setCreationState(CREATION_STATE_QUEUED);
+    pendingEntityInstances.push(ent);
+  }
+}
+
+void EntityManager::queueEntityDestroy(Entity* ent)
+{
+  if (ent->creationState < CREATION_STATE_DESTROYED)
+  {
+    ent->setCreationState(CREATION_STATE_DESTROYED);
+    queuedDestroyEntityIDs.push(ent->getID());
+  }
+}
+
+const uint EntityManager::nextEntityID()
+{
+  return entityIDGen.nextID();
 }

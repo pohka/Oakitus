@@ -23,6 +23,11 @@ cnum TICK_TYPE_TICKABLE = 1;
 cnum TICK_TYPE_INTERVAL_TICK = 2;
 cnum TICK_TYPE_LAST = 3;
 
+cnum CREATION_STATE_NULL = 0; //not queued or created
+cnum CREATION_STATE_QUEUED = 1; //in queue to be created at the end of the frame
+cnum CREATION_STATE_CREATED = 2; //created
+cnum CREATION_STATE_DESTROYED = 3; //queued for destruction
+
 
 const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
 
