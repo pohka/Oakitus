@@ -124,6 +124,7 @@
     <ClCompile Include="..\engine\oak\collision\collision.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision_circle.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision_rect.cpp" />
+    <ClCompile Include="..\engine\oak\collision\physics.cpp" />
     <ClCompile Include="..\engine\oak\components\animator.cpp" />
     <ClCompile Include="..\engine\oak\components\base_rigid_body.cpp" />
     <ClCompile Include="..\engine\oak\components\rigid_body_2d.cpp" />

@@ -577,6 +577,9 @@
     <ClCompile Include="..\engine\oak\tiles\chunk_renderer.cpp">
       <Filter>oak\tiles</Filter>
     </ClCompile>
+    <ClCompile Include="..\engine\oak\collision\physics.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\resources\shaders\collision.fs">
