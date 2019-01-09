@@ -74,11 +74,12 @@ int checkLine(const LineSegment& line, const LineSegment& other, glm::vec2& inte
 //returns true if hit, output is set in hit
 bool checkRect(CollisionRect* rect, const LineSegment& other, RaycastHit2D& hit)
 {
+  RectBounds bounds = rect->getRectBounds();
   //nodes connected clockwise
-  LineSegment top = LineSegment(rect->minX(), rect->maxY(), rect->maxX(), rect->maxY()); //top left -> top right
-  LineSegment right = LineSegment(rect->maxX(), rect->maxY(), rect->maxX(), rect->minY()); //top right -> bottom right
-  LineSegment bottom = LineSegment(rect->maxX(), rect->minY(), rect->minX(), rect->minY()); //bottom right -> bottom left
-  LineSegment left = LineSegment(rect->minX(), rect->minY(), rect->minX(), rect->maxY()); //bottom left -> top left
+  LineSegment top = LineSegment(bounds.minX, bounds.maxY, bounds.maxX, bounds.maxY); //top left -> top right
+  LineSegment right = LineSegment(bounds.maxX, bounds.maxY, bounds.maxX, bounds.minY); //top right -> bottom right
+  LineSegment bottom = LineSegment(bounds.maxX, bounds.minY, bounds.minX, bounds.minY); //bottom right -> bottom left
+  LineSegment left = LineSegment(bounds.minX, bounds.minY, bounds.minX, bounds.maxY); //bottom left -> top left
 
   auto edges = { top, left, bottom, right };
 

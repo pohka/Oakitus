@@ -7,6 +7,14 @@
 
 namespace oak
 {
+  struct RectBounds
+  {
+    float minX;
+    float minY;
+    float maxX;
+    float maxY;
+  };
+
   class CollisionRect : public BaseCollisionShape
   {
     float w;
@@ -23,6 +31,9 @@ namespace oak
       float maxY() const;
       float width() const;
       float height() const;
+
+      RectBounds getRectBounds() const;
+
   };
 }
 #endif
