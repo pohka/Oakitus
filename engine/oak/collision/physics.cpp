@@ -2,6 +2,7 @@
 #include <oak/ecs/entity_manager.h>
 #include "base_collision_shape.h"
 #include "collision_rect.h"
+#include <iostream>
 
 using namespace oak;
 
@@ -16,11 +17,18 @@ struct LineSegment
     y2(y2)
   {
   }
+
+  glm::vec2 getNormal()
+  {
+    float x = x2 - x1;
+    float y = y2 - y1;
+    return glm::vec2(y, -x);
+  }
 };
 
 enum IntersectResult { PARALLEL, COINCIDENT, NOT_INTERESECTING, INTERESECTING };
 
-int checkLine(const LineSegment& line, const LineSegment& other, glm::vec3& intersection)
+int checkLine(const LineSegment& line, const LineSegment& other, glm::vec2& intersection)
 {
   float denom = (
     (other.y2 - other.y1)*(line.x2 - line.x1)) -
@@ -54,7 +62,6 @@ int checkLine(const LineSegment& line, const LineSegment& other, glm::vec3& inte
     // Get the intersection point.
     intersection.x = line.x1 + ua * (line.x2 - line.x1);
     intersection.y = line.y1 + ua * (line.y2 - line.y1);
-    intersection.z = 0.0f;
 
     return INTERESECTING;
   }
@@ -62,50 +69,110 @@ int checkLine(const LineSegment& line, const LineSegment& other, glm::vec3& inte
   return NOT_INTERESECTING;
 }
 
-
-void checkRect(CollisionRect* rect, const LineSegment& other)
+//returns true if hit, output is set in hit
+bool checkRect(CollisionRect* rect, const LineSegment& other, RaycastHit2D& hit)
 {
-  LineSegment top = LineSegment(rect->minX(), rect->maxY(), rect->maxX(), rect->maxY());
-  LineSegment bottom = LineSegment(rect->minX(), rect->minY(), rect->maxX(), rect->minY());
-  LineSegment left = LineSegment(rect->minX(), rect->minY(), rect->minX(), rect->maxY());
-  LineSegment right = LineSegment(rect->maxX(), rect->minY(), rect->maxX(), rect->maxY());
+  //nodes connected clockwise
+  LineSegment top = LineSegment(rect->minX(), rect->maxY(), rect->maxX(), rect->maxY()); //top left -> top right
+  LineSegment right = LineSegment(rect->maxX(), rect->maxY(), rect->maxX(), rect->minY()); //top right -> bottom right
+  LineSegment bottom = LineSegment(rect->maxX(), rect->minY(), rect->minX(), rect->minY()); //bottom right -> bottom left
+  LineSegment left = LineSegment(rect->minX(), rect->minY(), rect->minX(), rect->maxY()); //bottom left -> top left
+  
+ // std::cout << rect->maxY() << "__" << rect->minY() << std::endl;
 
-  glm::vec3 point;
-  checkLine(top, other, point);
-  //checkLine(bottom, other);
-  //checkLine(left, other);
-  //checkLine(right, other);
+  auto edges = { top, left, bottom, right };
+
+  glm::vec2 point;
+  glm::vec2 resultPt;
+  LineSegment* edgeHit = nullptr;
+  float closestDist = 0.0f;
+  bool found = false;
+  for (auto edge : edges)
+  {
+    //if intersecting the edge of rect
+    if (checkLine(edge, other, point) == INTERESECTING)
+    {
+      //first intersection found
+      if (!found)
+      {
+        resultPt = point;
+        closestDist = glm::distance(glm::vec2(other.x1, other.y1), glm::vec2(point.x, point.y));
+        found = true;
+        edgeHit = &edge;
+      }
+      else
+      {
+        //uses closest intersection point
+        float dist = glm::distance(glm::vec2(other.x1, other.y1), glm::vec2(point.x, point.y));
+       // std::cout << "dist:" << dist << " ? " << closestDist << "|" << point.x << "," << point.y << std::endl;
+        if (dist < closestDist)
+        {
+          closestDist = dist;
+          resultPt = point;
+          edgeHit = &edge;
+        }
+      }
+    }
+  }
+
+
+  if (found && edgeHit != nullptr)
+  {
+    hit.distance = closestDist;
+    hit.point = resultPt;
+    hit.normal = glm::normalize(edgeHit->getNormal());
+  }
+
+  return found;
 }
 
-RaycastHit Physics::Raycast2D(const glm::vec3& origin, glm::vec3 direction, float distance, uint layers)
+bool Physics::Raycast2D(const glm::vec3& origin, glm::vec3 direction, RaycastHit2D& hit, float distance, uint layers)
 {
   direction.z = 0.0f;
   direction = glm::normalize(direction);
   glm::vec3 end = origin + (direction * distance);
 
   LineSegment line = LineSegment(origin.x, origin.y, end.x, end.y);
+  bool found = false;
+  RaycastHit2D outHit; //output of a intersection hit
 
   std::vector<Entity*> entitys = EntityManager::getAllEntitys();
   for (Entity* ent : entitys)
   {
-    glm::vec3 entPos = ent->transform->position();
     std::vector<BaseCollisionShape*> shapes = ent->getCollisionShapes();
 
     for (BaseCollisionShape* shape : shapes)
     {
-      glm::vec3 colPos = entPos + shape->offset();
-
       switch (shape->getType())
       {
+        //rect
         case COLLISION_SHAPE_RECT:
-          checkRect(static_cast<CollisionRect*>(shape), line);
+          if (checkRect(static_cast<CollisionRect*>(shape), line, outHit))
+          {
+            //first intersection
+            if (!found)
+            {
+              hit = outHit;
+              hit.entityHit = ent;
+              found = true;
+            }
+            //use closest intersection
+            else if(hit.distance > outHit.distance)
+            {
+              hit = outHit;
+              hit.entityHit = ent;
+            }
+          }
           break;
+        //circle
         case COLLISION_SHAPE_CIRCLE:
-          ; 
+          ; //todo
           break;
       }
     }
   }
+
+  return found;
 }
 
 

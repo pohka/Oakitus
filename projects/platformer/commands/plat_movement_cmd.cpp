@@ -1,6 +1,7 @@
 #include "plat_movement_cmd.h"
 #include "../plat_consts.h"
 #include "../prefabs/a_player.h"
+#include <oak/collision/physics.h>
 
 using namespace oak;
 using namespace plat;
@@ -74,4 +75,11 @@ void plat::MovementCMD::execute()
 
   //apply change in position
   actor->transform->moveBy(translate);
+
+  RaycastHit2D hit;
+  bool hasHit = Physics::Raycast2D(glm::vec3(100.0f, -50.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0), hit, 100.0f);
+  if (hasHit)
+  {
+    LOG << "hit dist:" << hit.distance << " (" << hit.point.x << "," << hit.point.y << ")";
+  }
 }

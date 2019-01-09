@@ -7,6 +7,7 @@ using namespace oak;
 
 APlayer::APlayer() : Actor()
 {
+  name = "actor_player";
   float w = 34.0f;
   float h = 40.0f;
   addComponent(new Sprite("face.png", w, h));
