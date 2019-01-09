@@ -28,9 +28,11 @@ namespace oak
 
       float offsetX() const;
       float offsetY() const;
-      glm::vec3 offset();
+      glm::vec3 offset() const;
       float originX() const;
       float originY() const;
+      glm::vec3 origin() const;
+
       uchar getType() const;
       bool isTrigger = false;
 

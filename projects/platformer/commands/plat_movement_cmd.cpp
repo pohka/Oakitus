@@ -77,11 +77,11 @@ void plat::MovementCMD::execute()
 
   RaycastHit2D hit;
   bool hasHit = Physics::Raycast2D(
-    actor->transform->position2D(),
+    actor->transform->position2D(),// - glm::vec2(70.0f, 0.0f),
     glm::vec2(-1.0f, 0.0f), 
     hit, 
     100.0f,
-    COLLISION_LAYER_WORLD
+    COLLISION_LAYER_ALL
   );
   if (hasHit)
   {

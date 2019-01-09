@@ -7,11 +7,13 @@ using namespace oak;
 
 APlayer::APlayer() : Actor()
 {
+  collisionLayer = COLLISION_LAYER_PLAYER;
   name = "actor_player";
   float w = 34.0f;
   float h = 40.0f;
   addComponent(new Sprite("face.png", w, h));
   addCollision(new CollisionRect(0.0f, 0.0f, w, h));
+  //addCollision(new CollisionCircle(w, 0.0f, 0.0f));
   addRigidBody(new RigidBody2D(false));
 
   Entity* ent = new Entity();

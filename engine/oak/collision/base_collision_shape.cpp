@@ -21,6 +21,11 @@ BaseCollisionShape::~BaseCollisionShape()
 
 }
 
+glm::vec3 BaseCollisionShape::origin() const
+{
+  return this->entity->transform->position() + offset();
+}
+
 float BaseCollisionShape::originX() const
 {
   return this->entity->transform->position().x + m_offsetX;
@@ -40,7 +45,7 @@ float BaseCollisionShape::offsetY() const
   return m_offsetY;
 }
 
-glm::vec3 BaseCollisionShape::offset()
+glm::vec3 BaseCollisionShape::offset() const 
 {
   return glm::vec3(m_offsetX, m_offsetY, 0.0f);
 }
