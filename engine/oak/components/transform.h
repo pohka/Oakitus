@@ -16,6 +16,7 @@ namespace oak
     const glm::vec3 position() const;
     const glm::vec3& localPosition() const;
     const glm::vec3 inversePosition(const glm::vec3& pos) const;
+    const glm::vec2 position2D() const;
 
 
     void moveBy(float x, float y, float z);

@@ -53,6 +53,12 @@ const glm::vec3 Transform::inversePosition(const glm::vec3& pos) const
   return pos - entity->getParent()->transform->position();
 }
 
+const glm::vec2 Transform::position2D() const
+{
+  glm::vec3 pos = position();
+  return glm::vec2(pos.x, pos.y);
+}
+
 void Transform::moveBy(float x, float y, float z)
 {
   m_localPosition += glm::vec3(x, y, z);

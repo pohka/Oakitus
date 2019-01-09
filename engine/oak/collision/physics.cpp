@@ -3,8 +3,10 @@
 #include "base_collision_shape.h"
 #include "collision_rect.h"
 #include <iostream>
+#include <bitset>
 
 using namespace oak;
+
 
 struct LineSegment
 {
@@ -77,8 +79,6 @@ bool checkRect(CollisionRect* rect, const LineSegment& other, RaycastHit2D& hit)
   LineSegment right = LineSegment(rect->maxX(), rect->maxY(), rect->maxX(), rect->minY()); //top right -> bottom right
   LineSegment bottom = LineSegment(rect->maxX(), rect->minY(), rect->minX(), rect->minY()); //bottom right -> bottom left
   LineSegment left = LineSegment(rect->minX(), rect->minY(), rect->minX(), rect->maxY()); //bottom left -> top left
-  
- // std::cout << rect->maxY() << "__" << rect->minY() << std::endl;
 
   auto edges = { top, left, bottom, right };
 
@@ -104,7 +104,6 @@ bool checkRect(CollisionRect* rect, const LineSegment& other, RaycastHit2D& hit)
       {
         //uses closest intersection point
         float dist = glm::distance(glm::vec2(other.x1, other.y1), glm::vec2(point.x, point.y));
-       // std::cout << "dist:" << dist << " ? " << closestDist << "|" << point.x << "," << point.y << std::endl;
         if (dist < closestDist)
         {
           closestDist = dist;
@@ -126,11 +125,10 @@ bool checkRect(CollisionRect* rect, const LineSegment& other, RaycastHit2D& hit)
   return found;
 }
 
-bool Physics::Raycast2D(const glm::vec3& origin, glm::vec3 direction, RaycastHit2D& hit, float distance, uint layers)
+bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit2D& hit, float distance, uint layers)
 {
-  direction.z = 0.0f;
   direction = glm::normalize(direction);
-  glm::vec3 end = origin + (direction * distance);
+  glm::vec2 end = origin + (direction * distance);
 
   LineSegment line = LineSegment(origin.x, origin.y, end.x, end.y);
   bool found = false;
@@ -139,13 +137,16 @@ bool Physics::Raycast2D(const glm::vec3& origin, glm::vec3 direction, RaycastHit
   std::vector<Entity*> entitys = EntityManager::getAllEntitys();
   for (Entity* ent : entitys)
   {
-    std::vector<BaseCollisionShape*> shapes = ent->getCollisionShapes();
-
-    for (BaseCollisionShape* shape : shapes)
+    //bitwise check, if entity collision layer is in layers
+    if ((ent->getCollisionLayer() & layers) > 0)
     {
-      switch (shape->getType())
+      std::vector<BaseCollisionShape*> shapes = ent->getCollisionShapes();
+
+      for (BaseCollisionShape* shape : shapes)
       {
-        //rect
+        switch (shape->getType())
+        {
+          //rect
         case COLLISION_SHAPE_RECT:
           if (checkRect(static_cast<CollisionRect*>(shape), line, outHit))
           {
@@ -157,17 +158,18 @@ bool Physics::Raycast2D(const glm::vec3& origin, glm::vec3 direction, RaycastHit
               found = true;
             }
             //use closest intersection
-            else if(hit.distance > outHit.distance)
+            else if (hit.distance > outHit.distance)
             {
               hit = outHit;
               hit.entityHit = ent;
             }
           }
           break;
-        //circle
+          //circle
         case COLLISION_SHAPE_CIRCLE:
           ; //todo
           break;
+        }
       }
     }
   }

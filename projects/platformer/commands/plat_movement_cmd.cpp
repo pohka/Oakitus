@@ -73,13 +73,21 @@ void plat::MovementCMD::execute()
     }
   }
 
-  //apply change in position
-  actor->transform->moveBy(translate);
+  
 
   RaycastHit2D hit;
-  bool hasHit = Physics::Raycast2D(glm::vec3(100.0f, -50.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0), hit, 100.0f);
+  bool hasHit = Physics::Raycast2D(
+    actor->transform->position2D(),
+    glm::vec2(-1.0f, 0.0f), 
+    hit, 
+    100.0f,
+    COLLISION_LAYER_WORLD
+  );
   if (hasHit)
   {
-    LOG << "hit dist:" << hit.distance << " (" << hit.point.x << "," << hit.point.y << ")";
+    LOG << "hit dist:" << hit.distance << " (" << hit.point.x << "," << hit.point.y << ") " << hit.entityHit->name;
   }
+
+  //apply change in position
+  actor->transform->moveBy(translate);
 }
