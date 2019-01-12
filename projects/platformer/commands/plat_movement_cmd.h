@@ -9,11 +9,6 @@ namespace plat
   {
     MovementCMD();
     void execute() override;
-
-    const float gravity = 100.0f;
-    const float speed = 300.0f;
-
-
   };
 }
 

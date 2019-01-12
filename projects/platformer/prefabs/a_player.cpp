@@ -2,6 +2,7 @@
 #include <oak/oak.h>
 #include <oak/debug.h>
 #include "../scripts/ground_check.h"
+#include "../scripts/movement.h"
 
 using namespace plat;
 using namespace oak;
@@ -16,6 +17,7 @@ APlayer::APlayer() : Unit()
   addCollision(new CollisionRect(0.0f, 0.0f, width, height));
   addRigidBody(new RigidBody2D(false));
   addComponent(new GroundCheck());
+  addComponent(new Movement());
 }
 
 

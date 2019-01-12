@@ -22,14 +22,18 @@ void GroundCheck::onTick()
 
   bool hasHit = Physics::Raycast2D(pos, down, hit, dist, layers);
   
+  bool isOnGround = unit->state == MOVE_STATE_ON_GROUND;
+
   //if changed state
-  if (hasHit != unit->isOnGround)
+  if (hasHit != isOnGround)
   {
-    unit->isOnGround = hasHit;
-    if (unit->isPlayer && hasHit)
+    if (hasHit)
     {
-      APlayer* aplayer = static_cast<APlayer*>(unit);
-      aplayer->onGroundTouch();
+      unit->onGroundTouch();
+    }
+    else if(!hasHit && isOnGround)
+    {
+      unit->state = MOVE_STATE_FALLING;
     }
   }
 }
