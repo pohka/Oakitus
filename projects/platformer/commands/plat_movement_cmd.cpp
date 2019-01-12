@@ -1,6 +1,8 @@
 #include "plat_movement_cmd.h"
 #include "../plat_consts.h"
 #include "../prefabs/a_player.h"
+#include <oak/collision/physics.h>
+#include "../scripts/movement.h"
 
 using namespace oak;
 using namespace plat;
@@ -11,10 +13,8 @@ plat::MovementCMD::MovementCMD() : Command(COMMAND_MOVEMENT)
 
 void plat::MovementCMD::execute()
 {
-
   float axisX = 0.0f;
   float axisY = 0.0f;
-
 
   //directional input
   if (Input::isKeyPressed(KEYCODE_W))
@@ -34,44 +34,6 @@ void plat::MovementCMD::execute()
     axisX += 1.0f;
   }
 
-
-  APlayer* actor = static_cast<APlayer*>(player->getAssignedActor());
-  
-  glm::vec3 translate = glm::vec3(0.0f, 0.0f, 0.0f);
-
-  translate.x += axisX * speed * Time::deltaTime();
-
-  if (actor->state == APlayer::STATE_AIR)
-  {
-    translate.y -= gravity * Time::deltaTime();
-  }
-
-  bool hasMoved = true;
-
-  //update animation
-  Animator* animator = actor->getComponent<Animator>();
-
-  if (animator != nullptr)
-  {
-    if (hasMoved)
-    {
-      if (axisX > 0.0f)
-      {
-        animator->setDirection(ANIM_DIRECTION_RIGHT);
-      }
-      else if (axisX < 0.0f)
-      {
-        animator->setDirection(ANIM_DIRECTION_LEFT);
-      }
-
-      animator->setAnim(ANIM_ACT_RUN);
-    }
-    else
-    {
-      animator->setAnim(ANIM_ACT_IDLE);
-    }
-  }
-
-  //apply change in position
-  actor->transform->moveBy(translate);
+  Movement* movement = player->getAssignedActor()->getComponent<Movement>();
+  movement->applyMovement(axisX, axisY);
 }

@@ -378,6 +378,15 @@
     <ClInclude Include="..\engine\oak\collision\physics.h">
       <Filter>oak\collision</Filter>
     </ClInclude>
+    <ClInclude Include="..\projects\platformer\scripts\ground_check.h">
+      <Filter>projects\platformer\scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\platformer\prefabs\unit.h">
+      <Filter>projects\platformer\prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\platformer\scripts\movement.h">
+      <Filter>projects\platformer\scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -576,6 +585,15 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\tiles\chunk_renderer.cpp">
       <Filter>oak\tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\collision\physics.cpp">
+      <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\platformer\scripts\ground_check.cpp">
+      <Filter>projects\platformer\scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\platformer\scripts\movement.cpp">
+      <Filter>projects\platformer\scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

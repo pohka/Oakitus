@@ -13,6 +13,10 @@ namespace plat
   cnum ANIM_PRIORITY_HIGH = 1;
 
   snum COMMAND_MOVEMENT = 1;
+
+  cnum MOVE_STATE_FALLING = 0;
+  cnum MOVE_STATE_ON_GROUND = 1;
+  cnum MOVE_STATE_JUMPING = 1;
 }
 
 #endif

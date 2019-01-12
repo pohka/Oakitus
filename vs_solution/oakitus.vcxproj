@@ -104,9 +104,12 @@
     <ClInclude Include="..\projects\platformer\plat_consts.h" />
     <ClInclude Include="..\projects\platformer\prefabs\a_player.h" />
     <ClInclude Include="..\projects\platformer\prefabs\camera_ent.h" />
+    <ClInclude Include="..\projects\platformer\prefabs\unit.h" />
     <ClInclude Include="..\projects\platformer\scenes\game_scenes.h" />
     <ClInclude Include="..\projects\platformer\scenes\testing_scene.h" />
     <ClInclude Include="..\projects\platformer\scripts\camera_follow.h" />
+    <ClInclude Include="..\projects\platformer\scripts\ground_check.h" />
+    <ClInclude Include="..\projects\platformer\scripts\movement.h" />
     <ClInclude Include="..\projects\sample\events\event_damage.h" />
     <ClInclude Include="..\projects\sample\load_game.h" />
     <ClInclude Include="..\projects\sample\movement_cmd.h" />
@@ -124,6 +127,7 @@
     <ClCompile Include="..\engine\oak\collision\collision.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision_circle.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision_rect.cpp" />
+    <ClCompile Include="..\engine\oak\collision\physics.cpp" />
     <ClCompile Include="..\engine\oak\components\animator.cpp" />
     <ClCompile Include="..\engine\oak\components\base_rigid_body.cpp" />
     <ClCompile Include="..\engine\oak\components\rigid_body_2d.cpp" />
@@ -179,6 +183,8 @@
     <ClCompile Include="..\projects\platformer\prefabs\a_player.cpp" />
     <ClCompile Include="..\projects\platformer\scenes\testing_scene.cpp" />
     <ClCompile Include="..\projects\platformer\scripts\camera_follow.cpp" />
+    <ClCompile Include="..\projects\platformer\scripts\ground_check.cpp" />
+    <ClCompile Include="..\projects\platformer\scripts\movement.cpp" />
     <ClCompile Include="..\projects\sample\events\event_damage.cpp" />
     <ClCompile Include="..\projects\sample\movement_cmd.cpp" />
     <ClCompile Include="..\projects\sample\sample_gamemode.cpp" />

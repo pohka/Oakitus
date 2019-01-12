@@ -57,3 +57,14 @@ float CollisionRect::height() const
 {
   return h;
 }
+
+RectBounds CollisionRect::getRectBounds() const
+{
+  glm::vec3 pos = this->entity->transform->position();
+  RectBounds bounds;
+  bounds.minX = pos.x + m_offsetX - (w * 0.5f);
+  bounds.minY = pos.y + m_offsetY - (h * 0.5f);
+  bounds.maxX = pos.x + m_offsetX + (w * 0.5f);
+  bounds.maxY = pos.y + m_offsetY + (h * 0.5f);
+  return bounds;
+}

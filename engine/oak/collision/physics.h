@@ -8,20 +8,19 @@
 
 namespace oak
 {
-  
+  class Entity;
 
-  struct RaycastHit
+  struct RaycastHit2D
   {
-
+    glm::vec2 point;
+    glm::vec2 normal;
+    float distance;
+    Entity* entityHit;
   };
 
   struct Physics
   {
-
-    static RaycastHit Raycast2D(const glm::vec3& origin, const glm::vec3& direction, float dist, uint layers)
-    {
-
-    }
+    static bool Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit2D& hit, const float distance, const uint layers = COLLISION_LAYER_ALL);
   };
 }
 
