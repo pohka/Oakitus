@@ -42,7 +42,7 @@ void plat::MovementCMD::execute()
 
   translate.x += axisX * speed * Time::deltaTime();
 
-  if (actor->state == APlayer::STATE_AIR)
+  if (actor->isOnGround == false)
   {
     translate.y -= gravity * Time::deltaTime();
   }
@@ -75,18 +75,18 @@ void plat::MovementCMD::execute()
 
   
 
-  RaycastHit2D hit;
-  bool hasHit = Physics::Raycast2D(
-    actor->transform->position2D(),// - glm::vec2(70.0f, 0.0f),
-    glm::vec2(-1.0f, 0.0f), 
-    hit, 
-    100.0f,
-    COLLISION_LAYER_ALL
-  );
-  if (hasHit)
-  {
-    LOG << "hit dist:" << hit.distance << " (" << hit.point.x << "," << hit.point.y << ") " << hit.entityHit->name;
-  }
+  //RaycastHit2D hit;
+  //bool hasHit = Physics::Raycast2D(
+  //  actor->transform->position2D(),// - glm::vec2(70.0f, 0.0f),
+  //  glm::vec2(-1.0f, 0.0f), 
+  //  hit, 
+  //  100.0f,
+  //  COLLISION_LAYER_ALL
+  //);
+  //if (hasHit)
+  //{
+  //  LOG << "hit dist:" << hit.distance << " (" << hit.point.x << "," << hit.point.y << ") " << hit.entityHit->name;
+  //}
 
   //apply change in position
   actor->transform->moveBy(translate);

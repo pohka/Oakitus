@@ -34,6 +34,7 @@
 #include "components/animator.h"
 #include "event/event_manager.h"
 #include "ecs/entity_manager.h"
+#include "collision/physics.h"
 
 #ifdef DEBUG_MODE
   #include "debug.h"

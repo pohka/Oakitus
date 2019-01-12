@@ -146,11 +146,6 @@ bool checkRect(CollisionRect* rect, LineSegment& other, RaycastHit2D& hit, const
 
   if (found)
   {
-    if (!other.isPointOnLine(resultPt, closestDist))
-    {
-      return false;
-    }
-
     hit.distance = closestDist;
     hit.point = resultPt;
     hit.normal = glm::normalize(edgeHit->getNormal());
