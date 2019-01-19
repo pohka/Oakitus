@@ -22,14 +22,14 @@ uint Player::getPlayerID() const
   return playerID;
 }
 
-void Player::executeCommands()
+void Player::tickCommands()
 {
   bool isPaused = Time::getIsPaused();
   for (Command* command : commands)
   {
     if (!isPaused || (isPaused && command->canExecuteWhenPaused))
     {
-      command->execute();
+      command->onTick();
     }
   }
 }

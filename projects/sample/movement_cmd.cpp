@@ -10,7 +10,7 @@ MovementCMD::MovementCMD() : Command(COMMAND_MOVEMENT)
 {
 }
 
-void MovementCMD::execute()
+void MovementCMD::onTick()
 {
   const float speed = 100.0f;
 

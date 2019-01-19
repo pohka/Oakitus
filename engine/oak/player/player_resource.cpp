@@ -24,11 +24,11 @@ Player* PlayerResource::getPlayer(uint playerID)
   return nullptr;
 }
 
-void PlayerResource::executeAllCommands()
+void PlayerResource::tickAllCommands()
 {
   for (Player* player : players)
   {
-    player->executeCommands();
+    player->tickCommands();
   }
 }
 

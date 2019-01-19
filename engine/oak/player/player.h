@@ -29,7 +29,7 @@ namespace oak
       uint getPlayerID() const;
 
       ///<summary>Calls execute() on all the Commands for this Player</summary>
-      void executeCommands();
+      void tickCommands();
 
       ///<summary>Adds an input Command to this Player</summary>
       void addCommand(Command* command);

@@ -25,7 +25,7 @@ namespace oak
       static Player* getLocalPlayer();
 
       ///<summary>Execute all Players input Commands</summary>
-      static void executeAllCommands();
+      static void tickAllCommands();
 
       static bool isLocalPlayerID(uint playerID);
 

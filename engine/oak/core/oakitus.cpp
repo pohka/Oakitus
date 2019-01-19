@@ -83,7 +83,7 @@ int Oakitus::loop()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     EntityManager::instantiateQueuedEnts();
-    PlayerResource::executeAllCommands();
+    PlayerResource::tickAllCommands();
     EntityManager::tickInstances(TICK_GROUP_DEFAULT);
     Collision::resolveCollisions();
     EntityManager::tickInstances(TICK_GROUP_AFTER_PHYSICS);

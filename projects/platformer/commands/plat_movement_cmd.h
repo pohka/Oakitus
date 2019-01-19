@@ -8,7 +8,7 @@ namespace plat
   struct MovementCMD : oak::Command
   {
     MovementCMD();
-    void execute() override;
+    void onTick() override;
   };
 }
 

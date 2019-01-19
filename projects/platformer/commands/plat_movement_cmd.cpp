@@ -11,7 +11,7 @@ plat::MovementCMD::MovementCMD() : Command(COMMAND_MOVEMENT)
 {
 }
 
-void plat::MovementCMD::execute()
+void plat::MovementCMD::onTick()
 {
   float axisX = 0.0f;
   float axisY = 0.0f;

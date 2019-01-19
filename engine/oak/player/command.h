@@ -20,7 +20,7 @@ namespace oak
       friend class Player;
 
       ///<summary>Called once each frame before the update stage</summary>
-      virtual void execute() = 0;
+      virtual void onTick() = 0;
 
       const unsigned short commandID;
 
