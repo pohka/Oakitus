@@ -19,7 +19,7 @@ namespace oak
       bool isStatic;
       float mass = 1.0f;
 
-      BaseRigidBody(bool isStatic);
+      BaseRigidBody(const uint REFECT_ID, bool isStatic);
 
       void onCreate() override;
   };

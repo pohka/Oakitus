@@ -10,7 +10,7 @@ using namespace tile;
 using namespace oak;
 
 ChunkRenderer::ChunkRenderer(Chunk* chunk) :
-  Component(TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true),
+  Component(REFLECT_CHUNK, TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true),
   VP_OFFSET_X(Window::worldToViewportCoords(chunk->transform->localPosition().x)),
   VP_OFFSET_Y(Window::worldToViewportCoords(chunk->transform->localPosition().y))
 {

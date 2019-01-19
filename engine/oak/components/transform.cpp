@@ -3,7 +3,7 @@
 
 using namespace oak;
 
-Transform::Transform() : Component(TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, false)
+Transform::Transform() : Component(REFLECT_TRANSFORM, TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, false)
 {
 
 }

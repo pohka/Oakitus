@@ -86,24 +86,7 @@ namespace oak
 
       bool canTickThisFrame() const;
 
-      //find component by type
-      template <typename T>
-      void getComponents(std::vector<T*>& out)
-      {
-        T* casted;
-         for (uchar i = 0; i < TICK_GROUP_MAX; i++)
-         {
-           for (Component* comp : componentGroups[i])
-           {
-             casted = dynamic_cast<T*>(comp);
-             if(casted != nullptr)
-             {
-               out.push_back(casted);
-             }
-           }
-         }
-      }
-
+      //find a component by class using dynamic casting
       template <typename T>
       T* getComponent()
       {
@@ -120,6 +103,57 @@ namespace oak
           }
         }
         return nullptr;
+      }
+
+      //find all components by class using dynamic casting
+      template <typename T>
+      void getComponents(std::vector<T*>& out)
+      {
+        T* casted;
+        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        {
+          for (Component* comp : componentGroups[i])
+          {
+            casted = dynamic_cast<T*>(comp);
+            if (casted != nullptr)
+            {
+              out.push_back(casted);
+            }
+          }
+        }
+      }
+
+      //find a component by reflection id
+      template <typename T>
+      T* getComponentWithReflection(const uint REFLECT_ID)
+      {
+        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        {
+          for (Component* comp : componentGroups[i])
+          {
+            if (comp->_REFLECT_ID == REFLECT_ID)
+            {
+              return reinterpret_cast<T*>(comp);
+            }
+          }
+        }
+        return nullptr;
+      }
+
+      //find all components by reflection id
+      template <typename T>
+      void getComponentsWithReflection(const uint REFLECT_ID, std::vector<T*>& out)
+      {
+        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        {
+          for (Component* comp : componentGroups[i])
+          {
+            if (comp->_REFLECT_ID == REFLECT_ID)
+            {
+              out.push_back(reinterpret_cast<T*>(comp));
+            }
+          }
+        }
       }
 
       //attachs a child to this entity, the child is created if it is not already created

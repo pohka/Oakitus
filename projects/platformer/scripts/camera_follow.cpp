@@ -1,9 +1,10 @@
 #include "camera_follow.h"
+#include "../reflect.h"
 
 using namespace plat;
 using namespace oak;
 
-CameraFollow::CameraFollow() : Component(TICK_GROUP_AFTER_PHYSICS, TICK_TYPE_TICKABLE, false)
+CameraFollow::CameraFollow() : Component(REFLECT_CAMERA_FOLLOW, TICK_GROUP_AFTER_PHYSICS, TICK_TYPE_TICKABLE, false)
 {
 
 }

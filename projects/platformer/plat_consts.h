@@ -2,6 +2,7 @@
 #define PLATFORMER_CONSTANTS_H
 
 #include <oak/core/types.h>
+#include "reflect.h"
 
 namespace plat
 {
@@ -17,6 +18,8 @@ namespace plat
   cnum MOVE_STATE_FALLING = 0;
   cnum MOVE_STATE_ON_GROUND = 1;
   cnum MOVE_STATE_JUMPING = 1;
+
+
 }
 
 #endif

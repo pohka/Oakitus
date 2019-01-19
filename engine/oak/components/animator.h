@@ -26,6 +26,7 @@ namespace oak
     uint frameIndex = 0; //current frame index
 
     public:
+
       Animator(uchar initialAnimID, SpriteAnimation* initialAnimation);
       ~Animator();
 

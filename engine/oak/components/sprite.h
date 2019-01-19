@@ -17,6 +17,7 @@ namespace oak
     uint VBO, VAO;
 
     public:
+
       //display size of the sprite
       float w;
       float h;

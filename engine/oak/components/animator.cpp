@@ -4,7 +4,7 @@
 
 using namespace oak;
 
-Animator::Animator(uchar initialAnimID, SpriteAnimation* initialAnimation) : Component(TICK_GROUP_DEFAULT, TICK_TYPE_INTERVAL_TICK, true)
+Animator::Animator(uchar initialAnimID, SpriteAnimation* initialAnimation) : Component(REFLECT_ANIMATOR, TICK_GROUP_DEFAULT, TICK_TYPE_INTERVAL_TICK, true)
 {
   this->initialAnimID = initialAnimID;
   anims[initialAnimID] = initialAnimation;

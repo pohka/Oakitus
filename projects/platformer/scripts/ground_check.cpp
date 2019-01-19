@@ -1,11 +1,12 @@
 #include "ground_check.h"
 #include <oak/oak.h>
 #include "../prefabs/a_player.h"
+#include "../reflect.h"
 
 using namespace plat;
 using namespace oak;
 
-GroundCheck::GroundCheck() : Component(TICK_GROUP_AFTER_PHYSICS)
+GroundCheck::GroundCheck() : Component(REFLECT_GROUND_CHECK, TICK_GROUP_AFTER_PHYSICS)
 {
 
 }

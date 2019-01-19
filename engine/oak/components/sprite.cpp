@@ -10,7 +10,6 @@
 
 using namespace oak;
 
-
 Sprite::Sprite(
   std::string src,
   int srcX,
@@ -20,7 +19,7 @@ Sprite::Sprite(
   float displayW,
   float displayH,
   std::string shaderName
-) : Component()
+) : Component(REFLECT_SPRITE)
 {
   this->srcX = srcX;
   this->srcY = srcY;
@@ -45,7 +44,7 @@ Sprite::Sprite(
   std::string src,
   float displayW,
   float displayH
-) : Component(TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true)
+) : Component(REFLECT_SPRITE, TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true)
 {
   this->w = displayW;
   this->h = displayH;

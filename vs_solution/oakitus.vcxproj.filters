@@ -387,6 +387,9 @@
     <ClInclude Include="..\projects\platformer\scripts\movement.h">
       <Filter>projects\platformer\scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\projects\platformer\reflect.h">
+      <Filter>projects\platformer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">

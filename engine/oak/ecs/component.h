@@ -14,12 +14,14 @@ namespace oak
   {
 	  friend class Entity;
 
-    
+    static uint reflectAutoIncID;
 
 	  uint componentID; ///<summary>An ID that is unique for the owner Entity</summary>
 
+    
+
     public:
-	    Component(cnum tickGroup = TICK_GROUP_DEFAULT, cnum tickingType = TICK_TYPE_TICKABLE, const bool isEverRender = false);
+	    Component(const uint REFLECT_ID = REFLECT_NULL, cnum tickGroup = TICK_GROUP_DEFAULT, cnum tickingType = TICK_TYPE_TICKABLE, const bool isEverRender = false);
 	    virtual ~Component();
 
       uchar getTickGroup() const;
@@ -29,8 +31,7 @@ namespace oak
       bool isTickable() const;
       bool isUsingIntervalTicking() const;
       float getTickingInterval() const;
-      
-
+      const uint _REFLECT_ID;
       
      
     protected:

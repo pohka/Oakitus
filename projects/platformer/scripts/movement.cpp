@@ -37,7 +37,7 @@ void Movement::applyMovement(float axisX, float axisY)
   bool hasMoved = true;  //placeholder
 
   //update animation
-  Animator* animator = unit->getComponent<Animator>();
+  Animator* animator = unit->getComponentWithReflection<Animator>(REFLECT_ANIMATOR);
 
   if (animator != nullptr)
   {
@@ -62,4 +62,6 @@ void Movement::applyMovement(float axisX, float axisY)
 
   //apply change in position
   unit->transform->moveBy(translate);
+  //Transform* transform = unit->getComponentWithReflection<Transform>(REFLECT_TRANSFORM);
+  //transform->moveBy(translate);
 }

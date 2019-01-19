@@ -28,7 +28,16 @@ cnum CREATION_STATE_QUEUED = 1; //in queue to be created at the end of the frame
 cnum CREATION_STATE_CREATED = 2; //created
 cnum CREATION_STATE_DESTROYED = 3; //queued for destruction
 
+const uint REFLECT_NULL = 0;
+const uint REFLECT_TRANSFORM = 1;
+const uint REFLECT_ANIMATOR = 2;
+const uint REFLECT_RIGID_BODY_2D = 3;
+const uint REFLECT_SPRITE = 4;
+const uint REFLECT_CHUNK = 5;
+const uint REFLECT_LAST = 5;
+
 
 const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
+
 
 #endif
