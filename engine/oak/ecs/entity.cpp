@@ -41,7 +41,7 @@ Entity::~Entity()
 
 
 
-void Entity::addComponent(Component* component)
+void Entity::addComponent(Component* component, const bool isRigidBody)
 {
   //give the component a unique ID and tell it who its owner entity is
   component->entity = this;
@@ -50,20 +50,22 @@ void Entity::addComponent(Component* component)
   //add to tick group
   uchar tickGroup = component->getTickGroup();
   componentGroups[tickGroup].push_back(component);
+
+  if (isRigidBody)
+  {
+    rigidbody = static_cast<BaseRigidBody*>(component);
+  }
+}
+
+BaseRigidBody* Entity::getRigidBody() const
+{
+  return rigidbody;
 }
 
 void Entity::addCollision(BaseCollisionShape* shape)
 {
   shape->entity = this;
   collisionShapes.push_back(shape);
-}
-
-void Entity::addRigidBody(BaseRigidBody* rigidBody)
-{
-  rigidBody->entity = this;
-  this->rigidBody = rigidBody;
-  uchar tickGroup = rigidBody->getTickGroup();
-  componentGroups[tickGroup].push_back(rigidBody);
 }
 
 void Entity::create()
@@ -347,11 +349,6 @@ const std::vector<Entity*>& Entity::getChildren() const
 const Entity* Entity::getParent() const
 {
   return parent;
-}
-
-BaseRigidBody* Entity::getRigidBody() const
-{
-  return rigidBody;
 }
 
 void Entity::setCreationState(const uchar state)

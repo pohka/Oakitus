@@ -15,7 +15,7 @@ APlayer::APlayer() : Unit()
   name = "actor_player";
   addComponent(new Sprite("face.png", width, height));
   addCollision(new CollisionRect(0.0f, 0.0f, width, height));
-  addRigidBody(new RigidBody2D(false));
+  addComponent(new RigidBody2D(false), true);
   addComponent(new GroundCheck());
   addComponent(new Movement());
 }

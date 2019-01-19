@@ -33,9 +33,8 @@ namespace oak
     std::vector<Component*> componentGroups[TICK_GROUP_MAX];
     
 	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
+    BaseRigidBody* rigidbody = nullptr;
     
-    
-
     public:
       friend class Scene;
 
@@ -43,27 +42,24 @@ namespace oak
       int layerID; ///<summary>Drawing layerID</summary>
       bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
       std::string name; ///<summary>Name of this Entity</summary>
-      const uchar ENTITY_GROUP;
+      const uchar ENTITY_GROUP; //grouping for entitys, so they can be found
       
 
 	    Entity(bool isEverRendered = true, const uchar ENTITY_GROUP = ENTITY_GROUP_NONE);
 	    virtual ~Entity();
       
       ///<summary>Adds a Component to this Entity</summary>
-	    void addComponent(Component* component);
+	    void addComponent(Component* component, const bool isRigidBody = false);
+      BaseRigidBody* getRigidBody() const;
 
       ///<summary>Adds a CollisionShape to this Entity</summary>
       void addCollision(BaseCollisionShape* shape); 
-
-      void addRigidBody(BaseRigidBody* rigidBody);
 
       ///<summary>Adds this Entity to the world at zero zero</summary>
       void create();
 
       ///<summary>Adds this Entity to the world at the given position</summary>
       void create(float x, float y);
-
-     // void createAsChild(Entity* child);
 
       ///<summary>Destroys this Entity</summary>
 	    void destroy();
@@ -181,15 +177,12 @@ namespace oak
       ///<summary>Called when a collision occured</summary>
       void onCollisionHit(Entity& hit);
 
-      BaseRigidBody* getRigidBody() const;
-
       void setCreationState(const uchar state);
       const uchar getCreationState() const;
 
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
       uint collisionLayer = COLLISION_LAYER_DEFAULT;
-      BaseRigidBody* rigidBody = nullptr;
 
       //EVENTS
       //-------------------------------------------------------------
@@ -206,11 +199,6 @@ namespace oak
 
       ///<summary>Called once just before this Entity is removed from the world and deallocated</summary>
 	    void onDestroy();
-
-      
-
-      
-
       //-------------------------------------------------------------
 
       std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>

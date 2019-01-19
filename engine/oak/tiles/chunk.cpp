@@ -26,7 +26,7 @@ Chunk::Chunk(const int x, const int y, const World* world) :
     table[i].resize(world->CHUNK_SIZE);
   }
 
-  addRigidBody(new oak::RigidBody2D(true));
+  addComponent(new oak::RigidBody2D(true), true);
   addComponent(new ChunkRenderer(this));
 }
 
