@@ -213,3 +213,14 @@ const uint EntityManager::nextEntityID()
 {
   return entityIDGen.nextID();
 }
+
+void EntityManager::getAllEntitysByGroup(const uchar ENTITY_GROUP, std::vector<Entity*>& out)
+{
+  for (Entity* ent : entitys)
+  {
+    if (ent->ENTITY_GROUP == ENTITY_GROUP)
+    {
+      out.push_back(ent);
+    }
+  }
+}

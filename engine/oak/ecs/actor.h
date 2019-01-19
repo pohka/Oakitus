@@ -14,7 +14,7 @@ namespace oak
 
     public:
       friend class Player;
-      Actor();
+      Actor(const uchar ENTITY_GROUP = ENTITY_GROUP_ACTOR);
       Player* getOwner();
   };
 }

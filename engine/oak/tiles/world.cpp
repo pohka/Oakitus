@@ -9,7 +9,8 @@ World::World(
 ) : 
   TILE_SIZE(TILE_SIZE),
   CHUNK_SIZE(CHUNK_SIZE),
-  TOTAL_CHUNK_SIZE(TILE_SIZE * CHUNK_SIZE)
+  TOTAL_CHUNK_SIZE(TILE_SIZE * CHUNK_SIZE),
+  Entity(ENTITY_GROUP_WORLD)
 {
   for (Tile* tile : tiles)
   {

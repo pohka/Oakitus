@@ -6,7 +6,7 @@
 
 using namespace oak;
 
-Entity::Entity(bool isEverRendered)
+Entity::Entity(bool isEverRendered, const uchar ENTITY_GROUP) : ENTITY_GROUP(ENTITY_GROUP)
 {
   this->isEverRendered = isEverRendered;
   this->isRenderable = isEverRendered;

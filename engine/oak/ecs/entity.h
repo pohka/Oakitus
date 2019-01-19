@@ -43,9 +43,10 @@ namespace oak
       int layerID; ///<summary>Drawing layerID</summary>
       bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
       std::string name; ///<summary>Name of this Entity</summary>
+      const uchar ENTITY_GROUP;
       
 
-	    Entity(bool isEverRendered = true);
+	    Entity(bool isEverRendered = true, const uchar ENTITY_GROUP = ENTITY_GROUP_NONE);
 	    virtual ~Entity();
       
       ///<summary>Adds a Component to this Entity</summary>

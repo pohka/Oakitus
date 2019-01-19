@@ -2,7 +2,7 @@
 
 using namespace oak;
 
-Actor::Actor() : Entity(true)
+Actor::Actor(const uchar ENTITY_GROUP) : Entity(true, ENTITY_GROUP)
 {
 
 }
