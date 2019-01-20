@@ -2,6 +2,7 @@
 
 //#include "projects/rpg/load_rpg_game.h"
 //#include "projects/sample/load_game.h"
+//#include "projects/chess/chess_load_game.h"
 
 using namespace oak;
 

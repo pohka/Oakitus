@@ -32,6 +32,7 @@ void Texture::load()
     fullPath += Resources::rootPath;
   }
   fullPath += name;
+  LOG << "fullpath: " << fullPath;
 
   //load the texture
   glGenTextures(1, &id);

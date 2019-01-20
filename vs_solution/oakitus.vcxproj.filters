@@ -88,6 +88,12 @@
     <Filter Include="projects\platformer\scripts">
       <UniqueIdentifier>{6b372f55-144f-4275-a178-0b37346ea293}</UniqueIdentifier>
     </Filter>
+    <Filter Include="projects\chess">
+      <UniqueIdentifier>{ce7278ab-5622-41ba-ade4-093f6aeabe39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\chess\scenes">
+      <UniqueIdentifier>{d7d719eb-5649-47cd-b2e1-e7de979241e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -191,9 +197,6 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\xml\xml_parser.h">
       <Filter>oak\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\sample\load_game.h">
-      <Filter>projects\sample</Filter>
     </ClInclude>
     <ClInclude Include="..\projects\sample\scenes\demo_scene.h">
       <Filter>projects\sample\scenes</Filter>
@@ -390,6 +393,9 @@
     <ClInclude Include="..\projects\platformer\reflect.h">
       <Filter>projects\platformer</Filter>
     </ClInclude>
+    <ClInclude Include="..\projects\chess\scenes\scene_1.h">
+      <Filter>projects\chess\scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -556,9 +562,6 @@
     <ClCompile Include="..\engine\oak\core\resources.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\projects\platformer\load_game.cpp">
-      <Filter>projects\platformer</Filter>
-    </ClCompile>
     <ClCompile Include="..\projects\platformer\scenes\testing_scene.cpp">
       <Filter>projects\platformer\scenes</Filter>
     </ClCompile>
@@ -597,6 +600,12 @@
     </ClCompile>
     <ClCompile Include="..\projects\platformer\scripts\movement.cpp">
       <Filter>projects\platformer\scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\chess\scenes\scene_1.cpp">
+      <Filter>projects\chess\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\chess\chess_load_game.h">
+      <Filter>projects\chess</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

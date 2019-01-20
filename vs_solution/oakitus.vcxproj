@@ -100,6 +100,7 @@
     <ClInclude Include="..\engine\oak\window\window.h" />
     <ClInclude Include="..\engine\oak\xml\xml_node.h" />
     <ClInclude Include="..\engine\oak\xml\xml_parser.h" />
+    <ClInclude Include="..\projects\chess\scenes\scene_1.h" />
     <ClInclude Include="..\projects\platformer\commands\plat_movement_cmd.h" />
     <ClInclude Include="..\projects\platformer\plat_consts.h" />
     <ClInclude Include="..\projects\platformer\prefabs\a_player.h" />
@@ -112,7 +113,6 @@
     <ClInclude Include="..\projects\platformer\scripts\ground_check.h" />
     <ClInclude Include="..\projects\platformer\scripts\movement.h" />
     <ClInclude Include="..\projects\sample\events\event_damage.h" />
-    <ClInclude Include="..\projects\sample\load_game.h" />
     <ClInclude Include="..\projects\sample\movement_cmd.h" />
     <ClInclude Include="..\projects\sample\sample_def.h" />
     <ClInclude Include="..\projects\sample\sample_gamemode.h" />
@@ -179,8 +179,9 @@
     <ClCompile Include="..\engine\oak\xml\xml_parser.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\projects\chess\chess_load_game.h" />
+    <ClCompile Include="..\projects\chess\scenes\scene_1.cpp" />
     <ClCompile Include="..\projects\platformer\commands\plat_movement_cmd.cpp" />
-    <ClCompile Include="..\projects\platformer\load_game.cpp" />
     <ClCompile Include="..\projects\platformer\prefabs\a_player.cpp" />
     <ClCompile Include="..\projects\platformer\scenes\testing_scene.cpp" />
     <ClCompile Include="..\projects\platformer\scripts\camera_follow.cpp" />

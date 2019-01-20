@@ -10,6 +10,7 @@
 
 using namespace oak;
 
+//WARNING: THIS CONSTRUCTOR IS BROKEN
 Sprite::Sprite(
   std::string src,
   int srcX,
