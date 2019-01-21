@@ -94,6 +94,12 @@
     <Filter Include="projects\chess\scenes">
       <UniqueIdentifier>{d7d719eb-5649-47cd-b2e1-e7de979241e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{474cb757-f18a-42f7-bdfb-afae49d6e620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\lua">
+      <UniqueIdentifier>{e05962f4-a55c-49d8-9a30-ba7cb833e042}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -396,6 +402,90 @@
     <ClInclude Include="..\projects\chess\scenes\scene_1.h">
       <Filter>projects\chess\scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\lua\lparser.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lprefix.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lstate.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lstring.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\ltable.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\ltm.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lua.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lua.hpp">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\luaconf.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lualib.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lundump.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lvm.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lzio.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lapi.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lauxlib.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lcode.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lctype.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\ldebug.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\ldo.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lfunc.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lgc.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\llex.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\llimits.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lmem.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lobject.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lopcodes.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_scene.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_loader.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -604,8 +694,110 @@
     <ClCompile Include="..\projects\chess\scenes\scene_1.cpp">
       <Filter>projects\chess\scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\projects\chess\chess_load_game.h">
-      <Filter>projects\chess</Filter>
+    <ClCompile Include="..\engine\lua\loslib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lparser.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lstate.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lstring.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lstrlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ltable.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ltablib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ltm.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lundump.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lutf8lib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lvm.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lzio.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lapi.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lauxlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lbaselib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lbitlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lcode.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lcorolib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lctype.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ldblib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ldebug.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ldo.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ldump.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lfunc.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lgc.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\linit.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\liolib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\llex.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lmathlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lmem.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\loadlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lobject.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lopcodes.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_scene.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_loader.cpp">
+      <Filter>oak\lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

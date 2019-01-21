@@ -15,6 +15,7 @@ int main()
   std::cout << "----- DEBUG MODE ENABLED -----" << std::endl;
 
   Oakitus::init();
+  
   return 0;
 }
 #else

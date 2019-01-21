@@ -18,12 +18,14 @@
 #include <oak/meta/meta.h>
 #include <oak/ecs/entity_manager.h>
 #include <oak/time/time.h>
+#include <oak/lua/lua_loader.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
 
-#include <thread> 
-#include <chrono> 
+#include <thread>
+#include <chrono>
+
 
 
 using namespace oak;
@@ -37,7 +39,8 @@ void Oakitus::init()
   Meta::load("config.m");
 
   var_object* config = Meta::objs["config"];
-  Resources::rootPath = "../projects/" + config->getVar("project")->toString() + "/resources/";
+  std::string projectPath = "../projects/" + config->getVar("project")->toString();
+  Resources::rootPath = projectPath + "/resources/";
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position
@@ -61,7 +64,11 @@ void Oakitus::init()
   Resources::init();
 
   PlayerResource::addPlayer(new Player());
-  Oakitus::load();
+
+  //loads scripts/main.lua
+  LuaLoader::init(projectPath);
+
+  //Oakitus::load();
   loop();
 }
 

@@ -19,6 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\engine\lua\lapi.h" />
+    <ClInclude Include="..\engine\lua\lauxlib.h" />
+    <ClInclude Include="..\engine\lua\lcode.h" />
+    <ClInclude Include="..\engine\lua\lctype.h" />
+    <ClInclude Include="..\engine\lua\ldebug.h" />
+    <ClInclude Include="..\engine\lua\ldo.h" />
+    <ClInclude Include="..\engine\lua\lfunc.h" />
+    <ClInclude Include="..\engine\lua\lgc.h" />
+    <ClInclude Include="..\engine\lua\llex.h" />
+    <ClInclude Include="..\engine\lua\llimits.h" />
+    <ClInclude Include="..\engine\lua\lmem.h" />
+    <ClInclude Include="..\engine\lua\lobject.h" />
+    <ClInclude Include="..\engine\lua\lopcodes.h" />
+    <ClInclude Include="..\engine\lua\lparser.h" />
+    <ClInclude Include="..\engine\lua\lprefix.h" />
+    <ClInclude Include="..\engine\lua\lstate.h" />
+    <ClInclude Include="..\engine\lua\lstring.h" />
+    <ClInclude Include="..\engine\lua\ltable.h" />
+    <ClInclude Include="..\engine\lua\ltm.h" />
+    <ClInclude Include="..\engine\lua\lua.h" />
+    <ClInclude Include="..\engine\lua\lua.hpp" />
+    <ClInclude Include="..\engine\lua\luaconf.h" />
+    <ClInclude Include="..\engine\lua\lualib.h" />
+    <ClInclude Include="..\engine\lua\lundump.h" />
+    <ClInclude Include="..\engine\lua\lvm.h" />
+    <ClInclude Include="..\engine\lua\lzio.h" />
     <ClInclude Include="..\engine\oak\assets\asset.h" />
     <ClInclude Include="..\engine\oak\assets\shader.h" />
     <ClInclude Include="..\engine\oak\assets\stb_image.h" />
@@ -57,6 +83,8 @@
     <ClInclude Include="..\engine\oak\input\key_buffer.h" />
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_loader.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_scene.h" />
     <ClInclude Include="..\engine\oak\meta\meta.h" />
     <ClInclude Include="..\engine\oak\meta\meta_def.h" />
     <ClInclude Include="..\engine\oak\meta\var.h" />
@@ -121,6 +149,39 @@
     <ClInclude Include="..\projects\sample\scenes\game_scenes.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\engine\lua\lapi.c" />
+    <ClCompile Include="..\engine\lua\lauxlib.c" />
+    <ClCompile Include="..\engine\lua\lbaselib.c" />
+    <ClCompile Include="..\engine\lua\lbitlib.c" />
+    <ClCompile Include="..\engine\lua\lcode.c" />
+    <ClCompile Include="..\engine\lua\lcorolib.c" />
+    <ClCompile Include="..\engine\lua\lctype.c" />
+    <ClCompile Include="..\engine\lua\ldblib.c" />
+    <ClCompile Include="..\engine\lua\ldebug.c" />
+    <ClCompile Include="..\engine\lua\ldo.c" />
+    <ClCompile Include="..\engine\lua\ldump.c" />
+    <ClCompile Include="..\engine\lua\lfunc.c" />
+    <ClCompile Include="..\engine\lua\lgc.c" />
+    <ClCompile Include="..\engine\lua\linit.c" />
+    <ClCompile Include="..\engine\lua\liolib.c" />
+    <ClCompile Include="..\engine\lua\llex.c" />
+    <ClCompile Include="..\engine\lua\lmathlib.c" />
+    <ClCompile Include="..\engine\lua\lmem.c" />
+    <ClCompile Include="..\engine\lua\loadlib.c" />
+    <ClCompile Include="..\engine\lua\lobject.c" />
+    <ClCompile Include="..\engine\lua\lopcodes.c" />
+    <ClCompile Include="..\engine\lua\loslib.c" />
+    <ClCompile Include="..\engine\lua\lparser.c" />
+    <ClCompile Include="..\engine\lua\lstate.c" />
+    <ClCompile Include="..\engine\lua\lstring.c" />
+    <ClCompile Include="..\engine\lua\lstrlib.c" />
+    <ClCompile Include="..\engine\lua\ltable.c" />
+    <ClCompile Include="..\engine\lua\ltablib.c" />
+    <ClCompile Include="..\engine\lua\ltm.c" />
+    <ClCompile Include="..\engine\lua\lundump.c" />
+    <ClCompile Include="..\engine\lua\lutf8lib.c" />
+    <ClCompile Include="..\engine\lua\lvm.c" />
+    <ClCompile Include="..\engine\lua\lzio.c" />
     <ClCompile Include="..\engine\oak\assets\asset.cpp" />
     <ClCompile Include="..\engine\oak\assets\shader.cpp" />
     <ClCompile Include="..\engine\oak\assets\texture.cpp" />
@@ -146,6 +207,8 @@
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
     <ClCompile Include="..\engine\oak\input\input.cpp" />
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_loader.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_scene.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta.cpp" />
     <ClCompile Include="..\engine\oak\meta\var.cpp" />
     <ClCompile Include="..\engine\oak\meta\var_object.cpp" />
@@ -179,7 +242,6 @@
     <ClCompile Include="..\engine\oak\xml\xml_parser.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\projects\chess\chess_load_game.h" />
     <ClCompile Include="..\projects\chess\scenes\scene_1.cpp" />
     <ClCompile Include="..\projects\platformer\commands\plat_movement_cmd.cpp" />
     <ClCompile Include="..\projects\platformer\prefabs\a_player.cpp" />
