@@ -1,0 +1,12 @@
+{
+  "0" : {
+    "sample" : [
+      {
+        "name" : "sprite",
+        "w" : 64,
+        "h" : 64,
+        "src" : "board.png"
+      }
+    ]
+  }
+}

@@ -39,8 +39,8 @@ void Oakitus::init()
   Meta::load("config.m");
 
   var_object* config = Meta::objs["config"];
-  std::string projectPath = "../projects/" + config->getVar("project")->toString();
-  Resources::rootPath = projectPath + "/resources/";
+  std::string projectPath = "../projects/" + config->getVar("project")->toString() + "/";
+  Resources::rootPath = projectPath + "resources/";
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position
@@ -64,6 +64,8 @@ void Oakitus::init()
   Resources::init();
 
   PlayerResource::addPlayer(new Player());
+
+
 
   //loads scripts/main.lua
   LuaLoader::init(projectPath);

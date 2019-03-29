@@ -7,8 +7,9 @@
 using namespace oak;
 
 
+
 void LuaLoader::init(std::string path)
 {
-  LuaScene* scene = new LuaScene(path + "/scripts/main.lua");
+  LuaScene* scene = new LuaScene(path);
   SceneManager::loadFirstScene(scene);
 }
