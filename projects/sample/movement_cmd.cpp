@@ -53,45 +53,45 @@ void MovementCMD::onTick()
 
   bool hasMoved = (axisX != 0.0f || axisY != 0.0f);
 
-  Actor* actor = player->getAssignedActor();
-  if (actor != nullptr)
-  {
-    Animator* animator = actor->getComponent<Animator>();
+  //Actor* actor = player->getAssignedActor();
+  //if (actor != nullptr)
+  //{
+  //  Animator* animator = actor->getComponent<Animator>();
 
-    if (animator != nullptr)
-    {
-      glm::vec3 translate = glm::vec3(0.0f, 0.0f, 0.0f);
+  //  if (animator != nullptr)
+  //  {
+  //    glm::vec3 translate = glm::vec3(0.0f, 0.0f, 0.0f);
 
-      if (hasMoved)
-      {
-        //calculate the movement vector, so the actor moves at the same speed in all directions
-        glm::vec2 move = glm::vec2(axisX, axisY);
-        move = glm::normalize(move) * speed;
+  //    if (hasMoved)
+  //    {
+  //      //calculate the movement vector, so the actor moves at the same speed in all directions
+  //      glm::vec2 move = glm::vec2(axisX, axisY);
+  //      move = glm::normalize(move) * speed;
 
-        translate.x += move.x * Time::deltaTime();
-        translate.y += move.y * Time::deltaTime();
-        //actor->position.x += move.x * Time::deltaTime();
-        //actor->position.y += move.y * Time::deltaTime();
+  //      translate.x += move.x * Time::deltaTime();
+  //      translate.y += move.y * Time::deltaTime();
+  //      //actor->position.x += move.x * Time::deltaTime();
+  //      //actor->position.y += move.y * Time::deltaTime();
 
-        if (axisX > 0.0f)
-        {
-          animator->setDirection(ANIM_DIRECTION_RIGHT);
-        }
-        else if (axisX < 0.0f)
-        {
-          animator->setDirection(ANIM_DIRECTION_LEFT);
-        }
+  //      if (axisX > 0.0f)
+  //      {
+  //        animator->setDirection(ANIM_DIRECTION_RIGHT);
+  //      }
+  //      else if (axisX < 0.0f)
+  //      {
+  //        animator->setDirection(ANIM_DIRECTION_LEFT);
+  //      }
 
-        animator->setAnim(ANIM_ACT_RUN);
-      }
-      else
-      {
-        animator->setAnim(ANIM_ACT_IDLE);
-      }
+  //      animator->setAnim(ANIM_ACT_RUN);
+  //    }
+  //    else
+  //    {
+  //      animator->setAnim(ANIM_ACT_IDLE);
+  //    }
 
-      //translate.x *= Time::deltaTime();
-      //translate.y *= Time::deltaTime();
-      actor->transform->moveBy(translate);
-    }
-  }
+  //    //translate.x *= Time::deltaTime();
+  //    //translate.y *= Time::deltaTime();
+  //    actor->transform->moveBy(translate);
+  //  }
+  //}
 }

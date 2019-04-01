@@ -15,7 +15,6 @@
 #include <oak/oak_def.h>
 #include <oak/ui/ui_canvas.h>
 #include <oak/debug/debug_input.h>
-#include <oak/meta/meta.h>
 #include <oak/ecs/entity_manager.h>
 #include <oak/time/time.h>
 #include <oak/lua/lua_loader.h>
@@ -25,21 +24,45 @@
 
 #include <thread>
 #include <chrono>
-
-
+#include <nlohmann/json.hpp>
+#include <fstream>
+#include <oak/debug.h>
 
 using namespace oak;
+using json = nlohmann::json;
 
 
 void Oakitus::init()
 {
   Time::init();
   Input::init();
-  
-  Meta::load("config.m");
 
-  var_object* config = Meta::objs["config"];
-  std::string projectPath = "../projects/" + config->getVar("project")->toString() + "/";
+  nlohmann::json config;
+  std::ifstream i("../config.json");
+  i >> config;
+  if (config == nullptr)
+  {
+    //config not found
+    LOG_ERROR << "config.json - file not found";
+    return;
+  }
+
+  //no project name
+  if (config["project"] == nullptr)
+  {
+    LOG_ERROR << "config.json - 'project' bust be defined";
+    return;
+  }
+
+  //project name is not a string value
+  if (config["project"].is_string() == false)
+  {
+    LOG_ERROR << "config.json - expected 'project' key to be string";
+    return;
+  }
+
+  std::string projectName = config["project"];
+  std::string projectPath = "../projects/" + projectName + "/";
   Resources::rootPath = projectPath + "resources/";
 
   Camera::init(
@@ -51,21 +74,77 @@ void Oakitus::init()
   );
 
 
+  //validate config params
+  uint  viewportW = 736,
+    viewportH = 414,
+    windowW = 1066,
+    windowH = 600;
+
+  uint vals[4] = {
+    viewportW, 
+    viewportH, 
+    windowW,
+    windowH
+  };
+  const unsigned int UINT_KEYS = 4;
+  std::string keys[UINT_KEYS] = { "viewport_w", "viewport_h", "window_w", "window_h" };
+
+  for (unsigned int i = 0; i < UINT_KEYS; i++)
+  {
+    std::string key = keys[i];
+    if (config[key] != nullptr)
+    {
+      if (config[key].is_number_unsigned())
+      {
+        vals[i] = config[key];
+      }
+      else
+      {
+        LOG_WARNING << "config.json - expected unsigned integer for '" << keys[i] << "'";
+      }
+    }
+  }
+
+  bool isFullscreen = false;
+  if (config["isFullscreen"] != nullptr)
+  {
+    if (config["isFullscreen"].is_boolean())
+    {
+      isFullscreen = config["isFullscreen"];
+    }
+    else
+    {
+      LOG_WARNING << "config.json - expected boolean for 'isFullscreen'";
+    }
+  }
+
+  std::string title = projectName;
+  if (config["title"] != nullptr)
+  {
+    if (config["title"].is_string())
+    {
+      title = config["title"];
+    }
+    else
+    {
+      LOG_WARNING << "config.json - expected string for 'isFullscreen'";
+    }
+  }
+  
   Window::init(
-    config->getVar("viewport_w")->toInt(),
-    config->getVar("viewport_h")->toInt(),
-    config->getVar("window_w")->toInt(),
-    config->getVar("window_h")->toInt(),
-    config->getVar("title")->toString().c_str(),
-    config->getVar("isFullscreen")->toBool()
+    vals[0],
+    vals[1],
+    vals[2],
+    vals[3],
+    title.c_str(),
+    isFullscreen
   );
+  
   GLFWwindow* window = Window::getGLFWWindow();
   
   Resources::init();
 
   PlayerResource::addPlayer(new Player());
-
-
 
   //loads scripts/main.lua
   LuaLoader::init(projectPath);

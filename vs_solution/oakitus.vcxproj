@@ -72,7 +72,6 @@
     <ClInclude Include="..\engine\oak\debug.h" />
     <ClInclude Include="..\engine\oak\debug\debug_input.h" />
     <ClInclude Include="..\engine\oak\debug\logger.h" />
-    <ClInclude Include="..\engine\oak\ecs\actor.h" />
     <ClInclude Include="..\engine\oak\ecs\component.h" />
     <ClInclude Include="..\engine\oak\ecs\entity.h" />
     <ClInclude Include="..\engine\oak\ecs\entity_manager.h" />
@@ -96,7 +95,6 @@
     <ClInclude Include="..\engine\oak\old\bounds.h" />
     <ClInclude Include="..\engine\oak\old\ray.h" />
     <ClInclude Include="..\engine\oak\player\command.h" />
-    <ClInclude Include="..\engine\oak\player\player.h" />
     <ClInclude Include="..\engine\oak\player\player_resource.h" />
     <ClInclude Include="..\engine\oak\scene\camera.h" />
     <ClInclude Include="..\engine\oak\scene\precache.h" />
@@ -128,25 +126,6 @@
     <ClInclude Include="..\engine\oak\window\window.h" />
     <ClInclude Include="..\engine\oak\xml\xml_node.h" />
     <ClInclude Include="..\engine\oak\xml\xml_parser.h" />
-    <ClInclude Include="..\projects\chess\scenes\scene_1.h" />
-    <ClInclude Include="..\projects\platformer\commands\plat_movement_cmd.h" />
-    <ClInclude Include="..\projects\platformer\plat_consts.h" />
-    <ClInclude Include="..\projects\platformer\prefabs\a_player.h" />
-    <ClInclude Include="..\projects\platformer\prefabs\camera_ent.h" />
-    <ClInclude Include="..\projects\platformer\prefabs\unit.h" />
-    <ClInclude Include="..\projects\platformer\reflect.h" />
-    <ClInclude Include="..\projects\platformer\scenes\game_scenes.h" />
-    <ClInclude Include="..\projects\platformer\scenes\testing_scene.h" />
-    <ClInclude Include="..\projects\platformer\scripts\camera_follow.h" />
-    <ClInclude Include="..\projects\platformer\scripts\ground_check.h" />
-    <ClInclude Include="..\projects\platformer\scripts\movement.h" />
-    <ClInclude Include="..\projects\sample\events\event_damage.h" />
-    <ClInclude Include="..\projects\sample\movement_cmd.h" />
-    <ClInclude Include="..\projects\sample\sample_def.h" />
-    <ClInclude Include="..\projects\sample\sample_gamemode.h" />
-    <ClInclude Include="..\projects\sample\scenes\demo_scene.h" />
-    <ClInclude Include="..\projects\sample\scenes\demo_scene2.h" />
-    <ClInclude Include="..\projects\sample\scenes\game_scenes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\lua\lapi.c" />
@@ -200,7 +179,6 @@
     <ClCompile Include="..\engine\oak\core\resources.cpp" />
     <ClCompile Include="..\engine\oak\debug\debug_input.cpp" />
     <ClCompile Include="..\engine\oak\debug\logger.cpp" />
-    <ClCompile Include="..\engine\oak\ecs\actor.cpp" />
     <ClCompile Include="..\engine\oak\ecs\component.cpp" />
     <ClCompile Include="..\engine\oak\ecs\entity.cpp" />
     <ClCompile Include="..\engine\oak\ecs\entity_manager.cpp" />
@@ -242,18 +220,6 @@
     <ClCompile Include="..\engine\oak\xml\xml_parser.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\projects\chess\scenes\scene_1.cpp" />
-    <ClCompile Include="..\projects\platformer\commands\plat_movement_cmd.cpp" />
-    <ClCompile Include="..\projects\platformer\prefabs\a_player.cpp" />
-    <ClCompile Include="..\projects\platformer\scenes\testing_scene.cpp" />
-    <ClCompile Include="..\projects\platformer\scripts\camera_follow.cpp" />
-    <ClCompile Include="..\projects\platformer\scripts\ground_check.cpp" />
-    <ClCompile Include="..\projects\platformer\scripts\movement.cpp" />
-    <ClCompile Include="..\projects\sample\events\event_damage.cpp" />
-    <ClCompile Include="..\projects\sample\movement_cmd.cpp" />
-    <ClCompile Include="..\projects\sample\sample_gamemode.cpp" />
-    <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp" />
-    <ClCompile Include="..\projects\sample\scenes\demo_scene2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\resources\shaders\collision.fs" />

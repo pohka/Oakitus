@@ -11,6 +11,7 @@ namespace oak
   class LuaScene : public oak::Scene
   {
     static LuaScene* scene;
+    lua_State* L;
     std::string path;
     nlohmann::json data;
     bool dataLoaded = false;
@@ -20,6 +21,7 @@ namespace oak
     void onLoad() override;
 
     static int lua_create(lua_State *L);
+    static int lua_addCommand(lua_State *L);
     //static int lua_vector(lua_State *L);
     //static int lua_vector_log(lua_State *L);
 

@@ -1,4 +1,5 @@
 {
+  "commands" : [ "/commands/move" ],
   "precache" : {
     "textures" : [
       "face.png"

@@ -1,16 +1,16 @@
 #ifndef PLAT_UNIT_H
 #define PLAT_UNIT_H
 
-#include <oak/ecs/actor.h>
+//#include <oak/ecs/actor.h>
 #include "../plat_consts.h"
 
 namespace plat
 {
-  struct Unit : public oak::Actor
+  struct Unit //: public oak::Actor
   {
     
 
-    Unit() : oak::Actor()
+    Unit() //: oak::Actor()
     {
 
     }

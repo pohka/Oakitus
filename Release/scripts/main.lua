@@ -27,6 +27,8 @@ function activate()
   --  { "sprite", "board.png", 64, 64 }
   --}
 
+  addCommand("move", 1)
+
 end
 
 activate()

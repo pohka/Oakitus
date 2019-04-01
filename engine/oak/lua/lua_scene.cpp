@@ -59,6 +59,18 @@ LuaScene::LuaScene(std::string path) : Scene()
         }
       }
     }
+
+    //todo
+    if (data["commands"] != nullptr)
+    {
+      for (unsigned int i = 0; i < data["commands"].size(); i++)
+      {
+        if (data["commands"][i].is_string())
+        {
+          
+        }
+      }
+    }
   }
 
   LuaScene::scene = this;
@@ -67,9 +79,10 @@ LuaScene::LuaScene(std::string path) : Scene()
 void LuaScene::onLoad()
 {
   //std::string initScript = path + "scripts/main.lua";
-  lua_State* L = luaL_newstate();
+  L = luaL_newstate();
   luaL_openlibs(L);
   lua_register(L, "create", LuaScene::lua_create);
+  lua_register(L, "addCommand", LuaScene::lua_addCommand);
 
   //possibly change this in future to: scripts/main.lua
   //right now the VS root path for lua is not correct
@@ -181,4 +194,30 @@ int LuaScene::lua_create(lua_State *L)
   return 1;
 }
 
+int LuaScene::lua_addCommand(lua_State *L)
+{
+  if (lua_gettop(L) != 2)
+  {
+    LOG << "lua_gettop(L):" << lua_gettop(L);
+    logError(L, "invalid number of arguments, expected 2");
+  }
+  else
+  {
+    std::string name = lua_tostring(L, 1);
+    int playerID = (int)luaL_checknumber(L, 2);
 
+    Player* player = PlayerResource::getPlayer(playerID);
+    if (player != nullptr)
+    {
+      LOG << "added command success";
+      player->lua_addCommand(name);
+    }
+    else
+    {
+      std::string s = "playerID not found: " + playerID;
+      logError(L, s);
+    }
+  }
+
+  return 0;
+}
