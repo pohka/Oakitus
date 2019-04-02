@@ -62,8 +62,8 @@
     <ClInclude Include="..\engine\oak\components\sprite.h" />
     <ClInclude Include="..\engine\oak\components\sprite_animation.h" />
     <ClInclude Include="..\engine\oak\components\transform.h" />
+    <ClInclude Include="..\engine\oak\core\config.h" />
     <ClInclude Include="..\engine\oak\core\fmath.h" />
-    <ClInclude Include="..\engine\oak\core\init.h" />
     <ClInclude Include="..\engine\oak\core\kvmap.h" />
     <ClInclude Include="..\engine\oak\core\oakitus.h" />
     <ClInclude Include="..\engine\oak\core\resources.h" />

@@ -18,15 +18,14 @@
 #include <oak/ecs/entity_manager.h>
 #include <oak/time/time.h>
 #include <oak/lua/lua_loader.h>
+#include <oak/core/config.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
 
 #include <thread>
 #include <chrono>
-#include <nlohmann/json.hpp>
-#include <fstream>
-#include <oak/debug.h>
+
 
 using namespace oak;
 using json = nlohmann::json;
@@ -37,31 +36,9 @@ void Oakitus::init()
   Time::init();
   Input::init();
 
-  nlohmann::json config;
-  std::ifstream i("../config.json");
-  i >> config;
-  if (config == nullptr)
-  {
-    //config not found
-    LOG_ERROR << "config.json - file not found";
-    return;
-  }
+  Config::load();
 
-  //no project name
-  if (config["project"] == nullptr)
-  {
-    LOG_ERROR << "config.json - 'project' bust be defined";
-    return;
-  }
-
-  //project name is not a string value
-  if (config["project"].is_string() == false)
-  {
-    LOG_ERROR << "config.json - expected 'project' key to be string";
-    return;
-  }
-
-  std::string projectName = config["project"];
+  std::string projectName = Config::getString("project", "default");
   std::string projectPath = "../projects/" + projectName + "/";
   Resources::rootPath = projectPath + "resources/";
 
@@ -75,67 +52,20 @@ void Oakitus::init()
 
 
   //validate config params
-  uint  viewportW = 736,
-    viewportH = 414,
-    windowW = 1066,
-    windowH = 600;
+  uint  
+    viewportW = Config::getUInt("viewport_w", 736),
+    viewportH = Config::getUInt("viewport_h", 414),
+    windowW = Config::getUInt("window_w", 1066),
+    windowH = Config::getUInt("window_h", 600);
 
-  uint vals[4] = {
-    viewportW, 
-    viewportH, 
-    windowW,
-    windowH
-  };
-  const unsigned int UINT_KEYS = 4;
-  std::string keys[UINT_KEYS] = { "viewport_w", "viewport_h", "window_w", "window_h" };
+  std::string title = Config::getString("title", "Oakitus");
+  bool isFullscreen = Config::getBool("isFullscreen", false);
 
-  for (unsigned int i = 0; i < UINT_KEYS; i++)
-  {
-    std::string key = keys[i];
-    if (config[key] != nullptr)
-    {
-      if (config[key].is_number_unsigned())
-      {
-        vals[i] = config[key];
-      }
-      else
-      {
-        LOG_WARNING << "config.json - expected unsigned integer for '" << keys[i] << "'";
-      }
-    }
-  }
-
-  bool isFullscreen = false;
-  if (config["isFullscreen"] != nullptr)
-  {
-    if (config["isFullscreen"].is_boolean())
-    {
-      isFullscreen = config["isFullscreen"];
-    }
-    else
-    {
-      LOG_WARNING << "config.json - expected boolean for 'isFullscreen'";
-    }
-  }
-
-  std::string title = projectName;
-  if (config["title"] != nullptr)
-  {
-    if (config["title"].is_string())
-    {
-      title = config["title"];
-    }
-    else
-    {
-      LOG_WARNING << "config.json - expected string for 'isFullscreen'";
-    }
-  }
-  
   Window::init(
-    vals[0],
-    vals[1],
-    vals[2],
-    vals[3],
+    viewportW,
+    viewportH,
+    windowW,
+    windowH,
     title.c_str(),
     isFullscreen
   );

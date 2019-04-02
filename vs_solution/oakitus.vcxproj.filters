@@ -270,9 +270,6 @@
     <ClInclude Include="..\engine\oak\core\fmath.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\core\init.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\core\oakitus.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -395,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\lua\lua_loader.h">
       <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\config.h">
+      <Filter>oak\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

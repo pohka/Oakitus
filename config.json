@@ -1,6 +1,5 @@
 {
   "project" : "my_game",
-  "inital_scene" : "demo_scene",
   "title" : "My Game",
   "viewport_w" : 736,
   "viewport_h" : 414,
