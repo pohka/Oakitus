@@ -4,7 +4,8 @@ require("scripts/vector")
 
 function activate()
   print("active")
-  create("sample", 40.0, 0.0)
+  create("player_unit", 0.0, 0.0)
+  create("sample", 80.0, 0.0)
   local a = Vector(0,1)
   local b = Vector(1,0)
   local c = a + b
@@ -27,7 +28,7 @@ function activate()
   --  { "sprite", "board.png", 64, 64 }
   --}
 
-  addCommand("move", 1)
+  --addCommand("move", 1)
 
 end
 

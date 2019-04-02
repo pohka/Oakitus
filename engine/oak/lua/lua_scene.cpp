@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iostream>
 #include <locale>
+#include <oak/lua/lua_script.h>
 
 using namespace oak;
 using json = nlohmann::json;
@@ -82,13 +83,18 @@ void LuaScene::onLoad()
   L = luaL_newstate();
   luaL_openlibs(L);
   lua_register(L, "create", LuaScene::lua_create);
-  lua_register(L, "addCommand", LuaScene::lua_addCommand);
+ // lua_register(L, "addCommand", LuaScene::lua_addCommand);
 
   //possibly change this in future to: scripts/main.lua
   //right now the VS root path for lua is not correct
   //therefore it cant find the scripts when using require() in lua
   //if you open the exe directly with the path: "scripts/main.lua", it will work but not in VS runtime
-  std::string initScript = "../Release/scripts/main.lua";
+  std::string initScript;
+#ifdef DEBUG_MODE
+  initScript = "../Release/scripts/main.lua";
+#else
+  initScript = "scripts/main.lua";
+#endif
   luaL_loadfile(L, initScript.c_str());
 
   //no error checking and will cause crash if there is a lua error
@@ -110,6 +116,48 @@ void LuaScene::logError(lua_State* L, std::string msg)
   int line = ar.currentline;
 
   std::cout << "|--LUA_ERROR--| line " << line << " - " << msg << std::endl;
+}
+
+void LuaScene::addComponent(Entity* ent, nlohmann::json params)
+{
+  std::string className = params["class"];
+
+  //sprite
+  if (className == "sprite")
+  {
+    std::string src = params["src"];
+    float w = params["w"];
+    float h = params["h"];
+    ent->addComponent(new Sprite(src, w, h));
+  }
+  //collision rect
+  else if (className == "collision_rect")
+  {
+    float offsetX = params["offsetX"];
+    float offsetY = params["offsetY"];
+    float w = params["w"];
+    float h = params["h"];
+    ent->addCollision(new CollisionRect(offsetX, offsetY, w, h));
+  }
+  //collision circle
+  else if (className == "collision_circle")
+  {
+    float offsetX = params["offsetX"];
+    float offsetY = params["offsetY"];
+    float radius = params["radius"];
+    ent->addCollision(new CollisionCircle(radius, offsetX, offsetY));
+  }
+  //rigid body 2d
+  else if (className == "rigidbody2d")
+  {
+    bool isStatic = params["isStatic"];
+    ent->addComponent(new RigidBody2D(isStatic));
+  }
+  else if (className == "lua_script")
+  {
+    std::string name = params["name"];
+    ent->addComponent(new LuaScript(name));
+  }
 }
 
 int LuaScene::lua_create(lua_State *L)
@@ -142,45 +190,16 @@ int LuaScene::lua_create(lua_State *L)
   }
   else
   {
-    json entData = LuaScene::scene->data["0"][name];
+    json entData = LuaScene::scene->data["prefabs"][name];
     if (entData != nullptr)
     {
       Entity* ent = new Entity();
       ent->name = name;
       for (uint i = 0; i < entData.size(); i++)
       {
-        std::string className = entData[i]["class"];
-
-        //sprite
-        if (className == "sprite")
+        if (entData[i]["class"] != nullptr)
         {
-          std::string src = entData[i]["src"];
-          float w = entData[i]["w"];
-          float h = entData[i]["h"];
-          ent->addComponent(new Sprite(src, w, h));
-        }
-        //collision rect
-        else if (className == "collision_rect")
-        {
-          float offsetX = entData[i]["offsetX"];
-          float offsetY = entData[i]["offsetY"];
-          float w = entData[i]["w"];
-          float h = entData[i]["h"];
-          ent->addCollision(new CollisionRect(offsetX, offsetY, w, h));
-        }
-        //collision circle
-        else if (className == "collision_circle")
-        {
-          float offsetX = entData[i]["offsetX"];
-          float offsetY = entData[i]["offsetY"];
-          float radius = entData[i]["radius"];
-          ent->addCollision(new CollisionCircle(radius, offsetX, offsetY));
-        }
-        //rigid body 2d
-        else if (className == "rigidbody2d")
-        {
-          bool isStatic = entData[i]["isStatic"];
-          ent->addComponent(new RigidBody2D(isStatic));
+          addComponent(ent, entData[i]);
         }
       }
       ent->create(x, y);

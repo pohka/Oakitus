@@ -26,7 +26,6 @@
 #include <thread>
 #include <chrono>
 
-
 using namespace oak;
 using json = nlohmann::json;
 

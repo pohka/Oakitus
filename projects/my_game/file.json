@@ -5,7 +5,7 @@
       "face.png"
     ]
   },
-  "0" : {
+  "prefabs" : {
     "sample" : [
       {
         "class" : "sprite",
@@ -29,6 +29,18 @@
       {
         "class" : "rigidbody2d",
         "isStatic" : false
+      }
+    ],
+    "player_unit" : [
+      {
+        "class" : "sprite",
+        "src" : "face.png",
+        "w" : 32,
+        "h" : 32
+      },
+      {
+        "class" : "lua_script",
+        "name" : "move"
       }
     ]
   }
