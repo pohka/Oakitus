@@ -1,11 +1,23 @@
-require("scripts/vector")
+--create("player_unit", 80.0, 0.0)
+createEnt("player_unit", 80.0, 0.0)
 
+  --[[
+require("scripts/vector")
 
 
 function activate()
   print("active")
   create("player_unit", 0.0, 0.0)
-  create("sample", 80.0, 0.0)
+  --create("sample", 80.0, 0.0)
+
+  print(_VERSION)
+
+  
+
+ -- local obj = MyObject(42)
+--print(obj:get())    -- 42
+
+
   local a = Vector(0,1)
   local b = Vector(1,0)
   local c = a + b
@@ -29,7 +41,9 @@ function activate()
   --}
 
   --addCommand("move", 1)
-
+ 
 end
 
 activate()
+
+ ]]

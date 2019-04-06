@@ -8,6 +8,7 @@ namespace oak
   class LuaInput
   {
   public:
+    static void reg(lua_State* L);
     static int isKeyDown(lua_State *L);
     static int isKeyUp(lua_State *L);
     static int isKeyPressed(lua_State *L);

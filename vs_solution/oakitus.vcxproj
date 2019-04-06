@@ -90,6 +90,8 @@
     <ClInclude Include="..\engine\oak\input\key_buffer.h" />
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_bindings.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_entity.h" />
     <ClInclude Include="..\engine\oak\lua\lua_input.h" />
     <ClInclude Include="..\engine\oak\lua\lua_loader.h" />
     <ClInclude Include="..\engine\oak\lua\lua_scene.h" />
@@ -195,6 +197,8 @@
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
     <ClCompile Include="..\engine\oak\input\input.cpp" />
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_bindings.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_entity.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_input.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_loader.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_scene.cpp" />

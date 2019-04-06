@@ -8,6 +8,7 @@
 #include <iostream>
 #include <locale>
 #include <oak/lua/lua_script.h>
+#include <oak/lua/lua_bindings.h>
 
 using namespace oak;
 using json = nlohmann::json;
@@ -82,7 +83,10 @@ void LuaScene::onLoad()
   //std::string initScript = path + "scripts/main.lua";
   L = luaL_newstate();
   luaL_openlibs(L);
-  lua_register(L, "create", LuaScene::lua_create);
+
+  LuaBindings::reg(L);
+  //return;
+ // lua_register(L, "create", LuaScene::lua_create);
  // lua_register(L, "addCommand", LuaScene::lua_addCommand);
 
   //possibly change this in future to: scripts/main.lua
@@ -95,6 +99,8 @@ void LuaScene::onLoad()
 #else
   initScript = "scripts/main.lua";
 #endif
+
+
   luaL_loadfile(L, initScript.c_str());
 
   //no error checking and will cause crash if there is a lua error
@@ -211,6 +217,16 @@ int LuaScene::lua_create(lua_State *L)
 
   lua_pushnumber(L, -1);
   return 1;
+}
+
+nlohmann::json LuaScene::getPrefabData(const std::string& name)
+{
+  auto res = data["prefabs"][name];
+  if (res == nullptr)
+  {
+    LOG_WARNING << "Prefab not found with name '" << name << "'";
+  }
+  return res;
 }
 
 int LuaScene::lua_addCommand(lua_State *L)

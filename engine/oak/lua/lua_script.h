@@ -3,6 +3,7 @@
 
 #include <oak/ecs/component.h>
 #include <string>
+#include <lua/lua.hpp>
 
 namespace oak
 {
@@ -11,6 +12,8 @@ namespace oak
     std::string name;
     const static std::string PATH;
     bool errorFlagOnce = false;
+    lua_State* L;
+    std::string scriptFilePath;
 
   public:
     LuaScript(std::string name);
