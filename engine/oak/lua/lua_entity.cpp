@@ -17,52 +17,48 @@ using namespace oak;
 
 #define LUA_ENTITYH "Entity"
 
-struct EntityHandle
+
+LuaEntity::LuaEntity(const Entity* ent) : ptr(ent)
 {
-  Entity* ptr;
 
-  EntityHandle(Entity* ent)
-  {
-    ptr = ent;
-  }
+}
 
-  ~EntityHandle()
-  {
+LuaEntity::~LuaEntity()
+{
 
-  }
+}
 
-  static int lua_delete(lua_State* L)
-  {
-    delete *reinterpret_cast<EntityHandle**>(lua_touserdata(L, 1));
-    return 0;
-  }
+int LuaEntity::lua_delete(lua_State* L)
+{
+  delete *reinterpret_cast<LuaEntity**>(lua_touserdata(L, 1));
+  return 0;
+}
 
-  static int getName(lua_State* L)
-  {
-    EntityHandle* e = *reinterpret_cast<EntityHandle**>(luaL_checkudata(L, 1, LUA_ENTITYH));
-    std::string name = e->ptr->getName();
-    lua_pushstring(L, name.c_str());
+int LuaEntity::getName(lua_State* L)
+{
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  std::string name = e->ptr->getName();
+  lua_pushstring(L, name.c_str());
 
-    return 1;
-  }
+  return 1;
+}
 
-  static int getID(lua_State* L)
-  {
-    EntityHandle* e = *reinterpret_cast<EntityHandle**>(luaL_checkudata(L, 1, LUA_ENTITYH));
-    int id = e->ptr->getID();
-    lua_pushnumber(L, id);
+int LuaEntity::getID(lua_State* L)
+{
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  int id = e->ptr->getID();
+  lua_pushnumber(L, id);
 
-    return 1;
-  }
-};
+  return 1;
+}
 
 
 void LuaEntity::reg(lua_State* L)
 {
   luaL_newmetatable(L, LUA_ENTITYH);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
-  lua_pushcfunction(L, EntityHandle::getName); lua_setfield(L, -2, "getName");
-  lua_pushcfunction(L, EntityHandle::getID); lua_setfield(L, -2, "getID");
+  lua_pushcfunction(L, getName); lua_setfield(L, -2, "getName");
+  lua_pushcfunction(L, getID); lua_setfield(L, -2, "getID");
   lua_pop(L, 1);
 }
 
@@ -102,7 +98,7 @@ int LuaEntity::createByName(lua_State* L)
   }
   ent->create(x, y);
 
-  *reinterpret_cast<EntityHandle**>(lua_newuserdata(L, sizeof(EntityHandle*))) = new EntityHandle(ent);
+  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
   luaL_setmetatable(L, LUA_ENTITYH);
 
   return 1;
