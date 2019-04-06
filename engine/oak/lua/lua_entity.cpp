@@ -15,7 +15,7 @@
 
 using namespace oak;
 
-#define LUA_ENTITYH "Entity"
+#define LUA_ENTITY "Entity"
 
 
 LuaEntity::LuaEntity(const Entity* ent) : ptr(ent)
@@ -36,7 +36,7 @@ int LuaEntity::lua_delete(lua_State* L)
 
 int LuaEntity::getName(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY));
   std::string name = e->ptr->getName();
   lua_pushstring(L, name.c_str());
 
@@ -45,9 +45,9 @@ int LuaEntity::getName(lua_State* L)
 
 int LuaEntity::getID(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY));
   int id = e->ptr->getID();
-  lua_pushnumber(L, id);
+  lua_pushinteger(L, id);
 
   return 1;
 }
@@ -55,7 +55,7 @@ int LuaEntity::getID(lua_State* L)
 
 void LuaEntity::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_ENTITYH);
+  luaL_newmetatable(L, LUA_ENTITY);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, getName); lua_setfield(L, -2, "getName");
   lua_pushcfunction(L, getID); lua_setfield(L, -2, "getID");
@@ -99,7 +99,7 @@ int LuaEntity::createByName(lua_State* L)
   ent->create(x, y);
 
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_ENTITYH);
+  luaL_setmetatable(L, LUA_ENTITY);
 
   return 1;
 }

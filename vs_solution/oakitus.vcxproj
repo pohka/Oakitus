@@ -92,10 +92,12 @@
     <ClInclude Include="..\engine\oak\input\point.h" />
     <ClInclude Include="..\engine\oak\lua\lua_bindings.h" />
     <ClInclude Include="..\engine\oak\lua\lua_entity.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_global.h" />
     <ClInclude Include="..\engine\oak\lua\lua_input.h" />
     <ClInclude Include="..\engine\oak\lua\lua_loader.h" />
     <ClInclude Include="..\engine\oak\lua\lua_scene.h" />
     <ClInclude Include="..\engine\oak\lua\lua_script.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_vector.h" />
     <ClInclude Include="..\engine\oak\meta\meta.h" />
     <ClInclude Include="..\engine\oak\meta\meta_def.h" />
     <ClInclude Include="..\engine\oak\meta\var.h" />
@@ -199,10 +201,12 @@
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_bindings.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_entity.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_global.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_input.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_loader.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_scene.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_script.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_vector.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta.cpp" />
     <ClCompile Include="..\engine\oak\meta\var.cpp" />
     <ClCompile Include="..\engine\oak\meta\var_object.cpp" />
