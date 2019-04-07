@@ -2,7 +2,8 @@
   "commands" : [ "/commands/move" ],
   "precache" : {
     "textures" : [
-      "face.png"
+      "face.png",
+      "pepe.png"
     ]
   },
   "prefabs" : {

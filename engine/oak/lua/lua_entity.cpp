@@ -11,6 +11,7 @@
 #include <oak/lua/lua_script.h>
 #include <oak/ecs/entity_manager.h>
 #include <oak/lua/lua_vector.h>
+#include <oak/lua/lua_sprite.h>
 
 #include <iostream>
 
@@ -22,10 +23,12 @@ using namespace oak;
 //entity global functions
 #define LUA_ENTITY "Entity"
 
+#define LUA_SPRITE "Sprite"
 
-LuaEntity::LuaEntity(const Entity* ent) : ptr(ent)
+
+LuaEntity::LuaEntity(Entity* ent)
 {
-
+  ptr = ent;
 }
 
 LuaEntity::~LuaEntity()
@@ -132,6 +135,7 @@ void LuaEntity::reg(lua_State* L)
   lua_pushcfunction(L, getID); lua_setfield(L, -2, "getID");
   lua_pushcfunction(L, moveBy); lua_setfield(L, -2, "moveBy");
   lua_pushcfunction(L, moveTo); lua_setfield(L, -2, "moveTo");
+  lua_pushcfunction(L, getComponent); lua_setfield(L, -2, "getComponent");
   lua_pop(L, 1);
 
   luaL_newmetatable(L, LUA_ENTITY);
@@ -242,4 +246,21 @@ void LuaEntity::addComponent(Entity* ent, const nlohmann::json& params)
     std::string name = params["name"];
     ent->addComponent(new LuaScript(name));
   }
+}
+
+int LuaEntity::getComponent(lua_State* L)
+{
+  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  
+  std::string name = luaL_checkstring(L, 2);
+
+  if (name == "sprite")
+  {
+    Sprite* sprite = entH->ptr->getComponent<Sprite>();
+    *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite(sprite);
+    luaL_setmetatable(L, LUA_SPRITE);
+    return 1;
+  }
+
+  return 0;
 }

@@ -12,6 +12,19 @@ end
 function move:onTick() 
   if Input:isKeyDown("Q") then
     local e = Entity:create("sample", Vector(-200.0 + val, 0.0))
+
+    local sprite = e:getComponent("sprite")
+    if sprite == nil then
+      log("sprite is nil")
+    else
+      local src = sprite:getSrc()
+      if src == nil then
+        log("src is nil")
+      else
+        log("src:" .. src)
+      end
+    end
+    
     val = val + 100
 
     --entity:moveTo(val, 100.0)
@@ -19,7 +32,7 @@ function move:onTick()
 
 
     if e ~= nil then
-      logd(e:getID() .. "=" .. e:getName())
+      log(e:getID() .. "=" .. e:getName())
     end
 
 

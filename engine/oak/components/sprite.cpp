@@ -7,6 +7,7 @@
 #include <oak/scene/camera.h>
 #include <oak/window/window.h>
 #include <oak/core/resources.h>
+#include <oak/debug.h>
 
 using namespace oak;
 
@@ -28,7 +29,8 @@ Sprite::Sprite(
   this->srcH = srcH;
   this->w = displayW;
   this->h = displayH;
-  
+  this->src = src;
+
   shaderID = Resources::getShaderByName(shaderName)->getID();
 
   Texture* texture = Resources::getTextureByName(src);
@@ -52,6 +54,7 @@ Sprite::Sprite(
   this->shaderID = Resources::getDefaultShader()->getID();
   this->textureID = Resources::getTextureIDByName(src);
   construct(0.0f, 1.0f, 0.0f, 1.0f);
+  this->src = src;
 }
 
 void Sprite::construct(float xMin, float xMax, float yMin, float yMax)

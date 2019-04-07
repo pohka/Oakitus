@@ -11,10 +11,10 @@ namespace oak
 {
   class LuaEntity
   {
-    const Entity* ptr;
+    Entity* ptr;
 
   public :
-    LuaEntity(const Entity* ent);
+    LuaEntity(Entity* ent);
     ~LuaEntity();
 
     static void reg(lua_State* L);
@@ -29,6 +29,7 @@ namespace oak
     static int getID(lua_State* L);
     static int moveBy(lua_State* L);
     static int moveTo(lua_State* L);
+    static int getComponent(lua_State* L);
 
 
     static int lua_delete(lua_State* L);

@@ -6,6 +6,7 @@
 #include <oak/lua/lua_entity.h>
 #include <oak/lua/lua_vector.h>
 #include <oak/lua/lua_global.h>
+#include <oak/lua/lua_sprite.h>
 
 using namespace oak;
 
@@ -24,5 +25,6 @@ void LuaBindings::reg(lua_State* L)
   LuaGlobal::reg(L);
   LuaVector::reg(L);
   LuaInput::reg(L);
+  LuaSprite::reg(L);
   LuaEntity::reg(L);
 }

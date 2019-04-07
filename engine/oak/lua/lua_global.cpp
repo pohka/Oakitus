@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-
+using namespace oak;
 
 void LuaGlobal::reg(lua_State* L)
 {
