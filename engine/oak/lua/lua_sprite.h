@@ -20,6 +20,7 @@ namespace oak
       static int lua_delete(lua_State* L);
 
       static int getSrc(lua_State* L);
+      static int setSrc(lua_State* L);
   };
 }
 

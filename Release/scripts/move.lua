@@ -7,6 +7,8 @@ end
 
 function move:onCreate()
   log("in onCreate")
+  local sprite = entity:getComponent("sprite")
+  sprite:setSrc("pepe.png")
 end
 
 function move:onTick() 
@@ -23,6 +25,8 @@ function move:onTick()
       else
         log("src:" .. src)
       end
+
+      sprite:setSrc("pepe.png")
     end
     
     val = val + 100

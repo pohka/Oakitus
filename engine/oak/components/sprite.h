@@ -53,6 +53,7 @@ namespace oak
 
       ///<summary>Returns the src file name</summary>
       std::string getSrc() const;
+      void setSrc(const std::string& s);
 
       ///<summary>Returns the VAO</summary>
       uint getVAO() const;

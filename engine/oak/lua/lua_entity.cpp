@@ -23,7 +23,6 @@ using namespace oak;
 //entity global functions
 #define LUA_ENTITY "Entity"
 
-#define LUA_SPRITE "Sprite"
 
 
 LuaEntity::LuaEntity(Entity* ent)
@@ -258,7 +257,7 @@ int LuaEntity::getComponent(lua_State* L)
   {
     Sprite* sprite = entH->ptr->getComponent<Sprite>();
     *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite(sprite);
-    luaL_setmetatable(L, LUA_SPRITE);
+    luaL_setmetatable(L, "Sprite");
     return 1;
   }
 

@@ -100,6 +100,14 @@ std::string Sprite::getSrc() const
   return this->src;
 }
 
+void Sprite::setSrc(const std::string& src)
+{
+  this->src = src;
+  this->textureID = Resources::getTextureIDByName(src);
+  construct(0.0f, 1.0f, 0.0f, 1.0f);
+
+}
+
 unsigned int Sprite::getVAO() const
 {
   return this->VAO;

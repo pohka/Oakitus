@@ -42,12 +42,13 @@ void LuaScript::onCreate()
 {
   if (hasFunc(L, LUA_ON_CREATE))
   {
+    LuaEntity::regSelf(L, this->entity);
     lua_getglobal(L, name.c_str());
     lua_getfield(L, -1, LUA_ON_CREATE);
 
     if (lua_pcall(L, 0, 0, 0) != 0)
     {
-      std::cout << "no create function" << std::endl;
+      std::cout << "create function error" << std::endl;
     }
   }
 }
@@ -56,6 +57,7 @@ void LuaScript::onDestroy()
 {
   if (hasFunc(L, LUA_ON_DESTROY))
   {
+    LuaEntity::regSelf(L, this->entity);
     lua_getglobal(L, name.c_str());
     lua_getfield(L, -1, LUA_ON_DESTROY);
 
