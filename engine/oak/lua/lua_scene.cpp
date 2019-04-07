@@ -101,12 +101,14 @@ void LuaScene::onLoad()
 #endif
 
 
-  luaL_loadfile(L, initScript.c_str());
+  luaL_dofile(L, initScript.c_str());
 
   //no error checking and will cause crash if there is a lua error
   //lua_call(L, 0, 0);
 
   //lua_pcall returns errors
+
+  lua_getglobal(L, "onLoad");
   if (lua_pcall(L, 0, 0, 0) != 0)
   {
     std::cout << "|--LUA_ERROR--|" << " lua_pcall - " << lua_tostring(L, -1) << std::endl;

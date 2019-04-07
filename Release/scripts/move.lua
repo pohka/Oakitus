@@ -1,19 +1,25 @@
 
 move = {}
-_G.val = 0
 
-function move:tick() 
+if _G.val == nil then
+  _G.val = 0
+end
+
+function move:onCreate()
+  log("in onCreate")
+end
+
+function move:onTick() 
   if Input:isKeyDown("Q") then
-    print("tick in lua: " .. val)
-    
-    local e = createEnt("sample", -200.0 + val, 0.0)
+    local e = Entity:create("sample", Vector(-200.0 + val, 0.0))
     val = val + 100
 
-    entity:moveTo(val, 100.0)
-    print("x:" .. val)
+    --entity:moveTo(val, 100.0)
+    log("x:" .. val)
+
 
     if e ~= nil then
-      print(e:getID() .. "=" .. e:getName())
+      logd(e:getID() .. "=" .. e:getName())
     end
 
 

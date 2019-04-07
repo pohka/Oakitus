@@ -14,12 +14,18 @@ namespace oak
     bool errorFlagOnce = false;
     lua_State* L;
     std::string scriptFilePath;
+    bool hasTickFunc = false;
+
+    bool hasFunc(lua_State* L, const char* funcName);
 
   public:
     LuaScript(std::string name);
     ~LuaScript();
 
+    void onCreate() override;
     void onTick() override;
+    void onDestroy() override;
+    
   };
 }
 

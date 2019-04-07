@@ -5,6 +5,7 @@
 
 #include <oak/lua/lua_entity.h>
 #include <oak/lua/lua_vector.h>
+#include <oak/lua/lua_global.h>
 
 using namespace oak;
 
@@ -20,8 +21,7 @@ static int emptyConstructor(lua_State* L)
 
 void LuaBindings::reg(lua_State* L)
 {
-  lua_register(L, "createEnt", LuaEntity::createByName);
-
+  LuaGlobal::reg(L);
   LuaVector::reg(L);
   LuaInput::reg(L);
   LuaEntity::reg(L);

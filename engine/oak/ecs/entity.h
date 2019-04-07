@@ -59,7 +59,7 @@ namespace oak
       void create();
 
       ///<summary>Adds this Entity to the world at the given position</summary>
-      void create(float x, float y);
+      void create(float x, float y, float z=0.0f);
 
       ///<summary>Destroys this Entity</summary>
 	    void destroy();

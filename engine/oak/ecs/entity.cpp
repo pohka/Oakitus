@@ -73,9 +73,9 @@ void Entity::create()
   EntityManager::queueEntityCreate(this);
 }
 
-void oak::Entity::create(float x, float y)
+void oak::Entity::create(float x, float y, float z)
 {
-  transform->moveTo(x, y, 0.0f);
+  transform->moveTo(x, y, z);
   EntityManager::queueEntityCreate(this);
 }
 

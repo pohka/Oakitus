@@ -1,5 +1,9 @@
 --create("player_unit", 80.0, 0.0)
-createEnt("player_unit", 80.0, 0.0)
+--createEnt("player_unit", 80.0, 0.0)
+
+function onLoad()
+  Entity:create("player_unit")
+end
 
 --testing vector
 --[[

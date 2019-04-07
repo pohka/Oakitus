@@ -10,11 +10,16 @@
 #include <oak/components/rigid_body_2d.h>
 #include <oak/lua/lua_script.h>
 #include <oak/ecs/entity_manager.h>
+#include <oak/lua/lua_vector.h>
 
 #include <iostream>
 
 using namespace oak;
 
+//entity handle
+#define LUA_ENTITYH "EntityH"
+
+//entity global functions
 #define LUA_ENTITY "Entity"
 
 
@@ -36,7 +41,7 @@ int LuaEntity::lua_delete(lua_State* L)
 
 int LuaEntity::getName(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
   std::string name = e->ptr->getName();
   lua_pushstring(L, name.c_str());
 
@@ -45,7 +50,7 @@ int LuaEntity::getName(lua_State* L)
 
 int LuaEntity::getID(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
   int id = e->ptr->getID();
   lua_pushinteger(L, id);
 
@@ -54,7 +59,7 @@ int LuaEntity::getID(lua_State* L)
 
 int LuaEntity::moveBy(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
 
   float x, y, z;
 
@@ -87,7 +92,7 @@ int LuaEntity::moveBy(lua_State* L)
 
 int LuaEntity::moveTo(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
 
   float x, y, z;
 
@@ -104,7 +109,7 @@ int LuaEntity::moveTo(lua_State* L)
   {
     x = (float)luaL_checknumber(L, 2);
     y = (float)luaL_checknumber(L, 3);
-    z = 0;
+    z = 0.0f;
   }
   else
   {
@@ -119,37 +124,53 @@ int LuaEntity::moveTo(lua_State* L)
 
 void LuaEntity::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_ENTITY);
+  luaL_newmetatable(L, LUA_ENTITYH);
+
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
+  lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
   lua_pushcfunction(L, getName); lua_setfield(L, -2, "getName");
   lua_pushcfunction(L, getID); lua_setfield(L, -2, "getID");
   lua_pushcfunction(L, moveBy); lua_setfield(L, -2, "moveBy");
   lua_pushcfunction(L, moveTo); lua_setfield(L, -2, "moveTo");
   lua_pop(L, 1);
+
+  luaL_newmetatable(L, LUA_ENTITY);
+  lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
+  lua_pushcfunction(L, createByName); lua_setfield(L, -2, "create");
+  lua_pop(L, 1);
+
+  lua_newtable(L);
+  luaL_setmetatable(L, LUA_ENTITY);
+  lua_setglobal(L, LUA_ENTITY);
 }
 
 
 int LuaEntity::createByName(lua_State* L)
 {
-  float x, y;
+  float x, y, z;
 
-  if (lua_gettop(L) == 1)
+  if (lua_gettop(L) == 2)
   {
     x = 0.0f;
     y = 0.0f;
+    z = 0.0f;
   }
   else if (lua_gettop(L) == 3)
   {
-    x = (float)luaL_checknumber(L, 2);
-    y = (float)luaL_checknumber(L, 3);
+    glm::vec3 pos = LuaVector::toGLMVec(L, 3);
+    x = pos.x;
+    y = pos.y;
+    z = pos.z;
   }
   else
   {
     //error
+    std::cout << "error params" << std::endl;
     return 0;
   }
 
-  const std::string name = lua_tostring(L, 1);
+  const std::string name = lua_tostring(L, 2);
+
   LuaScene* scene = static_cast<LuaScene*>(SceneManager::getCurrentScene());
   nlohmann::json entData = scene->getPrefabData(name);
 
@@ -162,25 +183,19 @@ int LuaEntity::createByName(lua_State* L)
       LuaEntity::addComponent(ent, entData[i]);
     }
   }
-  ent->create(x, y);
+  ent->create(x, y, z);
 
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_ENTITY);
+  luaL_setmetatable(L, LUA_ENTITYH);
 
   return 1;
 }
 
 int LuaEntity::regSelf(lua_State* L, Entity* ent)
 {
- // *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
- // luaL_setmetatable(L, LUA_ENTITY);
-
   lua_newtable(L);
-  lua_pushstring(L, "x");
-  lua_pushnumber(L, 123);
-  lua_settable(L, -3);
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_ENTITY);
+  luaL_setmetatable(L, LUA_ENTITYH);
 
   lua_setglobal(L, "entity");
   return 1;
