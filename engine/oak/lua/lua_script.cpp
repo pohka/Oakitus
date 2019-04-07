@@ -5,6 +5,7 @@
 #include <oak/lua/lua_input.h>
 #include <oak/lua/lua_bindings.h>
 #include <oak/scene/scene_manager.h>
+#include <oak/lua/lua_entity.h>
 
 
 using namespace oak;
@@ -20,6 +21,7 @@ LuaScript::LuaScript(std::string name) : Component()
   scriptFilePath = LuaScript::PATH + name + ".lua";
   luaL_dofile(L, scriptFilePath.c_str());
   LuaBindings::reg(L);
+  
 }
 
 LuaScript::~LuaScript()
@@ -211,6 +213,7 @@ void LuaScript::onTick()
 
   //register_vec2(L);
   
+  LuaEntity::regSelf(L, this->entity);
 
   //lua_register(L, "create", LuaScene::lua_create);
   //lua_register(L, "setEntPos", setEntPos); //example

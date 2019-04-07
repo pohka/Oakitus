@@ -52,6 +52,70 @@ int LuaEntity::getID(lua_State* L)
   return 1;
 }
 
+int LuaEntity::moveBy(lua_State* L)
+{
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY));
+
+  float x, y, z;
+
+  //3d 
+  if (lua_gettop(L) == 4)
+  {
+    x = (float)luaL_checknumber(L, 2);
+    y = (float)luaL_checknumber(L, 3);
+    z = (float)luaL_checknumber(L, 4);
+    lua_pop(L, 3);
+  }
+  //2d
+  else if (lua_gettop(L) == 3)
+  {
+    x = (float)luaL_checknumber(L, 2);
+    y = (float)luaL_checknumber(L, 3);
+    z = 0;
+  }
+  else
+  {
+    //errror
+  }
+
+
+  e->ptr->transform->moveBy(x, y, z);
+
+  return 0;
+}
+
+
+int LuaEntity::moveTo(lua_State* L)
+{
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY));
+
+  float x, y, z;
+
+  //3d 
+  if (lua_gettop(L) == 4)
+  {
+    x = (float)luaL_checknumber(L, 2);
+    y = (float)luaL_checknumber(L, 3);
+    z = (float)luaL_checknumber(L, 4);
+    lua_pop(L, 3);
+  }
+  //2d
+  else if (lua_gettop(L) == 3)
+  {
+    x = (float)luaL_checknumber(L, 2);
+    y = (float)luaL_checknumber(L, 3);
+    z = 0;
+  }
+  else
+  {
+    //errror
+  }
+  
+
+  e->ptr->transform->moveTo(x, y, z);
+
+  return 0;
+}
 
 void LuaEntity::reg(lua_State* L)
 {
@@ -59,6 +123,8 @@ void LuaEntity::reg(lua_State* L)
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, getName); lua_setfield(L, -2, "getName");
   lua_pushcfunction(L, getID); lua_setfield(L, -2, "getID");
+  lua_pushcfunction(L, moveBy); lua_setfield(L, -2, "moveBy");
+  lua_pushcfunction(L, moveTo); lua_setfield(L, -2, "moveTo");
   lua_pop(L, 1);
 }
 
@@ -104,6 +170,21 @@ int LuaEntity::createByName(lua_State* L)
   return 1;
 }
 
+int LuaEntity::regSelf(lua_State* L, Entity* ent)
+{
+ // *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
+ // luaL_setmetatable(L, LUA_ENTITY);
+
+  lua_newtable(L);
+  lua_pushstring(L, "x");
+  lua_pushnumber(L, 123);
+  lua_settable(L, -3);
+  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
+  luaL_setmetatable(L, LUA_ENTITY);
+
+  lua_setglobal(L, "entity");
+  return 1;
+}
 
 
 void LuaEntity::addComponent(Entity* ent, const nlohmann::json& params)
