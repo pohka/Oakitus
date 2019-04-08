@@ -1,9 +1,8 @@
 #include <oak/lua/lua_input.h>
 #include <oak/input/input.h>
+#include <oak/lua/lua_constants.h>
 
 using namespace oak;
-
-#define LUA_INPUT "Input"
 
 void LuaInput::reg(lua_State* L)
 {

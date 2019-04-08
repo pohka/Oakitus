@@ -1,9 +1,10 @@
 #include <oak/lua/lua_sprite.h>
 #include <iostream>
+#include <oak/lua/lua_constants.h>
 
 using namespace oak;
 
-#define LUA_SPRITE "Sprite"
+
 
 LuaSprite::LuaSprite(Sprite* sprite)
 {

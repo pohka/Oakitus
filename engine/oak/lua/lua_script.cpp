@@ -7,14 +7,11 @@
 #include <oak/scene/scene_manager.h>
 #include <oak/lua/lua_entity.h>
 #include <oak/debug.h>
+#include <oak/lua/lua_constants.h>
 
 using namespace oak;
 
 const std::string LuaScript::PATH = "../Release/scripts/";
-
-#define LUA_ON_TICK "onTick"
-#define LUA_ON_CREATE "onCreate"
-#define LUA_ON_DESTROY "onDestroy"
 
 LuaScript::LuaScript(std::string name) : Component()
 {

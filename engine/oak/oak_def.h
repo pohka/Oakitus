@@ -32,13 +32,13 @@ cnum CREATION_STATE_CREATED = 2; //created
 cnum CREATION_STATE_DESTROYED = 3; //queued for destruction
 
 //reflections
-const uint REFLECT_NULL = 0;
-const uint REFLECT_TRANSFORM = 1;
-const uint REFLECT_ANIMATOR = 2;
-const uint REFLECT_RIGID_BODY_2D = 3;
-const uint REFLECT_SPRITE = 4;
-const uint REFLECT_CHUNK = 5;
-const uint REFLECT_LAST = 5;
+static const uint REFLECT_NULL = 0;
+static const uint REFLECT_TRANSFORM = 1;
+static const uint REFLECT_ANIMATOR = 2;
+static const uint REFLECT_RIGID_BODY_2D = 3;
+static const uint REFLECT_SPRITE = 4;
+static const uint REFLECT_CHUNK = 5;
+static const uint REFLECT_LAST = 5;
 
 //entity groups
 cnum ENTITY_GROUP_NONE = 0;

@@ -3,19 +3,21 @@ move = {}
 
 if _G.val == nil then
   _G.val = 0
+  _G.playerEntID = 0;
 end
 
 function move:onCreate()
   log("in onCreate")
-  local sprite = entity:getComponent("sprite")
+  local sprite = entity:getComponent(COMP_SPRITE)
   sprite:setSrc("pepe.png")
+  playerEntID = entity:getID()
 end
 
 function move:onTick() 
   if Input:isKeyDown("Q") then
     local e = Entity:create("sample", Vector(-200.0 + val, 0.0))
-
-    local sprite = e:getComponent("sprite")
+    playerEntID = e:getID()
+    local sprite = e:getComponent(COMP_SPRITE)
     if sprite == nil then
       log("sprite is nil")
     else
@@ -59,6 +61,11 @@ function move:onTick()
     moveX = speed
   end
 
-  entity:moveBy(moveX, moveY)
+  --entity:moveBy(moveX, moveY)
+
+  local c = Entity:findByID(playerEntID)
+  if c ~= nil then
+    c:moveBy(moveX, moveY)
+  end
 end
 

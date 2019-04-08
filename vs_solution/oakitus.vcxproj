@@ -91,6 +91,7 @@
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
     <ClInclude Include="..\engine\oak\lua\lua_bindings.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_constants.h" />
     <ClInclude Include="..\engine\oak\lua\lua_entity.h" />
     <ClInclude Include="..\engine\oak\lua\lua_global.h" />
     <ClInclude Include="..\engine\oak\lua\lua_input.h" />

@@ -12,16 +12,11 @@
 #include <oak/ecs/entity_manager.h>
 #include <oak/lua/lua_vector.h>
 #include <oak/lua/lua_sprite.h>
+#include <oak/lua/lua_constants.h>
 
 #include <iostream>
 
 using namespace oak;
-
-//entity handle
-#define LUA_ENTITYH "EntityH"
-
-//entity global functions
-#define LUA_ENTITY "Entity"
 
 
 
@@ -43,7 +38,7 @@ int LuaEntity::lua_delete(lua_State* L)
 
 int LuaEntity::getName(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
   std::string name = e->ptr->getName();
   lua_pushstring(L, name.c_str());
 
@@ -52,7 +47,7 @@ int LuaEntity::getName(lua_State* L)
 
 int LuaEntity::getID(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
   int id = e->ptr->getID();
   lua_pushinteger(L, id);
 
@@ -61,7 +56,7 @@ int LuaEntity::getID(lua_State* L)
 
 int LuaEntity::moveBy(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
 
   float x, y, z;
 
@@ -94,7 +89,7 @@ int LuaEntity::moveBy(lua_State* L)
 
 int LuaEntity::moveTo(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
 
   float x, y, z;
 
@@ -126,7 +121,7 @@ int LuaEntity::moveTo(lua_State* L)
 
 void LuaEntity::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_ENTITYH);
+  luaL_newmetatable(L, LUA_ENTITY_HANDLE);
 
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
@@ -140,11 +135,26 @@ void LuaEntity::reg(lua_State* L)
   luaL_newmetatable(L, LUA_ENTITY);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, createByName); lua_setfield(L, -2, "create");
+  lua_pushcfunction(L, findByID); lua_setfield(L, -2, "findByID");
   lua_pop(L, 1);
 
   lua_newtable(L);
   luaL_setmetatable(L, LUA_ENTITY);
   lua_setglobal(L, LUA_ENTITY);
+
+
+  //static const uint REFLECT_NULL = 0;
+  //static const uint REFLECT_TRANSFORM = 1;
+  //static const uint REFLECT_ANIMATOR = 2;
+  //static const uint REFLECT_RIGID_BODY_2D = 3;
+  //static const uint REFLECT_SPRITE = 4;
+  //static const uint REFLECT_CHUNK = 5;
+  //static const uint REFLECT_LAST = 5;
+  lua_pushinteger(L, REFLECT_SPRITE);
+  lua_setglobal(L, "COMP_SPRITE");
+
+  lua_pushinteger(L, REFLECT_RIGID_BODY_2D);
+  lua_setglobal(L, "COMP_RIGID_BODY_2D");
 }
 
 
@@ -189,7 +199,7 @@ int LuaEntity::createByName(lua_State* L)
   ent->create(x, y, z);
 
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_ENTITYH);
+  luaL_setmetatable(L, LUA_ENTITY_HANDLE);
 
   return 1;
 }
@@ -198,7 +208,7 @@ int LuaEntity::regSelf(lua_State* L, Entity* ent)
 {
   lua_newtable(L);
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_ENTITYH);
+  luaL_setmetatable(L, LUA_ENTITY_HANDLE);
 
   lua_setglobal(L, "entity");
   return 1;
@@ -249,17 +259,36 @@ void LuaEntity::addComponent(Entity* ent, const nlohmann::json& params)
 
 int LuaEntity::getComponent(lua_State* L)
 {
-  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITYH));
+  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
   
-  std::string name = luaL_checkstring(L, 2);
+  int reflectID = luaL_checkinteger(L, 2);
 
-  if (name == "sprite")
+  switch (reflectID)
   {
-    Sprite* sprite = entH->ptr->getComponent<Sprite>();
-    *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite(sprite);
-    luaL_setmetatable(L, "Sprite");
+    case REFLECT_SPRITE : 
+      Sprite* sprite = entH->ptr->getComponentWithReflection<Sprite>(reflectID);
+      *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite(sprite);
+      luaL_setmetatable(L, "Sprite");
+      return 1;
+      break;
+  }
+
+  return 0;
+}
+
+int LuaEntity::findByID(lua_State* L)
+{
+  int id = luaL_checkinteger(L, 2);
+  Entity* ent = EntityManager::findEntityByID(id);
+
+  if (ent != nullptr)
+  {
+    *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
+    luaL_setmetatable(L, LUA_ENTITY_HANDLE);
+
     return 1;
   }
+  //error not found
 
   return 0;
 }

@@ -7,7 +7,7 @@
 
 using namespace oak;
 
-#define LUA_VECTOR "Vector"
+#include <oak/lua/lua_constants.h>
 
 
 void LuaVector::reg(lua_State* L)
