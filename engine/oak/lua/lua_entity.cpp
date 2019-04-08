@@ -131,6 +131,7 @@ void LuaEntity::reg(lua_State* L)
   lua_pushcfunction(L, moveBy); lua_setfield(L, -2, "moveBy");
   lua_pushcfunction(L, moveTo); lua_setfield(L, -2, "moveTo");
   lua_pushcfunction(L, getComponent); lua_setfield(L, -2, "getComponent");
+  lua_pushcfunction(L, getPosition); lua_setfield(L, -2, "getPosition");
   lua_pop(L, 1);
 
   luaL_newmetatable(L, LUA_ENTITY);
@@ -205,6 +206,16 @@ int LuaEntity::createByName(lua_State* L)
   return 1;
 }
 
+int LuaEntity::getPosition(lua_State* L)
+{
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  glm::vec3 pos = e->ptr->transform->position();
+  LuaVector::c_new(L, pos.x, pos.y, pos.z);
+  return 1;
+}
+
+//--------------------------------------------------------
+
 int LuaEntity::regSelf(lua_State* L, Entity* ent)
 {
   lua_newtable(L);
@@ -257,6 +268,7 @@ void LuaEntity::addComponent(Entity* ent, const nlohmann::json& params)
     ent->addComponent(new LuaScript(name));
   }
 }
+
 
 int LuaEntity::getComponent(lua_State* L)
 {

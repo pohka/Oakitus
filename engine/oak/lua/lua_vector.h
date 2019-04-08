@@ -14,9 +14,12 @@ namespace oak
     //converts a vector argument to glm vector
     static glm::vec3 toGLMVec(lua_State* L, const int index);
 
+    //adds a new vector metatable
+    static void c_new(lua_State* L, float x, float y, float z);
 
 
   private:
+    
     static int lua_new(lua_State* L);
     static int toString(lua_State* L);
     static int dot(lua_State* L);

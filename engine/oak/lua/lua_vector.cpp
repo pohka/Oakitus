@@ -16,7 +16,7 @@ void LuaVector::reg(lua_State* L)
   luaL_newmetatable(L, LUA_VECTOR);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, dot); lua_setfield(L, -2, "dot");
-  lua_pushcfunction(L, toString); lua_setfield(L, -2, "toStr");
+  lua_pushcfunction(L, toString); lua_setfield(L, -2, "toString");
   lua_pushcfunction(L, normalized); lua_setfield(L, -2, "normalized");
   lua_pushcfunction(L, length); lua_setfield(L, -2, "length");
   lua_pushcfunction(L, length2D); lua_setfield(L, -2, "length2D");
@@ -29,6 +29,12 @@ void LuaVector::reg(lua_State* L)
   lua_pop(L, 1);
 }
 
+
+void LuaVector::c_new(lua_State* L, float x, float y, float z)
+{
+  newTable(L, (float)x, (float)y, (float)z);
+  luaL_setmetatable(L, LUA_VECTOR);
+}
 
 int LuaVector::lua_new(lua_State* L)
 {
@@ -76,8 +82,14 @@ int LuaVector::toString(lua_State* L)
   double z = luaL_checknumber(L, -1);
   lua_pop(L, 3);
 
+  x = floorf(x*10.0f) * 0.1f;
+  y = floorf(y*10.0f) * 0.1f;
+  z = floorf(z*10.0f) * 0.1f;
+
   std::stringstream stream;
-  stream << "(" << std::setprecision(2) << x << "," << y << "," << z << ")";
+
+
+  stream << "(" << x << "," << y << "," << z << ")";
   std::string s = stream.str();
 
   lua_pushstring(L, s.c_str());

@@ -29,6 +29,7 @@ namespace oak
     static int getID(lua_State* L);
     static int moveBy(lua_State* L);
     static int moveTo(lua_State* L);
+    static int getPosition(lua_State* L);
 
 
     static int getComponent(lua_State* L);
