@@ -44,6 +44,15 @@ function move:onTick()
 
   end
 
+  if Input:isKeyDown("E") then
+    local rb = entity:getComponent(COMP_RIGIDBODY2D)
+    if rb == nil then
+      log("rigidbody is nil")
+    else
+      local mass = rb:getMass()
+    end
+  end
+
   local speed = 2
   local moveX = 0
   local moveY = 0

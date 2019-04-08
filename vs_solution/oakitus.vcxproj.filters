@@ -420,6 +420,9 @@
     <ClInclude Include="..\engine\oak\lua\lua_constants.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_rigid_body_2d.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -713,6 +716,9 @@
       <Filter>oak\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_sprite.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_rigid_body_2d.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
   </ItemGroup>

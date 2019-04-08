@@ -96,6 +96,7 @@
     <ClInclude Include="..\engine\oak\lua\lua_global.h" />
     <ClInclude Include="..\engine\oak\lua\lua_input.h" />
     <ClInclude Include="..\engine\oak\lua\lua_loader.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_rigid_body_2d.h" />
     <ClInclude Include="..\engine\oak\lua\lua_scene.h" />
     <ClInclude Include="..\engine\oak\lua\lua_script.h" />
     <ClInclude Include="..\engine\oak\lua\lua_sprite.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="..\engine\oak\lua\lua_global.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_input.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_loader.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_rigid_body_2d.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_scene.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_script.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_sprite.cpp" />

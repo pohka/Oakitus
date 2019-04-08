@@ -4,10 +4,13 @@
 namespace oak
 {
   static const char* LUA_ENTITY = "Entity"; //entity static functions
-  static const char* LUA_ENTITY_HANDLE = "EntityH"; //entity handle instance
-  static const char* LUA_SPRITE = "Sprite";
   static const char* LUA_VECTOR = "Vector";
   static const char* LUA_INPUT = "Input";
+
+  static const char* LUA_HANDLE_ENTITY = "EntityH"; //entity handle instance
+  static const char* LUA_HANDLE_SPRITE = "Sprite";
+  static const char* LUA_HANDLE_RIGIDBODY2D = "RigidBody2D";
+
 
   //events for lua script
   static const char* LUA_ON_TICK = "onTick";

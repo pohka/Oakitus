@@ -18,7 +18,7 @@ LuaSprite::~LuaSprite()
 
 void LuaSprite::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_SPRITE);
+  luaL_newmetatable(L, LUA_HANDLE_SPRITE);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
   lua_pushcfunction(L, getSrc); lua_setfield(L, -2, "getSrc");

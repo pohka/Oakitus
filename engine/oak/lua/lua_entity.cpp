@@ -13,6 +13,7 @@
 #include <oak/lua/lua_vector.h>
 #include <oak/lua/lua_sprite.h>
 #include <oak/lua/lua_constants.h>
+#include <oak/lua/lua_rigid_body_2d.h>
 
 #include <iostream>
 
@@ -38,7 +39,7 @@ int LuaEntity::lua_delete(lua_State* L)
 
 int LuaEntity::getName(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
   std::string name = e->ptr->getName();
   lua_pushstring(L, name.c_str());
 
@@ -47,7 +48,7 @@ int LuaEntity::getName(lua_State* L)
 
 int LuaEntity::getID(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
   int id = e->ptr->getID();
   lua_pushinteger(L, id);
 
@@ -56,7 +57,7 @@ int LuaEntity::getID(lua_State* L)
 
 int LuaEntity::moveBy(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
 
   float x, y, z;
 
@@ -89,7 +90,7 @@ int LuaEntity::moveBy(lua_State* L)
 
 int LuaEntity::moveTo(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
 
   float x, y, z;
 
@@ -121,7 +122,7 @@ int LuaEntity::moveTo(lua_State* L)
 
 void LuaEntity::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_ENTITY_HANDLE);
+  luaL_newmetatable(L, LUA_HANDLE_ENTITY);
 
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
@@ -154,7 +155,7 @@ void LuaEntity::reg(lua_State* L)
   lua_setglobal(L, "COMP_SPRITE");
 
   lua_pushinteger(L, REFLECT_RIGID_BODY_2D);
-  lua_setglobal(L, "COMP_RIGID_BODY_2D");
+  lua_setglobal(L, "COMP_RIGIDBODY2D");
 }
 
 
@@ -199,7 +200,7 @@ int LuaEntity::createByName(lua_State* L)
   ent->create(x, y, z);
 
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_ENTITY_HANDLE);
+  luaL_setmetatable(L, LUA_HANDLE_ENTITY);
 
   return 1;
 }
@@ -208,7 +209,7 @@ int LuaEntity::regSelf(lua_State* L, Entity* ent)
 {
   lua_newtable(L);
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_ENTITY_HANDLE);
+  luaL_setmetatable(L, LUA_HANDLE_ENTITY);
 
   lua_setglobal(L, "entity");
   return 1;
@@ -259,21 +260,34 @@ void LuaEntity::addComponent(Entity* ent, const nlohmann::json& params)
 
 int LuaEntity::getComponent(lua_State* L)
 {
-  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_ENTITY_HANDLE));
+  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
   
   int reflectID = luaL_checkinteger(L, 2);
+  char res = 1;
 
   switch (reflectID)
   {
     case REFLECT_SPRITE : 
+    {
       Sprite* sprite = entH->ptr->getComponentWithReflection<Sprite>(reflectID);
       *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite(sprite);
-      luaL_setmetatable(L, "Sprite");
-      return 1;
+      luaL_setmetatable(L, LUA_HANDLE_SPRITE);
       break;
+    }
+    case REFLECT_RIGID_BODY_2D :
+    {
+      RigidBody2D* rb = entH->ptr->getComponentWithReflection<RigidBody2D>(reflectID);
+      *reinterpret_cast<LuaRigidBody2D**>(lua_newuserdata(L, sizeof(LuaRigidBody2D*))) = new LuaRigidBody2D(rb);
+      luaL_setmetatable(L, LUA_HANDLE_RIGIDBODY2D);
+      break;
+    }
+    default:
+    {
+      res = 0;
+    }
   }
 
-  return 0;
+  return res;
 }
 
 int LuaEntity::findByID(lua_State* L)
@@ -284,7 +298,7 @@ int LuaEntity::findByID(lua_State* L)
   if (ent != nullptr)
   {
     *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-    luaL_setmetatable(L, LUA_ENTITY_HANDLE);
+    luaL_setmetatable(L, LUA_HANDLE_ENTITY);
 
     return 1;
   }
