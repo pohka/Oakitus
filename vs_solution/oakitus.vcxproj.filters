@@ -423,6 +423,15 @@
     <ClInclude Include="..\engine\oak\lua\lua_rigid_body_2d.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_player.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\player\player.h">
+      <Filter>oak\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_player_resource.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -719,6 +728,12 @@
       <Filter>oak\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_rigid_body_2d.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_player.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_player_resource.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
   </ItemGroup>

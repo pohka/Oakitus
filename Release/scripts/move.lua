@@ -51,6 +51,12 @@ function move:onTick()
     else
       local mass = rb:getMass()
     end
+
+    local player = PlayerResource:getPlayer(1)
+    if player ~= nil then
+      local playerID = player:getPlayerID()
+      log("playerID: " .. playerID)
+    end
   end
 
   local speed = 2

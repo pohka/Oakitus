@@ -8,6 +8,8 @@
 #include <oak/lua/lua_global.h>
 #include <oak/lua/lua_sprite.h>
 #include <oak/lua/lua_rigid_body_2d.h>
+#include <oak/lua/lua_player.h>
+#include <oak/lua/lua_player_resource.h>
 
 using namespace oak;
 
@@ -24,6 +26,8 @@ static int emptyConstructor(lua_State* L)
 void LuaBindings::reg(lua_State* L)
 {
   LuaGlobal::reg(L);
+  LuaPlayer::reg(L);
+  LuaPlayerResource::reg(L);
   LuaRigidBody2D::reg(L);
   LuaVector::reg(L);
   LuaInput::reg(L);
