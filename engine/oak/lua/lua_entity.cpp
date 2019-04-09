@@ -14,6 +14,7 @@
 #include <oak/lua/lua_sprite.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_rigid_body_2d.h>
+#include <oak/lua/lua_collision_rect.h>
 
 #include <iostream>
 
@@ -131,6 +132,7 @@ void LuaEntity::reg(lua_State* L)
   lua_pushcfunction(L, moveBy); lua_setfield(L, -2, "moveBy");
   lua_pushcfunction(L, moveTo); lua_setfield(L, -2, "moveTo");
   lua_pushcfunction(L, getComponent); lua_setfield(L, -2, "getComponent");
+  lua_pushcfunction(L, getShapeByID); lua_setfield(L, -2, "getShapeByID");
   lua_pushcfunction(L, getPosition); lua_setfield(L, -2, "getPosition");
   lua_pop(L, 1);
 
@@ -157,6 +159,7 @@ void LuaEntity::reg(lua_State* L)
 
   lua_pushinteger(L, REFLECT_RIGID_BODY_2D);
   lua_setglobal(L, "COMP_RIGIDBODY2D");
+
 }
 
 
@@ -260,7 +263,14 @@ void LuaEntity::addComponent(Entity* ent, const nlohmann::json& params)
   else if (className == "rigidbody2d")
   {
     bool isStatic = params["isStatic"];
-    ent->addComponent(new RigidBody2D(isStatic));
+    RigidBody2D* rb = new RigidBody2D(isStatic);
+
+    if (params.find("mass") != params.end())
+    {
+      rb->mass = params["mass"];
+    }
+
+    ent->addComponent(rb, true);
   }
   else if (className == "lua_script")
   {
@@ -300,6 +310,32 @@ int LuaEntity::getComponent(lua_State* L)
   }
 
   return res;
+}
+
+int LuaEntity::getShapeByID(lua_State* L)
+{
+  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  int id = (int)luaL_checkinteger(L, 2);
+  BaseCollisionShape* shape = entH->ptr->getCollisionShapes()[id];
+
+  switch (shape->getType())
+  {
+    case COLLISION_SHAPE_RECT:
+    {
+      CollisionRect* rect = static_cast<CollisionRect*>(shape);
+      lua_newtable(L);
+      *reinterpret_cast<LuaCollisionRect**>(lua_newuserdata(L, sizeof(LuaCollisionRect*))) = new LuaCollisionRect(rect);
+      luaL_setmetatable(L, LUA_HANDLE_COLLISION_RECT);
+      break;
+    }
+    case COLLISION_SHAPE_CIRCLE:
+    {
+
+      break;
+    }
+
+  }
+  return 1;
 }
 
 int LuaEntity::findByID(lua_State* L)

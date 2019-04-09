@@ -99,5 +99,11 @@ function move:onTick()
   if c ~= nil then
     c:moveBy(moveX, moveY)
   end
+
+  if Input:isKeyDown(KEY.P) then
+    local shape = entity:getShapeByID(0)
+    local w = shape:getW()
+    print("w:" .. w)
+  end
 end
 

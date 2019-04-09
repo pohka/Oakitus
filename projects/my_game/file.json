@@ -45,7 +45,15 @@
       },
       {
         "class" : "rigidbody2d",
+        "mass" : 1.0,
         "isStatic" : false
+      },
+      {
+        "class" : "collision_rect",
+        "offsetX" : 0.0,
+        "offsetY" : 0.0,
+        "w" : 32,
+        "h" : 32
       }
     ]
   }

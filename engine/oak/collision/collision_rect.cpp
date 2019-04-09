@@ -68,3 +68,17 @@ RectBounds CollisionRect::getRectBounds() const
   bounds.maxY = pos.y + m_offsetY + (h * 0.5f);
   return bounds;
 }
+
+void CollisionRect::setWidth(const float w)
+{
+  this->w = w;
+}
+void CollisionRect::setHeight(const float h)
+{
+  this->h = h;
+}
+void CollisionRect::setOffset(const float x, const float y)
+{
+  m_offsetX = x;
+  m_offsetY = y;
+}

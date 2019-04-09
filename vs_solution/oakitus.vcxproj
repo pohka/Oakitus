@@ -91,6 +91,8 @@
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
     <ClInclude Include="..\engine\oak\lua\lua_bindings.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_collision_circle.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_collision_rect.h" />
     <ClInclude Include="..\engine\oak\lua\lua_constants.h" />
     <ClInclude Include="..\engine\oak\lua\lua_entity.h" />
     <ClInclude Include="..\engine\oak\lua\lua_global.h" />
@@ -206,6 +208,8 @@
     <ClCompile Include="..\engine\oak\input\input.cpp" />
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_bindings.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_collision_circle.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_collision_rect.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_entity.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_global.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_input.cpp" />

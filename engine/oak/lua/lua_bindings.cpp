@@ -10,6 +10,7 @@
 #include <oak/lua/lua_rigid_body_2d.h>
 #include <oak/lua/lua_player.h>
 #include <oak/lua/lua_player_resource.h>
+#include <oak/lua/lua_collision_rect.h>
 
 using namespace oak;
 
@@ -33,4 +34,5 @@ void LuaBindings::reg(lua_State* L)
   LuaInput::reg(L);
   LuaSprite::reg(L);
   LuaEntity::reg(L);
+  LuaCollisionRect::reg(L);
 }
