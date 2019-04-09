@@ -7,6 +7,7 @@ namespace oak
   static const char* LUA_VECTOR = "Vector";
   static const char* LUA_INPUT = "Input";
   static const char* LUA_PLAYER_RESOURCE = "PlayerResource";
+  static const char* LUA_KEYCODE = "KEY";
 
   static const char* LUA_HANDLE_ENTITY = "EntityH"; //entity handle instance
   static const char* LUA_HANDLE_SPRITE = "SpriteH";

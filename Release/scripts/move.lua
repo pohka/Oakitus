@@ -14,6 +14,8 @@ function move:onCreate()
 
   local player = PlayerResource:getPlayer(1)
   player:assignEnt(entity)
+
+  print(KEY.C)
 end
 
 function move:onTick() 
@@ -47,7 +49,7 @@ function move:onTick()
 
   end
 
-  if Input:isKeyDown("E") then
+  if Input:isKeyDown(KEY.E) then
     local rb = entity:getComponent(COMP_RIGIDBODY2D)
     if rb == nil then
       log("rigidbody is nil")
@@ -66,21 +68,21 @@ function move:onTick()
   local moveX = 0
   local moveY = 0
 
-  if Input:isKeyPressed("W") then
+  if Input:isKeyPressed(KEY.W) then
     moveY = speed
   end
-  if Input:isKeyPressed("S") then
+  if Input:isKeyPressed(KEY.S) then
     moveY = -speed
   end
-  if Input:isKeyPressed("A") then
+  if Input:isKeyPressed(KEY.A) then
     moveX = -speed
   end
-  if Input:isKeyPressed("D") then
+  if Input:isKeyPressed(KEY.D) then
     moveX = speed
   end
 
   --testing assign and unassign entity
-  if Input:isKeyDown("L") then
+  if Input:isKeyDown(KEY.BACKSPACE) then
     local player = PlayerResource:getPlayer(1)
     local ent = player:getAssignedEnt()
     if ent ~= nil then
