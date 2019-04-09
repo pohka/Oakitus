@@ -5,12 +5,12 @@
 #include <oak/core/types.h>
 #include <vector>
 #include "command.h"
+#include <oak/ecs/entity.h>
 
 namespace oak
 {
   class Command;
-  class Actor;
-
+  class Entity;
   ///<summary>BasePlayer class for player input and can be extended for more functionality</summary>
   //Preferrably Player instances should be added to the PlayerResource class as
   //they can be easily accessed and managed through the PlayerResource class
@@ -20,6 +20,8 @@ namespace oak
     uint playerID; ///<summary>Player Unique ID</summary>
     //Actor* assignedActor;
     std::vector<std::string> lua_commands;
+
+    Entity* assignedEntity = nullptr;
     
     public :
       Player();
@@ -33,13 +35,17 @@ namespace oak
 
       ///<summary>Adds an input Command to this Player</summary>
       void addCommand(Command* command);
-      void lua_addCommand(std::string name);
+      //void lua_addCommand(std::string name);
       void removeCommand(const ushort commandID);
       bool hasCommand(const ushort commandID) const;
 
      // void assignActor(Actor* actor);
      // Actor* getAssignedActor();
      // void unAssignActor();
+
+      void assignEntity(Entity* entity);
+      void unassignEntity();
+      Entity* getAssignedEntity();
 
     protected:
       ///<summary>All of the commands for this Player</summary>

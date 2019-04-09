@@ -231,30 +231,30 @@ nlohmann::json LuaScene::getPrefabData(const std::string& name)
   return res;
 }
 
-int LuaScene::lua_addCommand(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-  {
-    LOG << "lua_gettop(L):" << lua_gettop(L);
-    logError(L, "invalid number of arguments, expected 2");
-  }
-  else
-  {
-    std::string name = lua_tostring(L, 1);
-    int playerID = (int)luaL_checknumber(L, 2);
-
-    Player* player = PlayerResource::getPlayer(playerID);
-    if (player != nullptr)
-    {
-      LOG << "added command success";
-      player->lua_addCommand(name);
-    }
-    else
-    {
-      std::string s = "playerID not found: " + playerID;
-      logError(L, s);
-    }
-  }
-
-  return 0;
-}
+//int LuaScene::lua_addCommand(lua_State *L)
+//{
+//  if (lua_gettop(L) != 2)
+//  {
+//    LOG << "lua_gettop(L):" << lua_gettop(L);
+//    logError(L, "invalid number of arguments, expected 2");
+//  }
+//  else
+//  {
+//    std::string name = lua_tostring(L, 1);
+//    int playerID = (int)luaL_checknumber(L, 2);
+//
+//    Player* player = PlayerResource::getPlayer(playerID);
+//    if (player != nullptr)
+//    {
+//      LOG << "added command success";
+//      player->lua_addCommand(name);
+//    }
+//    else
+//    {
+//      std::string s = "playerID not found: " + playerID;
+//      logError(L, s);
+//    }
+//  }
+//
+//  return 0;
+//}

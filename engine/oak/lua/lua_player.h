@@ -20,6 +20,10 @@ namespace oak
     //static int lua_new(lua_State* L);
     static int lua_delete(lua_State* L);
     static int getPlayerID(lua_State* L);
+    static int assignEntity(lua_State* L);
+    static int unassignEntity(lua_State* L);
+    static int getAssignedEntity(lua_State* L);
+    
   };
 }
 

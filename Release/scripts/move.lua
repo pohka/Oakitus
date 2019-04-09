@@ -3,14 +3,17 @@ move = {}
 
 if _G.val == nil then
   _G.val = 0
-  _G.playerEntID = 0;
+  --_G.playerEntID = 0;
 end
 
 function move:onCreate()
   log("in onCreate")
   local sprite = entity:getComponent(COMP_SPRITE)
   sprite:setSrc("pepe.png")
-  playerEntID = entity:getID()
+  --playerEntID = entity:getID()
+
+  local player = PlayerResource:getPlayer(1)
+  player:assignEnt(entity)
 end
 
 function move:onTick() 
@@ -76,9 +79,21 @@ function move:onTick()
     moveX = speed
   end
 
-  --entity:moveBy(moveX, moveY)
+  --testing assign and unassign entity
+  if Input:isKeyDown("L") then
+    local player = PlayerResource:getPlayer(1)
+    local ent = player:getAssignedEnt()
+    if ent ~= nil then
+      player:unassignEnt()
+    else
+      player:assignEnt(entity)
+    end
+  end
 
-  local c = Entity:findByID(playerEntID)
+  --entity:moveBy(moveX, moveY)
+  local player = PlayerResource:getPlayer(1)
+  local c = player:getAssignedEnt()
+  --local c = Entity:findByID(playerEntID)
   if c ~= nil then
     c:moveBy(moveX, moveY)
   end

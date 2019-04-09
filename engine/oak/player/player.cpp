@@ -37,40 +37,40 @@ void Player::tickCommands()
     }
   }
 
-  std::string path = "../Release/scripts/commands/";
+ // std::string path = "../Release/scripts/commands/";
 
-  for (auto str : lua_commands)
-  {
-    //if (!isPaused || (isPaused && command->canExecuteWhenPaused))
-    //{
-    //  command->onTick();
-    //}
-    //Scene* scene = SceneManager::getCurrentScene();
-    //LuaScene* luaScene = static_cast<LuaScene*>(scene);
-    //luaScene
+ // for (auto str : lua_commands)
+ // {
+ //   //if (!isPaused || (isPaused && command->canExecuteWhenPaused))
+ //   //{
+ //   //  command->onTick();
+ //   //}
+ //   //Scene* scene = SceneManager::getCurrentScene();
+ //   //LuaScene* luaScene = static_cast<LuaScene*>(scene);
+ //   //luaScene
 
-    lua_State* L = luaL_newstate();
-    luaL_openlibs(L);
+ //   lua_State* L = luaL_newstate();
+ //   luaL_openlibs(L);
 
-    std::string scriptFile = path + str + ".lua";
-    luaL_loadfile(L, scriptFile.c_str());
-    lua_register(L, "", LuaScene::lua_addCommand);
+ //   std::string scriptFile = path + str + ".lua";
+ //   luaL_loadfile(L, scriptFile.c_str());
+ //   lua_register(L, "", LuaScene::lua_addCommand);
 
-    if (lua_pcall(L, 0, 0, 0) != 0)
-    {
-      std::cout << "|--LUA_ERROR--|" << " lua_pcall - " << lua_tostring(L, -1) << std::endl;
-    }
-    //lua_call(L, 0, 0);
-    
-
-    lua_close(L);
-
-   // if (lua_pcall(L, 2, 1, 0) != 0)
-   // {
-      //error(L, "error running function `f': %s",
-      //  lua_tostring(L, -1));
+ //   if (lua_pcall(L, 0, 0, 0) != 0)
+ //   {
+ //     std::cout << "|--LUA_ERROR--|" << " lua_pcall - " << lua_tostring(L, -1) << std::endl;
  //   }
-  }
+ //   //lua_call(L, 0, 0);
+ //   
+
+ //   lua_close(L);
+
+ //  // if (lua_pcall(L, 2, 1, 0) != 0)
+ //  // {
+ //     //error(L, "error running function `f': %s",
+ //     //  lua_tostring(L, -1));
+ ////   }
+ // }
 }
 
 void Player::addCommand(Command* command)
@@ -79,10 +79,10 @@ void Player::addCommand(Command* command)
   commands.push_back(command);
 }
 
-void Player::lua_addCommand(std::string name)
-{
-  lua_commands.push_back(name);
-}
+//void Player::lua_addCommand(std::string name)
+//{
+//  lua_commands.push_back(name);
+//}
 
 
 //void Player::assignActor(Actor* actor)
@@ -104,6 +104,21 @@ void Player::lua_addCommand(std::string name)
 //{
 //  return assignedActor;
 //}
+
+void Player::assignEntity(Entity* entity)
+{
+  this->assignedEntity = entity;
+}
+
+void Player::unassignEntity()
+{
+  assignedEntity = nullptr;
+}
+
+Entity* Player::getAssignedEntity()
+{
+  return assignedEntity;
+}
 
 
 void Player::removeCommand(const ushort commandID)

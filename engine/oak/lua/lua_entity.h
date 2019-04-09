@@ -12,6 +12,7 @@ namespace oak
   class LuaEntity
   {
     Entity* ptr;
+    friend class LuaPlayer;
 
   public :
     LuaEntity(Entity* ent);
