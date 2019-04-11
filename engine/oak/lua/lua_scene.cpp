@@ -62,17 +62,17 @@ LuaScene::LuaScene(std::string path) : Scene()
       }
     }
 
-    //todo
-    if (data["commands"] != nullptr)
-    {
-      for (unsigned int i = 0; i < data["commands"].size(); i++)
-      {
-        if (data["commands"][i].is_string())
-        {
-          
-        }
-      }
-    }
+    //todo?
+    //if (data["commands"] != nullptr)
+    //{
+    //  for (unsigned int i = 0; i < data["commands"].size(); i++)
+    //  {
+    //    if (data["commands"][i].is_string())
+    //    {
+    //      
+    //    }
+    //  }
+    //}
   }
 
   LuaScene::scene = this;
@@ -126,100 +126,134 @@ void LuaScene::logError(lua_State* L, std::string msg)
   std::cout << "|--LUA_ERROR--| line " << line << " - " << msg << std::endl;
 }
 
-void LuaScene::addComponent(Entity* ent, nlohmann::json params)
-{
-  std::string className = params["class"];
+//void LuaScene::addComponent(Entity* ent, nlohmann::json params)
+//{
+//  std::string className = params["class"];
+//  LOG << "className:" << className;
+//
+//  //sprite
+//  if (className == "sprite")
+//  {
+//    std::string src = params["src"];
+//    float w = params["w"];
+//    float h = params["h"];
+//    ent->addComponent(new Sprite(src, w, h));
+//  }
+//  //collision rect
+//  else if (className == "collision_rect")
+//  {
+//    float offsetX = params["offsetX"];
+//    float offsetY = params["offsetY"];
+//    float w = params["w"];
+//    float h = params["h"];
+//    ent->addCollision(new CollisionRect(offsetX, offsetY, w, h));
+//  }
+//  //collision circle
+//  else if (className == "collision_circle")
+//  {
+//    float offsetX = params["offsetX"];
+//    float offsetY = params["offsetY"];
+//    float radius = params["radius"];
+//    ent->addCollision(new CollisionCircle(radius, offsetX, offsetY));
+//  }
+//  //rigid body 2d
+//  else if (className == "rigidbody2d")
+//  {
+//    bool isStatic = params["isStatic"];
+//    ent->addComponent(new RigidBody2D(isStatic));
+//  }
+//  //lua script
+//  else if (className == "lua_script")
+//  {
+//    std::string name = params["name"];
+//    ent->addComponent(new LuaScript(name));
+//  }
+//  //animator
+//  else if (className == "animator")
+//  {
+//    std::cout << "animator created" << std::endl;
+//    auto animsData = params["anims"];
+//    Animator* animator = new Animator();
+//    
+//    for (unsigned int i = 0; i < animsData.size(); i++)
+//    {
+//      std::cout << "animation created" << std::endl;
+//      SpriteAnimation* anim = new SpriteAnimation(
+//        params["src"],
+//        params["priority"],
+//        params["frameW"],
+//        params["frameH"],
+//        params["displayW"],
+//        params["displayH"],
+//        params["frameDuration"],
+//        Resources::getDefaultShaderID(),
+//        params["totalFrameCount"],
+//        params["startFrameY"],
+//        params["isLooping"]
+//      );
+//      animator->addAnim(params["id"], anim);
+//    }
+//
+//    ent->addComponent(animator);
+//  }
+//  else
+//  {
+//    LOG << "class not found '" << className << "'";
+//  }
+//}
 
-  //sprite
-  if (className == "sprite")
-  {
-    std::string src = params["src"];
-    float w = params["w"];
-    float h = params["h"];
-    ent->addComponent(new Sprite(src, w, h));
-  }
-  //collision rect
-  else if (className == "collision_rect")
-  {
-    float offsetX = params["offsetX"];
-    float offsetY = params["offsetY"];
-    float w = params["w"];
-    float h = params["h"];
-    ent->addCollision(new CollisionRect(offsetX, offsetY, w, h));
-  }
-  //collision circle
-  else if (className == "collision_circle")
-  {
-    float offsetX = params["offsetX"];
-    float offsetY = params["offsetY"];
-    float radius = params["radius"];
-    ent->addCollision(new CollisionCircle(radius, offsetX, offsetY));
-  }
-  //rigid body 2d
-  else if (className == "rigidbody2d")
-  {
-    bool isStatic = params["isStatic"];
-    ent->addComponent(new RigidBody2D(isStatic));
-  }
-  else if (className == "lua_script")
-  {
-    std::string name = params["name"];
-    ent->addComponent(new LuaScript(name));
-  }
-}
-
-int LuaScene::lua_create(lua_State *L)
-{
-  float x, y;
-
-  if (lua_gettop(L) == 1)
-  {
-    x = 0.0f;
-    y = 0.0f;
-  }
-  else if (lua_gettop(L) == 3)
-  {
-    x = (float)luaL_checknumber(L, 2);
-    y = (float)luaL_checknumber(L, 3);
-  }
-  else
-  {
-    logError(L, "invalid number of arguments");
-    return 0;
-  }
-
-  std::string name = lua_tostring(L, 1);
-  
-
-  if (LuaScene::scene->dataLoaded == false)
-  {
-    std::string s = "Could not find entity: '" + name + "'";
-    logError(L, s);
-  }
-  else
-  {
-    json entData = LuaScene::scene->data["prefabs"][name];
-    if (entData != nullptr)
-    {
-      Entity* ent = new Entity();
-      ent->name = name;
-      for (uint i = 0; i < entData.size(); i++)
-      {
-        if (entData[i]["class"] != nullptr)
-        {
-          addComponent(ent, entData[i]);
-        }
-      }
-      ent->create(x, y);
-
-      lua_pushnumber(L, ent->getID());
-      return 1;
-    }
-  }
-
-  lua_pushnumber(L, -1);
-  return 1;
-}
+//int LuaScene::lua_create(lua_State *L)
+//{
+//  float x, y;
+//
+//  if (lua_gettop(L) == 1)
+//  {
+//    x = 0.0f;
+//    y = 0.0f;
+//  }
+//  else if (lua_gettop(L) == 3)
+//  {
+//    x = (float)luaL_checknumber(L, 2);
+//    y = (float)luaL_checknumber(L, 3);
+//  }
+//  else
+//  {
+//    logError(L, "invalid number of arguments");
+//    return 0;
+//  }
+//
+//  std::string name = lua_tostring(L, 1);
+//  
+//
+//  if (LuaScene::scene->dataLoaded == false)
+//  {
+//    std::string s = "Could not find entity: '" + name + "'";
+//    logError(L, s);
+//  }
+//  else
+//  {
+//    json entData = LuaScene::scene->data["prefabs"][name];
+//    if (entData != nullptr)
+//    {
+//      Entity* ent = new Entity();
+//      ent->name = name;
+//      for (uint i = 0; i < entData.size(); i++)
+//      {
+//        if (entData[i]["class"] != nullptr)
+//        {
+//          addComponent(ent, entData[i]);
+//        }
+//      }
+//      ent->create(x, y);
+//
+//      lua_pushnumber(L, ent->getID());
+//      return 1;
+//    }
+//  }
+//
+//  lua_pushnumber(L, -1);
+//  return 1;
+//}
 
 nlohmann::json LuaScene::getPrefabData(const std::string& name)
 {

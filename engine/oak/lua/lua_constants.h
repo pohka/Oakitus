@@ -15,6 +15,7 @@ namespace oak
   static const char* LUA_HANDLE_PLAYER = "PlayerH";
   static const char* LUA_HANDLE_COLLISION_RECT = "CollisionRectH";
   static const char* LUA_HANDLE_COLLISION_CIRCLE = "CollisionCircleH";
+  static const char* LUA_HANDLE_ANIMATOR = "AnimatorH";
 
 
   //events for lua script

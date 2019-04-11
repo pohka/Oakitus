@@ -90,6 +90,7 @@
     <ClInclude Include="..\engine\oak\input\key_buffer.h" />
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_animator.h" />
     <ClInclude Include="..\engine\oak\lua\lua_bindings.h" />
     <ClInclude Include="..\engine\oak\lua\lua_collision_circle.h" />
     <ClInclude Include="..\engine\oak\lua\lua_collision_rect.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
     <ClCompile Include="..\engine\oak\input\input.cpp" />
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_animator.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_bindings.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_collision_circle.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_collision_rect.cpp" />

@@ -16,6 +16,9 @@
 #include <oak/lua/lua_rigid_body_2d.h>
 #include <oak/lua/lua_collision_rect.h>
 #include <oak/lua/lua_collision_circle.h>
+#include <oak/core/resources.h>
+#include <oak/components/animator.h>
+#include <oak/lua/lua_animator.h>
 
 #include <iostream>
 
@@ -161,6 +164,21 @@ void LuaEntity::reg(lua_State* L)
   lua_pushinteger(L, REFLECT_RIGID_BODY_2D);
   lua_setglobal(L, "COMP_RIGIDBODY2D");
 
+  lua_pushinteger(L, REFLECT_ANIMATOR);
+  lua_setglobal(L, "COMP_ANIMATOR");
+
+  lua_pushinteger(L, ANIM_DIRECTION_LEFT);
+  lua_setglobal(L, "ANIM_DIRECTION_LEFT");
+
+  lua_pushinteger(L, ANIM_DIRECTION_RIGHT);
+  lua_setglobal(L, "ANIM_DIRECTION_RIGHT");
+
+  lua_pushinteger(L, COLLISION_SHAPE_CIRCLE);
+  lua_setglobal(L, "COLLISION_SHAPE_CIRCLE");
+
+  lua_pushinteger(L, COLLISION_SHAPE_RECT);
+  lua_setglobal(L, "COLLISION_SHAPE_RECT");
+
 }
 
 
@@ -278,6 +296,54 @@ void LuaEntity::addComponent(Entity* ent, const nlohmann::json& params)
     std::string name = params["name"];
     ent->addComponent(new LuaScript(name));
   }
+  //animator
+  else if (className == "animator")
+  {
+    auto animsData = params["anims"];
+    Animator* animator = new Animator();
+
+    for (unsigned int i = 0; i < animsData.size(); i++)
+    {
+
+      uchar animID = animsData[i]["id"];
+      std::string src = animsData[i]["src"];
+      uchar prioirty = animsData[i]["priority"];
+      uint frameW = animsData[i]["frameW"];
+      uint frameH = animsData[i]["frameH"];
+      uint displayW = animsData[i]["displayW"];
+      uint displayH = animsData[i]["displayH"];
+      float frameDuration = animsData[i]["frameDuration"];
+      uint totalFrameCount = animsData[i]["totalFrameCount"];
+      uint startFrameY = animsData[i]["startFrameY"];
+      bool isLooping = animsData[i]["isLooping"];
+
+      SpriteAnimation* anim = new SpriteAnimation(
+        src,
+        prioirty,
+        frameW,
+        frameH,
+        displayW,
+        displayH,
+        frameDuration,
+        Resources::getDefaultShaderID(),
+        totalFrameCount,
+        startFrameY,
+        isLooping
+      );
+
+      
+      animator->addAnim(animID, anim);
+    }
+
+    uchar initialAnimID = params["initialAnimID"];
+    animator->setAnim(initialAnimID);
+
+    ent->addComponent(animator);
+  }
+  else
+  {
+
+  }
 }
 
 
@@ -302,6 +368,13 @@ int LuaEntity::getComponent(lua_State* L)
       RigidBody2D* rb = entH->ptr->getComponentWithReflection<RigidBody2D>(reflectID);
       *reinterpret_cast<LuaRigidBody2D**>(lua_newuserdata(L, sizeof(LuaRigidBody2D*))) = new LuaRigidBody2D(rb);
       luaL_setmetatable(L, LUA_HANDLE_RIGIDBODY2D);
+      break;
+    }
+    case REFLECT_ANIMATOR :
+    {
+      Animator* animator = entH->ptr->getComponentWithReflection<Animator>(reflectID);
+      *reinterpret_cast<LuaAnimator**>(lua_newuserdata(L, sizeof(LuaAnimator*))) = new LuaAnimator(animator);
+      luaL_setmetatable(L, LUA_HANDLE_ANIMATOR);
       break;
     }
     default:

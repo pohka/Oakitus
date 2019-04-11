@@ -8,8 +8,8 @@ end
 
 function move:onCreate()
   log("in onCreate")
-  local sprite = entity:getComponent(COMP_SPRITE)
-  sprite:setSrc("pepe.png")
+  --local sprite = entity:getComponent(COMP_SPRITE)
+  --sprite:setSrc("pepe.png")
   --playerEntID = entity:getID()
 
   local player = PlayerResource:getPlayer(1)
@@ -101,15 +101,15 @@ function move:onTick()
   end
 
   if Input:isKeyDown(KEY.P) then
-    local shape = entity:getShapeByID(0)
-    local w = shape:getRadius()
-    print("w:" .. w)
+    local animator = entity:getComponent(COMP_ANIMATOR)
+    if animator ~= nil then
+      animator:setAnim(4)
+    else
+      log("anim is nil")
+    end
   end
   if Input:isKeyDown(KEY.O) then
-    local shape = entity:getShapeByID(0)
-    shape:setRadius(20.0)
-    local v = Vector(50,0)
-    shape:setOffset(v)
+
   end
 end
 

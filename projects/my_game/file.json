@@ -3,7 +3,8 @@
   "precache" : {
     "textures" : [
       "face.png",
-      "pepe.png"
+      "pepe.png",
+      "anim_test2.png"
     ]
   },
   "prefabs" : {
@@ -34,12 +35,6 @@
     ],
     "player_unit" : [
       {
-        "class" : "sprite",
-        "src" : "face.png",
-        "w" : 32,
-        "h" : 32
-      },
-      {
         "class" : "lua_script",
         "name" : "move"
       },
@@ -53,6 +48,38 @@
         "offsetX" : 0.0,
         "offsetY" : 0.0,
         "radius" : 100.0
+      },
+      {
+        "class" : "animator",
+        "initialAnimID" : 1,
+        "anims" : [
+          {
+            "id" : 1,
+            "src" : "anim_test2.png",
+            "frameW" : 192,
+            "frameH" : 192,
+            "displayW" : 100,
+            "displayH" : 100,
+            "frameDuration" : 0.040,
+            "startFrameY" : 0,
+            "totalFrameCount" : 14,
+            "isLooping" : true,
+            "priority" : 1
+          },
+          {
+            "id" : 4,
+            "src" : "anim_test2.png",
+            "frameW" : 384,
+            "frameH" : 192,
+            "displayW" : 200,
+            "displayH" : 100,
+            "frameDuration" : 0.040,
+            "startFrameY" : 5,
+            "totalFrameCount" : 9,
+            "isLooping" : false,
+            "priority" : 1
+          }
+        ]
       }
     ]
   }

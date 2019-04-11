@@ -45,6 +45,11 @@ cnum ENTITY_GROUP_NONE = 0;
 cnum ENTITY_GROUP_ACTOR = 1;
 cnum ENTITY_GROUP_WORLD = 2;
 
+cnum ANIM_NULL = 0;
+cnum ANIM_IDLE = 1;
+cnum ANIM_RUN = 2;
+cnum ANIM_DEATH = 3;
+
 
 const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
 

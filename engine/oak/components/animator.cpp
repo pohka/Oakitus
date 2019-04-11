@@ -4,14 +4,14 @@
 
 using namespace oak;
 
-Animator::Animator(uchar initialAnimID, SpriteAnimation* initialAnimation) : Component(REFLECT_ANIMATOR, TICK_GROUP_DEFAULT, TICK_TYPE_INTERVAL_TICK, true)
+Animator::Animator() : Component(REFLECT_ANIMATOR, TICK_GROUP_DEFAULT, TICK_TYPE_INTERVAL_TICK, true)
 {
-  this->initialAnimID = initialAnimID;
-  anims[initialAnimID] = initialAnimation;
-  this->curAnimID = initialAnimID;
+ // this->initialAnimID = initialAnimID;
+ // anims[initialAnimID] = initialAnimation;
+  //this->curAnimID = initialAnimID;
   this->direction = ANIM_DIRECTION_RIGHT;
-  initialAnimation->animator = this;
-  ticker.interval = initialAnimation->getFrameDuration();
+  //initialAnimation->animator = this;
+  //ticker.interval = initialAnimation->getFrameDuration();
 }
 
 Animator::~Animator()
@@ -31,7 +31,7 @@ void Animator::addAnim(const uchar animID, SpriteAnimation* animation)
 
 void Animator::onTick()
 {
-  if (curAnimID != ANIM_INVALID)
+  if (curAnimID != ANIM_NULL)
   {
     frameIndex++;
     SpriteAnimation* curAnim = anims[curAnimID];
@@ -41,9 +41,9 @@ void Animator::onTick()
     if (frameIndex >= curAnim->getFrameCount())
     {
       //animation doesn't loop
-      if (curAnimID != initialAnimID && curAnim->getIsLooping() == false)
+      if (curAnimID != ANIM_IDLE && curAnim->getIsLooping() == false)
       {
-        setAnim(initialAnimID, true);
+        setAnim(ANIM_IDLE, true);
         hasAnimEnded = true;
       }
       frameIndex = 0;
@@ -58,7 +58,7 @@ void Animator::onTick()
 
 void Animator::onRender() const
 {
-  if (curAnimID != ANIM_INVALID)
+  if (curAnimID != ANIM_NULL)
   {
     glm::vec3 pos = entity->transform->position();
     anims.at(curAnimID)->onRender(pos.x, pos.y);
@@ -67,6 +67,12 @@ void Animator::onRender() const
 
 void Animator::setAnim(const uchar animID, const bool ignorePriority)
 {
+  //ignore null
+  if (animID == ANIM_NULL)
+  {
+    return;
+  }
+
   if (curAnimID == animID)
   {
     if (hasChangedDirection)
@@ -86,17 +92,21 @@ void Animator::setAnim(const uchar animID, const bool ignorePriority)
   auto nextAnimIt = anims.find(animID);
   if (nextAnimIt == anims.end())
   {
-    curAnimID = ANIM_INVALID;
+    curAnimID = ANIM_NULL;
   }
   //if animation exists
   //only set the animation if the priority is equal or greater than the current animation's prioirty
   //ignorePrioirty can force an animation change regardless of the priority
   else
   {
-    SpriteAnimation* curAnim = anims[curAnimID];
+    SpriteAnimation* curAnim = nullptr;
+    if (curAnimID != ANIM_NULL)
+    {
+      curAnim = anims[curAnimID];
+    }
     SpriteAnimation* nextAnim = nextAnimIt->second;
-    
-    if (ignorePriority || curAnim->getPriority() <= nextAnim->getPriority())
+
+    if (curAnimID == ANIM_NULL || ignorePriority || curAnim->getPriority() <= nextAnim->getPriority())
     {
       hasChangedDirection = false;
       curAnimID = animID;

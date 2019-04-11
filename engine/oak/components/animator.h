@@ -18,16 +18,15 @@ namespace oak
     friend class SpriteAnimation;
 
     std::unordered_map<uchar, SpriteAnimation*> anims; ///<summary>Map of the animatons available</summary>
-    uchar curAnimID; ///<summary>Current animation key</summary>
-    uchar initialAnimID; ///<summary>Base animation key</summary>
+    uchar curAnimID = ANIM_NULL; ///<summary>Current animation key</summary>
+    //uchar initialAnimID; ///<summary>Base animation key</summary>
     uchar direction; ///<summary>Direction of the current animation</summary>
     bool hasChangedDirection = false; ///<summary>True if the direction of the animation has changed this frame</summary>
-    static cnum ANIM_INVALID = 255;
     uint frameIndex = 0; //current frame index
 
     public:
 
-      Animator(uchar initialAnimID, SpriteAnimation* initialAnimation);
+      Animator();
       ~Animator();
 
       ///<summary>Add an animation with a key</summary>
