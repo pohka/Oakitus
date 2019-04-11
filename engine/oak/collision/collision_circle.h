@@ -17,6 +17,7 @@ namespace oak
     bool intersectsRect(const CollisionRect& shape) const override;
     bool intersectsCircle(const CollisionCircle& shape) const override;
     float getRadius() const;
+    void setRadius(float radius);
 
   };
 }

@@ -15,6 +15,7 @@
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_rigid_body_2d.h>
 #include <oak/lua/lua_collision_rect.h>
+#include <oak/lua/lua_collision_circle.h>
 
 #include <iostream>
 
@@ -330,7 +331,10 @@ int LuaEntity::getShapeByID(lua_State* L)
     }
     case COLLISION_SHAPE_CIRCLE:
     {
-
+      CollisionCircle* circle = static_cast<CollisionCircle*>(shape);
+      lua_newtable(L);
+      *reinterpret_cast<LuaCollisionCircle**>(lua_newuserdata(L, sizeof(LuaCollisionCircle*))) = new LuaCollisionCircle(circle);
+      luaL_setmetatable(L, LUA_HANDLE_COLLISION_CIRCLE);
       break;
     }
 

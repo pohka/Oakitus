@@ -106,7 +106,11 @@ int Oakitus::loop()
     EntityManager::tickInstances(TICK_GROUP_AFTER_PHYSICS);
     EntityManager::tickInstances(TICK_GROUP_LAST);
     EntityManager::drawInstances();
+
+#ifdef DEBUG_MODE
     EntityManager::debugDrawInstances();
+#endif
+    
     ion::UICanvas::render();
 
     if (SceneManager::isNextSceneSet())

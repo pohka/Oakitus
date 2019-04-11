@@ -102,8 +102,14 @@ function move:onTick()
 
   if Input:isKeyDown(KEY.P) then
     local shape = entity:getShapeByID(0)
-    local w = shape:getW()
+    local w = shape:getRadius()
     print("w:" .. w)
+  end
+  if Input:isKeyDown(KEY.O) then
+    local shape = entity:getShapeByID(0)
+    shape:setRadius(20.0)
+    local v = Vector(50,0)
+    shape:setOffset(v)
   end
 end
 

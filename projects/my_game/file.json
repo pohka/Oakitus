@@ -49,11 +49,10 @@
         "isStatic" : false
       },
       {
-        "class" : "collision_rect",
+        "class" : "collision_circle",
         "offsetX" : 0.0,
         "offsetY" : 0.0,
-        "w" : 32,
-        "h" : 32
+        "radius" : 100.0
       }
     ]
   }

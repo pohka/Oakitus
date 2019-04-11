@@ -134,3 +134,9 @@ bool BaseCollisionShape::intersects(BaseCollisionShape& shape)
 
   return false;
 }
+
+void BaseCollisionShape::setOffset(const float x, const float y)
+{
+  m_offsetX = x;
+  m_offsetY = y;
+}

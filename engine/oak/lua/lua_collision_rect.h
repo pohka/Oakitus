@@ -1,5 +1,5 @@
-#ifndef COLLISION_RECT_H
-#define COLLISION_RECT_H
+#ifndef LUA_COLLISION_RECT_H
+#define LUA_COLLISION_RECT_H
 
 #include <lua/lua.hpp>
 #include <oak/collision/collision_rect.h>
@@ -23,6 +23,7 @@ namespace oak
     static int setH(lua_State* L);
     static int getOffset(lua_State* L);
     static int setOffset(lua_State* L);
+    static int getType(lua_State* L);
   };
 }
 

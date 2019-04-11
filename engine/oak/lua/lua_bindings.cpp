@@ -11,6 +11,7 @@
 #include <oak/lua/lua_player.h>
 #include <oak/lua/lua_player_resource.h>
 #include <oak/lua/lua_collision_rect.h>
+#include <oak/lua/lua_collision_circle.h>
 
 using namespace oak;
 
@@ -35,4 +36,5 @@ void LuaBindings::reg(lua_State* L)
   LuaSprite::reg(L);
   LuaEntity::reg(L);
   LuaCollisionRect::reg(L);
+  LuaCollisionCircle::reg(L);
 }
