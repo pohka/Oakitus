@@ -1,5 +1,6 @@
 #include <oak/lua/lua_animator.h>
 #include <oak/lua/lua_constants.h>
+#include <iostream>
 
 using namespace oak;
 

@@ -1,8 +1,10 @@
-#include <oak/lua/lua_bindings.h>
+#include "lua_s.h"
 #include <lua/lua.hpp>
+#include <oak/debug.h>
+#include <oak/oak.h>
+#include <oak/lua/lua_scene.h>
 
 #include <oak/lua/lua_input.h>
-
 #include <oak/lua/lua_entity.h>
 #include <oak/lua/lua_vector.h>
 #include <oak/lua/lua_global.h>
@@ -16,17 +18,20 @@
 
 using namespace oak;
 
-#define LUA_INPUT "Input"
+lua_State* LuaS::state;
 
-
-static int emptyConstructor(lua_State* L)
+void LuaS::init(std::string path)
 {
-  return 0;
+  LuaS::state = luaL_newstate();
+  luaL_openlibs(LuaS::state);
+  registerBindings(LuaS::state);
+
+  LuaScene* scene = new LuaScene(path);
+
+  SceneManager::loadFirstScene(scene);
 }
 
-
-
-void LuaBindings::reg(lua_State* L)
+void LuaS::registerBindings(lua_State* L)
 {
   LuaGlobal::reg(L);
   LuaPlayer::reg(L);

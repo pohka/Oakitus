@@ -12,11 +12,11 @@ namespace oak
     std::string name;
     const static std::string PATH;
     bool errorFlagOnce = false;
-    lua_State* L;
+
     std::string scriptFilePath;
     bool hasTickFunc = false;
 
-    bool hasFunc(lua_State* L, const char* funcName);
+    bool getFunc(const char* funcName);
 
   public:
     LuaScript(std::string name);

@@ -17,7 +17,7 @@
 #include <oak/debug/debug_input.h>
 #include <oak/ecs/entity_manager.h>
 #include <oak/time/time.h>
-#include <oak/lua/lua_loader.h>
+#include <oak/lua/lua_s.h>
 #include <oak/core/config.h>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -76,7 +76,7 @@ void Oakitus::init()
   PlayerResource::addPlayer(new Player());
 
   //loads scripts/main.lua
-  LuaLoader::init(projectPath);
+  LuaS::init(projectPath);
 
   //Oakitus::load();
   loop();

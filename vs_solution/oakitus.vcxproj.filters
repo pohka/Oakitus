@@ -390,9 +390,6 @@
     <ClInclude Include="..\engine\oak\lua\lua_scene.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\lua\lua_loader.h">
-      <Filter>oak\lua</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\core\config.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -400,9 +397,6 @@
       <Filter>oak\lua</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\lua\lua_input.h">
-      <Filter>oak\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\lua\lua_bindings.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\lua\lua_entity.h">
@@ -439,6 +433,9 @@
       <Filter>oak\lua</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\lua\lua_animator.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_s.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
   </ItemGroup>
@@ -712,16 +709,10 @@
     <ClCompile Include="..\engine\oak\lua\lua_scene.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\lua\lua_loader.cpp">
-      <Filter>oak\lua</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_script.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_input.cpp">
-      <Filter>oak\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\lua\lua_bindings.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_entity.cpp">
@@ -752,6 +743,9 @@
       <Filter>oak\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_animator.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_s.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
   </ItemGroup>

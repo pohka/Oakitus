@@ -3,11 +3,11 @@
 #include <oak/lua/lua_scene.h>
 #include <iostream>
 #include <oak/lua/lua_input.h>
-#include <oak/lua/lua_bindings.h>
 #include <oak/scene/scene_manager.h>
 #include <oak/lua/lua_entity.h>
 #include <oak/debug.h>
 #include <oak/lua/lua_constants.h>
+#include <oak/lua/lua_s.h>
 
 using namespace oak;
 
@@ -16,19 +16,16 @@ const std::string LuaScript::PATH = "../Release/scripts/";
 LuaScript::LuaScript(std::string name) : Component()
 {
   this->name = name;
-  L = luaL_newstate();
-  luaL_openlibs(L);
 
   scriptFilePath = LuaScript::PATH + name + ".lua";
-  luaL_dofile(L, scriptFilePath.c_str());
-  LuaBindings::reg(L);
+  luaL_dofile(LuaS::state, scriptFilePath.c_str());
   
 
-  lua_getglobal(L, name.c_str());
-  if (!lua_isnil(L, -1) && lua_istable(L, -1))
+  lua_getglobal(LuaS::state, name.c_str());
+  if (!lua_isnil(LuaS::state, -1) && lua_istable(LuaS::state, -1))
   {
-    lua_getfield(L, -1, LUA_ON_TICK);
-    if (!lua_isnil(L, -1) && lua_isfunction(L, -1))
+    lua_getfield(LuaS::state, -1, LUA_ON_TICK);
+    if (!lua_isnil(LuaS::state, -1) && lua_isfunction(LuaS::state, -1))
     {
       hasTickFunc = true;
     }
@@ -37,13 +34,13 @@ LuaScript::LuaScript(std::string name) : Component()
 
 void LuaScript::onCreate()
 {
-  if (hasFunc(L, LUA_ON_CREATE))
+  if (getFunc(LUA_ON_CREATE))
   {
-    LuaEntity::regSelf(L, this->entity);
-    lua_getglobal(L, name.c_str());
-    lua_getfield(L, -1, LUA_ON_CREATE);
+    LuaEntity::regSelf(LuaS::state, this->entity);
+    lua_getglobal(LuaS::state, name.c_str());
+    lua_getfield(LuaS::state, -1, LUA_ON_CREATE);
 
-    if (lua_pcall(L, 0, 0, 0) != 0)
+    if (lua_pcall(LuaS::state, 0, 0, 0) != 0)
     {
       std::cout << "create function error" << std::endl;
     }
@@ -52,13 +49,13 @@ void LuaScript::onCreate()
 
 void LuaScript::onDestroy()
 {
-  if (hasFunc(L, LUA_ON_DESTROY))
+  if (getFunc(LUA_ON_DESTROY))
   {
-    LuaEntity::regSelf(L, this->entity);
-    lua_getglobal(L, name.c_str());
-    lua_getfield(L, -1, LUA_ON_DESTROY);
+    LuaEntity::regSelf(LuaS::state, this->entity);
+    lua_getglobal(LuaS::state, name.c_str());
+    lua_getfield(LuaS::state, -1, LUA_ON_DESTROY);
 
-    if (lua_pcall(L, 0, 0, 0) != 0)
+    if (lua_pcall(LuaS::state, 0, 0, 0) != 0)
     {
       std::cout << "no destroy function" << std::endl;
     }
@@ -67,21 +64,22 @@ void LuaScript::onDestroy()
 
 LuaScript::~LuaScript()
 {
-  lua_close(L);
+
 }
 
 
-bool LuaScript::hasFunc(lua_State* L, const char* funcName)
+bool LuaScript::getFunc(const char* funcName)
 {
-  lua_getglobal(L, name.c_str());
-  if (!lua_isnil(L, -1) && lua_istable(L, -1))
+  luaL_dofile(LuaS::state, scriptFilePath.c_str());
+  lua_getglobal(LuaS::state, name.c_str());
+  if (!lua_isnil(LuaS::state, -1) && lua_istable(LuaS::state, -1))
   {
-    lua_getfield(L, -1, funcName);
-    if (!lua_isnil(L, -1) && lua_isfunction(L, -1))
+    lua_getfield(LuaS::state, -1, funcName);
+    if (!lua_isnil(LuaS::state, -1) && lua_isfunction(LuaS::state, -1))
     {
       return true;
     }
-    else if (lua_isnil(L, -1))
+    else if (lua_isnil(LuaS::state, -1))
     {
       LOG << "Lua function '" << name.c_str()  << "." << funcName << "' is nil";
     }
@@ -90,7 +88,7 @@ bool LuaScript::hasFunc(lua_State* L, const char* funcName)
       LOG << "Lua global value '" << name.c_str() << "." << funcName << "' is not a function";
     }
   }
-  else if (lua_isnil(L, -1))
+  else if (lua_isnil(LuaS::state, -1))
   {
     LOG << "Lua table '" << funcName << "' is nil";
   }
@@ -109,17 +107,19 @@ void LuaScript::onTick()
     return;
   }
 
-  LuaEntity::regSelf(L, this->entity);
+  luaL_dofile(LuaS::state, scriptFilePath.c_str());
 
-  lua_getglobal(L, name.c_str());
-  lua_getfield(L, -1, LUA_ON_TICK);
+  LuaEntity::regSelf(LuaS::state, this->entity);
 
-  if (lua_pcall(L, 0, 0, 0) != 0)
+  lua_getglobal(LuaS::state, name.c_str());
+  lua_getfield(LuaS::state, -1, LUA_ON_TICK);
+
+  if (lua_pcall(LuaS::state, 0, 0, 0) != 0)
   {
     if (errorFlagOnce == false)
     {
       errorFlagOnce = true;
-      std::cout << "|--LUA_ERROR--| " << scriptFilePath << " - not found | " << lua_tostring(L, -1) << std::endl;
+      std::cout << "|--LUA_ERROR--| " << scriptFilePath << " - not found | " << lua_tostring(LuaS::state, -1) << std::endl;
     }
   }
 }
