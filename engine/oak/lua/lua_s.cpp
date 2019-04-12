@@ -15,6 +15,7 @@
 #include <oak/lua/lua_collision_rect.h>
 #include <oak/lua/lua_collision_circle.h>
 #include <oak/lua/lua_animator.h>
+#include <oak/lua/lua_game.h>
 
 using namespace oak;
 
@@ -33,6 +34,7 @@ void LuaS::init(std::string path)
 
 void LuaS::registerBindings(lua_State* L)
 {
+  LuaGame::reg(L);
   LuaGlobal::reg(L);
   LuaPlayer::reg(L);
   LuaPlayerResource::reg(L);

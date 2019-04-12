@@ -20,7 +20,7 @@ end
 
 function move:onTick() 
   if Input:isKeyDown("Q") then
-    local e = Entity:create("sample", Vector(-200.0 + val, 0.0))
+    local e = Game:createEnt("sample", Vector(-200.0 + val, 0.0))
     playerEntID = e:getID()
     local sprite = e:getComponent(COMP_SPRITE)
     if sprite == nil then

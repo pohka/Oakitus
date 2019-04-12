@@ -128,7 +128,6 @@ int LuaEntity::moveTo(lua_State* L)
 void LuaEntity::reg(lua_State* L)
 {
   luaL_newmetatable(L, LUA_HANDLE_ENTITY);
-
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
   lua_pushcfunction(L, getName); lua_setfield(L, -2, "getName");
@@ -139,104 +138,7 @@ void LuaEntity::reg(lua_State* L)
   lua_pushcfunction(L, getShapeByID); lua_setfield(L, -2, "getShapeByID");
   lua_pushcfunction(L, getPosition); lua_setfield(L, -2, "getPosition");
   lua_pop(L, 1);
-
-  luaL_newmetatable(L, LUA_ENTITY);
-  lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
-  lua_pushcfunction(L, createByName); lua_setfield(L, -2, "create");
-  lua_pushcfunction(L, findByID); lua_setfield(L, -2, "findByID");
-  lua_pop(L, 1);
-
-  lua_newtable(L);
-  luaL_setmetatable(L, LUA_ENTITY);
-  lua_setglobal(L, LUA_ENTITY);
-
-
-  //static const uint REFLECT_NULL = 0;
-  //static const uint REFLECT_TRANSFORM = 1;
-  //static const uint REFLECT_ANIMATOR = 2;
-  //static const uint REFLECT_RIGID_BODY_2D = 3;
-  //static const uint REFLECT_SPRITE = 4;
-  //static const uint REFLECT_CHUNK = 5;
-  //static const uint REFLECT_LAST = 5;
-  lua_pushinteger(L, REFLECT_SPRITE);
-  lua_setglobal(L, "COMP_SPRITE");
-
-  lua_pushinteger(L, REFLECT_RIGID_BODY_2D);
-  lua_setglobal(L, "COMP_RIGIDBODY2D");
-
-  lua_pushinteger(L, REFLECT_ANIMATOR);
-  lua_setglobal(L, "COMP_ANIMATOR");
-
-  lua_pushinteger(L, ANIM_DIRECTION_LEFT);
-  lua_setglobal(L, "ANIM_DIRECTION_LEFT");
-
-  lua_pushinteger(L, ANIM_DIRECTION_RIGHT);
-  lua_setglobal(L, "ANIM_DIRECTION_RIGHT");
-
-  lua_pushinteger(L, COLLISION_SHAPE_CIRCLE);
-  lua_setglobal(L, "COLLISION_SHAPE_CIRCLE");
-
-  lua_pushinteger(L, COLLISION_SHAPE_RECT);
-  lua_setglobal(L, "COLLISION_SHAPE_RECT");
-
 }
-
-
-int LuaEntity::createByName(lua_State* L)
-{
-  float x, y, z;
-
-  if (lua_gettop(L) == 2)
-  {
-    x = 0.0f;
-    y = 0.0f;
-    z = 0.0f;
-  }
-  else if (lua_gettop(L) == 3)
-  {
-    glm::vec3 pos = LuaVector::toGLMVec(L, 3);
-    x = pos.x;
-    y = pos.y;
-    z = pos.z;
-  }
-  else
-  {
-    //error
-    std::cout << "error params" << std::endl;
-    return 0;
-  }
-
-  const std::string name = lua_tostring(L, 2);
-
-  LuaScene* scene = static_cast<LuaScene*>(SceneManager::getCurrentScene());
-  nlohmann::json entData = scene->getPrefabData(name);
-
-  Entity* ent = new Entity();
-  ent->name = name;
-  for (uint i = 0; i < entData.size(); i++)
-  {
-    if (entData[i]["class"] != nullptr)
-    {
-      LuaEntity::addComponent(ent, entData[i]);
-    }
-  }
-  ent->create(x, y, z);
-
-  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_HANDLE_ENTITY);
-
-  return 1;
-}
-
-int LuaEntity::getPosition(lua_State* L)
-{
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
-  glm::vec3 pos = e->ptr->transform->position();
-  LuaVector::c_new(L, pos.x, pos.y, pos.z);
-  return 1;
-}
-
-//--------------------------------------------------------
 
 int LuaEntity::regSelf(lua_State* L, Entity* ent)
 {
@@ -249,101 +151,12 @@ int LuaEntity::regSelf(lua_State* L, Entity* ent)
 }
 
 
-void LuaEntity::addComponent(Entity* ent, const nlohmann::json& params)
+int LuaEntity::getPosition(lua_State* L)
 {
-  std::string className = params["class"];
-
-  //sprite
-  if (className == "sprite")
-  {
-    std::string src = params["src"];
-    float w = params["w"];
-    float h = params["h"];
-    ent->addComponent(new Sprite(src, w, h));
-  }
-  //collision rect
-  else if (className == "collision_rect")
-  {
-    float offsetX = params["offsetX"];
-    float offsetY = params["offsetY"];
-    float w = params["w"];
-    float h = params["h"];
-    ent->addCollision(new CollisionRect(offsetX, offsetY, w, h));
-  }
-  //collision circle
-  else if (className == "collision_circle")
-  {
-    float offsetX = params["offsetX"];
-    float offsetY = params["offsetY"];
-    float radius = params["radius"];
-    ent->addCollision(new CollisionCircle(radius, offsetX, offsetY));
-  }
-  //rigid body 2d
-  else if (className == "rigidbody2d")
-  {
-    bool isStatic = params["isStatic"];
-    RigidBody2D* rb = new RigidBody2D(isStatic);
-
-    if (params.find("mass") != params.end())
-    {
-      rb->mass = params["mass"];
-    }
-
-    ent->addComponent(rb, true);
-  }
-  else if (className == "lua_script")
-  {
-    std::string name = params["name"];
-    ent->addComponent(new LuaScript(name));
-  }
-  //animator
-  else if (className == "animator")
-  {
-    auto animsData = params["anims"];
-    Animator* animator = new Animator();
-
-    for (unsigned int i = 0; i < animsData.size(); i++)
-    {
-
-      uchar animID = animsData[i]["id"];
-      std::string src = animsData[i]["src"];
-      uchar prioirty = animsData[i]["priority"];
-      uint frameW = animsData[i]["frameW"];
-      uint frameH = animsData[i]["frameH"];
-      uint displayW = animsData[i]["displayW"];
-      uint displayH = animsData[i]["displayH"];
-      float frameDuration = animsData[i]["frameDuration"];
-      uint totalFrameCount = animsData[i]["totalFrameCount"];
-      uint startFrameY = animsData[i]["startFrameY"];
-      bool isLooping = animsData[i]["isLooping"];
-
-      SpriteAnimation* anim = new SpriteAnimation(
-        src,
-        prioirty,
-        frameW,
-        frameH,
-        displayW,
-        displayH,
-        frameDuration,
-        Resources::getDefaultShaderID(),
-        totalFrameCount,
-        startFrameY,
-        isLooping
-      );
-
-      
-      animator->addAnim(animID, anim);
-    }
-
-    uchar initialAnimID = params["initialAnimID"];
-    animator->setAnim(initialAnimID);
-
-    ent->addComponent(animator);
-  }
-  else
-  {
-
-  }
+  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  glm::vec3 pos = e->ptr->transform->position();
+  LuaVector::c_new(L, pos.x, pos.y, pos.z);
+  return 1;
 }
 
 
@@ -413,21 +226,4 @@ int LuaEntity::getShapeByID(lua_State* L)
 
   }
   return 1;
-}
-
-int LuaEntity::findByID(lua_State* L)
-{
-  int id = luaL_checkinteger(L, 2);
-  Entity* ent = EntityManager::findEntityByID(id);
-
-  if (ent != nullptr)
-  {
-    *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-    luaL_setmetatable(L, LUA_HANDLE_ENTITY);
-
-    return 1;
-  }
-  //error not found
-
-  return 0;
 }

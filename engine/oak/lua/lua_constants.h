@@ -3,7 +3,7 @@
 
 namespace oak
 {
-  static const char* LUA_ENTITY = "Entity"; //entity static functions
+  static const char* LUA_GAME = "Game"; //entity static functions
   static const char* LUA_VECTOR = "Vector";
   static const char* LUA_INPUT = "Input";
   static const char* LUA_PLAYER_RESOURCE = "PlayerResource";

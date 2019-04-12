@@ -2,7 +2,7 @@
 --createEnt("player_unit", 80.0, 0.0)
 
 function onLoad()
-  Entity:create("player_unit")
+  Game:createEnt("player_unit")
 end
 
 

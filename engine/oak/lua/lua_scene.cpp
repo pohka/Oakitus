@@ -9,6 +9,7 @@
 #include <locale>
 #include <oak/lua/lua_script.h>
 #include <oak/lua/lua_s.h>
+#include <oak/lua/lua_constants.h>
 
 using namespace oak;
 using json = nlohmann::json;

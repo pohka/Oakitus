@@ -17,7 +17,6 @@ namespace oak
     bool dataLoaded = false;
 
   public:
-    
 
     LuaScene(std::string path);
     void onLoad() override;

@@ -3,9 +3,6 @@
 
 #include <lua/lua.hpp>
 #include <oak/ecs/entity.h>
-#include <nlohmann/json.hpp>
-
-
 
 namespace oak
 {
@@ -19,12 +16,9 @@ namespace oak
     ~LuaEntity();
 
     static void reg(lua_State* L);
-    static int createByName(lua_State* L);
     static int regSelf(lua_State* L, Entity* ent);
 
   private:
-    static void addComponent(Entity* ent, const nlohmann::json& params);
-
     //lua wrapper functions
     static int getName(lua_State* L);
     static int getID(lua_State* L);
@@ -39,9 +33,6 @@ namespace oak
 
 
     static int lua_delete(lua_State* L);
-
-
-    
   };
 }
 
