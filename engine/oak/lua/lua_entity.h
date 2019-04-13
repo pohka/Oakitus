@@ -16,7 +16,8 @@ namespace oak
     ~LuaEntity();
 
     static void reg(lua_State* L);
-    static int regSelf(lua_State* L, Entity* ent);
+
+    void set(Entity* ent);
 
   private:
     //lua wrapper functions
@@ -29,7 +30,6 @@ namespace oak
 
     static int getComponent(lua_State* L);
     static int getShapeByID(lua_State* L);
-    static int findByID(lua_State* L);
 
 
     static int lua_delete(lua_State* L);

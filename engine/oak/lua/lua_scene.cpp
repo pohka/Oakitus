@@ -85,12 +85,9 @@ void LuaScene::onLoad()
 
   LuaS::loadFile(initScript);
   LuaS::doFile(initScript);
-
-  lua_getglobal(L, "onLoad");
-  if (lua_pcall(L, 0, 0, 0) != 0)
-  {
-    std::cout << "|--LUA_ERROR--|" << " lua_pcall - " << lua_tostring(L, -1) << std::endl;
-  }
+  lua_getglobal(LuaS::state, "onLoad");
+  LuaS::call();
+  lua_pop(LuaS::state, 1);
 }
 
 //void LuaScene::logError(lua_State* L, std::string msg)

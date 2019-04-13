@@ -6,6 +6,8 @@ if _G.val == nil then
   --_G.playerEntID = 0;
 end
 
+
+
 function move:onCreate()
   log("in onCreate")
   --local sprite = entity:getComponent(COMP_SPRITE)
@@ -18,7 +20,11 @@ function move:onCreate()
   print(KEY.C)
 end
 
+
+
 function move:onTick() 
+
+  
   if Input:isKeyDown("Q") then
     local e = Game:createEnt("sample", Vector(-200.0 + val, 0.0))
     playerEntID = e:getID()
@@ -111,5 +117,7 @@ function move:onTick()
   if Input:isKeyDown(KEY.O) then
 
   end
+  
 end
+
 

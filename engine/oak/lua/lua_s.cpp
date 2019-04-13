@@ -16,6 +16,7 @@
 #include <oak/lua/lua_collision_circle.h>
 #include <oak/lua/lua_animator.h>
 #include <oak/lua/lua_game.h>
+#include <oak/lua/lua_constants.h>
 
 #include <string>
 #include <fstream>
@@ -25,6 +26,8 @@ using namespace oak;
 
 lua_State* LuaS::state;
 std::map<std::string, std::string> LuaS::files = {};
+std::string LuaS::curLoadedFile = "";
+LuaEntity* LuaS::lua_Entity = new LuaEntity(nullptr);
 
 void LuaS::init(const std::string& path)
 {
@@ -33,7 +36,6 @@ void LuaS::init(const std::string& path)
   registerBindings(LuaS::state);
 
   LuaScene* scene = new LuaScene(path);
-
   SceneManager::loadFirstScene(scene);
 }
 
@@ -51,6 +53,12 @@ void LuaS::registerBindings(lua_State* L)
   LuaCollisionRect::reg(L);
   LuaCollisionCircle::reg(L);
   LuaAnimator::reg(L);
+
+
+  lua_newtable(L);
+  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = LuaS::lua_Entity;
+  luaL_setmetatable(L, LUA_HANDLE_ENTITY);
+  lua_setglobal(L, "entity");
 }
 
 void LuaS::loadFile(const std::string& fileName)
@@ -72,10 +80,24 @@ void LuaS::doFile(const std::string& fileName)
   {
     const std::string& content = it->second;
     luaL_dostring(state, content.c_str());
+    curLoadedFile = it->first;
   }
   else
   {
     //error msg
     luaL_dostring(state, "");
   }
+}
+
+void LuaS::call()
+{
+  if (lua_pcall(state, 0, 0, 0) != 0)
+  {
+    std::cout << "|--LUA_ERROR--|" << " lua_pcall - " << curLoadedFile << " = " << lua_tostring(state, -1) << std::endl;
+  }
+}
+
+void LuaS::setEntity(Entity* entity)
+{
+  lua_Entity->set(entity);
 }

@@ -37,7 +37,7 @@ void LuaScript::onCreate()
 {
   if (getFunc(LUA_ON_CREATE))
   {
-    LuaEntity::regSelf(LuaS::state, this->entity);
+    LuaS::setEntity(this->entity);
     lua_getglobal(LuaS::state, name.c_str());
     lua_getfield(LuaS::state, -1, LUA_ON_CREATE);
 
@@ -52,7 +52,7 @@ void LuaScript::onDestroy()
 {
   if (getFunc(LUA_ON_DESTROY))
   {
-    LuaEntity::regSelf(LuaS::state, this->entity);
+    LuaS::setEntity(this->entity);
     lua_getglobal(LuaS::state, name.c_str());
     lua_getfield(LuaS::state, -1, LUA_ON_DESTROY);
 
@@ -109,20 +109,16 @@ void LuaScript::onTick()
   }
 
   LuaS::doFile(scriptFilePath);
+  LuaS::setEntity(this->entity);
 
-  LuaEntity::regSelf(LuaS::state, this->entity);
-
+  //call class::onTick()
   lua_getglobal(LuaS::state, name.c_str());
+  const int top = lua_gettop(LuaS::state);
   lua_getfield(LuaS::state, -1, LUA_ON_TICK);
 
-  if (lua_pcall(LuaS::state, 0, 0, 0) != 0)
-  {
-    if (errorFlagOnce == false)
-    {
-      errorFlagOnce = true;
-      std::cout << "|--LUA_ERROR--| " << scriptFilePath << " - not found | " << lua_tostring(LuaS::state, -1) << std::endl;
-    }
-  }
+  LuaS::call();
+
+  lua_settop(LuaS::state, top-1);
 }
 
 

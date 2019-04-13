@@ -125,6 +125,11 @@ int LuaEntity::moveTo(lua_State* L)
   return 0;
 }
 
+void LuaEntity::set(Entity* ent)
+{
+  this->ptr = ent;
+}
+
 void LuaEntity::reg(lua_State* L)
 {
   luaL_newmetatable(L, LUA_HANDLE_ENTITY);
@@ -138,16 +143,6 @@ void LuaEntity::reg(lua_State* L)
   lua_pushcfunction(L, getShapeByID); lua_setfield(L, -2, "getShapeByID");
   lua_pushcfunction(L, getPosition); lua_setfield(L, -2, "getPosition");
   lua_pop(L, 1);
-}
-
-int LuaEntity::regSelf(lua_State* L, Entity* ent)
-{
-  lua_newtable(L);
-  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_HANDLE_ENTITY);
-
-  lua_setglobal(L, "entity");
-  return 1;
 }
 
 
