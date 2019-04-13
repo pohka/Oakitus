@@ -18,7 +18,8 @@ LuaScript::LuaScript(std::string name) : Component()
   this->name = name;
 
   scriptFilePath = LuaScript::PATH + name + ".lua";
-  luaL_dofile(LuaS::state, scriptFilePath.c_str());
+  LuaS::loadFile(scriptFilePath);
+  LuaS::doFile(scriptFilePath);
   
 
   lua_getglobal(LuaS::state, name.c_str());
@@ -70,7 +71,7 @@ LuaScript::~LuaScript()
 
 bool LuaScript::getFunc(const char* funcName)
 {
-  luaL_dofile(LuaS::state, scriptFilePath.c_str());
+  LuaS::doFile(scriptFilePath);
   lua_getglobal(LuaS::state, name.c_str());
   if (!lua_isnil(LuaS::state, -1) && lua_istable(LuaS::state, -1))
   {
@@ -107,7 +108,7 @@ void LuaScript::onTick()
     return;
   }
 
-  luaL_dofile(LuaS::state, scriptFilePath.c_str());
+  LuaS::doFile(scriptFilePath);
 
   LuaEntity::regSelf(LuaS::state, this->entity);
 

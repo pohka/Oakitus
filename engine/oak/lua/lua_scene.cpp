@@ -11,6 +11,7 @@
 #include <oak/lua/lua_s.h>
 #include <oak/lua/lua_constants.h>
 
+
 using namespace oak;
 using json = nlohmann::json;
 
@@ -82,7 +83,9 @@ void LuaScene::onLoad()
 
   lua_State* L = LuaS::state;
 
-  luaL_dofile(L, initScript.c_str());
+  LuaS::loadFile(initScript);
+  LuaS::doFile(initScript);
+
   lua_getglobal(L, "onLoad");
   if (lua_pcall(L, 0, 0, 0) != 0)
   {
