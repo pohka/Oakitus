@@ -20,7 +20,7 @@
 #include <oak/components/animator.h>
 #include <oak/lua/lua_animator.h>
 
-#include <iostream>
+#include <oak/lua/lua_s.h>
 
 using namespace oak;
 
@@ -83,7 +83,7 @@ int LuaEntity::moveBy(lua_State* L)
   }
   else
   {
-    //errror
+    LuaS::log("invalid number of arguments");
   }
 
 
@@ -116,7 +116,7 @@ int LuaEntity::moveTo(lua_State* L)
   }
   else
   {
-    //errror
+    LuaS::log("invalid number of arguments");
   }
   
 
@@ -167,26 +167,48 @@ int LuaEntity::getComponent(lua_State* L)
     case REFLECT_SPRITE : 
     {
       Sprite* sprite = entH->ptr->getComponentWithReflection<Sprite>(reflectID);
-      *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite(sprite);
-      luaL_setmetatable(L, LUA_HANDLE_SPRITE);
+      if (sprite != nullptr)
+      {
+        *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite(sprite);
+        luaL_setmetatable(L, LUA_HANDLE_SPRITE);
+      }
+      else
+      {
+        LuaS::log("No Sprite component was found in this entity");
+      }
       break;
     }
     case REFLECT_RIGID_BODY_2D :
     {
       RigidBody2D* rb = entH->ptr->getComponentWithReflection<RigidBody2D>(reflectID);
-      *reinterpret_cast<LuaRigidBody2D**>(lua_newuserdata(L, sizeof(LuaRigidBody2D*))) = new LuaRigidBody2D(rb);
-      luaL_setmetatable(L, LUA_HANDLE_RIGIDBODY2D);
+      if (rb != nullptr)
+      {
+        *reinterpret_cast<LuaRigidBody2D**>(lua_newuserdata(L, sizeof(LuaRigidBody2D*))) = new LuaRigidBody2D(rb);
+        luaL_setmetatable(L, LUA_HANDLE_RIGIDBODY2D);
+      }
+      else
+      {
+        LuaS::log("No Rigidbody component was found in this entity");
+      }
       break;
     }
     case REFLECT_ANIMATOR :
     {
       Animator* animator = entH->ptr->getComponentWithReflection<Animator>(reflectID);
-      *reinterpret_cast<LuaAnimator**>(lua_newuserdata(L, sizeof(LuaAnimator*))) = new LuaAnimator(animator);
-      luaL_setmetatable(L, LUA_HANDLE_ANIMATOR);
+      if (animator != nullptr)
+      {
+        *reinterpret_cast<LuaAnimator**>(lua_newuserdata(L, sizeof(LuaAnimator*))) = new LuaAnimator(animator);
+        luaL_setmetatable(L, LUA_HANDLE_ANIMATOR);
+      }
+      else
+      {
+        LuaS::log("No Animator component was found in this entity");
+      }
       break;
     }
     default:
     {
+      LuaS::log("No component found with a matching id");
       res = 0;
     }
   }
@@ -198,27 +220,42 @@ int LuaEntity::getShapeByID(lua_State* L)
 {
   LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
   int id = (int)luaL_checkinteger(L, 2);
-  BaseCollisionShape* shape = entH->ptr->getCollisionShapes()[id];
+  int res = 1;
 
-  switch (shape->getType())
+  auto shapes = entH->ptr->getCollisionShapes();
+  if (id >= shapes.size() || id < 0)
   {
-    case COLLISION_SHAPE_RECT:
-    {
-      CollisionRect* rect = static_cast<CollisionRect*>(shape);
-      lua_newtable(L);
-      *reinterpret_cast<LuaCollisionRect**>(lua_newuserdata(L, sizeof(LuaCollisionRect*))) = new LuaCollisionRect(rect);
-      luaL_setmetatable(L, LUA_HANDLE_COLLISION_RECT);
-      break;
-    }
-    case COLLISION_SHAPE_CIRCLE:
-    {
-      CollisionCircle* circle = static_cast<CollisionCircle*>(shape);
-      lua_newtable(L);
-      *reinterpret_cast<LuaCollisionCircle**>(lua_newuserdata(L, sizeof(LuaCollisionCircle*))) = new LuaCollisionCircle(circle);
-      luaL_setmetatable(L, LUA_HANDLE_COLLISION_CIRCLE);
-      break;
-    }
-
+    LuaS::log("No collision shapes found at id");
+    res = 0;
   }
-  return 1;
+  else
+  {
+    BaseCollisionShape* shape = shapes[id];
+
+    switch (shape->getType())
+    {
+      case COLLISION_SHAPE_RECT:
+      {
+        CollisionRect* rect = static_cast<CollisionRect*>(shape);
+        lua_newtable(L);
+        *reinterpret_cast<LuaCollisionRect**>(lua_newuserdata(L, sizeof(LuaCollisionRect*))) = new LuaCollisionRect(rect);
+        luaL_setmetatable(L, LUA_HANDLE_COLLISION_RECT);
+        break;
+      }
+      case COLLISION_SHAPE_CIRCLE:
+      {
+        CollisionCircle* circle = static_cast<CollisionCircle*>(shape);
+        lua_newtable(L);
+        *reinterpret_cast<LuaCollisionCircle**>(lua_newuserdata(L, sizeof(LuaCollisionCircle*))) = new LuaCollisionCircle(circle);
+        luaL_setmetatable(L, LUA_HANDLE_COLLISION_CIRCLE);
+        break;
+      }
+      default:
+      {
+        LuaS::log("No shape found with a matching id");
+        res = 0;
+      }
+    }
+  }
+  return res;
 }

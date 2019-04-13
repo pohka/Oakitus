@@ -21,6 +21,7 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
+#include <oak/debug.h>
 
 using namespace oak;
 
@@ -58,7 +59,7 @@ void LuaS::registerBindings(lua_State* L)
   lua_newtable(L);
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = LuaS::lua_Entity;
   luaL_setmetatable(L, LUA_HANDLE_ENTITY);
-  lua_setglobal(L, "entity");
+  lua_setglobal(L, LUA_ENTITY);
 }
 
 void LuaS::loadFile(const std::string& fileName)
@@ -93,11 +94,27 @@ void LuaS::call()
 {
   if (lua_pcall(state, 0, 0, 0) != 0)
   {
-    std::cout << "|--LUA_ERROR--|" << " lua_pcall - " << curLoadedFile << " = " << lua_tostring(state, -1) << std::endl;
+    std::string msg =  lua_tostring(state, -1);
+    std::cout << "|--LUA--| " << curLoadedFile << " --| " << msg << std::endl;
   }
 }
 
 void LuaS::setEntity(Entity* entity)
 {
   lua_Entity->set(entity);
+}
+
+void LuaS::close()
+{
+  lua_close(state);
+}
+
+void LuaS::log(const std::string& msg)
+{
+  lua_Debug ar;
+  lua_getstack(state, 1, &ar);
+  lua_getinfo(state, "nSl", &ar);
+  int line = ar.currentline;
+
+  std::cout << "|--LUA--| " << curLoadedFile <<  " - LINE " << line << " --| " << msg << std::endl;
 }

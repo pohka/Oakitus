@@ -32,7 +32,6 @@ namespace oak
     static int lua_mul(lua_State* L);
     static int lua_unm(lua_State* L);
     static int lua_div(lua_State* L);
-    //static int lua_delete(lua_State* L);
 
 
     static void newTable(lua_State* L, float x, float y, float z);

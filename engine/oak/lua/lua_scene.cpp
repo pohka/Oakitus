@@ -85,20 +85,10 @@ void LuaScene::onLoad()
 
   LuaS::loadFile(initScript);
   LuaS::doFile(initScript);
-  lua_getglobal(LuaS::state, "onLoad");
+  lua_getglobal(LuaS::state, LUA_ON_LOAD);
   LuaS::call();
   lua_pop(LuaS::state, 1);
 }
-
-//void LuaScene::logError(lua_State* L, std::string msg)
-//{
-//  lua_Debug ar;
-//  lua_getstack(L, 1, &ar);
-//  lua_getinfo(L, "nSl", &ar);
-//  int line = ar.currentline;
-//
-//  std::cout << "|--LUA_ERROR--| line " << line << " - " << msg << std::endl;
-//}
 
 nlohmann::json LuaScene::getPrefabData(const std::string& name)
 {

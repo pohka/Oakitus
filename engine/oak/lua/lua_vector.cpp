@@ -1,14 +1,11 @@
 #include <oak/lua/lua_vector.h>
-#include <iostream>
+#include <oak/lua/lua_s.h>
 #include <string>
-
-#include <iomanip>
 #include <sstream> 
+#include <oak/lua/lua_constants.h>
+#include <iostream>
 
 using namespace oak;
-
-#include <oak/lua/lua_constants.h>
-
 
 void LuaVector::reg(lua_State* L)
 {
@@ -60,7 +57,8 @@ int LuaVector::lua_new(lua_State* L)
   }
   else
   {
-    //error
+    LuaS::log("invalid number of arguments");
+    return 0;
   }
 
   newTable(L, (float)x, (float)y, (float)z);

@@ -2,6 +2,7 @@
 #include <oak/player/player_resource.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_player.h>
+#include <oak/lua/lua_s.h>
 
 using namespace oak;
 
@@ -26,9 +27,20 @@ int LuaPlayerResource::getPlayerCount(lua_State* L)
 
 int LuaPlayerResource::getPlayer(lua_State* L)
 {
+  int res = 1;
   int playerID = luaL_checkinteger(L, 2);
   Player* player = PlayerResource::getPlayer(playerID);
-  *reinterpret_cast<LuaPlayer**>(lua_newuserdata(L, sizeof(LuaPlayer*))) = new LuaPlayer(player);
-  luaL_setmetatable(L, LUA_HANDLE_PLAYER);
-  return 1;
+  
+  if (player != nullptr)
+  {
+    *reinterpret_cast<LuaPlayer**>(lua_newuserdata(L, sizeof(LuaPlayer*))) = new LuaPlayer(player);
+    luaL_setmetatable(L, LUA_HANDLE_PLAYER);
+  }
+  else
+  {
+    LuaS::log("No player with a matching id found");
+    res = 0;
+  }
+  
+  return res;
 }

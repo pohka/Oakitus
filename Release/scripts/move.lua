@@ -24,6 +24,18 @@ end
 
 function move:onTick() 
 
+  if Input:isKeyDown("T") then
+    local sprite = entity:getComponent(COMP_SPRITE)
+    if sprite ~= nil then
+
+      local src = sprite:getSrc()
+      print(src)
+      print("sprite not nil")
+    else
+      log("sprite is nil")
+    end
+    
+  end
   
   if Input:isKeyDown("Q") then
     local e = Game:createEnt("sample", Vector(-200.0 + val, 0.0))

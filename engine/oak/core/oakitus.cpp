@@ -128,6 +128,7 @@ int Oakitus::loop()
 
     Time::fpslimiter.sleep();
   }
+  LuaS::close();
   glfwTerminate();
   return 0;
 }

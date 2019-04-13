@@ -16,6 +16,7 @@
 
 #include <oak/ecs/entity_manager.h>
 #include <oak/core/resources.h>
+#include <oak/lua/lua_s.h>
 
 
 using namespace oak;
@@ -172,7 +173,7 @@ void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
   }
   else
   {
-
+    
   }
 }
 
@@ -180,15 +181,18 @@ int LuaGame::findEntByID(lua_State* L)
 {
   int id = luaL_checkinteger(L, 2);
   Entity* ent = EntityManager::findEntityByID(id);
+  int res = 1;
 
   if (ent != nullptr)
   {
     *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
     luaL_setmetatable(L, LUA_HANDLE_ENTITY);
-
-    return 1;
   }
-  //error not found
+  else
+  {
+    LuaS::log("no entity found with a matching id");
+    res = 0;
+  }
 
-  return 0;
+  return res;
 }

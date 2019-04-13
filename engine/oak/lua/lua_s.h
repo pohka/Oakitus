@@ -21,6 +21,8 @@ namespace oak
     static void doFile(const std::string& fileName);
     static void call();
     static void setEntity(Entity* entity);
+    static void close();
+    static void log(const std::string& msg);
 
   private:
     static std::map<std::string, std::string> files;

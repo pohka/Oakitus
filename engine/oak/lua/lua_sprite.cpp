@@ -41,7 +41,8 @@ int LuaSprite::lua_delete(lua_State* L)
 int LuaSprite::getSrc(lua_State* L)
 {
   LuaSprite* sprite = *reinterpret_cast<LuaSprite**>(lua_touserdata(L, 1));
-  lua_pushstring(L, sprite->ptr->getSrc().c_str());
+  std::string s = sprite->ptr->getSrc(); 
+  lua_pushstring(L, s.c_str());
   return 1;
 }
 
