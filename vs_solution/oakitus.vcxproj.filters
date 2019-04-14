@@ -441,6 +441,9 @@
     <ClInclude Include="..\engine\oak\lua\lua_game.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\scene\meta_data.h">
+      <Filter>oak\scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -753,6 +756,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_game.cpp">
       <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\scene\meta_data.cpp">
+      <Filter>oak\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

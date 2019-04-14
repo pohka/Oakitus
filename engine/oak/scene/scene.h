@@ -9,6 +9,8 @@ namespace oak
   class Scene
   {
     public:
+      friend class MetaData;
+
       Scene();
       ~Scene();
 

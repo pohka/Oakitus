@@ -2,6 +2,7 @@
 --createEnt("player_unit", 80.0, 0.0)
 
 function onLoad()
+  print("lua: onload")
   Game:createEnt("player_unit")
 end
 

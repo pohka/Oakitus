@@ -120,6 +120,7 @@
     <ClInclude Include="..\engine\oak\player\player.h" />
     <ClInclude Include="..\engine\oak\player\player_resource.h" />
     <ClInclude Include="..\engine\oak\scene\camera.h" />
+    <ClInclude Include="..\engine\oak\scene\meta_data.h" />
     <ClInclude Include="..\engine\oak\scene\precache.h" />
     <ClInclude Include="..\engine\oak\scene\scene.h" />
     <ClInclude Include="..\engine\oak\scene\scene_manager.h" />
@@ -231,6 +232,7 @@
     <ClCompile Include="..\engine\oak\player\player.cpp" />
     <ClCompile Include="..\engine\oak\player\player_resource.cpp" />
     <ClCompile Include="..\engine\oak\scene\camera.cpp" />
+    <ClCompile Include="..\engine\oak\scene\meta_data.cpp" />
     <ClCompile Include="..\engine\oak\scene\scene.cpp" />
     <ClCompile Include="..\engine\oak\scene\scene_manager.cpp" />
     <ClCompile Include="..\engine\oak\tiles\chunk.cpp" />
