@@ -2,7 +2,9 @@
 --createEnt("player_unit", 80.0, 0.0)
 
 function onLoad()
-  Game:createEnt("player_unit")
+  local playerUnit = Game:createEnt("player_unit")
+  local player = PlayerResource:getPlayer(1)
+  player:assignEnt(playerUnit)
 end
 
 

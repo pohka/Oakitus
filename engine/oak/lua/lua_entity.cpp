@@ -142,6 +142,7 @@ void LuaEntity::reg(lua_State* L)
   lua_pushcfunction(L, getComponent); lua_setfield(L, -2, "getComponent");
   lua_pushcfunction(L, getShapeByID); lua_setfield(L, -2, "getShapeByID");
   lua_pushcfunction(L, getPosition); lua_setfield(L, -2, "getPosition");
+  lua_pushcfunction(L, destroy); lua_setfield(L, -2, "destroy");
   lua_pop(L, 1);
 }
 
@@ -258,4 +259,20 @@ int LuaEntity::getShapeByID(lua_State* L)
     }
   }
   return res;
+}
+
+int LuaEntity::destroy(lua_State* L)
+{
+  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+
+  if (lua_gettop(L) == 2)
+  {
+    int duration = luaL_checkinteger(L, 2);
+    entH->ptr->destroy();
+  }
+  else
+  {
+    entH->ptr->destroy();
+  }
+  return 0;
 }

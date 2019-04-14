@@ -35,7 +35,7 @@
     "player_unit" : [
       {
         "class" : "lua_script",
-        "name" : "move"
+        "name" : "control"
       },
       {
         "class" : "rigidbody2d",
@@ -79,6 +79,21 @@
             "priority" : 1
           }
         ]
+      }
+    ],
+    "bullet" : [
+      {
+        "class" : "sprite",
+        "src" : "face.png",
+        "w" : 64,
+        "h" : 64
+      },
+      {
+        "class" : "collision_rect",
+        "offsetX" : 0.0,
+        "offsetY" : 0.0,
+        "w" : 64,
+        "h" : 64
       }
     ]
   }
