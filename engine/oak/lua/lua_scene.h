@@ -18,22 +18,15 @@ namespace oak
     
     std::string path;
     MetaData meta;
-   // nlohmann::json data;
-   // bool dataLoaded = false;
-
 
   public:
 
     LuaScene(std::string path);
     void onLoad() override;
 
-    nlohmann::json getPrefabData(const std::string& name);
+    const MetaData& getMetaData() const;
 
   private:
-
-
-    /*void setPrecacheFromData();
-    void validatePrefabData();*/
   };
 }
 

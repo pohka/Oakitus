@@ -53,13 +53,8 @@ void LuaScene::onLoad()
   lua_pop(LuaS::state, 1);
 }
 
-nlohmann::json LuaScene::getPrefabData(const std::string& name)
-{
-  auto res = meta.getPrefabData()[name];
-  if (res == nullptr)
-  {
-    LOG_WARNING << "Prefab not found with name '" << name << "'";
-  }
-  return res;
-}
 
+const MetaData& LuaScene::getMetaData() const
+{
+  return meta;
+}

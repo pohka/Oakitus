@@ -61,7 +61,16 @@ int LuaGame::createEnt(lua_State* L)
   const std::string name = lua_tostring(L, 2);
 
   LuaScene* scene = static_cast<LuaScene*>(SceneManager::getCurrentScene());
-  nlohmann::json entData = scene->getPrefabData(name);
+  const MetaData& meta = scene->getMetaData();
+  bool isValidated = meta.isPrefabValidated(name);
+
+  if (!isValidated)
+  {
+    std::cout << "prefab has not been validated: '" << name << "'" << std::endl;
+    return 0;
+  }
+
+  nlohmann::json entData = meta.getPrefabData(name);
 
   Entity* ent = new Entity();
   ent->name = name;
@@ -138,7 +147,7 @@ void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
 
       uchar animID = animsData[i]["id"];
       std::string src = animsData[i]["src"];
-      uchar prioirty = animsData[i]["priority"];
+      uchar priority = animsData[i]["priority"];
       uint frameW = animsData[i]["frameW"];
       uint frameH = animsData[i]["frameH"];
       uint displayW = animsData[i]["displayW"];
@@ -150,7 +159,7 @@ void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
 
       SpriteAnimation* anim = new SpriteAnimation(
         src,
-        prioirty,
+        priority,
         frameW,
         frameH,
         displayW,

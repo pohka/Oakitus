@@ -4,15 +4,94 @@
 #include <sstream>
 #include <iostream>
 #include <oak/core/resources.h>
+#include <map>
 //#include <oak/scene/scene.h>
 
 using namespace oak;
 
-static JsonComp spriteComp("sprite", {
-  JsonParam("src", MetaData::ARG_STRING),
-  JsonParam("w", MetaData::ARG_UINT),
-  JsonParam("h", MetaData::ARG_UINT)
-  });
+//user defined object IDs
+cnum UDOBJ_NULL= 0;
+cnum UDOBJ_ANIMATION = 1;
+
+//user defined objects
+static std::vector<JsonObj> UDObjs = { 
+    JsonObj(UDOBJ_ANIMATION, {
+      JsonParam("src", MetaData::ARG_STRING),
+      JsonParam("priority", MetaData::ARG_UINT),
+      JsonParam("frameW", MetaData::ARG_UINT),
+      JsonParam("frameH", MetaData::ARG_UINT),
+      JsonParam("displayW", MetaData::ARG_UINT),
+      JsonParam("displayH", MetaData::ARG_UINT),
+      JsonParam("frameDuration", MetaData::ARG_NUMBER),
+      JsonParam("totalFrameCount", MetaData::ARG_UINT),
+      JsonParam("startFrameY", MetaData::ARG_UINT),
+      JsonParam("isLooping", MetaData::ARG_BOOLEAN)
+    }) 
+};
+
+//structure to metadata
+static std::vector<JsonComp> COMP_METADATA_STRUCTURE = 
+{
+  JsonComp("sprite", {
+    JsonParam("src", MetaData::ARG_STRING),
+    JsonParam("w", MetaData::ARG_UINT),
+    JsonParam("h", MetaData::ARG_UINT)
+  }),
+  JsonComp("collision_rect", {
+    JsonParam("offsetX", MetaData::ARG_NUMBER),
+    JsonParam("offsetY", MetaData::ARG_NUMBER),
+    JsonParam("w", MetaData::ARG_UINT),
+    JsonParam("h", MetaData::ARG_UINT)
+  }),
+  JsonComp("collision_circle", {
+    JsonParam("offsetX", MetaData::ARG_NUMBER),
+    JsonParam("offsetY", MetaData::ARG_NUMBER),
+    JsonParam("radius", MetaData::ARG_NUMBER)
+  }),
+  JsonComp("rigidbody2d", {
+    JsonParam("isStatic", MetaData::ARG_BOOLEAN),
+    JsonParam("mass", MetaData::ARG_NUMBER, false),
+  }),
+  JsonComp("lua_script", {
+    JsonParam("name", MetaData::ARG_STRING)
+  }),
+  JsonComp("animator", {
+    JsonParam("initialAnimID", MetaData::ARG_UINT),
+    JsonParam("anims", MetaData::ARG_ARRAY_OBJ, true, UDOBJ_ANIMATION)
+  })
+};
+
+//find meta structure by id
+static const JsonComp* getMetaStructure(const std::string& name)
+{
+  for (unsigned int i = 0; i < COMP_METADATA_STRUCTURE.size(); i++)
+  {
+    if(COMP_METADATA_STRUCTURE[i].name == name)
+    {
+      return &COMP_METADATA_STRUCTURE[i];
+    }
+  }
+
+  LOG_WARNING << "No metadata structure for found component '" << name << "'";
+
+  return nullptr;
+}
+
+//find user defined object by id
+static const JsonObj* getUDObj(const uchar id)
+{
+  for (unsigned int i=0; i<UDObjs.size(); i++)
+  {
+    if (UDObjs[i].id == id)
+    {
+      return &UDObjs[i];
+    }
+  }
+
+  LOG_WARNING << "No UDObj found for id: '" << id << "'";
+
+  return nullptr;
+}
 
 MetaData::MetaData()
 {
@@ -24,32 +103,42 @@ MetaData::~MetaData()
 
 }
 
-const nlohmann::json& MetaData::getPrefabData()
+//retrun the prefab data
+nlohmann::json MetaData::getPrefabData(const std::string& name) const
 {
   if (data["prefabs"] == nullptr)
   {
-    LOG_WARNING << "prefabs are null";
+    LOG_WARNING << "prefabs is a nullptr";
   }
-  return data["prefabs"];
+  else
+  {
+    auto res = data["prefabs"][name];
+    if (res == nullptr)
+    {
+      LOG_WARNING << "Prefab not found with name '" << name << "'";
+    }
+    return res;
+  }
+
+  return nullptr;
   
 }
 
+//load the metadata from path
 void MetaData::load(Scene* scene, const char* fullPath)
 {
   std::ifstream i(fullPath);
   i >> data;
   if (data != nullptr)
   {
-    LOG << "loaded metadata";
     setPrecacheFromData(scene);
-    LOG << "precaching metadata";
     validatePrefabData();
-    LOG << "validated metadata";
     isLoaded = true;
   }
   i.close();
 }
 
+//setup precache for scene based on the current data loaded
 void MetaData::setPrecacheFromData(Scene* scene)
 {
   //reading precache asset names
@@ -91,6 +180,7 @@ void MetaData::setPrecacheFromData(Scene* scene)
   }
 }
 
+//validate all prefabs metadata
 void MetaData::validatePrefabData()
 {
   if (data["prefabs"] != nullptr)
@@ -100,6 +190,7 @@ void MetaData::validatePrefabData()
     {
       const char* prefabName = it.key().c_str();
       auto prefab = it.value();
+      bool isPrefabValid = true;
 
       //iterate through each component on the current prefab
       for (auto compIt : prefab.items())
@@ -107,31 +198,79 @@ void MetaData::validatePrefabData()
         auto args = compIt.value();
         if (args.is_object())
         {
-          validateComp(prefabName, args);
+          bool isCompValid = validateComp(prefabName, args);
+          if (!isCompValid)
+          {
+            isPrefabValid = false;
+          }
         }
+      }
+
+      if (isPrefabValid)
+      {
+        validatedPrefabs.push_back(prefabName);
+        LOG << "VALIDATED: " << prefabName;
+      }
+      else
+      {
+        LOG_WARNING << "Prefab not validated '" << prefabName << "'";
       }
     }
   }
 }
 
-
-bool MetaData::validateArg(
-  const std::string& prefabName,
-  const nlohmann::json& component,
-  const char* key,
-  const char argType,
-  const bool isRequiredKey
-)
+//returns true if a prefab with matching name has been validated
+bool MetaData::isPrefabValidated(const std::string& name) const
 {
-  auto it = component.find(key);
-
-  bool result = false;
-  if (it != component.end())
+  for (const std::string& prefabName : validatedPrefabs)
   {
-    auto val = it.value();
-
-    switch (argType)
+    if (prefabName == name)
     {
+      return true;
+    }
+  }
+  return false;
+}
+
+//validates a component metadata
+bool MetaData::validateComp(const char* prefabName, const nlohmann::json& comp)
+{
+  bool res = true;
+
+  if (comp["class"] != nullptr && comp["class"].is_string())
+  {
+    std::string className = comp["class"];
+    const JsonComp* compMetaStructure = getMetaStructure(className.c_str());
+    if (compMetaStructure != nullptr)
+    {
+      for (auto it : compMetaStructure->params)
+      {
+        bool isValid = validateArg(prefabName, comp, &it);
+        if (!isValid)
+        {
+          res = false;
+        }
+      }
+    }
+    else
+    {
+      res = false;
+    }
+  }
+  else
+  {
+    res = false;
+  }
+
+  return res;
+}
+
+//validates a primitive type metadata
+bool MetaData::validatePrimitiveType(const nlohmann::json& val, const char type)
+{
+  bool result = false;
+  switch (type)
+  {
     case ARG_NUMBER:
     {
       if (val.is_number())
@@ -172,41 +311,102 @@ bool MetaData::validateArg(
       }
       break;
     }
-    }
-  }
-  else
-  {
-    if (!isRequiredKey)
-    {
-      result = true;
-    }
-    else
-    {
-      LOG_WARNING << prefabName << ":" << component["class"] << " - no key value found for key '" << key << "'";
-    }
-  }
-
-  if (result == false)
-  {
-    LOG_WARNING << prefabName << ":" << component["class"] << " - invalid type for key '" << key << "'";
   }
 
   return result;
 }
 
-bool MetaData::validateComp(const char* prefabName, const nlohmann::json& comp)
+//validates an argument metadata
+bool MetaData::validateArg(
+  const std::string& prefabName,
+  const nlohmann::json& component,
+  const JsonParam* param
+)
 {
-  bool res = true;
-  if (comp["class"] != nullptr && comp["class"] == "sprite")
+  auto it = component.find(param->key);
+
+  bool result = true;
+  if (it != component.end())
   {
-    for (auto it : spriteComp.params)
+    auto val = it.value();
+    if (param->argType != ARG_ARRAY_OBJ)
     {
-      bool isValid = validateArg(prefabName, comp, it.key, it.argType, it.isRequired);
-      if (!isValid && res)
+      result = validatePrimitiveType(val, param->argType);
+    }
+    else
+    {
+      if (val.is_array())
       {
-        res = false;
+        const JsonObj* obj = getUDObj(param->UDObjID);
+        if (obj != nullptr)
+        {
+          for (auto i : val)
+          {
+            if (i.is_object())
+            {
+              if(!validateObj(prefabName, i, obj))
+              {
+                result = false;
+              }
+            }
+            //not an object
+            else
+            {
+              LOG_WARNING << param->key << " expected object in array at index " << i;
+              result = false;
+            }
+          }
+        }
+        else
+        {
+          result = false;
+        }
       }
     }
   }
-  return res;
+  else
+  {
+    if (param->isRequired)
+    {
+      result = false;
+      LOG_WARNING << prefabName << ":" << component["class"] << " - no key value found for key '" << param->key << "'";
+    }
+  }
+
+  if (result == false)
+  {
+    LOG_WARNING << prefabName << ":" << component["class"] << " - invalid type for key '" << param->key << "'";
+  }
+
+  return result;
+}
+
+
+//validates a UDObject metadata
+bool MetaData::validateObj(
+  const std::string& prefabName,
+  const nlohmann::json& objData,
+  const JsonObj* objType
+)
+{
+  bool isValid = true;
+  for (auto param : objType->params)
+  {
+    auto it = objData.find(param.key);
+    if (it != objData.end())
+    {
+      bool isArgValid = validatePrimitiveType(it.value(), param.argType);
+      if (!isArgValid)
+      {
+        isValid = false;
+        LOG_WARNING << " invalid type in UDObject: " << param.key;
+      }
+    }
+    else
+    {
+      isValid = false;
+      LOG_WARNING << "no key value found for UDObj '" << param.key << "'";
+    }
+  }
+  return isValid;
 }
