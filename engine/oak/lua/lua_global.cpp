@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <oak/oak_def.h>
+#include <oak/lua/lua_constants.h>
 
 using namespace oak;
 

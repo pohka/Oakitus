@@ -11,6 +11,7 @@ namespace oak
   static const char* LUA_ENTITY = "entity"; //entity handle instance
 
   static const char* LUA_HANDLE_ENTITY = "EntityH"; //entity handle instance
+  static const char* LUA_HANDLE_SCRIPT = "ScriptH";
   static const char* LUA_HANDLE_SPRITE = "SpriteH";
   static const char* LUA_HANDLE_RIGIDBODY2D = "RigidBody2DH";
   static const char* LUA_HANDLE_PLAYER = "PlayerH";
@@ -24,6 +25,7 @@ namespace oak
   static const char* LUA_ON_TICK = "onTick";
   static const char* LUA_ON_CREATE = "onCreate";
   static const char* LUA_ON_DESTROY = "onDestroy";
+
 }
 
 #endif

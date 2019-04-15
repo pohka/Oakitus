@@ -1,7 +1,7 @@
 control = {}
 
 function control:onCreate()
-  
+  script:setKV("score", 100)
 end
 
 function control:onTick()
@@ -36,6 +36,11 @@ function control:onTick()
 
   --shooting
   if Input:isKeyDown(KEY.SPACE) then
+    local score = script:getKV("score")
+    print(score)
+    score = score + 100;
+    script:setKV("score", score)
+
     local pos = unit:getPosition()
     local bullet = Game:createEnt("bullet", pos)
   end

@@ -16,6 +16,7 @@ function move:onCreate()
 
   local player = PlayerResource:getPlayer(1)
   player:assignEnt(entity)
+  
 
   print(KEY.C)
 end

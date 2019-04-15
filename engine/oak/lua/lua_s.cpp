@@ -28,7 +28,8 @@ using namespace oak;
 lua_State* LuaS::state;
 std::map<std::string, std::string> LuaS::files = {};
 std::string LuaS::curLoadedFile = "";
-LuaEntity* LuaS::lua_Entity = new LuaEntity(nullptr);
+LuaEntity* LuaS::curEntity = new LuaEntity(nullptr);
+LuaScriptHandle* LuaS::curScript = new LuaScriptHandle(nullptr);
 
 void LuaS::init(const std::string& path)
 {
@@ -54,12 +55,18 @@ void LuaS::registerBindings(lua_State* L)
   LuaCollisionRect::reg(L);
   LuaCollisionCircle::reg(L);
   LuaAnimator::reg(L);
+  LuaScriptHandle::reg(L);
 
 
   lua_newtable(L);
-  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = LuaS::lua_Entity;
+  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = LuaS::curEntity;
   luaL_setmetatable(L, LUA_HANDLE_ENTITY);
   lua_setglobal(L, LUA_ENTITY);
+
+  lua_newtable(L);
+  *reinterpret_cast<LuaScriptHandle**>(lua_newuserdata(L, sizeof(LuaScriptHandle*))) = LuaS::curScript;
+  luaL_setmetatable(L, LUA_HANDLE_SCRIPT);
+  lua_setglobal(L, "script");
 }
 
 void LuaS::loadFile(const std::string& fileName)
@@ -101,7 +108,7 @@ void LuaS::call()
 
 void LuaS::setEntity(Entity* entity)
 {
-  lua_Entity->set(entity);
+  curEntity->set(entity);
 }
 
 void LuaS::close()
@@ -117,4 +124,9 @@ void LuaS::log(const std::string& msg)
   int line = ar.currentline;
 
   std::cout << "|--LUA--| " << curLoadedFile <<  " - LINE " << line << " --| " << msg << std::endl;
+}
+
+void LuaS::setScript(LuaScript* script)
+{
+  curScript->set(script);
 }

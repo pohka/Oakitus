@@ -5,6 +5,7 @@
 #include <lua/lua.hpp>
 #include <map>
 #include <oak/lua/lua_entity.h>
+#include <oak/lua/lua_script_handle.h>
 
 namespace oak
 {
@@ -23,11 +24,13 @@ namespace oak
     static void setEntity(Entity* entity);
     static void close();
     static void log(const std::string& msg);
+    static void setScript(LuaScript* script);
 
   private:
     static std::map<std::string, std::string> files;
     static std::string curLoadedFile;
-    static LuaEntity* lua_Entity;
+    static LuaEntity* curEntity;
+    static LuaScriptHandle* curScript;
   };
 }
 
