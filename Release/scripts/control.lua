@@ -12,7 +12,7 @@ function control:onTick()
   --print("val" .. control.val)
 
   --movement
-  local speed = 2
+  local speed = 200
   local moveX = 0
   local moveY = 0
 
@@ -20,17 +20,19 @@ function control:onTick()
     moveY = speed
   end
   if Input:isKeyPressed(KEY.S) then
-    moveY = -speed
+    moveY = moveY -speed
   end
   if Input:isKeyPressed(KEY.A) then
     moveX = -speed
   end
   if Input:isKeyPressed(KEY.D) then
-    moveX = speed
+    moveX = moveX + speed
   end
 
   
   if unit ~= nil then
+    moveX = moveX * getDeltaTime()
+    moveY = moveY * getDeltaTime()
     unit:moveBy(moveX, moveY)
   end
 

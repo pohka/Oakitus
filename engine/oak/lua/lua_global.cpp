@@ -3,6 +3,7 @@
 #include <iostream>
 #include <oak/oak_def.h>
 #include <oak/lua/lua_constants.h>
+#include <oak/lua/lua_time.h>
 
 using namespace oak;
 
@@ -10,6 +11,10 @@ void LuaGlobal::reg(lua_State* L)
 {
   lua_register(L, "logd", debugLog);
   lua_register(L, "log", log);
+
+  lua_register(L, "getDeltaTime", LuaTime::deltaTime);
+  lua_register(L, "getSystemTime", LuaTime::systemTime);
+  lua_register(L, "getGameTime", LuaTime::gameTime);
   
 
   lua_pushinteger(L, REFLECT_SPRITE);

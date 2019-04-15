@@ -91,13 +91,13 @@ function move:onTick()
     moveY = speed
   end
   if Input:isKeyPressed(KEY.S) then
-    moveY = -speed
+    moveY = moveY - speed
   end
   if Input:isKeyPressed(KEY.A) then
     moveX = -speed
   end
   if Input:isKeyPressed(KEY.D) then
-    moveX = speed
+    moveX = moveX + speed
   end
 
   --testing assign and unassign entity
