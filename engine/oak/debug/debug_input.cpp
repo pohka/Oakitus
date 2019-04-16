@@ -6,6 +6,7 @@
 #include <oak/time/time.h>
 #include <oak/debug.h>
 #include <oak/build_def.h>
+#include <oak/lua/lua_s.h>
 
 #ifdef PLATFORM_WINDOWS
   #include "windows.h"

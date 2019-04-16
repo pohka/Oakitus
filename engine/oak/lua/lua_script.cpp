@@ -13,11 +13,8 @@ using namespace oak;
 
 const std::string LuaScript::PATH = "../Release/scripts/";
 
-LuaScript::LuaScript(std::string name) : Component()
+LuaScript::LuaScript(const std::string& name) : Component(), name(name), scriptFilePath(LuaScript::PATH + name + ".lua")
 {
-  this->name = name;
-
-  scriptFilePath = LuaScript::PATH + name + ".lua";
   LuaS::loadFile(scriptFilePath);
   LuaS::doFile(scriptFilePath);
   
@@ -28,7 +25,7 @@ LuaScript::LuaScript(std::string name) : Component()
     lua_getfield(LuaS::state, -1, LUA_ON_TICK);
     if (!lua_isnil(LuaS::state, -1) && lua_isfunction(LuaS::state, -1))
     {
-      hasTickFunc = true;
+      thinkers.push_back({ LUA_ON_TICK, LUA_ON_TICK, -0.0001f });
     }
   }
 }
@@ -105,7 +102,7 @@ bool LuaScript::getFunc(const char* funcName)
 
 void LuaScript::onTick()
 {
-  if (!hasTickFunc)
+  if (thinkers.empty())
   {
     return;
   }
@@ -114,14 +111,53 @@ void LuaScript::onTick()
   LuaS::setEntity(this->entity);
   LuaS::setScript(this);
 
-  //call class::onTick()
-  lua_getglobal(LuaS::state, name.c_str());
-  const int top = lua_gettop(LuaS::state);
-  lua_getfield(LuaS::state, -1, LUA_ON_TICK);
+  for (unsigned int i=0; i<thinkers.size(); i++)
+  {
+    if (thinkers[i].nextTickTime <= Time::getGameTime())
+    {
+      lua_getglobal(LuaS::state, name.c_str());
+      const int top = lua_gettop(LuaS::state);
+      lua_getfield(LuaS::state, -1, thinkers[i].funcName);
+      LuaS::call(1);
 
-  LuaS::call();
-
-  lua_settop(LuaS::state, top-1);
+      if (lua_isnumber(LuaS::state, -1))
+      {
+        float interval = (float)lua_tonumber(LuaS::state, -1);
+        //ending interval
+        if (interval < 0.0)
+        {
+          thinkers.erase(thinkers.begin() + i);
+          i--;
+        }
+        //next interval time
+        else
+        {
+          thinkers[i].nextTickTime += interval;
+        }
+      }
+      lua_settop(LuaS::state, top - 1);
+    }
+  }
 }
 
+void LuaScript::setThink(const char* thinkerName, const char* funcName, float initialDelay)
+{
+  bool found = false;
+  for (auto thinker : thinkers)
+  {
+    if (strcmp(thinker.funcName, thinkerName) == 0)
+    {
+      found = true;
+      break;
+    }
+  }
 
+  if (!found)
+  {
+    thinkers.push_back({ thinkerName, funcName, initialDelay });
+  }
+  else
+  {
+    LOG_WARNING << "a thinker of this name has already been set: '" << thinkerName << "'";
+  }
+}

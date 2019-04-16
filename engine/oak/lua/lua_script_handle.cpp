@@ -1,5 +1,6 @@
 #include <oak/lua/lua_script_handle.h>
 #include <oak/lua/lua_constants.h>
+#include <oak/lua/lua_s.h>
 
 using namespace oak;
 
@@ -59,6 +60,7 @@ int LuaScriptHandle::getKV(lua_State* L)
     default:
     {
       //error, invalid type
+      LuaS::log("invalid type for KV value");
     }
   }
   return res;
@@ -101,7 +103,7 @@ int LuaScriptHandle::setKV(lua_State* L)
     default :
     {
       //error, invalid type
-      
+      LuaS::log("invalid type for KV value");
     }
   }
 }
@@ -109,5 +111,33 @@ int LuaScriptHandle::setKV(lua_State* L)
 int LuaScriptHandle::lua_delete(lua_State* L)
 {
   delete *reinterpret_cast<LuaScriptHandle**>(luaL_checkudata(L, 1, LUA_HANDLE_SCRIPT));
+  return 0;
+}
+
+int LuaScriptHandle::setThink(lua_State* L)
+{
+  const char* thinkerName;
+  const char* funcName;
+  float initalDelay = 0.0001f;
+  LuaScript* script = LuaS::getScriptHandle()->script;
+
+  if (lua_gettop(L) == 2)
+  {
+    const char* thinkerName = luaL_checkstring(L, 1);
+    const char* funcName = luaL_checkstring(L, 2);
+    script->setThink(thinkerName, funcName);
+  }
+  else if (lua_gettop(L) == 3)
+  {
+    const char* thinkerName = luaL_checkstring(L, 1);
+    const char* funcName = luaL_checkstring(L, 2);
+    float initialDelay = (float)luaL_checknumber(L, 3);
+    script->setThink(thinkerName, funcName, initialDelay);
+  }
+  else
+  {
+    LuaS::log("invalid number of arguments expected 2 or 3 arguments. e.g. setThinker(thinkerName, funcName, initalDelay)");
+  }
+ 
   return 0;
 }

@@ -5,6 +5,7 @@
 #include <string>
 #include <lua/lua.hpp>
 #include <unordered_map>
+#include <oak/time/time.h>
 
 namespace oak
 {
@@ -57,20 +58,35 @@ namespace oak
     }
   };
 
+  struct Thinker
+  {
+    const char* thinkerName;
+    const char* funcName;
+    float nextTickTime;
+
+    Thinker(const char* thinkerName, const char* funcName, float initialDelay) : 
+      thinkerName(thinkerName),
+      funcName(funcName),
+      nextTickTime(Time::getGameTime() + initialDelay)
+    {
+
+    }
+  };
+
   class LuaScript : public Component
   {
-    std::string name;
     const static std::string PATH;
-    bool errorFlagOnce = false;
 
-    std::string scriptFilePath;
-    bool hasTickFunc = false;
+    const std::string name;
+    const std::string scriptFilePath;
 
     bool getFunc(const char* funcName);
 
+    std::vector<Thinker> thinkers = {};
+
   public:
 
-    LuaScript(std::string name);
+    LuaScript(const std::string& name);
     ~LuaScript();
 
 
@@ -80,6 +96,8 @@ namespace oak
     void onTick() override;
     void onDestroy() override;
     
+
+    void setThink(const char* thinkerName, const char* funcName, float initialDelay = -0.0001f);
   };
 }
 

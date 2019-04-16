@@ -20,11 +20,17 @@ namespace oak
 
     static void loadFile(const std::string& fileName);
     static void doFile(const std::string& fileName);
-    static void call();
+    static void call(const int result=0);
     static void setEntity(Entity* entity);
     static void close();
     static void log(const std::string& msg);
     static void setScript(LuaScript* script);
+
+
+    static const LuaScriptHandle* getScriptHandle()
+    {
+      return curScript;
+    }
 
   private:
     static std::map<std::string, std::string> files;

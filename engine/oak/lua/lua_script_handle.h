@@ -17,6 +17,8 @@ namespace oak
     static void reg(lua_State* L);
     void set(LuaScript* script);
 
+    static int setThink(lua_State* L);
+
   private:
     static int getKV(lua_State* L);
     static int setKV(lua_State* L);

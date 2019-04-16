@@ -97,9 +97,9 @@ void LuaS::doFile(const std::string& fileName)
   }
 }
 
-void LuaS::call()
+void LuaS::call(const int result)
 {
-  if (lua_pcall(state, 0, 0, 0) != 0)
+  if (lua_pcall(state, 0, result, 0) != 0)
   {
     std::string msg =  lua_tostring(state, -1);
     std::cout << "|--LUA--| " << curLoadedFile << " --| " << msg << std::endl;
