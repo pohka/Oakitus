@@ -12,7 +12,7 @@ function control:onTick()
   --print("val" .. control.val)
 
   --movement
-  local speed = 2000
+  local speed = 200
   local moveX = 0
   local moveY = 0
 
@@ -47,21 +47,10 @@ function control:onTick()
     local bullet = Game:createEnt("bullet", pos)
   end
 
-  print("in lua")
+  --print("in lua")
 
   if Input:isKeyPressed(KEY.U) then
    -- return -1
-   setThink("test", "test")
+   setThink("test", "test", 2)
   end
-
-  return 1
-end
-
-function control:test()
-  print("hello")
-
-  if Input:isKeyPressed(KEY.J) then
-    return -1
-   end
-  return 2
 end

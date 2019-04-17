@@ -79,22 +79,6 @@ bool LuaScript::getFunc(const char* funcName)
     {
       return true;
     }
-    else if (lua_isnil(LuaS::state, -1))
-    {
-      LOG << "Lua function '" << name.c_str()  << "." << funcName << "' is nil";
-    }
-    else
-    {
-      LOG << "Lua global value '" << name.c_str() << "." << funcName << "' is not a function";
-    }
-  }
-  else if (lua_isnil(LuaS::state, -1))
-  {
-    LOG << "Lua table '" << funcName << "' is nil";
-  }
-  else
-  {
-    LOG << "Lua global value '" << funcName << "' is not a table";
   }
 
   return false;
