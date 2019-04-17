@@ -1,7 +1,8 @@
 projectile = {}
 
 function projectile:onCreate()
-  setThink("destroy", "destroy", 2)
+  --setThink("destroy", "destroy", 2)
+  entity:destroy(2)
 end
 
 function projectile:onTick()

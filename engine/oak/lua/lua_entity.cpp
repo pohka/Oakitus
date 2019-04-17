@@ -267,8 +267,9 @@ int LuaEntity::destroy(lua_State* L)
 
   if (lua_gettop(L) == 2)
   {
-    int duration = luaL_checkinteger(L, 2);
-    entH->ptr->destroy();
+    float delay = luaL_checknumber(L, 2);
+    unsigned int entID = entH->ptr->getID();
+    EntityManager::requestDestroy(entID, delay);
   }
   else
   {

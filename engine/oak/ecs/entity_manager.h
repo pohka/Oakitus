@@ -8,6 +8,13 @@
 
 namespace oak
 {
+  //future request to destroy an entity
+  struct DestroyRequest
+  {
+    uint entID;
+    float destroyTime; //in game time
+  };
+
   struct EntityManager
   {
 
@@ -50,11 +57,17 @@ namespace oak
 
     static const uint nextEntityID();
 
+    static void requestDestroy(const uint entID, const float delay);
+    static void checkRequestedDestroys();
+
+
+
   private:
     static IDGenerator entityIDGen;
-    static std::queue<uint> queuedDestroyEntityIDs; ///<summary>Queued Entitys to be removed from the world</summary>
-    static std::queue<Entity*> pendingEntityInstances; ///<summary>Queued Entitys to be added to the world</summary>
-    static std::vector<Entity*> entitys; ///<summary>All existing Entitys in the world</summary>
+    static std::queue<uint> queuedDestroyEntityIDs; //Queued Entitys to be removed from the world this frame
+    static std::queue<Entity*> pendingEntityInstances; //Queued Entitys to be added to the world
+    static std::vector<Entity*> entitys; //All existing Entitys in the world
+    static std::vector<DestroyRequest> destroyRequests; //entities to be removed in the future
   };
 }
 

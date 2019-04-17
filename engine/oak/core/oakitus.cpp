@@ -113,6 +113,8 @@ int Oakitus::loop()
     
     ion::UICanvas::render();
 
+    EntityManager::checkRequestedDestroys();
+
     if (SceneManager::isNextSceneSet())
     {
       SceneManager::swapScene();
