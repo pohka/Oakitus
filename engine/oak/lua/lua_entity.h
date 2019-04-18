@@ -30,6 +30,7 @@ namespace oak
 
 
     static int getComponent(lua_State* L);
+    static int getScript(lua_State* L);
     static int getShapeByID(lua_State* L);
 
 

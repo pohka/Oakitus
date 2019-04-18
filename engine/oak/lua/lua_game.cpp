@@ -134,7 +134,28 @@ void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
   else if (className == "lua_script")
   {
     std::string name = params["name"];
-    ent->addComponent(new LuaScript(name));
+    LuaScript* script = new LuaScript(name);
+    //load default kv data for this script
+    auto it = params.find("kv");
+    if (it != params.end() && it.value().is_object())
+    {
+      auto kvs = it.value();
+      for (auto keyIt = kvs.begin(); keyIt != kvs.end(); ++keyIt)
+      {
+        std::string key = keyIt.key();
+        auto val = keyIt.value();
+        if (val.is_number())
+        {
+          script->kvdata.KVNumber[key] = val;
+        }
+        else if (val.is_string())
+        {
+          std::string strVal = kvs[key];
+          script->kvdata.KVString[key] = strVal;
+        }
+      }
+    }
+    ent->addComponent(script);
   }
   //animator
   else if (className == "animator")

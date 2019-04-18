@@ -140,6 +140,7 @@ void LuaEntity::reg(lua_State* L)
   lua_pushcfunction(L, moveBy); lua_setfield(L, -2, "moveBy");
   lua_pushcfunction(L, moveTo); lua_setfield(L, -2, "moveTo");
   lua_pushcfunction(L, getComponent); lua_setfield(L, -2, "getComponent");
+  lua_pushcfunction(L, getScript); lua_setfield(L, -2, "getScript");
   lua_pushcfunction(L, getShapeByID); lua_setfield(L, -2, "getShapeByID");
   lua_pushcfunction(L, getPosition); lua_setfield(L, -2, "getPosition");
   lua_pushcfunction(L, destroy); lua_setfield(L, -2, "destroy");
@@ -275,5 +276,28 @@ int LuaEntity::destroy(lua_State* L)
   {
     entH->ptr->destroy();
   }
+  return 0;
+}
+
+//find script component with matching script name
+int LuaEntity::getScript(lua_State* L)
+{
+  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  std::string scriptName = luaL_checkstring(L, 2);
+
+  std::vector<LuaScript*> scripts = {};
+  entH->ptr->getComponentsWithReflection<LuaScript>(REFLECT_LUA_SCRIPT, scripts);
+
+  for (unsigned int i = 0; i < scripts.size(); i++)
+  {
+    if (scripts[i]->getName() == scriptName)
+    {
+      lua_newtable(L);
+      *reinterpret_cast<LuaScriptHandle**>(lua_newuserdata(L, sizeof(LuaScriptHandle*))) = new LuaScriptHandle(scripts[i]);
+      luaL_setmetatable(L, LUA_HANDLE_SCRIPT);
+      return 1;
+    }
+  }
+
   return 0;
 }

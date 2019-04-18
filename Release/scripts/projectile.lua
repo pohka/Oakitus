@@ -2,7 +2,9 @@ projectile = {}
 
 function projectile:onCreate()
   --setThink("destroy", "destroy", 2)
-  entity:destroy(2)
+  local duration = script:getKV("duration")
+  print(duration)
+  entity:destroy(duration)
 end
 
 function projectile:onTick()

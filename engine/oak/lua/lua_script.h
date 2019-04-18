@@ -95,6 +95,8 @@ namespace oak
     void onCreate() override;
     void onTick() override;
     void onDestroy() override;
+
+    const std::string& getName() const;
     
 
     void setThink(const char* thinkerName, const char* funcName, float initialDelay = -0.0001f);

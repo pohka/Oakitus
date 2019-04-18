@@ -97,7 +97,11 @@
       },
       {
         "class" : "lua_script",
-        "name" : "projectile"
+        "name" : "projectile",
+        "kv" : 
+        {
+          "duration" : 2
+        }
       }
     ]
   }

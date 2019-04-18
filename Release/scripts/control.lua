@@ -45,6 +45,8 @@ function control:onTick()
 
     local pos = unit:getPosition()
     local bullet = Game:createEnt("bullet", pos)
+    local proj = bullet:getScript("projectile")
+    --proj:setKV("duration", 1)
   end
 
   --print("in lua")

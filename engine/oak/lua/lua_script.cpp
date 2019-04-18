@@ -13,7 +13,9 @@ using namespace oak;
 
 const std::string LuaScript::PATH = "../Release/scripts/";
 
-LuaScript::LuaScript(const std::string& name) : Component(), name(name), scriptFilePath(LuaScript::PATH + name + ".lua")
+LuaScript::LuaScript(const std::string& name) : Component(REFLECT_LUA_SCRIPT), 
+  name(name), 
+  scriptFilePath(LuaScript::PATH + name + ".lua")
 {
   LuaS::loadFile(scriptFilePath);
   LuaS::doFile(scriptFilePath);
@@ -144,4 +146,10 @@ void LuaScript::setThink(const char* thinkerName, const char* funcName, float in
   {
     LOG_WARNING << "a thinker of this name has already been set: '" << thinkerName << "'";
   }
+}
+
+
+const std::string& LuaScript::getName() const
+{
+  return name;
 }
