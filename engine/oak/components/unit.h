@@ -4,22 +4,23 @@
 #include <oak/ecs/component.h>
 #include <vector>
 #include <string>
+#include <oak/ability/ability.h>
 
 namespace oak
 {
   class Unit : public Component
   {
-    float health = 100.0f;
-    float mana = 100.0f;
-    float maxMana = 100.0f;
-    float maxHealth = 100.0f;
+    int health = 100;
+    int mana = 100;
+    int maxMana = 100;
+    int maxHealth = 100;
     int level = 1;
     int startingLevel = 1;
     bool isAlive = true;
 
     std::string name;
 
-    //std::vector<Ability> abilitys;
+    std::vector<Ability*> abilitys;
 
   public:
     Unit(const std::string& name);
@@ -29,15 +30,15 @@ namespace oak
     void onTick() override;
 
     bool getIsAlive() const;
-    float getHealth() const;
-    float getMaxHealth() const;
-    float getMaxMana() const;
-    float getMana() const;
+    int getHealth() const;
+    int getMaxHealth() const;
+    int getMaxMana() const;
+    int getMana() const;
     int getLevel() const;
     const std::string& getName() const;
 
-    void setMaxHealth(float maxHealth);
-    void setMaxMana(float maxMana);
+    void setMaxHealth(const int maxHealth);
+    void setMaxMana(const int maxMana);
     void setStartingLevel(int level);
 
     

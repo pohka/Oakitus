@@ -53,6 +53,8 @@
     <ClInclude Include="..\engine\lua\lundump.h" />
     <ClInclude Include="..\engine\lua\lvm.h" />
     <ClInclude Include="..\engine\lua\lzio.h" />
+    <ClInclude Include="..\engine\oak\ability\ability.h" />
+    <ClInclude Include="..\engine\oak\ability\modifier.h" />
     <ClInclude Include="..\engine\oak\assets\asset.h" />
     <ClInclude Include="..\engine\oak\assets\shader.h" />
     <ClInclude Include="..\engine\oak\assets\stb_image.h" />
@@ -189,6 +191,8 @@
     <ClCompile Include="..\engine\lua\lutf8lib.c" />
     <ClCompile Include="..\engine\lua\lvm.c" />
     <ClCompile Include="..\engine\lua\lzio.c" />
+    <ClCompile Include="..\engine\oak\ability\ability.cpp" />
+    <ClCompile Include="..\engine\oak\ability\modifier.cpp" />
     <ClCompile Include="..\engine\oak\assets\asset.cpp" />
     <ClCompile Include="..\engine\oak\assets\shader.cpp" />
     <ClCompile Include="..\engine\oak\assets\texture.cpp" />

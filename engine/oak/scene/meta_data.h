@@ -58,6 +58,19 @@ namespace oak
     {
 
     }
+
+    bool hasKey(const char* key) const
+    {
+      for (auto it : params)
+      {
+        if (strcmp(it.key, key) == 0)
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
   };
 
 
@@ -91,6 +104,8 @@ namespace oak
 
     void validatePrefabData();
 
+    static void checkCompForUnusedKVs(const char* prefabName, const nlohmann::json& comp);
+
     
     static bool validateComp(const char* prefabName, const nlohmann::json& comp);
 
@@ -107,6 +122,7 @@ namespace oak
       const nlohmann::json& objData,
       const JsonObj* objType
     );
+
 
   };
 }

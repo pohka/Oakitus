@@ -1,5 +1,6 @@
 #include <oak/components/unit.h>
 #include <oak/oak_def.h>
+#include <cmath>
 
 using namespace oak;
 
@@ -10,7 +11,10 @@ Unit::Unit(const std::string& name) : Component(REFLECT_UNIT, TICK_GROUP_DEFAULT
 
 Unit::~Unit()
 {
-
+  for (Ability* abil : abilitys)
+  {
+    delete abil;
+  }
 }
 
 void Unit::onCreate()
@@ -29,22 +33,22 @@ bool Unit::getIsAlive() const
   return isAlive;
 }
 
-float Unit::getHealth() const
+int Unit::getHealth() const
 {
   return health;
 }
 
-float Unit::getMaxHealth() const
+int Unit::getMaxHealth() const
 {
   return maxHealth;
 }
 
-float Unit::getMaxMana() const
+int Unit::getMaxMana() const
 {
   return maxMana;
 }
 
-float Unit::getMana() const
+int Unit::getMana() const
 {
   return mana;
 }
@@ -54,13 +58,40 @@ const std::string& Unit::getName() const
   return name;
 }
 
-void Unit::setMaxHealth(float maxHealth)
+void Unit::setMaxHealth(const int maxHealth)
 {
+  //current health should keep same percentage HP
+  float fHP = (float)health * ((float)maxHealth / (float)this->maxHealth);
+  //unit should not die if maxHP changes
+  if (fHP < 1.0f && fHP > 0.0f)
+  {
+    health = 1;
+  }
+  else if(fHP > maxHealth)
+  {
+    health = maxHealth;
+  }
+  else
+  {
+    health = (int)round(fHP);
+  }
+
   this->maxHealth = maxHealth;
 }
 
-void Unit::setMaxMana(float maxMana)
+void Unit::setMaxMana(const int maxMana)
 {
+  //current mana should keep same percentage mana/maxMana
+  float fMP = (float)health * ((float)maxMana / (float)this->maxMana);
+  if (fMP > maxMana)
+  {
+    mana = maxMana;
+  }
+  else
+  {
+    mana = (int)round(fMP);
+  }
+
   this->maxMana = maxMana;
 }
 

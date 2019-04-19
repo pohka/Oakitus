@@ -58,10 +58,12 @@ function control:onTick()
     if unit ~= nil then
       local unitName = unit:getUnitName()
       local level = unit:getLevel()
-      local hp = unit:getMaxHealth()
-      local mana = unit:getMaxMana()
+      local hp = unit:getHealth()
+      local maxHP = unit:getMaxHealth()
+      local mana = unit:getMana()
+      local maxMana = unit:getMaxMana()
 
-      print(unitName .. ":" .. level .. "  hp:" .. hp .. " mana:" .. mana)
+      print(unitName .. ":" .. level .. "  hp:" .. hp .. "/" .. maxHP .. " mana:" .. mana .. "/" .. maxMana)
     end
    
   end

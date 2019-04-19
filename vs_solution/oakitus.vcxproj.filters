@@ -73,6 +73,9 @@
     <Filter Include="oak\lua">
       <UniqueIdentifier>{e05962f4-a55c-49d8-9a30-ba7cb833e042}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\ability">
+      <UniqueIdentifier>{7f6d19e4-20e8-4f60-89d6-ca6925cc4018}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -456,6 +459,12 @@
     <ClInclude Include="..\engine\oak\lua\lua_unit.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\ability\ability.h">
+      <Filter>oak\ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ability\modifier.h">
+      <Filter>oak\ability</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -783,6 +792,12 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_unit.cpp">
       <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ability\ability.cpp">
+      <Filter>oak\ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ability\modifier.cpp">
+      <Filter>oak\ability</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

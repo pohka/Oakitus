@@ -61,8 +61,8 @@ static std::vector<JsonComp> COMP_METADATA_STRUCTURE =
   }),
   JsonComp("unit", {
     JsonParam("name", MetaData::ARG_STRING, true),
-    JsonParam("health", MetaData::ARG_NUMBER, false),
-    JsonParam("mana", MetaData::ARG_NUMBER, false),
+    JsonParam("health", MetaData::ARG_UINT, false),
+    JsonParam("mana", MetaData::ARG_UINT, false),
     JsonParam("level", MetaData::ARG_UINT, false)
   })
 };
@@ -220,6 +220,16 @@ void MetaData::validatePrefabData()
       else
       {
         LOG_WARNING << "Prefab not validated '" << prefabName << "'";
+      }
+
+      //check for unused keys
+      for (auto compIt : prefab.items())
+      {
+        auto compKVs = compIt.value();
+        if (compKVs.is_object())
+        {
+          checkCompForUnusedKVs(prefabName, compKVs);
+        }
       }
     }
   }
@@ -415,4 +425,29 @@ bool MetaData::validateObj(
     }
   }
   return isValid;
+}
+
+//checks for unused keys in metadata file
+void MetaData::checkCompForUnusedKVs(const char* prefabName, const nlohmann::json& compKVs)
+{
+  auto a = compKVs.find("class");
+  if (a != compKVs.end())
+  {
+    std::string compClassName = a.value();
+    for (auto it : compKVs.items())
+    {
+      if (it.key() != "class" && it.key() != "kv") //exceptions
+      {
+        const JsonComp* jsonComp = getMetaStructure(compClassName);
+        if (jsonComp != nullptr)
+        {
+          bool hasKey = jsonComp->hasKey(it.key().c_str());
+          if (!hasKey)
+          {
+            LOG_WARNING << "MetaData for prefab component " << prefabName << ":" << compClassName << " has an unused key '" << it.key() << "'";
+          }
+        }
+      }
+    }
+  }
 }
