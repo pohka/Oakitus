@@ -18,6 +18,7 @@ namespace oak
   static const char* LUA_HANDLE_COLLISION_RECT = "CollisionRectH";
   static const char* LUA_HANDLE_COLLISION_CIRCLE = "CollisionCircleH";
   static const char* LUA_HANDLE_ANIMATOR = "AnimatorH";
+  static const char* LUA_HANDLE_UNIT = "unitH";
 
   static const char* LUA_ON_LOAD = "onLoad";
 

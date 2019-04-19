@@ -18,6 +18,8 @@
 #include <oak/core/resources.h>
 #include <oak/lua/lua_s.h>
 
+#include <oak/components/unit.h>
+
 
 using namespace oak;
 
@@ -154,8 +156,7 @@ void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
           script->kvdata.KVString[key] = strVal;
         }
       }
-    }
-    ent->addComponent(script);
+    }    ent->addComponent(script);
   }
   //animator
   else if (className == "animator")
@@ -201,6 +202,10 @@ void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
 
     ent->addComponent(animator);
   }
+  else if (className == "unit")
+  {
+    addUnitComp(ent, params);
+  }
   else
   {
     
@@ -225,4 +230,27 @@ int LuaGame::findEntByID(lua_State* L)
   }
 
   return res;
+}
+
+void LuaGame::addUnitComp(Entity* ent, const nlohmann::json& data)
+{
+  std::string name = data["name"];
+  Unit* unit = new Unit(name);
+  
+  auto it = data.find("health");
+  if (it != data.end())
+  {
+    unit->setMaxHealth(it.value());
+  }
+  it = data.find("mana");
+  if (it != data.end())
+  {
+    unit->setMaxMana(it.value());
+  }
+  it = data.find("level");
+  if (it != data.end())
+  {
+    unit->setStartingLevel((int)it.value());
+  }
+  ent->addComponent(unit);
 }

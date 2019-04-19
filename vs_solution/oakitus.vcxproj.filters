@@ -450,6 +450,12 @@
     <ClInclude Include="..\engine\oak\lua\lua_time.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\components\unit.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_unit.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -770,6 +776,12 @@
       <Filter>oak\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_time.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\unit.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_unit.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
   </ItemGroup>

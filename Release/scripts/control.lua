@@ -49,10 +49,20 @@ function control:onTick()
     --proj:setKV("duration", 1)
   end
 
+
+
   --print("in lua")
 
   if Input:isKeyPressed(KEY.U) then
-   -- return -1
-   setThink("test", "test", 2)
+    local unit = entity:getComponent(COMP_UNIT)
+    if unit ~= nil then
+      local unitName = unit:getUnitName()
+      local level = unit:getLevel()
+      local hp = unit:getMaxHealth()
+      local mana = unit:getMaxMana()
+
+      print(unitName .. ":" .. level .. "  hp:" .. hp .. " mana:" .. mana)
+    end
+   
   end
 end

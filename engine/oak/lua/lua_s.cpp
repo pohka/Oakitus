@@ -16,6 +16,7 @@
 #include <oak/lua/lua_collision_circle.h>
 #include <oak/lua/lua_animator.h>
 #include <oak/lua/lua_game.h>
+#include <oak/lua/lua_unit.h>
 #include <oak/lua/lua_constants.h>
 
 #include <string>
@@ -56,6 +57,7 @@ void LuaS::registerBindings(lua_State* L)
   LuaCollisionCircle::reg(L);
   LuaAnimator::reg(L);
   LuaScriptHandle::reg(L);
+  LuaUnit::reg(L);
 
 
   lua_newtable(L);

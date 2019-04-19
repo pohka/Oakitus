@@ -58,6 +58,12 @@ static std::vector<JsonComp> COMP_METADATA_STRUCTURE =
   JsonComp("animator", {
     JsonParam("initialAnimID", MetaData::ARG_UINT),
     JsonParam("anims", MetaData::ARG_ARRAY_OBJ, true, UDOBJ_ANIMATION)
+  }),
+  JsonComp("unit", {
+    JsonParam("name", MetaData::ARG_STRING, true),
+    JsonParam("health", MetaData::ARG_NUMBER, false),
+    JsonParam("mana", MetaData::ARG_NUMBER, false),
+    JsonParam("level", MetaData::ARG_UINT, false)
   })
 };
 

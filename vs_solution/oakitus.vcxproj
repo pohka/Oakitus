@@ -70,6 +70,7 @@
     <ClInclude Include="..\engine\oak\components\sprite.h" />
     <ClInclude Include="..\engine\oak\components\sprite_animation.h" />
     <ClInclude Include="..\engine\oak\components\transform.h" />
+    <ClInclude Include="..\engine\oak\components\unit.h" />
     <ClInclude Include="..\engine\oak\core\config.h" />
     <ClInclude Include="..\engine\oak\core\fmath.h" />
     <ClInclude Include="..\engine\oak\core\kvmap.h" />
@@ -107,6 +108,7 @@
     <ClInclude Include="..\engine\oak\lua\lua_script_handle.h" />
     <ClInclude Include="..\engine\oak\lua\lua_sprite.h" />
     <ClInclude Include="..\engine\oak\lua\lua_time.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_unit.h" />
     <ClInclude Include="..\engine\oak\lua\lua_vector.h" />
     <ClInclude Include="..\engine\oak\meta\meta.h" />
     <ClInclude Include="..\engine\oak\meta\meta_def.h" />
@@ -201,6 +203,7 @@
     <ClCompile Include="..\engine\oak\components\sprite.cpp" />
     <ClCompile Include="..\engine\oak\components\sprite_animation.cpp" />
     <ClCompile Include="..\engine\oak\components\transform.cpp" />
+    <ClCompile Include="..\engine\oak\components\unit.cpp" />
     <ClCompile Include="..\engine\oak\core\oakitus.cpp" />
     <ClCompile Include="..\engine\oak\core\resources.cpp" />
     <ClCompile Include="..\engine\oak\debug\debug_input.cpp" />
@@ -227,6 +230,7 @@
     <ClCompile Include="..\engine\oak\lua\lua_script_handle.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_sprite.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_time.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_unit.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_vector.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta.cpp" />
     <ClCompile Include="..\engine\oak\meta\var.cpp" />

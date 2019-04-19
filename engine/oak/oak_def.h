@@ -39,7 +39,8 @@ static const uint REFLECT_RIGID_BODY_2D = 3;
 static const uint REFLECT_SPRITE = 4;
 static const uint REFLECT_CHUNK = 5;
 static const uint REFLECT_LUA_SCRIPT = 6;
-static const uint REFLECT_LAST = 6;
+static const uint REFLECT_UNIT = 7;
+static const uint REFLECT_LAST = 7;
 
 //entity groups
 cnum ENTITY_GROUP_NONE = 0;

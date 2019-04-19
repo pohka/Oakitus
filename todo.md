@@ -1,9 +1,5 @@
 # TODO
 
-## meta programming
-- load textures from meta file
-
-
 ## Platformer
 * move rpg into seperate folder
 * create demo scene with hardcoded tiles

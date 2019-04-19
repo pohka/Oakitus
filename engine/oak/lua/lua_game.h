@@ -16,6 +16,7 @@ namespace oak
 
   private:
     static void addComponent(Entity* ent, const nlohmann::json& params);
+    static void addUnitComp(Entity* ent, const nlohmann::json& data);
   };
 }
 

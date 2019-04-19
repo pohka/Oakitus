@@ -19,6 +19,8 @@
 #include <oak/core/resources.h>
 #include <oak/components/animator.h>
 #include <oak/lua/lua_animator.h>
+#include <oak/components/unit.h>
+#include <oak/lua/lua_unit.h>
 
 #include <oak/lua/lua_s.h>
 
@@ -177,6 +179,7 @@ int LuaEntity::getComponent(lua_State* L)
       else
       {
         LuaS::log("No Sprite component was found in this entity");
+        res = 0;
       }
       break;
     }
@@ -191,6 +194,7 @@ int LuaEntity::getComponent(lua_State* L)
       else
       {
         LuaS::log("No Rigidbody component was found in this entity");
+        res = 0;
       }
       break;
     }
@@ -205,12 +209,28 @@ int LuaEntity::getComponent(lua_State* L)
       else
       {
         LuaS::log("No Animator component was found in this entity");
+        res = 0;
+      }
+      break;
+    }
+    case REFLECT_UNIT :
+    {
+      Unit* unit = entH->ptr->getComponentWithReflection<Unit>(reflectID);
+      if (unit != nullptr)
+      {
+        *reinterpret_cast<LuaUnit**>(lua_newuserdata(L, sizeof(LuaUnit*))) = new LuaUnit(unit);
+        luaL_setmetatable(L, LUA_HANDLE_UNIT);
+      }
+      else
+      {
+        LuaS::log("No Unit component was found in this entity");
+        res = 0;
       }
       break;
     }
     default:
     {
-      LuaS::log("No component found with a matching id");
+      LuaS::log("No component found with a matching id in this entity");
       res = 0;
     }
   }
