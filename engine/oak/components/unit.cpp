@@ -104,3 +104,33 @@ int Unit::getLevel() const
 {
   return level;
 }
+
+void Unit::castAbility(const uint index)
+{
+  if (abilitys.size() > index)
+  {
+    curAbilityCasting = abilitys[index];
+  }
+  else
+  {
+    curAbilityCasting = nullptr;
+  }
+
+  curAbilityCasting->onSpellCast();
+  float preCastTime = curAbilityCasting->getPreCastTime();
+  if (preCastTime <= 0.0f)
+  {
+    curAbilityCasting->onSpellStart();
+  }
+}
+
+
+uint Unit::getAbilityCount() const
+{
+  return abilitys.size();
+}
+
+void Unit::addAbility(Ability* ability)
+{
+  abilitys.push_back(ability);
+}

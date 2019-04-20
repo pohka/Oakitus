@@ -132,3 +132,19 @@ void LuaS::setScript(LuaScript* script)
 {
   curScript->set(script);
 }
+
+bool LuaS::setFunc(const char* filePath, const char* className, const char* funcName)
+{
+  LuaS::doFile(filePath);
+  lua_getglobal(LuaS::state, className);
+  if (!lua_isnil(LuaS::state, -1) && lua_istable(LuaS::state, -1))
+  {
+    lua_getfield(LuaS::state, -1, funcName);
+    if (!lua_isnil(LuaS::state, -1) && lua_isfunction(LuaS::state, -1))
+    {
+      return true;
+    }
+  }
+
+  return false;
+}

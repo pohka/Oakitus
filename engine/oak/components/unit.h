@@ -22,6 +22,12 @@ namespace oak
 
     std::vector<Ability*> abilitys;
 
+    uchar ABILITY_STATE_NONE = 0;
+    uchar ABILITY_STATE_PRECAST = 1;
+    uchar ABILITY_STATE_CASTING = 2;
+
+    Ability* curAbilityCasting = nullptr;
+
   public:
     Unit(const std::string& name);
     ~Unit();
@@ -41,7 +47,10 @@ namespace oak
     void setMaxMana(const int maxMana);
     void setStartingLevel(int level);
 
-    
+    void castAbility(const uint index);
+    uint getAbilityCount() const;
+
+    void addAbility(Ability* ability);
   };
 }
 

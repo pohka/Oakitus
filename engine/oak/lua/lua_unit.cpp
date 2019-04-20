@@ -1,5 +1,6 @@
 #include <oak/lua/lua_unit.h>
 #include <oak/lua/lua_constants.h>
+#include <oak/debug.h>
 
 using namespace oak;
 
@@ -24,6 +25,7 @@ void LuaUnit::reg(lua_State* L)
   lua_pushcfunction(L, getMaxMana); lua_setfield(L, -2, "getMaxMana");
   lua_pushcfunction(L, getMana); lua_setfield(L, -2, "getMana");
   lua_pushcfunction(L, getLevel); lua_setfield(L, -2, "getLevel");
+  lua_pushcfunction(L, castAbility); lua_setfield(L, -2, "castAbility");
   lua_pop(L, 1);
 }
 
@@ -73,4 +75,17 @@ int LuaUnit::getLevel(lua_State* L)
   LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
   lua_pushnumber(L, unitH->unit->getLevel());
   return 1;
+}
+
+
+int LuaUnit::castAbility(lua_State* L)
+{
+  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  int abilityIndex = luaL_checkinteger(L, 2);
+
+  if (abilityIndex >= 0 && abilityIndex < unitH->unit->getAbilityCount())
+  {
+    unitH->unit->castAbility(abilityIndex);
+  }
+  return 0;
 }

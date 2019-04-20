@@ -13,6 +13,7 @@
 #include <oak/lua/lua_rigid_body_2d.h>
 #include <oak/lua/lua_script.h>
 #include <oak/lua/lua_animator.h>
+#include <oak/lua/lua_ability.h>
 
 #include <oak/ecs/entity_manager.h>
 #include <oak/core/resources.h>
@@ -252,5 +253,13 @@ void LuaGame::addUnitComp(Entity* ent, const nlohmann::json& data)
   {
     unit->setStartingLevel((int)it.value());
   }
+  it = data.find("ability0");
+  if (it != data.end())
+  {
+    std::string keyName = it.value();
+    LuaAbility* abil = new LuaAbility(keyName);
+    unit->addAbility(abil);
+  }
+
   ent->addComponent(unit);
 }

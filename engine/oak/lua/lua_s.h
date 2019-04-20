@@ -26,6 +26,9 @@ namespace oak
     static void log(const std::string& msg);
     static void setScript(LuaScript* script);
 
+    //sets the func to be called, returns false if the function does not exist
+    static bool setFunc(const char* filePath, const char* className, const char* funcName);
+
 
     static const LuaScriptHandle* getScriptHandle()
     {

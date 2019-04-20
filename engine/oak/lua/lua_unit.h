@@ -26,6 +26,7 @@ namespace oak
     static int getMana(lua_State* L);
     static int getMaxMana(lua_State* L);
     static int getLevel(lua_State* L);
+    static int castAbility(lua_State* L);
   };
 }
 

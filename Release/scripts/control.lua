@@ -53,7 +53,7 @@ function control:onTick()
 
   --print("in lua")
 
-  if Input:isKeyPressed(KEY.U) then
+  if Input:isKeyDown(KEY.U) then
     local unit = entity:getComponent(COMP_UNIT)
     if unit ~= nil then
       local unitName = unit:getUnitName()
@@ -63,7 +63,9 @@ function control:onTick()
       local mana = unit:getMana()
       local maxMana = unit:getMaxMana()
 
-      print(unitName .. ":" .. level .. "  hp:" .. hp .. "/" .. maxHP .. " mana:" .. mana .. "/" .. maxMana)
+      --print(unitName .. ":" .. level .. "  hp:" .. hp .. "/" .. maxHP .. " mana:" .. mana .. "/" .. maxMana)
+
+      unit:castAbility(0)
     end
    
   end
