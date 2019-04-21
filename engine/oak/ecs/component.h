@@ -33,9 +33,10 @@ namespace oak
       float getTickingInterval() const;
       const uint _REFLECT_ID;
       
+      Entity* getOwnerEntity();
      
     protected:
-	    oak::Entity* entity; ///<summary>The owner Entity</summary>
+	    oak::Entity* entity; //The owner Entity
 
        //EVENTS
       //---------------------------------------

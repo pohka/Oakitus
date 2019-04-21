@@ -20,26 +20,6 @@ namespace oak
     void onSpellStart() override;
     
   };
-
-  //class LuaAbilityHandler
-  //{
-  //  Ability* ptr;
-
-  //public:
-  //  LuaAbilityHandler(Ability* ability)
-  //  {
-  //    ptr = ability;
-  //  }
-  //  ~LuaAbilityHandler()
-  //  {
-
-  //  }
-
-  //  static void reg(lua_State* L);
-
-  //  static int lua_delete(lua_State* L);
-  //  static int getName(lua_State* L);
-  //};
 }
 
 #endif

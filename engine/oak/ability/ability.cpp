@@ -31,3 +31,8 @@ float Ability::getPreCastTime()
 {
   return preCastTime;
 }
+
+void Ability::setOwner(Unit* unit)
+{
+  owner = unit;
+}

@@ -1,7 +1,7 @@
 control = {}
 
 function control:onCreate()
-  script:setKV("score", 100)
+  thisScript:setKV("score", 100)
 end
 
 function control:onTick()
@@ -38,10 +38,10 @@ function control:onTick()
 
   --shooting
   if Input:isKeyDown(KEY.SPACE) then
-    local score = script:getKV("score")
+    local score = thisScript:getKV("score")
     print(score)
     score = score + 100;
-    script:setKV("score", score)
+    thisScript:setKV("score", score)
 
     local pos = unit:getPosition()
     local bullet = Game:createEnt("bullet", pos)
@@ -54,7 +54,7 @@ function control:onTick()
   --print("in lua")
 
   if Input:isKeyDown(KEY.U) then
-    local unit = entity:getComponent(COMP_UNIT)
+    local unit = thisEntity:getComponent(COMP_UNIT)
     if unit ~= nil then
       local unitName = unit:getUnitName()
       local level = unit:getLevel()

@@ -6,6 +6,7 @@
 #include <map>
 #include <oak/lua/lua_entity.h>
 #include <oak/lua/lua_script_handle.h>
+#include <oak/lua/lua_ability_handler.h>
 
 namespace oak
 {
@@ -25,6 +26,7 @@ namespace oak
     static void close();
     static void log(const std::string& msg);
     static void setScript(LuaScript* script);
+    static void setAbility(LuaAbility* ability);
 
     //sets the func to be called, returns false if the function does not exist
     static bool setFunc(const char* filePath, const char* className, const char* funcName);
@@ -35,11 +37,17 @@ namespace oak
       return curScript;
     }
 
+    static const LuaAbilityHandler* getAbilityHandler()
+    {
+      return curAbility;
+    }
+
   private:
     static std::map<std::string, std::string> files;
     static std::string curLoadedFile;
     static LuaEntity* curEntity;
     static LuaScriptHandle* curScript;
+    static LuaAbilityHandler* curAbility;
   };
 }
 

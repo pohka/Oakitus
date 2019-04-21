@@ -2,14 +2,14 @@ projectile = {}
 
 function projectile:onCreate()
   --setThink("destroy", "destroy", 2)
-  local duration = script:getKV("duration")
+  local duration = thisScript:getKV("duration")
   print(duration)
-  entity:destroy(duration)
+  thisEntity:destroy(duration)
 end
 
 function projectile:onTick()
   local speed = 200 * getDeltaTime()
-  entity:moveBy(speed, 0)
+  thisEntity:moveBy(speed, 0)
 end
 
 

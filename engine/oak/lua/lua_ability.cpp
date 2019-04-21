@@ -1,5 +1,6 @@
 #include <oak/lua/lua_ability.h>
 #include <oak/lua/lua_s.h>
+#include <oak/components/unit.h>
 
 using namespace oak;
 
@@ -26,6 +27,9 @@ void LuaAbility::onSpellCast()
   bool hasFunc = LuaS::setFunc(scriptFilePath.c_str(), name.c_str(), "onSpellCast");
   if (hasFunc)
   {
+    LuaS::setAbility(this);
+    Entity* ent = this->owner->getOwnerEntity();
+    LuaS::setEntity(ent);
     LuaS::call();
   }
 }
@@ -35,6 +39,9 @@ void LuaAbility::onSpellStart()
   bool hasFunc = LuaS::setFunc(scriptFilePath.c_str(), name.c_str(), "onSpellStart");
   if (hasFunc)
   {
+    LuaS::setAbility(this);
+    Entity* ent = this->owner->getOwnerEntity();
+    LuaS::setEntity(ent);
     LuaS::call();
   }
 }

@@ -8,7 +8,11 @@ namespace oak
   static const char* LUA_INPUT = "Input";
   static const char* LUA_PLAYER_RESOURCE = "PlayerResource";
   static const char* LUA_KEYCODE = "KEY";
-  static const char* LUA_ENTITY = "entity"; //entity handle instance
+
+
+  static const char* LUA_ENTITY = "thisEntity"; //entity handle instance
+  static const char* LUA_SCRIPT = "thisScript"; //entity handle instance
+  static const char* LUA_ABILITY = "thisAbility"; //entity handle instance
 
   static const char* LUA_HANDLE_ENTITY = "EntityH"; //entity handle instance
   static const char* LUA_HANDLE_SCRIPT = "ScriptH";
@@ -18,7 +22,8 @@ namespace oak
   static const char* LUA_HANDLE_COLLISION_RECT = "CollisionRectH";
   static const char* LUA_HANDLE_COLLISION_CIRCLE = "CollisionCircleH";
   static const char* LUA_HANDLE_ANIMATOR = "AnimatorH";
-  static const char* LUA_HANDLE_UNIT = "unitH";
+  static const char* LUA_HANDLE_UNIT = "UnitH";
+  static const char* LUA_HANDLE_ABILITY = "AbilityH";
 
   static const char* LUA_ON_LOAD = "onLoad";
 

@@ -132,5 +132,6 @@ uint Unit::getAbilityCount() const
 
 void Unit::addAbility(Ability* ability)
 {
+  ability->setOwner(this);
   abilitys.push_back(ability);
 }

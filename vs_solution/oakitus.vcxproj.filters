@@ -468,6 +468,9 @@
     <ClInclude Include="..\engine\oak\lua\lua_ability.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_ability_handler.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -803,6 +806,9 @@
       <Filter>oak\ability</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_ability.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_ability_handler.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
   </ItemGroup>

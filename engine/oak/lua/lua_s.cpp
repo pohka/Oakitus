@@ -15,6 +15,7 @@
 #include <oak/lua/lua_collision_rect.h>
 #include <oak/lua/lua_collision_circle.h>
 #include <oak/lua/lua_animator.h>
+#include <oak/lua/lua_ability_handler.h>
 #include <oak/lua/lua_game.h>
 #include <oak/lua/lua_unit.h>
 #include <oak/lua/lua_constants.h>
@@ -31,6 +32,7 @@ std::map<std::string, std::string> LuaS::files = {};
 std::string LuaS::curLoadedFile = "";
 LuaEntity* LuaS::curEntity = new LuaEntity(nullptr);
 LuaScriptHandle* LuaS::curScript = new LuaScriptHandle(nullptr);
+LuaAbilityHandler* LuaS::curAbility = new LuaAbilityHandler(nullptr);
 
 void LuaS::init(const std::string& path)
 {
@@ -58,8 +60,9 @@ void LuaS::registerBindings(lua_State* L)
   LuaAnimator::reg(L);
   LuaScriptHandle::reg(L);
   LuaUnit::reg(L);
+  LuaAbilityHandler::reg(L);
 
-
+  //global accessor for instances
   lua_newtable(L);
   *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = LuaS::curEntity;
   luaL_setmetatable(L, LUA_HANDLE_ENTITY);
@@ -68,7 +71,12 @@ void LuaS::registerBindings(lua_State* L)
   lua_newtable(L);
   *reinterpret_cast<LuaScriptHandle**>(lua_newuserdata(L, sizeof(LuaScriptHandle*))) = LuaS::curScript;
   luaL_setmetatable(L, LUA_HANDLE_SCRIPT);
-  lua_setglobal(L, "script");
+  lua_setglobal(L, LUA_SCRIPT);
+
+  lua_newtable(L);
+  *reinterpret_cast<LuaAbilityHandler**>(lua_newuserdata(L, sizeof(LuaAbilityHandler*))) = LuaS::curAbility;
+  luaL_setmetatable(L, LUA_HANDLE_ABILITY);
+  lua_setglobal(L, LUA_ABILITY);
 }
 
 void LuaS::loadFile(const std::string& fileName)
@@ -147,4 +155,9 @@ bool LuaS::setFunc(const char* filePath, const char* className, const char* func
   }
 
   return false;
+}
+
+void LuaS::setAbility(LuaAbility* ability)
+{
+  curAbility->set(ability);
 }

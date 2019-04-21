@@ -5,6 +5,8 @@
 
 namespace oak
 {
+  class Unit;
+
   class Ability
   {
     
@@ -39,10 +41,13 @@ namespace oak
     //virtual void onTakeDamage() = 0;
     //virtual void onDealDamage() = 0;
 
+    void setOwner(Unit* unit);
+
   protected:
     const std::string name;
     unsigned int abilityID = 0;
     float preCastTime = 0.0f;
+    Unit* owner = nullptr;
   };
 }
 

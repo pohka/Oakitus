@@ -70,3 +70,8 @@ float Component::getTickingInterval() const
 {
   return ticker.interval;
 }
+
+Entity* Component::getOwnerEntity()
+{
+  return entity;
+}
