@@ -5,6 +5,9 @@
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_time.h>
 #include <oak/lua/lua_script_handle.h>
+#include <oak/lua/lua_unit.h>
+#include <oak/lua/lua_ability_handler.h>
+#include <oak/ability/combat.h>
 
 using namespace oak;
 
@@ -19,6 +22,9 @@ void LuaGlobal::reg(lua_State* L)
 
   lua_register(L, "setThink", LuaScriptHandle::setThink);
   
+
+  lua_register(L, "applyDamage", applyDamage);
+  lua_register(L, "applyHeal", applyHeal);
 
   lua_pushinteger(L, REFLECT_SPRITE);
   lua_setglobal(L, "COMP_SPRITE");
@@ -66,3 +72,28 @@ int LuaGlobal::log(lua_State* L)
   return 0;
 }
 
+int LuaGlobal::applyDamage(lua_State* L)
+{
+  LuaUnit* victimH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaUnit* attackerH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 2, LUA_HANDLE_UNIT));
+  int amount = (int)luaL_checkinteger(L, 3);
+  LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 4, LUA_HANDLE_ABILITY));
+  int elementType = luaL_checkinteger(L, 5);
+
+  Combat::applyDamage(victimH->unit, attackerH->unit, amount, abilityH->ptr, elementType);
+
+  return 0;
+}
+
+int LuaGlobal::applyHeal(lua_State* L)
+{
+  LuaUnit* receiverH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaUnit* giverH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 2, LUA_HANDLE_UNIT));
+  int amount = (int)luaL_checkinteger(L, 3);
+  LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 4, LUA_HANDLE_ABILITY));
+  int elementType = luaL_checkinteger(L, 5);
+
+  Combat::applyDamage(receiverH->unit, giverH->unit, amount, abilityH->ptr, elementType);
+
+  return 0;
+}

@@ -9,11 +9,13 @@ namespace oak
 {
   class LuaAbilityHandler
   {
-    LuaAbility* ptr;
+    
 
   public:
     LuaAbilityHandler(LuaAbility* ability);
     ~LuaAbilityHandler();
+
+    LuaAbility* ptr;
 
     void set(LuaAbility* ability);
 

@@ -20,6 +20,7 @@
 #include <oak/lua/lua_s.h>
 #include <oak/core/config.h>
 #include <oak/meta/meta_data.h>
+#include <oak/ability/combat.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
@@ -77,6 +78,8 @@ void Oakitus::init()
 
   PlayerResource::addPlayer(new Player());
 
+  Combat::init();
+
   //loads scripts/main.lua
   LuaS::init();
 
@@ -106,6 +109,7 @@ int Oakitus::loop()
     EntityManager::tickInstances(TICK_GROUP_DEFAULT);
     Collision::resolveCollisions();
     EntityManager::tickInstances(TICK_GROUP_AFTER_PHYSICS);
+    Combat::onTick();
     EntityManager::tickInstances(TICK_GROUP_LAST);
     EntityManager::drawInstances();
 

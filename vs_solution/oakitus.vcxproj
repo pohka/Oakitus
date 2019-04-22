@@ -54,6 +54,7 @@
     <ClInclude Include="..\engine\lua\lvm.h" />
     <ClInclude Include="..\engine\lua\lzio.h" />
     <ClInclude Include="..\engine\oak\ability\ability.h" />
+    <ClInclude Include="..\engine\oak\ability\combat.h" />
     <ClInclude Include="..\engine\oak\ability\modifier.h" />
     <ClInclude Include="..\engine\oak\assets\asset.h" />
     <ClInclude Include="..\engine\oak\assets\shader.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="..\engine\lua\lvm.c" />
     <ClCompile Include="..\engine\lua\lzio.c" />
     <ClCompile Include="..\engine\oak\ability\ability.cpp" />
+    <ClCompile Include="..\engine\oak\ability\combat.cpp" />
     <ClCompile Include="..\engine\oak\ability\modifier.cpp" />
     <ClCompile Include="..\engine\oak\assets\asset.cpp" />
     <ClCompile Include="..\engine\oak\assets\shader.cpp" />

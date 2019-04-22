@@ -10,13 +10,15 @@ namespace oak
 
   class LuaUnit
   {
-    Unit* unit;
+    
 
   public:
     LuaUnit(Unit* unit);
     ~LuaUnit();
 
     static void reg(lua_State* L);
+
+    Unit* unit;
 
   private:
     static int lua_delete(lua_State* L);

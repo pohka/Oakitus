@@ -14,4 +14,8 @@ function my_abil:onSpellStart()
   local pos = thisEntity:getPosition()
   local bullet = Game:createEnt("bullet", pos)
   thisAbility:levelUp()
+  local owner = thisAbility:getUnitOwner()
+
+  applyDamage(owner, owner, 10, thisAbility, 0)
+  print("HP:" .. owner:getHealth())
 end

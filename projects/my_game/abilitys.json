@@ -2,7 +2,7 @@
   "my_abil" :
   {
     "manaCost" : "40 30 20 10 10",
-    "cooldown" : "4",
+    "cooldown" : "1",
     "maxLevel" : 5,
     "duration" : "0.5",
     "preCastTime" : 0.0
