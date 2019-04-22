@@ -20,6 +20,8 @@
 #include <oak/lua/lua_s.h>
 
 #include <oak/components/unit.h>
+#include <oak/meta/prefab_validator.h>
+#include <oak/meta/meta_data.h>
 
 
 using namespace oak;
@@ -64,8 +66,7 @@ int LuaGame::createEnt(lua_State* L)
   const std::string name = lua_tostring(L, 2);
 
   LuaScene* scene = static_cast<LuaScene*>(SceneManager::getCurrentScene());
-  const MetaData& meta = scene->getMetaData();
-  bool isValidated = meta.isPrefabValidated(name);
+  bool isValidated = PrefabValidator::isPrefabValidated(name);
 
   if (!isValidated)
   {
@@ -73,7 +74,8 @@ int LuaGame::createEnt(lua_State* L)
     return 0;
   }
 
-  nlohmann::json entData = meta.getPrefabData(name);
+  auto meta = MetaData::getData(META_DATA_KEY_SCENE);
+  nlohmann::json entData = meta["prefabs"][name];
 
   Entity* ent = new Entity();
   ent->name = name;

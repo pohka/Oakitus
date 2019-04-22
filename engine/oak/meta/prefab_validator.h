@@ -1,5 +1,5 @@
-#ifndef META_DATA_H
-#define META_DATA_H
+#ifndef SCENE_META_DATA_H
+#define SCENE_META_DATA_H
 
 #include <nlohmann/json.hpp>
 #include <oak/scene/scene.h>
@@ -75,40 +75,20 @@ namespace oak
 
 
 
-  class MetaData
+  class PrefabValidator
   {
   public:
-    //argument types
-    static const char ARG_NUMBER = 1;
-    static const char ARG_INT = 2;
-    static const char ARG_UINT = 3;
-    static const char ARG_STRING = 4;
-    static const char ARG_BOOLEAN = 5;
-    static const char ARG_ARRAY_OBJ = 6;
-
-    MetaData();
-    ~MetaData();
-    void load(Scene* scene, const char* fullPath);
-    nlohmann::json getPrefabData(const std::string& name) const;
-    bool isPrefabValidated(const std::string& name) const;
+    static void validate();
+    static bool isPrefabValidated(const std::string& name);
 
   private:
-    std::vector<std::string> validatedPrefabs = {};
-    nlohmann::json data;
-    bool isLoaded = false;
-
-    void setPrecacheFromData(Scene* scene);
-
+    static std::vector<std::string> validatedPrefabs;
     //validation functions
     //--------------------------------
 
-    void validatePrefabData();
-
-    static void checkCompForUnusedKVs(const char* prefabName, const nlohmann::json& comp);
-
     
+    static void checkCompForUnusedKVs(const char* prefabName, const nlohmann::json& comp);
     static bool validateComp(const char* prefabName, const nlohmann::json& comp);
-
     static bool validatePrimitiveType(const nlohmann::json& val, const char type);
 
     static bool validateArg(

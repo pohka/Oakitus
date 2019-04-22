@@ -8,6 +8,8 @@ Ability::Ability(const std::string& name) : name(name)
 {
   abilityID = abilityCounter;
   abilityCounter++;
+
+
 }
 
 Ability::~Ability() {}

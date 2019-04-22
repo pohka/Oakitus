@@ -22,7 +22,6 @@ namespace oak
     //channelTime
     //AoERadius
 
-
   public:
     Ability(const std::string& name);
     ~Ability();
@@ -47,6 +46,8 @@ namespace oak
     const std::string name;
     unsigned int abilityID = 0;
     float preCastTime = 0.0f;
+    float cooldown = 0.0f;
+    int manaCost = 0;
     Unit* owner = nullptr;
   };
 }

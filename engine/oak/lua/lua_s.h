@@ -12,7 +12,7 @@ namespace oak
 {
   struct LuaS
   {
-    static void init(const std::string& path);
+    static void init();
     static void registerBindings(lua_State* L);
 
     static lua_State* state;

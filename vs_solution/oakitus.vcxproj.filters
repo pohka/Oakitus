@@ -180,21 +180,6 @@
     <ClInclude Include="..\engine\oak\xml\xml_parser.h">
       <Filter>oak\xml</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta_def.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\var.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\var_base.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\var_object.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\event\event.h">
       <Filter>oak\event</Filter>
     </ClInclude>
@@ -444,9 +429,6 @@
     <ClInclude Include="..\engine\oak\lua\lua_game.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\scene\meta_data.h">
-      <Filter>oak\scene</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\lua\lua_script_handle.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
@@ -470,6 +452,15 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\lua\lua_ability_handler.h">
       <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\meta_data.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\prefab_validator.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\ability_validator.h">
+      <Filter>oak\meta</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -544,15 +535,6 @@
     </ClCompile>
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\glad.c" />
-    <ClCompile Include="..\engine\oak\meta\meta.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\var.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\var_object.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\event\event_manager.cpp">
       <Filter>oak\event</Filter>
     </ClCompile>
@@ -784,9 +766,6 @@
     <ClCompile Include="..\engine\oak\lua\lua_game.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\scene\meta_data.cpp">
-      <Filter>oak\scene</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_script_handle.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
@@ -810,6 +789,15 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_ability_handler.cpp">
       <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\prefab_validator.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\ability_validator.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\meta_data.cpp">
+      <Filter>oak\meta</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

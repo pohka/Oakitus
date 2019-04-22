@@ -19,6 +19,7 @@
 #include <oak/time/time.h>
 #include <oak/lua/lua_s.h>
 #include <oak/core/config.h>
+#include <oak/meta/meta_data.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
@@ -39,6 +40,7 @@ void Oakitus::init()
 
   std::string projectName = Config::getString("project", "default");
   std::string projectPath = "../projects/" + projectName + "/";
+  MetaData::projectPath = projectPath;
   Resources::rootPath = projectPath + "resources/";
 
   Camera::init(
@@ -76,7 +78,7 @@ void Oakitus::init()
   PlayerResource::addPlayer(new Player());
 
   //loads scripts/main.lua
-  LuaS::init(projectPath);
+  LuaS::init();
 
   //Oakitus::load();
   loop();

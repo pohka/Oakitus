@@ -34,13 +34,14 @@ LuaEntity* LuaS::curEntity = new LuaEntity(nullptr);
 LuaScriptHandle* LuaS::curScript = new LuaScriptHandle(nullptr);
 LuaAbilityHandler* LuaS::curAbility = new LuaAbilityHandler(nullptr);
 
-void LuaS::init(const std::string& path)
+void LuaS::init()
 {
   LuaS::state = luaL_newstate();
   luaL_openlibs(LuaS::state);
   registerBindings(LuaS::state);
 
-  LuaScene* scene = new LuaScene(path);
+  MetaData::load(META_DATA_KEY_ABILITYS, "abilitys.json");
+  LuaScene* scene = new LuaScene("file.json");
   SceneManager::loadFirstScene(scene);
 }
 

@@ -8,6 +8,7 @@
 #include <oak/lua/lua_script.h>
 #include <oak/lua/lua_s.h>
 #include <oak/lua/lua_constants.h>
+#include <oak/meta/prefab_validator.h>
 
 
 
@@ -20,14 +21,12 @@ LuaScene* LuaScene::scene = nullptr;
 
 
 
-LuaScene::LuaScene(std::string path) : Scene()
+LuaScene::LuaScene(const std::string& name) : Scene()
 {
-  this->path = path;
-  meta = MetaData();
-  std::string fullPath = path + "file.json";
-  meta.load(this, fullPath.c_str());
-  
-
+  this->name = name;
+  MetaData::load(META_DATA_KEY_SCENE, name);
+  setPrecacheFromMetaData();
+  PrefabValidator::validate();
   LuaScene::scene = this;
 }
 
@@ -54,7 +53,45 @@ void LuaScene::onLoad()
 }
 
 
-const MetaData& LuaScene::getMetaData() const
+void LuaScene::setPrecacheFromMetaData()
 {
-  return meta;
+  auto data = MetaData::getData(META_DATA_KEY_SCENE);
+
+  //reading precache asset names
+  if (data["precache"] != nullptr)
+  {
+    //textures
+    if (data["precache"]["textures"] != nullptr)
+    {
+      for (unsigned int i = 0; i < data["precache"]["textures"].size(); i++)
+      {
+        if (data["precache"]["textures"][i].is_string())
+        {
+          precache.textures.push_back(data["precache"]["textures"][i]);
+        }
+      }
+    }
+    //shaders
+    if (data["precache"]["shaders"] != nullptr)
+    {
+      for (unsigned int i = 0; i < data["precache"]["shaders"].size(); i++)
+      {
+        if (data["precache"]["shaders"][i].is_string())
+        {
+          precache.shaders.push_back(data["precache"]["shaders"][i]);
+        }
+      }
+    }
+    //fonts
+    if (data["precache"]["fonts"] != nullptr)
+    {
+      for (unsigned int i = 0; i < data["precache"]["fonts"].size(); i++)
+      {
+        if (data["precache"]["fonts"][i].is_string())
+        {
+          precache.fonts.push_back(data["precache"]["fonts"][i]);
+        }
+      }
+    }
+  }
 }

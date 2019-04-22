@@ -25,6 +25,12 @@ namespace oak
     //todo:
     //static int getOwner(lua_State* L);
     //static int getKV(lua_State* L);
+    //static int getCooldown(lua_State* L);
+    //static int isCooldownReady(lua_State* L);
+    //static int getCooldownTimeRemaining(lua_State* L);
+    //static int hasOwnerEnoughMana(lua_State* L);
+    //static int getManaCost(lua_State* L);
+
   };
 }
 

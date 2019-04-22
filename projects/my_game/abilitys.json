@@ -1,0 +1,7 @@
+{
+  "my_abil" :
+  {
+    "manaCost" : 40,
+    "cooldown" : 4
+  }
+}

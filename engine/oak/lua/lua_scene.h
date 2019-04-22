@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <oak/ecs/entity.h>
 #include <vector>
-#include <oak/scene/meta_data.h>
+#include <oak/meta/meta_data.h>
 
 namespace oak
 {
@@ -16,15 +16,14 @@ namespace oak
   {
     static LuaScene* scene; //is this needed?, probably bad practice. scene manger already exposes the scene
     
-    std::string path;
-    MetaData meta;
+    //scene key name
+    std::string name;
 
   public:
 
-    LuaScene(std::string path);
+    LuaScene(const std::string& name);
     void onLoad() override;
-
-    const MetaData& getMetaData() const;
+    void setPrecacheFromMetaData();
 
   private:
   };

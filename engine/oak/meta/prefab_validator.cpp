@@ -1,13 +1,17 @@
-#include <oak/scene/meta_data.h>
+#include <oak/meta/prefab_validator.h>
 #include <oak/debug.h>
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <oak/core/resources.h>
 #include <map>
+#include <oak/meta/meta_data.h>
+
 //#include <oak/scene/scene.h>
 
 using namespace oak;
+
+std::vector<std::string> PrefabValidator::validatedPrefabs = {};
 
 //user defined object IDs
 cnum UDOBJ_NULL= 0;
@@ -16,16 +20,16 @@ cnum UDOBJ_ANIMATION = 1;
 //user defined objects
 static std::vector<JsonObj> UDObjs = { 
     JsonObj(UDOBJ_ANIMATION, {
-      JsonParam("src", MetaData::ARG_STRING),
-      JsonParam("priority", MetaData::ARG_UINT),
-      JsonParam("frameW", MetaData::ARG_UINT),
-      JsonParam("frameH", MetaData::ARG_UINT),
-      JsonParam("displayW", MetaData::ARG_UINT),
-      JsonParam("displayH", MetaData::ARG_UINT),
-      JsonParam("frameDuration", MetaData::ARG_NUMBER),
-      JsonParam("totalFrameCount", MetaData::ARG_UINT),
-      JsonParam("startFrameY", MetaData::ARG_UINT),
-      JsonParam("isLooping", MetaData::ARG_BOOLEAN)
+      JsonParam("src", ARG_STRING),
+      JsonParam("priority", ARG_UINT),
+      JsonParam("frameW", ARG_UINT),
+      JsonParam("frameH", ARG_UINT),
+      JsonParam("displayW", ARG_UINT),
+      JsonParam("displayH", ARG_UINT),
+      JsonParam("frameDuration", ARG_NUMBER),
+      JsonParam("totalFrameCount", ARG_UINT),
+      JsonParam("startFrameY", ARG_UINT),
+      JsonParam("isLooping", ARG_BOOLEAN)
     }) 
 };
 
@@ -33,37 +37,45 @@ static std::vector<JsonObj> UDObjs = {
 static std::vector<JsonComp> COMP_METADATA_STRUCTURE = 
 {
   JsonComp("sprite", {
-    JsonParam("src", MetaData::ARG_STRING),
-    JsonParam("w", MetaData::ARG_UINT),
-    JsonParam("h", MetaData::ARG_UINT)
+    JsonParam("src", ARG_STRING),
+    JsonParam("w", ARG_UINT),
+    JsonParam("h", ARG_UINT)
   }),
   JsonComp("collision_rect", {
-    JsonParam("offsetX", MetaData::ARG_NUMBER),
-    JsonParam("offsetY", MetaData::ARG_NUMBER),
-    JsonParam("w", MetaData::ARG_UINT),
-    JsonParam("h", MetaData::ARG_UINT)
+    JsonParam("offsetX", ARG_NUMBER),
+    JsonParam("offsetY", ARG_NUMBER),
+    JsonParam("w", ARG_UINT),
+    JsonParam("h", ARG_UINT)
   }),
   JsonComp("collision_circle", {
-    JsonParam("offsetX", MetaData::ARG_NUMBER),
-    JsonParam("offsetY", MetaData::ARG_NUMBER),
-    JsonParam("radius", MetaData::ARG_NUMBER)
+    JsonParam("offsetX", ARG_NUMBER),
+    JsonParam("offsetY", ARG_NUMBER),
+    JsonParam("radius", ARG_NUMBER)
   }),
   JsonComp("rigidbody2d", {
-    JsonParam("isStatic", MetaData::ARG_BOOLEAN),
-    JsonParam("mass", MetaData::ARG_NUMBER, false),
+    JsonParam("isStatic", ARG_BOOLEAN),
+    JsonParam("mass", ARG_NUMBER, false),
   }),
   JsonComp("lua_script", {
-    JsonParam("name", MetaData::ARG_STRING)
+    JsonParam("name", ARG_STRING)
   }),
   JsonComp("animator", {
-    JsonParam("initialAnimID", MetaData::ARG_UINT),
-    JsonParam("anims", MetaData::ARG_ARRAY_OBJ, true, UDOBJ_ANIMATION)
+    JsonParam("initialAnimID", ARG_UINT),
+    JsonParam("anims", ARG_ARRAY_OBJ, true, UDOBJ_ANIMATION)
   }),
   JsonComp("unit", {
-    JsonParam("name", MetaData::ARG_STRING, true),
-    JsonParam("health", MetaData::ARG_UINT, false),
-    JsonParam("mana", MetaData::ARG_UINT, false),
-    JsonParam("level", MetaData::ARG_UINT, false)
+    JsonParam("name", ARG_STRING, true),
+    JsonParam("health", ARG_UINT, false),
+    JsonParam("mana", ARG_UINT, false),
+    JsonParam("level", ARG_UINT, false),
+    JsonParam("ability0", ARG_STRING, false),
+    JsonParam("ability1", ARG_STRING, false),
+    JsonParam("ability2", ARG_STRING, false),
+    JsonParam("ability3", ARG_STRING, false),
+    JsonParam("ability4", ARG_STRING, false),
+    JsonParam("ability5", ARG_STRING, false),
+    JsonParam("ability6", ARG_STRING, false),
+    JsonParam("ability7", ARG_STRING, false)
   })
 };
 
@@ -99,109 +111,24 @@ static const JsonObj* getUDObj(const uchar id)
   return nullptr;
 }
 
-MetaData::MetaData()
-{
-
-}
-
-MetaData::~MetaData()
-{
-
-}
-
-//retrun the prefab data
-nlohmann::json MetaData::getPrefabData(const std::string& name) const
-{
-  if (data["prefabs"] == nullptr)
-  {
-    LOG_WARNING << "prefabs is a nullptr";
-  }
-  else
-  {
-    auto res = data["prefabs"][name];
-    if (res == nullptr)
-    {
-      LOG_WARNING << "Prefab not found with name '" << name << "'";
-    }
-    return res;
-  }
-
-  return nullptr;
-  
-}
-
-//load the metadata from path
-void MetaData::load(Scene* scene, const char* fullPath)
-{
-  std::ifstream i(fullPath);
-  i >> data;
-  if (data != nullptr)
-  {
-    setPrecacheFromData(scene);
-    validatePrefabData();
-    isLoaded = true;
-  }
-  i.close();
-}
-
-//setup precache for scene based on the current data loaded
-void MetaData::setPrecacheFromData(Scene* scene)
-{
-  //reading precache asset names
-  if (data["precache"] != nullptr)
-  {
-    //textures
-    if (data["precache"]["textures"] != nullptr)
-    {
-      for (unsigned int i = 0; i < data["precache"]["textures"].size(); i++)
-      {
-        if (data["precache"]["textures"][i].is_string())
-        {
-          scene->precache.textures.push_back(data["precache"]["textures"][i]);
-        }
-      }
-    }
-    //shaders
-    if (data["precache"]["shaders"] != nullptr)
-    {
-      for (unsigned int i = 0; i < data["precache"]["shaders"].size(); i++)
-      {
-        if (data["precache"]["shaders"][i].is_string())
-        {
-          scene->precache.shaders.push_back(data["precache"]["shaders"][i]);
-        }
-      }
-    }
-    //fonts
-    if (data["precache"]["fonts"] != nullptr)
-    {
-      for (unsigned int i = 0; i < data["precache"]["fonts"].size(); i++)
-      {
-        if (data["precache"]["fonts"][i].is_string())
-        {
-          scene->precache.fonts.push_back(data["precache"]["fonts"][i]);
-        }
-      }
-    }
-  }
-}
-
 //validate all prefabs metadata
-void MetaData::validatePrefabData()
+void PrefabValidator::validate()
 {
-  if (data["prefabs"] != nullptr)
+  auto data = MetaData::getData(META_DATA_KEY_SCENE);
+  auto it = data.find("prefabs");
+  if (it != data.end())
   {
     //iterate through each prefab
-    for (auto it : data["prefabs"].items())
+    for (auto prefabIter : it.value().items())
     {
-      const char* prefabName = it.key().c_str();
-      auto prefab = it.value();
+      const char* prefabName = prefabIter.key().c_str();
+      auto prefab = prefabIter.value();
       bool isPrefabValid = true;
 
       //iterate through each component on the current prefab
-      for (auto compIt : prefab.items())
+      for (auto compIter : prefab.items())
       {
-        auto args = compIt.value();
+        auto args = compIter.value();
         if (args.is_object())
         {
           bool isCompValid = validateComp(prefabName, args);
@@ -223,9 +150,9 @@ void MetaData::validatePrefabData()
       }
 
       //check for unused keys
-      for (auto compIt : prefab.items())
+      for (auto compIter : prefab.items())
       {
-        auto compKVs = compIt.value();
+        auto compKVs = compIter.value();
         if (compKVs.is_object())
         {
           checkCompForUnusedKVs(prefabName, compKVs);
@@ -236,7 +163,7 @@ void MetaData::validatePrefabData()
 }
 
 //returns true if a prefab with matching name has been validated
-bool MetaData::isPrefabValidated(const std::string& name) const
+bool PrefabValidator::isPrefabValidated(const std::string& name)
 {
   for (const std::string& prefabName : validatedPrefabs)
   {
@@ -249,13 +176,14 @@ bool MetaData::isPrefabValidated(const std::string& name) const
 }
 
 //validates a component metadata
-bool MetaData::validateComp(const char* prefabName, const nlohmann::json& comp)
+bool PrefabValidator::validateComp(const char* prefabName, const nlohmann::json& comp)
 {
   bool res = true;
 
-  if (comp["class"] != nullptr && comp["class"].is_string())
+  auto it = comp.find("class");
+  if (it!=comp.end() && it.value().is_string())
   {
-    std::string className = comp["class"];
+    std::string className = it.value();
     const JsonComp* compMetaStructure = getMetaStructure(className.c_str());
     if (compMetaStructure != nullptr)
     {
@@ -282,7 +210,7 @@ bool MetaData::validateComp(const char* prefabName, const nlohmann::json& comp)
 }
 
 //validates a primitive type metadata
-bool MetaData::validatePrimitiveType(const nlohmann::json& val, const char type)
+bool PrefabValidator::validatePrimitiveType(const nlohmann::json& val, const char type)
 {
   bool result = false;
   switch (type)
@@ -333,7 +261,7 @@ bool MetaData::validatePrimitiveType(const nlohmann::json& val, const char type)
 }
 
 //validates an argument metadata
-bool MetaData::validateArg(
+bool PrefabValidator::validateArg(
   const std::string& prefabName,
   const nlohmann::json& component,
   const JsonParam* param
@@ -399,7 +327,7 @@ bool MetaData::validateArg(
 
 
 //validates a UDObject metadata
-bool MetaData::validateObj(
+bool PrefabValidator::validateObj(
   const std::string& prefabName,
   const nlohmann::json& objData,
   const JsonObj* objType
@@ -428,7 +356,7 @@ bool MetaData::validateObj(
 }
 
 //checks for unused keys in metadata file
-void MetaData::checkCompForUnusedKVs(const char* prefabName, const nlohmann::json& compKVs)
+void PrefabValidator::checkCompForUnusedKVs(const char* prefabName, const nlohmann::json& compKVs)
 {
   auto a = compKVs.find("class");
   if (a != compKVs.end())
