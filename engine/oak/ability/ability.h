@@ -42,6 +42,9 @@ namespace oak
 
     void setOwner(Unit* unit);
 
+    int getManaCost() const;
+    float getCooldown() const;
+
   protected:
     const std::string name;
     unsigned int abilityID = 0;

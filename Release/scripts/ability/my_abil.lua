@@ -10,6 +10,8 @@ function my_abil:onSpellCast()
     local pos = thisEntity:getPosition()
     local bullet = Game:createEnt("bullet", pos)
     print("created bullet")
+    local mana = thisAbility:getManaCost()
+    print("manacost:" .. mana)
   end
 end
 

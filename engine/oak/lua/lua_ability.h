@@ -18,7 +18,9 @@ namespace oak
 
     void onSpellCast() override;
     void onSpellStart() override;
-    
+
+  private:
+    void loadFromMetaData();
   };
 }
 

@@ -38,3 +38,13 @@ void Ability::setOwner(Unit* unit)
 {
   owner = unit;
 }
+
+int Ability::getManaCost() const
+{
+  return manaCost;
+}
+
+float Ability::getCooldown() const
+{
+  return cooldown;
+}
