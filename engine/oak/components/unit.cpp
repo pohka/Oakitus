@@ -1,6 +1,8 @@
 #include <oak/components/unit.h>
 #include <oak/oak_def.h>
 #include <cmath>
+#include <oak/debug.h>
+#include <oak/core/fmath.h>
 
 using namespace oak;
 
@@ -24,7 +26,47 @@ void Unit::onCreate()
 
 void Unit::onTick()
 {
-  //update modifiers
+  if (isAlive)
+  {
+    updateCastingState();
+
+    //update modifiers
+  }
+
+  for (auto abil : abilitys)
+  {
+    abil->updateCooldownEndTime(Time::deltaTime());
+  }
+}
+
+void Unit::updateCastingState()
+{
+  //move between casting states
+  if (
+    castingState == CASTING_STATE_PRECAST &&
+    Time::getGameTime() >= spellStartTime + curAbilityCasting->getPreCastTime()
+    )
+  {
+    //if unit still has enough mana once the spell starts
+    if (curAbilityCasting->getManaCost() <= mana)
+    {
+      curAbilityCasting->setCooldownEndTime();
+      mana -= curAbilityCasting->getManaCost();
+      curAbilityCasting->onSpellStart();
+      castingState = CASTING_STATE_CASTING;
+    }
+    else
+    {
+      castingState = CASTING_STATE_NONE;
+    }
+  }
+  if (
+    castingState == CASTING_STATE_CASTING &&
+    Time::getGameTime() >= spellEndTime
+    )
+  {
+    castingState = CASTING_STATE_NONE;
+  }
 }
 
 
@@ -56,6 +98,16 @@ int Unit::getMana() const
 const std::string& Unit::getName() const
 {
   return name;
+}
+
+void Unit::setMana(const int mana)
+{
+  this->mana = FMath::clamp(mana, 0, maxMana);
+}
+
+void Unit::setHealth(const int health)
+{
+  this->health = FMath::clamp(health, 0, maxHealth);
 }
 
 void Unit::setMaxHealth(const int maxHealth)
@@ -107,21 +159,39 @@ int Unit::getLevel() const
 
 void Unit::castAbility(const uint index)
 {
-  if (abilitys.size() > index)
+  //currently casting another ability
+  if (castingState != CASTING_STATE_NONE)
   {
-    curAbilityCasting = abilitys[index];
-  }
-  else
-  {
-    curAbilityCasting = nullptr;
+    return;
   }
 
-  curAbilityCasting->onSpellCast();
-  float preCastTime = curAbilityCasting->getPreCastTime();
-  if (preCastTime <= 0.0f)
+  if (index >= abilitys.size())
   {
-    curAbilityCasting->onSpellStart();
+    curAbilityCasting = nullptr;
+    LOG_WARNING << "ability not found at index: " << index;
+    return;
   }
+  curAbilityCasting = abilitys[index];
+
+  //if not enough mana
+  if (curAbilityCasting->getManaCost() > mana)
+  {
+    //todo: not enough mana notification to player
+    return;
+  }
+
+  if (curAbilityCasting->isOffCooldown() == false)
+  {
+    //todo: on cooldown notification to player
+    return;
+  }
+
+
+  spellStartTime = Time::getGameTime();
+  spellEndTime = Time::getGameTime() + curAbilityCasting->getPreCastTime() + curAbilityCasting->getDuration();
+  curAbilityCasting->onSpellCast();
+  castingState = CASTING_STATE_PRECAST;
+  updateCastingState();
 }
 
 
@@ -134,4 +204,16 @@ void Unit::addAbility(Ability* ability)
 {
   ability->setOwner(this);
   abilitys.push_back(ability);
+}
+
+void Unit::giveMana(const int amount)
+{
+  float nextMana = this->mana + amount;
+  this->mana = FMath::clamp(nextMana, 0, maxMana);
+}
+
+void Unit::heal(const int amount)
+{
+  float nextHP = this->health + amount;
+  this->health = FMath::clamp(nextHP, 0, maxHealth);
 }

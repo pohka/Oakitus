@@ -17,8 +17,6 @@ namespace oak
     //unsigned char targetTeam;
     //unsigned char targetType;
     //unsigned char damageType;
-    //float cooldown
-    //int manaCost
     //castRange
     //channelTime
     //AoERadius
@@ -43,14 +41,23 @@ namespace oak
     //virtual void onTakeDamage() = 0;
     //virtual void onDealDamage() = 0;
 
+    void updateCooldownEndTime(const float deltaTime);
+    void setCooldownEndTime();
+    bool isOffCooldown() const;
+    void endCooldown();
+    float getCooldownTimeRemaining() const;
+
     void setOwner(Unit* unit);
 
     int getManaCost() const;
     float getCooldown() const;
+    float getDuration() const;
 
     void levelUp();
     unsigned int getMaxLevel();
     unsigned int getLevel();
+
+    Unit* getUnitOwner() const;
 
   protected:
     unsigned int maxLevel = 1;
@@ -61,6 +68,8 @@ namespace oak
     std::vector<int> manaCost;
     Unit* owner = nullptr;
     unsigned int currentLevel = 1;
+    std::vector<float> duration;
+    float cooldownTimeRemaining = 0.0f;
   };
 }
 

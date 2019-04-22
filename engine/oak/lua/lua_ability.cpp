@@ -89,5 +89,21 @@ void LuaAbility::loadFromMetaData()
     {
       manaCost.push_back(0);
     }
+
+    abilIter = abilData.find("duration");
+    if (abilIter != abilData.end() && abilIter.value().is_string())
+    {
+      duration = MetaData::parseArrayString(abilIter.value());
+    }
+    if (duration.size() == 0)
+    {
+      duration.push_back(0.0f);
+    }
+
+    abilIter = abilData.find("preCastTime");
+    if (abilIter != abilData.end() && abilIter.value().is_number())
+    {
+      preCastTime = abilIter.value();
+    }
   }
 }

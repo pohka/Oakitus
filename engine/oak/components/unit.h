@@ -26,7 +26,15 @@ namespace oak
     uchar ABILITY_STATE_PRECAST = 1;
     uchar ABILITY_STATE_CASTING = 2;
 
+    static const char CASTING_STATE_NONE = 0;
+    static const char CASTING_STATE_PRECAST = 1;
+    static const char CASTING_STATE_CASTING = 2;
+
+    char castingState = CASTING_STATE_NONE;
+
     Ability* curAbilityCasting = nullptr;
+    float spellStartTime = -200.0f;
+    float spellEndTime = -200.0f;
 
   public:
     Unit(const std::string& name);
@@ -35,6 +43,8 @@ namespace oak
     void onCreate() override;
     void onTick() override;
 
+    void updateCastingState();
+
     bool getIsAlive() const;
     int getHealth() const;
     int getMaxHealth() const;
@@ -42,6 +52,12 @@ namespace oak
     int getMana() const;
     int getLevel() const;
     const std::string& getName() const;
+
+    void setMana(const int mana);
+    void setHealth(const int health);
+
+    void giveMana(const int amount);
+    void heal(const int amount);
 
     void setMaxHealth(const int maxHealth);
     void setMaxMana(const int maxMana);

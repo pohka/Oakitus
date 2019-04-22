@@ -92,6 +92,58 @@ float Ability::getCooldown() const
   //no value for the current level, use the last value
   else
   {
-    return cooldown[manaCost.size() - 1];
+    return cooldown[cooldown.size() - 1];
   }
+}
+
+float Ability::getDuration() const
+{
+  //possible invalid level
+  if (currentLevel == 0)
+  {
+    return duration[0];
+  }
+  //get by index
+  else if (currentLevel - 1 < duration.size())
+  {
+    return duration[currentLevel - 1];
+  }
+  //no value for the current level, use the last value
+  else
+  {
+    return duration[duration.size() - 1];
+  }
+}
+
+Unit* Ability::getUnitOwner() const
+{
+  return owner;
+}
+
+void Ability::updateCooldownEndTime(const float deltaTime)
+{
+  if (cooldownTimeRemaining > 0.0f)
+  {
+    cooldownTimeRemaining -= deltaTime;
+  }
+}
+
+void Ability::setCooldownEndTime()
+{
+  cooldownTimeRemaining = getCooldown();
+}
+
+bool Ability::isOffCooldown() const
+{
+  return cooldownTimeRemaining <= 0.0f;
+}
+
+void Ability::endCooldown()
+{
+  cooldownTimeRemaining = 0.0f;
+}
+
+float Ability::getCooldownTimeRemaining() const
+{
+  return cooldownTimeRemaining;
 }
