@@ -4,6 +4,10 @@
 #include <map>
 #include <nlohmann/json.hpp>
 #include <oak/core/types.h>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <iostream>
 
 namespace oak
 {
@@ -29,6 +33,21 @@ namespace oak
 
     static void load(uchar type, const std::string& fileName);
     static const nlohmann::json& getData(uchar type);
+
+    static std::vector<float> parseArrayString(const std::string& value)
+    {
+      std::istringstream iss(value);
+      std::vector<std::string> results(
+        std::istream_iterator<std::string>{iss},
+        std::istream_iterator<std::string>());
+
+      std::vector<float> resultF;
+      for (std::string& str : results)
+      {
+        resultF.push_back(stof(str));
+      }
+      return resultF;
+    }
   };
 }
 

@@ -34,3 +34,4 @@ const nlohmann::json& MetaData::getData(uchar type)
 {
   return dataMap[type];
 }
+

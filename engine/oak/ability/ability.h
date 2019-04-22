@@ -2,6 +2,7 @@
 #define ABILITY_H
 
 #include <string>
+#include <vector>
 
 namespace oak
 {
@@ -36,6 +37,8 @@ namespace oak
     float getPreCastTime();
     //for later
     //virtual void onDeath() = 0;
+    //virtual void onCreate() = 0;
+    //virtual void onDestroy() = 0;
     //virtual void onKill() = 0;
     //virtual void onTakeDamage() = 0;
     //virtual void onDealDamage() = 0;
@@ -45,13 +48,19 @@ namespace oak
     int getManaCost() const;
     float getCooldown() const;
 
+    void levelUp();
+    unsigned int getMaxLevel();
+    unsigned int getLevel();
+
   protected:
+    unsigned int maxLevel = 1;
     const std::string name;
     unsigned int abilityID = 0;
     float preCastTime = 0.0f;
-    float cooldown = 0.0f;
-    int manaCost = 0;
+    std::vector<float> cooldown;
+    std::vector<int> manaCost;
     Unit* owner = nullptr;
+    unsigned int currentLevel = 1;
   };
 }
 

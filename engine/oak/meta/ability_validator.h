@@ -3,8 +3,10 @@
 
 namespace oak
 {
+
   class AbilityValidator
   {
+
   public:
     static void validate();
   };

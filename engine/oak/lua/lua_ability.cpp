@@ -13,10 +13,10 @@ LuaAbility::LuaAbility(const std::string& name) : Ability(name)
 
   scriptFilePath = LuaAbility::PATH + name + ".lua";
   LuaS::loadFile(scriptFilePath);
-  LuaS::doFile(scriptFilePath);
+ // LuaS::doFile(scriptFilePath);
 
-  lua_getglobal(LuaS::state, name.c_str());
-  lua_getfield(LuaS::state, -1, "onSpellCast");
+  //lua_getglobal(LuaS::state, name.c_str());
+  //lua_getfield(LuaS::state, -1, "onSpellCast");
 }
 
 LuaAbility::~LuaAbility()
@@ -57,18 +57,37 @@ void LuaAbility::loadFromMetaData()
   {
     auto abilData = it.value();
 
-    //cooldown
-    auto abilIter = abilData.find("cooldown");
-    if (abilIter != abilData.end() && abilIter.value().is_number())
+    //maxLevel
+    auto abilIter = abilData.find("maxLevel");
+    if (abilIter != abilData.end() && abilIter.value().is_number_unsigned())
     {
-      cooldown = (float)abilIter.value();
+      maxLevel = abilIter.value();
+    }
+
+    //cooldown
+    abilIter = abilData.find("cooldown");
+    if (abilIter != abilData.end() && abilIter.value().is_string())
+    {
+      cooldown = MetaData::parseArrayString(abilIter.value());
+    }
+    if (cooldown.size() == 0)
+    {
+      cooldown.push_back(0.0f);
     }
 
     //manaCost
     abilIter = abilData.find("manaCost");
-    if (abilIter != abilData.end() && abilIter.value().is_number_integer())
+    if (abilIter != abilData.end() && abilIter.value().is_string())
     {
-      manaCost = (int)abilIter.value();
+      auto result = MetaData::parseArrayString(abilIter.value());
+      for (auto v : result)
+      {
+        manaCost.push_back((int)v);
+      }
+    }
+    if (manaCost.size() == 0)
+    {
+      manaCost.push_back(0);
     }
   }
 }

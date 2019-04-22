@@ -30,6 +30,9 @@ namespace oak
     //static int getCooldownTimeRemaining(lua_State* L);
     //static int hasOwnerEnoughMana(lua_State* L);
     static int getManaCost(lua_State* L);
+    static int getMaxLevel(lua_State* L);
+    static int getLevel(lua_State* L);
+    static int levelUp(lua_State* L);
 
   };
 }

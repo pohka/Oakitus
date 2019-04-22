@@ -12,6 +12,8 @@ function my_abil:onSpellCast()
     print("created bullet")
     local mana = thisAbility:getManaCost()
     print("manacost:" .. mana)
+    thisAbility:levelUp()
+    print("level " .. thisAbility:getLevel())
   end
 end
 

@@ -23,6 +23,9 @@ void LuaAbilityHandler::reg(lua_State* L)
   lua_pushcfunction(L, getName); lua_setfield(L, -2, "getName");
   lua_pushcfunction(L, getManaCost); lua_setfield(L, -2, "getManaCost");
   lua_pushcfunction(L, getCooldown); lua_setfield(L, -2, "getCooldown");
+  lua_pushcfunction(L, levelUp); lua_setfield(L, -2, "levelUp");
+  lua_pushcfunction(L, getLevel); lua_setfield(L, -2, "getLevel");
+  lua_pushcfunction(L, getMaxLevel); lua_setfield(L, -2, "getMaxLevel");
   lua_pop(L, 1);
 }
 
@@ -51,4 +54,25 @@ int LuaAbilityHandler::getManaCost(lua_State* L)
   LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 1, LUA_HANDLE_ABILITY));
   lua_pushnumber(L, abilityH->ptr->getManaCost());
   return 1;
+}
+
+int LuaAbilityHandler::getMaxLevel(lua_State* L)
+{
+  LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 1, LUA_HANDLE_ABILITY));
+  lua_pushinteger(L, abilityH->ptr->getMaxLevel());
+  return 1;
+}
+
+int LuaAbilityHandler::getLevel(lua_State* L)
+{
+  LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 1, LUA_HANDLE_ABILITY));
+  lua_pushinteger(L, abilityH->ptr->getLevel());
+  return 1;
+}
+
+int LuaAbilityHandler::levelUp(lua_State* L)
+{
+  LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 1, LUA_HANDLE_ABILITY));
+  abilityH->ptr->levelUp();
+  return 0;
 }
