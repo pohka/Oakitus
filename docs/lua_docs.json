@@ -1,0 +1,923 @@
+{
+  "classes" :
+  {
+    "Game" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "createEnt",
+          "desc" : "Create and new entity prefab instance at position. Returns nil if no prefab is found with a matching name", 
+          "return" : "Entity",
+          "params" :
+          [
+            {
+              "type" : "string",
+              "name" : "name"
+            },
+            {
+              "type" : "Vector",
+              "name" : "position",
+              "required" : false
+            }
+          ]
+        },
+        {
+          "name" : "findEntByID",
+          "desc" : "Finds an entity instance by id. Returns nil if not found", 
+          "return" : "Entity",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "id"
+            }
+          ]
+        }
+      ]
+    },
+    "_G" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "log",
+          "desc" : "Log a message to the console",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "string",
+              "name" : "msg"
+            }
+          ]
+        },
+        {
+          "name" : "dlog",
+          "desc" : "Log a debug message to the console",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "string",
+              "name" : "msg"
+            }
+          ]
+        },
+        {
+          "name" : "applyDamage",
+          "desc" : "Apply a damage instance to a unit",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "Unit",
+              "name" : "victim"
+            },
+            {
+              "type" : "Unit",
+              "name" : "attacker"
+            },
+            {
+              "type" : "int",
+              "name" : "damageAmount"
+            },
+            {
+              "type" : "Ability",
+              "name" : "ability"
+            },
+            {
+              "type" : "int",
+              "name" : "elementType"
+            }
+          ]
+        },
+        {
+          "name" : "applyHeal",
+          "desc" : "Apply a heal instance to a unit",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "Unit",
+              "name" : "receiver"
+            },
+            {
+              "type" : "Unit",
+              "name" : "giver"
+            },
+            {
+              "type" : "int",
+              "name" : "healAmount"
+            },
+            {
+              "type" : "Ability",
+              "name" : "ability"
+            },
+            {
+              "type" : "int",
+              "name" : "elementType"
+            }
+          ]
+        },
+        {
+          "name" : "getDeltaTime",
+          "desc" : "Returns the deltaTime using game time",
+          "return" : "float"
+        },
+        {
+          "name" : "getGameTime",
+          "desc" : "Returns the current game time. Game time does not tick when the game is paused",
+          "return" : "float"
+        },
+        {
+          "name" : "getSystemTime",
+          "desc" : "Returns the system time. Sytem time ticks even when the game is paused",
+          "return" : "float"
+        },
+        {
+          "name" : "setThink",
+          "desc" : "Creates a thinker function. If no initialDelay is given then there is no initalDelay",
+          "return" : "void",
+          "params" : 
+          [
+            {
+              "type" : "string",
+              "name" : "thinkerName"
+            },
+            {
+              "type" : "string",
+              "name" : "funcName"
+            },
+            {
+              "type" : "float",
+              "name" : "initalDelay",
+              "required" : false
+            }
+          ]
+        }
+      ]
+    },
+    "Input" : 
+    {
+      "funcs" :
+      [
+        {
+          "name" : "isKeyDown",
+          "desc" : "Returns true if the key was pushed down this frame",
+          "return" : "bool",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "key"
+            }
+          ]
+        },
+        {
+          "name" : "isKeyUp",
+          "desc" : "Returns true if the key was released this frame",
+          "return" : "bool",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "key"
+            }
+          ]
+        },
+        {
+          "name" : "isKeyPressed",
+          "desc" : "Returns true if the key is down",
+          "return" : "bool",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "key"
+            }
+          ]
+        },
+        {
+          "name" : "isMouseButtonDown",
+          "desc" : "Returns true if the mouse button was pushed down this frame",
+          "return" : "bool",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "key"
+            }
+          ]
+        },
+        {
+          "name" : "isMouseButtonUp",
+          "desc" : "Returns true if the mouse button was released this frame",
+          "return" : "bool",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "key"
+            }
+          ]
+        },
+        {
+          "name" : "isMouseButtonPressed",
+          "desc" : "Returns true if the mouse is down",
+          "return" : "bool",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "key"
+            }
+          ]
+        }
+      ]
+    },
+    "PlayerResource" :
+    {
+      "funcs" : 
+      [
+        {
+          "name" : "getPlayerCount",
+          "desc" : "Returns the current player count",
+          "return" : "int"
+        },
+        {
+          "name" : "getPlayer",
+          "desc" : "Returns the player by id. Returns nil if no matching id",
+          "return" : "Player",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "playerID"
+            }
+          ]
+        }
+      ]
+    },
+    "Vector" :
+    {
+      "vars" :
+      {
+        "x" : "float",
+        "y" : "float",
+        "z" : "float"
+      },
+      "funcs" :
+      [
+        {
+          "name" : "dot",
+          "desc" : "Returns the Dot product",
+          "return" : "float",
+          "params" :
+          [
+            {
+              "type" : "Vector",
+              "name" : "b"
+            }
+          ]
+        },
+        {
+        "name" : "normalized",
+        "desc" : "Returns the vector normalized",
+        "return" : "Vector"
+        },
+        {
+        "name" : "toString",
+        "desc" : "Converts vector to string e.g. '(x,y,z)'",
+        "return" : "string"
+        },
+        {
+        "name" : "length",
+        "desc" : "Returns the length of the vector",
+        "return" : "float"
+        },
+        {
+        "name" : "length2D",
+        "desc" : "Returns the 2D length of the vector",
+        "return" : "float"
+        },
+        {
+          "name" : "cross",
+          "desc" : "Returns the cross product",
+          "return" : "Vector",
+          "params" :
+          [
+            {
+              "type" : "Vector",
+              "name" : "b"
+            }
+          ]
+        },
+        {
+          "name" : "__add",
+          "desc" : "+ operator overload",
+          "return" : "Vector"
+        },
+        {
+          "name" : "__sub",
+          "desc" : "- operator overload",
+          "return" : "Vector"
+        },
+        {
+          "name" : "__mul",
+          "desc" : "* operator overload",
+          "return" : "Vector"
+        },
+        {
+          "name" : "__umm",
+          "desc" : "- negation operator overload",
+          "return" : "Vector"
+        },
+        {
+          "name" : "__div",
+          "desc" : "/ operator overload",
+          "return" : "Vector"
+        }
+      ]
+    },
+    "Ability" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getName",
+          "desc" : "Returns the ability name",
+          "return" : "string"
+        },
+        {
+          "name" : "getManaCost",
+          "desc" : "Returns the mana cost of the ability on the current level",
+          "return" : "int"
+        },
+        {
+          "name" : "getCooldown",
+          "desc" : "Returns the cooldown of the ability on the current level",
+          "return" : "int"
+        },
+        {
+          "name" : "levelUp",
+          "desc" : "Upgrades the current level by 1",
+          "return" : "void"
+        },
+        {
+          "name" : "getLevel",
+          "desc" : "Get the current level",
+          "return" : "int"
+        },
+        {
+          "name" : "getMaxLevel",
+          "desc" : "Returns the maximum level this ability can reach",
+          "return" : "int"
+        },
+        {
+          "name" : "getDuration",
+          "desc" : "Returns the duration it takes to cast this ability",
+          "return" : "float"
+        },
+        {
+          "name" : "getUnitOwner",
+          "desc" : "Returns the Unit that owns this ability",
+          "return" : "Unit"
+        },
+        {
+          "name" : "isOffCooldown",
+          "desc" : "Returns true if the ability is ready to cast",
+          "return" : "bool"
+        },
+        {
+          "name" : "getCooldownTimeRemaining",
+          "desc" : "Returns the time until ability is off cooldown",
+          "return" : "float"
+        },
+        {
+          "name" : "hasOwnerEnoughMana",
+          "desc" : "Returns true if the owner has enough mana to cast this ability",
+          "return" : "bool"
+        }
+      ]
+    },
+    "Animator" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "setAnim",
+          "desc" : "Set the animation by ID",
+          "return" : "void",
+          "params" : 
+          [
+            {
+              "type" : "int",
+              "name" : "animID"
+            }
+          ]
+        },
+        {
+          "name" : "getCurAnimID",
+          "desc" : "Returns the current animation ID",
+          "return" : "int"
+        },
+        {
+          "name" : "setDirection",
+          "desc" : "Set the animation directon i.e. ANIM_DIRECTION_LEFT or ANIM_DIRECTION_RIGHT",
+          "return" : "void",
+          "params" : 
+          [
+            {
+              "type" : "int",
+              "name" : "animID"
+            }
+          ]
+        },
+        {
+          "name" : "getDirecton",
+          "desc" : "Returns the direction of the animation i.e. left or right",
+          "return" : "int"
+        }
+      ]
+    },
+    "CollisionCircle" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getRadius",
+          "desc" : "Returns the radius",
+          "return" : "float"
+        },
+        {
+          "name" : "setRadius",
+          "desc" : "Set the radius",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "float",
+              "name" : "radius"
+            }
+          ]
+        },
+        {
+          "name" : "getOffset",
+          "desc" : "Returns the offset from the entity origin",
+          "return" : "Vector"
+        },
+        {
+          "name" : "setOffset",
+          "desc" : "Set the offset from the entity origin",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "Vector",
+              "name" : "offset"
+            }
+          ]
+        },
+        {
+          "name" : "getType",
+          "desc" : "Returns COLLISION_SHAPE_CIRCLE",
+          "return" : "int"
+        }
+      ]
+    },
+    "CollisionRect" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getW",
+          "desc" : "Returns the width",
+          "return" : "float"
+        },
+        {
+          "name" : "setW",
+          "desc" : "Set the width",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "float",
+              "name" : "width"
+            }
+          ]
+        },
+        {
+          "name" : "getH",
+          "desc" : "Returns the height",
+          "return" : "float"
+        },
+        {
+          "name" : "setH",
+          "desc" : "Set the height",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "float",
+              "name" : "height"
+            }
+          ]
+        },
+        {
+          "name" : "getOffset",
+          "desc" : "Returns the offset from the entity origin",
+          "return" : "Vector"
+        },
+        {
+          "name" : "setOffset",
+          "desc" : "Set the offset from the entity origin",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "Vector",
+              "name" : "offset"
+            }
+          ]
+        },
+        {
+          "name" : "getType",
+          "desc" : "Returns COLLISION_SHAPE_RECT",
+          "return" : "int"
+        }
+      ]
+    },
+    "Entity" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getName",
+          "desc" : "Returns the entity name",
+          "return" : "string"
+        },
+        {
+          "name" : "getID",
+          "desc" : "Returns the entity id",
+          "return" : "int"
+        },
+        {
+          "name" : "moveBy",
+          "desc" : "Add to the entity position",
+          "return" : "void",
+          "params" : 
+          [
+            {
+              "type" : "float",
+              "name" : "x"
+            },
+            {
+              "type" : "float",
+              "name" : "y"
+            },
+            {
+              "type" : "float",
+              "name" : "z",
+              "required" : false
+            }
+          ]
+        },
+        {
+          "name" : "moveTo",
+          "desc" : "Set the entity position",
+          "return" : "void",
+          "params" : 
+          [
+            {
+              "type" : "float",
+              "name" : "x"
+            },
+            {
+              "type" : "float",
+              "name" : "y"
+            },
+            {
+              "type" : "float",
+              "name" : "z",
+              "required" : false
+            }
+          ]
+        },
+        {
+          "name" : "getComponent",
+          "desc" : "Gets a component on this entity, if no component found then returns nil",
+          "return" : "handler",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "COMP_NAME"
+            }
+          ]
+        },
+        {
+          "name" : "getScript",
+          "desc" : "Get a LuaScript component by script name",
+          "return" : "LuaScript",
+          "params" : 
+          [
+            {
+              "type" : "string",
+              "name" : "scriptName"
+            }
+          ]
+        },
+        {
+          "name" : "getShapeByID",
+          "desc" : "Get a collision shape by ID, id is currently the index",
+          "return" : "int",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "id"
+            }
+          ]
+        },
+        {
+          "name" : "getPosition",
+          "desc" : "Return the entity position",
+          "return" : "Vector"
+        },
+        {
+          "name" : "destroy",
+          "desc" : "Destroy the entity instance",
+          "return" : "void",
+          "params" : 
+          [
+            {
+              "type" : "float",
+              "name" : "delay"
+            }
+          ]
+        }
+      ]
+    },
+    "LuaScript" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getKV",
+          "desc" : "Returns a key value that is bound to the LuaScript component, returns nil if not found",
+          "return" : "<unknown>"
+        },
+        {
+          "name" : "setKV",
+          "desc" : "Set a key value that is bound to the LuaScript component, the value must be a string or number",
+          "return" : "void",
+          "params" : 
+          [
+            {
+              "type" : "string",
+              "name" : "key"
+            },
+            {
+              "type" : "<unknown>",
+              "name" : "value"
+            }
+          ]
+        }
+      ]
+    },
+    "Player" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getPlayerID",
+          "desc" : "Return the player ID",
+          "return" : "int"
+        },
+        {
+          "name" : "getAssignedEnt",
+          "desc" : "Get the cureent assigned entity, returns nil if not entity is assigned to this player",
+          "return" : "Entity"
+        },
+        {
+          "name" : "unassignEnt",
+          "desc" : "Unasign the entity that assigned is assigned to this player",
+          "return" : "void"
+        },
+        {
+          "name" : "assignEnt",
+          "desc" : "Assign an entity to this player",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "Entity",
+              "name" : "ent"
+            }
+          ]
+        }
+      ]
+    },
+    "RigidBody2D" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getMass",
+          "desc" : "Return the mass",
+          "return" : "float"
+        },
+        {
+          "name" : "setMass",
+          "desc" : "Set the mass",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "float",
+              "name" : "mass"
+            }
+          ]
+        },
+        {
+          "name" : "setIsStatic",
+          "desc" : "When isStatic is true the rigidbody can't move",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "bool",
+              "name" : "isStatic"
+            }
+          ]
+        },
+        {
+          "name" : "getIsStatic",
+          "desc" : "Returns isStatic, when isStatic is true the rigidbody can't move",
+          "return" : "bool"
+        }
+      ]
+    },
+    "Sprite" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getSrc",
+          "desc" : "Return the source of the sprite texture",
+          "return" : "string"
+        },
+        {
+          "name" : "setSrc",
+          "desc" : "Set the sprite source, note: the texture should already be precached",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "string",
+              "name" : "src"
+            }
+          ]
+        }
+      ]
+    },
+    "Unit" :
+    {
+      "funcs" :
+      [
+        {
+          "name" : "getUnitName",
+          "desc" : "Returns the unit name",
+          "return" : "string"
+        },
+        {
+          "name" : "getMaxHealth",
+          "desc" : "Returns the maximum health",
+          "return" : "int"
+        },
+        {
+          "name" : "getHealth",
+          "desc" : "Returns the current health",
+          "return" : "int"
+        },
+        {
+          "name" : "getMaxMana",
+          "desc" : "Returns the maximum mana",
+          "return" : "int"
+        },
+        {
+          "name" : "getMana",
+          "desc" : "Returns the current mana",
+          "return" : "int"
+        },
+        {
+          "name" : "getLevel",
+          "desc" : "Returns the unit's current level",
+          "return" : "int"
+        },
+        {
+          "name" : "castAbility",
+          "desc" : "Cast an ability by the ability index i.e. the ability slot",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "abilityIndex"
+            }
+          ]
+        },
+        {
+          "name" : "setMana",
+          "desc" : "set mana of this unit",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "mana"
+            }
+          ]
+        },
+        {
+          "name" : "setHealth",
+          "desc" : "set the health of this unit",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "health"
+            }
+          ]
+        },
+        {
+          "name" : "giveMana",
+          "desc" : "give mana to this unit",
+          "return" : "void",
+          "params" :
+          [
+            {
+              "type" : "int",
+              "name" : "amount"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "constants" :
+  {
+    "COMP_REFLECT_ID" :
+    [
+      {
+        "name" : "COMP_ANIMATOR",
+        "value" : 2,
+        "desc" : ""
+      },
+      {
+        "name" : "COMP_RIGIDBODY2D",
+        "value" : 3,
+        "desc" : ""
+      },
+      {
+        "name" : "COMP_SPRITE",
+        "value" : 4,
+        "desc" : ""
+      },
+      {
+        "name" : "COMP_UNIT",
+        "value" : 7,
+        "desc" : ""
+      }
+
+    ],
+    "ANIM_DIRECTION" :
+    [
+      {
+        "name" : "ANIM_DIRECTION_RIGHT",
+        "value" : 0,
+        "desc" : ""
+      },
+      {
+        "name" : "ANIM_DIRECTION_LEFT",
+        "value" : 1,
+        "desc" : ""
+      }
+    ],
+    "COLLISION_SHAPE" :
+    [
+      {
+        "name" : "COLLISION_SHAPE_RECT",
+        "value" : 0,
+        "desc" : ""
+      },
+      {
+        "name" : "COLLISION_SHAPE_CIRCLE",
+        "value" : 1,
+        "desc" : ""
+      }
+    ]
+  }
+}

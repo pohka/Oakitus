@@ -20,6 +20,7 @@ void LuaGlobal::reg(lua_State* L)
   lua_register(L, "getSystemTime", LuaTime::systemTime);
   lua_register(L, "getGameTime", LuaTime::gameTime);
 
+  //should change this use script
   lua_register(L, "setThink", LuaHLuaScript::setThink);
   
 
