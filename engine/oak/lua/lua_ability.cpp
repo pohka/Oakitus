@@ -30,9 +30,9 @@ void LuaAbility::onSpellCast()
   bool hasFunc = LuaS::setFunc(scriptFilePath.c_str(), name.c_str(), "onSpellCast");
   if (hasFunc)
   {
-    LuaS::setAbility(this);
+    LuaS::setThisAbility(this);
     Entity* ent = this->owner->getOwnerEntity();
-    LuaS::setEntity(ent);
+    LuaS::setThisEntity(ent);
     LuaS::call();
   }
 }
@@ -42,9 +42,9 @@ void LuaAbility::onSpellStart()
   bool hasFunc = LuaS::setFunc(scriptFilePath.c_str(), name.c_str(), "onSpellStart");
   if (hasFunc)
   {
-    LuaS::setAbility(this);
+    LuaS::setThisAbility(this);
     Entity* ent = this->owner->getOwnerEntity();
-    LuaS::setEntity(ent);
+    LuaS::setThisEntity(ent);
     LuaS::call();
   }
 }

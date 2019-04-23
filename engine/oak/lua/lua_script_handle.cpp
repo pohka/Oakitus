@@ -119,7 +119,7 @@ int LuaScriptHandle::setThink(lua_State* L)
   const char* thinkerName;
   const char* funcName;
   float initalDelay = 0.0001f;
-  LuaScript* script = LuaS::getScriptHandle()->script;
+  LuaScript* script = LuaS::getScriptHandler()->script;
 
   if (lua_gettop(L) == 2)
   {

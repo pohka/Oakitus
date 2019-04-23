@@ -80,7 +80,7 @@ int LuaGlobal::applyDamage(lua_State* L)
   LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 4, LUA_HANDLE_ABILITY));
   int elementType = luaL_checkinteger(L, 5);
 
-  Combat::applyDamage(victimH->unit, attackerH->unit, amount, abilityH->ptr, elementType);
+  Combat::log(Combat::ENTRY_TYPE_DAMAGE, victimH->unit, attackerH->unit, amount, abilityH->ptr, elementType);
 
   return 0;
 }
@@ -93,7 +93,7 @@ int LuaGlobal::applyHeal(lua_State* L)
   LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 4, LUA_HANDLE_ABILITY));
   int elementType = luaL_checkinteger(L, 5);
 
-  Combat::applyDamage(receiverH->unit, giverH->unit, amount, abilityH->ptr, elementType);
+  Combat::log(Combat::ENTRY_TYPE_DAMAGE, receiverH->unit, giverH->unit, amount, abilityH->ptr, elementType);
 
   return 0;
 }

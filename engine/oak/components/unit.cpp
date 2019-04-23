@@ -211,9 +211,3 @@ void Unit::giveMana(const int amount)
   float nextMana = this->mana + amount;
   this->mana = FMath::clamp(nextMana, 0, maxMana);
 }
-
-void Unit::heal(const int amount)
-{
-  float nextHP = this->health + amount;
-  this->health = FMath::clamp(nextHP, 0, maxHealth);
-}

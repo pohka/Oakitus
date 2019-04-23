@@ -36,8 +36,8 @@ void LuaScript::onCreate()
 {
   if (getFunc(LUA_ON_CREATE))
   {
-    LuaS::setEntity(this->entity);
-    LuaS::setScript(this);
+    LuaS::setThisEntity(this->entity);
+    LuaS::setThisScript(this);
     lua_getglobal(LuaS::state, name.c_str());
     lua_getfield(LuaS::state, -1, LUA_ON_CREATE);
 
@@ -52,8 +52,8 @@ void LuaScript::onDestroy()
 {
   if (getFunc(LUA_ON_DESTROY))
   {
-    LuaS::setEntity(this->entity);
-    LuaS::setScript(this);
+    LuaS::setThisEntity(this->entity);
+    LuaS::setThisScript(this);
     lua_getglobal(LuaS::state, name.c_str());
     lua_getfield(LuaS::state, -1, LUA_ON_DESTROY);
 
@@ -94,8 +94,8 @@ void LuaScript::onTick()
   }
 
   LuaS::doFile(scriptFilePath);
-  LuaS::setEntity(this->entity);
-  LuaS::setScript(this);
+  LuaS::setThisEntity(this->entity);
+  LuaS::setThisScript(this);
 
   for (unsigned int i=0; i<thinkers.size(); i++)
   {

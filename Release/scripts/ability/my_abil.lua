@@ -16,6 +16,6 @@ function my_abil:onSpellStart()
   thisAbility:levelUp()
   local owner = thisAbility:getUnitOwner()
 
-  applyDamage(owner, owner, 10, thisAbility, 0)
+  applyDamage(owner, owner, 100, thisAbility, 0)
   print("HP:" .. owner:getHealth())
 end

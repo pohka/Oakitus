@@ -28,7 +28,6 @@ void LuaUnit::reg(lua_State* L)
   lua_pushcfunction(L, castAbility); lua_setfield(L, -2, "castAbility");
   lua_pushcfunction(L, setMana); lua_setfield(L, -2, "setMana");
   lua_pushcfunction(L, setHealth); lua_setfield(L, -2, "setHealth");
-  lua_pushcfunction(L, heal); lua_setfield(L, -2, "heal");
   lua_pushcfunction(L, giveMana); lua_setfield(L, -2, "giveMana");
   lua_pop(L, 1);
 }
@@ -109,15 +108,6 @@ int LuaUnit::setMana(lua_State* L)
   int mana = luaL_checkinteger(L, 2);
 
   unitH->unit->setMana(mana);
-  return 0;
-}
-
-int LuaUnit::heal(lua_State* L)
-{
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
-  int amount = luaL_checkinteger(L, 2);
-
-  unitH->unit->heal(amount);
   return 0;
 }
 

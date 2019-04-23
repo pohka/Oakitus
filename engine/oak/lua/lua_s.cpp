@@ -30,9 +30,9 @@ using namespace oak;
 lua_State* LuaS::state;
 std::map<std::string, std::string> LuaS::files = {};
 std::string LuaS::curLoadedFile = "";
-LuaEntity* LuaS::curEntity = new LuaEntity(nullptr);
-LuaScriptHandle* LuaS::curScript = new LuaScriptHandle(nullptr);
-LuaAbilityHandler* LuaS::curAbility = new LuaAbilityHandler(nullptr);
+LuaEntity* LuaS::thisEntity = new LuaEntity(nullptr);
+LuaScriptHandle* LuaS::thisScript = new LuaScriptHandle(nullptr);
+LuaAbilityHandler* LuaS::thisAbility = new LuaAbilityHandler(nullptr);
 
 void LuaS::init()
 {
@@ -47,6 +47,7 @@ void LuaS::init()
 
 void LuaS::registerBindings(lua_State* L)
 {
+  //register functions
   LuaGame::reg(L);
   LuaGlobal::reg(L);
   LuaPlayer::reg(L);
@@ -63,19 +64,19 @@ void LuaS::registerBindings(lua_State* L)
   LuaUnit::reg(L);
   LuaAbilityHandler::reg(L);
 
-  //global accessor for instances
+  //global accessor for instances e.g. thisEntity, thisAbility, thisScript, etc
   lua_newtable(L);
-  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = LuaS::curEntity;
+  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = LuaS::thisEntity;
   luaL_setmetatable(L, LUA_HANDLE_ENTITY);
   lua_setglobal(L, LUA_ENTITY);
 
   lua_newtable(L);
-  *reinterpret_cast<LuaScriptHandle**>(lua_newuserdata(L, sizeof(LuaScriptHandle*))) = LuaS::curScript;
+  *reinterpret_cast<LuaScriptHandle**>(lua_newuserdata(L, sizeof(LuaScriptHandle*))) = LuaS::thisScript;
   luaL_setmetatable(L, LUA_HANDLE_SCRIPT);
   lua_setglobal(L, LUA_SCRIPT);
 
   lua_newtable(L);
-  *reinterpret_cast<LuaAbilityHandler**>(lua_newuserdata(L, sizeof(LuaAbilityHandler*))) = LuaS::curAbility;
+  *reinterpret_cast<LuaAbilityHandler**>(lua_newuserdata(L, sizeof(LuaAbilityHandler*))) = LuaS::thisAbility;
   luaL_setmetatable(L, LUA_HANDLE_ABILITY);
   lua_setglobal(L, LUA_ABILITY);
 }
@@ -103,7 +104,7 @@ void LuaS::doFile(const std::string& fileName)
   }
   else
   {
-    //error msg
+    LOG_WARNING << "Lua file not loaded '" << fileName << "' you must use LuaS::loadFile() to load it first";
     luaL_dostring(state, "");
   }
 }
@@ -117,14 +118,15 @@ void LuaS::call(const int result)
   }
 }
 
-void LuaS::setEntity(Entity* entity)
+void LuaS::setThisEntity(Entity* entity)
 {
-  curEntity->set(entity);
+  thisEntity->set(entity);
 }
 
 void LuaS::close()
 {
   lua_close(state);
+  files.clear();
 }
 
 void LuaS::log(const std::string& msg)
@@ -137,9 +139,9 @@ void LuaS::log(const std::string& msg)
   std::cout << "|--LUA--| " << curLoadedFile <<  " - LINE " << line << " --| " << msg << std::endl;
 }
 
-void LuaS::setScript(LuaScript* script)
+void LuaS::setThisScript(LuaScript* script)
 {
-  curScript->set(script);
+  thisScript->set(script);
 }
 
 bool LuaS::setFunc(const char* filePath, const char* className, const char* funcName)
@@ -158,7 +160,17 @@ bool LuaS::setFunc(const char* filePath, const char* className, const char* func
   return false;
 }
 
-void LuaS::setAbility(LuaAbility* ability)
+void LuaS::setThisAbility(LuaAbility* ability)
 {
-  curAbility->set(ability);
+  thisAbility->set(ability);
+}
+
+const LuaScriptHandle* LuaS::getScriptHandler()
+{
+  return thisScript;
+}
+
+const LuaAbilityHandler* LuaS::getAbilityHandler()
+{
+  return thisAbility;
 }

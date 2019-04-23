@@ -10,44 +10,55 @@
 
 namespace oak
 {
-  struct LuaS
+  class LuaS
   {
-    static void init();
-    static void registerBindings(lua_State* L);
-
+  public:
+    //lua state
     static lua_State* state;
 
-    
+    //initializes lua state, functions and metatables
+    static void init();
 
+    //loads a lua file from path, files that are already loaded will not require a file read
     static void loadFile(const std::string& fileName);
+
+    //sets the file to be called, the file must already be loaded 
     static void doFile(const std::string& fileName);
+
+    //calls the currently set file, result=1 is the number of return values
     static void call(const int result=0);
-    static void setEntity(Entity* entity);
+
+    //closes the lua state and clears the files loaded
     static void close();
+
+    //error log for when lua is interpreted
     static void log(const std::string& msg);
-    static void setScript(LuaScript* script);
-    static void setAbility(LuaAbility* ability);
+
+
+    //sets the global accessors
+    static void setThisEntity(Entity* entity);
+    static void setThisScript(LuaScript* script);
+    static void setThisAbility(LuaAbility* ability);
+
+    //get the global accessor for handlers
+    static const LuaScriptHandle* getScriptHandler();
+    static const LuaAbilityHandler* getAbilityHandler();
 
     //sets the func to be called, returns false if the function does not exist
     static bool setFunc(const char* filePath, const char* className, const char* funcName);
 
-
-    static const LuaScriptHandle* getScriptHandle()
-    {
-      return curScript;
-    }
-
-    static const LuaAbilityHandler* getAbilityHandler()
-    {
-      return curAbility;
-    }
-
   private:
+    //registers all lua metatables and functions
+    static void registerBindings(lua_State* L);
+
+    //string content of loaded files <fileName, fileContent>
     static std::map<std::string, std::string> files;
     static std::string curLoadedFile;
-    static LuaEntity* curEntity;
-    static LuaScriptHandle* curScript;
-    static LuaAbilityHandler* curAbility;
+
+    //global accessor handlers
+    static LuaEntity* thisEntity;
+    static LuaScriptHandle* thisScript;
+    static LuaAbilityHandler* thisAbility;
   };
 }
 

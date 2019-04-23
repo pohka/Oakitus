@@ -32,7 +32,6 @@ namespace oak
 
     static int setHealth(lua_State* L);
     static int setMana(lua_State* L);
-    static int heal(lua_State* L);
     static int giveMana(lua_State* L);
   };
 }

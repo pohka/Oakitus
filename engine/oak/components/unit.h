@@ -57,7 +57,6 @@ namespace oak
     void setHealth(const int health);
 
     void giveMana(const int amount);
-    void heal(const int amount);
 
     void setMaxHealth(const int maxHealth);
     void setMaxMana(const int maxMana);
