@@ -33,6 +33,7 @@ static std::vector<JsonObj> UDObjs = {
     }) 
 };
 
+//define structure of each component which will be used for comparision in validation
 //structure to metadata
 static std::vector<JsonComp> COMP_METADATA_STRUCTURE = 
 {

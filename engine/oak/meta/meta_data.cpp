@@ -11,7 +11,7 @@ std::map<uchar, nlohmann::json> MetaData::dataMap;
 std::string MetaData::projectPath = "";
 
 
-void MetaData::load(uchar type, const std::string& fileName)
+void MetaData::load(uchar key, const std::string& fileName)
 {
   std::string fullPath = projectPath + fileName;
   nlohmann::json data;
@@ -22,7 +22,7 @@ void MetaData::load(uchar type, const std::string& fileName)
   if (data != nullptr)
   {
     LOG << "Meta data loaded: " << fullPath;
-    dataMap[type] = data;
+    dataMap[key] = data;
   }
   else
   {
@@ -30,8 +30,8 @@ void MetaData::load(uchar type, const std::string& fileName)
   }
 }
 
-const nlohmann::json& MetaData::getData(uchar type)
+const nlohmann::json& MetaData::getData(uchar key)
 {
-  return dataMap[type];
+  return dataMap[key];
 }
 

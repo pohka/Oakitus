@@ -1,4 +1,4 @@
-#include <oak/ability/combat.h>
+#include <oak/ability/combat_tracker.h>
 #include <oak/time/time.h>
 #include <sstream>
 #include <oak/core/fmath.h>
@@ -6,24 +6,30 @@
 
 using namespace oak;
 
-std::vector<CombatLogResult> Combat::backlog;
-std::vector<CombatLog> Combat::recentLogs;
+std::vector<CombatLogResult> CombatTracker::backlog;
+std::vector<CombatLog> CombatTracker::recentLogs;
 
 std::string CombatLogResult::toString()
 {
   std::string str = "";
-  if (entryType == Combat::ENTRY_TYPE_DAMAGE)
+  if (entryType == CombatTracker::ENTRY_TYPE_DAMAGE)
   {
-    str += giverName + " hits " + receiverName + " for " + std::to_string(amount) + " damage (" + std::to_string(beginHP) + "->" + std::to_string(beginHP - amount) + ")";
+    str += giverName + " hits " + receiverName +
+      " for " + std::to_string(amount) + " damage (" +
+      std::to_string(beginHP) + "->" +
+      std::to_string(beginHP - amount) + ")";
   }
-  else if (entryType == Combat::ENTRY_TYPE_HEAL)
+  else if (entryType == CombatTracker::ENTRY_TYPE_HEAL)
   {
-    str += giverName + " heals " + receiverName + " for " + std::to_string(amount) + " health (" + std::to_string(beginHP) + "->" + std::to_string(endHP) + ")";
+    str += giverName + " heals " + receiverName +
+      " for " + std::to_string(amount) + " health ("
+      + std::to_string(beginHP) + "->" +
+      std::to_string(endHP) + ")";
   }
   return str;
 }
 
-void Combat::log(
+void CombatTracker::log(
   char entryType,
   Unit* victim,
   Unit* attacker,
@@ -42,12 +48,12 @@ void Combat::log(
   });
 }
 
-void Combat::init()
+void CombatTracker::init()
 {
   backlog.reserve(BACKLOG_MAXSIZE);
 }
 
-void Combat::onTick()
+void CombatTracker::onTick()
 {
   for (unsigned int i=0; i<recentLogs.size(); i++)
   {
@@ -63,7 +69,7 @@ void Combat::onTick()
   recentLogs.clear();
 }
 
-void Combat::applyLog(CombatLog& data)
+void CombatTracker::applyLog(CombatLog& data)
 {
   int beginHP = data.receiver->getHealth();
   int maxHP = data.receiver->getMaxHealth();
@@ -102,7 +108,7 @@ void Combat::applyLog(CombatLog& data)
   }
 }
 
-void Combat::addBacklog(CombatLog& data, int beginHP)
+void CombatTracker::addBacklog(CombatLog& data, int beginHP)
 {
   //remove oldest backlog entry if max size has been reached
   if (backlog.size() >= BACKLOG_MAXSIZE)

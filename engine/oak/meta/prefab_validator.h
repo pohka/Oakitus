@@ -74,7 +74,7 @@ namespace oak
   };
 
 
-
+  //validator for prefab metadata
   class PrefabValidator
   {
   public:

@@ -1,5 +1,5 @@
-#ifndef COMBAT_H
-#define COMBAT_H
+#ifndef COMBAT_TRACKER_H
+#define COMBAT_TRACKER_H
 
 #include <vector>
 #include <string>
@@ -31,7 +31,7 @@ namespace oak
     std::string toString();
   };
 
-  class Combat
+  class CombatTracker
   {
   public:
     static const unsigned int BACKLOG_MAXSIZE = 50;

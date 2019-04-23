@@ -7,7 +7,7 @@
 #include <oak/lua/luah_lua_script.h>
 #include <oak/lua/luah_unit.h>
 #include <oak/lua/luah_ability.h>
-#include <oak/ability/combat.h>
+#include <oak/ability/combat_tracker.h>
 
 using namespace oak;
 
@@ -83,7 +83,14 @@ int LuaGlobal::applyDamage(lua_State* L)
   LuaHAbility* abilityH = *reinterpret_cast<LuaHAbility**>(luaL_checkudata(L, 4, LUA_HANDLER_ABILITY));
   int elementType = luaL_checkinteger(L, 5);
 
-  Combat::log(Combat::ENTRY_TYPE_DAMAGE, victimH->unit, attackerH->unit, amount, abilityH->ptr, elementType);
+  CombatTracker::log(
+    CombatTracker::ENTRY_TYPE_DAMAGE,
+    victimH->unit,
+    attackerH->unit,
+    amount,
+    abilityH->ptr,
+    elementType
+  );
 
   return 0;
 }
@@ -97,7 +104,14 @@ int LuaGlobal::applyHeal(lua_State* L)
   LuaHAbility* abilityH = *reinterpret_cast<LuaHAbility**>(luaL_checkudata(L, 4, LUA_HANDLER_ABILITY));
   int elementType = luaL_checkinteger(L, 5);
 
-  Combat::log(Combat::ENTRY_TYPE_DAMAGE, receiverH->unit, giverH->unit, amount, abilityH->ptr, elementType);
+  CombatTracker::log(
+    CombatTracker::ENTRY_TYPE_HEAL,
+    receiverH->unit,
+    giverH->unit,
+    amount,
+    abilityH->ptr,
+    elementType
+  );
 
   return 0;
 }

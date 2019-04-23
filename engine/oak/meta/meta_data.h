@@ -11,9 +11,11 @@
 
 namespace oak
 {
+  //dataMap keys
   static uchar META_DATA_KEY_SCENE = 0;
   static uchar META_DATA_KEY_ABILITYS = 1;
   
+  //argument types
   static const char ARG_NUMBER = 1;
   static const char ARG_INT = 2;
   static const char ARG_UINT = 3;
@@ -26,13 +28,13 @@ namespace oak
     static std::map<uchar, nlohmann::json> dataMap;
 
   public:
-    //argument types
-
-
     static std::string projectPath;
 
-    static void load(uchar type, const std::string& fileName);
-    static const nlohmann::json& getData(uchar type);
+    //loads json metadata from file
+    static void load(uchar key, const std::string& fileName);
+
+    //get loaded data by key
+    static const nlohmann::json& getData(uchar key);
 
     static std::vector<float> parseArrayString(const std::string& value)
     {

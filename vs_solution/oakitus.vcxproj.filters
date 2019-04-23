@@ -426,9 +426,6 @@
     <ClInclude Include="..\engine\oak\meta\ability_validator.h">
       <Filter>oak\meta</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\ability\combat.h">
-      <Filter>oak\ability</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\lua\luah_ability.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
@@ -464,6 +461,9 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\lua\luah_lua_script.h">
       <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ability\combat_tracker.h">
+      <Filter>oak\ability</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -766,9 +766,6 @@
     <ClCompile Include="..\engine\oak\meta\meta_data.cpp">
       <Filter>oak\meta</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\ability\combat.cpp">
-      <Filter>oak\ability</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\lua\luah_ability.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
@@ -804,6 +801,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\luah_lua_script.cpp">
       <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ability\combat_tracker.cpp">
+      <Filter>oak\ability</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
