@@ -1,17 +1,17 @@
-#ifndef LUA_ANIMATOR_H
-#define LUA_ANIMATOR_H
+#ifndef LUAH_ANIMATOR_H
+#define LUAH_ANIMATOR_H
 
 #include <oak/components/animator.h>
 #include <lua/lua.hpp>
 
 namespace oak
 {
-  class LuaAnimator
+  class LuaHAnimator
   {
     Animator* ptr;
   public:
-    LuaAnimator(Animator* animator);
-    ~LuaAnimator();
+    LuaHAnimator(Animator* animator);
+    ~LuaHAnimator();
 
     static void reg(lua_State* L);
 

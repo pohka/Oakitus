@@ -1,5 +1,5 @@
-#ifndef LUA_COLLISION_CIRCLE_H
-#define LUA_COLLISION_CIRCLE_H
+#ifndef LUAH_COLLISION_CIRCLE_H
+#define LUAH_COLLISION_CIRCLE_H
 
 #include <lua/lua.hpp>
 #include <oak/collision/collision_circle.h>
@@ -7,13 +7,13 @@
 
 namespace oak
 {
-  class LuaCollisionCircle
+  class LuaHCollisionCircle
   {
     CollisionCircle* ptr;
 
   public:
-    LuaCollisionCircle(CollisionCircle* cricle);
-    ~LuaCollisionCircle();
+    LuaHCollisionCircle(CollisionCircle* cricle);
+    ~LuaHCollisionCircle();
 
     static void reg(lua_State* L);
 

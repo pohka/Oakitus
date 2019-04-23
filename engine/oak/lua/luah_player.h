@@ -1,18 +1,18 @@
-#ifndef LUA_PLAYER_H
-#define LUA_PLAYER_H
+#ifndef LUAH_PLAYER_H
+#define LUAH_PLAYER_H
 
 #include <oak/player/player.h>
 #include <lua/lua.hpp>
 
 namespace oak
 {
-  class LuaPlayer
+  class LuaHPlayer
   {
     Player* ptr;
 
   public:
-    LuaPlayer(Player* player);
-    ~LuaPlayer();
+    LuaHPlayer(Player* player);
+    ~LuaHPlayer();
 
     static void reg(lua_State* L);
 

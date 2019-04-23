@@ -4,16 +4,16 @@
 #include <oak/debug.h>
 #include <oak/scene/scene_manager.h>
 #include <oak/lua/lua_scene.h>
-#include <oak/lua/lua_entity.h>
+#include <oak/lua/luah_entity.h>
 #include <oak/lua/lua_vector.h>
 
-#include <oak/lua/lua_sprite.h>
-#include <oak/lua/lua_collision_rect.h>
-#include <oak/lua/lua_collision_circle.h>
-#include <oak/lua/lua_rigid_body_2d.h>
-#include <oak/lua/lua_script.h>
-#include <oak/lua/lua_animator.h>
-#include <oak/lua/lua_ability.h>
+#include <oak/lua/luah_sprite.h>
+#include <oak/lua/luah_collision_rect.h>
+#include <oak/lua/luah_collision_circle.h>
+#include <oak/lua/luah_rigid_body_2d.h>
+#include <oak/lua/luah_script.h>
+#include <oak/lua/luah_animator.h>
+#include <oak/lua/luah_ability.h>
 
 #include <oak/ecs/entity_manager.h>
 #include <oak/core/resources.h>
@@ -88,8 +88,8 @@ int LuaGame::createEnt(lua_State* L)
   }
   ent->create(x, y, z);
 
-  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-  luaL_setmetatable(L, LUA_HANDLE_ENTITY);
+  *reinterpret_cast<LuaHEntity**>(lua_newuserdata(L, sizeof(LuaHEntity*))) = new LuaHEntity(ent);
+  luaL_setmetatable(L, LUA_HANDLER_ENTITY);
 
   return 1;
 }
@@ -223,8 +223,8 @@ int LuaGame::findEntByID(lua_State* L)
 
   if (ent != nullptr)
   {
-    *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = new LuaEntity(ent);
-    luaL_setmetatable(L, LUA_HANDLE_ENTITY);
+    *reinterpret_cast<LuaHEntity**>(lua_newuserdata(L, sizeof(LuaHEntity*))) = new LuaHEntity(ent);
+    luaL_setmetatable(L, LUA_HANDLER_ENTITY);
   }
   else
   {

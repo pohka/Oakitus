@@ -1,5 +1,5 @@
-#ifndef LUA_COLLISION_RECT_H
-#define LUA_COLLISION_RECT_H
+#ifndef LUAH_COLLISION_RECT_H
+#define LUAH_COLLISION_RECT_H
 
 #include <lua/lua.hpp>
 #include <oak/collision/collision_rect.h>
@@ -7,12 +7,12 @@
 
 namespace oak
 {
-  class LuaCollisionRect
+  class LuaHCollisionRect
   {
     CollisionRect* ptr;
   public:
-    LuaCollisionRect(CollisionRect* rect);
-    ~LuaCollisionRect();
+    LuaHCollisionRect(CollisionRect* rect);
+    ~LuaHCollisionRect();
 
     static void reg(lua_State* L);
 

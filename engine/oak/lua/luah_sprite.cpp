@@ -1,4 +1,4 @@
-#include <oak/lua/lua_sprite.h>
+#include <oak/lua/luah_sprite.h>
 #include <iostream>
 #include <oak/lua/lua_constants.h>
 
@@ -6,19 +6,19 @@ using namespace oak;
 
 
 
-LuaSprite::LuaSprite(Sprite* sprite)
+LuaHSprite::LuaHSprite(Sprite* sprite)
 {
   this->ptr = sprite;
 }
 
-LuaSprite::~LuaSprite()
+LuaHSprite::~LuaHSprite()
 {
 
 }
 
-void LuaSprite::reg(lua_State* L)
+void LuaHSprite::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_HANDLE_SPRITE);
+  luaL_newmetatable(L, LUA_HANDLER_SPRITE);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
   lua_pushcfunction(L, getSrc); lua_setfield(L, -2, "getSrc");
@@ -32,23 +32,23 @@ void LuaSprite::reg(lua_State* L)
 //  *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite();
 //}
 
-int LuaSprite::lua_delete(lua_State* L)
+int LuaHSprite::lua_delete(lua_State* L)
 {
-  delete *reinterpret_cast<LuaSprite**>(lua_touserdata(L, 1));
+  delete *reinterpret_cast<LuaHSprite**>(lua_touserdata(L, 1));
   return 0;
 }
 
-int LuaSprite::getSrc(lua_State* L)
+int LuaHSprite::getSrc(lua_State* L)
 {
-  LuaSprite* sprite = *reinterpret_cast<LuaSprite**>(lua_touserdata(L, 1));
+  LuaHSprite* sprite = *reinterpret_cast<LuaHSprite**>(lua_touserdata(L, 1));
   std::string s = sprite->ptr->getSrc(); 
   lua_pushstring(L, s.c_str());
   return 1;
 }
 
-int LuaSprite::setSrc(lua_State* L)
+int LuaHSprite::setSrc(lua_State* L)
 {
-  LuaSprite* sprite = *reinterpret_cast<LuaSprite**>(lua_touserdata(L, 1));
+  LuaHSprite* sprite = *reinterpret_cast<LuaHSprite**>(lua_touserdata(L, 1));
   const char* src = luaL_checkstring(L, 2);
   sprite->ptr->setSrc(src);
   return 0;

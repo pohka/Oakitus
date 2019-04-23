@@ -4,9 +4,9 @@
 #include <oak/oak_def.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_time.h>
-#include <oak/lua/lua_script_handle.h>
-#include <oak/lua/lua_unit.h>
-#include <oak/lua/lua_ability_handler.h>
+#include <oak/lua/luah_script.h>
+#include <oak/lua/luah_unit.h>
+#include <oak/lua/luah_ability.h>
 #include <oak/ability/combat.h>
 
 using namespace oak;
@@ -20,7 +20,7 @@ void LuaGlobal::reg(lua_State* L)
   lua_register(L, "getSystemTime", LuaTime::systemTime);
   lua_register(L, "getGameTime", LuaTime::gameTime);
 
-  lua_register(L, "setThink", LuaScriptHandle::setThink);
+  lua_register(L, "setThink", LuaHScript::setThink);
   
 
   lua_register(L, "applyDamage", applyDamage);
@@ -74,10 +74,10 @@ int LuaGlobal::log(lua_State* L)
 
 int LuaGlobal::applyDamage(lua_State* L)
 {
-  LuaUnit* victimH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
-  LuaUnit* attackerH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 2, LUA_HANDLE_UNIT));
+  LuaHUnit* victimH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
+  LuaHUnit* attackerH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 2, LUA_HANDLER_UNIT));
   int amount = (int)luaL_checkinteger(L, 3);
-  LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 4, LUA_HANDLE_ABILITY));
+  LuaHAbility* abilityH = *reinterpret_cast<LuaHAbility**>(luaL_checkudata(L, 4, LUA_HANDLER_ABILITY));
   int elementType = luaL_checkinteger(L, 5);
 
   Combat::log(Combat::ENTRY_TYPE_DAMAGE, victimH->unit, attackerH->unit, amount, abilityH->ptr, elementType);
@@ -87,10 +87,10 @@ int LuaGlobal::applyDamage(lua_State* L)
 
 int LuaGlobal::applyHeal(lua_State* L)
 {
-  LuaUnit* receiverH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
-  LuaUnit* giverH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 2, LUA_HANDLE_UNIT));
+  LuaHUnit* receiverH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
+  LuaHUnit* giverH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 2, LUA_HANDLER_UNIT));
   int amount = (int)luaL_checkinteger(L, 3);
-  LuaAbilityHandler* abilityH = *reinterpret_cast<LuaAbilityHandler**>(luaL_checkudata(L, 4, LUA_HANDLE_ABILITY));
+  LuaHAbility* abilityH = *reinterpret_cast<LuaHAbility**>(luaL_checkudata(L, 4, LUA_HANDLER_ABILITY));
   int elementType = luaL_checkinteger(L, 5);
 
   Combat::log(Combat::ENTRY_TYPE_DAMAGE, receiverH->unit, giverH->unit, amount, abilityH->ptr, elementType);

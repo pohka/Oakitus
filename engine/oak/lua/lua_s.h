@@ -4,9 +4,9 @@
 #include <string>
 #include <lua/lua.hpp>
 #include <map>
-#include <oak/lua/lua_entity.h>
-#include <oak/lua/lua_script_handle.h>
-#include <oak/lua/lua_ability_handler.h>
+#include <oak/lua/luah_entity.h>
+#include <oak/lua/luah_script.h>
+#include <oak/lua/luah_ability.h>
 
 namespace oak
 {
@@ -41,8 +41,8 @@ namespace oak
     static void setThisAbility(LuaAbility* ability);
 
     //get the global accessor for handlers
-    static const LuaScriptHandle* getScriptHandler();
-    static const LuaAbilityHandler* getAbilityHandler();
+    static const LuaHScript* getScriptHandler();
+    static const LuaHAbility* getAbilityHandler();
 
     //sets the func to be called, returns false if the function does not exist
     static bool setFunc(const char* filePath, const char* className, const char* funcName);
@@ -53,12 +53,14 @@ namespace oak
 
     //string content of loaded files <fileName, fileContent>
     static std::map<std::string, std::string> files;
+
+    //fileName of the currently loaded file
     static std::string curLoadedFile;
 
     //global accessor handlers
-    static LuaEntity* thisEntity;
-    static LuaScriptHandle* thisScript;
-    static LuaAbilityHandler* thisAbility;
+    static LuaHEntity* thisEntity;
+    static LuaHScript* thisScript;
+    static LuaHAbility* thisAbility;
   };
 }
 

@@ -1,7 +1,7 @@
 #include <oak/lua/lua_player_resource.h>
 #include <oak/player/player_resource.h>
 #include <oak/lua/lua_constants.h>
-#include <oak/lua/lua_player.h>
+#include <oak/lua/luah_player.h>
 #include <oak/lua/lua_s.h>
 
 using namespace oak;
@@ -33,8 +33,8 @@ int LuaPlayerResource::getPlayer(lua_State* L)
   
   if (player != nullptr)
   {
-    *reinterpret_cast<LuaPlayer**>(lua_newuserdata(L, sizeof(LuaPlayer*))) = new LuaPlayer(player);
-    luaL_setmetatable(L, LUA_HANDLE_PLAYER);
+    *reinterpret_cast<LuaHPlayer**>(lua_newuserdata(L, sizeof(LuaHPlayer*))) = new LuaHPlayer(player);
+    luaL_setmetatable(L, LUA_HANDLER_PLAYER);
   }
   else
   {

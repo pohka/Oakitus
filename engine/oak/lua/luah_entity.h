@@ -1,19 +1,18 @@
-#ifndef LUA_ENTITY_H
-#define LUA_ENTITY_H
+#ifndef LUAH_ENTITY_H
+#define LUAH_ENTITY_H
 
 #include <lua/lua.hpp>
 #include <oak/ecs/entity.h>
 
 namespace oak
 {
-  class LuaEntity
+  class LuaHEntity
   {
-    Entity* ptr;
-    friend class LuaPlayer;
-
   public :
-    LuaEntity(Entity* ent);
-    ~LuaEntity();
+    Entity* ptr;
+
+    LuaHEntity(Entity* ent);
+    ~LuaHEntity();
 
     static void reg(lua_State* L);
 

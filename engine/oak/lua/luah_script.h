@@ -1,18 +1,18 @@
-#ifndef LUA_SCRIPT_HANDLE_H
-#define LUA_SCRIPT_HANDLE_H
+#ifndef LUAH_SCRIPT_H
+#define LUAH_SCRIPT_H
 
 #include <lua/lua.hpp>
 #include <oak/lua/lua_script.h>
 
 namespace oak
 {
-  class LuaScriptHandle
+  class LuaHScript
   {
     LuaScript* script;
 
   public:
-    LuaScriptHandle(LuaScript* script);
-    ~LuaScriptHandle();
+    LuaHScript(LuaScript* script);
+    ~LuaHScript();
 
     static void reg(lua_State* L);
     void set(LuaScript* script);

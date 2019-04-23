@@ -5,19 +5,19 @@
 #include <oak/lua/lua_scene.h>
 
 #include <oak/lua/lua_input.h>
-#include <oak/lua/lua_entity.h>
+#include <oak/lua/luah_entity.h>
 #include <oak/lua/lua_vector.h>
 #include <oak/lua/lua_global.h>
-#include <oak/lua/lua_sprite.h>
-#include <oak/lua/lua_rigid_body_2d.h>
-#include <oak/lua/lua_player.h>
+#include <oak/lua/luah_sprite.h>
+#include <oak/lua/luah_rigid_body_2d.h>
+#include <oak/lua/luah_player.h>
 #include <oak/lua/lua_player_resource.h>
-#include <oak/lua/lua_collision_rect.h>
-#include <oak/lua/lua_collision_circle.h>
-#include <oak/lua/lua_animator.h>
-#include <oak/lua/lua_ability_handler.h>
+#include <oak/lua/luah_collision_rect.h>
+#include <oak/lua/luah_collision_circle.h>
+#include <oak/lua/luah_animator.h>
+#include <oak/lua/luah_ability.h>
 #include <oak/lua/lua_game.h>
-#include <oak/lua/lua_unit.h>
+#include <oak/lua/luah_unit.h>
 #include <oak/lua/lua_constants.h>
 
 #include <string>
@@ -30,9 +30,9 @@ using namespace oak;
 lua_State* LuaS::state;
 std::map<std::string, std::string> LuaS::files = {};
 std::string LuaS::curLoadedFile = "";
-LuaEntity* LuaS::thisEntity = new LuaEntity(nullptr);
-LuaScriptHandle* LuaS::thisScript = new LuaScriptHandle(nullptr);
-LuaAbilityHandler* LuaS::thisAbility = new LuaAbilityHandler(nullptr);
+LuaHEntity* LuaS::thisEntity = new LuaHEntity(nullptr);
+LuaHScript* LuaS::thisScript = new LuaHScript(nullptr);
+LuaHAbility* LuaS::thisAbility = new LuaHAbility(nullptr);
 
 void LuaS::init()
 {
@@ -40,6 +40,7 @@ void LuaS::init()
   luaL_openlibs(LuaS::state);
   registerBindings(LuaS::state);
 
+  //placeholder metadata file names
   MetaData::load(META_DATA_KEY_ABILITYS, "abilitys.json");
   LuaScene* scene = new LuaScene("file.json");
   SceneManager::loadFirstScene(scene);
@@ -50,40 +51,40 @@ void LuaS::registerBindings(lua_State* L)
   //register functions
   LuaGame::reg(L);
   LuaGlobal::reg(L);
-  LuaPlayer::reg(L);
+  LuaHPlayer::reg(L);
   LuaPlayerResource::reg(L);
-  LuaRigidBody2D::reg(L);
+  LuaHRigidBody2D::reg(L);
   LuaVector::reg(L);
   LuaInput::reg(L);
-  LuaSprite::reg(L);
-  LuaEntity::reg(L);
-  LuaCollisionRect::reg(L);
-  LuaCollisionCircle::reg(L);
-  LuaAnimator::reg(L);
-  LuaScriptHandle::reg(L);
-  LuaUnit::reg(L);
-  LuaAbilityHandler::reg(L);
+  LuaHSprite::reg(L);
+  LuaHEntity::reg(L);
+  LuaHCollisionRect::reg(L);
+  LuaHCollisionCircle::reg(L);
+  LuaHAnimator::reg(L);
+  LuaHScript::reg(L);
+  LuaHUnit::reg(L);
+  LuaHAbility::reg(L);
 
-  //global accessor for instances e.g. thisEntity, thisAbility, thisScript, etc
+  //global accessor tables for instances e.g. thisEntity, thisAbility, thisScript, etc
   lua_newtable(L);
-  *reinterpret_cast<LuaEntity**>(lua_newuserdata(L, sizeof(LuaEntity*))) = LuaS::thisEntity;
-  luaL_setmetatable(L, LUA_HANDLE_ENTITY);
+  *reinterpret_cast<LuaHEntity**>(lua_newuserdata(L, sizeof(LuaHEntity*))) = LuaS::thisEntity;
+  luaL_setmetatable(L, LUA_HANDLER_ENTITY);
   lua_setglobal(L, LUA_ENTITY);
 
   lua_newtable(L);
-  *reinterpret_cast<LuaScriptHandle**>(lua_newuserdata(L, sizeof(LuaScriptHandle*))) = LuaS::thisScript;
-  luaL_setmetatable(L, LUA_HANDLE_SCRIPT);
+  *reinterpret_cast<LuaHScript**>(lua_newuserdata(L, sizeof(LuaHScript*))) = LuaS::thisScript;
+  luaL_setmetatable(L, LUA_HANDLER_SCRIPT);
   lua_setglobal(L, LUA_SCRIPT);
 
   lua_newtable(L);
-  *reinterpret_cast<LuaAbilityHandler**>(lua_newuserdata(L, sizeof(LuaAbilityHandler*))) = LuaS::thisAbility;
-  luaL_setmetatable(L, LUA_HANDLE_ABILITY);
+  *reinterpret_cast<LuaHAbility**>(lua_newuserdata(L, sizeof(LuaHAbility*))) = LuaS::thisAbility;
+  luaL_setmetatable(L, LUA_HANDLER_ABILITY);
   lua_setglobal(L, LUA_ABILITY);
 }
 
 void LuaS::loadFile(const std::string& fileName)
 {
-  //dont load file more than once
+  //only load file once
   if (files.find(fileName) == files.end())
   {
     std::ifstream ifs(fileName);
@@ -95,6 +96,7 @@ void LuaS::loadFile(const std::string& fileName)
 
 void LuaS::doFile(const std::string& fileName)
 {
+  //check if lua file is already loaded
   auto it = files.find(fileName);
   if (it != files.end())
   {
@@ -109,6 +111,7 @@ void LuaS::doFile(const std::string& fileName)
   }
 }
 
+//calls the current file
 void LuaS::call(const int result)
 {
   if (lua_pcall(state, 0, result, 0) != 0)
@@ -129,6 +132,7 @@ void LuaS::close()
   files.clear();
 }
 
+//debug logging with line number
 void LuaS::log(const std::string& msg)
 {
   lua_Debug ar;
@@ -144,10 +148,13 @@ void LuaS::setThisScript(LuaScript* script)
   thisScript->set(script);
 }
 
+//example: my_abil::onSpellStart
 bool LuaS::setFunc(const char* filePath, const char* className, const char* funcName)
 {
   LuaS::doFile(filePath);
   lua_getglobal(LuaS::state, className);
+
+  //check if function exists
   if (!lua_isnil(LuaS::state, -1) && lua_istable(LuaS::state, -1))
   {
     lua_getfield(LuaS::state, -1, funcName);
@@ -156,7 +163,7 @@ bool LuaS::setFunc(const char* filePath, const char* className, const char* func
       return true;
     }
   }
-
+  //function not found
   return false;
 }
 
@@ -165,12 +172,12 @@ void LuaS::setThisAbility(LuaAbility* ability)
   thisAbility->set(ability);
 }
 
-const LuaScriptHandle* LuaS::getScriptHandler()
+const LuaHScript* LuaS::getScriptHandler()
 {
   return thisScript;
 }
 
-const LuaAbilityHandler* LuaS::getAbilityHandler()
+const LuaHAbility* LuaS::getAbilityHandler()
 {
   return thisAbility;
 }

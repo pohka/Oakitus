@@ -1,22 +1,22 @@
-#include <oak/lua/lua_unit.h>
+#include <oak/lua/luah_unit.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/debug.h>
 
 using namespace oak;
 
-LuaUnit::LuaUnit(Unit* unit)
+LuaHUnit::LuaHUnit(Unit* unit)
 {
   this->unit = unit;
 }
 
-LuaUnit::~LuaUnit()
+LuaHUnit::~LuaHUnit()
 {
 
 }
 
-void LuaUnit::reg(lua_State* L)
+void LuaHUnit::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_HANDLE_UNIT);
+  luaL_newmetatable(L, LUA_HANDLER_UNIT);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
   lua_pushcfunction(L, getUnitName); lua_setfield(L, -2, "getUnitName");
@@ -32,58 +32,58 @@ void LuaUnit::reg(lua_State* L)
   lua_pop(L, 1);
 }
 
-int LuaUnit::lua_delete(lua_State* L)
+int LuaHUnit::lua_delete(lua_State* L)
 {
-  delete *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  delete *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   return 0;
 }
 
-int LuaUnit::getUnitName(lua_State* L)
+int LuaHUnit::getUnitName(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   lua_pushstring(L, unitH->unit->getName().c_str());
   return 1;
 }
 
-int LuaUnit::getMaxHealth(lua_State* L)
+int LuaHUnit::getMaxHealth(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   lua_pushnumber(L, unitH->unit->getMaxHealth());
   return 1;
 }
 
-int LuaUnit::getHealth(lua_State* L)
+int LuaHUnit::getHealth(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   lua_pushnumber(L, unitH->unit->getHealth());
   return 1;
 }
 
-int LuaUnit::getMana(lua_State* L)
+int LuaHUnit::getMana(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   lua_pushnumber(L, unitH->unit->getMana());
   return 1;
 }
 
-int LuaUnit::getMaxMana(lua_State* L)
+int LuaHUnit::getMaxMana(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   lua_pushnumber(L, unitH->unit->getMaxMana());
   return 1;
 }
 
-int LuaUnit::getLevel(lua_State* L)
+int LuaHUnit::getLevel(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   lua_pushnumber(L, unitH->unit->getLevel());
   return 1;
 }
 
 
-int LuaUnit::castAbility(lua_State* L)
+int LuaHUnit::castAbility(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   int abilityIndex = luaL_checkinteger(L, 2);
 
   if (abilityIndex >= 0 && abilityIndex < unitH->unit->getAbilityCount())
@@ -93,27 +93,27 @@ int LuaUnit::castAbility(lua_State* L)
   return 0;
 }
 
-int LuaUnit::setHealth(lua_State* L)
+int LuaHUnit::setHealth(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   int hp = luaL_checkinteger(L, 2);
 
   unitH->unit->setHealth(hp);
   return 0;
 }
 
-int LuaUnit::setMana(lua_State* L)
+int LuaHUnit::setMana(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   int mana = luaL_checkinteger(L, 2);
 
   unitH->unit->setMana(mana);
   return 0;
 }
 
-int LuaUnit::giveMana(lua_State* L)
+int LuaHUnit::giveMana(lua_State* L)
 {
-  LuaUnit* unitH = *reinterpret_cast<LuaUnit**>(luaL_checkudata(L, 1, LUA_HANDLE_UNIT));
+  LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   int amount = luaL_checkinteger(L, 2);
 
   unitH->unit->giveMana(amount);

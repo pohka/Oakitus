@@ -4,7 +4,7 @@
 #include <iostream>
 #include <oak/lua/lua_input.h>
 #include <oak/scene/scene_manager.h>
-#include <oak/lua/lua_entity.h>
+#include <oak/lua/luah_entity.h>
 #include <oak/debug.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_s.h>

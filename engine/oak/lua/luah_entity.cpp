@@ -1,8 +1,6 @@
-#include <oak/lua/lua_entity.h>
+#include <oak/lua/luah_entity.h>
 #include <oak/scene/scene_manager.h>
 #include <oak/lua/lua_scene.h>
-//#include <nlohmann/json.hpp>
-//#include <oak/ecs/entity.h>
 #include <oak/components/sprite.h>
 #include <oak/components/transform.h>
 #include <oak/collision/collision_circle.h>
@@ -11,16 +9,16 @@
 #include <oak/lua/lua_script.h>
 #include <oak/ecs/entity_manager.h>
 #include <oak/lua/lua_vector.h>
-#include <oak/lua/lua_sprite.h>
+#include <oak/lua/luah_sprite.h>
 #include <oak/lua/lua_constants.h>
-#include <oak/lua/lua_rigid_body_2d.h>
-#include <oak/lua/lua_collision_rect.h>
-#include <oak/lua/lua_collision_circle.h>
+#include <oak/lua/luah_rigid_body_2d.h>
+#include <oak/lua/luah_collision_rect.h>
+#include <oak/lua/luah_collision_circle.h>
 #include <oak/core/resources.h>
 #include <oak/components/animator.h>
-#include <oak/lua/lua_animator.h>
+#include <oak/lua/luah_animator.h>
 #include <oak/components/unit.h>
-#include <oak/lua/lua_unit.h>
+#include <oak/lua/luah_unit.h>
 
 #include <oak/lua/lua_s.h>
 
@@ -28,43 +26,43 @@ using namespace oak;
 
 
 
-LuaEntity::LuaEntity(Entity* ent)
+LuaHEntity::LuaHEntity(Entity* ent)
 {
   ptr = ent;
 }
 
-LuaEntity::~LuaEntity()
+LuaHEntity::~LuaHEntity()
 {
 
 }
 
-int LuaEntity::lua_delete(lua_State* L)
+int LuaHEntity::lua_delete(lua_State* L)
 {
-  delete *reinterpret_cast<LuaEntity**>(lua_touserdata(L, 1));
+  delete *reinterpret_cast<LuaHEntity**>(lua_touserdata(L, 1));
   return 0;
 }
 
-int LuaEntity::getName(lua_State* L)
+int LuaHEntity::getName(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* e = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
   std::string name = e->ptr->getName();
   lua_pushstring(L, name.c_str());
 
   return 1;
 }
 
-int LuaEntity::getID(lua_State* L)
+int LuaHEntity::getID(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* e = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
   int id = e->ptr->getID();
   lua_pushinteger(L, id);
 
   return 1;
 }
 
-int LuaEntity::moveBy(lua_State* L)
+int LuaHEntity::moveBy(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* e = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
 
   float x, y, z;
 
@@ -95,9 +93,9 @@ int LuaEntity::moveBy(lua_State* L)
 }
 
 
-int LuaEntity::moveTo(lua_State* L)
+int LuaHEntity::moveTo(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* e = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
 
   float x, y, z;
 
@@ -127,14 +125,14 @@ int LuaEntity::moveTo(lua_State* L)
   return 0;
 }
 
-void LuaEntity::set(Entity* ent)
+void LuaHEntity::set(Entity* ent)
 {
   this->ptr = ent;
 }
 
-void LuaEntity::reg(lua_State* L)
+void LuaHEntity::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_HANDLE_ENTITY);
+  luaL_newmetatable(L, LUA_HANDLER_ENTITY);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
   lua_pushcfunction(L, getName); lua_setfield(L, -2, "getName");
@@ -150,18 +148,18 @@ void LuaEntity::reg(lua_State* L)
 }
 
 
-int LuaEntity::getPosition(lua_State* L)
+int LuaHEntity::getPosition(lua_State* L)
 {
-  LuaEntity* e = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* e = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
   glm::vec3 pos = e->ptr->transform->position();
   LuaVector::c_new(L, pos.x, pos.y, pos.z);
   return 1;
 }
 
 
-int LuaEntity::getComponent(lua_State* L)
+int LuaHEntity::getComponent(lua_State* L)
 {
-  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
   
   int reflectID = luaL_checkinteger(L, 2);
   char res = 1;
@@ -173,8 +171,8 @@ int LuaEntity::getComponent(lua_State* L)
       Sprite* sprite = entH->ptr->getComponentWithReflection<Sprite>(reflectID);
       if (sprite != nullptr)
       {
-        *reinterpret_cast<LuaSprite**>(lua_newuserdata(L, sizeof(LuaSprite*))) = new LuaSprite(sprite);
-        luaL_setmetatable(L, LUA_HANDLE_SPRITE);
+        *reinterpret_cast<LuaHSprite**>(lua_newuserdata(L, sizeof(LuaHSprite*))) = new LuaHSprite(sprite);
+        luaL_setmetatable(L, LUA_HANDLER_SPRITE);
       }
       else
       {
@@ -188,8 +186,8 @@ int LuaEntity::getComponent(lua_State* L)
       RigidBody2D* rb = entH->ptr->getComponentWithReflection<RigidBody2D>(reflectID);
       if (rb != nullptr)
       {
-        *reinterpret_cast<LuaRigidBody2D**>(lua_newuserdata(L, sizeof(LuaRigidBody2D*))) = new LuaRigidBody2D(rb);
-        luaL_setmetatable(L, LUA_HANDLE_RIGIDBODY2D);
+        *reinterpret_cast<LuaHRigidBody2D**>(lua_newuserdata(L, sizeof(LuaHRigidBody2D*))) = new LuaHRigidBody2D(rb);
+        luaL_setmetatable(L, LUA_HANDLER_RIGIDBODY2D);
       }
       else
       {
@@ -203,8 +201,8 @@ int LuaEntity::getComponent(lua_State* L)
       Animator* animator = entH->ptr->getComponentWithReflection<Animator>(reflectID);
       if (animator != nullptr)
       {
-        *reinterpret_cast<LuaAnimator**>(lua_newuserdata(L, sizeof(LuaAnimator*))) = new LuaAnimator(animator);
-        luaL_setmetatable(L, LUA_HANDLE_ANIMATOR);
+        *reinterpret_cast<LuaHAnimator**>(lua_newuserdata(L, sizeof(LuaHAnimator*))) = new LuaHAnimator(animator);
+        luaL_setmetatable(L, LUA_HANDLER_ANIMATOR);
       }
       else
       {
@@ -218,8 +216,8 @@ int LuaEntity::getComponent(lua_State* L)
       Unit* unit = entH->ptr->getComponentWithReflection<Unit>(reflectID);
       if (unit != nullptr)
       {
-        *reinterpret_cast<LuaUnit**>(lua_newuserdata(L, sizeof(LuaUnit*))) = new LuaUnit(unit);
-        luaL_setmetatable(L, LUA_HANDLE_UNIT);
+        *reinterpret_cast<LuaHUnit**>(lua_newuserdata(L, sizeof(LuaHUnit*))) = new LuaHUnit(unit);
+        luaL_setmetatable(L, LUA_HANDLER_UNIT);
       }
       else
       {
@@ -238,9 +236,9 @@ int LuaEntity::getComponent(lua_State* L)
   return res;
 }
 
-int LuaEntity::getShapeByID(lua_State* L)
+int LuaHEntity::getShapeByID(lua_State* L)
 {
-  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
   int id = (int)luaL_checkinteger(L, 2);
   int res = 1;
 
@@ -260,16 +258,16 @@ int LuaEntity::getShapeByID(lua_State* L)
       {
         CollisionRect* rect = static_cast<CollisionRect*>(shape);
         lua_newtable(L);
-        *reinterpret_cast<LuaCollisionRect**>(lua_newuserdata(L, sizeof(LuaCollisionRect*))) = new LuaCollisionRect(rect);
-        luaL_setmetatable(L, LUA_HANDLE_COLLISION_RECT);
+        *reinterpret_cast<LuaHCollisionRect**>(lua_newuserdata(L, sizeof(LuaHCollisionRect*))) = new LuaHCollisionRect(rect);
+        luaL_setmetatable(L, LUA_HANDLER_COLLISION_RECT);
         break;
       }
       case COLLISION_SHAPE_CIRCLE:
       {
         CollisionCircle* circle = static_cast<CollisionCircle*>(shape);
         lua_newtable(L);
-        *reinterpret_cast<LuaCollisionCircle**>(lua_newuserdata(L, sizeof(LuaCollisionCircle*))) = new LuaCollisionCircle(circle);
-        luaL_setmetatable(L, LUA_HANDLE_COLLISION_CIRCLE);
+        *reinterpret_cast<LuaHCollisionCircle**>(lua_newuserdata(L, sizeof(LuaHCollisionCircle*))) = new LuaHCollisionCircle(circle);
+        luaL_setmetatable(L, LUA_HANDLER_COLLISION_CIRCLE);
         break;
       }
       default:
@@ -282,9 +280,9 @@ int LuaEntity::getShapeByID(lua_State* L)
   return res;
 }
 
-int LuaEntity::destroy(lua_State* L)
+int LuaHEntity::destroy(lua_State* L)
 {
-  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
 
   if (lua_gettop(L) == 2)
   {
@@ -300,9 +298,9 @@ int LuaEntity::destroy(lua_State* L)
 }
 
 //find script component with matching script name
-int LuaEntity::getScript(lua_State* L)
+int LuaHEntity::getScript(lua_State* L)
 {
-  LuaEntity* entH = *reinterpret_cast<LuaEntity**>(luaL_checkudata(L, 1, LUA_HANDLE_ENTITY));
+  LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
   std::string scriptName = luaL_checkstring(L, 2);
 
   std::vector<LuaScript*> scripts = {};
@@ -313,8 +311,8 @@ int LuaEntity::getScript(lua_State* L)
     if (scripts[i]->getName() == scriptName)
     {
       lua_newtable(L);
-      *reinterpret_cast<LuaScriptHandle**>(lua_newuserdata(L, sizeof(LuaScriptHandle*))) = new LuaScriptHandle(scripts[i]);
-      luaL_setmetatable(L, LUA_HANDLE_SCRIPT);
+      *reinterpret_cast<LuaHScript**>(lua_newuserdata(L, sizeof(LuaHScript*))) = new LuaHScript(scripts[i]);
+      luaL_setmetatable(L, LUA_HANDLER_SCRIPT);
       return 1;
     }
   }

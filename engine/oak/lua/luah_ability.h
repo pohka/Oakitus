@@ -1,5 +1,5 @@
-#ifndef LUA_ABILITY_HANDLER_H
-#define LUA_ABILITY_HANDLER_H
+#ifndef LUAH_ABILITY_H
+#define LUAH_ABILITY_H
 
 #include <oak/lua/lua_ability.h>
 #include <lua/lua.hpp>
@@ -7,13 +7,13 @@
 
 namespace oak
 {
-  class LuaAbilityHandler
+  class LuaHAbility
   {
     
 
   public:
-    LuaAbilityHandler(LuaAbility* ability);
-    ~LuaAbilityHandler();
+    LuaHAbility(LuaAbility* ability);
+    ~LuaHAbility();
 
     LuaAbility* ptr;
 

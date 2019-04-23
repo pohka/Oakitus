@@ -1,18 +1,18 @@
-#ifndef LUA_SPRITE_H
-#define LUA_SPRITE_H
+#ifndef LUAH_SPRITE_H
+#define LUAH_SPRITE_H
 
 #include <lua/lua.hpp>
 #include <oak/components/sprite.h>
 
 namespace oak
 {
-  class LuaSprite
+  class LuaHSprite
   {
     Sprite* ptr;
 
   public:
-      LuaSprite(Sprite* sprite);
-      ~LuaSprite();
+      LuaHSprite(Sprite* sprite);
+      ~LuaHSprite();
 
       static void reg(lua_State* L);
 

@@ -1,5 +1,5 @@
-#ifndef LUA_UNIT_H
-#define LUA_UNIT_H
+#ifndef LUAH_UNIT_H
+#define LUAH_UNIT_H
 
 #include <oak/components/unit.h>
 #include <lua/lua.hpp>
@@ -8,13 +8,13 @@ namespace oak
 {
   
 
-  class LuaUnit
+  class LuaHUnit
   {
     
 
   public:
-    LuaUnit(Unit* unit);
-    ~LuaUnit();
+    LuaHUnit(Unit* unit);
+    ~LuaHUnit();
 
     static void reg(lua_State* L);
 
