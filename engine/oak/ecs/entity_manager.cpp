@@ -1,4 +1,5 @@
 #include "entity_manager.h"
+#include <oak/time/time.h>
 
 using namespace oak;
 
@@ -6,6 +7,7 @@ std::vector<Entity*> EntityManager::entitys;
 std::queue<uint> EntityManager::queuedDestroyEntityIDs;
 IDGenerator EntityManager::entityIDGen;
 std::queue<Entity*> EntityManager::pendingEntityInstances;
+std::vector<DestroyRequest> EntityManager::destroyRequests = {};
 
 
 Entity* EntityManager::findEntityByID(uint id)
@@ -163,6 +165,7 @@ void EntityManager::deleteAllEnts(bool isGlobalExempt)
       delete ent;
     }
   }
+  destroyRequests.clear();
 }
 
 void EntityManager::instantiateQueuedEnts()
@@ -221,6 +224,26 @@ void EntityManager::getAllEntitysByGroup(const uchar ENTITY_GROUP, std::vector<E
     if (ent->ENTITY_GROUP == ENTITY_GROUP)
     {
       out.push_back(ent);
+    }
+  }
+}
+
+void EntityManager::requestDestroy(const uint entID, const float delay)
+{
+  destroyRequests.push_back({ entID, delay + Time::getGameTime() });
+}
+
+//moves requested destroys to queuedDestroys
+void EntityManager::checkRequestedDestroys()
+{
+  const float now = Time::getGameTime();
+  for (uint i = 0; i < destroyRequests.size(); i++)
+  {
+    if (now >= destroyRequests[i].destroyTime)
+    {
+      queuedDestroyEntityIDs.push(destroyRequests[i].entID);
+      destroyRequests.erase(destroyRequests.begin() + i);
+      i--;
     }
   }
 }

@@ -3,6 +3,7 @@
 #include <oak/core/resources.h>
 #include "collision.h"
 #include <oak/oak_def.h>
+#include <oak/build_def.h>
 
 using namespace oak;
 
@@ -67,4 +68,21 @@ RectBounds CollisionRect::getRectBounds() const
   bounds.maxX = pos.x + m_offsetX + (w * 0.5f);
   bounds.maxY = pos.y + m_offsetY + (h * 0.5f);
   return bounds;
+}
+
+void CollisionRect::setWidth(const float w)
+{
+  this->w = w;
+
+#ifdef DEBUG_MODE
+  initVAO(w, h);
+#endif
+}
+void CollisionRect::setHeight(const float h)
+{
+  this->h = h;
+
+#ifdef DEBUG_MODE
+  initVAO(w, h);
+#endif
 }

@@ -1,0 +1,116 @@
+{
+  "precache" : {
+    "textures" : [
+      "face.png",
+      "pepe.png",
+      "anim_test2.png"
+    ]
+  },
+  "prefabs" : {
+    "sample" : [
+      {
+        "class" : "sprite",
+        "src" : "face.png",
+        "w" : 64,
+        "h" : 64
+      },
+      {
+        "class" : "collision_rect",
+        "offsetX" : 0.0,
+        "offsetY" : 0.0,
+        "w" : 64,
+        "h" : 64
+      },
+      {
+        "class" : "collision_circle",
+        "offsetX" : 0.0,
+        "offsetY" : 0.0,
+        "radius" : 100.0
+      },
+      {
+        "class" : "rigidbody2d",
+        "isStatic" : false
+      }
+    ],
+    "player_unit" : [
+      {
+        "class" : "lua_script",
+        "name" : "control"
+      },
+      {
+        "class" : "rigidbody2d",
+        "mass" : 1.0,
+        "isStatic" : false
+      },
+      {
+        "class" : "collision_circle",
+        "offsetX" : 0.0,
+        "offsetY" : 0.0,
+        "radius" : 100.0
+      },
+      {
+        "class" : "animator",
+        "initialAnimID" : 1,
+        "anims" : [
+          {
+            "id" : 1,
+            "src" : "anim_test2.png",
+            "frameW" : 192,
+            "frameH" : 192,
+            "displayW" : 100,
+            "displayH" : 100,
+            "frameDuration" : 0.040,
+            "startFrameY" : 0,
+            "totalFrameCount" : 14,
+            "isLooping" : true,
+            "priority" : 1
+          },
+          {
+            "id" : 4,
+            "src" : "anim_test2.png",
+            "frameW" : 384,
+            "frameH" : 192,
+            "displayW" : 200,
+            "displayH" : 100,
+            "frameDuration" : 0.040,
+            "startFrameY" : 5,
+            "totalFrameCount" : 9,
+            "isLooping" : false,
+            "priority" : 1
+          }
+        ]
+      },
+      {
+        "class" : "unit",
+        "name" : "player_unit_name",
+        "health" : 150,
+        "mana" : 120,
+        "level" : 5,
+        "ability0" : "my_abil" 
+      }
+    ],
+    "bullet" : [
+      {
+        "class" : "sprite",
+        "src" : "face.png",
+        "w" : 64,
+        "h" : 64
+      },
+      {
+        "class" : "collision_rect",
+        "offsetX" : 0.0,
+        "offsetY" : 0.0,
+        "w" : 64,
+        "h" : 64
+      },
+      {
+        "class" : "lua_script",
+        "name" : "projectile",
+        "kv" : 
+        {
+          "duration" : 2
+        }
+      }
+    ]
+  }
+}

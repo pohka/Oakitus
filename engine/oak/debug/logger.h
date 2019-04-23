@@ -18,6 +18,7 @@ namespace debug
   cnum DEBUG_LOG_MSG = 0;
   cnum DEBUG_LOG_WARNING = 1;
   cnum DEBUG_LOG_ERROR = 2;
+  //cnum DEBUG_LOG_LUA = 3;
 
   ///<summary>Debug logger</summary>
   struct LogData
@@ -87,5 +88,8 @@ namespace debug
 #define LOG debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_MSG)
 #define LOG_WARNING debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_WARNING)
 #define LOG_ERROR debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_ERROR)
+//#define LOG_LUA debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_LUA)
+//#define LOG_LUA_ERROR  debug::Logger(__FUNCTION__, __FILE__, __LINE__, debug::DEBUG_LOG_LUA_ERROR)
+
 
 #endif

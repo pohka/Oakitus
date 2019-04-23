@@ -2,6 +2,7 @@
 
 //#include "projects/rpg/load_rpg_game.h"
 //#include "projects/sample/load_game.h"
+//#include "projects/chess/chess_load_game.h"
 
 using namespace oak;
 
@@ -14,6 +15,7 @@ int main()
   std::cout << "----- DEBUG MODE ENABLED -----" << std::endl;
 
   Oakitus::init();
+  
   return 0;
 }
 #else

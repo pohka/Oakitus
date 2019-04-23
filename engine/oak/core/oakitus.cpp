@@ -15,29 +15,34 @@
 #include <oak/oak_def.h>
 #include <oak/ui/ui_canvas.h>
 #include <oak/debug/debug_input.h>
-#include <oak/meta/meta.h>
 #include <oak/ecs/entity_manager.h>
 #include <oak/time/time.h>
+#include <oak/lua/lua_s.h>
+#include <oak/core/config.h>
+#include <oak/meta/meta_data.h>
+#include <oak/ability/combat_tracker.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
 
-#include <thread> 
-#include <chrono> 
-
+#include <thread>
+#include <chrono>
 
 using namespace oak;
+using json = nlohmann::json;
 
 
 void Oakitus::init()
 {
   Time::init();
   Input::init();
-  
-  Meta::load("config.m");
 
-  var_object* config = Meta::objs["config"];
-  Resources::rootPath = "../projects/" + config->getVar("project")->toString() + "/resources/";
+  Config::load();
+
+  std::string projectName = Config::getString("project", "default");
+  std::string projectPath = "../projects/" + projectName + "/";
+  MetaData::projectPath = projectPath;
+  Resources::rootPath = projectPath + "resources/";
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position
@@ -48,20 +53,37 @@ void Oakitus::init()
   );
 
 
+  //validate config params
+  uint  
+    viewportW = Config::getUInt("viewport_w", 736),
+    viewportH = Config::getUInt("viewport_h", 414),
+    windowW = Config::getUInt("window_w", 1066),
+    windowH = Config::getUInt("window_h", 600);
+
+  std::string title = Config::getString("title", "Oakitus");
+  bool isFullscreen = Config::getBool("isFullscreen", false);
+
   Window::init(
-    config->getVar("viewport_w")->toInt(),
-    config->getVar("viewport_h")->toInt(),
-    config->getVar("window_w")->toInt(),
-    config->getVar("window_h")->toInt(),
-    config->getVar("title")->toString().c_str(),
-    config->getVar("isFullscreen")->toBool()
+    viewportW,
+    viewportH,
+    windowW,
+    windowH,
+    title.c_str(),
+    isFullscreen
   );
+  
   GLFWwindow* window = Window::getGLFWWindow();
   
   Resources::init();
 
   PlayerResource::addPlayer(new Player());
-  Oakitus::load();
+
+  CombatTracker::init();
+
+  //loads scripts/main.lua
+  LuaS::init();
+
+  //Oakitus::load();
   loop();
 }
 
@@ -87,10 +109,17 @@ int Oakitus::loop()
     EntityManager::tickInstances(TICK_GROUP_DEFAULT);
     Collision::resolveCollisions();
     EntityManager::tickInstances(TICK_GROUP_AFTER_PHYSICS);
+    CombatTracker::onTick();
     EntityManager::tickInstances(TICK_GROUP_LAST);
     EntityManager::drawInstances();
+
+#ifdef DEBUG_MODE
     EntityManager::debugDrawInstances();
+#endif
+    
     ion::UICanvas::render();
+
+    EntityManager::checkRequestedDestroys();
 
     if (SceneManager::isNextSceneSet())
     {
@@ -107,6 +136,7 @@ int Oakitus::loop()
 
     Time::fpslimiter.sleep();
   }
+  LuaS::close();
   glfwTerminate();
   return 0;
 }

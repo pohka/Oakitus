@@ -65,11 +65,11 @@ void TestingScene::onLoad()
   Player* player = PlayerResource::getLocalPlayerBySlot(1);
   if (player != nullptr)
   {
-    player->assignActor(playerActor);
+  //  player->assignActor(playerActor);
 
-    if (!player->hasCommand(COMMAND_MOVEMENT))
-    {
-      player->addCommand(new MovementCMD());
-    }
+  //  if (!player->hasCommand(COMMAND_MOVEMENT))
+ //   {
+ //     player->addCommand(new MovementCMD());
+  //  }
   }
 }

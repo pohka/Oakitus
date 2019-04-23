@@ -71,16 +71,13 @@ void Transform::moveBy(glm::vec3 amount)
 
 void Transform::moveTo(float x, float y, float z)
 {
-  m_localPosition = glm::vec3(
-    x - m_localPosition.x,
-    y - m_localPosition.y,
-    z - m_localPosition.z
-  );
+  m_localPosition.x = x;
+  m_localPosition.y = y;
+  m_localPosition.z = z;
 }
 
 void Transform::moveTo(glm::vec3 pos)
 {
-  glm::vec3 diff = pos - m_localPosition;
   m_localPosition = pos;
 }
 
@@ -125,11 +122,9 @@ void Transform::rotateBy(glm::vec3 amount)
 
 void Transform::rotateTo(float x, float y, float z)
 {
-  m_localRotation = glm::vec3(
-    x - m_localRotation.x,
-    y - m_localRotation.y,
-    z - m_localRotation.z
-  );
+  m_localRotation.x = x;
+  m_localRotation.y = y;
+  m_localRotation.z = z;
 }
 
 void Transform::rotateTo(glm::vec3 rot)

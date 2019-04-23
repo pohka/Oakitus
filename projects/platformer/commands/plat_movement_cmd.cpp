@@ -34,6 +34,6 @@ void plat::MovementCMD::onTick()
     axisX += 1.0f;
   }
 
-  Movement* movement = player->getAssignedActor()->getComponent<Movement>();
-  movement->applyMovement(axisX, axisY);
+  //Movement* movement = player->getAssignedActor()->getComponent<Movement>();
+  //movement->applyMovement(axisX, axisY);
 }

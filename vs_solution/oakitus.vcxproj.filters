@@ -31,15 +31,6 @@
     <Filter Include="oak\meta">
       <UniqueIdentifier>{30fe0a4d-da9e-4022-981f-220656161127}</UniqueIdentifier>
     </Filter>
-    <Filter Include="projects\sample">
-      <UniqueIdentifier>{e6718199-c87f-4e52-a53d-704e8a6b2a74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\sample\scenes">
-      <UniqueIdentifier>{d487e144-1f71-451f-962c-7da054ea9bd2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\sample\events">
-      <UniqueIdentifier>{04f7d994-7790-4100-81d3-9d6de87f1fd0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="oak\assets">
       <UniqueIdentifier>{fb350887-a66e-4ed1-87fa-9a946097fbbf}</UniqueIdentifier>
     </Filter>
@@ -64,18 +55,6 @@
     <Filter Include="oak\window">
       <UniqueIdentifier>{205b23a6-fcac-4e07-b628-0225ed35d8a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="projects\platformer">
-      <UniqueIdentifier>{e634876e-5d05-461a-82ae-1e4c3d00cd22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\platformer\scenes">
-      <UniqueIdentifier>{69cd349d-9c7b-48e3-b249-d0a5c049d983}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\platformer\prefabs">
-      <UniqueIdentifier>{cd9a2b06-8d69-420d-94c7-664ebcaf3242}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="projects\platformer\commands">
-      <UniqueIdentifier>{86b7e644-07e1-4814-b89c-213f8bd1374d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="oak\tiles">
       <UniqueIdentifier>{b9c38b75-ae2b-438a-96ff-c35638496c32}</UniqueIdentifier>
     </Filter>
@@ -85,8 +64,17 @@
     <Filter Include="resources\shaders">
       <UniqueIdentifier>{c846c93e-c448-4e9c-8e9b-6003246354f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="projects\platformer\scripts">
-      <UniqueIdentifier>{6b372f55-144f-4275-a178-0b37346ea293}</UniqueIdentifier>
+    <Filter Include="projects\chess">
+      <UniqueIdentifier>{ce7278ab-5622-41ba-ade4-093f6aeabe39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{474cb757-f18a-42f7-bdfb-afae49d6e620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\lua">
+      <UniqueIdentifier>{e05962f4-a55c-49d8-9a30-ba7cb833e042}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oak\ability">
+      <UniqueIdentifier>{7f6d19e4-20e8-4f60-89d6-ca6925cc4018}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -192,47 +180,11 @@
     <ClInclude Include="..\engine\oak\xml\xml_parser.h">
       <Filter>oak\xml</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\sample\load_game.h">
-      <Filter>projects\sample</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\sample\scenes\demo_scene.h">
-      <Filter>projects\sample\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\sample\scenes\game_scenes.h">
-      <Filter>projects\sample\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\sample\movement_cmd.h">
-      <Filter>projects\sample</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\meta_def.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\var.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\var_base.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\meta\var_object.h">
-      <Filter>oak\meta</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\event\event.h">
       <Filter>oak\event</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\event\event_manager.h">
       <Filter>oak\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\sample\sample_gamemode.h">
-      <Filter>projects\sample</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\sample\events\event_damage.h">
-      <Filter>projects\sample\events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\sample\scenes\demo_scene2.h">
-      <Filter>projects\sample\scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\assets\asset.h">
       <Filter>oak\assets</Filter>
@@ -245,9 +197,6 @@
     </ClInclude>
     <ClInclude Include="..\engine\oak\assets\texture.h">
       <Filter>oak\assets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\ecs\actor.h">
-      <Filter>oak\ecs</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\ecs\component.h">
       <Filter>oak\ecs</Filter>
@@ -277,9 +226,6 @@
       <Filter>oak\old</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\player\command.h">
-      <Filter>oak\player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\player\player.h">
       <Filter>oak\player</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\player\player_resource.h">
@@ -312,9 +258,6 @@
     <ClInclude Include="..\engine\oak\core\fmath.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\core\init.h">
-      <Filter>oak\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\core\oakitus.h">
       <Filter>oak\core</Filter>
     </ClInclude>
@@ -336,35 +279,11 @@
     <ClInclude Include="..\engine\oak\core\kvmap.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\platformer\scenes\testing_scene.h">
-      <Filter>projects\platformer\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\platformer\scenes\game_scenes.h">
-      <Filter>projects\platformer\scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\platformer\prefabs\a_player.h">
-      <Filter>projects\platformer\prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\sample\sample_def.h">
-      <Filter>projects\sample</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\platformer\plat_consts.h">
-      <Filter>projects\platformer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\platformer\commands\plat_movement_cmd.h">
-      <Filter>projects\platformer\commands</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\tiles\tile.h">
       <Filter>oak\tiles</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\tiles\world.h">
       <Filter>oak\tiles</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\platformer\scripts\camera_follow.h">
-      <Filter>projects\platformer\scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projects\platformer\prefabs\camera_ent.h">
-      <Filter>projects\platformer\prefabs</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\components\transform.h">
       <Filter>oak\components</Filter>
@@ -378,17 +297,173 @@
     <ClInclude Include="..\engine\oak\collision\physics.h">
       <Filter>oak\collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\platformer\scripts\ground_check.h">
-      <Filter>projects\platformer\scripts</Filter>
+    <ClInclude Include="..\engine\lua\lparser.h">
+      <Filter>lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\platformer\prefabs\unit.h">
-      <Filter>projects\platformer\prefabs</Filter>
+    <ClInclude Include="..\engine\lua\lprefix.h">
+      <Filter>lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\platformer\scripts\movement.h">
-      <Filter>projects\platformer\scripts</Filter>
+    <ClInclude Include="..\engine\lua\lstate.h">
+      <Filter>lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\projects\platformer\reflect.h">
-      <Filter>projects\platformer</Filter>
+    <ClInclude Include="..\engine\lua\lstring.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\ltable.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\ltm.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lua.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lua.hpp">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\luaconf.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lualib.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lundump.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lvm.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lzio.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lapi.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lauxlib.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lcode.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lctype.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\ldebug.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\ldo.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lfunc.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lgc.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\llex.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\llimits.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lmem.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lobject.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\lua\lopcodes.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_scene.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\config.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_input.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_global.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_vector.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_constants.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\player\player.h">
+      <Filter>oak\player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_player_resource.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_s.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_game.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_time.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\components\unit.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ability\ability.h">
+      <Filter>oak\ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ability\modifier.h">
+      <Filter>oak\ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\meta_data.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\prefab_validator.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\meta\ability_validator.h">
+      <Filter>oak\meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_ability.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_animator.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_collision_circle.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_collision_rect.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_entity.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_player.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_rigid_body_2d.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_sprite.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_unit.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ability\lua_ability.h">
+      <Filter>oak\ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\components\lua_script.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_lua_script.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ability\combat_tracker.h">
+      <Filter>oak\ability</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -463,32 +538,8 @@
     </ClCompile>
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\glad.c" />
-    <ClCompile Include="..\projects\sample\scenes\demo_scene.cpp">
-      <Filter>projects\sample\scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\sample\movement_cmd.cpp">
-      <Filter>projects\sample</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\meta.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\var.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\meta\var_object.cpp">
-      <Filter>oak\meta</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\event\event_manager.cpp">
       <Filter>oak\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\sample\sample_gamemode.cpp">
-      <Filter>projects\sample</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\sample\events\event_damage.cpp">
-      <Filter>projects\sample\events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\sample\scenes\demo_scene2.cpp">
-      <Filter>projects\sample\scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\assets\asset.cpp">
       <Filter>oak\assets</Filter>
@@ -498,9 +549,6 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\assets\texture.cpp">
       <Filter>oak\assets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\ecs\actor.cpp">
-      <Filter>oak\ecs</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\ecs\component.cpp">
       <Filter>oak\ecs</Filter>
@@ -556,18 +604,6 @@
     <ClCompile Include="..\engine\oak\core\resources.cpp">
       <Filter>oak\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\projects\platformer\load_game.cpp">
-      <Filter>projects\platformer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\platformer\scenes\testing_scene.cpp">
-      <Filter>projects\platformer\scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\platformer\prefabs\a_player.cpp">
-      <Filter>projects\platformer\prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\platformer\commands\plat_movement_cmd.cpp">
-      <Filter>projects\platformer\commands</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\tiles\tile.cpp">
       <Filter>oak\tiles</Filter>
     </ClCompile>
@@ -576,9 +612,6 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\components\sprite.cpp">
       <Filter>oak\components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projects\platformer\scripts\camera_follow.cpp">
-      <Filter>projects\platformer\scripts</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\components\transform.cpp">
       <Filter>oak\components</Filter>
@@ -592,11 +625,185 @@
     <ClCompile Include="..\engine\oak\collision\physics.cpp">
       <Filter>oak\collision</Filter>
     </ClCompile>
-    <ClCompile Include="..\projects\platformer\scripts\ground_check.cpp">
-      <Filter>projects\platformer\scripts</Filter>
+    <ClCompile Include="..\engine\lua\loslib.c">
+      <Filter>lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\projects\platformer\scripts\movement.cpp">
-      <Filter>projects\platformer\scripts</Filter>
+    <ClCompile Include="..\engine\lua\lparser.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lstate.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lstring.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lstrlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ltable.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ltablib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ltm.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lundump.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lutf8lib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lvm.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lzio.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lapi.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lauxlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lbaselib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lbitlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lcode.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lcorolib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lctype.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ldblib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ldebug.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ldo.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\ldump.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lfunc.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lgc.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\linit.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\liolib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\llex.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lmathlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lmem.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\loadlib.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lobject.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\lua\lopcodes.c">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_scene.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_input.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_vector.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_global.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_player_resource.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_s.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_game.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_time.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\unit.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ability\ability.cpp">
+      <Filter>oak\ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ability\modifier.cpp">
+      <Filter>oak\ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\prefab_validator.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\ability_validator.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\meta\meta_data.cpp">
+      <Filter>oak\meta</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_ability.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_animator.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_collision_circle.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_collision_rect.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_entity.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_player.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_rigid_body_2d.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_sprite.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_unit.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ability\lua_ability.cpp">
+      <Filter>oak\ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\lua_script.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_lua_script.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ability\combat_tracker.cpp">
+      <Filter>oak\ability</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

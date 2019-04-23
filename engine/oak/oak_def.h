@@ -32,18 +32,25 @@ cnum CREATION_STATE_CREATED = 2; //created
 cnum CREATION_STATE_DESTROYED = 3; //queued for destruction
 
 //reflections
-const uint REFLECT_NULL = 0;
-const uint REFLECT_TRANSFORM = 1;
-const uint REFLECT_ANIMATOR = 2;
-const uint REFLECT_RIGID_BODY_2D = 3;
-const uint REFLECT_SPRITE = 4;
-const uint REFLECT_CHUNK = 5;
-const uint REFLECT_LAST = 5;
+static const uint REFLECT_NULL = 0;
+static const uint REFLECT_TRANSFORM = 1;
+static const uint REFLECT_ANIMATOR = 2;
+static const uint REFLECT_RIGID_BODY_2D = 3;
+static const uint REFLECT_SPRITE = 4;
+static const uint REFLECT_CHUNK = 5;
+static const uint REFLECT_LUA_SCRIPT = 6;
+static const uint REFLECT_UNIT = 7;
+static const uint REFLECT_LAST = 7;
 
 //entity groups
 cnum ENTITY_GROUP_NONE = 0;
 cnum ENTITY_GROUP_ACTOR = 1;
 cnum ENTITY_GROUP_WORLD = 2;
+
+cnum ANIM_NULL = 0;
+cnum ANIM_IDLE = 1;
+cnum ANIM_RUN = 2;
+cnum ANIM_DEATH = 3;
 
 
 const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";

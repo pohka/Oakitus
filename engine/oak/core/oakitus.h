@@ -14,6 +14,7 @@ namespace oak
       static void init();
       
     private:
+
       ///<summary>Called before the game loop to load the game</summary>
       static void load();
 

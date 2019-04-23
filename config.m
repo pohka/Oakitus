@@ -1,7 +1,7 @@
 config : {
-  project : "platformer"
+  project : "chess"
   inital_scene : "demo_scene"
-  title : "platformer"
+  title : "chess"
   viewport_w : 736
   viewport_h : 414
   window_w : 1066

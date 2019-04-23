@@ -59,6 +59,10 @@ Logger::Logger(
     {
       output += "--ERROR--|";
     }
+    //else if (logType == DEBUG_LOG_LUA)
+    //{
+    //  output += "--LUA--|";
+    //}
 
     std::cout <<  output + " ";
 

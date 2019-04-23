@@ -18,7 +18,17 @@ Debug/*
 # Build results
 [D]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
+#[Rr]elease/
+#![Rr]elease/scripts/*
+
+*.tlog
+
+Release/*
+!Release/scripts
+
+#[Rr]elease/scripts/*
+#![Rr]elease/language/gr/
+
 [Rr]eleases/
 x64/
 x86/
