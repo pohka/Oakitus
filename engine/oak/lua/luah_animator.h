@@ -6,6 +6,7 @@
 
 namespace oak
 {
+  //handler for Animator component
   class LuaHAnimator
   {
     Animator* ptr;
@@ -13,9 +14,12 @@ namespace oak
     LuaHAnimator(Animator* animator);
     ~LuaHAnimator();
 
+    //register metatable
     static void reg(lua_State* L);
 
   private:
+    //metatable functions
+    //-------------------------
     static int lua_delete(lua_State* L);
     static int setAnim(lua_State* L);
     static int getCurAnimID(lua_State* L);

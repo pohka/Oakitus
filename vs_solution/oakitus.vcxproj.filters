@@ -381,9 +381,6 @@
     <ClInclude Include="..\engine\oak\core\config.h">
       <Filter>oak\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\lua\lua_script.h">
-      <Filter>oak\lua</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\lua\lua_input.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
@@ -420,9 +417,6 @@
     <ClInclude Include="..\engine\oak\ability\modifier.h">
       <Filter>oak\ability</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\lua\lua_ability.h">
-      <Filter>oak\lua</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\meta\meta_data.h">
       <Filter>oak\meta</Filter>
     </ClInclude>
@@ -456,13 +450,19 @@
     <ClInclude Include="..\engine\oak\lua\luah_rigid_body_2d.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\lua\luah_script.h">
-      <Filter>oak\lua</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\lua\luah_sprite.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\lua\luah_unit.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\ability\lua_ability.h">
+      <Filter>oak\ability</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\components\lua_script.h">
+      <Filter>oak\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\luah_lua_script.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
   </ItemGroup>
@@ -727,9 +727,6 @@
     <ClCompile Include="..\engine\oak\lua\lua_scene.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\lua\lua_script.cpp">
-      <Filter>oak\lua</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_input.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
@@ -759,9 +756,6 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\ability\modifier.cpp">
       <Filter>oak\ability</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\lua\lua_ability.cpp">
-      <Filter>oak\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\meta\prefab_validator.cpp">
       <Filter>oak\meta</Filter>
@@ -796,13 +790,19 @@
     <ClCompile Include="..\engine\oak\lua\luah_rigid_body_2d.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
-    <ClCompile Include="..\engine\oak\lua\luah_script.cpp">
-      <Filter>oak\lua</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\lua\luah_sprite.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\luah_unit.cpp">
+      <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ability\lua_ability.cpp">
+      <Filter>oak\ability</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\components\lua_script.cpp">
+      <Filter>oak\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\luah_lua_script.cpp">
       <Filter>oak\lua</Filter>
     </ClCompile>
   </ItemGroup>

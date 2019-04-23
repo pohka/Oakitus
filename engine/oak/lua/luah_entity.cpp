@@ -6,7 +6,7 @@
 #include <oak/collision/collision_circle.h>
 #include <oak/collision/collision_rect.h>
 #include <oak/components/rigid_body_2d.h>
-#include <oak/lua/lua_script.h>
+#include <oak/components/lua_script.h>
 #include <oak/ecs/entity_manager.h>
 #include <oak/lua/lua_vector.h>
 #include <oak/lua/luah_sprite.h>
@@ -311,8 +311,8 @@ int LuaHEntity::getScript(lua_State* L)
     if (scripts[i]->getName() == scriptName)
     {
       lua_newtable(L);
-      *reinterpret_cast<LuaHScript**>(lua_newuserdata(L, sizeof(LuaHScript*))) = new LuaHScript(scripts[i]);
-      luaL_setmetatable(L, LUA_HANDLER_SCRIPT);
+      *reinterpret_cast<LuaHLuaScript**>(lua_newuserdata(L, sizeof(LuaHLuaScript*))) = new LuaHLuaScript(scripts[i]);
+      luaL_setmetatable(L, LUA_HANDLER_LUA_SCRIPT);
       return 1;
     }
   }

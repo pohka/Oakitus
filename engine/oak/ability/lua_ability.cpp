@@ -1,4 +1,4 @@
-#include <oak/lua/lua_ability.h>
+#include <oak/ability/lua_ability.h>
 #include <oak/lua/lua_s.h>
 #include <oak/components/unit.h>
 #include <oak/meta/meta_data.h>
@@ -26,7 +26,6 @@ LuaAbility::~LuaAbility()
 
 void LuaAbility::onSpellCast()
 {
-  //todo: set unit metatables e.g. self and target
   bool hasFunc = LuaS::setFunc(scriptFilePath.c_str(), name.c_str(), "onSpellCast");
   if (hasFunc)
   {
@@ -49,6 +48,7 @@ void LuaAbility::onSpellStart()
   }
 }
 
+//loading variables from metadata
 void LuaAbility::loadFromMetaData()
 {
   auto data = MetaData::getData(META_DATA_KEY_ABILITYS);
@@ -90,6 +90,7 @@ void LuaAbility::loadFromMetaData()
       manaCost.push_back(0);
     }
 
+    //duration
     abilIter = abilData.find("duration");
     if (abilIter != abilData.end() && abilIter.value().is_string())
     {
@@ -100,6 +101,7 @@ void LuaAbility::loadFromMetaData()
       duration.push_back(0.0f);
     }
 
+    //preCastTime
     abilIter = abilData.find("preCastTime");
     if (abilIter != abilData.end() && abilIter.value().is_number())
     {

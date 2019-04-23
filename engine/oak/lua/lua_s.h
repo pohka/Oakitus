@@ -5,7 +5,7 @@
 #include <lua/lua.hpp>
 #include <map>
 #include <oak/lua/luah_entity.h>
-#include <oak/lua/luah_script.h>
+#include <oak/lua/luah_lua_script.h>
 #include <oak/lua/luah_ability.h>
 
 namespace oak
@@ -41,7 +41,7 @@ namespace oak
     static void setThisAbility(LuaAbility* ability);
 
     //get the global accessor for handlers
-    static const LuaHScript* getScriptHandler();
+    static const LuaHLuaScript* getScriptHandler();
     static const LuaHAbility* getAbilityHandler();
 
     //sets the func to be called, returns false if the function does not exist
@@ -59,7 +59,7 @@ namespace oak
 
     //global accessor handlers
     static LuaHEntity* thisEntity;
-    static LuaHScript* thisScript;
+    static LuaHLuaScript* thisScript;
     static LuaHAbility* thisAbility;
   };
 }

@@ -37,6 +37,7 @@ int LuaVector::lua_new(lua_State* L)
 {
   lua_Number x, y, z;
 
+  //set x,y,z with different number of arguments
   if (lua_gettop(L) == 1)
   {
     x = 0.0;

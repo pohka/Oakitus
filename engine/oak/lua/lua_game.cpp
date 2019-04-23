@@ -11,7 +11,7 @@
 #include <oak/lua/luah_collision_rect.h>
 #include <oak/lua/luah_collision_circle.h>
 #include <oak/lua/luah_rigid_body_2d.h>
-#include <oak/lua/luah_script.h>
+#include <oak/lua/luah_lua_script.h>
 #include <oak/lua/luah_animator.h>
 #include <oak/lua/luah_ability.h>
 
@@ -39,6 +39,7 @@ void LuaGame::reg(lua_State* L)
   lua_setglobal(L, LUA_GAME);
 }
 
+//creates an entity from name
 int LuaGame::createEnt(lua_State* L)
 {
   float x, y, z;
@@ -94,6 +95,7 @@ int LuaGame::createEnt(lua_State* L)
   return 1;
 }
 
+//use json data to create a component and add it to the entity given
 void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
 {
   std::string className = params["class"];
@@ -215,6 +217,7 @@ void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
   }
 }
 
+//find an entity by id, if found return an entity handler to lua
 int LuaGame::findEntByID(lua_State* L)
 {
   int id = luaL_checkinteger(L, 2);

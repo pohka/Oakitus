@@ -1,28 +1,28 @@
-#include <oak/lua/luah_script.h>
+#include <oak/lua/luah_lua_script.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_s.h>
 
 using namespace oak;
 
 
-LuaHScript::LuaHScript(LuaScript* script)
+LuaHLuaScript::LuaHLuaScript(LuaScript* script)
 {
   this->script = script;
 }
 
-LuaHScript::~LuaHScript()
+LuaHLuaScript::~LuaHLuaScript()
 {
 
 }
 
-void LuaHScript::set(LuaScript* script)
+void LuaHLuaScript::set(LuaScript* script)
 {
   this->script = script;
 }
 
-void LuaHScript::reg(lua_State* L)
+void LuaHLuaScript::reg(lua_State* L)
 {
-  luaL_newmetatable(L, LUA_HANDLER_SCRIPT);
+  luaL_newmetatable(L, LUA_HANDLER_LUA_SCRIPT);
   lua_pushvalue(L, -1); lua_setfield(L, -2, "__index");
   lua_pushcfunction(L, lua_delete); lua_setfield(L, -2, "__gc");
   lua_pushcfunction(L, getKV); lua_setfield(L, -2, "getKV");
@@ -31,10 +31,10 @@ void LuaHScript::reg(lua_State* L)
 }
 
 //getKV(type,key)
-int LuaHScript::getKV(lua_State* L)
+int LuaHLuaScript::getKV(lua_State* L)
 {
   int res = 0;
-  LuaHScript* scriptH = *reinterpret_cast<LuaHScript**>(luaL_checkudata(L, 1, LUA_HANDLER_SCRIPT));
+  LuaHLuaScript* scriptH = *reinterpret_cast<LuaHLuaScript**>(luaL_checkudata(L, 1, LUA_HANDLER_LUA_SCRIPT));
 
   std::string key = luaL_checkstring(L, 2);
 
@@ -67,9 +67,9 @@ int LuaHScript::getKV(lua_State* L)
 }
 
 //setKV(key,val)
-int LuaHScript::setKV(lua_State* L)
+int LuaHLuaScript::setKV(lua_State* L)
 {
-  LuaHScript* scriptH = *reinterpret_cast<LuaHScript**>(luaL_checkudata(L, 1, LUA_HANDLER_SCRIPT));
+  LuaHLuaScript* scriptH = *reinterpret_cast<LuaHLuaScript**>(luaL_checkudata(L, 1, LUA_HANDLER_LUA_SCRIPT));
   KVData& kvdata = scriptH->script->kvdata;
   
 
@@ -108,13 +108,13 @@ int LuaHScript::setKV(lua_State* L)
   }
 }
 
-int LuaHScript::lua_delete(lua_State* L)
+int LuaHLuaScript::lua_delete(lua_State* L)
 {
-  delete *reinterpret_cast<LuaHScript**>(luaL_checkudata(L, 1, LUA_HANDLER_SCRIPT));
+  delete *reinterpret_cast<LuaHLuaScript**>(luaL_checkudata(L, 1, LUA_HANDLER_LUA_SCRIPT));
   return 0;
 }
 
-int LuaHScript::setThink(lua_State* L)
+int LuaHLuaScript::setThink(lua_State* L)
 {
   const char* thinkerName;
   const char* funcName;

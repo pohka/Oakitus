@@ -55,6 +55,7 @@
     <ClInclude Include="..\engine\lua\lzio.h" />
     <ClInclude Include="..\engine\oak\ability\ability.h" />
     <ClInclude Include="..\engine\oak\ability\combat.h" />
+    <ClInclude Include="..\engine\oak\ability\lua_ability.h" />
     <ClInclude Include="..\engine\oak\ability\modifier.h" />
     <ClInclude Include="..\engine\oak\assets\asset.h" />
     <ClInclude Include="..\engine\oak\assets\shader.h" />
@@ -69,6 +70,7 @@
     <ClInclude Include="..\engine\oak\collision\physics.h" />
     <ClInclude Include="..\engine\oak\components\animator.h" />
     <ClInclude Include="..\engine\oak\components\base_rigid_body.h" />
+    <ClInclude Include="..\engine\oak\components\lua_script.h" />
     <ClInclude Include="..\engine\oak\components\rigid_body_2d.h" />
     <ClInclude Include="..\engine\oak\components\sprite.h" />
     <ClInclude Include="..\engine\oak\components\sprite_animation.h" />
@@ -94,7 +96,6 @@
     <ClInclude Include="..\engine\oak\input\key_buffer.h" />
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
-    <ClInclude Include="..\engine\oak\lua\lua_ability.h" />
     <ClInclude Include="..\engine\oak\lua\luah_ability.h" />
     <ClInclude Include="..\engine\oak\lua\luah_animator.h" />
     <ClInclude Include="..\engine\oak\lua\luah_collision_circle.h" />
@@ -109,8 +110,7 @@
     <ClInclude Include="..\engine\oak\lua\lua_player_resource.h" />
     <ClInclude Include="..\engine\oak\lua\luah_rigid_body_2d.h" />
     <ClInclude Include="..\engine\oak\lua\lua_scene.h" />
-    <ClInclude Include="..\engine\oak\lua\lua_script.h" />
-    <ClInclude Include="..\engine\oak\lua\luah_script.h" />
+    <ClInclude Include="..\engine\oak\lua\luah_lua_script.h" />
     <ClInclude Include="..\engine\oak\lua\luah_sprite.h" />
     <ClInclude Include="..\engine\oak\lua\lua_time.h" />
     <ClInclude Include="..\engine\oak\lua\luah_unit.h" />
@@ -193,6 +193,7 @@
     <ClCompile Include="..\engine\lua\lzio.c" />
     <ClCompile Include="..\engine\oak\ability\ability.cpp" />
     <ClCompile Include="..\engine\oak\ability\combat.cpp" />
+    <ClCompile Include="..\engine\oak\ability\lua_ability.cpp" />
     <ClCompile Include="..\engine\oak\ability\modifier.cpp" />
     <ClCompile Include="..\engine\oak\assets\asset.cpp" />
     <ClCompile Include="..\engine\oak\assets\shader.cpp" />
@@ -204,6 +205,7 @@
     <ClCompile Include="..\engine\oak\collision\physics.cpp" />
     <ClCompile Include="..\engine\oak\components\animator.cpp" />
     <ClCompile Include="..\engine\oak\components\base_rigid_body.cpp" />
+    <ClCompile Include="..\engine\oak\components\lua_script.cpp" />
     <ClCompile Include="..\engine\oak\components\rigid_body_2d.cpp" />
     <ClCompile Include="..\engine\oak\components\sprite.cpp" />
     <ClCompile Include="..\engine\oak\components\sprite_animation.cpp" />
@@ -219,7 +221,6 @@
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
     <ClCompile Include="..\engine\oak\input\input.cpp" />
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp" />
-    <ClCompile Include="..\engine\oak\lua\lua_ability.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_ability.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_animator.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_collision_circle.cpp" />
@@ -233,8 +234,7 @@
     <ClCompile Include="..\engine\oak\lua\lua_player_resource.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_rigid_body_2d.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_scene.cpp" />
-    <ClCompile Include="..\engine\oak\lua\lua_script.cpp" />
-    <ClCompile Include="..\engine\oak\lua\luah_script.cpp" />
+    <ClCompile Include="..\engine\oak\lua\luah_lua_script.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_sprite.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_time.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_unit.cpp" />

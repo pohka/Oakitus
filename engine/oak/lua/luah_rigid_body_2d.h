@@ -6,6 +6,7 @@
 
 namespace oak
 {
+  //RigidBody2D handler
   class LuaHRigidBody2D
   {
     RigidBody2D* ptr;
@@ -14,8 +15,13 @@ namespace oak
     LuaHRigidBody2D(RigidBody2D* rigidbody);
     ~LuaHRigidBody2D();
 
+  
+    //register metatable
     static void reg(lua_State* L);
-   // static int lua_new(lua_State* L);
+
+  private:
+    //metatable functions
+    //--------------------------
     static int lua_delete(lua_State* L);
     static int getMass(lua_State* L);
     static int setMass(lua_State* L);

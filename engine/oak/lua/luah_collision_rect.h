@@ -7,6 +7,7 @@
 
 namespace oak
 {
+  //handler for CollisionRect
   class LuaHCollisionRect
   {
     CollisionRect* ptr;
@@ -14,8 +15,11 @@ namespace oak
     LuaHCollisionRect(CollisionRect* rect);
     ~LuaHCollisionRect();
 
+    //register metatable
     static void reg(lua_State* L);
 
+  private:
+    //metatable functions
     static int lua_delete(lua_State* L);
     static int getW(lua_State* L);
     static int setW(lua_State* L);

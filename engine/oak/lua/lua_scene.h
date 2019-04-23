@@ -10,8 +10,7 @@
 
 namespace oak
 {
-
-
+  //lua driven scene
   class LuaScene : public oak::Scene
   {
     static LuaScene* scene; //is this needed?, probably bad practice. scene manger already exposes the scene
@@ -22,7 +21,10 @@ namespace oak
   public:
 
     LuaScene(const std::string& name);
+
     void onLoad() override;
+
+    //set precache from loaded metadata
     void setPrecacheFromMetaData();
 
   private:

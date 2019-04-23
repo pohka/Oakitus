@@ -6,6 +6,7 @@
 
 namespace oak
 {
+  //vector metatable
   class LuaVector
   {
   public:
@@ -19,7 +20,8 @@ namespace oak
 
 
   private:
-    
+    //metatable functions
+    //------------------------------
     static int lua_new(lua_State* L);
     static int toString(lua_State* L);
     static int dot(lua_State* L);
@@ -33,7 +35,7 @@ namespace oak
     static int lua_unm(lua_State* L);
     static int lua_div(lua_State* L);
 
-
+    //helper function to create x,y,z keys for vector table
     static void newTable(lua_State* L, float x, float y, float z);
   };
 }

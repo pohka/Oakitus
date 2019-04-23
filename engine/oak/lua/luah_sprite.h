@@ -14,6 +14,7 @@ namespace oak
       LuaHSprite(Sprite* sprite);
       ~LuaHSprite();
 
+      //register metatable
       static void reg(lua_State* L);
 
      // static int lua_new(lua_State* L);

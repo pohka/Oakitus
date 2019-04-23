@@ -31,7 +31,7 @@ lua_State* LuaS::state;
 std::map<std::string, std::string> LuaS::files = {};
 std::string LuaS::curLoadedFile = "";
 LuaHEntity* LuaS::thisEntity = new LuaHEntity(nullptr);
-LuaHScript* LuaS::thisScript = new LuaHScript(nullptr);
+LuaHLuaScript* LuaS::thisScript = new LuaHLuaScript(nullptr);
 LuaHAbility* LuaS::thisAbility = new LuaHAbility(nullptr);
 
 void LuaS::init()
@@ -61,7 +61,7 @@ void LuaS::registerBindings(lua_State* L)
   LuaHCollisionRect::reg(L);
   LuaHCollisionCircle::reg(L);
   LuaHAnimator::reg(L);
-  LuaHScript::reg(L);
+  LuaHLuaScript::reg(L);
   LuaHUnit::reg(L);
   LuaHAbility::reg(L);
 
@@ -72,8 +72,8 @@ void LuaS::registerBindings(lua_State* L)
   lua_setglobal(L, LUA_ENTITY);
 
   lua_newtable(L);
-  *reinterpret_cast<LuaHScript**>(lua_newuserdata(L, sizeof(LuaHScript*))) = LuaS::thisScript;
-  luaL_setmetatable(L, LUA_HANDLER_SCRIPT);
+  *reinterpret_cast<LuaHLuaScript**>(lua_newuserdata(L, sizeof(LuaHLuaScript*))) = LuaS::thisScript;
+  luaL_setmetatable(L, LUA_HANDLER_LUA_SCRIPT);
   lua_setglobal(L, LUA_SCRIPT);
 
   lua_newtable(L);
@@ -172,7 +172,7 @@ void LuaS::setThisAbility(LuaAbility* ability)
   thisAbility->set(ability);
 }
 
-const LuaHScript* LuaS::getScriptHandler()
+const LuaHLuaScript* LuaS::getScriptHandler()
 {
   return thisScript;
 }

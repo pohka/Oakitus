@@ -58,6 +58,8 @@ namespace oak
     }
   };
 
+  //a lua function to be called with an interval, typically to delay a function call
+  //if the lua function returns -1 it will end the interval
   struct Thinker
   {
     const char* thinkerName;
@@ -73,15 +75,19 @@ namespace oak
     }
   };
 
+
+  //lua script component
   class LuaScript : public Component
   {
     const static std::string PATH;
 
-    const std::string name;
-    const std::string scriptFilePath;
+    const std::string name; //name of the file
+    const std::string scriptFilePath; //path to the file
 
+    //get the function, if found it will return true and set it as the lua function to be called
     bool getFunc(const char* funcName);
 
+    //collection of thinkers
     std::vector<Thinker> thinkers = {};
 
   public:
@@ -89,16 +95,17 @@ namespace oak
     LuaScript(const std::string& name);
     ~LuaScript();
 
-
+    //persistant data store for key values within lua
     KVData kvdata;
 
+    //events
     void onCreate() override;
     void onTick() override;
     void onDestroy() override;
 
     const std::string& getName() const;
-    
 
+    //sets a lua function to start thinking
     void setThink(const char* thinkerName, const char* funcName, float initialDelay = -0.0001f);
   };
 }

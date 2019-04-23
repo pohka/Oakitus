@@ -1,4 +1,4 @@
-#include <oak/lua/lua_script.h>
+#include <oak/components/lua_script.h>
 #include <lua/lua.hpp>
 #include <oak/lua/lua_scene.h>
 #include <iostream>
@@ -20,7 +20,7 @@ LuaScript::LuaScript(const std::string& name) : Component(REFLECT_LUA_SCRIPT),
   LuaS::loadFile(scriptFilePath);
   LuaS::doFile(scriptFilePath);
   
-
+  //automatically add the onTick function as a thinker
   lua_getglobal(LuaS::state, name.c_str());
   if (!lua_isnil(LuaS::state, -1) && lua_istable(LuaS::state, -1))
   {
@@ -74,6 +74,8 @@ bool LuaScript::getFunc(const char* funcName)
 {
   LuaS::doFile(scriptFilePath);
   lua_getglobal(LuaS::state, name.c_str());
+
+  //returns true if lua file has a matching function
   if (!lua_isnil(LuaS::state, -1) && lua_istable(LuaS::state, -1))
   {
     lua_getfield(LuaS::state, -1, funcName);
@@ -97,6 +99,7 @@ void LuaScript::onTick()
   LuaS::setThisEntity(this->entity);
   LuaS::setThisScript(this);
 
+  //manage thinkers
   for (unsigned int i=0; i<thinkers.size(); i++)
   {
     if (thinkers[i].nextTickTime <= Time::getGameTime())
@@ -126,6 +129,7 @@ void LuaScript::onTick()
   }
 }
 
+//set a lua function to think, note: the thinkerName should be unique for this LuaScript instance
 void LuaScript::setThink(const char* thinkerName, const char* funcName, float initialDelay)
 {
   bool found = false;

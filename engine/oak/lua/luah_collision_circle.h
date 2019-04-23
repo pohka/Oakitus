@@ -7,6 +7,7 @@
 
 namespace oak
 {
+  //handler for CollisionCircle
   class LuaHCollisionCircle
   {
     CollisionCircle* ptr;
@@ -15,8 +16,11 @@ namespace oak
     LuaHCollisionCircle(CollisionCircle* cricle);
     ~LuaHCollisionCircle();
 
+    //register metatable
     static void reg(lua_State* L);
 
+  private:
+    //metatable functions
     static int lua_delete(lua_State* L);
     static int getRadius(lua_State* L);
     static int setRadius(lua_State* L);

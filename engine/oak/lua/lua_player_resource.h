@@ -9,7 +9,12 @@ namespace oak
   class LuaPlayerResource
   {
   public:
+    //register metatable
     static void reg(lua_State* L);
+
+  private:
+    //metatable functions
+    //----------------------------
     static int getPlayerCount(lua_State* L);
     static int getPlayer(lua_State* L);
   };

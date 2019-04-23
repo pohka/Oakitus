@@ -8,7 +8,12 @@ namespace oak
   class LuaInput
   {
   public:
+    //register metatable
     static void reg(lua_State* L);
+
+  private:
+    //metatable functions
+    //-------------------------
     static int isKeyDown(lua_State *L);
     static int isKeyUp(lua_State *L);
     static int isKeyPressed(lua_State *L);

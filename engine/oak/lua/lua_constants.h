@@ -18,7 +18,7 @@ namespace oak
 
   //names of metatable handlers
   static const char* LUA_HANDLER_ENTITY = "EntityH"; 
-  static const char* LUA_HANDLER_SCRIPT = "ScriptH";
+  static const char* LUA_HANDLER_LUA_SCRIPT = "LuaScriptH";
   static const char* LUA_HANDLER_SPRITE = "SpriteH";
   static const char* LUA_HANDLER_RIGIDBODY2D = "RigidBody2DH";
   static const char* LUA_HANDLER_PLAYER = "PlayerH";

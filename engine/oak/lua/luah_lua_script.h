@@ -1,20 +1,24 @@
-#ifndef LUAH_SCRIPT_H
-#define LUAH_SCRIPT_H
+#ifndef LUAH_LUA_SCRIPT_H
+#define LUAH_LUA_SCRIPT_H
 
 #include <lua/lua.hpp>
-#include <oak/lua/lua_script.h>
+#include <oak/components/lua_script.h>
 
 namespace oak
 {
-  class LuaHScript
+  //handler for LuaScript
+  class LuaHLuaScript
   {
     LuaScript* script;
 
   public:
-    LuaHScript(LuaScript* script);
-    ~LuaHScript();
+    LuaHLuaScript(LuaScript* script);
+    ~LuaHLuaScript();
 
+    //register metatable
     static void reg(lua_State* L);
+
+    //set the script this handler is pointing to
     void set(LuaScript* script);
 
     static int setThink(lua_State* L);

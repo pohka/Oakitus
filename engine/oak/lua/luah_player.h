@@ -6,6 +6,7 @@
 
 namespace oak
 {
+  //handler for Player
   class LuaHPlayer
   {
     Player* ptr;
@@ -14,10 +15,12 @@ namespace oak
     LuaHPlayer(Player* player);
     ~LuaHPlayer();
 
+    //register metatable
     static void reg(lua_State* L);
 
   private:
-    //static int lua_new(lua_State* L);
+    //metatable functions
+    //------------------------------
     static int lua_delete(lua_State* L);
     static int getPlayerID(lua_State* L);
     static int assignEntity(lua_State* L);

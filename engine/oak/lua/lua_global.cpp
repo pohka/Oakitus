@@ -4,7 +4,7 @@
 #include <oak/oak_def.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_time.h>
-#include <oak/lua/luah_script.h>
+#include <oak/lua/luah_lua_script.h>
 #include <oak/lua/luah_unit.h>
 #include <oak/lua/luah_ability.h>
 #include <oak/ability/combat.h>
@@ -20,7 +20,7 @@ void LuaGlobal::reg(lua_State* L)
   lua_register(L, "getSystemTime", LuaTime::systemTime);
   lua_register(L, "getGameTime", LuaTime::gameTime);
 
-  lua_register(L, "setThink", LuaHScript::setThink);
+  lua_register(L, "setThink", LuaHLuaScript::setThink);
   
 
   lua_register(L, "applyDamage", applyDamage);
@@ -51,6 +51,7 @@ void LuaGlobal::reg(lua_State* L)
   lua_setglobal(L, "COLLISION_SHAPE_RECT");
 }
 
+//dlog
 int LuaGlobal::debugLog(lua_State* L)
 {
   lua_Debug ar;
@@ -64,6 +65,7 @@ int LuaGlobal::debugLog(lua_State* L)
   return 0;
 }
 
+//log
 int LuaGlobal::log(lua_State* L)
 {
   const char* str = luaL_checkstring(L, 1);
@@ -72,6 +74,7 @@ int LuaGlobal::log(lua_State* L)
   return 0;
 }
 
+//log a damage instance to the combat tracker
 int LuaGlobal::applyDamage(lua_State* L)
 {
   LuaHUnit* victimH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
@@ -85,6 +88,7 @@ int LuaGlobal::applyDamage(lua_State* L)
   return 0;
 }
 
+//log a heal instance to the combat tracker
 int LuaGlobal::applyHeal(lua_State* L)
 {
   LuaHUnit* receiverH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
