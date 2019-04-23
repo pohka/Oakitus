@@ -11,7 +11,7 @@
 
 using namespace oak;
 
-const std::string LuaScript::PATH = "../Release/scripts/";
+const std::string LuaScript::PATH = "scripts/";
 
 LuaScript::LuaScript(const std::string& name) : Component(REFLECT_LUA_SCRIPT), 
   name(name), 

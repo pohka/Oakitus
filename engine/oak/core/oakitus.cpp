@@ -39,10 +39,9 @@ void Oakitus::init()
 
   Config::load();
 
-  std::string projectName = Config::getString("project", "default");
-  std::string projectPath = "../projects/" + projectName + "/";
-  MetaData::projectPath = projectPath;
-  Resources::rootPath = projectPath + "resources/";
+  //std::string projectName = Config::getString("project", "default");
+  MetaData::projectPath = "";
+  Resources::rootPath = "resources/";
 
   Camera::init(
     glm::vec3(0.0f, 0.0f, 5.0f), //position

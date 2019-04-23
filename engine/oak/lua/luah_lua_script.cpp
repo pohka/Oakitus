@@ -86,7 +86,7 @@ int LuaHLuaScript::setKV(lua_State* L)
       if (curType != KVData::LUA_KV_TYPE_NULL || curType != KVData::LUA_KV_TYPE_NUMBER)
       {
         kvdata.erase(key);
-        kvdata.KVNumber[key] = lua_tonumber(L, 3);
+        kvdata.KVNumber[key] = (float)lua_tonumber(L, 3);
       }
       break;
     }
@@ -106,6 +106,8 @@ int LuaHLuaScript::setKV(lua_State* L)
       LuaS::log("invalid type for KV value");
     }
   }
+
+  return 0;
 }
 
 int LuaHLuaScript::lua_delete(lua_State* L)

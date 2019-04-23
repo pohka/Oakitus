@@ -16,6 +16,10 @@ void MetaData::load(uchar key, const std::string& fileName)
   std::string fullPath = projectPath + fileName;
   nlohmann::json data;
   std::ifstream i(fullPath);
+  if (i.fail())
+  {
+    LOG_ERROR << "failed to load metadata: " << fullPath;
+  }
   i >> data;
   i.close();
 

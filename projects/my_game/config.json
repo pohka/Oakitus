@@ -1,0 +1,9 @@
+{
+  "project" : "my_game",
+  "title" : "My Game",
+  "viewport_w" : 736,
+  "viewport_h" : 414,
+  "window_w" : 1066,
+  "window_h" : 600,
+  "isFullscreen" : false
+}

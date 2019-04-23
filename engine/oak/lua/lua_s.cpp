@@ -88,6 +88,12 @@ void LuaS::loadFile(const std::string& fileName)
   if (files.find(fileName) == files.end())
   {
     std::ifstream ifs(fileName);
+    if (ifs.fail())
+    {
+      LOG_WARNING << "Lua file failed to load: " << fileName;
+      return;
+    }
+
     std::string fileContent((std::istreambuf_iterator<char>(ifs)),
       std::istreambuf_iterator<char>());
     LuaS::files.insert_or_assign(fileName, fileContent);

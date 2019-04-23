@@ -805,6 +805,9 @@
     <ClCompile Include="..\engine\oak\ability\combat_tracker.cpp">
       <Filter>oak\ability</Filter>
     </ClCompile>
+    <ClCompile Include="..\engine\oak\core\config.cpp">
+      <Filter>oak\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\resources\shaders\collision.fs">

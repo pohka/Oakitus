@@ -53,7 +53,7 @@ cnum ANIM_RUN = 2;
 cnum ANIM_DEATH = 3;
 
 
-const char ENGINE_RESOURCES_ROOT_PATH [] = "../resources/";
+const char ENGINE_RESOURCES_ROOT_PATH [] = "../../resources/";
 
 
 #endif

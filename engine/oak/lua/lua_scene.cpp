@@ -27,16 +27,7 @@ LuaScene::LuaScene(const std::string& name) : Scene()
 
 void LuaScene::onLoad()
 {
-  //possibly change this in future to: scripts/main.lua
-  //right now the VS root path for lua is not correct
-  //therefore it cant find the scripts when using require() in lua
-  //if you open the exe directly with the path: "scripts/main.lua", it will work but not in VS runtime
-  std::string initScript;
-#ifdef DEBUG_MODE
-  initScript = "../Release/scripts/main.lua";
-#else
-  initScript = "scripts/main.lua";
-#endif
+  std::string initScript = "scripts/main.lua";
 
   lua_State* L = LuaS::state;
 

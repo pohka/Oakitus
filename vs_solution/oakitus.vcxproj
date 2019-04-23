@@ -211,6 +211,7 @@
     <ClCompile Include="..\engine\oak\components\sprite_animation.cpp" />
     <ClCompile Include="..\engine\oak\components\transform.cpp" />
     <ClCompile Include="..\engine\oak\components\unit.cpp" />
+    <ClCompile Include="..\engine\oak\core\config.cpp" />
     <ClCompile Include="..\engine\oak\core\oakitus.cpp" />
     <ClCompile Include="..\engine\oak\core\resources.cpp" />
     <ClCompile Include="..\engine\oak\debug\debug_input.cpp" />
@@ -359,7 +360,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Jeoff\Documents\oakitus\oakitus\library;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)projects\my_game\</OutDir>
+    <IntDir>
+    </IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug_lua|Win32'">
     <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;$(IncludePath)</IncludePath>

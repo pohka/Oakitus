@@ -5,7 +5,7 @@
 
 using namespace oak;
 
-std::string LuaAbility::PATH = "../Release/scripts/ability/";
+std::string LuaAbility::PATH = "scripts/ability/";
 
 LuaAbility::LuaAbility(const std::string& name) : Ability(name)
 {
