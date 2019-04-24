@@ -1,4 +1,5 @@
 let docsMain;
+let docsContext;
 
 function sortByKey(array, key) {
   return array.sort(function(a, b) {
@@ -105,6 +106,7 @@ function constantEntry(key, data)
 
 window.onload = function(){
   docsMain = document.getElementById("docs-main");
+  docsContext = document.getElementById("docs-context");
 
   //fetch data
   fetch('lua_docs.json')
@@ -120,6 +122,8 @@ window.onload = function(){
       orderedClasses[key] = data.classes[key];
     });
 
+    //main container
+    //-----------------------------------------
     //put global functions at top of table
     const GLOBAL_ENTRY = "_G";
     if(orderedClasses[GLOBAL_ENTRY] !== undefined)
@@ -145,6 +149,31 @@ window.onload = function(){
     for(let key in constants)
     {
       constantEntry(key, constants[key]);
+    }
+
+    //table of contents
+    //-------------------------
+    docsContext.innerHTML += "<h3>Classes</h3>";
+
+    if(orderedClasses[GLOBAL_ENTRY] !== undefined)
+    {
+      docsContext.innerHTML += "<a href=\"#class_" + GLOBAL_ENTRY  + "\">" + GLOBAL_ENTRY + "</a>";
+    }
+
+    //loop through all classes
+    for (let key in orderedClasses)
+    {
+      if(key != GLOBAL_ENTRY)
+      {
+        docsContext.innerHTML += "<a href=\"#class_" + key  + "\">" + key + "</a>";
+      }
+    }
+
+    docsContext.innerHTML += "<br><h3>Constants</h3>";
+
+    for(let key in constants)
+    {
+      docsContext.innerHTML += "<a href=\"#constant_" + key  + "\">" + key + "</a>";
     }
   });
 }

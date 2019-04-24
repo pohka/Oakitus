@@ -1,7 +1,17 @@
+:root
+{
+  --pri : #40baf3;
+  --sec : rgb(190, 190, 190);
+  --hover : rgb(66, 66, 66);
+  --bg : rgb(37, 37, 37);
+  --font : rgb(216, 216, 216);
+  --border : rgb(88, 88, 88);
+}
+
 html
 {
-  background: rgb(37, 37, 37);
-  color: rgb(216, 216, 216);
+  background: var(--bg);
+  color: var(--font);
   font-family: Roboto,Source Sans Pro,Calibri,Arial,sans-serif;
 }
 
@@ -10,10 +20,22 @@ h1, h2, h3, h4
   font-family: Roboto Condensed,Source Sans Pro,Calibri,Arial,sans-serif;
 }
 
+#docs-context
+{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 300px;
+  background: var(--bg);
+  border-right: 2px solid var(--pri);
+  overflow-y: scroll; 
+}
+
 #docs-main
 {
   width: 1000px;
-  margin: 0 auto;
+  margin-left: 400px;
 
 }
 
@@ -23,7 +45,7 @@ table
 }
 
 table, th, td {
-  border: 1px solid rgb(88, 88, 88);
+  border: 1px solid var(--border);
   padding: 5px 8px;
   padding-right: 20px;
 }
@@ -36,32 +58,33 @@ td
 th
 {
   text-align: left;
-  background-color: rgb(204, 204, 204);
+  background-color: var(--sec);
   color: rgb(29, 29, 29);
 }
 
 h2
 {
-  color: #40baf3;
-  margin-bottom: 8px;
-  margin-top: 24px;
-  margin-left: 10px;
+  color: var(--font);
+  margin: 2px 4px;
+  padding-top: 40px;
 }
-h2::after
+
+h3
 {
-  display: block;
-  content : " ";
-  margin-top: 4px;
-  margin-left: -6px;
-  height: 3px;
-  width: 20%;
-  background: #40baf3;
+  padding-top: 50px;
+  margin: 2px 4px;
 }
 
 tr:hover
 {
-  background: rgb(66, 66, 66);
+  background: var(--hover);
   cursor:pointer;
+}
+
+code
+{
+  font-family: monospace,sans-serif;
+  font-size: 12px;
 }
 
 code:hover
@@ -72,5 +95,32 @@ code:hover
 body
 {
   margin-top: 40px;
-  margin-bottom: 250px;
+  margin-bottom: 500px;
+}
+
+#docs-context a
+{
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height : 40px;
+  color: var(--font);
+  text-decoration: none;
+  padding: 0px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+#docs-context a:hover
+{
+  background: var(--hover);
+}
+
+#docs-context h3
+{
+  color: rgb(29, 29, 29);
+  background: var(--sec);
+  padding: 10px 20px;
+  border-bottom: 2px solid var(--border);
+  margin: 0 0;
 }

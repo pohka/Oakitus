@@ -137,7 +137,7 @@
         },
         {
           "name" : "setThink",
-          "desc" : "Creates a thinker function. If no initialDelay is given then there is no initalDelay",
+          "desc" : "Creates a thinker function. initialDelay is optional",
           "return" : "void",
           "params" : 
           [
@@ -424,7 +424,7 @@
         },
         {
           "name" : "setDirection",
-          "desc" : "Set the animation directon i.e. ANIM_DIRECTION_LEFT or ANIM_DIRECTION_RIGHT",
+          "desc" : "Set the animation directon using ANIM_DIRECTION",
           "return" : "void",
           "params" : 
           [
@@ -436,7 +436,7 @@
         },
         {
           "name" : "getDirecton",
-          "desc" : "Returns the direction of the animation i.e. left or right",
+          "desc" : "Returns the direction of the animation, see ANIM_DIRECTION",
           "return" : "int"
         }
       ]
@@ -564,7 +564,7 @@
         },
         {
           "name" : "moveBy",
-          "desc" : "Add to the entity position",
+          "desc" : "Add to the entity position. Z is optional",
           "return" : "void",
           "params" : 
           [
@@ -606,7 +606,7 @@
         },
         {
           "name" : "getComponent",
-          "desc" : "Gets a component on this entity, if no component found then returns nil",
+          "desc" : "Gets a component on this entity using COMP_REFLECT_ID, if no component found then it returns nothing",
           "return" : "handler",
           "params" :
           [
