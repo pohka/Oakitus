@@ -1,6 +1,8 @@
 # TODO
 
 ## Ion UI
+* UIComponent should inherit UINode
+* xml parser
 * parse xml to create components rather than using c++
 * lua scripting for events like onClick
 

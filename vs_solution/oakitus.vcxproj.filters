@@ -174,12 +174,6 @@
     <ClInclude Include="..\engine\oak\ui\ui_point.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\xml\xml_node.h">
-      <Filter>oak\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\xml\xml_parser.h">
-      <Filter>oak\xml</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\event\event.h">
       <Filter>oak\event</Filter>
     </ClInclude>
@@ -465,6 +459,18 @@
     <ClInclude Include="..\engine\oak\ability\combat_tracker.h">
       <Filter>oak\ability</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\xml\fxml_node.h">
+      <Filter>oak\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\xml\fxml_parser.h">
+      <Filter>oak\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\xml\xml_node.h">
+      <Filter>oak\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\xml\xml_parser.h">
+      <Filter>oak\xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -529,12 +535,6 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\ui\ui_node.cpp">
       <Filter>oak\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\xml\xml_node.cpp">
-      <Filter>oak\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\xml\xml_parser.cpp">
-      <Filter>oak\xml</Filter>
     </ClCompile>
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\glad.c" />
@@ -807,6 +807,18 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\core\config.cpp">
       <Filter>oak\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\xml\fxml_node.cpp">
+      <Filter>oak\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\xml\fxml_parser.cpp">
+      <Filter>oak\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\xml\xml_node.cpp">
+      <Filter>oak\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\xml\xml_parser.cpp">
+      <Filter>oak\xml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

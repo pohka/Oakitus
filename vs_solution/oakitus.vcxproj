@@ -154,6 +154,8 @@
     <ClInclude Include="..\engine\oak\ui\ui_node.h" />
     <ClInclude Include="..\engine\oak\ui\ui_point.h" />
     <ClInclude Include="..\engine\oak\window\window.h" />
+    <ClInclude Include="..\engine\oak\xml\fxml_node.h" />
+    <ClInclude Include="..\engine\oak\xml\fxml_parser.h" />
     <ClInclude Include="..\engine\oak\xml\xml_node.h" />
     <ClInclude Include="..\engine\oak\xml\xml_parser.h" />
   </ItemGroup>
@@ -269,6 +271,8 @@
     <ClCompile Include="..\engine\oak\ui\ui_label.cpp" />
     <ClCompile Include="..\engine\oak\ui\ui_node.cpp" />
     <ClCompile Include="..\engine\oak\window\window.cpp" />
+    <ClCompile Include="..\engine\oak\xml\fxml_node.cpp" />
+    <ClCompile Include="..\engine\oak\xml\fxml_parser.cpp" />
     <ClCompile Include="..\engine\oak\xml\xml_node.cpp" />
     <ClCompile Include="..\engine\oak\xml\xml_parser.cpp" />
     <ClCompile Include="..\glad.c" />

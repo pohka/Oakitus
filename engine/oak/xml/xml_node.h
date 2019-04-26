@@ -3,24 +3,23 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
-///<summary>An XML node</summary>
-class XMLNode
+namespace oak
 {
-  
-  std::vector<XMLNode*> children; //all the child nodes
-  XMLNode* parent; //parent node
+  class XMLNode
+  {
+    XMLNode* parent;
+    std::string tag;
+    std::string text = "";
+    std::map<const std::string, std::string> attrs = {};
+    std::vector<XMLNode*> children;
 
-  public :
-    std::string content; //content between the opening and closing tags
-    std::string name; //name of the tag
-
-    XMLNode(std::string name, XMLNode* parent);
+  public:
+    friend class XMLParser;
+    XMLNode();
     ~XMLNode();
-    void appendChild(XMLNode* node);
-    std::vector<XMLNode*> getChildNodes() const;
-    XMLNode* getParent() const;
-    bool hasChildNodes() const;
-};
+  };
+}
 
 #endif

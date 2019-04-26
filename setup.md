@@ -14,3 +14,5 @@ e.g. lib-vc2015
 Linker > Input > Additional Dependencies: opengl32.lib;glfw32.lib;
 
 glad: https://glad.dav1d.de/
+
+also requires lua 5.3 source in engine/lua
