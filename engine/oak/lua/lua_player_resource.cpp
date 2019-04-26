@@ -3,6 +3,7 @@
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/luah_player.h>
 #include <oak/lua/lua_s.h>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -28,7 +29,7 @@ int LuaPlayerResource::getPlayerCount(lua_State* L)
 int LuaPlayerResource::getPlayer(lua_State* L)
 {
   int res = 1;
-  int playerID = luaL_checkinteger(L, 2);
+  int playerID = LuaType::toInt(L, 2);
   Player* player = PlayerResource::getPlayer(playerID);
   
   if (player != nullptr)

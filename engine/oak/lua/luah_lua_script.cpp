@@ -1,6 +1,7 @@
 #include <oak/lua/luah_lua_script.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_s.h>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -36,7 +37,7 @@ int LuaHLuaScript::getKV(lua_State* L)
   int res = 0;
   LuaHLuaScript* scriptH = *reinterpret_cast<LuaHLuaScript**>(luaL_checkudata(L, 1, LUA_HANDLER_LUA_SCRIPT));
 
-  std::string key = luaL_checkstring(L, 2);
+  std::string key = LuaType::toString(L, 2);
 
   //finds the type of the value for the key
   char type = scriptH->script->kvdata.getType(key); 
@@ -73,7 +74,7 @@ int LuaHLuaScript::setKV(lua_State* L)
   KVData& kvdata = scriptH->script->kvdata;
   
 
-  std::string key = luaL_checkstring(L, 2);
+  std::string key = LuaType::toString(L, 2);
   int type = lua_type(L, 3);
 
   int curType = kvdata.getType(key);
@@ -86,7 +87,7 @@ int LuaHLuaScript::setKV(lua_State* L)
       if (curType != KVData::LUA_KV_TYPE_NULL || curType != KVData::LUA_KV_TYPE_NUMBER)
       {
         kvdata.erase(key);
-        kvdata.KVNumber[key] = (float)lua_tonumber(L, 3);
+        kvdata.KVNumber[key] = LuaType::toFloat(L, 3);
       }
       break;
     }
@@ -97,7 +98,7 @@ int LuaHLuaScript::setKV(lua_State* L)
       {
         kvdata.erase(key);
       }
-      kvdata.KVString[key] = lua_tostring(L, 3);
+      kvdata.KVString[key] = LuaType::toString(L, 3);
       break;
     }
     default :
@@ -118,22 +119,22 @@ int LuaHLuaScript::lua_delete(lua_State* L)
 
 int LuaHLuaScript::setThink(lua_State* L)
 {
-  const char* thinkerName;
-  const char* funcName;
+  const char* thinkerName = NULL;
+  const char* funcName = NULL;
   float initalDelay = 0.0001f;
   LuaScript* script = LuaS::getScriptHandler()->script;
 
   if (lua_gettop(L) == 2)
   {
-    const char* thinkerName = luaL_checkstring(L, 1);
-    const char* funcName = luaL_checkstring(L, 2);
+    const char* thinkerName = LuaType::toString(L, 1);
+    const char* funcName = LuaType::toString(L, 2);
     script->setThink(thinkerName, funcName);
   }
   else if (lua_gettop(L) == 3)
   {
-    const char* thinkerName = luaL_checkstring(L, 1);
-    const char* funcName = luaL_checkstring(L, 2);
-    float initialDelay = (float)luaL_checknumber(L, 3);
+    const char* thinkerName = LuaType::toString(L, 1);
+    const char* funcName = LuaType::toString(L, 2);
+    float initialDelay = LuaType::toFloat(L, 3);
     script->setThink(thinkerName, funcName, initialDelay);
   }
   else

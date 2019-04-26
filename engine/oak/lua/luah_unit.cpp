@@ -1,6 +1,7 @@
 #include <oak/lua/luah_unit.h>
 #include <oak/lua/lua_constants.h>
 #include <oak/debug.h>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -84,9 +85,9 @@ int LuaHUnit::getLevel(lua_State* L)
 int LuaHUnit::castAbility(lua_State* L)
 {
   LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
-  int abilityIndex = (int)luaL_checkinteger(L, 2);
+  unsigned int abilityIndex = LuaType::toUInt(L, 2);
 
-  if (abilityIndex >= 0 && abilityIndex < unitH->unit->getAbilityCount())
+  if (abilityIndex < unitH->unit->getAbilityCount())
   {
     unitH->unit->castAbility(abilityIndex);
   }
@@ -96,7 +97,7 @@ int LuaHUnit::castAbility(lua_State* L)
 int LuaHUnit::setHealth(lua_State* L)
 {
   LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
-  int hp = (int)luaL_checkinteger(L, 2);
+  int hp = LuaType::toInt(L, 2);
 
   unitH->unit->setHealth(hp);
   return 0;
@@ -105,7 +106,7 @@ int LuaHUnit::setHealth(lua_State* L)
 int LuaHUnit::setMana(lua_State* L)
 {
   LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
-  int mana = (int)luaL_checkinteger(L, 2);
+  int mana = LuaType::toInt(L, 2);
 
   unitH->unit->setMana(mana);
   return 0;
@@ -114,7 +115,7 @@ int LuaHUnit::setMana(lua_State* L)
 int LuaHUnit::giveMana(lua_State* L)
 {
   LuaHUnit* unitH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
-  int amount = (int)luaL_checkinteger(L, 2);
+  int amount = LuaType::toInt(L, 2);
 
   unitH->unit->giveMana(amount);
   return 0;

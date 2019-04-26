@@ -81,7 +81,7 @@ void CombatTracker::applyLog(CombatLog& data)
     {
       //todo: take into account modifiers
       int endHP = beginHP - data.amount;
-      endHP = FMath::clamp(endHP, minHP, maxHP);
+      endHP = FMath::clampInt(endHP, minHP, maxHP);
       data.receiver->setHealth(endHP);
       //dodo: receiver was killed
       if (endHP == 0)
@@ -94,7 +94,7 @@ void CombatTracker::applyLog(CombatLog& data)
     {
       //todo: take into account modifiers
       int endHP = beginHP + data.amount;
-      endHP = FMath::clamp(endHP, minHP, maxHP);
+      endHP = FMath::clampInt(endHP, minHP, maxHP);
       data.receiver->setHealth(endHP);
       //dodo: receiver was killed
       if (endHP == 0)

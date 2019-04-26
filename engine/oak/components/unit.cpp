@@ -102,12 +102,12 @@ const std::string& Unit::getName() const
 
 void Unit::setMana(const int mana)
 {
-  this->mana = FMath::clamp(mana, 0, maxMana);
+  this->mana = FMath::clampInt(mana, 0, maxMana);
 }
 
 void Unit::setHealth(const int health)
 {
-  this->health = FMath::clamp(health, 0, maxHealth);
+  this->health = FMath::clampInt(health, 0, maxHealth);
 }
 
 void Unit::setMaxHealth(const int maxHealth)
@@ -208,6 +208,6 @@ void Unit::addAbility(Ability* ability)
 
 void Unit::giveMana(const int amount)
 {
-  float nextMana = this->mana + amount;
-  this->mana = FMath::clamp(nextMana, 0, maxMana);
+  int nextMana = this->mana + amount;
+  this->mana = FMath::clampInt(nextMana, 0, maxMana);
 }

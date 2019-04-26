@@ -12,7 +12,7 @@
   #endif
 
 
-  //debug mode
+  //if VS debug mode
   #ifdef _DEBUG
     #define DEBUG_MODE 1
   #else

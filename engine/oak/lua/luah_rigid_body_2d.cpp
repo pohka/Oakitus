@@ -1,6 +1,7 @@
 #include <oak/lua/luah_rigid_body_2d.h>
 #include <oak/lua/lua_constants.h>
 #include <iostream>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -49,7 +50,7 @@ int LuaHRigidBody2D::getMass(lua_State* L)
 int LuaHRigidBody2D::setMass(lua_State* L)
 {
   LuaHRigidBody2D* rb = *reinterpret_cast<LuaHRigidBody2D**>(luaL_checkudata(L, 1, LUA_HANDLER_RIGIDBODY2D));
-  float mass = (float)luaL_checknumber(L, 2);
+  float mass = LuaType::toFloat(L, 2);
   rb->ptr->mass = mass;
 
   return 0;

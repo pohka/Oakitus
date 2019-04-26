@@ -18,7 +18,18 @@ namespace oak
       return val;
     }
 
-
+    static int clampInt(int val, const int min, const int max)
+    {
+      if (val < min)
+      {
+        val = min;
+      }
+      else if (val > max)
+      {
+        val = max;
+      }
+      return val;
+    }
   };
 }
 

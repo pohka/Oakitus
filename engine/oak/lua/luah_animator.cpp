@@ -1,6 +1,7 @@
 #include <oak/lua/luah_animator.h>
 #include <oak/lua/lua_constants.h>
 #include <iostream>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -34,7 +35,7 @@ int LuaHAnimator::lua_delete(lua_State* L)
 int LuaHAnimator::setAnim(lua_State* L)
 {
   LuaHAnimator* animatorH = *reinterpret_cast<LuaHAnimator**>(lua_touserdata(L, 1));
-  int animID = luaL_checkinteger(L, 2);
+  int animID = LuaType::toInt(L, 2);
   bool ignorePriority = false;
 
   if (lua_isboolean(L, 3))
@@ -64,7 +65,7 @@ int LuaHAnimator::setDirection(lua_State* L)
 {
   LuaHAnimator* animatorH = *reinterpret_cast<LuaHAnimator**>(lua_touserdata(L, 1));
   lua_pushinteger(L, animatorH->ptr->getCurAnimID());
-  unsigned char direction = (unsigned char)luaL_checkinteger(L, 2);
+  unsigned char direction = LuaType::toUChar(L, 2);
   animatorH->ptr->setDirection(direction);
   return 0;
 }

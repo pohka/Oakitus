@@ -1,6 +1,7 @@
 #include <oak/lua/luah_collision_circle.h>
 #include <oak/lua/lua_vector.h>
 #include <oak/lua/lua_constants.h>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -42,7 +43,7 @@ int LuaHCollisionCircle::getRadius(lua_State* L)
 int LuaHCollisionCircle::setRadius(lua_State* L)
 {
   LuaHCollisionCircle* circleH = *reinterpret_cast<LuaHCollisionCircle**>(lua_touserdata(L, 1));
-  float radius = (float)luaL_checknumber(L, 2);
+  float radius = LuaType::toFloat(L, 2);
   circleH->ptr->setRadius(radius);
   return 0;
 }

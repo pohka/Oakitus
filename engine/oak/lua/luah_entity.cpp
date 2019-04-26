@@ -19,6 +19,7 @@
 #include <oak/lua/luah_animator.h>
 #include <oak/components/unit.h>
 #include <oak/lua/luah_unit.h>
+#include <oak/lua/lua_type.h>
 
 #include <oak/lua/lua_s.h>
 
@@ -69,17 +70,17 @@ int LuaHEntity::moveBy(lua_State* L)
   //3d 
   if (lua_gettop(L) == 4)
   {
-    x = (float)luaL_checknumber(L, 2);
-    y = (float)luaL_checknumber(L, 3);
-    z = (float)luaL_checknumber(L, 4);
+    x = LuaType::toFloat(L, 2);
+    y = LuaType::toFloat(L, 3);
+    z = LuaType::toFloat(L, 4);
     lua_pop(L, 3);
   }
   //2d
   else if (lua_gettop(L) == 3)
   {
-    x = (float)luaL_checknumber(L, 2);
-    y = (float)luaL_checknumber(L, 3);
-    z = 0;
+    x = LuaType::toFloat(L, 2);
+    y = LuaType::toFloat(L, 3);
+    z = 0.0f;
   }
   else
   {
@@ -102,16 +103,16 @@ int LuaHEntity::moveTo(lua_State* L)
   //3d 
   if (lua_gettop(L) == 4)
   {
-    x = (float)luaL_checknumber(L, 2);
-    y = (float)luaL_checknumber(L, 3);
-    z = (float)luaL_checknumber(L, 4);
+    x = LuaType::toFloat(L, 2);
+    y = LuaType::toFloat(L, 3);
+    z = LuaType::toFloat(L, 4);
     lua_pop(L, 3);
   }
   //2d
   else if (lua_gettop(L) == 3)
   {
-    x = (float)luaL_checknumber(L, 2);
-    y = (float)luaL_checknumber(L, 3);
+    x = LuaType::toFloat(L, 2);
+    y = LuaType::toFloat(L, 3);
     z = 0.0f;
   }
   else
@@ -161,7 +162,7 @@ int LuaHEntity::getComponent(lua_State* L)
 {
   LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
   
-  int reflectID = luaL_checkinteger(L, 2);
+  int reflectID = LuaType::toInt(L, 2);
   char res = 1;
 
   switch (reflectID)
@@ -239,7 +240,7 @@ int LuaHEntity::getComponent(lua_State* L)
 int LuaHEntity::getShapeByID(lua_State* L)
 {
   LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
-  int id = (int)luaL_checkinteger(L, 2);
+  int id = LuaType::toInt(L, 2);
   int res = 1;
 
   auto shapes = entH->ptr->getCollisionShapes();
@@ -286,7 +287,7 @@ int LuaHEntity::destroy(lua_State* L)
 
   if (lua_gettop(L) == 2)
   {
-    float delay = luaL_checknumber(L, 2);
+    float delay = LuaType::toFloat(L, 2);
     unsigned int entID = entH->ptr->getID();
     EntityManager::requestDestroy(entID, delay);
   }
@@ -301,7 +302,7 @@ int LuaHEntity::destroy(lua_State* L)
 int LuaHEntity::getScript(lua_State* L)
 {
   LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
-  std::string scriptName = luaL_checkstring(L, 2);
+  std::string scriptName = LuaType::toString(L, 2);
 
   std::vector<LuaScript*> scripts = {};
   entH->ptr->getComponentsWithReflection<LuaScript>(REFLECT_LUA_SCRIPT, scripts);

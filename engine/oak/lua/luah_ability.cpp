@@ -117,8 +117,8 @@ int LuaHAbility::getCooldownTimeRemaining(lua_State* L)
 int LuaHAbility::hasOwnerEnoughMana(lua_State* L)
 {
   LuaHAbility* abilityH = *reinterpret_cast<LuaHAbility**>(luaL_checkudata(L, 1, LUA_HANDLER_ABILITY));
-  float unitMana = abilityH->ptr->getUnitOwner()->getMana();
-  float manaCost = abilityH->ptr->getManaCost();
+  int unitMana = abilityH->ptr->getUnitOwner()->getMana();
+  int manaCost = abilityH->ptr->getManaCost();
   bool hasEnoughMana = unitMana >= manaCost;
   lua_pushboolean(L, hasEnoughMana);
   return 1;

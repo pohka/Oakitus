@@ -84,9 +84,6 @@ namespace oak
     const std::string name; //name of the file
     const std::string scriptFilePath; //path to the file
 
-    //get the function, if found it will return true and set it as the lua function to be called
-    bool getFunc(const char* funcName);
-
     //collection of thinkers
     std::vector<Thinker> thinkers = {};
 

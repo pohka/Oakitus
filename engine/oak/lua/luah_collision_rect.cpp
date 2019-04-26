@@ -2,6 +2,7 @@
 #include <oak/lua/lua_constants.h>
 #include <oak/lua/lua_vector.h>
 #include <iostream>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -46,7 +47,7 @@ int LuaHCollisionRect::getW(lua_State* L)
 int LuaHCollisionRect::setW(lua_State* L)
 {
   LuaHCollisionRect* rectH = *reinterpret_cast<LuaHCollisionRect**>(lua_touserdata(L, 1));
-  float val = (float)luaL_checknumber(L, 2);
+  float val = LuaType::toFloat(L, 2);
   rectH->ptr->setWidth(val);
   return 0;
 }
@@ -61,7 +62,7 @@ int LuaHCollisionRect::getH(lua_State* L)
 int LuaHCollisionRect::setH(lua_State* L)
 {
   LuaHCollisionRect* rectH = *reinterpret_cast<LuaHCollisionRect**>(lua_touserdata(L, 1));
-  float val = (float)luaL_checknumber(L, 2);
+  float val = LuaType::toFloat(L, 2);
   rectH->ptr->setHeight(val);
   return 0;
 }

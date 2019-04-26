@@ -114,6 +114,7 @@
     <ClInclude Include="..\engine\oak\lua\luah_sprite.h" />
     <ClInclude Include="..\engine\oak\lua\lua_time.h" />
     <ClInclude Include="..\engine\oak\lua\luah_unit.h" />
+    <ClInclude Include="..\engine\oak\lua\lua_type.h" />
     <ClInclude Include="..\engine\oak\lua\lua_vector.h" />
     <ClInclude Include="..\engine\oak\meta\ability_validator.h" />
     <ClInclude Include="..\engine\oak\meta\meta_data.h" />
@@ -241,6 +242,7 @@
     <ClCompile Include="..\engine\oak\lua\luah_sprite.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_time.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_unit.cpp" />
+    <ClCompile Include="..\engine\oak\lua\lua_type.cpp" />
     <ClCompile Include="..\engine\oak\lua\lua_vector.cpp" />
     <ClCompile Include="..\engine\oak\meta\ability_validator.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta_data.cpp" />

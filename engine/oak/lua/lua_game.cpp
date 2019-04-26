@@ -23,6 +23,8 @@
 #include <oak/meta/prefab_validator.h>
 #include <oak/meta/meta_data.h>
 
+#include <oak/lua/lua_type.h>
+
 
 using namespace oak;
 
@@ -220,7 +222,7 @@ void LuaGame::addComponent(Entity* ent, const nlohmann::json& params)
 //find an entity by id, if found return an entity handler to lua
 int LuaGame::findEntByID(lua_State* L)
 {
-  int id = luaL_checkinteger(L, 2);
+  int id = LuaType::toInt(LuaS::state, 2);
   Entity* ent = EntityManager::findEntityByID(id);
   int res = 1;
 

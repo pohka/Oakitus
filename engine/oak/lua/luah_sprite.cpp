@@ -1,6 +1,7 @@
 #include <oak/lua/luah_sprite.h>
 #include <iostream>
 #include <oak/lua/lua_constants.h>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -49,7 +50,7 @@ int LuaHSprite::getSrc(lua_State* L)
 int LuaHSprite::setSrc(lua_State* L)
 {
   LuaHSprite* sprite = *reinterpret_cast<LuaHSprite**>(lua_touserdata(L, 1));
-  const char* src = luaL_checkstring(L, 2);
+  const char* src = LuaType::toString(L, 2);
   sprite->ptr->setSrc(src);
   return 0;
 }

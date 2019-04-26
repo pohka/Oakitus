@@ -3,6 +3,8 @@
 #include <oak/lua/lua_constants.h>
 #include <oak/input/key_codes.h>
 #include <string>
+#include <oak/lua/lua_type.h>
+#include <oak/core/types.h>
 
 #include <iostream>
 
@@ -116,22 +118,22 @@ void LuaInput::reg(lua_State* L)
   lua_setglobal(L, LUA_KEYCODE);
 }
 
-static int getKey(lua_State* L)
+static ushort getKey(lua_State* L)
 {
   if (lua_isnumber(L, 2))
   {
-    return luaL_checkinteger(L, 2);
+    return LuaType::toInt(L, 2);
   }
   else
   {
-    const char* arg1 = luaL_checklstring(L, 2, 0);
-    return arg1[0];
+    const char* arg1 = LuaType::toString(L, 2);
+    return (ushort)arg1[0];
   }
 }
 
 int LuaInput::isKeyDown(lua_State *L)
 {
-  int key = getKey(L);
+  ushort key = getKey(L);
   bool result = Input::isKeyDown(key);
   lua_pushboolean(L, result);
   
@@ -140,7 +142,7 @@ int LuaInput::isKeyDown(lua_State *L)
 
 int LuaInput::isKeyUp(lua_State *L)
 {
-  int key = getKey(L);
+  ushort key = getKey(L);
   bool result = Input::isKeyUp(key);
   lua_pushboolean(L, result);
 
@@ -149,7 +151,7 @@ int LuaInput::isKeyUp(lua_State *L)
 
 int LuaInput::isKeyPressed(lua_State *L)
 {
-  int key = getKey(L);
+  ushort key = getKey(L);
   bool result = Input::isKeyPressed(key);
   lua_pushboolean(L, result);
 
@@ -158,7 +160,7 @@ int LuaInput::isKeyPressed(lua_State *L)
 
 int LuaInput::isMouseButtonDown(lua_State *L)
 {
-  char code = luaL_checkinteger(L, 2);
+  char code = LuaType::toChar(L, 2);
   bool result = Input::isMouseButtonDown(code);
   lua_pushboolean(L, result);
 
@@ -167,7 +169,7 @@ int LuaInput::isMouseButtonDown(lua_State *L)
 
 int LuaInput::isMouseButtonUp(lua_State *L)
 {
-  char code = luaL_checkinteger(L, 2);
+  char code = LuaType::toChar(L, 2);
   bool result = Input::isMouseButtonUp(code);
   lua_pushboolean(L, result);
 
@@ -176,7 +178,7 @@ int LuaInput::isMouseButtonUp(lua_State *L)
 
 int LuaInput::isMouseButtonPressed(lua_State *L)
 {
-  char code = luaL_checkinteger(L, 2);
+  char code = LuaType::toChar(L, 2);
   bool result = Input::isMouseButtonPressed(code);
   lua_pushboolean(L, result);
 

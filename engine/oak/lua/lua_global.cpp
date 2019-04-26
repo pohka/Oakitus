@@ -8,6 +8,7 @@
 #include <oak/lua/luah_unit.h>
 #include <oak/lua/luah_ability.h>
 #include <oak/ability/combat_tracker.h>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -60,7 +61,7 @@ int LuaGlobal::debugLog(lua_State* L)
   lua_getinfo(L, "nSl", &ar);
   int line = ar.currentline;
 
-  const char* str = luaL_checkstring(L, 1);
+  const char* str = lua_tostring(L, 1);
   std::cout << "|--DEBUG--| " << ar.short_src << " | line " << ar.currentline << ": " << str << std::endl;
 
   return 0;
@@ -69,7 +70,7 @@ int LuaGlobal::debugLog(lua_State* L)
 //log
 int LuaGlobal::log(lua_State* L)
 {
-  const char* str = luaL_checkstring(L, 1);
+  const char* str = lua_tostring(L, 1);
   std::cout << "LOG  |  " << str << std::endl;
 
   return 0;
@@ -80,9 +81,9 @@ int LuaGlobal::applyDamage(lua_State* L)
 {
   LuaHUnit* victimH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   LuaHUnit* attackerH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 2, LUA_HANDLER_UNIT));
-  int amount = (int)luaL_checkinteger(L, 3);
+  int amount = LuaType::toInt(L, 3);
   LuaHAbility* abilityH = *reinterpret_cast<LuaHAbility**>(luaL_checkudata(L, 4, LUA_HANDLER_ABILITY));
-  int elementType = luaL_checkinteger(L, 5);
+  int elementType = LuaType::toChar(L, 5);
 
   CombatTracker::log(
     CombatTracker::ENTRY_TYPE_DAMAGE,
@@ -101,9 +102,9 @@ int LuaGlobal::applyHeal(lua_State* L)
 {
   LuaHUnit* receiverH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 1, LUA_HANDLER_UNIT));
   LuaHUnit* giverH = *reinterpret_cast<LuaHUnit**>(luaL_checkudata(L, 2, LUA_HANDLER_UNIT));
-  int amount = (int)luaL_checkinteger(L, 3);
+  int amount = LuaType::toInt(L, 5);
   LuaHAbility* abilityH = *reinterpret_cast<LuaHAbility**>(luaL_checkudata(L, 4, LUA_HANDLER_ABILITY));
-  int elementType = luaL_checkinteger(L, 5);
+  char elementType = LuaType::LuaType::toChar(L, 5);
 
   CombatTracker::log(
     CombatTracker::ENTRY_TYPE_HEAL,

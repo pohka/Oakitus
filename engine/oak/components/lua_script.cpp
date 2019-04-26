@@ -34,58 +34,33 @@ LuaScript::LuaScript(const std::string& name) : Component(REFLECT_LUA_SCRIPT),
 
 void LuaScript::onCreate()
 {
-  if (getFunc(LUA_ON_CREATE))
+  bool hasFunc = LuaS::setFunc(scriptFilePath.c_str(), name.c_str(), LUA_ON_CREATE);
+  if (hasFunc)
   {
     LuaS::setThisEntity(this->entity);
     LuaS::setThisScript(this);
-    lua_getglobal(LuaS::state, name.c_str());
-    lua_getfield(LuaS::state, -1, LUA_ON_CREATE);
 
-    if (lua_pcall(LuaS::state, 0, 0, 0) != 0)
-    {
-      std::cout << "create function error" << std::endl;
-    }
+    LuaS::call();
+    lua_pop(LuaS::state, 1);
   }
 }
 
 void LuaScript::onDestroy()
 {
-  if (getFunc(LUA_ON_DESTROY))
+  bool hasFunc = LuaS::setFunc(scriptFilePath.c_str(), name.c_str(), LUA_ON_DESTROY);
+  if (hasFunc)
   {
     LuaS::setThisEntity(this->entity);
     LuaS::setThisScript(this);
-    lua_getglobal(LuaS::state, name.c_str());
-    lua_getfield(LuaS::state, -1, LUA_ON_DESTROY);
-
-    if (lua_pcall(LuaS::state, 0, 0, 0) != 0)
-    {
-      std::cout << "no destroy function" << std::endl;
-    }
+    
+    LuaS::call();
+    lua_pop(LuaS::state, 1);
   }
 }
 
 LuaScript::~LuaScript()
 {
 
-}
-
-
-bool LuaScript::getFunc(const char* funcName)
-{
-  LuaS::doFile(scriptFilePath);
-  lua_getglobal(LuaS::state, name.c_str());
-
-  //returns true if lua file has a matching function
-  if (!lua_isnil(LuaS::state, -1) && lua_istable(LuaS::state, -1))
-  {
-    lua_getfield(LuaS::state, -1, funcName);
-    if (!lua_isnil(LuaS::state, -1) && lua_isfunction(LuaS::state, -1))
-    {
-      return true;
-    }
-  }
-
-  return false;
 }
 
 void LuaScript::onTick()

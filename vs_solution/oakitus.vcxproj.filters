@@ -471,6 +471,9 @@
     <ClInclude Include="..\engine\oak\xml\xml_parser.h">
       <Filter>oak\xml</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\lua\lua_type.h">
+      <Filter>oak\lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -819,6 +822,9 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\xml\xml_parser.cpp">
       <Filter>oak\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\lua\lua_type.cpp">
+      <Filter>oak\lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

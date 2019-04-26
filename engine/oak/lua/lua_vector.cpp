@@ -4,6 +4,7 @@
 #include <sstream> 
 #include <oak/lua/lua_constants.h>
 #include <iostream>
+#include <oak/lua/lua_type.h>
 
 using namespace oak;
 
@@ -46,15 +47,15 @@ int LuaVector::lua_new(lua_State* L)
   }
   else if (lua_gettop(L) == 2)
   {
-    x = luaL_checknumber(L, 1);
-    y = luaL_checknumber(L, 2);
+    x = LuaType::toFloat(L, 1);
+    y = LuaType::toFloat(L, 2);
     z = 0.0;
   }
   else if (lua_gettop(L) == 3)
   {
-    x = luaL_checknumber(L, 1);
-    y = luaL_checknumber(L, 2);
-    z = luaL_checknumber(L, 3);
+    x = LuaType::toFloat(L, 1);
+    y = LuaType::toFloat(L, 2);
+    z = LuaType::toFloat(L, 3);
   }
   else
   {
@@ -76,11 +77,12 @@ int LuaVector::toString(lua_State* L)
   lua_getfield(L, 1, "y");
   lua_getfield(L, 1, "z");
 
-  double x = luaL_checknumber(L, -3);
-  double y = luaL_checknumber(L, -2);
-  double z = luaL_checknumber(L, -1);
+  float x = LuaType::toFloat(L, -3);
+  float y = LuaType::toFloat(L, -2);
+  float z = LuaType::toFloat(L, -1);
   lua_pop(L, 3);
 
+  //to 1 decimal place
   x = floorf(x*10.0f) * 0.1f;
   y = floorf(y*10.0f) * 0.1f;
   z = floorf(z*10.0f) * 0.1f;
@@ -211,9 +213,9 @@ glm::vec3 LuaVector::toGLMVec(lua_State* L, const int index)
   lua_getfield(L, index, "y");
   lua_getfield(L, index, "z");
 
-  x = (float)luaL_checknumber(L, -3);
-  y = (float)luaL_checknumber(L, -2);
-  z = (float)luaL_checknumber(L, -1);
+  x = LuaType::toFloat(L, -3);
+  y = LuaType::toFloat(L, -2);
+  z = LuaType::toFloat(L, -1);
 
   lua_pop(L, 3);
 
