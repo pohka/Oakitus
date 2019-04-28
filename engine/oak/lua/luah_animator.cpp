@@ -57,7 +57,7 @@ int LuaHAnimator::getCurAnimID(lua_State* L)
 int LuaHAnimator::getDirection(lua_State* L)
 {
   LuaHAnimator* animatorH = *reinterpret_cast<LuaHAnimator**>(lua_touserdata(L, 1));
-  lua_pushinteger(L, animatorH->ptr->getDirection());
+  lua_pushinteger(L, static_cast<int>(animatorH->ptr->getDirection()));
   return 1;
 }
 
@@ -65,7 +65,7 @@ int LuaHAnimator::setDirection(lua_State* L)
 {
   LuaHAnimator* animatorH = *reinterpret_cast<LuaHAnimator**>(lua_touserdata(L, 1));
   lua_pushinteger(L, animatorH->ptr->getCurAnimID());
-  unsigned char direction = LuaType::toUChar(L, 2);
-  animatorH->ptr->setDirection(direction);
+  uchar direction = LuaType::toUChar(L, 2);
+  animatorH->ptr->setDirection(static_cast<AnimDirection>(direction));
   return 0;
 }

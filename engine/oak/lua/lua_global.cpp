@@ -40,10 +40,10 @@ void LuaGlobal::reg(lua_State* L)
   lua_pushinteger(L, REFLECT_UNIT);
   lua_setglobal(L, "COMP_UNIT");
 
-  lua_pushinteger(L, ANIM_DIRECTION_LEFT);
+  lua_pushinteger(L, static_cast<int>(AnimDirection::LEFT));
   lua_setglobal(L, "ANIM_DIRECTION_LEFT");
 
-  lua_pushinteger(L, ANIM_DIRECTION_RIGHT);
+  lua_pushinteger(L, static_cast<int>(AnimDirection::RIGHT));
   lua_setglobal(L, "ANIM_DIRECTION_RIGHT");
 
   lua_pushinteger(L, COLLISION_SHAPE_CIRCLE);

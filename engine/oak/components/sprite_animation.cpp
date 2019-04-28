@@ -52,7 +52,7 @@ void SpriteAnimation::load()
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
   glBindVertexArray(VAO);
-  setFrame(0, ANIM_DIRECTION_RIGHT);
+  setFrame(0, AnimDirection::RIGHT);
   setVertexAttrs();
 }
 
@@ -107,7 +107,7 @@ void SpriteAnimation::onRender(float positionX, float positionY) const
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void SpriteAnimation::setFrame(const uint frameIndex, const uchar direction)
+void SpriteAnimation::setFrame(const uint frameIndex, const AnimDirection direction)
 {
   curFrameX = frameIndex % maxFramesX;
   curFrameY = startFrameY + (frameIndex / maxFramesX);
@@ -121,7 +121,7 @@ void SpriteAnimation::setFrame(const uint frameIndex, const uchar direction)
   float xMax = (float)((curFrameX+1) * frameW) / texture->getWidth();
 
   //flip x
-  if (direction == ANIM_DIRECTION_LEFT)
+  if (direction == AnimDirection::LEFT)
   {
     float tmp = xMin;
     xMin = xMax;

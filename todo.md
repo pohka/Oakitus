@@ -1,6 +1,12 @@
 # TODO
+* convert to enum classes
+* use size
+* remove /// comments because they are hard to read
+* remove const in parameters of primitive types
+* remove use of (int) because it gives no compiler errors, instead use statc_cast<int>
 
 ## Ion UI
+* localization strings loaded from file
 * UIComponent should inherit UINode
 * parse xml to create components rather than using c++
 * lua scripting for events like onClick

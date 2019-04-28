@@ -71,7 +71,7 @@ namespace oak
       bool getIsLooping() const;
 
       //generates and binds the VBO for the specified frame
-      void setFrame(const uint frameIndex, const uchar direction);
+      void setFrame(const uint frameIndex, const AnimDirection direction);
 
     private:
       //setup of vertex attributes layout

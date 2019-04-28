@@ -4,10 +4,75 @@
 
 #include "core/types.h"
 
+namespace oak
+{
+  enum class AnimDirection : uchar
+  {
+    RIGHT = 0,
+    LEFT = 1
+  };
+
+
+  enum class CollisionShape : uchar
+  {
+    RECT = 0,
+    CIRCLE = 1
+  };
+
+  enum class TickGroup : uchar
+  {
+    DEFAULT = 0,
+    DURING_PHYSICS = 1,
+    AFTER_PHYSICS = 2,
+    LAST = 3,
+    COUNT = 4
+  };
+
+  enum class TickType : uchar
+  {
+    NOT_TICKABLE = 0,
+    TICKABLE = 1,
+    INTERVAL_TICK = 2,
+    COUNT = 3
+  };
+
+  enum class CreationState : uchar
+  {
+    NONE = 0,
+    QUEUED = 1,
+    CREATED = 2,
+    DESTROYED = 3
+  };
+
+  enum class ReflectID : ushort
+  {
+    NONE = 0,
+    TRANSFORM = 1,
+    ANIMATOR = 2,
+    RIGID_BODY_2D = 3,
+    SPRITE = 4,
+    CHUNK = 5,
+    LUA_SCRIPT = 6,
+    UNIT = 7,
+    COUNT = 8
+  };
+
+  enum class AnimID : uchar
+  {
+    NONE = 0,
+    IDLE,
+    RUN,
+    DEATH,
+    ABILITY_1,
+    ABILITY_2,
+    ABILITY_3,
+    ABILITY_4
+  };
+}
 
 //direction of an animation
-cnum ANIM_DIRECTION_RIGHT = 0;
-cnum ANIM_DIRECTION_LEFT = 1;
+//cnum ANIM_DIRECTION_RIGHT = 0;
+//cnum ANIM_DIRECTION_LEFT = 1;
 
 //all type of collision shapes
 cnum COLLISION_SHAPE_RECT = 0;

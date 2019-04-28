@@ -20,8 +20,7 @@ namespace oak
 
     std::unordered_map<uchar, SpriteAnimation*> anims; ///<summary>Map of the animatons available</summary>
     uchar curAnimID = ANIM_NULL; ///<summary>Current animation key</summary>
-    //uchar initialAnimID; ///<summary>Base animation key</summary>
-    uchar direction; ///<summary>Direction of the current animation</summary>
+    AnimDirection direction; //Direction of the current animation
     bool hasChangedDirection = false; ///<summary>True if the direction of the animation has changed this frame</summary>
     uint frameIndex = 0; //current frame index
 
@@ -34,16 +33,16 @@ namespace oak
       void addAnim(uchar animID, SpriteAnimation* animation);
 
       ///<summary>Sets the current animation, if ignorePrioirty is true it will ignore the prioity checks</summary>
-      void setAnim(uchar animID, const bool ignorePriority = false);
+      void setAnim(uchar animID, bool ignorePriority = false);
 
       ///<summary>Returns the current animation id</summary>
       uchar getCurAnimID() const;
 
       ///<summary>Returns the current direction of the animation</summary>
-      uchar getDirection() const;
+      AnimDirection getDirection() const;
 
       ///<summary>sets the current direction</summary>
-      void setDirection(uchar direction);
+      void setDirection(AnimDirection direction);
 
 
     protected:
