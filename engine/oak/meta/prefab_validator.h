@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SCENE_META_DATA_H
 #define SCENE_META_DATA_H
 

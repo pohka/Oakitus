@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_SCRIPT_H
 #define LUA_SCRIPT_H
 

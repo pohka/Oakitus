@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ABILITY_VALIDATOR_H
 #define ABILITY_VALIDATOR_H
 

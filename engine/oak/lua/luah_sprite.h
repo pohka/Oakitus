@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUAH_SPRITE_H
 #define LUAH_SPRITE_H
 

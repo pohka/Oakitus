@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUAH_RIGID_BODY_2D_H
 #define LUAH_RIGID_BODY_2D_H
 

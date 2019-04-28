@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PRECACHE_H
 #define PRECACHE_H
 

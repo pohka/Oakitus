@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STYLE_PARSER_H
 #define STYLE_PARSER_H
 

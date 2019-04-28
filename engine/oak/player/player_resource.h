@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PLAYER_RESOURCE_H
 #define PLAYER_RESOURCE_H
 

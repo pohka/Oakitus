@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ANIMATOR_H
 #define ANIMATOR_H
 

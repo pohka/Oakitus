@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_PLAYER_RESOURCE_H
 #define LUA_PLAYER_RESOURCE_H
 

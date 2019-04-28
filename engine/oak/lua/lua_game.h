@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_GAME_H
 #define LUA_GAME_H
 

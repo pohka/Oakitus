@@ -1,3 +1,4 @@
+#pragma once
 #ifndef UI_LABEL_H
 #define UI_LABEL_H
 

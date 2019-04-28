@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_SCENE_H
 #define LUA_SCENE_H
 

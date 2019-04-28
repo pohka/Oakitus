@@ -1,3 +1,4 @@
+#pragma once
 #ifndef META_DATA_H
 #define META_DATA_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLLISION_CIRCLE_H
 #define COLLISION_CIRCLE_H
 

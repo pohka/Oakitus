@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUAH_COLLISION_RECT_H
 #define LUAH_COLLISION_RECT_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STRING_HELP_H
 #define STRING_HELP_H
 

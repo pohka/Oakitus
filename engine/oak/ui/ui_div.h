@@ -1,3 +1,4 @@
+#pragma once
 #ifndef UI_DIV_H
 #define UI_DIV_H
 

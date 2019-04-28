@@ -1,3 +1,4 @@
+#pragma once
 #ifndef UI_DEF_H
 #define UI_DEF_H
 

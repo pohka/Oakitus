@@ -1,3 +1,4 @@
+#pragma once
 #ifndef INTERVAL_TICKER_H
 #define INTERVAL_TICKER_H
 

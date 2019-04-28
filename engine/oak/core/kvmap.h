@@ -1,7 +1,7 @@
+#pragma once
 #ifndef KVMAP_H
 #define KVMAP_H
 
-#include "meta_def.h"
 
 namespace oak
 {

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef UI_CANVAS_H
 #define UI_CANVAS_H
 

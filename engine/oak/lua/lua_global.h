@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_GLOBAL_H
 #define LUA_GLOBAL_H
 

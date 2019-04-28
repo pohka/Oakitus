@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FPS_LIMITER_H
 #define FPS_LIMITER_H
 

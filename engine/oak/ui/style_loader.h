@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STYLE_LOADER_H
 #define STYLE_LOADER_H
 

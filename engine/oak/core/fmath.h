@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FMATH_H
 #define FMATH_H
 

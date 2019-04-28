@@ -1,3 +1,4 @@
+#pragma once
 #ifndef XML_NODE_H
 #define XML_NODE_H
 

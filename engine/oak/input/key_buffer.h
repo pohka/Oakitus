@@ -1,3 +1,4 @@
+#pragma once
 #ifndef KEYOBJ_H
 #define KEYOBJ_H
 #include "key_codes.h"

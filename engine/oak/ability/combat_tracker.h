@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COMBAT_TRACKER_H
 #define COMBAT_TRACKER_H
 

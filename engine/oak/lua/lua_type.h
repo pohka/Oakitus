@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_TYPES_H
 #define LUA_TYPES_H
 

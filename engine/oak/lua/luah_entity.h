@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUAH_ENTITY_H
 #define LUAH_ENTITY_H
 

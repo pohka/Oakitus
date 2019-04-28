@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_INPUT_H
 #define LUA_INPUT_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef UI_CHARACTER_H
 #define UI_CHARACTER_H
 

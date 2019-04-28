@@ -1,3 +1,4 @@
+#pragma once
 #ifndef OAK_H
 #define OAK_H
 

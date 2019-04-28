@@ -1,3 +1,4 @@
+#pragma once
 #ifndef UI_COMPONENT_H
 #define UI_COMPONENT_H
 

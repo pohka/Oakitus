@@ -21,7 +21,7 @@ Status::Status()
   //img->style.set(STYLE_MARGIN_TOP, -80.0f);
   //addNode(img);
 
-  label = new UILabel("", 20);
+  label = new UILabel("a", 20);
   label->style.color = { 0.9f, 0.9f, 0.9f, 1.0f };
   label->style.setPadding(10.0f, 4.0f);
   label->style.set(STYLE_MARGIN_TOP, -80.0f);

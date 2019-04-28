@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FXML_PARSER_H
 #define FXML_PARSER_H
 

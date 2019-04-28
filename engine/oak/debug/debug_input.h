@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DEBUG_INPUT_H
 #define DEBUG_INPUT_H
 

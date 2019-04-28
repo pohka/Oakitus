@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_VECTOR_H
 #define LUA_VECTOR_H
 

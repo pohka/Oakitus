@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_ABILITY_H
 #define LUA_ABILITY_H
 

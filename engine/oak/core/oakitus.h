@@ -1,3 +1,4 @@
+#pragma once
 #ifndef OAKITUS_H
 #define OAKITUS_H
 

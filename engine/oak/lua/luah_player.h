@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUAH_PLAYER_H
 #define LUAH_PLAYER_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LOCALIZATION_H
 #define LOCALIZATION_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BASE_RIGID_BODY_H
 #define BASE_RIGID_BODY_H
 

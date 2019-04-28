@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUA_CONSTANTS_H
 #define LUA_CONSTANTS_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLLISION_LAYER_H
 #define COLLISION_LAYER_H
 

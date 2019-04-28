@@ -1,3 +1,4 @@
+#pragma once
 #ifndef OAK_LUA_LOADER_H
 #define OAK_LUA_LOADER_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BASE_COLLISION_SHAPE_H
 #define BASE_COLLISION_SHAPE_H
 

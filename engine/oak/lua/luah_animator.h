@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUAH_ANIMATOR_H
 #define LUAH_ANIMATOR_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef UI_POINT_H
 #define UI_POINT_H
 

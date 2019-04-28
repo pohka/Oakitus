@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TILE_TILE_H
 #define TILE_TILE_H
 

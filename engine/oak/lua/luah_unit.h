@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUAH_UNIT_H
 #define LUAH_UNIT_H
 

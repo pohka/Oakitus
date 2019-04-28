@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FXML_NODE_H
 #define FXML_NODE_H
 

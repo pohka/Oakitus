@@ -1,3 +1,4 @@
+#pragma once
 #ifndef KEYCODES_H
 #define KEYCODES_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LUAH_COLLISION_CIRCLE_H
 #define LUAH_COLLISION_CIRCLE_H
 

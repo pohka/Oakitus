@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TILE_WORLD_H
 #define TILE_WORLD_H
 
