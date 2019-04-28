@@ -17,7 +17,7 @@
 
 using namespace ion;
 
-std::map<ushort, UIComponent*> UICanvas::components;
+std::map<ushort, UIWidget*> UICanvas::widgets;
 UIPoint UICanvas::projection = { 0,0 };
 std::map<uint, std::string> strings;
 std::vector<Style*> UICanvas::styles;
@@ -27,7 +27,7 @@ void UICanvas::render()
 {
   ushort ptX = (ushort)oak::Input::mousePos.x;
   ushort ptY = (ushort)oak::Input::mousePos.y;
-  for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
+  for (auto it = widgets.begin(); it != widgets.end(); ++it)
   {
    // it->second->events();
     it->second->onBeforeRender();
@@ -41,26 +41,26 @@ void UICanvas::render()
   projection.x = windowToVPRatio.x * worldToVP;
   projection.y = windowToVPRatio.y * worldToVP;
 
-  for (std::map<ushort, UIComponent*>::iterator it = components.begin(); it != components.end(); ++it)
+  for (auto it = widgets.begin(); it != widgets.end(); ++it)
   {
     it->second->render(projection);
   }
 }
 
-void UICanvas::addComponent(ushort id, UIComponent* component)
+void UICanvas::addWidget(ushort id, UIWidget* widget)
 {
-  components.insert(std::pair<ushort, UIComponent*>(id, component));
+  widgets.insert({ id, widget });
 }
 
-UIComponent* UICanvas::getComponent(ushort id)
+UIWidget* UICanvas::getWidget(ushort id)
 {
-  return components[id];
+  return widgets[id];
 }
 
 void UICanvas::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 {
   //resize all the image nodes
-  for (auto comp : components)
+  for (auto comp : widgets)
   {
     comp.second->onWindowResize(windowToVPRatioX, windowToVPRatioY);
   }

@@ -1,4 +1,4 @@
-#include "ui_component.h"
+#include "ui_widget.h"
 #include <oak/input/input.h>
 #include <oak/debug.h>
 
@@ -6,7 +6,7 @@ using namespace ion;
 using namespace oak;
 
 
-UIComponent::~UIComponent()
+UIWidget::~UIWidget()
 {
   for (uint i = 0; i < nodes.size(); i++)
   {
@@ -15,7 +15,7 @@ UIComponent::~UIComponent()
   nodes.clear();
 }
 
-void UIComponent::render(UIPoint& projection)
+void UIWidget::render(UIPoint& projection)
 {
   glm::vec2 windowUnit = Window::getWindowUnitToPixel();
 
@@ -33,7 +33,7 @@ void UIComponent::render(UIPoint& projection)
   }
 }
 
-void UIComponent::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
+void UIWidget::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
 {
   for (UINode* node : nodes)
   {
@@ -41,14 +41,14 @@ void UIComponent::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
   }
 }
 
-void UIComponent::addNode(UINode* node)
+void UIWidget::addNode(UINode* node)
 {
   node->computeStyle();
-  node->setComponent(this);
+  node->setWidget(this);
   nodes.push_back(node);
 }
 
-void UIComponent::recomputeStyle()
+void UIWidget::recomputeStyle()
 {
   for (uint i = 0; i < nodes.size(); i++)
   {
@@ -56,7 +56,7 @@ void UIComponent::recomputeStyle()
   }
 }
 
-UINode* UIComponent::findNodeByID(std::string id)
+UINode* UIWidget::findNodeByID(std::string id)
 {
   for (uint i = 0; i < nodes.size(); i++)
   {

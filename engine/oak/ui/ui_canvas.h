@@ -14,7 +14,7 @@
 
 #include "ui_character.h"
 #include "ui_node.h"
-#include "ui_component.h"
+#include "ui_widget.h"
 #include "style.h"
 #include "ui_point.h"
 
@@ -34,9 +34,9 @@ namespace ion
       ///Projection from pixel units to viewport coords to window coords
       static const UIPoint& getProjection();
       ///add a ui component
-      static void addComponent(ushort id, UIComponent* component);
+      static void addWidget(ushort id, UIWidget* widget);
       ///returns a component by id
-      static UIComponent* getComponent(ushort id);
+      static UIWidget* getWidget(ushort id);
 
       //find a style by selector, nullptr returned if not found
       static Style* findStyle(std::string selector);
@@ -49,7 +49,7 @@ namespace ion
     private:
       static void deleteAllStyles();
       static UIPoint projection; //current projection
-      static std::map<ushort, UIComponent*> components; //all if the existing components
+      static std::map<ushort, UIWidget*> widgets; //all if the existing components
       static std::vector<Style*> styles;
       
   };

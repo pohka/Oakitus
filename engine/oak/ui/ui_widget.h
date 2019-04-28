@@ -10,8 +10,8 @@
 
 namespace ion
 {
-  ///a container for UI nodes
-  struct UIComponent
+  //a container for UI nodes
+  struct UIWidget
   {
       
     UIPoint align = {
@@ -23,7 +23,7 @@ namespace ion
     UIPoint margin;
     UIPoint padding;
 
-    ~UIComponent();
+    ~UIWidget();
 
     virtual void onBeforeRender() = 0;
 

@@ -1,5 +1,5 @@
 #include "ui_node.h"
-#include "ui_component.h"
+#include "ui_widget.h"
 #include "ui_canvas.h"
 #include <oak/input/input.h>
 #include <oak/input/key_codes.h>
@@ -26,9 +26,9 @@ UINode::~UINode()
   children.clear();
 }
 
-void UINode::setComponent(UIComponent* component)
+void UINode::setWidget(UIWidget* widget)
 {
-  this->component = component;
+  this->widget = widget;
 }
 
 void UINode::addChild(UINode* node)
@@ -36,7 +36,7 @@ void UINode::addChild(UINode* node)
   node->computeStyle();
   node->parent = this;
   node->isRootNode = false;
-  node->component = component;
+  node->widget = widget;
   children.push_back(node);
 }
 
@@ -59,7 +59,7 @@ UIPoint& UINode::getParentPos()
 {
   if (isRootNode)
   {
-    return component->pos;
+    return widget->pos;
   }
   else
   {

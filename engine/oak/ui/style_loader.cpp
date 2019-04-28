@@ -38,7 +38,7 @@ void StyleLoader::reload()
 #endif
   
   //recompute styles
-  for (auto it = UICanvas::components.begin(); it != UICanvas::components.end(); it++)
+  for (auto it = UICanvas::widgets.begin(); it != UICanvas::widgets.end(); it++)
   {
     it->second->recomputeStyle();
   }

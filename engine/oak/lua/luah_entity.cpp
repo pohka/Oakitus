@@ -240,7 +240,7 @@ int LuaHEntity::getComponent(lua_State* L)
 int LuaHEntity::getShapeByID(lua_State* L)
 {
   LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
-  int id = LuaType::toInt(L, 2);
+  unsigned int id = LuaType::toUInt(L, 2);
   int res = 1;
 
   auto shapes = entH->ptr->getCollisionShapes();

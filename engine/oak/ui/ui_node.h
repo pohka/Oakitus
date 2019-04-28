@@ -9,7 +9,7 @@
 
 namespace ion
 {
-  struct UIComponent;
+  struct UIWidget;
 
   struct UIRect
   {
@@ -37,7 +37,7 @@ namespace ion
     virtual void render(UIPoint& nodeCursor) = 0;
     virtual void onWindowResize(float windowToVPRatioX, float windowToVPRatioY) = 0;
 
-    void setComponent(UIComponent* component);
+    void setWidget(UIWidget* widget);
     void addChild(UINode* node);
     UINode* getParent();
     uchar getType();
@@ -68,7 +68,7 @@ namespace ion
   protected:
     UINode* parent = nullptr;
     uchar nodeType;
-    UIComponent* component;
+    UIWidget* widget;
     std::vector<std::string> classList;
     Style cstyle = Style(""); //computed style
 

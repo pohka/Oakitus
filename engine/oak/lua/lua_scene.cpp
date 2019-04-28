@@ -11,7 +11,11 @@
 #include <oak/meta/prefab_validator.h>
 #include <oak/debug.h>
 
+//#include <my_game/ui/status.h>
+//#include <oak/ui/ui_canvas.h>
+
 using namespace oak;
+using namespace ion;
 using json = nlohmann::json;
 
 LuaScene* LuaScene::scene = nullptr;
@@ -37,6 +41,9 @@ void LuaScene::onLoad()
   lua_getglobal(LuaS::state, LUA_ON_LOAD);
   LuaS::call();
   lua_pop(LuaS::state, 1);
+
+  //auto statusUI = new game::Status();
+  //UICanvas::addWidget(1 ,statusUI);
 }
 
 

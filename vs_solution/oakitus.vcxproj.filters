@@ -64,9 +64,6 @@
     <Filter Include="resources\shaders">
       <UniqueIdentifier>{c846c93e-c448-4e9c-8e9b-6003246354f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="projects\chess">
-      <UniqueIdentifier>{ce7278ab-5622-41ba-ade4-093f6aeabe39}</UniqueIdentifier>
-    </Filter>
     <Filter Include="lua">
       <UniqueIdentifier>{474cb757-f18a-42f7-bdfb-afae49d6e620}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,12 @@
     </Filter>
     <Filter Include="oak\ability">
       <UniqueIdentifier>{7f6d19e4-20e8-4f60-89d6-ca6925cc4018}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\my_game">
+      <UniqueIdentifier>{ce7278ab-5622-41ba-ade4-093f6aeabe39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projects\my_game\ui">
+      <UniqueIdentifier>{de452e18-01ac-496e-a26b-5fa7e64e7bdf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -151,9 +154,6 @@
       <Filter>oak\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\ui\ui_character.h">
-      <Filter>oak\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\ui\ui_component.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\ui\ui_def.h">
@@ -474,6 +474,12 @@
     <ClInclude Include="..\engine\oak\lua\lua_type.h">
       <Filter>oak\lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\ui\ui_widget.h">
+      <Filter>oak\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projects\my_game\ui\status.h">
+      <Filter>projects\my_game\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
@@ -522,9 +528,6 @@
       <Filter>oak\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\ui\ui_canvas.cpp">
-      <Filter>oak\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\ui\ui_component.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\ui\ui_div.cpp">
@@ -825,6 +828,12 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\lua\lua_type.cpp">
       <Filter>oak\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\ui\ui_widget.cpp">
+      <Filter>oak\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projects\my_game\ui\status.cpp">
+      <Filter>projects\my_game\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -21,6 +21,8 @@
 #include <oak/core/config.h>
 #include <oak/meta/meta_data.h>
 #include <oak/ability/combat_tracker.h>
+#include <my_game/ui/status.h>
+#include <oak/ui/ui_canvas.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
@@ -81,6 +83,9 @@ void Oakitus::init()
 
   //loads scripts/main.lua
   LuaS::init();
+
+  auto statusUI = new game::Status();
+  ion::UICanvas::addWidget(1 ,statusUI);
 
   //Oakitus::load();
   loop();

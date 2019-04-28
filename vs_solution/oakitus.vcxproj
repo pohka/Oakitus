@@ -13,6 +13,14 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="dev|Win32">
+      <Configuration>dev</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="dev|x64">
+      <Configuration>dev</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -147,7 +155,7 @@
     <ClInclude Include="..\engine\oak\ui\ui.h" />
     <ClInclude Include="..\engine\oak\ui\ui_canvas.h" />
     <ClInclude Include="..\engine\oak\ui\ui_character.h" />
-    <ClInclude Include="..\engine\oak\ui\ui_component.h" />
+    <ClInclude Include="..\engine\oak\ui\ui_widget.h" />
     <ClInclude Include="..\engine\oak\ui\ui_def.h" />
     <ClInclude Include="..\engine\oak\ui\ui_div.h" />
     <ClInclude Include="..\engine\oak\ui\ui_image.h" />
@@ -159,6 +167,7 @@
     <ClInclude Include="..\engine\oak\xml\fxml_parser.h" />
     <ClInclude Include="..\engine\oak\xml\xml_node.h" />
     <ClInclude Include="..\engine\oak\xml\xml_parser.h" />
+    <ClInclude Include="..\projects\my_game\ui\status.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\lua\lapi.c" />
@@ -267,7 +276,7 @@
     <ClCompile Include="..\engine\oak\ui\style_loader.cpp" />
     <ClCompile Include="..\engine\oak\ui\style_parser.cpp" />
     <ClCompile Include="..\engine\oak\ui\ui_canvas.cpp" />
-    <ClCompile Include="..\engine\oak\ui\ui_component.cpp" />
+    <ClCompile Include="..\engine\oak\ui\ui_widget.cpp" />
     <ClCompile Include="..\engine\oak\ui\ui_div.cpp" />
     <ClCompile Include="..\engine\oak\ui\ui_image.cpp" />
     <ClCompile Include="..\engine\oak\ui\ui_label.cpp" />
@@ -279,6 +288,7 @@
     <ClCompile Include="..\engine\oak\xml\xml_parser.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\projects\my_game\ui\status.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\resources\shaders\collision.fs" />
@@ -308,6 +318,13 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dev|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug_lua|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -322,6 +339,13 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dev|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
@@ -346,6 +370,9 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='dev|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug_lua|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -353,6 +380,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='dev|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug_lua|x64'" Label="PropertySheets">
@@ -364,11 +394,17 @@
     <LibraryPath>C:\Users\Jeoff\Documents\oakitus\oakitus\library;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;C:\Users\Jeoff\Documents\oakitus\oakitus\projects;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Jeoff\Documents\oakitus\oakitus\library;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)projects\my_game\</OutDir>
     <IntDir>
     </IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dev|Win32'">
+    <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;C:\Users\Jeoff\Documents\oakitus\oakitus\projects;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Jeoff\Documents\oakitus\oakitus\library;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)projects\my_game\</OutDir>
+    <IntDir />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug_lua|Win32'">
     <IncludePath>C:\Users\Jeoff\Documents\oakitus\oakitus\include;C:\Users\Jeoff\Documents\oakitus\oakitus\engine;$(IncludePath)</IncludePath>
@@ -415,6 +451,25 @@
       <SubSystem>NotSet</SubSystem>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='dev|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;DEBUG_MODE_ENABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>NotSet</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug_lua|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -433,6 +488,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='dev|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
