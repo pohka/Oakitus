@@ -1,6 +1,6 @@
 #include "entity.h"
 #include "component.h"
-#include <oak/collision/base_collision_shape.h>
+#include <oak/collision/collision_shape.h>
 #include "entity_manager.h"
 #include <oak/time/time.h>
 
@@ -62,7 +62,7 @@ BaseRigidBody* Entity::getRigidBody() const
   return rigidbody;
 }
 
-void Entity::addCollision(BaseCollisionShape* shape)
+void Entity::addCollision(CollisionShape* shape)
 {
   shape->entity = this;
   collisionShapes.push_back(shape);
@@ -171,7 +171,7 @@ void Entity::onDebugDraw() const
   }
 
   //collision
-  for (BaseCollisionShape* shape : collisionShapes)
+  for (CollisionShape* shape : collisionShapes)
   {
     shape->onDebugDraw();
   }
@@ -267,7 +267,7 @@ bool Entity::canTickThisFrame() const
   return false;
 }
 
-std::vector<BaseCollisionShape*>& Entity::getCollisionShapes()
+std::vector<CollisionShape*>& Entity::getCollisionShapes()
 {
   return collisionShapes;
 }
@@ -281,13 +281,13 @@ void Entity::addChild(Entity* child)
   }
 
   //queue to be created if not created yet
-  if (child->creationState == CREATION_STATE_NULL)
+  if (child->creationState == CreationState::NONE)
   {
     child->parent = this;
     EntityManager::queueEntityCreate(child);
   }
   //attach a entity that is already created
-  else if(child->creationState == CREATION_STATE_CREATED)
+  else if(child->creationState == CreationState::CREATED)
   {
     child->transform->onParentSet(transform);
     child->parent = this;
@@ -295,7 +295,7 @@ void Entity::addChild(Entity* child)
   }
 }
 
-Entity* Entity::findChildByName(std::string name)
+Entity* Entity::findChildByName(const std::string& name)
 {
   for (Entity* ent : children)
   {
@@ -351,12 +351,12 @@ const Entity* Entity::getParent() const
   return parent;
 }
 
-void Entity::setCreationState(const uchar state)
+void Entity::setCreationState(CreationState state)
 {
   creationState = state;
 }
 
-const uchar Entity::getCreationState() const
+Entity::CreationState Entity::getCreationState() const
 {
   return creationState;
 }

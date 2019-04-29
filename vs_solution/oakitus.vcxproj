@@ -70,7 +70,7 @@
     <ClInclude Include="..\engine\oak\assets\stb_image.h" />
     <ClInclude Include="..\engine\oak\assets\texture.h" />
     <ClInclude Include="..\engine\oak\build_def.h" />
-    <ClInclude Include="..\engine\oak\collision\base_collision_shape.h" />
+    <ClInclude Include="..\engine\oak\collision\collision_shape.h" />
     <ClInclude Include="..\engine\oak\collision\collision.h" />
     <ClInclude Include="..\engine\oak\collision\collision_circle.h" />
     <ClInclude Include="..\engine\oak\collision\collision_layer.h" />
@@ -210,7 +210,7 @@
     <ClCompile Include="..\engine\oak\assets\asset.cpp" />
     <ClCompile Include="..\engine\oak\assets\shader.cpp" />
     <ClCompile Include="..\engine\oak\assets\texture.cpp" />
-    <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp" />
+    <ClCompile Include="..\engine\oak\collision\collision_shape.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision_circle.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision_rect.cpp" />

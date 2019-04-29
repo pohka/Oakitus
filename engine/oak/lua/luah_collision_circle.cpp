@@ -67,6 +67,6 @@ int LuaHCollisionCircle::setOffset(lua_State* L)
 int LuaHCollisionCircle::getType(lua_State* L)
 {
   LuaHCollisionCircle* circleH = *reinterpret_cast<LuaHCollisionCircle**>(lua_touserdata(L, 1));
-  lua_pushinteger(L, circleH->ptr->getType());
+  lua_pushinteger(L, static_cast<int>(circleH->ptr->getType()));
   return 1;
 }

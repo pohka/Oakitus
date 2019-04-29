@@ -6,17 +6,11 @@
 
 namespace oak
 {
+  //direction of an animation
   enum class AnimDirection : uchar
   {
     RIGHT = 0,
     LEFT = 1
-  };
-
-
-  enum class CollisionShape : uchar
-  {
-    RECT = 0,
-    CIRCLE = 1
   };
 
   enum class TickGroup : uchar
@@ -34,14 +28,6 @@ namespace oak
     TICKABLE = 1,
     INTERVAL_TICK = 2,
     COUNT = 3
-  };
-
-  enum class CreationState : uchar
-  {
-    NONE = 0,
-    QUEUED = 1,
-    CREATED = 2,
-    DESTROYED = 3
   };
 
   enum class ReflectID : ushort
@@ -75,8 +61,8 @@ namespace oak
 //cnum ANIM_DIRECTION_LEFT = 1;
 
 //all type of collision shapes
-cnum COLLISION_SHAPE_RECT = 0;
-cnum COLLISION_SHAPE_CIRCLE = 1;
+//cnum COLLISION_SHAPE_RECT = 0;
+//cnum COLLISION_SHAPE_CIRCLE = 1;
 
 //ticking groups for components
 cnum TICK_GROUP_DEFAULT = 0;
@@ -92,10 +78,10 @@ cnum TICK_TYPE_INTERVAL_TICK = 2;
 cnum TICK_TYPE_LAST = 3;
 
 //state of an entity in creation
-cnum CREATION_STATE_NULL = 0; //not queued or created
-cnum CREATION_STATE_QUEUED = 1; //in queue to be created at the end of the frame
-cnum CREATION_STATE_CREATED = 2; //created
-cnum CREATION_STATE_DESTROYED = 3; //queued for destruction
+//cnum CREATION_STATE_NULL = 0; //not queued or created
+//cnum CREATION_STATE_QUEUED = 1; //in queue to be created at the end of the frame
+//cnum CREATION_STATE_CREATED = 2; //created
+//cnum CREATION_STATE_DESTROYED = 3; //queued for destruction
 
 //reflections
 static const uint REFLECT_NULL = 0;

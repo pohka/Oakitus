@@ -93,9 +93,6 @@
     <ClInclude Include="..\engine\oak\oak_setup.h">
       <Filter>oak</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\collision\base_collision_shape.h">
-      <Filter>oak\collision</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\collision\collision.h">
       <Filter>oak\collision</Filter>
     </ClInclude>
@@ -480,11 +477,11 @@
     <ClInclude Include="..\projects\my_game\ui\status.h">
       <Filter>projects\my_game\ui</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\collision\collision_shape.h">
+      <Filter>oak\collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp">
-      <Filter>oak\collision</Filter>
-    </ClCompile>
     <ClCompile Include="..\engine\oak\collision\collision.cpp">
       <Filter>oak\collision</Filter>
     </ClCompile>
@@ -834,6 +831,9 @@
     </ClCompile>
     <ClCompile Include="..\projects\my_game\ui\status.cpp">
       <Filter>projects\my_game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\collision\collision_shape.cpp">
+      <Filter>oak\collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

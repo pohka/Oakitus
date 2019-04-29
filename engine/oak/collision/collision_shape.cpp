@@ -1,4 +1,4 @@
-#include "base_collision_shape.h"
+#include "collision_shape.h"
 
 #include <oak/window/window.h>
 #include <oak/scene/camera.h>
@@ -12,45 +12,45 @@
 
 using namespace oak;
 
-BaseCollisionShape::BaseCollisionShape()
+CollisionShape::CollisionShape()
 {
 
 }
-BaseCollisionShape::~BaseCollisionShape()
+CollisionShape::~CollisionShape()
 {
 
 }
 
-glm::vec3 BaseCollisionShape::origin() const
+glm::vec3 CollisionShape::origin() const
 {
   return this->entity->transform->position() + offset();
 }
 
-float BaseCollisionShape::originX() const
+float CollisionShape::originX() const
 {
   return this->entity->transform->position().x + m_offsetX;
 }
 
-float BaseCollisionShape::originY() const
+float CollisionShape::originY() const
 {
   return this->entity->transform->position().y + m_offsetY;
 }
 
-float BaseCollisionShape::offsetX() const
+float CollisionShape::offsetX() const
 {
   return m_offsetX;
 }
-float BaseCollisionShape::offsetY() const
+float CollisionShape::offsetY() const
 {
   return m_offsetY;
 }
 
-glm::vec3 BaseCollisionShape::offset() const 
+glm::vec3 CollisionShape::offset() const 
 {
   return glm::vec3(m_offsetX, m_offsetY, 0.0f);
 }
 
-void BaseCollisionShape::onDebugDraw() const
+void CollisionShape::onDebugDraw() const
 {
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, this->textureID);
@@ -76,7 +76,7 @@ void BaseCollisionShape::onDebugDraw() const
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void BaseCollisionShape::initVAO(float quadW, float quadH)
+void CollisionShape::initVAO(float quadW, float quadH)
 {
   float xx = Window::worldToViewportCoords(quadW) * 0.5f;
   float yy = Window::worldToViewportCoords(quadH) * 0.5f;
@@ -112,20 +112,20 @@ void BaseCollisionShape::initVAO(float quadW, float quadH)
   glEnableVertexAttribArray(1);
 }
 
-uchar BaseCollisionShape::getType() const
+CollisionShape::Type CollisionShape::getType() const
 {
   return type;
 }
 
 
-bool BaseCollisionShape::intersects(BaseCollisionShape& shape)
+bool CollisionShape::intersects(CollisionShape& shape)
 {
-  if (shape.getType() == COLLISION_SHAPE_RECT)
+  if (shape.getType() == Type::RECT)
   {
     CollisionRect* rect =  static_cast<CollisionRect*>(&shape);
     return intersectsRect(*rect);
   }
-  else if (shape.getType() == COLLISION_SHAPE_CIRCLE)
+  else if (shape.getType() == Type::CIRCLE)
   {
     CollisionCircle* circle = static_cast<CollisionCircle*>(&shape);
     return intersectsCircle(*circle);
@@ -135,7 +135,7 @@ bool BaseCollisionShape::intersects(BaseCollisionShape& shape)
   return false;
 }
 
-void BaseCollisionShape::setOffset(const float x, const float y)
+void CollisionShape::setOffset(const float x, const float y)
 {
   m_offsetX = x;
   m_offsetY = y;

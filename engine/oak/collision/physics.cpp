@@ -1,6 +1,6 @@
 #include "physics.h"
 #include <oak/ecs/entity_manager.h>
-#include "base_collision_shape.h"
+#include "collision_shape.h"
 #include "collision_rect.h"
 #include "collision_circle.h"
 #include <iostream>
@@ -258,14 +258,14 @@ bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit
     //bitwise check, if entity collision layer is in layers
     if ((ent->getCollisionLayer() & layers) > 0)
     {
-      std::vector<BaseCollisionShape*> shapes = ent->getCollisionShapes();
+      std::vector<CollisionShape*> shapes = ent->getCollisionShapes();
 
-      for (BaseCollisionShape* shape : shapes)
+      for (CollisionShape* shape : shapes)
       {
         switch (shape->getType())
         {
           //rect
-        case COLLISION_SHAPE_RECT:
+        case CollisionShape::Type::RECT:
           if (checkRect(static_cast<CollisionRect*>(shape), line, outHit, distance))
           {
             //first intersection
@@ -284,7 +284,7 @@ bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit
           }
           break;
           //circle
-        case COLLISION_SHAPE_CIRCLE:
+        case CollisionShape::Type::CIRCLE:
           if (checkCircle(static_cast<CollisionCircle*>(shape), line, outHit, distance))
           {
             if (!found)

@@ -21,13 +21,22 @@ namespace oak
   class Script;
   class Component;
   struct IDGenerator;
-  class BaseCollisionShape;
+  class CollisionShape;
 
 
   ///<summary>An Object in the world</summary>
   class Entity
   {
     friend struct EntityManager;
+
+    //state of an entity in creation
+    enum class CreationState : uchar
+    {
+      NONE = 0, //not queued or created
+      QUEUED = 1, //in queue to be created at the end of the frame
+      CREATED = 2, //created and exists in the current scene
+      DESTROYED = 3 //queued for destruction
+    };
 
 	  uint entityID; ///<summary>Unique ID of this Entity</summary>
 
@@ -54,7 +63,7 @@ namespace oak
       BaseRigidBody* getRigidBody() const;
 
       ///<summary>Adds a CollisionShape to this Entity</summary>
-      void addCollision(BaseCollisionShape* shape); 
+      void addCollision(CollisionShape* shape); 
 
       ///<summary>Adds this Entity to the world at zero zero</summary>
       void create();
@@ -161,7 +170,7 @@ namespace oak
       void detach();
 
       //find child with matching name, returns nullptr if not found
-      Entity* findChildByName(std::string name);
+      Entity* findChildByName(const std::string& name);
 
       //find child with matching id, returns nullptr if not found
       Entity* findChildByID(uint id);
@@ -173,13 +182,13 @@ namespace oak
       const std::vector<Entity*>& getChildren() const;
 
       //get the collision shapes
-      std::vector<BaseCollisionShape*>& getCollisionShapes();
+      std::vector<CollisionShape*>& getCollisionShapes();
 
       ///<summary>Called when a collision occured</summary>
       void onCollisionHit(Entity& hit);
 
-      void setCreationState(const uchar state);
-      const uchar getCreationState() const;
+      void setCreationState(CreationState state);
+      CreationState getCreationState() const;
 
     protected:
       ///<summary>Catagory of this Entity in the collision system</summary> 
@@ -202,7 +211,7 @@ namespace oak
 	    void onDestroy();
       //-------------------------------------------------------------
 
-      std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
+      std::vector<CollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
 
       bool canTickWhenPaused = false;
 
@@ -215,7 +224,7 @@ namespace oak
        bool isTickingEnable = true;
 
        
-       uchar creationState = CREATION_STATE_NULL; //current creation state
+       CreationState creationState = CreationState::NONE; //current creation state
   };
 }
 

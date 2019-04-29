@@ -107,7 +107,7 @@ void SpriteAnimation::onRender(float positionX, float positionY) const
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void SpriteAnimation::setFrame(const uint frameIndex, const AnimDirection direction)
+void SpriteAnimation::setFrame(uint frameIndex, AnimDirection direction)
 {
   curFrameX = frameIndex % maxFramesX;
   curFrameY = startFrameY + (frameIndex / maxFramesX);

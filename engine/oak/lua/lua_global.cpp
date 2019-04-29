@@ -9,6 +9,8 @@
 #include <oak/lua/luah_ability.h>
 #include <oak/ability/combat_tracker.h>
 #include <oak/lua/lua_type.h>
+#include <oak/collision/collision_shape.h>
+#include <oak/components/animator.h>
 
 using namespace oak;
 
@@ -46,10 +48,10 @@ void LuaGlobal::reg(lua_State* L)
   lua_pushinteger(L, static_cast<int>(AnimDirection::RIGHT));
   lua_setglobal(L, "ANIM_DIRECTION_RIGHT");
 
-  lua_pushinteger(L, COLLISION_SHAPE_CIRCLE);
+  lua_pushinteger(L, static_cast<int>(CollisionShape::Type::CIRCLE));
   lua_setglobal(L, "COLLISION_SHAPE_CIRCLE");
 
-  lua_pushinteger(L, COLLISION_SHAPE_RECT);
+  lua_pushinteger(L, static_cast<int>(CollisionShape::Type::RECT));
   lua_setglobal(L, "COLLISION_SHAPE_RECT");
 }
 

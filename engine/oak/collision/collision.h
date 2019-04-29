@@ -80,7 +80,7 @@ namespace oak
       CollisionCircle* circleB
     );
 
-    static glm::vec3 colliderDesiredPos(Entity* ent, BaseCollisionShape* shape);
+    static glm::vec3 colliderDesiredPos(Entity* ent, CollisionShape* shape);
 
     //helper function to check the side of a rect overlaps with a circle
     static bool sideCheckRectCircle(

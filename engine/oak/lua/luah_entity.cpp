@@ -251,11 +251,11 @@ int LuaHEntity::getShapeByID(lua_State* L)
   }
   else
   {
-    BaseCollisionShape* shape = shapes[id];
+    CollisionShape* shape = shapes[id];
 
     switch (shape->getType())
     {
-      case COLLISION_SHAPE_RECT:
+      case CollisionShape::Type::RECT:
       {
         CollisionRect* rect = static_cast<CollisionRect*>(shape);
         lua_newtable(L);
@@ -263,7 +263,7 @@ int LuaHEntity::getShapeByID(lua_State* L)
         luaL_setmetatable(L, LUA_HANDLER_COLLISION_RECT);
         break;
       }
-      case COLLISION_SHAPE_CIRCLE:
+      case CollisionShape::Type::CIRCLE:
       {
         CollisionCircle* circle = static_cast<CollisionCircle*>(shape);
         lua_newtable(L);
