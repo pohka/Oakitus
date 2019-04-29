@@ -49,13 +49,13 @@ std::vector<Entity*> EntityManager::getGlobalEntitys()
   return list;
 }
 
-void EntityManager::tickInstances(const uchar TICK_GROUP)
+void EntityManager::tickInstances(Component::TickGroup tickGroup)
 {
   for (Entity* ent : EntityManager::entitys)
   {
     if (ent->canTickThisFrame())
     {
-      ent->onTick(TICK_GROUP);
+      ent->onTick(tickGroup);
     }
   }
 }

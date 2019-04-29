@@ -6,7 +6,13 @@
 
 using namespace oak;
 
-Unit::Unit(const std::string& name) : Component(REFLECT_UNIT, TICK_GROUP_DEFAULT, TICK_TYPE_TICKABLE, false)
+Unit::Unit(const std::string& name) : 
+  Component(
+    Reflect::UNIT,
+    Component::TickGroup::DEFAULT,
+    TICK_TYPE_TICKABLE,
+    false
+  )
 {
   this->name = name;
 }

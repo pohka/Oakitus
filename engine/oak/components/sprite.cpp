@@ -21,7 +21,7 @@ Sprite::Sprite(
   float displayW,
   float displayH,
   std::string shaderName
-) : Component(REFLECT_SPRITE)
+) : Component(Reflect::SPRITE)
 {
   this->srcX = srcX;
   this->srcY = srcY;
@@ -47,7 +47,12 @@ Sprite::Sprite(
   std::string src,
   float displayW,
   float displayH
-) : Component(REFLECT_SPRITE, TICK_GROUP_DEFAULT, TICK_TYPE_NOT_TICKABLE, true)
+) : Component(
+      Reflect::SPRITE,
+      Component::TickGroup::DEFAULT,
+      TICK_TYPE_NOT_TICKABLE,
+      true
+)
 {
   this->w = displayW;
   this->h = displayH;

@@ -22,17 +22,55 @@ namespace oak
     
 
     public:
-	    Component(const uint REFLECT_ID = REFLECT_NULL, cnum tickGroup = TICK_GROUP_DEFAULT, cnum tickingType = TICK_TYPE_TICKABLE, const bool isEverRender = false);
+      enum class TickGroup : uchar
+      {
+        DEFAULT = 0,
+        DURING_PHYSICS = 1,
+        AFTER_PHYSICS = 2,
+        LAST = 3
+       // COUNT = 4
+      };
+      static const unsigned char TICK_GROUP_COUNT = 4;
+
+      enum class Reflect : uchar
+      {
+        NONE,
+        TRANSFORM,
+        ANIMATOR,
+        RIGID_BODY_2D,
+        SPRITE,
+        CHUNK,
+        LUA_SCRIPT,
+        UNIT
+      };
+      static const uint REFLECT_COUNT = 8;
+
+      //static const uint REFLECT_NULL = 0;
+      //static const uint REFLECT_TRANSFORM = 1;
+      //static const uint REFLECT_ANIMATOR = 2;
+      //static const uint REFLECT_RIGID_BODY_2D = 3;
+      //static const uint REFLECT_SPRITE = 4;
+      //static const uint REFLECT_CHUNK = 5;
+      //static const uint REFLECT_LUA_SCRIPT = 6;
+      //static const uint REFLECT_UNIT = 7;
+      //static const uint REFLECT_LAST = 7;
+
+	    Component(
+        Reflect reflectID = Reflect::NONE,
+        TickGroup tickGroup = TickGroup::DEFAULT,
+        cnum tickingType = TICK_TYPE_TICKABLE,
+        const bool isEverRender = false
+      );
 	    virtual ~Component();
 
-      uchar getTickGroup() const;
+      TickGroup getTickGroup() const;
       uint getComponentID() const;
       bool getIsRenderable() const;
 
       bool isTickable() const;
       bool isUsingIntervalTicking() const;
       float getTickingInterval() const;
-      const uint _REFLECT_ID;
+      const Reflect _REFLECT_ID;
       
       Entity* getOwnerEntity();
      
@@ -65,7 +103,7 @@ namespace oak
       IntervalTicker ticker;
       
     private:
-      uchar tickGroup;
+      TickGroup tickGroup;
       bool isEverRendered;
       bool isRenderable;
 

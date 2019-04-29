@@ -110,11 +110,11 @@ int Oakitus::loop()
 
     EntityManager::instantiateQueuedEnts();
     PlayerResource::tickAllCommands();
-    EntityManager::tickInstances(TICK_GROUP_DEFAULT);
+    EntityManager::tickInstances(Component::TickGroup::DEFAULT);
     Collision::resolveCollisions();
-    EntityManager::tickInstances(TICK_GROUP_AFTER_PHYSICS);
+    EntityManager::tickInstances(Component::TickGroup::AFTER_PHYSICS);
     CombatTracker::onTick();
-    EntityManager::tickInstances(TICK_GROUP_LAST);
+    EntityManager::tickInstances(Component::TickGroup::LAST);
     EntityManager::drawInstances();
 
 #ifdef DEBUG_MODE

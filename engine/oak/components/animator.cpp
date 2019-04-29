@@ -4,7 +4,13 @@
 
 using namespace oak;
 
-Animator::Animator() : Component(REFLECT_ANIMATOR, TICK_GROUP_DEFAULT, TICK_TYPE_INTERVAL_TICK, true)
+Animator::Animator() : 
+  Component(
+    Reflect::ANIMATOR,
+    Component::TickGroup::DEFAULT,
+    TICK_TYPE_INTERVAL_TICK,
+    true
+  )
 {
  // this->initialAnimID = initialAnimID;
  // anims[initialAnimID] = initialAnimation;

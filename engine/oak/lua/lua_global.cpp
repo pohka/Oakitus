@@ -30,16 +30,16 @@ void LuaGlobal::reg(lua_State* L)
   lua_register(L, "applyDamage", applyDamage);
   lua_register(L, "applyHeal", applyHeal);
 
-  lua_pushinteger(L, REFLECT_SPRITE);
+  lua_pushinteger(L, static_cast<int>(Component::Reflect::SPRITE));
   lua_setglobal(L, "COMP_SPRITE");
 
-  lua_pushinteger(L, REFLECT_RIGID_BODY_2D);
+  lua_pushinteger(L, static_cast<int>(Component::Reflect::RIGID_BODY_2D));
   lua_setglobal(L, "COMP_RIGIDBODY2D");
 
-  lua_pushinteger(L, REFLECT_ANIMATOR);
+  lua_pushinteger(L, static_cast<int>(Component::Reflect::ANIMATOR));
   lua_setglobal(L, "COMP_ANIMATOR");
 
-  lua_pushinteger(L, REFLECT_UNIT);
+  lua_pushinteger(L, static_cast<int>(Component::Reflect::UNIT));
   lua_setglobal(L, "COMP_UNIT");
 
   lua_pushinteger(L, static_cast<int>(AnimDirection::LEFT));

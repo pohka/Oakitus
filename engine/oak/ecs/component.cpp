@@ -3,7 +3,12 @@
 
 using namespace oak;
 
-Component::Component(const uint REFLECT_ID, cnum tickGroup, cnum tickingType, const bool isEverRendered) : _REFLECT_ID(REFLECT_ID)
+Component::Component(
+  Reflect reflectID,
+  TickGroup tickGroup,
+  cnum tickingType,
+  const bool isEverRendered
+) : _REFLECT_ID(reflectID)
 {
   this->tickGroup = tickGroup;
   this->tickingType = tickingType;
@@ -11,7 +16,7 @@ Component::Component(const uint REFLECT_ID, cnum tickGroup, cnum tickingType, co
   this->isRenderable = isEverRendered;
 }
 
-uchar Component::getTickGroup() const
+Component::TickGroup Component::getTickGroup() const
 {
   return tickGroup;
 }

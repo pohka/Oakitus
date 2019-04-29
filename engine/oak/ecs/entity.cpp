@@ -28,7 +28,7 @@ Entity::~Entity()
   }
 
   //destruct components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -48,7 +48,7 @@ void Entity::addComponent(Component* component, const bool isRigidBody)
   component->componentID = componentIDGen.nextID();
 
   //add to tick group
-  uchar tickGroup = component->getTickGroup();
+  uchar tickGroup = static_cast<uchar>(component->getTickGroup());
   componentGroups[tickGroup].push_back(component);
 
   if (isRigidBody)
@@ -105,7 +105,7 @@ void Entity::onCreate()
   //children will call onCreate for themselves
 
   //onCreate components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -129,7 +129,7 @@ void Entity::onDestroy()
   }
 
   //onDestroy components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -141,7 +141,7 @@ void Entity::onDestroy()
 void Entity::onRender() const
 {
   //render components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -162,7 +162,7 @@ void Entity::onRender() const
 void Entity::onDebugDraw() const
 {
   //components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -183,10 +183,10 @@ void Entity::onDebugDraw() const
   }
 }
 
-void Entity::onTick(const uchar TICK_GROUP)
+void Entity::onTick(Component::TickGroup tickGroup)
 {
   //components
-  for (Component* comp : componentGroups[TICK_GROUP])
+  for (Component* comp : componentGroups[static_cast<unsigned int>(tickGroup)])
   {
     if (comp->canTickThisFrame())
     {
@@ -197,13 +197,13 @@ void Entity::onTick(const uchar TICK_GROUP)
   //children
   for (Entity* child : children)
   {
-    child->onTick(TICK_GROUP);
+    child->onTick(tickGroup);
   }
 }
 
 void Entity::onCollisionHit(Entity& hit)
 {
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {

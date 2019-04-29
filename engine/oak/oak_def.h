@@ -13,14 +13,14 @@ namespace oak
     LEFT = 1
   };
 
-  enum class TickGroup : uchar
-  {
-    DEFAULT = 0,
-    DURING_PHYSICS = 1,
-    AFTER_PHYSICS = 2,
-    LAST = 3,
-    COUNT = 4
-  };
+  //enum class TickGroup : uchar
+  //{
+  //  DEFAULT = 0,
+  //  DURING_PHYSICS = 1,
+  //  AFTER_PHYSICS = 2,
+  //  LAST = 3,
+  //  COUNT = 4
+  //};
 
   enum class TickType : uchar
   {
@@ -65,11 +65,11 @@ namespace oak
 //cnum COLLISION_SHAPE_CIRCLE = 1;
 
 //ticking groups for components
-cnum TICK_GROUP_DEFAULT = 0;
-cnum TICK_GROUP_DURING_PHYSICS = 1;
-cnum TICK_GROUP_AFTER_PHYSICS = 2;
-cnum TICK_GROUP_LAST = 3;
-cnum TICK_GROUP_MAX = 4;
+//cnum TICK_GROUP_DEFAULT = 0;
+//cnum TICK_GROUP_DURING_PHYSICS = 1;
+//cnum TICK_GROUP_AFTER_PHYSICS = 2;
+//cnum TICK_GROUP_LAST = 3;
+//cnum TICK_GROUP_MAX = 4;
 
 //ticking types for components
 cnum TICK_TYPE_NOT_TICKABLE = 0;
@@ -84,15 +84,15 @@ cnum TICK_TYPE_LAST = 3;
 //cnum CREATION_STATE_DESTROYED = 3; //queued for destruction
 
 //reflections
-static const uint REFLECT_NULL = 0;
-static const uint REFLECT_TRANSFORM = 1;
-static const uint REFLECT_ANIMATOR = 2;
-static const uint REFLECT_RIGID_BODY_2D = 3;
-static const uint REFLECT_SPRITE = 4;
-static const uint REFLECT_CHUNK = 5;
-static const uint REFLECT_LUA_SCRIPT = 6;
-static const uint REFLECT_UNIT = 7;
-static const uint REFLECT_LAST = 7;
+//static const uint REFLECT_NULL = 0;
+//static const uint REFLECT_TRANSFORM = 1;
+//static const uint REFLECT_ANIMATOR = 2;
+//static const uint REFLECT_RIGID_BODY_2D = 3;
+//static const uint REFLECT_SPRITE = 4;
+//static const uint REFLECT_CHUNK = 5;
+//static const uint REFLECT_LUA_SCRIPT = 6;
+//static const uint REFLECT_UNIT = 7;
+//static const uint REFLECT_LAST = 7;
 
 //entity groups
 cnum ENTITY_GROUP_NONE = 0;

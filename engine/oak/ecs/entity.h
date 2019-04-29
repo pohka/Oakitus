@@ -40,7 +40,7 @@ namespace oak
 
 	  uint entityID; //Unique ID of this Entity
 
-    std::vector<Component*> componentGroups[TICK_GROUP_MAX];
+    std::vector<Component*> componentGroups[Component::TICK_GROUP_COUNT];
     
 	  IDGenerator componentIDGen; //ID generator for components that are added to this Entity
     BaseRigidBody* rigidbody = nullptr;
@@ -98,7 +98,7 @@ namespace oak
       T* getComponent()
       {
         T* casted;
-        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
         {
           for (Component* comp : componentGroups[i])
           {
@@ -117,7 +117,7 @@ namespace oak
       void getComponents(std::vector<T*>& out)
       {
         T* casted;
-        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
         {
           for (Component* comp : componentGroups[i])
           {
@@ -132,13 +132,13 @@ namespace oak
 
       //find a component by reflection id
       template <typename T>
-      T* getComponentWithReflection(const uint REFLECT_ID)
+      T* getComponentWithReflection(Component::Reflect reflectID)
       {
-        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
         {
           for (Component* comp : componentGroups[i])
           {
-            if (comp->_REFLECT_ID == REFLECT_ID)
+            if (comp->_REFLECT_ID == reflectID)
             {
               return reinterpret_cast<T*>(comp);
             }
@@ -149,13 +149,13 @@ namespace oak
 
       //find all components by reflection id
       template <typename T>
-      void getComponentsWithReflection(const uint REFLECT_ID, std::vector<T*>& out)
+      void getComponentsWithReflection(Component::Reflect reflectID, std::vector<T*>& out)
       {
-        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
         {
           for (Component* comp : componentGroups[i])
           {
-            if (comp->_REFLECT_ID == REFLECT_ID)
+            if (comp->_REFLECT_ID == reflectID)
             {
               out.push_back(reinterpret_cast<T*>(comp));
             }
@@ -200,7 +200,7 @@ namespace oak
       void onCreate();
 
       //Called once each frame
-      void onTick(const uchar TICK_GROUP);
+      void onTick(Component::TickGroup tickGroup);
 
       //Draws all renderable components each frame
       void onRender() const;

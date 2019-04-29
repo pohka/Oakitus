@@ -13,7 +13,7 @@ using namespace oak;
 
 const std::string LuaScript::PATH = "scripts/";
 
-LuaScript::LuaScript(const std::string& name) : Component(REFLECT_LUA_SCRIPT), 
+LuaScript::LuaScript(const std::string& name) : Component(Reflect::LUA_SCRIPT), 
   name(name), 
   scriptFilePath(LuaScript::PATH + name + ".lua")
 {

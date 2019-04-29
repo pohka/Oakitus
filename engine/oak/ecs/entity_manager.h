@@ -29,7 +29,7 @@ namespace oak
     static void destroyEntityByID(uint id);
 
     //Calls onUpdate() for all Entitys in the world
-    static void tickInstances(const uchar TICK_GROUP);
+    static void tickInstances(Component::TickGroup tickGroup);
 
     //Calls onDraw() for all the Entitys in the world
     static void drawInstances();

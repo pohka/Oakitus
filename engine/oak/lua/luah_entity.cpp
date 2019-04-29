@@ -162,12 +162,13 @@ int LuaHEntity::getComponent(lua_State* L)
 {
   LuaHEntity* entH = *reinterpret_cast<LuaHEntity**>(luaL_checkudata(L, 1, LUA_HANDLER_ENTITY));
   
-  int reflectID = LuaType::toInt(L, 2);
+  int reflectID_INT = LuaType::toInt(L, 2);
+  Component::Reflect reflectID = static_cast<Component::Reflect>(reflectID_INT);
   char res = 1;
 
   switch (reflectID)
   {
-    case REFLECT_SPRITE : 
+    case Component::Reflect::SPRITE :
     {
       Sprite* sprite = entH->ptr->getComponentWithReflection<Sprite>(reflectID);
       if (sprite != nullptr)
@@ -182,7 +183,7 @@ int LuaHEntity::getComponent(lua_State* L)
       }
       break;
     }
-    case REFLECT_RIGID_BODY_2D :
+    case Component::Reflect::RIGID_BODY_2D :
     {
       RigidBody2D* rb = entH->ptr->getComponentWithReflection<RigidBody2D>(reflectID);
       if (rb != nullptr)
@@ -197,7 +198,7 @@ int LuaHEntity::getComponent(lua_State* L)
       }
       break;
     }
-    case REFLECT_ANIMATOR :
+    case Component::Reflect::ANIMATOR :
     {
       Animator* animator = entH->ptr->getComponentWithReflection<Animator>(reflectID);
       if (animator != nullptr)
@@ -212,7 +213,7 @@ int LuaHEntity::getComponent(lua_State* L)
       }
       break;
     }
-    case REFLECT_UNIT :
+    case Component::Reflect::UNIT :
     {
       Unit* unit = entH->ptr->getComponentWithReflection<Unit>(reflectID);
       if (unit != nullptr)
@@ -305,7 +306,7 @@ int LuaHEntity::getScript(lua_State* L)
   std::string scriptName = LuaType::toString(L, 2);
 
   std::vector<LuaScript*> scripts = {};
-  entH->ptr->getComponentsWithReflection<LuaScript>(REFLECT_LUA_SCRIPT, scripts);
+  entH->ptr->getComponentsWithReflection<LuaScript>(Component::Reflect::LUA_SCRIPT, scripts);
 
   for (unsigned int i = 0; i < scripts.size(); i++)
   {
