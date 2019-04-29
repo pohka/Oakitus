@@ -9,7 +9,7 @@ namespace oak
 {
   struct FPSLimiter;
 
-  ///<summary>Useful time functions, all time is in seconds</summary>
+  //Useful time functions, all time is in seconds
   class Time
   {
     friend class Oakitus;
@@ -27,9 +27,9 @@ namespace oak
     static float lastFrameTime;
 
     public:
-      static float timeScale; ///<summary>Scale time to speed up or slow down gameplay</summary>
+      static float timeScale; //Scale time to speed up or slow down gameplay
       
-      ///<summary>The time since last frame</summary>
+      //The time since last frame
       static float deltaTime();
       static float systemDeltaTime();
 

@@ -18,7 +18,7 @@ namespace oak
   class Shader;
   class Texture;
 
-  ///<summary>Management of all data from loaded files such as Textures and Shaders</summary>
+  //Management of all data from loaded files such as Textures and Shaders
   //all getters will return a default resource if the requested resource does not exist
   class Resources
   {
@@ -54,10 +54,10 @@ namespace oak
 
       static uint getDefaultShaderID();
 
-      ///<summary>Returns true if a Texture is already loaded</summary>
+      //Returns true if a Texture is already loaded
       static bool isTextureLoaded(std::string name);
 
-      ///<summary>Returns true if a Shader is already loaded</summary>
+      //Returns true if a Shader is already loaded
       static bool isShaderLoaded(std::string name);
 
       static bool isFontLoaded(std::string name);

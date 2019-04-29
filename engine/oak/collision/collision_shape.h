@@ -5,7 +5,7 @@
 #include <oak/core/types.h>
 #include <glm/glm.hpp>
 
-///<summary>The base collision shape</summary>
+//The base collision shape
 namespace oak
 {
   class CollisionRect;
@@ -52,14 +52,14 @@ namespace oak
       Type type;
 
       //collision offset from entity origin
-      float m_offsetX; ///<summary>X-axis offset from entity position</summary>
-      float m_offsetY; ///<summary>Y-axis offset from entity position</summary>
+      float m_offsetX; //X-axis offset from entity position
+      float m_offsetY; //Y-axis offset from entity position
       uint VAO, VBO;
       uint textureID;
       Entity* entity;
       
 
-      ///<summary>Initialize the VAO</summary>
+      //Initialize the VAO
       void initVAO(float quadW, float quadH);
   };
 

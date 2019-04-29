@@ -19,34 +19,34 @@ namespace oak
   struct EntityManager
   {
 
-///<summary>Returns an Entity with a matching ID if it exists in the world</summary>
+//Returns an Entity with a matching ID if it exists in the world
     static Entity* findEntityByID(uint id);
-    ///<summary>Returns an Entity with a matching name if it exists in the world</summary>
+    //Returns an Entity with a matching name if it exists in the world
     static Entity* findEntityByName(std::string name);
-    ///<summary></summary>
+    //
     static std::vector<Entity*> getGlobalEntitys();
-    ///<summary>Destroys the Entity with a matching ID if it exists</summary>
+    //Destroys the Entity with a matching ID if it exists
     static void destroyEntityByID(uint id);
 
-    ///<summary>Calls onUpdate() for all Entitys in the world</summary>
+    //Calls onUpdate() for all Entitys in the world
     static void tickInstances(const uchar TICK_GROUP);
 
-    ///<summary>Calls onDraw() for all the Entitys in the world</summary>
+    //Calls onDraw() for all the Entitys in the world
     static void drawInstances();
 
-    ///<summary>Call onDebugDraw() for all the Entitys in the world</summary>
+    //Call onDebugDraw() for all the Entitys in the world
     static void debugDrawInstances();
 
-    ///<summary>Destroys all the Entitys that are queued to be destroyed</summary>
+    //Destroys all the Entitys that are queued to be destroyed
     static void destroyQueuedInstances();
 
-    ///<summary>Deletes all the Entitys in the world</summary>
+    //Deletes all the Entitys in the world
     static void deleteAllEnts(bool isGlobalExempt = true);
 
-    ///<summary>Adds all the queued Entitys to the world</summary>
+    //Adds all the queued Entitys to the world
     static void instantiateQueuedEnts();
 
-    ///<summary>Clears and deallocates all the existing queues</summary>
+    //Clears and deallocates all the existing queues
     static void clearQueues();
 
     static std::vector<Entity*>& getAllEntitys();

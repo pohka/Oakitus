@@ -29,8 +29,8 @@ namespace oak
       //waps out the next scene
       static void swapScene();
 
-      static Scene* curScene; ///<summary>Current scene</summary>
-      static Scene* nextScene; ///<summary>Pointer for when the next scene is queued</summary>
+      static Scene* curScene; //Current scene
+      static Scene* nextScene; //Pointer for when the next scene is queued
 
   };
 }

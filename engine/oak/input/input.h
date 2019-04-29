@@ -10,30 +10,30 @@
 
 namespace oak
 {
-  ///<summary>Input states</summary>
+  //Input states
   class Input
   {
-    static KeyBuffer* keys[sizeof(glKeys)]; ///<summary>All of the tracked keys buffers</summary>
-    static KeyBuffer* mouseButtons[MOUSE_BUTTON_LAST]; ///<summary>All of the tracked keys buffers</summary>
+    static KeyBuffer* keys[sizeof(glKeys)]; //All of the tracked keys buffers
+    static KeyBuffer* mouseButtons[MOUSE_BUTTON_LAST]; //All of the tracked keys buffers
     static Point lastMousePos;
     static bool m_hasMouseMoved;
 
     public:
       
-      static const uint KEY_COUNT = sizeof(glKeys); ///<summary>Total number of keys being tracked</summary>
-      static Point mousePos; ///<summary>Cursor position in window coordinates</summary>
+      static const uint KEY_COUNT = sizeof(glKeys); //Total number of keys being tracked
+      static Point mousePos; //Cursor position in window coordinates
       
 
-      ///<summary>Initalize Input</summary>
+      //Initalize Input
       static void init();
 
-      ///<summary>Returns true if the key was pressed down this frame</summary>
+      //Returns true if the key was pressed down this frame
       static bool isKeyDown(ushort code); //key just pressed down
 
-      ///<summary>Returns true if this key is currently down</summary>
+      //Returns true if this key is currently down
       static bool isKeyPressed(ushort code); //key current down state
 
-      ///<summary>Returns true if key was released this frame</summary>
+      //Returns true if key was released this frame
       static bool isKeyUp(ushort code);//key just released
 
       static bool isMouseButtonDown(uchar code); 
@@ -42,14 +42,14 @@ namespace oak
       static Point getLastMousePt();
       static bool hasMouseMoved();
 
-      ///<summary>Process the input and update the buffers</summary>
+      //Process the input and update the buffers
       static void processInput(GLFWwindow* window);
 
-      ///<summary>Set the captured cursor position for this frame</summary>
+      //Set the captured cursor position for this frame
       static void setMouse(float x, float y);
 
     private:
-      ///<summary>Returns the Key buffer with a maching code</summary>
+      //Returns the Key buffer with a maching code
       static KeyBuffer* getKeyBufferByCode(uint code);
   };
 }

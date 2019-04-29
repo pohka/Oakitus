@@ -21,7 +21,7 @@ namespace debug
   cnum DEBUG_LOG_ERROR = 2;
   //cnum DEBUG_LOG_LUA = 3;
 
-  ///<summary>Debug logger</summary>
+  //Debug logger
   struct LogData
   {
     std::string funcName;

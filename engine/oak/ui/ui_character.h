@@ -12,7 +12,7 @@
 
 namespace ion
 {
-  ///font face character data
+  //font face character data
   struct Character
   {
     GLuint     textureID;  // ID handle of the glyph texture

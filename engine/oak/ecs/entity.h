@@ -24,7 +24,7 @@ namespace oak
   class CollisionShape;
 
 
-  ///<summary>An Object in the world</summary>
+  //An Object in the world
   class Entity
   {
     friend struct EntityManager;
@@ -38,49 +38,49 @@ namespace oak
       DESTROYED = 3 //queued for destruction
     };
 
-	  uint entityID; ///<summary>Unique ID of this Entity</summary>
+	  uint entityID; //Unique ID of this Entity
 
     std::vector<Component*> componentGroups[TICK_GROUP_MAX];
     
-	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
+	  IDGenerator componentIDGen; //ID generator for components that are added to this Entity
     BaseRigidBody* rigidbody = nullptr;
     
     public:
       friend class Scene;
 
       Transform* transform;
-      int layerID; ///<summary>Drawing layerID</summary>
-      bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
-      std::string name; ///<summary>Name of this Entity</summary>
+      int layerID; //Drawing layerID
+      bool isGlobal; //If true this Entity won't be destroyed at the end of a Scene
+      std::string name; //Name of this Entity
       const uchar ENTITY_GROUP; //grouping for entitys, so they can be found
       
 
 	    Entity(bool isEverRendered = true, const uchar ENTITY_GROUP = ENTITY_GROUP_NONE);
 	    virtual ~Entity();
       
-      ///<summary>Adds a Component to this Entity</summary>
+      //Adds a Component to this Entity
 	    void addComponent(Component* component, const bool isRigidBody = false);
       BaseRigidBody* getRigidBody() const;
 
-      ///<summary>Adds a CollisionShape to this Entity</summary>
+      //Adds a CollisionShape to this Entity
       void addCollision(CollisionShape* shape); 
 
-      ///<summary>Adds this Entity to the world at zero zero</summary>
+      //Adds this Entity to the world at zero zero
       void create();
 
-      ///<summary>Adds this Entity to the world at the given position</summary>
+      //Adds this Entity to the world at the given position
       void create(float x, float y, float z=0.0f);
 
-      ///<summary>Destroys this Entity</summary>
+      //Destroys this Entity
 	    void destroy();
 
-      ///<summary>Returns the Entity ID</summary>
+      //Returns the Entity ID
 	    uint getID() const;
 
-      ///<summary>Returns the CollisionLayer of this Entity</summary>
+      //Returns the CollisionLayer of this Entity
       const uint getCollisionLayer() const;
 
-      ///<summary>Returns the name of this Entity</summary>
+      //Returns the name of this Entity
       std::string getName() const;
 
       bool getIsTickingEnabled() const;
@@ -184,34 +184,34 @@ namespace oak
       //get the collision shapes
       std::vector<CollisionShape*>& getCollisionShapes();
 
-      ///<summary>Called when a collision occured</summary>
+      //Called when a collision occured
       void onCollisionHit(Entity& hit);
 
       void setCreationState(CreationState state);
       CreationState getCreationState() const;
 
     protected:
-      ///<summary>Catagory of this Entity in the collision system</summary> 
+      //Catagory of this Entity in the collision system 
       uint collisionLayer = COLLISION_LAYER_DEFAULT;
 
       //EVENTS
       //-------------------------------------------------------------
-      ///<summary>Called once when this Entity is added to the world</summary>
+      //Called once when this Entity is added to the world
       void onCreate();
 
-      ///<summary>Called once each frame</summary>
+      //Called once each frame
       void onTick(const uchar TICK_GROUP);
 
-      ///<summary>Draws all renderable components each frame</summary>
+      //Draws all renderable components each frame
       void onRender() const;
 
       void onDebugDraw() const;
 
-      ///<summary>Called once just before this Entity is removed from the world and deallocated</summary>
+      //Called once just before this Entity is removed from the world and deallocated
 	    void onDestroy();
       //-------------------------------------------------------------
 
-      std::vector<CollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
+      std::vector<CollisionShape*> collisionShapes; //All of the CollisionShapes added to this Entity
 
       bool canTickWhenPaused = false;
 

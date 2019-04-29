@@ -13,7 +13,7 @@
 
 namespace ion
 {
-  ///font class
+  //font class
   class Font : public oak::Asset
   {
     FT_Face face;

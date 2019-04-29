@@ -8,24 +8,24 @@
 
 namespace oak
 {
-  ///<summary>Accessing and management of Players</summary>
+  //Accessing and management of Players
   class PlayerResource
   {
     static std::vector<Player*> players;
-    static uint playerCount; ///<summary>Current player count</summary>
+    static uint playerCount; //Current player count
     static uint localPlayerID;
 
 
     public :
-      ///<summary>Add a Player</summary>
+      //Add a Player
       static void addPlayer(Player* player);
 
-      ///<summary>Get a Player by ID</summary>
+      //Get a Player by ID
       static Player* getPlayer(uint playerID);
 
       static Player* getLocalPlayer();
 
-      ///<summary>Execute all Players input Commands</summary>
+      //Execute all Players input Commands
       static void tickAllCommands();
 
       static bool isLocalPlayerID(uint playerID);

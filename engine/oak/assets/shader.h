@@ -11,7 +11,7 @@
 
 namespace oak
 {
-  ///<summary>Loads and manages a vertex and fragement shader for OpenGL</summary>
+  //Loads and manages a vertex and fragement shader for OpenGL
   class Shader : public Asset
   {
     public:

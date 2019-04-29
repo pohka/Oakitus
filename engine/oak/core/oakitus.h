@@ -6,20 +6,20 @@
 
 namespace oak
 {
-  ///<summary>Engine</summary>
+  //Engine
   class Oakitus
   {
     
     public:
-      ///<summary>Initalize the engine</summary>
+      //Initalize the engine
       static void init();
       
     private:
 
-      ///<summary>Called before the game loop to load the game</summary>
+      //Called before the game loop to load the game
       static void load();
 
-      ///<summary>Starts the game loop</summary>
+      //Starts the game loop
       static int loop();
       
   };

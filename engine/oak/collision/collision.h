@@ -10,26 +10,26 @@ namespace oak
 {
   
 
-  ///<summary>Checking for collision</summary>
+  //Checking for collision
   class Collision
   {
     friend class Oakitus;
 
     public:
-      ///<summary>Returns true if 2 rects overlap</summary>
+      //Returns true if 2 rects overlap
       static bool checkRectRect(const CollisionRect& a, const CollisionRect& b);
 
-      ///<summary>Returns true if a rect and circle overlap</summary>
+      //Returns true if a rect and circle overlap
       static bool checkRectCircle(const CollisionRect& a, const CollisionCircle& b);
 
-      ///<summary>Returns true if 2 circles overlap</summary>
+      //Returns true if 2 circles overlap
       static bool checkCircleCircle(const CollisionCircle& a, const CollisionCircle& b);
 
       
       
 
   private:
-    ///<summary>Resolve the current collisions</summary>
+    //Resolve the current collisions
     static void resolveCollisions();
 
     //helper function to find the closest corner on a rect to a circle

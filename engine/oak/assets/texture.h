@@ -9,7 +9,7 @@
 namespace oak
 {
 
-  ///<summary>Texture</summary>
+  //Texture
   class Texture : public Asset
   {
     int width;

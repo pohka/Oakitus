@@ -10,14 +10,14 @@ namespace oak
 {
   class Entity;
 
-  ///<summary>Defines a behaviour or functionalty to an Entity</summary>
+  //Defines a behaviour or functionalty to an Entity
   class Component
   {
 	  friend class Entity;
 
     static uint reflectAutoIncID;
 
-	  uint componentID; ///<summary>An ID that is unique for the owner Entity</summary>
+	  uint componentID; //An ID that is unique for the owner Entity
 
     
 
@@ -41,21 +41,21 @@ namespace oak
 
        //EVENTS
       //---------------------------------------
-      ///<summary>Called once when the Entity is added to the world</summary>
+      //Called once when the Entity is added to the world
       virtual void onCreate();
 
-      ///<summary>Do logic, called once each frame</summary>
+      //Do logic, called once each frame
       virtual void onTick();
 
-      ///<summary>Draw, called once each frame</summary>
+      //Draw, called once each frame
       virtual void onRender() const;
 
-      ///<summary>Draw for debuging, called once each frame</summary>
+      //Draw for debuging, called once each frame
       virtual void onDebugDraw() const;
 
       virtual void onDestroy();
 
-      ///<summary>Called when the owner has entered a collision</summary>
+      //Called when the owner has entered a collision
       virtual void onCollisionHit(Entity& hit);
       //---------------------------------------
 

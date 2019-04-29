@@ -11,7 +11,7 @@
 
 namespace oak
 {
-  ///<summary>Sprite</summary>
+  //Sprite
   class Sprite : public Component
   {
     std::string src;
@@ -52,11 +52,11 @@ namespace oak
 
       ~Sprite();
 
-      ///<summary>Returns the src file name</summary>
+      //Returns the src file name
       std::string getSrc() const;
       void setSrc(const std::string& s);
 
-      ///<summary>Returns the VAO</summary>
+      //Returns the VAO
       uint getVAO() const;
 
     protected:
