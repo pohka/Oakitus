@@ -210,9 +210,6 @@
     <ClInclude Include="..\engine\oak\input\key_codes.h">
       <Filter>oak\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\engine\oak\old\bounds.h">
-      <Filter>oak\old</Filter>
-    </ClInclude>
     <ClInclude Include="..\engine\oak\old\ray.h">
       <Filter>oak\old</Filter>
     </ClInclude>
@@ -567,9 +564,6 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp">
       <Filter>oak\input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\old\bounds.cpp">
-      <Filter>oak\old</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\old\ray.cpp">
       <Filter>oak\old</Filter>

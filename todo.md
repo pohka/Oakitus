@@ -1,6 +1,5 @@
 # TODO
 * remove const in parameters of primitive types
-* remove unused classes relect.h
 * should oak/old/bounds.h be removed?
 * create .dll or .lib for faster compile times
 
