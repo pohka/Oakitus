@@ -10,7 +10,7 @@ Unit::Unit(const std::string& name) :
   Component(
     Reflect::UNIT,
     Component::TickGroup::DEFAULT,
-    TICK_TYPE_TICKABLE,
+    TickType::TICKABLE,
     false
   )
 {

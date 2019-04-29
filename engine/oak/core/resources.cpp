@@ -19,6 +19,7 @@ ion::Font* Resources::defaultFont = nullptr;
 FT_Library Resources::freeType;
 
 std::string Resources::rootPath = "";
+const char Resources::ENGINE_RESOURCES_ROOT_PATH[] = "../../resources/";
 
 void Resources::init()
 {

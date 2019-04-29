@@ -8,7 +8,7 @@ Animator::Animator() :
   Component(
     Reflect::ANIMATOR,
     Component::TickGroup::DEFAULT,
-    TICK_TYPE_INTERVAL_TICK,
+    TickType::INTERVAL_TICK,
     true
   )
 {

@@ -22,16 +22,17 @@ namespace oak
     
 
     public:
+      //ticking groups i.e. which stage in the loop should this component tick
       enum class TickGroup : uchar
       {
         DEFAULT = 0,
         DURING_PHYSICS = 1,
         AFTER_PHYSICS = 2,
         LAST = 3
-       // COUNT = 4
       };
       static const unsigned char TICK_GROUP_COUNT = 4;
 
+      //reflectIDs
       enum class Reflect : uchar
       {
         NONE,
@@ -43,22 +44,20 @@ namespace oak
         LUA_SCRIPT,
         UNIT
       };
-      static const uint REFLECT_COUNT = 8;
 
-      //static const uint REFLECT_NULL = 0;
-      //static const uint REFLECT_TRANSFORM = 1;
-      //static const uint REFLECT_ANIMATOR = 2;
-      //static const uint REFLECT_RIGID_BODY_2D = 3;
-      //static const uint REFLECT_SPRITE = 4;
-      //static const uint REFLECT_CHUNK = 5;
-      //static const uint REFLECT_LUA_SCRIPT = 6;
-      //static const uint REFLECT_UNIT = 7;
-      //static const uint REFLECT_LAST = 7;
+      //ticking behaviour type
+      enum class TickType : uchar
+      {
+        NOT_TICKABLE = 0, //does not tick
+        TICKABLE = 1, //ticks every frame
+        INTERVAL_TICK = 2 //ticks each interval (if the interval time is zero then it ticks each frame)
+      };
+      static const uchar TICK_TYPE_COUNT = 3;
 
 	    Component(
         Reflect reflectID = Reflect::NONE,
         TickGroup tickGroup = TickGroup::DEFAULT,
-        cnum tickingType = TICK_TYPE_TICKABLE,
+        TickType tickType = TickType::TICKABLE,
         const bool isEverRender = false
       );
 	    virtual ~Component();
@@ -99,7 +98,7 @@ namespace oak
 
       
 
-      uchar tickingType;
+      TickType tickType;
       IntervalTicker ticker;
       
     private:

@@ -6,12 +6,12 @@ using namespace oak;
 Component::Component(
   Reflect reflectID,
   TickGroup tickGroup,
-  cnum tickingType,
+  TickType tickType,
   const bool isEverRendered
 ) : _REFLECT_ID(reflectID)
 {
   this->tickGroup = tickGroup;
-  this->tickingType = tickingType;
+  this->tickType = tickType;
   this->isEverRendered = isEverRendered;
   this->isRenderable = isEverRendered;
 }
@@ -50,11 +50,11 @@ void Component::onCollisionHit(Entity& hit) {}
 bool Component::canTickThisFrame()
 {
   bool res = false;
-  switch (tickingType)
+  switch (tickType)
   {
-    case TICK_TYPE_NOT_TICKABLE :   res = false;            break;
-    case TICK_TYPE_TICKABLE :       res = true;             break;
-    case TICK_TYPE_INTERVAL_TICK:   res = ticker.onTick();  break;
+    case TickType::NOT_TICKABLE :   res = false;            break;
+    case TickType::TICKABLE :       res = true;             break;
+    case TickType::INTERVAL_TICK:   res = ticker.onTick();  break;
   }
 
 
@@ -63,12 +63,12 @@ bool Component::canTickThisFrame()
 
 bool Component::isTickable() const
 {
-  return (tickingType != TICK_TYPE_NOT_TICKABLE);
+  return (tickType != TickType::NOT_TICKABLE);
 }
 
 bool Component::isUsingIntervalTicking() const
 {
-  return (tickingType == TICK_TYPE_INTERVAL_TICK);
+  return (tickType == TickType::INTERVAL_TICK);
 }
 
 float Component::getTickingInterval() const

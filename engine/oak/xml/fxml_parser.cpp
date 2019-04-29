@@ -28,7 +28,7 @@ static void printNodes(FXMLNode* node, unsigned int depth)
 FXMLNode FXMLParser::load(string file)
 {
   string line;
-  ifstream myfile(ENGINE_RESOURCES_ROOT_PATH + file);
+  ifstream myfile(Resources::ENGINE_RESOURCES_ROOT_PATH + file);
 
   FXMLNode* root = new FXMLNode("root", nullptr);
 

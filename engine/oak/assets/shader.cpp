@@ -4,6 +4,7 @@
 #include <oak/window/window.h>
 #include <fstream>
 #include <sstream>
+#include <oak/core/resources.h>
 
 #include <oak/build_def.h>
 #ifdef DEBUG_MODE
@@ -21,7 +22,7 @@ Shader::Shader(std::string name, bool isEngineAsset, const char* geometryPath ) 
 
 void Shader::load()
 {
-  std::string root = ENGINE_RESOURCES_ROOT_PATH;
+  std::string root = Resources::ENGINE_RESOURCES_ROOT_PATH;
   std::string basePath =  root + "shaders/" + name;
 
   char fullFragmentPath[80];

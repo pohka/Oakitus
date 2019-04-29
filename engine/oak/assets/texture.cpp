@@ -25,7 +25,7 @@ void Texture::load()
 
   if (isEngineAsset)
   {
-    fullPath += ENGINE_RESOURCES_ROOT_PATH;
+    fullPath += Resources::ENGINE_RESOURCES_ROOT_PATH;
   }
   else
   {

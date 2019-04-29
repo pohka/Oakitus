@@ -7,7 +7,7 @@ Transform::Transform() :
   Component(
     Reflect::TRANSFORM,
     Component::TickGroup::DEFAULT,
-    TICK_TYPE_NOT_TICKABLE,
+    TickType::NOT_TICKABLE,
     false
   )
 {

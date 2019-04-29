@@ -35,6 +35,7 @@ namespace oak
     static ion::Font* defaultFont;
 
     public:
+      static const char ENGINE_RESOURCES_ROOT_PATH[];
       static std::string rootPath;
 
       //returns the id

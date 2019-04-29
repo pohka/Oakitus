@@ -13,7 +13,7 @@ ChunkRenderer::ChunkRenderer(Chunk* chunk) :
   Component(
     Reflect::CHUNK,
     Component::TickGroup::DEFAULT,
-    TICK_TYPE_NOT_TICKABLE,
+    TickType::NOT_TICKABLE,
     true
   ),
   VP_OFFSET_X(Window::worldToViewportCoords(chunk->transform->localPosition().x)),

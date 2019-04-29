@@ -50,7 +50,7 @@ Sprite::Sprite(
 ) : Component(
       Reflect::SPRITE,
       Component::TickGroup::DEFAULT,
-      TICK_TYPE_NOT_TICKABLE,
+      TickType::NOT_TICKABLE,
       true
 )
 {

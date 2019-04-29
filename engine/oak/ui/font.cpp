@@ -24,7 +24,7 @@ Font::Font(std::string name, bool isEngineAsset, FT_Library& freetype) : Asset(n
 
   if (isEngineAsset)
   {
-    fullPath += ENGINE_RESOURCES_ROOT_PATH;
+    fullPath += oak::Resources::ENGINE_RESOURCES_ROOT_PATH;
   }
   else
   {
