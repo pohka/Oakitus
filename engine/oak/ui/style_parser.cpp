@@ -210,7 +210,7 @@ float StyleParser::hexToDecimal(std::string& str)
         }
         else
         {
-          val += (float)(d * pow(hex.size(), count));
+          val += static_cast<float>(d * pow(hex.size(), count));
         }
       }
     }
@@ -228,7 +228,7 @@ float StyleParser::hexToDecimal(char ch)
   {
     if (ch == hex[d])
     {
-      return (float)(d);
+      return static_cast<float>(d);
     }
   }
 

@@ -86,7 +86,7 @@ void LuaScript::onTick()
 
       if (lua_isnumber(LuaS::state, -1))
       {
-        float interval = (float)lua_tonumber(LuaS::state, -1);
+        float interval = static_cast<float>(lua_tonumber(LuaS::state, -1));
         //ending interval
         if (interval < 0.0)
         {

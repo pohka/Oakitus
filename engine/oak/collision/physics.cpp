@@ -206,7 +206,7 @@ bool checkCircle(CollisionCircle* circle, LineSegment& other, RaycastHit2D& hit,
     float ptADist = glm::length(glm::vec2(t * dir.x, t*dir.y));
 
     //point B
-    t = (float)((-b - sqrtDiscrim) / (2.0f * a));
+    t = static_cast<float>((-b - sqrtDiscrim) / (2.0f * a));
     glm::vec2 ptB = glm::vec2(other.x1 + t * dir.x, other.y1 + t * dir.y);
     float ptBDist = glm::length(glm::vec2(t * dir.x, t * dir.y));
 

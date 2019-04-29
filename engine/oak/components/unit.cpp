@@ -119,7 +119,7 @@ void Unit::setHealth(const int health)
 void Unit::setMaxHealth(const int maxHealth)
 {
   //current health should keep same percentage HP
-  float fHP = (float)health * ((float)maxHealth / (float)this->maxHealth);
+  float fHP = static_cast<float>(health) * (static_cast<float>(maxHealth) / static_cast<float>(this->maxHealth));
   //unit should not die if maxHP changes
   if (fHP < 1.0f && fHP > 0.0f)
   {
@@ -131,7 +131,7 @@ void Unit::setMaxHealth(const int maxHealth)
   }
   else
   {
-    health = (int)round(fHP);
+    health = static_cast<int>(round(fHP));
   }
 
   this->maxHealth = maxHealth;
@@ -140,14 +140,14 @@ void Unit::setMaxHealth(const int maxHealth)
 void Unit::setMaxMana(const int maxMana)
 {
   //current mana should keep same percentage mana/maxMana
-  float fMP = (float)health * ((float)maxMana / (float)this->maxMana);
+  float fMP = static_cast<float>(health) * (static_cast<float>(maxMana) / static_cast<float>(this->maxMana));
   if (fMP > maxMana)
   {
     mana = maxMana;
   }
   else
   {
-    mana = (int)round(fMP);
+    mana = static_cast<int>(round(fMP));
   }
 
   this->maxMana = maxMana;

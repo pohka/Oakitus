@@ -11,9 +11,9 @@ using namespace oak;
 int LuaType::toInt(lua_State* L, int index)
 {
   #ifdef DEBUG_MODE
-    return (int)luaL_checkinteger(L, index);
+    return static_cast<int>(luaL_checkinteger(L, index));
   #else
-    return (int)lua_tointeger(L, index);
+    return static_cast<int>(lua_tointeger(L, index));
   #endif
 }
 unsigned int LuaType::toUInt(lua_State* L, int index)
@@ -121,9 +121,9 @@ unsigned short LuaType::toUShort(lua_State* L, int index)
 float LuaType::toFloat(lua_State* L, int index)
 {
 #ifdef DEBUG_MODE
-  return (float)luaL_checknumber(L, index);
+  return static_cast<float>(luaL_checknumber(L, index));
 #else
-  return (float)luaL_tonumber(L, index);
+  return static_cast<float>(luaL_tonumber(L, index));
 #endif
 }
 

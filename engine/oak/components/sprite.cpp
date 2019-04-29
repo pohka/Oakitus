@@ -35,10 +35,10 @@ Sprite::Sprite(
 
   Texture* texture = Resources::getTextureByName(src);
   this->textureID = texture->getID();
-  float xMin = ((float)srcX / texture->getWidth());
-  float yMin = ((float)srcY / texture->getHeight());
-  float xMax = ((float)(srcX + srcW) / texture->getWidth());
-  float yMax = ((float)(srcY + srcH) / texture->getHeight());
+  float xMin = (static_cast<float>(srcX) / static_cast<float>(texture->getWidth()));
+  float yMin = (static_cast<float>(srcY) / static_cast<float>(texture->getHeight()));
+  float xMax = (static_cast<float>(srcX + srcW) / static_cast<float>(texture->getWidth()));
+  float yMax = (static_cast<float>(srcY + srcH) / static_cast<float>(texture->getHeight()));
 
   construct(xMin, xMax, yMin, yMax);
 }

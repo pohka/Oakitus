@@ -14,8 +14,8 @@ Chunk::Chunk(const int x, const int y, const World* world) :
   collisionLayer = oak::COLLISION_LAYER_WORLD;
 
   transform->moveTo(
-    (float)(x * world->TOTAL_CHUNK_SIZE),
-    (float)(y * world->TOTAL_CHUNK_SIZE),
+    static_cast<float>(x * world->TOTAL_CHUNK_SIZE),
+    static_cast<float>(y * world->TOTAL_CHUNK_SIZE),
     0.0f
   );
 
@@ -39,7 +39,7 @@ World* Chunk::getWorld()
 void Chunk::genCollision()
 {
   World* world = getWorld();
-  float halfTile = (float)(world->TILE_SIZE / 2);
+  float halfTile = static_cast<float>(world->TILE_SIZE / 2);
 
   for (uint y = 0; y < world->CHUNK_SIZE; y++)
   {
@@ -50,10 +50,10 @@ void Chunk::genCollision()
       {
         addCollision(
           new oak::CollisionRect(
-            transform->localPosition().x + (float)(x * world->TILE_SIZE) + halfTile,
-            transform->localPosition().y - (float)(y * world->TILE_SIZE) - halfTile,
-            (float)world->TILE_SIZE,
-            (float)world->TILE_SIZE
+            transform->localPosition().x + static_cast<float>(x * world->TILE_SIZE) + halfTile,
+            transform->localPosition().y - static_cast<float>(y * world->TILE_SIZE) - halfTile,
+            static_cast<float>(world->TILE_SIZE),
+            static_cast<float>(world->TILE_SIZE)
           )
         );
       }

@@ -128,17 +128,17 @@ void Shader::use()
 // utility uniform functions
 void Shader::setBool(const std::string &name, bool value) const
 {
-  glUniform1i(glGetUniformLocation(id, name.c_str()), (int)value);
+  glUniform1i(glGetUniformLocation(id, name.c_str()), static_cast<int>(value));
 }
 
 void Shader::setInt(const std::string &name, int value) const
 {
-  glUniform1i(glGetUniformLocation(id, name.c_str()), value);
+  glUniform1i(glGetUniformLocation(id, name.c_str()), static_cast<int>(value));
 }
 
 void Shader::setFloat(const std::string &name, float value) const
 {
-  glUniform1f(glGetUniformLocation(id, name.c_str()), value);
+  glUniform1f(glGetUniformLocation(id, name.c_str()), static_cast<int>(value));
 }
 
 void Shader::setVec2(const std::string &name, const glm::vec2 &value) const

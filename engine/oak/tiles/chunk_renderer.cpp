@@ -31,7 +31,7 @@ void ChunkRenderer::onRender() const
   Tile* tile;
   shader->use();
 
-  float vpTileSize = Window::worldToViewportCoords((float)world->TILE_SIZE);
+  float vpTileSize = Window::worldToViewportCoords((static_cast<float>(world->TILE_SIZE)));
 
   for (uint y = 0; y < chunk->table.size(); y++)
   {
@@ -44,8 +44,8 @@ void ChunkRenderer::onRender() const
         if (tile != nullptr)
         {
           tile->onRender(
-            VP_OFFSET_X + (float)(x * vpTileSize),
-            VP_OFFSET_Y - (float)(y * vpTileSize),
+            VP_OFFSET_X + static_cast<float>(x * vpTileSize),
+            VP_OFFSET_Y - static_cast<float>(y * vpTileSize),
             shader
           );
         }

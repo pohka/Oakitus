@@ -1,7 +1,4 @@
 # TODO
-* convert to enum classes
-* use size
-* remove /// comments because they are hard to read
 * remove const in parameters of primitive types
 * remove use of (int) because it gives no compiler errors, instead use statc_cast<int>
 * remove unused classes relect.h

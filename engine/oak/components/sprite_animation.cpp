@@ -114,11 +114,11 @@ void SpriteAnimation::setFrame(uint frameIndex, AnimDirection direction)
 
   Texture* texture = Resources::getTextureByID(textureID);
   
-  float xx = Window::worldToViewportCoords((float)displayW) * 0.5f;
-  float yy = Window::worldToViewportCoords((float)displayH) * 0.5f;
+  float xx = Window::worldToViewportCoords(static_cast<float>(displayW)) * 0.5f;
+  float yy = Window::worldToViewportCoords(static_cast<float>(displayH)) * 0.5f;
 
-  float xMin = (float)(curFrameX * frameW)/ texture->getWidth();
-  float xMax = (float)((curFrameX+1) * frameW) / texture->getWidth();
+  float xMin = static_cast<float>(curFrameX * frameW)/ static_cast<float>(texture->getWidth());
+  float xMax = static_cast<float>((curFrameX+1) * frameW) / static_cast<float>(texture->getWidth());
 
   //flip x
   if (direction == AnimDirection::LEFT)
@@ -128,8 +128,8 @@ void SpriteAnimation::setFrame(uint frameIndex, AnimDirection direction)
     xMax = tmp;
   }
 
-  float yMin = (float)(curFrameY * frameH) / texture->getHeight();
-  float yMax = (float)((curFrameY + 1) * frameH) / texture->getHeight();
+  float yMin = static_cast<float>(curFrameY * frameH) / static_cast<float>(texture->getHeight());
+  float yMax = static_cast<float>((curFrameY + 1) * frameH) / static_cast<float>(texture->getHeight());
 
 
   float vertices[] = {

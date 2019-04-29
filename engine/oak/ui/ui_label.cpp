@@ -33,7 +33,7 @@ void UILabel::render(UIPoint& nodeCursor)
 {
   renderBegin(nodeCursor);
 
-  scale = cstyle.attrs[STYLE_FONT_SIZE] / (float)FONT_LOADED_SIZE;
+  scale = cstyle.attrs[STYLE_FONT_SIZE] / static_cast<float>(FONT_LOADED_SIZE);
 
   Shader* shader = Resources::getShaderByName("text");
   // Activate corresponding render state	

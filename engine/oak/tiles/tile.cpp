@@ -21,17 +21,24 @@ Tile::Tile(
 ) :
   tileID(tileID),
   textureID(texture->getID()),
-  collisionRect(oak::CollisionRect(0.0f, 0.0f, (float)TILE_SIZE, (float)TILE_SIZE))
+  collisionRect(
+    oak::CollisionRect(
+      0.0f,
+      0.0f,
+      static_cast<float>(TILE_SIZE),
+      static_cast<float>(TILE_SIZE)
+    )
+  )
 {
   //texture coords
   const uint totalSize = (TILE_SIZE + spacing * 2);
-  float xMin = ((float)(TEX_COORD_X * totalSize + spacing) / texture->getWidth());
-  float yMin = ((float)(TEX_COORD_Y * totalSize + spacing) / texture->getHeight());
-  float xMax = ((float)((TEX_COORD_X + 1) * totalSize - spacing) / texture->getWidth());
-  float yMax = ((float)((TEX_COORD_Y + 1) * totalSize - spacing) / texture->getHeight());
+  float xMin = (static_cast<float>(TEX_COORD_X * totalSize + spacing) / static_cast<float>(texture->getWidth()));
+  float yMin = (static_cast<float>(TEX_COORD_Y * totalSize + spacing) / static_cast<float>(texture->getHeight()));
+  float xMax = (static_cast<float>((TEX_COORD_X + 1) * totalSize - spacing) / static_cast<float>(texture->getWidth()));
+  float yMax = (static_cast<float>((TEX_COORD_Y + 1) * totalSize - spacing) / static_cast<float>(texture->getHeight()));
 
   //verticies dimension
-  float d = Window::worldToViewportCoords((float)TILE_SIZE);
+  float d = Window::worldToViewportCoords(static_cast<float>(TILE_SIZE));
 
   float vertices[] =
   {
