@@ -120,7 +120,7 @@ Unit* Ability::getUnitOwner() const
   return owner;
 }
 
-void Ability::updateCooldownEndTime(const float deltaTime)
+void Ability::updateCooldownEndTime(float deltaTime)
 {
   if (cooldownTimeRemaining > 0.0f)
   {

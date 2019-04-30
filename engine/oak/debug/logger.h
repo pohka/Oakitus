@@ -21,7 +21,7 @@ namespace debug
   cnum DEBUG_LOG_ERROR = 2;
   //cnum DEBUG_LOG_LUA = 3;
 
-  ///<summary>Debug logger</summary>
+  //Debug logger
   struct LogData
   {
     std::string funcName;
@@ -51,15 +51,15 @@ namespace debug
 
     public:
       Logger(
-        const std::string &funcName, 
-        const std::string &file, 
+        const std::string& funcName, 
+        const std::string& file, 
         int line, 
         uchar logType
       );
       ~Logger();
 
-      static void startTimer(std::string name, std::string msg);
-      static void endTimer(std::string name);
+      static void startTimer(const std::string& name, const std::string& msg);
+      static void endTimer(const std::string& name);
 
       //print the next value
       template <class T>
@@ -75,8 +75,8 @@ namespace debug
       }
   private:
     static bool isRepeatedLog(
-      const std::string &funcName,
-      const std::string &file,
+      const std::string& funcName,
+      const std::string& file,
       int line,
       uchar logType
     );

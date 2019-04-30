@@ -4,12 +4,18 @@
 
 using namespace oak;
 
-Animator::Animator() : Component(REFLECT_ANIMATOR, TICK_GROUP_DEFAULT, TICK_TYPE_INTERVAL_TICK, true)
+Animator::Animator() : 
+  Component(
+    Reflect::ANIMATOR,
+    Component::TickGroup::DEFAULT,
+    TickType::INTERVAL_TICK,
+    true
+  )
 {
  // this->initialAnimID = initialAnimID;
  // anims[initialAnimID] = initialAnimation;
   //this->curAnimID = initialAnimID;
-  this->direction = ANIM_DIRECTION_RIGHT;
+  this->direction = AnimDirection::RIGHT;
   //initialAnimation->animator = this;
   //ticker.interval = initialAnimation->getFrameDuration();
 }
@@ -23,7 +29,7 @@ Animator::~Animator()
   anims.clear();
 }
 
-void Animator::addAnim(const uchar animID, SpriteAnimation* animation)
+void Animator::addAnim(uchar animID, SpriteAnimation* animation)
 {
   anims[animID] = animation;
   animation->animator = this;
@@ -65,7 +71,7 @@ void Animator::onRender() const
   }
 }
 
-void Animator::setAnim(const uchar animID, const bool ignorePriority)
+void Animator::setAnim(uchar animID, bool ignorePriority)
 {
   //ignore null
   if (animID == ANIM_NULL)
@@ -122,12 +128,12 @@ uchar Animator::getCurAnimID() const
   return curAnimID;
 }
 
-uchar Animator::getDirection() const
+AnimDirection Animator::getDirection() const
 {
   return direction;
 }
 
-void Animator::setDirection(uchar direction)
+void Animator::setDirection(AnimDirection direction)
 {
   if (this->direction != direction)
   {

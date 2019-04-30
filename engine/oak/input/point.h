@@ -4,7 +4,7 @@
 
 namespace oak
 {
-  ///<summary>2D Point</summary>
+  //2D Point
   struct Point
   {
     float x;

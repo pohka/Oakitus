@@ -8,7 +8,7 @@ using namespace oak;
 
 nlohmann::json Config::data;
 
-unsigned int Config::getUInt(const std::string key, const unsigned int defaultVal)
+unsigned int Config::getUInt(const std::string& key, unsigned int defaultVal)
 {
   if (data[key] != nullptr && data[key].is_number_unsigned())
   {
@@ -26,7 +26,7 @@ unsigned int Config::getUInt(const std::string key, const unsigned int defaultVa
 }
 
 
-std::string Config::getString(const std::string key, const std::string defaultVal)
+std::string Config::getString(const std::string& key, const std::string& defaultVal)
 {
   if (data[key] != nullptr && data[key].is_string())
   {
@@ -43,7 +43,7 @@ std::string Config::getString(const std::string key, const std::string defaultVa
   return defaultVal;
 }
 
-bool Config::getBool(const std::string key, const bool defaultVal)
+bool Config::getBool(const std::string& key, bool defaultVal)
 {
   if (data[key] != nullptr && data[key].is_boolean())
   {

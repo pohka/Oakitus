@@ -10,29 +10,66 @@ namespace oak
 {
   class Entity;
 
-  ///<summary>Defines a behaviour or functionalty to an Entity</summary>
+  //Defines a behaviour or functionalty to an Entity
   class Component
   {
 	  friend class Entity;
 
     static uint reflectAutoIncID;
 
-	  uint componentID; ///<summary>An ID that is unique for the owner Entity</summary>
+	  uint componentID; //An ID that is unique for the owner Entity
 
     
 
     public:
-	    Component(const uint REFLECT_ID = REFLECT_NULL, cnum tickGroup = TICK_GROUP_DEFAULT, cnum tickingType = TICK_TYPE_TICKABLE, const bool isEverRender = false);
+      //ticking groups i.e. which stage in the loop should this component tick
+      enum class TickGroup : uchar
+      {
+        DEFAULT = 0,
+        DURING_PHYSICS = 1,
+        AFTER_PHYSICS = 2,
+        LAST = 3
+      };
+      static const unsigned char TICK_GROUP_COUNT = 4;
+
+      //reflectIDs
+      enum class Reflect : uchar
+      {
+        NONE,
+        TRANSFORM,
+        ANIMATOR,
+        RIGID_BODY_2D,
+        SPRITE,
+        CHUNK,
+        LUA_SCRIPT,
+        UNIT
+      };
+
+      //ticking behaviour type
+      enum class TickType : uchar
+      {
+        NOT_TICKABLE = 0, //does not tick
+        TICKABLE = 1, //ticks every frame
+        INTERVAL_TICK = 2 //ticks each interval (if the interval time is zero then it ticks each frame)
+      };
+      static const uchar TICK_TYPE_COUNT = 3;
+
+	    Component(
+        Reflect reflectID = Reflect::NONE,
+        TickGroup tickGroup = TickGroup::DEFAULT,
+        TickType tickType = TickType::TICKABLE,
+        bool isEverRender = false
+      );
 	    virtual ~Component();
 
-      uchar getTickGroup() const;
+      TickGroup getTickGroup() const;
       uint getComponentID() const;
       bool getIsRenderable() const;
 
       bool isTickable() const;
       bool isUsingIntervalTicking() const;
       float getTickingInterval() const;
-      const uint _REFLECT_ID;
+      const Reflect _REFLECT_ID;
       
       Entity* getOwnerEntity();
      
@@ -41,31 +78,31 @@ namespace oak
 
        //EVENTS
       //---------------------------------------
-      ///<summary>Called once when the Entity is added to the world</summary>
+      //Called once when the Entity is added to the world
       virtual void onCreate();
 
-      ///<summary>Do logic, called once each frame</summary>
+      //Do logic, called once each frame
       virtual void onTick();
 
-      ///<summary>Draw, called once each frame</summary>
+      //Draw, called once each frame
       virtual void onRender() const;
 
-      ///<summary>Draw for debuging, called once each frame</summary>
+      //Draw for debuging, called once each frame
       virtual void onDebugDraw() const;
 
       virtual void onDestroy();
 
-      ///<summary>Called when the owner has entered a collision</summary>
+      //Called when the owner has entered a collision
       virtual void onCollisionHit(Entity& hit);
       //---------------------------------------
 
       
 
-      uchar tickingType;
+      TickType tickType;
       IntervalTicker ticker;
       
     private:
-      uchar tickGroup;
+      TickGroup tickGroup;
       bool isEverRendered;
       bool isRenderable;
 

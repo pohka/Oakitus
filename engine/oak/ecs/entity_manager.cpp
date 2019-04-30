@@ -23,7 +23,7 @@ Entity* EntityManager::findEntityByID(uint id)
   return nullptr;
 }
 
-Entity* EntityManager::findEntityByName(std::string name)
+Entity* EntityManager::findEntityByName(const std::string& name)
 {
   for (uint i = 0; i < entitys.size(); i++)
   {
@@ -49,13 +49,13 @@ std::vector<Entity*> EntityManager::getGlobalEntitys()
   return list;
 }
 
-void EntityManager::tickInstances(const uchar TICK_GROUP)
+void EntityManager::tickInstances(Component::TickGroup tickGroup)
 {
   for (Entity* ent : EntityManager::entitys)
   {
     if (ent->canTickThisFrame())
     {
-      ent->onTick(TICK_GROUP);
+      ent->onTick(tickGroup);
     }
   }
 }
@@ -175,7 +175,7 @@ void EntityManager::instantiateQueuedEnts()
   while (!EntityManager::pendingEntityInstances.empty())
   {
     Entity* ent = pendingEntityInstances.front();
-    ent->setCreationState(CREATION_STATE_CREATED);
+    ent->setCreationState(Entity::CreationState::CREATED);
     entitys.push_back(ent);
     temp.push(ent);
     pendingEntityInstances.pop();
@@ -196,18 +196,18 @@ std::vector<Entity*>& EntityManager::getAllEntitys()
 
 void EntityManager::queueEntityCreate(Entity* ent)
 {
-  if (ent->creationState == CREATION_STATE_NULL)
+  if (ent->creationState == Entity::CreationState::NONE)
   {
-    ent->setCreationState(CREATION_STATE_QUEUED);
+    ent->setCreationState(Entity::CreationState::QUEUED);
     pendingEntityInstances.push(ent);
   }
 }
 
 void EntityManager::queueEntityDestroy(Entity* ent)
 {
-  if (ent->creationState < CREATION_STATE_DESTROYED)
+  if (ent->creationState < Entity::CreationState::DESTROYED)
   {
-    ent->setCreationState(CREATION_STATE_DESTROYED);
+    ent->setCreationState(Entity::CreationState::DESTROYED);
     queuedDestroyEntityIDs.push(ent->getID());
   }
 }
@@ -217,7 +217,7 @@ const uint EntityManager::nextEntityID()
   return entityIDGen.nextID();
 }
 
-void EntityManager::getAllEntitysByGroup(const uchar ENTITY_GROUP, std::vector<Entity*>& out)
+void EntityManager::getAllEntitysByGroup(uchar ENTITY_GROUP, std::vector<Entity*>& out)
 {
   for (Entity* ent : entitys)
   {
@@ -228,7 +228,7 @@ void EntityManager::getAllEntitysByGroup(const uchar ENTITY_GROUP, std::vector<E
   }
 }
 
-void EntityManager::requestDestroy(const uint entID, const float delay)
+void EntityManager::requestDestroy(uint entID, float delay)
 {
   destroyRequests.push_back({ entID, delay + Time::getGameTime() });
 }

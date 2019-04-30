@@ -3,7 +3,7 @@
 #define COLLISION_BOX_H
 
 
-#include "base_collision_shape.h"
+#include "collision_shape.h"
 
 
 namespace oak
@@ -16,7 +16,7 @@ namespace oak
     float maxY;
   };
 
-  class CollisionRect : public BaseCollisionShape
+  class CollisionRect : public CollisionShape
   {
     float w;
     float h;
@@ -33,8 +33,8 @@ namespace oak
       float width() const;
       float height() const;
 
-      void setWidth(const float w);
-      void setHeight(const float h);
+      void setWidth(float w);
+      void setHeight(float h);
       
 
       RectBounds getRectBounds() const;

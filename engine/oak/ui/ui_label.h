@@ -10,10 +10,10 @@
 
 namespace ion
 {
-  ///a label has data that will display text
+  //a label has data that will display text
   struct UILabel : public UINode
   {
-    UILabel(std::string src, float fontSize);
+    UILabel(const std::string& src, float fontSize);
 
     std::string text;
     float scale = 1.0f; //font scale
@@ -22,7 +22,7 @@ namespace ion
     uchar fontID;
 
     void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
-    ///renders a label
+    //renders a label
     void render(UIPoint& nodeCursor);
   };
 }

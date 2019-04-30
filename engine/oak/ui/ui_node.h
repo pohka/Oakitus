@@ -22,7 +22,7 @@ namespace ion
     }
   };
 
-  ///a ui node which
+  //a ui node which
   struct UINode
   {
     UINode(const uchar nodeType);

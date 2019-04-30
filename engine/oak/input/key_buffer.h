@@ -5,7 +5,7 @@
 
 namespace oak
 {
-  ///<summary>Key buffer that tracks the input for a key</summary>
+  //Key buffer that tracks the input for a key
   class KeyBuffer
   {
     ushort code;
@@ -14,13 +14,13 @@ namespace oak
 
     public:
       friend class Input;
-      KeyBuffer(const ushort  code);
+      KeyBuffer(ushort  code);
       ~KeyBuffer();
-      ///<summary>Returns the KeyCode of this key</summary>
+      //Returns the KeyCode of this key
       ushort getCode() const;
 
     private:
-      ///<summary>Set the captured state for the key for this frame</summary>
+      //Set the captured state for the key for this frame
       void setState(bool isDown);
 
   };

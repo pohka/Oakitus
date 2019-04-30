@@ -19,46 +19,46 @@ namespace oak
   struct EntityManager
   {
 
-///<summary>Returns an Entity with a matching ID if it exists in the world</summary>
+//Returns an Entity with a matching ID if it exists in the world
     static Entity* findEntityByID(uint id);
-    ///<summary>Returns an Entity with a matching name if it exists in the world</summary>
-    static Entity* findEntityByName(std::string name);
-    ///<summary></summary>
+    //Returns an Entity with a matching name if it exists in the world
+    static Entity* findEntityByName(const std::string& name);
+    //
     static std::vector<Entity*> getGlobalEntitys();
-    ///<summary>Destroys the Entity with a matching ID if it exists</summary>
+    //Destroys the Entity with a matching ID if it exists
     static void destroyEntityByID(uint id);
 
-    ///<summary>Calls onUpdate() for all Entitys in the world</summary>
-    static void tickInstances(const uchar TICK_GROUP);
+    //Calls onUpdate() for all Entitys in the world
+    static void tickInstances(Component::TickGroup tickGroup);
 
-    ///<summary>Calls onDraw() for all the Entitys in the world</summary>
+    //Calls onDraw() for all the Entitys in the world
     static void drawInstances();
 
-    ///<summary>Call onDebugDraw() for all the Entitys in the world</summary>
+    //Call onDebugDraw() for all the Entitys in the world
     static void debugDrawInstances();
 
-    ///<summary>Destroys all the Entitys that are queued to be destroyed</summary>
+    //Destroys all the Entitys that are queued to be destroyed
     static void destroyQueuedInstances();
 
-    ///<summary>Deletes all the Entitys in the world</summary>
+    //Deletes all the Entitys in the world
     static void deleteAllEnts(bool isGlobalExempt = true);
 
-    ///<summary>Adds all the queued Entitys to the world</summary>
+    //Adds all the queued Entitys to the world
     static void instantiateQueuedEnts();
 
-    ///<summary>Clears and deallocates all the existing queues</summary>
+    //Clears and deallocates all the existing queues
     static void clearQueues();
 
     static std::vector<Entity*>& getAllEntitys();
 
-    static void getAllEntitysByGroup(const uchar ENTITY_GROUP, std::vector<Entity*>& out);
+    static void getAllEntitysByGroup(uchar ENTITY_GROUP, std::vector<Entity*>& out);
 
     static void queueEntityCreate(Entity* ent);
     static void queueEntityDestroy(Entity* ent);
 
     static const uint nextEntityID();
 
-    static void requestDestroy(const uint entID, const float delay);
+    static void requestDestroy(uint entID, float delay);
     static void checkRequestedDestroys();
 
 

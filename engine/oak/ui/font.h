@@ -13,14 +13,14 @@
 
 namespace ion
 {
-  ///font class
+  //font class
   class Font : public oak::Asset
   {
     FT_Face face;
     std::map<GLchar, Character*> characters;
 
     public:
-      Font(std::string name, bool isEngineAsset, FT_Library& freetype);
+      Font(const std::string& name, bool isEngineAsset, FT_Library& freetype);
       ~Font();
       Character* getCharacter(std::string::const_iterator& c);
       Character* getCharacter(GLchar glChar);

@@ -21,57 +21,66 @@ namespace oak
   class Script;
   class Component;
   struct IDGenerator;
-  class BaseCollisionShape;
+  class CollisionShape;
 
 
-  ///<summary>An Object in the world</summary>
+  //An Object in the world
   class Entity
   {
     friend struct EntityManager;
 
-	  uint entityID; ///<summary>Unique ID of this Entity</summary>
+    //state of an entity in creation
+    enum class CreationState : uchar
+    {
+      NONE = 0, //not queued or created
+      QUEUED = 1, //in queue to be created at the end of the frame
+      CREATED = 2, //created and exists in the current scene
+      DESTROYED = 3 //queued for destruction
+    };
 
-    std::vector<Component*> componentGroups[TICK_GROUP_MAX];
+	  uint entityID; //Unique ID of this Entity
+
+    std::vector<Component*> componentGroups[Component::TICK_GROUP_COUNT];
     
-	  IDGenerator componentIDGen; ///<summary>ID generator for components that are added to this Entity</summary>
+	  IDGenerator componentIDGen; //ID generator for components that are added to this Entity
     BaseRigidBody* rigidbody = nullptr;
     
     public:
       friend class Scene;
 
       Transform* transform;
-      int layerID; ///<summary>Drawing layerID</summary>
-      bool isGlobal; ///<summary>If true this Entity won't be destroyed at the end of a Scene</summary>
-      std::string name; ///<summary>Name of this Entity</summary>
+      int layerID; //Drawing layerID
+      bool isGlobal; //If true this Entity won't be destroyed at the end of a Scene
+      std::string name; //Name of this Entity
       const uchar ENTITY_GROUP; //grouping for entitys, so they can be found
       
 
-	    Entity(bool isEverRendered = true, const uchar ENTITY_GROUP = ENTITY_GROUP_NONE);
+	    Entity(bool isEverRendered = true, uchar ENTITY_GROUP = ENTITY_GROUP_NONE);
 	    virtual ~Entity();
       
-      ///<summary>Adds a Component to this Entity</summary>
-	    void addComponent(Component* component, const bool isRigidBody = false);
+      //Adds a Component to this Entity
+	    void addComponent(Component* component, bool isRigidBody = false);
       BaseRigidBody* getRigidBody() const;
 
-      ///<summary>Adds a CollisionShape to this Entity</summary>
-      void addCollision(BaseCollisionShape* shape); 
+      //Adds a CollisionShape to this Entity
+      void addCollision(CollisionShape* shape); 
 
-      ///<summary>Adds this Entity to the world at zero zero</summary>
+      //Adds this Entity to the world at zero zero
       void create();
 
-      ///<summary>Adds this Entity to the world at the given position</summary>
+      //Adds this Entity to the world at the given position
       void create(float x, float y, float z=0.0f);
 
-      ///<summary>Destroys this Entity</summary>
+      //Destroys this Entity
 	    void destroy();
 
-      ///<summary>Returns the Entity ID</summary>
+      //Returns the Entity ID
 	    uint getID() const;
 
-      ///<summary>Returns the CollisionLayer of this Entity</summary>
+      //Returns the CollisionLayer of this Entity
       const uint getCollisionLayer() const;
 
-      ///<summary>Returns the name of this Entity</summary>
+      //Returns the name of this Entity
       std::string getName() const;
 
       bool getIsTickingEnabled() const;
@@ -89,7 +98,7 @@ namespace oak
       T* getComponent()
       {
         T* casted;
-        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
         {
           for (Component* comp : componentGroups[i])
           {
@@ -108,7 +117,7 @@ namespace oak
       void getComponents(std::vector<T*>& out)
       {
         T* casted;
-        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
         {
           for (Component* comp : componentGroups[i])
           {
@@ -123,13 +132,13 @@ namespace oak
 
       //find a component by reflection id
       template <typename T>
-      T* getComponentWithReflection(const uint REFLECT_ID)
+      T* getComponentWithReflection(Component::Reflect reflectID)
       {
-        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
         {
           for (Component* comp : componentGroups[i])
           {
-            if (comp->_REFLECT_ID == REFLECT_ID)
+            if (comp->_REFLECT_ID == reflectID)
             {
               return reinterpret_cast<T*>(comp);
             }
@@ -140,13 +149,13 @@ namespace oak
 
       //find all components by reflection id
       template <typename T>
-      void getComponentsWithReflection(const uint REFLECT_ID, std::vector<T*>& out)
+      void getComponentsWithReflection(Component::Reflect reflectID, std::vector<T*>& out)
       {
-        for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+        for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
         {
           for (Component* comp : componentGroups[i])
           {
-            if (comp->_REFLECT_ID == REFLECT_ID)
+            if (comp->_REFLECT_ID == reflectID)
             {
               out.push_back(reinterpret_cast<T*>(comp));
             }
@@ -161,7 +170,7 @@ namespace oak
       void detach();
 
       //find child with matching name, returns nullptr if not found
-      Entity* findChildByName(std::string name);
+      Entity* findChildByName(const std::string& name);
 
       //find child with matching id, returns nullptr if not found
       Entity* findChildByID(uint id);
@@ -173,36 +182,36 @@ namespace oak
       const std::vector<Entity*>& getChildren() const;
 
       //get the collision shapes
-      std::vector<BaseCollisionShape*>& getCollisionShapes();
+      std::vector<CollisionShape*>& getCollisionShapes();
 
-      ///<summary>Called when a collision occured</summary>
+      //Called when a collision occured
       void onCollisionHit(Entity& hit);
 
-      void setCreationState(const uchar state);
-      const uchar getCreationState() const;
+      void setCreationState(CreationState state);
+      CreationState getCreationState() const;
 
     protected:
-      ///<summary>Catagory of this Entity in the collision system</summary> 
+      //Catagory of this Entity in the collision system 
       uint collisionLayer = COLLISION_LAYER_DEFAULT;
 
       //EVENTS
       //-------------------------------------------------------------
-      ///<summary>Called once when this Entity is added to the world</summary>
+      //Called once when this Entity is added to the world
       void onCreate();
 
-      ///<summary>Called once each frame</summary>
-      void onTick(const uchar TICK_GROUP);
+      //Called once each frame
+      void onTick(Component::TickGroup tickGroup);
 
-      ///<summary>Draws all renderable components each frame</summary>
+      //Draws all renderable components each frame
       void onRender() const;
 
       void onDebugDraw() const;
 
-      ///<summary>Called once just before this Entity is removed from the world and deallocated</summary>
+      //Called once just before this Entity is removed from the world and deallocated
 	    void onDestroy();
       //-------------------------------------------------------------
 
-      std::vector<BaseCollisionShape*> collisionShapes; ///<summary>All of the CollisionShapes added to this Entity</summary>
+      std::vector<CollisionShape*> collisionShapes; //All of the CollisionShapes added to this Entity
 
       bool canTickWhenPaused = false;
 
@@ -215,7 +224,7 @@ namespace oak
        bool isTickingEnable = true;
 
        
-       uchar creationState = CREATION_STATE_NULL; //current creation state
+       CreationState creationState = CreationState::NONE; //current creation state
   };
 }
 

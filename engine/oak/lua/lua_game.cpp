@@ -258,7 +258,7 @@ void LuaGame::addUnitComp(Entity* ent, const nlohmann::json& data)
   it = data.find("level");
   if (it != data.end())
   {
-    unit->setStartingLevel((int)it.value());
+    unit->setStartingLevel(static_cast<int>(it.value()));
   }
   it = data.find("ability0");
   if (it != data.end())

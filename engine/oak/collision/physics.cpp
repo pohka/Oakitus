@@ -1,6 +1,6 @@
 #include "physics.h"
 #include <oak/ecs/entity_manager.h>
-#include "base_collision_shape.h"
+#include "collision_shape.h"
 #include "collision_rect.h"
 #include "collision_circle.h"
 #include <iostream>
@@ -206,7 +206,7 @@ bool checkCircle(CollisionCircle* circle, LineSegment& other, RaycastHit2D& hit,
     float ptADist = glm::length(glm::vec2(t * dir.x, t*dir.y));
 
     //point B
-    t = (float)((-b - sqrtDiscrim) / (2.0f * a));
+    t = static_cast<float>((-b - sqrtDiscrim) / (2.0f * a));
     glm::vec2 ptB = glm::vec2(other.x1 + t * dir.x, other.y1 + t * dir.y);
     float ptBDist = glm::length(glm::vec2(t * dir.x, t * dir.y));
 
@@ -243,7 +243,7 @@ bool checkCircle(CollisionCircle* circle, LineSegment& other, RaycastHit2D& hit,
 }
 
 //does a raycast
-bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit2D& hit, const float distance, const uint layers)
+bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit2D& hit, float distance, uint layers)
 {
   direction = glm::normalize(direction);
   glm::vec2 end = origin + (direction * distance);
@@ -258,14 +258,14 @@ bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit
     //bitwise check, if entity collision layer is in layers
     if ((ent->getCollisionLayer() & layers) > 0)
     {
-      std::vector<BaseCollisionShape*> shapes = ent->getCollisionShapes();
+      std::vector<CollisionShape*> shapes = ent->getCollisionShapes();
 
-      for (BaseCollisionShape* shape : shapes)
+      for (CollisionShape* shape : shapes)
       {
         switch (shape->getType())
         {
           //rect
-        case COLLISION_SHAPE_RECT:
+        case CollisionShape::Type::RECT:
           if (checkRect(static_cast<CollisionRect*>(shape), line, outHit, distance))
           {
             //first intersection
@@ -284,7 +284,7 @@ bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit
           }
           break;
           //circle
-        case COLLISION_SHAPE_CIRCLE:
+        case CollisionShape::Type::CIRCLE:
           if (checkCircle(static_cast<CollisionCircle*>(shape), line, outHit, distance))
           {
             if (!found)

@@ -42,7 +42,7 @@ namespace oak
     //virtual void onTakeDamage() = 0;
     //virtual void onDealDamage() = 0;
 
-    void updateCooldownEndTime(const float deltaTime);
+    void updateCooldownEndTime(float deltaTime);
     void setCooldownEndTime();
     bool isOffCooldown() const;
     void endCooldown();

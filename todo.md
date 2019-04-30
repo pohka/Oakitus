@@ -1,6 +1,9 @@
 # TODO
+* remove const in parameters of primitive types
+* create .dll or .lib for faster compile times
 
 ## Ion UI
+* localization strings loaded from file
 * UIComponent should inherit UINode
 * parse xml to create components rather than using c++
 * lua scripting for events like onClick

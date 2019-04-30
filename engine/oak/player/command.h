@@ -9,18 +9,18 @@ namespace oak
 {
   class Player;
 
-  ///<summary>Input Command</summary>
+  //Input Command
   class Command
   {
     public:
-      Command(const unsigned short commandID) : commandID(commandID) {};
+      Command(unsigned short commandID) : commandID(commandID) {};
       //Command(Player* player)
       //{
       //  this->player = player;
       //}
       friend class Player;
 
-      ///<summary>Called once each frame before the update stage</summary>
+      //Called once each frame before the update stage
       virtual void onTick() = 0;
 
       const unsigned short commandID;

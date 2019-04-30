@@ -2,12 +2,12 @@
 #ifndef COLLISION_CIRCLE_H
 #define COLLISION_CIRCLE_H
 
-#include "base_collision_shape.h"
+#include "collision_shape.h"
 
 
 namespace oak
 {
-  class CollisionCircle : public BaseCollisionShape
+  class CollisionCircle : public CollisionShape
   {
     float radius;
 

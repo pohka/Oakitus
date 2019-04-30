@@ -15,7 +15,7 @@ using namespace ion;
 
 uint Font::idCounter = 0;
 
-Font::Font(std::string name, bool isEngineAsset, FT_Library& freetype) : Asset(name, isEngineAsset)
+Font::Font(const std::string& name, bool isEngineAsset, FT_Library& freetype) : Asset(name, isEngineAsset)
 {
   id = idCounter;
   idCounter++;
@@ -24,7 +24,7 @@ Font::Font(std::string name, bool isEngineAsset, FT_Library& freetype) : Asset(n
 
   if (isEngineAsset)
   {
-    fullPath += ENGINE_RESOURCES_ROOT_PATH;
+    fullPath += oak::Resources::ENGINE_RESOURCES_ROOT_PATH;
   }
   else
   {

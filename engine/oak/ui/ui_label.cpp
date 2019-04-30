@@ -9,7 +9,7 @@
 using namespace ion;
 using namespace oak;
 
-UILabel::UILabel(std::string src, float fontSize) : UINode(UI_NODE_LABEL)
+UILabel::UILabel(const std::string& src, float fontSize) : UINode(UI_NODE_LABEL)
 {
   this->text = text;
   //this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;
@@ -33,7 +33,7 @@ void UILabel::render(UIPoint& nodeCursor)
 {
   renderBegin(nodeCursor);
 
-  scale = cstyle.attrs[STYLE_FONT_SIZE] / (float)FONT_LOADED_SIZE;
+  scale = cstyle.attrs[STYLE_FONT_SIZE] / static_cast<float>(FONT_LOADED_SIZE);
 
   Shader* shader = Resources::getShaderByName("text");
   // Activate corresponding render state	

@@ -6,7 +6,7 @@
 
 namespace oak
 {
-  ///<summary>ID generator using an auto incrementer uint</summary>
+  //ID generator using an auto incrementer uint
   struct IDGenerator
   {
     uint nextID()

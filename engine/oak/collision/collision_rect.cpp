@@ -13,7 +13,7 @@ CollisionRect::CollisionRect(float offsetX, float offsetY, float width, float he
   m_offsetY = offsetY;
   this->w = width;
   this->h = height;
-  type = COLLISION_SHAPE_RECT;
+  type = Type::RECT;
 
   textureID = Resources::getTextureIDByName("box.png");
   initVAO(w, h);
@@ -70,7 +70,7 @@ RectBounds CollisionRect::getRectBounds() const
   return bounds;
 }
 
-void CollisionRect::setWidth(const float w)
+void CollisionRect::setWidth(float w)
 {
   this->w = w;
 
@@ -78,7 +78,7 @@ void CollisionRect::setWidth(const float w)
   initVAO(w, h);
 #endif
 }
-void CollisionRect::setHeight(const float h)
+void CollisionRect::setHeight(float h)
 {
   this->h = h;
 

@@ -9,14 +9,14 @@
 namespace oak
 {
 
-  ///<summary>Texture</summary>
+  //Texture
   class Texture : public Asset
   {
     int width;
     int height;
 
     public:
-      Texture(std::string src, bool isEngineAsset);
+      Texture(const std::string& src, bool isEngineAsset);
       ~Texture();
       int getHeight() const;
       int getWidth() const;

@@ -10,7 +10,7 @@ CollisionCircle::CollisionCircle(float radius, float offsetX, float offsetY)
   this->radius = radius;
   m_offsetX = offsetX;
   m_offsetY = offsetY;
-  type = COLLISION_SHAPE_CIRCLE;
+  type = Type::CIRCLE;
 
   textureID = Resources::getTextureIDByName("circle.png");
 

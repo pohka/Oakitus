@@ -86,6 +86,6 @@ int LuaHCollisionRect::setOffset(lua_State* L)
 int LuaHCollisionRect::getType(lua_State* L)
 {
   LuaHCollisionRect* rectH = *reinterpret_cast<LuaHCollisionRect**>(lua_touserdata(L, 1));
-  lua_pushinteger(L, rectH->ptr->getType());
+  lua_pushinteger(L, static_cast<int>(rectH->ptr->getType()));
   return 1;
 }

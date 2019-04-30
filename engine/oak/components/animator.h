@@ -12,17 +12,16 @@ namespace oak
 {
 
 
-  ///<summary>Controlling the animations, a set animation will only play if it has a greater or equal prioirty to the current animation</summary>
+  //Controlling the animations, a set animation will only play if it has a greater or equal prioirty to the current animation
   class Animator : public Component
   {
     friend struct Fallback;
     friend class SpriteAnimation;
 
-    std::unordered_map<uchar, SpriteAnimation*> anims; ///<summary>Map of the animatons available</summary>
-    uchar curAnimID = ANIM_NULL; ///<summary>Current animation key</summary>
-    //uchar initialAnimID; ///<summary>Base animation key</summary>
-    uchar direction; ///<summary>Direction of the current animation</summary>
-    bool hasChangedDirection = false; ///<summary>True if the direction of the animation has changed this frame</summary>
+    std::unordered_map<uchar, SpriteAnimation*> anims; //Map of the animatons available
+    uchar curAnimID = ANIM_NULL; //Current animation key
+    AnimDirection direction; //Direction of the current animation
+    bool hasChangedDirection = false; //True if the direction of the animation has changed this frame
     uint frameIndex = 0; //current frame index
 
     public:
@@ -30,27 +29,27 @@ namespace oak
       Animator();
       ~Animator();
 
-      ///<summary>Add an animation with a key</summary>
+      //Add an animation with a key
       void addAnim(uchar animID, SpriteAnimation* animation);
 
-      ///<summary>Sets the current animation, if ignorePrioirty is true it will ignore the prioity checks</summary>
-      void setAnim(uchar animID, const bool ignorePriority = false);
+      //Sets the current animation, if ignorePrioirty is true it will ignore the prioity checks
+      void setAnim(uchar animID, bool ignorePriority = false);
 
-      ///<summary>Returns the current animation id</summary>
+      //Returns the current animation id
       uchar getCurAnimID() const;
 
-      ///<summary>Returns the current direction of the animation</summary>
-      uchar getDirection() const;
+      //Returns the current direction of the animation
+      AnimDirection getDirection() const;
 
-      ///<summary>sets the current direction</summary>
-      void setDirection(uchar direction);
+      //sets the current direction
+      void setDirection(AnimDirection direction);
 
 
     protected:
-      ///<summary>Updates the current animation</summary>
+      //Updates the current animation
       void onTick() override;
 
-      ///<summary>calls onDraw() for the the current animation</summary>
+      //calls onDraw() for the the current animation
       void onRender() const override;
 
   };

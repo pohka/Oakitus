@@ -21,22 +21,22 @@
 
 namespace ion
 {
-  ///container for all of the ui
+  //container for all of the ui
   class UICanvas
   {
     public:
       friend class StyleLoader;
 
       friend class oak::Window;
-      ///called when the window is resized
+      //called when the window is resized
       static void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
-      ///renders all the components
+      //renders all the components
       static void render();
-      ///Projection from pixel units to viewport coords to window coords
+      //Projection from pixel units to viewport coords to window coords
       static const UIPoint& getProjection();
-      ///add a ui component
+      //add a ui component
       static void addWidget(ushort id, UIWidget* widget);
-      ///returns a component by id
+      //returns a component by id
       static UIWidget* getWidget(ushort id);
 
       //find a style by selector, nullptr returned if not found

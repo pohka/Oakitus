@@ -70,7 +70,7 @@
     <ClInclude Include="..\engine\oak\assets\stb_image.h" />
     <ClInclude Include="..\engine\oak\assets\texture.h" />
     <ClInclude Include="..\engine\oak\build_def.h" />
-    <ClInclude Include="..\engine\oak\collision\base_collision_shape.h" />
+    <ClInclude Include="..\engine\oak\collision\collision_shape.h" />
     <ClInclude Include="..\engine\oak\collision\collision.h" />
     <ClInclude Include="..\engine\oak\collision\collision_circle.h" />
     <ClInclude Include="..\engine\oak\collision\collision_layer.h" />
@@ -130,7 +130,6 @@
     <ClInclude Include="..\engine\oak\oak.h" />
     <ClInclude Include="..\engine\oak\oak_def.h" />
     <ClInclude Include="..\engine\oak\oak_setup.h" />
-    <ClInclude Include="..\engine\oak\old\bounds.h" />
     <ClInclude Include="..\engine\oak\old\ray.h" />
     <ClInclude Include="..\engine\oak\player\command.h" />
     <ClInclude Include="..\engine\oak\player\player.h" />
@@ -210,7 +209,7 @@
     <ClCompile Include="..\engine\oak\assets\asset.cpp" />
     <ClCompile Include="..\engine\oak\assets\shader.cpp" />
     <ClCompile Include="..\engine\oak\assets\texture.cpp" />
-    <ClCompile Include="..\engine\oak\collision\base_collision_shape.cpp" />
+    <ClCompile Include="..\engine\oak\collision\collision_shape.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision_circle.cpp" />
     <ClCompile Include="..\engine\oak\collision\collision_rect.cpp" />
@@ -256,7 +255,6 @@
     <ClCompile Include="..\engine\oak\meta\ability_validator.cpp" />
     <ClCompile Include="..\engine\oak\meta\meta_data.cpp" />
     <ClCompile Include="..\engine\oak\meta\prefab_validator.cpp" />
-    <ClCompile Include="..\engine\oak\old\bounds.cpp" />
     <ClCompile Include="..\engine\oak\old\ray.cpp" />
     <ClCompile Include="..\engine\oak\player\player.cpp" />
     <ClCompile Include="..\engine\oak\player\player_resource.cpp" />

@@ -39,12 +39,12 @@ void Window::init(
 
   
 
-  Window::vpAspectRatio = (float)viewportW / (float)viewportH;
+  Window::vpAspectRatio = static_cast<float>(viewportW) / static_cast<float>(viewportH);
   projectionMatrix = glm::ortho(-1.0f * vpAspectRatio, 1.0f * vpAspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
 
   //2 units per dimension
-  float pixelsPerUnit = (float)viewportH * 0.5f;
-  worldToVPRatio = 2.0f / (float)viewportH;
+  float pixelsPerUnit = static_cast<float>(viewportH) * 0.5f;
+  worldToVPRatio = 2.0f / static_cast<float>(viewportH);
 
   // glfw: initialize and configure
   // ------------------------------
@@ -143,7 +143,10 @@ float Window::worldToViewportCoords(float pixels)
 void Window::cursorMoved(GLFWwindow* window, double xpos, double ypos)
 {
   // invert y-coordinate
-  Input::setMouse((float)xpos * windowToVPRatioX, ((float)Window::windowH - (float)ypos) * windowToVPRatioY);
+  Input::setMouse(
+    static_cast<float>(xpos) * windowToVPRatioX,
+    (static_cast<float>(Window::windowH) - static_cast<float>(ypos)) * windowToVPRatioY
+  );
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -175,8 +178,8 @@ glm::vec2 Window::getWindowToVPRatio()
 
 void Window::updateWindowToVPRatio()
 {
-  windowToVPRatioX = (float)Window::viewportW / (float)Window::windowW;
-  windowToVPRatioY = (float)Window::viewportH / (float)Window::windowH;
+  windowToVPRatioX = static_cast<float>(Window::viewportW) / static_cast<float>(Window::windowW);
+  windowToVPRatioY = static_cast<float>(Window::viewportH) / static_cast<float>(Window::windowH);
 }
 
 glm::mat4& Window::getProjectionMatrix()

@@ -9,69 +9,69 @@
 
 namespace oak
 {
-  ///<summary>Window class, only one window</summary>
+  //Window class, only one window
   class Window
   {
     friend class Oakitus;
 
-    static GLFWwindow* window; ///<summary>GL window</summary>
+    static GLFWwindow* window; //GL window
     
     //Prefered pixel resolution
-    static uint viewportW; ///<summary>Pixel width of the viewport</summary>
-    static uint viewportH; ///<summary>Pixel height of the viewport</summary>
+    static uint viewportW; //Pixel width of the viewport
+    static uint viewportH; //Pixel height of the viewport
 
     //Current size of the window
-    static uint windowW; ///<summary>Current window height</summary>
-    static uint windowH; ///<summary>Current window width</summary>
+    static uint windowW; //Current window height
+    static uint windowH; //Current window width
 
     
-    static float worldToVPRatio; ///<summary>Ratio of world to normalized viewport coordinates</summary>
-    static float vpAspectRatio; ///<summary>Aspect ratio of the viewport</summary>
+    static float worldToVPRatio; //Ratio of world to normalized viewport coordinates
+    static float vpAspectRatio; //Aspect ratio of the viewport
 
     //ratio of viewport to window coordinates
-    static float windowToVPRatioX; ///<summary>Ratio of viewport to window coordinates on the x-axis</summary>
-    static float windowToVPRatioY; ///<summary>Ratio of viewport to window coordinates on the y-axis</summary>
+    static float windowToVPRatioX; //Ratio of viewport to window coordinates on the x-axis
+    static float windowToVPRatioY; //Ratio of viewport to window coordinates on the y-axis
 
     //projection matrix of the viewport
-    static glm::mat4 projectionMatrix; ///<summary>Projection matrix of the viewport</summary>
+    static glm::mat4 projectionMatrix; //Projection matrix of the viewport
 
-    ///<summary>Scrolling event, callback function</summary>
+    //Scrolling event, callback function
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
-    ///<summary>Updates the window to viewport ratios for when the window gets resized</summary>
+    //Updates the window to viewport ratios for when the window gets resized
     static void updateWindowToVPRatio();
 
-    ///<summary>Cursor moved event, callback function</summary>
+    //Cursor moved event, callback function
     static void cursorMoved(GLFWwindow* window, double xpos, double ypos);
 
     public:
-      ///<summary>Returns the GL window</summary>
+      //Returns the GL window
       static GLFWwindow* getGLFWWindow();
 
-      ///<summary>Returns the aspect ratio of the viewport</summary>
+      //Returns the aspect ratio of the viewport
       static float getAspectRatio();
 
-      ///<summary>Returns the height of the viewport in pixels</summary>
+      //Returns the height of the viewport in pixels
       static uint getHeight();
 
-      ///<summary>Returns the width of the viewport in pixels</summary>
+      //Returns the width of the viewport in pixels
       static uint getWidth();
 
-      ///<summary>Converts world to normalized viewport coordinates</summary>
+      //Converts world to normalized viewport coordinates
       static float worldToViewportCoords(float pixels);
 
-      ///<summary>returns the projection matrix for the viewport</summary>
+      //returns the projection matrix for the viewport
       static glm::mat4& getProjectionMatrix();
 
       static glm::vec2 getWindowToVPRatio();
 
-      ///returns ratio of normalized window to pixel size window unit
+      //returns ratio of normalized window to pixel size window unit
       static glm::vec2 getWindowUnitToPixel();
 
       static void close();
       
     protected:
-      ///<summary>Initialized the window</summary>
+      //Initialized the window
       static void init(
         uint viewportW,
         uint viewportH,

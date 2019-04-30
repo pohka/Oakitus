@@ -4,6 +4,7 @@
 #include <oak/window/window.h>
 #include <fstream>
 #include <sstream>
+#include <oak/core/resources.h>
 
 #include <oak/build_def.h>
 #ifdef DEBUG_MODE
@@ -12,7 +13,7 @@
 
 using namespace oak;
 
-Shader::Shader(std::string name, bool isEngineAsset, const char* geometryPath ) : Asset(name, isEngineAsset)
+Shader::Shader(const std::string& name, bool isEngineAsset, const char* geometryPath ) : Asset(name, isEngineAsset)
 {
   this->geometryPath = geometryPath;
 
@@ -21,7 +22,7 @@ Shader::Shader(std::string name, bool isEngineAsset, const char* geometryPath ) 
 
 void Shader::load()
 {
-  std::string root = ENGINE_RESOURCES_ROOT_PATH;
+  std::string root = Resources::ENGINE_RESOURCES_ROOT_PATH;
   std::string basePath =  root + "shaders/" + name;
 
   char fullFragmentPath[80];
@@ -127,17 +128,17 @@ void Shader::use()
 // utility uniform functions
 void Shader::setBool(const std::string &name, bool value) const
 {
-  glUniform1i(glGetUniformLocation(id, name.c_str()), (int)value);
+  glUniform1i(glGetUniformLocation(id, name.c_str()), static_cast<int>(value));
 }
 
 void Shader::setInt(const std::string &name, int value) const
 {
-  glUniform1i(glGetUniformLocation(id, name.c_str()), value);
+  glUniform1i(glGetUniformLocation(id, name.c_str()), static_cast<int>(value));
 }
 
 void Shader::setFloat(const std::string &name, float value) const
 {
-  glUniform1f(glGetUniformLocation(id, name.c_str()), value);
+  glUniform1f(glGetUniformLocation(id, name.c_str()), static_cast<int>(value));
 }
 
 void Shader::setVec2(const std::string &name, const glm::vec2 &value) const

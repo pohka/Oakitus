@@ -11,14 +11,14 @@
 
 namespace oak
 {
-  ///<summary>Loads and manages a vertex and fragement shader for OpenGL</summary>
+  //Loads and manages a vertex and fragement shader for OpenGL
   class Shader : public Asset
   {
     public:
 
       // constructor generates the shader on the fly
       // ------------------------------------------------------------------------
-      Shader(std::string name, bool isEngineAsset, const char* geometryPath = nullptr);
+      Shader(const std::string& name, bool isEngineAsset, const char* geometryPath = nullptr);
 
       void load();
 

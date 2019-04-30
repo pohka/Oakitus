@@ -14,7 +14,7 @@ float Time::lastFrameTime = 0.0f;
 
 void Time::onTick()
 {
-  systemTimer.now = (float)glfwGetTime();
+  systemTimer.now = static_cast<float>(glfwGetTime());
   systemTimer.deltaTime = systemTimer.now - lastFrameTime;
   lastFrameTime = systemTimer.now;
 
@@ -45,7 +45,7 @@ float Time::systemDeltaTime()
 
 void Time::init()
 {
-  lastFrameTime = (float)glfwGetTime();
+  lastFrameTime = static_cast<float>(glfwGetTime());
 }
 
 float Time::getGameTime()

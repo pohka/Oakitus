@@ -333,7 +333,7 @@ extern "C" {
 #define STBIDEF extern
 #endif
 
-	//////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////
 	//
 	// PRIMARY API - works on images of any type
 	//
@@ -349,7 +349,7 @@ extern "C" {
 		int(*eof)   (void *user);                       // returns nonzero if we are at end of file/data
 	} stbi_io_callbacks;
 
-	////////////////////////////////////
+	////////////////////////
 	//
 	// 8-bits-per-channel interface
 	//
@@ -367,7 +367,7 @@ extern "C" {
 	// for stbi_load_from_file, file pointer is left pointing immediately after image
 #endif
 
-////////////////////////////////////
+////////////////////////
 //
 // 16-bits-per-channel interface
 //
@@ -380,7 +380,7 @@ extern "C" {
 	STBIDEF stbi_us *stbi_load_from_file_16(FILE *f, int *x, int *y, int *channels_in_file, int desired_channels);
 #endif
 
-	////////////////////////////////////
+	////////////////////////
 	//
 	// float-per-channel interface
 	//
@@ -464,7 +464,7 @@ extern "C" {
 
 //
 //
-////   end header file   /////////////////////////////////////////////////////
+///   end header file   ////////////////////////////////////
 #endif // STBI_INCLUDE_STB_IMAGE_H
 
 #ifdef STB_IMAGE_IMPLEMENTATION
@@ -683,7 +683,7 @@ static int stbi__sse2_available(void)
 #define STBI_SIMD_ALIGN(type, name) type name
 #endif
 
-///////////////////////////////////////////////
+////////////////////////////////
 //
 //  stbi__context struct and start_xxx functions
 
@@ -1376,7 +1376,7 @@ STBIDEF void   stbi_hdr_to_ldr_gamma(float gamma) { stbi__h2l_gamma_i = 1 / gamm
 STBIDEF void   stbi_hdr_to_ldr_scale(float scale) { stbi__h2l_scale_i = 1 / scale; }
 
 
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////
 //
 // Common code used by all image loaders
 //
@@ -1503,7 +1503,7 @@ static stbi__uint32 stbi__get32le(stbi__context *s)
 #define STBI__BYTECAST(x)  ((stbi_uc) ((x) & 255))  // truncate int to byte without warnings
 
 
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////
 //
 //  generic converter from built-in img_n to req_comp
 //    individual types do this automatically as much as possible (e.g. jpeg
@@ -1663,7 +1663,7 @@ static stbi_uc *stbi__hdr_to_ldr(float   *data, int x, int y, int comp)
 }
 #endif
 
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////
 //
 //  "baseline" JPEG/JFIF decoder
 //

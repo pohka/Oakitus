@@ -14,7 +14,7 @@
 
 using namespace oak;
 
-Texture::Texture(std::string src, bool isEngineAsset) : Asset(src, isEngineAsset)
+Texture::Texture(const std::string& src, bool isEngineAsset) : Asset(src, isEngineAsset)
 {
   load();
 }
@@ -25,7 +25,7 @@ void Texture::load()
 
   if (isEngineAsset)
   {
-    fullPath += ENGINE_RESOURCES_ROOT_PATH;
+    fullPath += Resources::ENGINE_RESOURCES_ROOT_PATH;
   }
   else
   {

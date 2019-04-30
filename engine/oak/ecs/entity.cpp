@@ -1,12 +1,12 @@
 #include "entity.h"
 #include "component.h"
-#include <oak/collision/base_collision_shape.h>
+#include <oak/collision/collision_shape.h>
 #include "entity_manager.h"
 #include <oak/time/time.h>
 
 using namespace oak;
 
-Entity::Entity(bool isEverRendered, const uchar ENTITY_GROUP) : ENTITY_GROUP(ENTITY_GROUP)
+Entity::Entity(bool isEverRendered, uchar ENTITY_GROUP) : ENTITY_GROUP(ENTITY_GROUP)
 {
   this->isEverRendered = isEverRendered;
   this->isRenderable = isEverRendered;
@@ -28,7 +28,7 @@ Entity::~Entity()
   }
 
   //destruct components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -41,14 +41,14 @@ Entity::~Entity()
 
 
 
-void Entity::addComponent(Component* component, const bool isRigidBody)
+void Entity::addComponent(Component* component, bool isRigidBody)
 {
   //give the component a unique ID and tell it who its owner entity is
   component->entity = this;
   component->componentID = componentIDGen.nextID();
 
   //add to tick group
-  uchar tickGroup = component->getTickGroup();
+  uchar tickGroup = static_cast<uchar>(component->getTickGroup());
   componentGroups[tickGroup].push_back(component);
 
   if (isRigidBody)
@@ -62,7 +62,7 @@ BaseRigidBody* Entity::getRigidBody() const
   return rigidbody;
 }
 
-void Entity::addCollision(BaseCollisionShape* shape)
+void Entity::addCollision(CollisionShape* shape)
 {
   shape->entity = this;
   collisionShapes.push_back(shape);
@@ -105,7 +105,7 @@ void Entity::onCreate()
   //children will call onCreate for themselves
 
   //onCreate components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -129,7 +129,7 @@ void Entity::onDestroy()
   }
 
   //onDestroy components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -141,7 +141,7 @@ void Entity::onDestroy()
 void Entity::onRender() const
 {
   //render components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -162,7 +162,7 @@ void Entity::onRender() const
 void Entity::onDebugDraw() const
 {
   //components
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -171,7 +171,7 @@ void Entity::onDebugDraw() const
   }
 
   //collision
-  for (BaseCollisionShape* shape : collisionShapes)
+  for (CollisionShape* shape : collisionShapes)
   {
     shape->onDebugDraw();
   }
@@ -183,10 +183,10 @@ void Entity::onDebugDraw() const
   }
 }
 
-void Entity::onTick(const uchar TICK_GROUP)
+void Entity::onTick(Component::TickGroup tickGroup)
 {
   //components
-  for (Component* comp : componentGroups[TICK_GROUP])
+  for (Component* comp : componentGroups[static_cast<unsigned int>(tickGroup)])
   {
     if (comp->canTickThisFrame())
     {
@@ -197,13 +197,13 @@ void Entity::onTick(const uchar TICK_GROUP)
   //children
   for (Entity* child : children)
   {
-    child->onTick(TICK_GROUP);
+    child->onTick(tickGroup);
   }
 }
 
 void Entity::onCollisionHit(Entity& hit)
 {
-  for (uchar i = 0; i < TICK_GROUP_MAX; i++)
+  for (uchar i = 0; i < Component::TICK_GROUP_COUNT; i++)
   {
     for (Component* comp : componentGroups[i])
     {
@@ -267,7 +267,7 @@ bool Entity::canTickThisFrame() const
   return false;
 }
 
-std::vector<BaseCollisionShape*>& Entity::getCollisionShapes()
+std::vector<CollisionShape*>& Entity::getCollisionShapes()
 {
   return collisionShapes;
 }
@@ -281,13 +281,13 @@ void Entity::addChild(Entity* child)
   }
 
   //queue to be created if not created yet
-  if (child->creationState == CREATION_STATE_NULL)
+  if (child->creationState == CreationState::NONE)
   {
     child->parent = this;
     EntityManager::queueEntityCreate(child);
   }
   //attach a entity that is already created
-  else if(child->creationState == CREATION_STATE_CREATED)
+  else if(child->creationState == CreationState::CREATED)
   {
     child->transform->onParentSet(transform);
     child->parent = this;
@@ -295,7 +295,7 @@ void Entity::addChild(Entity* child)
   }
 }
 
-Entity* Entity::findChildByName(std::string name)
+Entity* Entity::findChildByName(const std::string& name)
 {
   for (Entity* ent : children)
   {
@@ -351,12 +351,12 @@ const Entity* Entity::getParent() const
   return parent;
 }
 
-void Entity::setCreationState(const uchar state)
+void Entity::setCreationState(CreationState state)
 {
   creationState = state;
 }
 
-const uchar Entity::getCreationState() const
+Entity::CreationState Entity::getCreationState() const
 {
   return creationState;
 }

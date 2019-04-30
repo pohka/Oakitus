@@ -30,13 +30,13 @@ void LuaVector::reg(lua_State* L)
 
 void LuaVector::c_new(lua_State* L, float x, float y, float z)
 {
-  newTable(L, (float)x, (float)y, (float)z);
+  newTable(L, x, y, z);
   luaL_setmetatable(L, LUA_VECTOR);
 }
 
 int LuaVector::lua_new(lua_State* L)
 {
-  lua_Number x, y, z;
+  float x, y, z;
 
   //set x,y,z with different number of arguments
   if (lua_gettop(L) == 1)
@@ -63,7 +63,7 @@ int LuaVector::lua_new(lua_State* L)
     return 0;
   }
 
-  newTable(L, (float)x, (float)y, (float)z);
+  newTable(L, x, y, z);
   luaL_setmetatable(L, LUA_VECTOR);
 
   return 1;

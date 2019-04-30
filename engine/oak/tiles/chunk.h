@@ -16,7 +16,7 @@ namespace tile
     const int CHUNK_X;
     const int CHUNK_Y;
 
-    Chunk(const int x, const int y, const World* world);
+    Chunk(int x, int y, const World* world);
 
     void genCollision();
 

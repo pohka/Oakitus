@@ -6,7 +6,7 @@
 
 namespace oak
 {
-  ///<summary>Ray, used for 3D</summary>
+  //Ray, used for 3D
   class Ray
   {
     glm::vec3 direction;

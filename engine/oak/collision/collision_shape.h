@@ -1,11 +1,11 @@
 #pragma once
-#ifndef BASE_COLLISION_SHAPE_H
-#define BASE_COLLISION_SHAPE_H
+#ifndef COLLISION_SHAPE_H
+#define COLLISION_SHAPE_H
 
 #include <oak/core/types.h>
 #include <glm/glm.hpp>
 
-///<summary>The base collision shape</summary>
+//The base collision shape
 namespace oak
 {
   class CollisionRect;
@@ -14,15 +14,22 @@ namespace oak
 
 
 
-  class BaseCollisionShape
+  class CollisionShape
   {
 
     public:
       friend class Entity;
 
-      BaseCollisionShape();
-      ~BaseCollisionShape();
-      bool intersects(BaseCollisionShape& shape);
+      //all types of collision shapes
+      enum class Type : uchar
+      {
+        RECT = 0,
+        CIRCLE = 1
+      };
+
+      CollisionShape();
+      ~CollisionShape();
+      bool intersects(CollisionShape& shape);
 
       virtual bool intersectsRect(const CollisionRect& shape) const = 0;
       virtual bool intersectsCircle(const CollisionCircle& shape) const = 0;
@@ -33,26 +40,26 @@ namespace oak
       float originX() const;
       float originY() const;
       glm::vec3 origin() const;
-      void setOffset(const float x, const float y);
+      void setOffset(float x, float y);
 
-      uchar getType() const;
+      Type getType() const;
       bool isTrigger = false;
 
       void onDebugDraw() const;
       
 
     protected:
-      uchar type;
+      Type type;
 
       //collision offset from entity origin
-      float m_offsetX; ///<summary>X-axis offset from entity position</summary>
-      float m_offsetY; ///<summary>Y-axis offset from entity position</summary>
+      float m_offsetX; //X-axis offset from entity position
+      float m_offsetY; //Y-axis offset from entity position
       uint VAO, VBO;
       uint textureID;
       Entity* entity;
       
 
-      ///<summary>Initialize the VAO</summary>
+      //Initialize the VAO
       void initVAO(float quadW, float quadH);
   };
 

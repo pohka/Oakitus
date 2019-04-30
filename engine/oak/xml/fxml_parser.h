@@ -11,7 +11,7 @@ namespace oak
   class FXMLParser
   {
   public:
-    static FXMLNode load(std::string file);
+    static FXMLNode load(const std::string& file);
   };
 }
 
