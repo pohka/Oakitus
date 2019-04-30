@@ -6,7 +6,6 @@
 #include <vector>
 #include "ui_node.h"
 #include "ui_point.h"
-#include "localization.h"
 #include <oak/window/window.h>
 
 namespace ion

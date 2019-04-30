@@ -23,6 +23,7 @@
 #include <oak/ability/combat_tracker.h>
 #include <my_game/ui/status.h>
 #include <oak/ui/ui_canvas.h>
+#include <oak/localization/localization.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
@@ -84,6 +85,7 @@ void Oakitus::init()
   //loads scripts/main.lua
   LuaS::init();
 
+  ion::Localization::init("english");
   auto statusUI = new game::Status();
   ion::UICanvas::addWidget(1 ,statusUI);
 

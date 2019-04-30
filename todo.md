@@ -1,5 +1,4 @@
 # TODO
-* remove const in parameters of primitive types
 * create .dll or .lib for faster compile times
 
 ## Ion UI

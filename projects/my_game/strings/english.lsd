@@ -1,0 +1,10 @@
+# Localization String Data example
+key = "My Value"
+mana  = "Mana"
+shop_1 = "Johnny's Shop"
+
+# commented line
+health = "Health"
+#this also works
+other="my value"
+shop_4 = "You can also do \n new lines"

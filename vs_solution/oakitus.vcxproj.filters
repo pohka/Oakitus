@@ -79,6 +79,9 @@
     <Filter Include="projects\my_game\ui">
       <UniqueIdentifier>{de452e18-01ac-496e-a26b-5fa7e64e7bdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="oak\localization">
+      <UniqueIdentifier>{4c2c536f-691f-4c23-9c4b-451806262567}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\engine\oak\debug.h">
@@ -130,9 +133,6 @@
       <Filter>oak\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\ui\font.h">
-      <Filter>oak\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\engine\oak\ui\localization.h">
       <Filter>oak\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\engine\oak\ui\style.h">
@@ -477,6 +477,15 @@
     <ClInclude Include="..\engine\oak\collision\collision_shape.h">
       <Filter>oak\collision</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\localization\lsd_parser.h">
+      <Filter>oak\localization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\localization\lsd_validator.h">
+      <Filter>oak\localization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\localization\localization.h">
+      <Filter>oak\localization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\collision.cpp">
@@ -507,9 +516,6 @@
       <Filter>oak\debug</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\ui\font.cpp">
-      <Filter>oak\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\engine\oak\ui\localization.cpp">
       <Filter>oak\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\ui\style.cpp">
@@ -828,6 +834,15 @@
     </ClCompile>
     <ClCompile Include="..\engine\oak\collision\collision_shape.cpp">
       <Filter>oak\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\localization\lsd_parser.cpp">
+      <Filter>oak\localization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\localization\lsd_validator.cpp">
+      <Filter>oak\localization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\localization\localization.cpp">
+      <Filter>oak\localization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

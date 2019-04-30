@@ -104,6 +104,9 @@
     <ClInclude Include="..\engine\oak\input\key_buffer.h" />
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
+    <ClInclude Include="..\engine\oak\localization\localization.h" />
+    <ClInclude Include="..\engine\oak\localization\lsd_parser.h" />
+    <ClInclude Include="..\engine\oak\localization\lsd_validator.h" />
     <ClInclude Include="..\engine\oak\lua\luah_ability.h" />
     <ClInclude Include="..\engine\oak\lua\luah_animator.h" />
     <ClInclude Include="..\engine\oak\lua\luah_collision_circle.h" />
@@ -147,7 +150,6 @@
     <ClInclude Include="..\engine\oak\time\time.h" />
     <ClInclude Include="..\engine\oak\ui\color.h" />
     <ClInclude Include="..\engine\oak\ui\font.h" />
-    <ClInclude Include="..\engine\oak\ui\localization.h" />
     <ClInclude Include="..\engine\oak\ui\style.h" />
     <ClInclude Include="..\engine\oak\ui\style_loader.h" />
     <ClInclude Include="..\engine\oak\ui\style_parser.h" />
@@ -233,6 +235,9 @@
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
     <ClCompile Include="..\engine\oak\input\input.cpp" />
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp" />
+    <ClCompile Include="..\engine\oak\localization\localization.cpp" />
+    <ClCompile Include="..\engine\oak\localization\lsd_parser.cpp" />
+    <ClCompile Include="..\engine\oak\localization\lsd_validator.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_ability.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_animator.cpp" />
     <ClCompile Include="..\engine\oak\lua\luah_collision_circle.cpp" />
@@ -269,7 +274,6 @@
     <ClCompile Include="..\engine\oak\time\interval_ticker.cpp" />
     <ClCompile Include="..\engine\oak\time\time.cpp" />
     <ClCompile Include="..\engine\oak\ui\font.cpp" />
-    <ClCompile Include="..\engine\oak\ui\localization.cpp" />
     <ClCompile Include="..\engine\oak\ui\style.cpp" />
     <ClCompile Include="..\engine\oak\ui\style_loader.cpp" />
     <ClCompile Include="..\engine\oak\ui\style_parser.cpp" />
