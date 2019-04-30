@@ -11,13 +11,13 @@ namespace ion
   //an image UI node
   struct UIImage : public UINode
   {
-    UIImage(std::string src, ushort w, ushort h);
+    UIImage(const std::string& src, ushort w, ushort h);
     ~UIImage();
     std::string src;
     uint VAO, VBO;
     uint textureID;
 
-    void setTexture(std::string src);
+    void setTexture(const std::string& src);
 
     void onWindowResize(float windowToVPRatioX, float windowToVPRatioY);
     //renders a UI image

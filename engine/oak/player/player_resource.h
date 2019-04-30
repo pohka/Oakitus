@@ -30,7 +30,7 @@ namespace oak
 
       static bool isLocalPlayerID(uint playerID);
 
-      static Player* getLocalPlayerBySlot(unsigned int slotIndex);
+      static Player* getLocalPlayerBySlot(uint slotIndex);
   };
 }
 

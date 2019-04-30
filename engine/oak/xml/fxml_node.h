@@ -17,7 +17,7 @@ namespace oak
     std::string content; //content between the opening and closing tags
     std::string name; //name of the tag
 
-    FXMLNode(std::string name, FXMLNode* parent);
+    FXMLNode(const std::string& name, FXMLNode* parent);
     ~FXMLNode();
     void appendChild(FXMLNode* node);
     std::vector<FXMLNode*> getChildNodes() const;

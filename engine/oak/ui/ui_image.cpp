@@ -11,7 +11,7 @@
 using namespace ion;
 using namespace oak;
 
-UIImage::UIImage(std::string src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)
+UIImage::UIImage(const std::string& src, ushort w, ushort h) : UINode(UI_NODE_IMAGE)
 {
   this->src = src;
   this->textureID = Resources::getTextureIDByName(src);
@@ -106,7 +106,7 @@ void UIImage::onWindowResize(float windowToVPRatioX, float windowToVPRatioY)
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 }
 
-void UIImage::setTexture(std::string src)
+void UIImage::setTexture(const std::string& src)
 {
   this->src = src;
   textureID = Resources::getTextureIDByName(src);

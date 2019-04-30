@@ -12,7 +12,7 @@ namespace oak
   struct StringHelp
   {
     //splits string
-    static void split(const std::string &txt, std::vector<std::string> &strs, char ch)
+    static void split(const std::string& txt, std::vector<std::string>& strs, char ch)
     {
       unsigned int pos = txt.find(ch);
       unsigned int initialPos = 0;
@@ -37,7 +37,7 @@ namespace oak
     }
 
     //returns true if the string is valid a decimal number
-    static bool isNumber(std::string s)
+    static bool isNumber(const std::string& s)
     {
       bool decimalPt = false;
       auto it = s.begin();

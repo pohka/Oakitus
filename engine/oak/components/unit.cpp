@@ -106,17 +106,17 @@ const std::string& Unit::getName() const
   return name;
 }
 
-void Unit::setMana(const int mana)
+void Unit::setMana(int mana)
 {
   this->mana = FMath::clampInt(mana, 0, maxMana);
 }
 
-void Unit::setHealth(const int health)
+void Unit::setHealth(int health)
 {
   this->health = FMath::clampInt(health, 0, maxHealth);
 }
 
-void Unit::setMaxHealth(const int maxHealth)
+void Unit::setMaxHealth(int maxHealth)
 {
   //current health should keep same percentage HP
   float fHP = static_cast<float>(health) * (static_cast<float>(maxHealth) / static_cast<float>(this->maxHealth));
@@ -137,7 +137,7 @@ void Unit::setMaxHealth(const int maxHealth)
   this->maxHealth = maxHealth;
 }
 
-void Unit::setMaxMana(const int maxMana)
+void Unit::setMaxMana(int maxMana)
 {
   //current mana should keep same percentage mana/maxMana
   float fMP = static_cast<float>(health) * (static_cast<float>(maxMana) / static_cast<float>(this->maxMana));
@@ -163,7 +163,7 @@ int Unit::getLevel() const
   return level;
 }
 
-void Unit::castAbility(const uint index)
+void Unit::castAbility(uint index)
 {
   //currently casting another ability
   if (castingState != CASTING_STATE_NONE)
@@ -212,7 +212,7 @@ void Unit::addAbility(Ability* ability)
   abilitys.push_back(ability);
 }
 
-void Unit::giveMana(const int amount)
+void Unit::giveMana(int amount)
 {
   int nextMana = this->mana + amount;
   this->mana = FMath::clampInt(nextMana, 0, maxMana);

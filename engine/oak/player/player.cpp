@@ -36,41 +36,6 @@ void Player::tickCommands()
       command->onTick();
     }
   }
-
- // std::string path = "../Release/scripts/commands/";
-
- // for (auto str : lua_commands)
- // {
- //   //if (!isPaused || (isPaused && command->canExecuteWhenPaused))
- //   //{
- //   //  command->onTick();
- //   //}
- //   //Scene* scene = SceneManager::getCurrentScene();
- //   //LuaScene* luaScene = static_cast<LuaScene*>(scene);
- //   //luaScene
-
- //   lua_State* L = luaL_newstate();
- //   luaL_openlibs(L);
-
- //   std::string scriptFile = path + str + ".lua";
- //   luaL_loadfile(L, scriptFile.c_str());
- //   lua_register(L, "", LuaScene::lua_addCommand);
-
- //   if (lua_pcall(L, 0, 0, 0) != 0)
- //   {
- //     std::cout << "|--LUA_ERROR--|" << " lua_pcall - " << lua_tostring(L, -1) << std::endl;
- //   }
- //   //lua_call(L, 0, 0);
- //   
-
- //   lua_close(L);
-
- //  // if (lua_pcall(L, 2, 1, 0) != 0)
- //  // {
- //     //error(L, "error running function `f': %s",
- //     //  lua_tostring(L, -1));
- ///   }
- // }
 }
 
 void Player::addCommand(Command* command)
@@ -78,32 +43,6 @@ void Player::addCommand(Command* command)
   command->player = this;
   commands.push_back(command);
 }
-
-//void Player::lua_addCommand(std::string name)
-//{
-//  lua_commands.push_back(name);
-//}
-
-
-//void Player::assignActor(Actor* actor)
-//{
-//  actor->owner = this;
-//  this->assignedActor = actor;
-//}
-//
-//void Player::unAssignActor()
-//{
-//  if (this->assignedActor != nullptr)
-//  {
-//    this->assignedActor->owner = nullptr;
-//    this->assignedActor = nullptr;
-//  }
-//}
-
-//Actor* Player::getAssignedActor()
-//{
-//  return assignedActor;
-//}
 
 void Player::assignEntity(Entity* entity)
 {
@@ -121,7 +60,7 @@ Entity* Player::getAssignedEntity()
 }
 
 
-void Player::removeCommand(const ushort commandID)
+void Player::removeCommand(ushort commandID)
 {
   for (unsigned int i=0; i<commands.size(); i++)
   {
@@ -134,7 +73,7 @@ void Player::removeCommand(const ushort commandID)
   }
 }
 
-bool Player::hasCommand(const ushort commandID) const
+bool Player::hasCommand(ushort commandID) const
 {
   for (unsigned int i = 0; i < commands.size(); i++)
   {

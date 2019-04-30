@@ -15,7 +15,7 @@ using namespace ion;
 
 uint Font::idCounter = 0;
 
-Font::Font(std::string name, bool isEngineAsset, FT_Library& freetype) : Asset(name, isEngineAsset)
+Font::Font(const std::string& name, bool isEngineAsset, FT_Library& freetype) : Asset(name, isEngineAsset)
 {
   id = idCounter;
   idCounter++;

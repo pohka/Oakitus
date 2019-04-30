@@ -18,7 +18,7 @@ World::World(
   }
 }
 
-Chunk* World::addChunk(const int chunkX, const int chunkY)
+Chunk* World::addChunk(int chunkX, int chunkY)
 {
   Chunk* chunk = new Chunk(chunkX, chunkY, this);
   addChild(chunk);;
@@ -30,7 +30,7 @@ void World::addTile(Tile* tile)
   tiles.push_back(tile);
 }
 
-Tile* World::getTileByID(const uint tileID)
+Tile* World::getTileByID(uint tileID)
 {
   for (Tile* tile : tiles)
   {

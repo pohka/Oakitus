@@ -14,7 +14,7 @@
 
 using namespace oak;
 
-Texture::Texture(std::string src, bool isEngineAsset) : Asset(src, isEngineAsset)
+Texture::Texture(const std::string& src, bool isEngineAsset) : Asset(src, isEngineAsset)
 {
   load();
 }

@@ -54,16 +54,16 @@ namespace oak
     int getLevel() const;
     const std::string& getName() const;
 
-    void setMana(const int mana);
-    void setHealth(const int health);
+    void setMana(int mana);
+    void setHealth(int health);
 
-    void giveMana(const int amount);
+    void giveMana(int amount);
 
-    void setMaxHealth(const int maxHealth);
-    void setMaxMana(const int maxMana);
+    void setMaxHealth(int maxHealth);
+    void setMaxMana(int maxMana);
     void setStartingLevel(int level);
 
-    void castAbility(const uint index);
+    void castAbility(uint index);
     uint getAbilityCount() const;
 
     void addAbility(Ability* ability);

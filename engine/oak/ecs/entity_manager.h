@@ -22,7 +22,7 @@ namespace oak
 //Returns an Entity with a matching ID if it exists in the world
     static Entity* findEntityByID(uint id);
     //Returns an Entity with a matching name if it exists in the world
-    static Entity* findEntityByName(std::string name);
+    static Entity* findEntityByName(const std::string& name);
     //
     static std::vector<Entity*> getGlobalEntitys();
     //Destroys the Entity with a matching ID if it exists
@@ -51,14 +51,14 @@ namespace oak
 
     static std::vector<Entity*>& getAllEntitys();
 
-    static void getAllEntitysByGroup(const uchar ENTITY_GROUP, std::vector<Entity*>& out);
+    static void getAllEntitysByGroup(uchar ENTITY_GROUP, std::vector<Entity*>& out);
 
     static void queueEntityCreate(Entity* ent);
     static void queueEntityDestroy(Entity* ent);
 
     static const uint nextEntityID();
 
-    static void requestDestroy(const uint entID, const float delay);
+    static void requestDestroy(uint entID, float delay);
     static void checkRequestedDestroys();
 
 

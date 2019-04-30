@@ -11,7 +11,7 @@ namespace ion
   class StyleLoader
   {
     public:
-      static void load(std::string path);
+      static void load(const std::string& path);
       static void reload();
 
     private:

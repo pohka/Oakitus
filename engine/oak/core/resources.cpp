@@ -51,7 +51,7 @@ void Resources::init()
   defaultFont = getFontByID(defaultFontID);
 }
 
-uint Resources::addShader(std::string name, bool isEngineAsset)
+uint Resources::addShader(const std::string& name, bool isEngineAsset)
 {
   if (isEngineAsset || !isShaderLoaded(name))
   {
@@ -66,7 +66,7 @@ uint Resources::addShader(std::string name, bool isEngineAsset)
   return defaultShader->getID();
 }
 
-uint Resources::addTexture(std::string name, bool isEngineAsset)
+uint Resources::addTexture(const std::string& name, bool isEngineAsset)
 {
   if (isEngineAsset || !isTextureLoaded(name))
   {
@@ -82,7 +82,7 @@ uint Resources::addTexture(std::string name, bool isEngineAsset)
   return defaultTexture->getID();
 }
 
-uint Resources::addFont(std::string name, bool isEngineAsset)
+uint Resources::addFont(const std::string& name, bool isEngineAsset)
 {
   if (isEngineAsset || !isFontLoaded(name))
   {
@@ -99,7 +99,7 @@ uint Resources::addFont(std::string name, bool isEngineAsset)
 }
 
 
-uint Resources::getFontIDByName(std::string name)
+uint Resources::getFontIDByName(const std::string& name)
 {
   for (uint i = 0; i < fonts.size(); i++)
   {
@@ -133,7 +133,7 @@ ion::Font* Resources::getFontByID(uint id)
   return defaultFont;
 }
 
-bool Resources::isTextureLoaded(std::string name)
+bool Resources::isTextureLoaded(const std::string& name)
 {
   for (uint i = 0; i < textures.size(); i++)
   {
@@ -145,7 +145,7 @@ bool Resources::isTextureLoaded(std::string name)
   return false;
 }
 
-bool Resources::isShaderLoaded(std::string name)
+bool Resources::isShaderLoaded(const std::string& name)
 {
   for (uint i = 0; i < shaders.size(); i++)
   {
@@ -157,7 +157,7 @@ bool Resources::isShaderLoaded(std::string name)
   return false;
 }
 
-bool Resources::isFontLoaded(std::string name)
+bool Resources::isFontLoaded(const std::string& name)
 {
   for (uint i = 0; i < fonts.size(); i++)
   {
@@ -190,7 +190,7 @@ Shader* Resources::getShaderByID(uint id)
 }
 
 
-Shader* Resources::getShaderByName(std::string name)
+Shader* Resources::getShaderByName(const std::string& name)
 {
   for (uint i = 0; i < shaders.size(); i++)
   {
@@ -224,7 +224,7 @@ Texture* Resources::getTextureByID(uint textureID)
   return defaultTexture;
 }
 
-Texture* Resources::getTextureByName(std::string src)
+Texture* Resources::getTextureByName(const std::string& src)
 {
   for (uint i = 0; i < textures.size(); i++)
   {
@@ -251,7 +251,7 @@ Texture* Resources::getDefaultTexture()
   return defaultTexture;
 }
 
-uint Resources::getTextureIDByName(std::string name)
+uint Resources::getTextureIDByName(const std::string& name)
 {
   return Resources::getTextureByName(name)->getID();
 }
@@ -261,7 +261,7 @@ uint Resources::getDefaultShaderID()
   return defaultShader->getID();
 }
 
-bool Resources::removeShader(std::string name)
+bool Resources::removeShader(const std::string& name)
 {
   for (unsigned int i = 0; i < shaders.size(); i++)
   {
@@ -275,7 +275,7 @@ bool Resources::removeShader(std::string name)
 
   return false;
 }
-bool Resources::removeTexture(std::string name)
+bool Resources::removeTexture(const std::string& name)
 {
   for (unsigned int i = 0; i < textures.size(); i++)
   {
@@ -290,7 +290,7 @@ bool Resources::removeTexture(std::string name)
   return false;
 }
 
-bool Resources::removeFont(std::string name)
+bool Resources::removeFont(const std::string& name)
 {
   for (unsigned int i = 0; i < fonts.size(); i++)
   {

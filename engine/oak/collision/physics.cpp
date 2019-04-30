@@ -243,7 +243,7 @@ bool checkCircle(CollisionCircle* circle, LineSegment& other, RaycastHit2D& hit,
 }
 
 //does a raycast
-bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit2D& hit, const float distance, const uint layers)
+bool Physics::Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit2D& hit, float distance, uint layers)
 {
   direction = glm::normalize(direction);
   glm::vec2 end = origin + (direction * distance);

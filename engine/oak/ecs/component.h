@@ -58,7 +58,7 @@ namespace oak
         Reflect reflectID = Reflect::NONE,
         TickGroup tickGroup = TickGroup::DEFAULT,
         TickType tickType = TickType::TICKABLE,
-        const bool isEverRender = false
+        bool isEverRender = false
       );
 	    virtual ~Component();
 

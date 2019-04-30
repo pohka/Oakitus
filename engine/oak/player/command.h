@@ -13,7 +13,7 @@ namespace oak
   class Command
   {
     public:
-      Command(const unsigned short commandID) : commandID(commandID) {};
+      Command(unsigned short commandID) : commandID(commandID) {};
       //Command(Player* player)
       //{
       //  this->player = player;

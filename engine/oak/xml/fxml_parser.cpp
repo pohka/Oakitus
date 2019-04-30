@@ -25,7 +25,7 @@ static void printNodes(FXMLNode* node, unsigned int depth)
 
 //fast XML parser
 //this implementation doesn't parse attributes or comments and only allows leaf nodes to have content
-FXMLNode FXMLParser::load(string file)
+FXMLNode FXMLParser::load(const string& file)
 {
   string line;
   ifstream myfile(Resources::ENGINE_RESOURCES_ROOT_PATH + file);

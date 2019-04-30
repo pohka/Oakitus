@@ -33,8 +33,8 @@ namespace oak
       float width() const;
       float height() const;
 
-      void setWidth(const float w);
-      void setHeight(const float h);
+      void setWidth(float w);
+      void setHeight(float h);
       
 
       RectBounds getRectBounds() const;

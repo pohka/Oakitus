@@ -6,7 +6,7 @@
 
 using namespace tile;
 
-Chunk::Chunk(const int x, const int y, const World* world) :
+Chunk::Chunk(int x, int y, const World* world) :
   oak::Entity(),
   CHUNK_X(x),
   CHUNK_Y(y)

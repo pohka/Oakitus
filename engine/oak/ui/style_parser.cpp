@@ -56,7 +56,7 @@ bool StyleParser::parseNumber(const std::string& val, float& num)
 }
 
 void StyleParser::parseColor(
-  std::string& val, 
+  std::string val, 
   std::vector<float>& rgba
 )
 {

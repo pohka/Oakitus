@@ -9,7 +9,7 @@
 using namespace ion;
 using namespace oak;
 
-UILabel::UILabel(std::string src, float fontSize) : UINode(UI_NODE_LABEL)
+UILabel::UILabel(const std::string& src, float fontSize) : UINode(UI_NODE_LABEL)
 {
   this->text = text;
   //this->scale = (float)fontSize / (float)FONT_LOADED_SIZE;

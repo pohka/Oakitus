@@ -16,15 +16,15 @@ namespace oak
 
       //get unsigned int value from config
       //if key-value is not found then the default value is returned
-      static unsigned int getUInt(const std::string key, const unsigned int defaultVal);
+      static unsigned int getUInt(const std::string& key, unsigned int defaultVal);
 
       //get string value from config
       //if key-value is not found then the default value is returned
-      static std::string getString(const std::string key, const std::string defaultVal);
+      static std::string getString(const std::string& key, const std::string& defaultVal);
 
       //get bool value from config
       //if key-value is not found then the default value is returned
-      static bool getBool(const std::string key, const bool defaultVal);
+      static bool getBool(const std::string& key, bool defaultVal);
 
       //load the config file
       static void load();

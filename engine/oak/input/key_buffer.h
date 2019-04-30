@@ -14,7 +14,7 @@ namespace oak
 
     public:
       friend class Input;
-      KeyBuffer(const ushort  code);
+      KeyBuffer(ushort  code);
       ~KeyBuffer();
       //Returns the KeyCode of this key
       ushort getCode() const;

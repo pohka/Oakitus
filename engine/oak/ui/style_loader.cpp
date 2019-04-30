@@ -16,7 +16,7 @@ using namespace std;
 
 vector<string> StyleLoader::loadedFiles;
 
-void StyleLoader::load(string path)
+void StyleLoader::load(const string& path)
 {
   loadedFiles.push_back(path);
   parse(path);

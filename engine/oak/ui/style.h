@@ -15,7 +15,7 @@ namespace ion
 {
   struct Style
   {
-    Style(std::string selector);
+    Style(const std::string& selector);
 
     //constructor that is used with StyleLoader
     Style(

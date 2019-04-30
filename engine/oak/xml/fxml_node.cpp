@@ -2,7 +2,7 @@
 
 using namespace oak;
 
-FXMLNode::FXMLNode(std::string name, FXMLNode* parent)
+FXMLNode::FXMLNode(const std::string& name, FXMLNode* parent)
 {
   this->name = name;
   this->parent = parent;

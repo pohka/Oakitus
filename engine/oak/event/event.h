@@ -10,7 +10,7 @@ namespace oak
   //interface
   struct IEvent
   {
-    IEvent(const unsigned short id) : eventID(id) {}
+    IEvent(unsigned short id) : eventID(id) {}
     const unsigned short eventID;
   };
 
@@ -18,7 +18,7 @@ namespace oak
   template<typename Data>
   struct Event : public IEvent
   {
-    Event(const unsigned short id) : IEvent(id) {}
+    Event(unsigned short id) : IEvent(id) {}
     void(*execute)(const Data&);
   };
 }

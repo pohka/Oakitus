@@ -22,11 +22,11 @@ namespace tile
     );
     ~World();
 
-    Chunk* addChunk(const int chunkX, const int chunkY);
+    Chunk* addChunk(int chunkX, int chunkY);
 
     void addTile(Tile* tile);
 
-    Tile* getTileByID(const uint tileID);
+    Tile* getTileByID(uint tileID);
 
   private:
     std::vector<Tile*> tiles;

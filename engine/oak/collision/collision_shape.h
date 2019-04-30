@@ -40,7 +40,7 @@ namespace oak
       float originX() const;
       float originY() const;
       glm::vec3 origin() const;
-      void setOffset(const float x, const float y);
+      void setOffset(float x, float y);
 
       Type getType() const;
       bool isTrigger = false;

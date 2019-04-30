@@ -21,7 +21,7 @@ namespace oak
 
   struct Physics
   {
-    static bool Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit2D& hit, const float distance, const uint layers = COLLISION_LAYER_ALL);
+    static bool Raycast2D(const glm::vec2& origin, glm::vec2 direction, RaycastHit2D& hit, float distance, uint layers = COLLISION_LAYER_ALL);
   };
 }
 

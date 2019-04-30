@@ -28,7 +28,7 @@ namespace oak
 
     //add an event
     template<typename Data>
-    static void addEvent(const unsigned short eventID, void(*func)(const Data&))
+    static void addEvent(unsigned short eventID, void(*func)(const Data&))
     {
       Event<Data>* evt = new Event<Data>(eventID);
       evt->execute = func;
@@ -36,7 +36,7 @@ namespace oak
     }
 
     //remove an event by id
-    static void removeEvent(const unsigned short eventID)
+    static void removeEvent(unsigned short eventID)
     {
       for (unsigned int i = 0; i < events.size(); i++)
       {

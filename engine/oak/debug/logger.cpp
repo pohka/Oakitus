@@ -8,8 +8,8 @@ uint Logger::logRepeatCount = 0;
 bool Logger::hasReachedMaxRepeats = false;
 
 Logger::Logger(
-  const std::string &funcName, 
-  const std::string &file, 
+  const std::string& funcName, 
+  const std::string& file, 
   int line, 
   uchar logType
 )
@@ -89,7 +89,7 @@ Logger::~Logger()
 #endif
 }
 
-void Logger::startTimer(std::string name, std::string msg)
+void Logger::startTimer(const std::string& name, const std::string& msg)
 {
 #ifdef DEBUG_MODE
   Timer t;
@@ -101,7 +101,7 @@ void Logger::startTimer(std::string name, std::string msg)
 #endif
 }
 
-void Logger::endTimer(std::string name)
+void Logger::endTimer(const std::string& name)
 {
 #ifdef DEBUG_MODE
   for (unsigned int i = 0; i < timers.size(); i++)
@@ -117,8 +117,8 @@ void Logger::endTimer(std::string name)
 }
 
 bool Logger::isRepeatedLog(
-  const std::string &funcName,
-  const std::string &file,
+  const std::string& funcName,
+  const std::string& file,
   int line,
   uchar logType
 )

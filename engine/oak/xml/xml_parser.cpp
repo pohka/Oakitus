@@ -24,7 +24,7 @@ void XMLParser::clear()
   }
 }
 
-std::string XMLParser::nodeToString(const XMLNode& node, const unsigned int depth) const
+std::string XMLParser::nodeToString(const XMLNode& node, unsigned int depth) const
 {
   std::string str = "";
   //indenting
@@ -34,7 +34,6 @@ std::string XMLParser::nodeToString(const XMLNode& node, const unsigned int dept
   }
 
   str += "<" + node.tag;
-  //std::cout << std::to_string(node.attrs.size()) << std::endl;
   for (auto it : node.attrs)
   {
     str += " " + it.first + "=\"" + it.second + "\"";
@@ -354,7 +353,7 @@ bool XMLParser::load(const std::string& path)
   return errorCode == ERROR_NONE;
 }
 
-char XMLParser::getTokenID(const char ch, const char prevCh) const
+char XMLParser::getTokenID(char ch, char prevCh) const
 {
   for (unsigned int i = 0; i < TOKEN_COUNT; i++)
   {

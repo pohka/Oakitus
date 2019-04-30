@@ -9,7 +9,7 @@
 
 using namespace ion;
 
-Style::Style(std::string selector)
+Style::Style(const std::string& selector)
 {
   this->selector = selector;
   attrs.insert_or_assign(STYLE_WIDTH, STYLE_VAL_AUTO);

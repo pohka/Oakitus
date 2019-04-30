@@ -70,7 +70,7 @@ RectBounds CollisionRect::getRectBounds() const
   return bounds;
 }
 
-void CollisionRect::setWidth(const float w)
+void CollisionRect::setWidth(float w)
 {
   this->w = w;
 
@@ -78,7 +78,7 @@ void CollisionRect::setWidth(const float w)
   initVAO(w, h);
 #endif
 }
-void CollisionRect::setHeight(const float h)
+void CollisionRect::setHeight(float h)
 {
   this->h = h;
 

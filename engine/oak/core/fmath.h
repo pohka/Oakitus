@@ -6,7 +6,7 @@ namespace oak
 {
   struct FMath
   {
-    static float clamp(float val, const float min, const float max)
+    static float clamp(float val, float min, float max)
     {
       if (val < min)
       {
@@ -19,7 +19,7 @@ namespace oak
       return val;
     }
 
-    static int clampInt(int val, const int min, const int max)
+    static int clampInt(int val, int min, int max)
     {
       if (val < min)
       {

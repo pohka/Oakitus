@@ -13,7 +13,7 @@
 
 using namespace oak;
 
-Shader::Shader(std::string name, bool isEngineAsset, const char* geometryPath ) : Asset(name, isEngineAsset)
+Shader::Shader(const std::string& name, bool isEngineAsset, const char* geometryPath ) : Asset(name, isEngineAsset)
 {
   this->geometryPath = geometryPath;
 

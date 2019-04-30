@@ -6,7 +6,7 @@
 
 using namespace oak;
 
-Entity::Entity(bool isEverRendered, const uchar ENTITY_GROUP) : ENTITY_GROUP(ENTITY_GROUP)
+Entity::Entity(bool isEverRendered, uchar ENTITY_GROUP) : ENTITY_GROUP(ENTITY_GROUP)
 {
   this->isEverRendered = isEverRendered;
   this->isRenderable = isEverRendered;
@@ -41,7 +41,7 @@ Entity::~Entity()
 
 
 
-void Entity::addComponent(Component* component, const bool isRigidBody)
+void Entity::addComponent(Component* component, bool isRigidBody)
 {
   //give the component a unique ID and tell it who its owner entity is
   component->entity = this;

@@ -44,7 +44,7 @@ Player* PlayerResource::getLocalPlayer()
   return players[localPlayerID];
 }
 
-Player* PlayerResource::getLocalPlayerBySlot(unsigned int slotIndex)
+Player* PlayerResource::getLocalPlayerBySlot(uint slotIndex)
 {
   unsigned int slotCount = 0;
   for (Player* player : players)

@@ -19,8 +19,6 @@ namespace oak
   {
     static oak::IDGenerator idGen; //Player Unique ID generator
     uint playerID; //Player Unique ID
-    //Actor* assignedActor;
-    std::vector<std::string> lua_commands;
 
     Entity* assignedEntity = nullptr;
     
@@ -36,13 +34,8 @@ namespace oak
 
       //Adds an input Command to this Player
       void addCommand(Command* command);
-      //void lua_addCommand(std::string name);
-      void removeCommand(const ushort commandID);
-      bool hasCommand(const ushort commandID) const;
-
-     // void assignActor(Actor* actor);
-     // Actor* getAssignedActor();
-     // void unAssignActor();
+      void removeCommand(ushort commandID);
+      bool hasCommand(ushort commandID) const;
 
       void assignEntity(Entity* entity);
       void unassignEntity();

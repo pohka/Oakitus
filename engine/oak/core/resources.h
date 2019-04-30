@@ -39,34 +39,34 @@ namespace oak
       static std::string rootPath;
 
       //returns the id
-      static uint addShader(std::string name, bool isEngineAsset = false);
-      static uint addTexture(std::string name, bool isEngineAsset = false);
-      static uint addFont(std::string name, bool isEngineAsset = false);
+      static uint addShader(const std::string& name, bool isEngineAsset = false);
+      static uint addTexture(const std::string& name, bool isEngineAsset = false);
+      static uint addFont(const std::string& name, bool isEngineAsset = false);
 
       static Shader* getShaderByID(uint id);
-      static Shader* getShaderByName(std::string name);
+      static Shader* getShaderByName(const std::string& name);
       static Texture* getTextureByID(uint textureID);
-      static Texture* getTextureByName(std::string name);
+      static Texture* getTextureByName(const std::string& name);
       static Shader* getDefaultShader();
       static Texture* getDefaultTexture();
-      static uint getTextureIDByName(std::string name);
-      static uint getFontIDByName(std::string fontName);
+      static uint getTextureIDByName(const std::string& name);
+      static uint getFontIDByName(const std::string& fontName);
       static ion::Font* getFontByID(uint id);
 
       static uint getDefaultShaderID();
 
       //Returns true if a Texture is already loaded
-      static bool isTextureLoaded(std::string name);
+      static bool isTextureLoaded(const std::string& name);
 
       //Returns true if a Shader is already loaded
-      static bool isShaderLoaded(std::string name);
+      static bool isShaderLoaded(const std::string& name);
 
-      static bool isFontLoaded(std::string name);
+      static bool isFontLoaded(const std::string& name);
 
       //remove a resource by name, returns true if resource was found and removed
-      static bool removeShader(std::string name);
-      static bool removeTexture(std::string name);
-      static bool removeFont(std::string name);
+      static bool removeShader(const std::string& name);
+      static bool removeTexture(const std::string& name);
+      static bool removeFont(const std::string& name);
 
       static void cache(Precache precache);
 

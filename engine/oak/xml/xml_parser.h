@@ -62,10 +62,10 @@ namespace oak
 
   private:
     //finds and returns the token the 2 chars match
-    char getTokenID(const char ch, const char prevCh) const;
+    char getTokenID(char ch, char prevCh) const;
 
     //recursively converts a node to string
-    std::string nodeToString(const XMLNode& node, const unsigned int depth = 0) const;
+    std::string nodeToString(const XMLNode& node, unsigned int depth = 0) const;
 
     //removes repeated whitespace from text, also removes whitespace at start and end of text
     void trimText(XMLNode* node);

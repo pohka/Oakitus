@@ -27,7 +27,7 @@ namespace tile
 
     ~Tile();
 
-    void onRender(const float vpX, const float vpY, oak::Shader* shader) const;
+    void onRender(float vpX, float vpY, oak::Shader* shader) const;
 
   private:
     uint VAO;

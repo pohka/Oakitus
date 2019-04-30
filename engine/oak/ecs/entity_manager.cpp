@@ -23,7 +23,7 @@ Entity* EntityManager::findEntityByID(uint id)
   return nullptr;
 }
 
-Entity* EntityManager::findEntityByName(std::string name)
+Entity* EntityManager::findEntityByName(const std::string& name)
 {
   for (uint i = 0; i < entitys.size(); i++)
   {
@@ -217,7 +217,7 @@ const uint EntityManager::nextEntityID()
   return entityIDGen.nextID();
 }
 
-void EntityManager::getAllEntitysByGroup(const uchar ENTITY_GROUP, std::vector<Entity*>& out)
+void EntityManager::getAllEntitysByGroup(uchar ENTITY_GROUP, std::vector<Entity*>& out)
 {
   for (Entity* ent : entitys)
   {
@@ -228,7 +228,7 @@ void EntityManager::getAllEntitysByGroup(const uchar ENTITY_GROUP, std::vector<E
   }
 }
 
-void EntityManager::requestDestroy(const uint entID, const float delay)
+void EntityManager::requestDestroy(uint entID, float delay)
 {
   destroyRequests.push_back({ entID, delay + Time::getGameTime() });
 }

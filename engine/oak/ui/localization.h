@@ -11,7 +11,7 @@ namespace ion
   struct Localization
   {
     static std::map<uint, std::string> strings;
-    static void addString(const uint id, std::string value);
+    static void addString(uint id, std::string value);
   };
 }
 

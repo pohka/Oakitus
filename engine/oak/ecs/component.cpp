@@ -7,7 +7,7 @@ Component::Component(
   Reflect reflectID,
   TickGroup tickGroup,
   TickType tickType,
-  const bool isEverRendered
+  bool isEverRendered
 ) : _REFLECT_ID(reflectID)
 {
   this->tickGroup = tickGroup;

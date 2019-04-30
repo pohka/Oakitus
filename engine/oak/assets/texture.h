@@ -16,7 +16,7 @@ namespace oak
     int height;
 
     public:
-      Texture(std::string src, bool isEngineAsset);
+      Texture(const std::string& src, bool isEngineAsset);
       ~Texture();
       int getHeight() const;
       int getWidth() const;

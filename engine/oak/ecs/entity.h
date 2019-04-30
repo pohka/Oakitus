@@ -55,11 +55,11 @@ namespace oak
       const uchar ENTITY_GROUP; //grouping for entitys, so they can be found
       
 
-	    Entity(bool isEverRendered = true, const uchar ENTITY_GROUP = ENTITY_GROUP_NONE);
+	    Entity(bool isEverRendered = true, uchar ENTITY_GROUP = ENTITY_GROUP_NONE);
 	    virtual ~Entity();
       
       //Adds a Component to this Entity
-	    void addComponent(Component* component, const bool isRigidBody = false);
+	    void addComponent(Component* component, bool isRigidBody = false);
       BaseRigidBody* getRigidBody() const;
 
       //Adds a CollisionShape to this Entity
