@@ -1,66 +1,54 @@
-#include <oak/localization/localization.h>
+﻿#include <oak/localization/localization.h>
 #include <oak/debug.h>
 #include <oak/localization/lsd_parser.h>
 #include <oak/localization/lsd_validator.h>
 
-using namespace ion;
+using namespace oak;
 
-std::vector<std::string> Localization::languageOptions;
-unsigned int Localization::languageID = 0;
-std::map<std::string, std::string> Localization::strings;
-
-void Localization::init(const std::string& defaultLang)
+void Localization::init(std::string langID, const std::string& langNativeName)
 {
-  languageOptions.push_back(defaultLang);
-  loadStrings(defaultLang);
+  addLangSupport(langID, langNativeName);
+  setLanguage(langID);
 }
 
-void Localization::addLanguageOption(const std::string& langName)
-{
-  languageOptions.push_back(langName);
-}
-
-void Localization::setLanguage(const std::string& langName)
+//sets the language and loaded it from file
+void Localization::setLanguage(std::string langID)
 {
   //current language is already set
-  if (langName == getLanguage())
+  if (langID == getCurrentLangID())
   {
     return;
   }
 
   //check if language option exists
+  const std::vector<Lang>& langOptions = getLangOptions();
+  std::string nativeName = "";
   bool isFound = false;
-  for (unsigned int i=0; i<languageOptions.size() && !isFound; i++)
+  for (unsigned int i=0; i< langOptions.size() && !isFound; i++)
   {
-    if (languageOptions[i] == langName)
+    if (langOptions[i].id == langID)
     {
-      languageID = i;
+      nativeName = langOptions[i].nativeName;
       isFound = true;
     }
   }
 
   if (!isFound)
   {
-    LOG_WARNING << "No language option found for: '" << langName << "'";
+    LOG_WARNING << "No language option found for langID: '" << langID << "'";
   }
   else
   {
-    loadStrings(langName);
+    loadStrings(nativeName);
   }
 }
 
-const std::string& Localization::getLanguage()
-{
-  return languageOptions[languageID];
-}
-
-
-void Localization::setString(const std::string& key, const std::string& value)
+void Localization::set(const std::string& key, const std::string& value)
 {
   strings[key] = value;
 }
 
-const std::string& Localization::getString(const std::string& key)
+const std::string& Localization::get(const std::string& key)
 {
   auto it = strings.find(key);
   if (it == strings.end())
@@ -89,3 +77,4 @@ void Localization::loadStrings(const std::string& name)
     LOG_WARNING << "Localization file could not be loaded: " << path;
   }
 }
+

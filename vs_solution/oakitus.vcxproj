@@ -90,6 +90,7 @@
     <ClInclude Include="..\engine\oak\core\oakitus.h" />
     <ClInclude Include="..\engine\oak\core\resources.h" />
     <ClInclude Include="..\engine\oak\core\string_help.h" />
+    <ClInclude Include="..\engine\oak\core\systems.h" />
     <ClInclude Include="..\engine\oak\core\types.h" />
     <ClInclude Include="..\engine\oak\debug.h" />
     <ClInclude Include="..\engine\oak\debug\debug_input.h" />
@@ -104,6 +105,8 @@
     <ClInclude Include="..\engine\oak\input\key_buffer.h" />
     <ClInclude Include="..\engine\oak\input\key_codes.h" />
     <ClInclude Include="..\engine\oak\input\point.h" />
+    <ClInclude Include="..\engine\oak\localization\i_localization.h" />
+    <ClInclude Include="..\engine\oak\localization\lang.h" />
     <ClInclude Include="..\engine\oak\localization\localization.h" />
     <ClInclude Include="..\engine\oak\localization\lsd_parser.h" />
     <ClInclude Include="..\engine\oak\localization\lsd_validator.h" />
@@ -235,6 +238,7 @@
     <ClCompile Include="..\engine\oak\event\event_manager.cpp" />
     <ClCompile Include="..\engine\oak\input\input.cpp" />
     <ClCompile Include="..\engine\oak\input\key_buffer.cpp" />
+    <ClCompile Include="..\engine\oak\localization\lang.cpp" />
     <ClCompile Include="..\engine\oak\localization\localization.cpp" />
     <ClCompile Include="..\engine\oak\localization\lsd_parser.cpp" />
     <ClCompile Include="..\engine\oak\localization\lsd_validator.cpp" />

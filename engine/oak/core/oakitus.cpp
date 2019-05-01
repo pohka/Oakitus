@@ -23,7 +23,8 @@
 #include <oak/ability/combat_tracker.h>
 #include <my_game/ui/status.h>
 #include <oak/ui/ui_canvas.h>
-#include <oak/localization/localization.h>
+#include <oak/localization/i_localization.h>
+#include <oak/core/systems.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <oak/assets/stb_image.h>
@@ -85,7 +86,25 @@ void Oakitus::init()
   //loads scripts/main.lua
   LuaS::init();
 
-  ion::Localization::init("english");
+  
+  //get langID from Config
+  const std::string langID = Config::getString("lang", "en"); 
+
+  //use ISO standard if it exists, otherwise default to english
+  auto it = Lang::ISO_STANDARDS.find(langID);
+  if(it != Lang::ISO_STANDARDS.end())
+  {
+    systems::StringData->init(it->first, it->second);
+  }
+  else
+  {
+    systems::StringData->init("en", "english");
+  }
+  
+  
+  std::cout << "string value:" << systems::StringData->get("health");
+
+
   auto statusUI = new game::Status();
   ion::UICanvas::addWidget(1 ,statusUI);
 

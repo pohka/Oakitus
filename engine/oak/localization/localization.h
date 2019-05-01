@@ -1,40 +1,33 @@
-#pragma once
+﻿#pragma once
 #ifndef LOCALIZATION_H
 #define LOCALIZATION_H
 
 #include <map>
 #include <string>
-#include <vector>
+#include <oak/localization/i_localization.h>
 
-namespace ion
+namespace oak
 {
 
-  class Localization
+  class Localization : public oak::ILocalization
   {
-    static std::vector<std::string> languageOptions;
-    static unsigned int languageID;
-    static std::map<std::string, std::string> strings;
+    std::map<std::string, std::string> strings;
 
   public:
-    static void init(const std::string& defaultLang);
-
-    //add a language option, must be an all lowercase string
-    static void addLanguageOption(const std::string& langName);
+    //initialize starting language
+    void init(std::string langID, const std::string& langNativeName) override;
 
     //set the current language by name (name should be all lowercase)
-    static void setLanguage(const std::string& langName);
-
-    //get current language name
-    static const std::string& getLanguage();
+    void setLanguage(std::string langID) override;
 
     //set a string value
-    static void setString(const std::string& key, const std::string& value);
+    void set(const std::string& key, const std::string& value) override;
 
-    //get a string valu
-    static const std::string& getString(const std::string& key);
+    //get a string value
+    const std::string& get(const std::string& key) override;
 
   private:
-    static void loadStrings(const std::string& name);
+    void loadStrings(const std::string& name);
   };
 }
 

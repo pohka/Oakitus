@@ -486,6 +486,15 @@
     <ClInclude Include="..\engine\oak\localization\localization.h">
       <Filter>oak\localization</Filter>
     </ClInclude>
+    <ClInclude Include="..\engine\oak\localization\i_localization.h">
+      <Filter>oak\localization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\core\systems.h">
+      <Filter>oak\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\engine\oak\localization\lang.h">
+      <Filter>oak\localization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\engine\oak\collision\collision.cpp">
@@ -842,6 +851,9 @@
       <Filter>oak\localization</Filter>
     </ClCompile>
     <ClCompile Include="..\engine\oak\localization\localization.cpp">
+      <Filter>oak\localization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\engine\oak\localization\lang.cpp">
       <Filter>oak\localization</Filter>
     </ClCompile>
   </ItemGroup>
